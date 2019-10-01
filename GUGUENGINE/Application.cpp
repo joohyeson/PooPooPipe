@@ -107,20 +107,20 @@ bool defineVertexArrayObject() {
 		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
 	};
 
-	Mesh mMesh = MESH::create_rectangle();
+	Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
 
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
 	glGenBuffers(1, &trianglePositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, trianglePositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(position),position, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(mMesh), &mMesh.GetPoint()[0], GL_STATIC_DRAW);
 
 	glGenBuffers(1, &triangleColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, triangleColorVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
 
 
-   
+
 	//#6
 	glGenVertexArrays(1, &triangleVertexArrayObject);
 	glBindVertexArray(triangleVertexArrayObject);
@@ -133,7 +133,7 @@ bool defineVertexArrayObject() {
 	}
 	glBindBuffer(GL_ARRAY_BUFFER, trianglePositionVertexBufferObjectID);
 	glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	
+
 	glEnableVertexAttribArray(positionAttribute);
 
 	GLint colorAttribute = glGetAttribLocation(triangleShaderProgramID, "colorAttribute");
@@ -237,7 +237,7 @@ int main()
 	GLenum errorCode = glewInit();
 	if (GLEW_OK != errorCode) {
 
-		std::cerr << "Error: GLEW 초기화 실패 - " << glewGetErrorString(errorCode) <<std::endl;
+		std::cerr << "Error: GLEW 초기화 실패 - " << glewGetErrorString(errorCode) << std::endl;
 
 		glfwTerminate();
 		std::exit(EXIT_FAILURE);
@@ -319,7 +319,7 @@ int main()
 
 
 		glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
-		
+
 
 		count++;
 
@@ -341,4 +341,3 @@ int main()
 
 	std::exit(EXIT_SUCCESS);
 }
-	
