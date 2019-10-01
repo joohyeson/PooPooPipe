@@ -1,0 +1,24 @@
+﻿  Application.cpp
+c:\users\user\source\repos\guguengine\application.cpp(2): fatal error C1083: 포함 파일을 열 수 없습니다. 'SDL.h': No such file or directory
+  Color.cpp
+c:\users\user\source\repos\guguengine\color.h(8): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\color.h(36): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+  glCheck.cpp
+c:\users\user\source\repos\guguengine\glcheck.cpp(2): fatal error C1083: 포함 파일을 열 수 없습니다. 'glew.h': No such file or directory
+  Input.cpp
+c:\users\user\source\repos\guguengine\input.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'SDL.h': No such file or directory
+  main.cpp
+c:\users\user\source\repos\guguengine\input.h(3): fatal error C1083: 포함 파일을 열 수 없습니다. 'SDL.h': No such file or directory
+  Mesh.cpp
+c:\users\user\source\repos\guguengine\color.h(8): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\color.h(36): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\mesh.h(8): fatal error C1083: 포함 파일을 열 수 없습니다. 'glm/glm.hpp': No such file or directory
+  Shader.cpp
+c:\users\user\source\repos\guguengine\color.h(8): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\color.h(36): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\shader.h(15): error C2429: 특성 'nodiscard'에 컴파일러 플래그 '/std:c++17'이(가) 필요합니다.
+c:\users\user\source\repos\guguengine\shader.cpp(10): fatal error C1083: 포함 파일을 열 수 없습니다. 'glew.h': No such file or directory
+  Timer.cpp
+  Transform.cpp
+c:\users\user\source\repos\guguengine\transform.h(2): fatal error C1083: 포함 파일을 열 수 없습니다. 'glm/glm.hpp': No such file or directory
+  코드를 생성하고 있습니다...

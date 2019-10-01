@@ -1,0 +1,11 @@
+﻿  Application.cpp
+  Color.cpp
+  glCheck.cpp
+  Input.cpp
+  main.cpp
+  Mesh.cpp
+  Timer.cpp
+  Transform.cpp
+  Generating Code...
+  Shader.cpp
+LINK : fatal error LNK1104: cannot open file 'FreeImage.lib'
