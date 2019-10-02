@@ -94,12 +94,7 @@ bool initShaderProgram() {
 bool defineVertexArrayObject() {
 
 	//#1
-	//삼각형을 구성하는 vertex 데이터 - position과 color
-	float position[] = {
-		0.0f,  0.5f, 0.0f, //vertex 1  위 중앙
-		0.5f, -0.5f, 0.0f, //vertex 2  오른쪽 아래
-		-0.5f, -0.5f, 0.0f //vertex 3  왼쪽 아래
-	};
+
 
 	float color[] = {
 		1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
@@ -107,7 +102,8 @@ bool defineVertexArrayObject() {
 		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
 	};
 
-	Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
+	//Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
+	Mesh mMesh = MESH::create_rectangle();
 
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
@@ -318,7 +314,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 
 		count++;
