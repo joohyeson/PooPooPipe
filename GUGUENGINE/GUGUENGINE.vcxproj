@@ -104,7 +104,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\User\Documents\new_99\GUGUENGINE\external\FreeImage\Dist\x64;$(SolutionDir)external\glm;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\glfw;$(SolutionDir)external\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\glfw;$(SolutionDir)external\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpplatest</LanguageStandard>
       <TreatWarningAsError>false</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -112,10 +112,13 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>C:\Users\User\Documents\new_99\GUGUENGINE\external\FreeImage\Dist\x64;$(SolutionDir)external\SDL2\lib;C:\Users\User\source\repos\GUGUENGINE\external\glew\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\SDL2\lib;C:\Users\User\source\repos\GUGUENGINE\external\glew\lib\Release\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
+    <PostBuildEvent>
+      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"</Command>
+    </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
     <ClCompile>
@@ -157,7 +160,9 @@
     <ClCompile Include="glCheck.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="main.cpp" />
-    <ClCompile Include="Mesh.cpp" />
+    <ClCompile Include="Mesh.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Shader.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -170,7 +175,9 @@
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="glCheck.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="Mesh.h" />
+    <ClInclude Include="Mesh.h">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
+    </ClInclude>
     <ClInclude Include="Shader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
