@@ -6,6 +6,7 @@
 #pragma once
 #include "Color.h"
 #include "glm/glm.hpp"
+#include "glew.h"
  //#include <CS230/math/vector2.hpp>
 #include <cstddef>
 #include <vector>
@@ -14,6 +15,8 @@
 enum class [[nodiscard]] PointListPattern
 {
 	Lines, LineStrip, LineLoop, Triangles, TriangleStrip, TriangleFan
+	//change to GL_TRIANGLE_FAN and so on
+	//GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN
 };
 
 class [[nodiscard]] Mesh
