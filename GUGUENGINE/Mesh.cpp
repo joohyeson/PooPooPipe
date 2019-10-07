@@ -5,7 +5,7 @@
 //#include <CS230/graphics/Mesh.hpp>
 //#include <CS230/math/angles.hpp>
 #include <cmath>
-//#include <valarray>
+#include <valarray>
 #include "Mesh.h"
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
@@ -64,12 +64,12 @@ std::vector<glm::vec2>  Mesh::GetTextureCoordinate()  const noexcept
 
 }
 //Simple getter for pointListType
-GLenum Mesh::GetPointListPattern()  const noexcept
+PointListPattern Mesh::GetPointListPattern()  const noexcept
 {
 	return pointListType;
 }
 //Simple setter for pointListType
-void Mesh::SetPointListType(GLenum type)noexcept
+void Mesh::SetPointListType(PointListPattern type)noexcept
 {
 	pointListType = type;
 }
@@ -135,7 +135,7 @@ namespace MESH
 		float theta = TWO_PI / point_count;
 		glm::vec3  originPoint = { 0,0, 0 };
 
-		circle.SetPointListType(GL_TRIANGLE_FAN);
+		circle.SetPointListType(PointListPattern::TriangleFan);
 		circle.AddPoint(originPoint);
 
 		for (int i = 0; i <= point_count; i++)
@@ -154,7 +154,7 @@ namespace MESH
 
 		Mesh wireCircle;
 		wireCircle.AddColor(color);
-		wireCircle.SetPointListType(GL_LINE_LOOP);
+		wireCircle.SetPointListType(PointListPattern::LineLoop);
 		float theta = TWO_PI / point_count;
 		/*float theta = (PI*2) / point_count;*/
 		for (int i = 0; i < point_count; i++)
@@ -174,14 +174,14 @@ namespace MESH
 	Mesh create_rectangle(float width, float height, Color4ub color) noexcept
 	{//use tan()
 		Mesh rectangle;
-		rectangle.SetPointListType(GL_TRIANGLE_FAN);
+		rectangle.SetPointListType(PointListPattern::TriangleFan);
 		rectangle.AddTextureCoordinate({ 0,1 });
 		rectangle.AddTextureCoordinate({ 0, 0 });
 		rectangle.AddTextureCoordinate({ 1,0 });
 		rectangle.AddTextureCoordinate({ 1,1 });
 
 		rectangle.AddPoint({ -width / 2, -height / 2, 0 });
-		rectangle.AddPoint({ -width / 2,height / 2,0 });
+		rectangle.AddPoint({ -width / 2,height / 2 ,0 });
 		rectangle.AddPoint({ width / 2,height / 2 ,0 });
 		rectangle.AddPoint({ width / 2,-height / 2 ,0 });
 		rectangle.AddColor(color);
@@ -196,14 +196,13 @@ namespace MESH
 
 		Mesh rectangle;
 
-		rectangle.SetPointListType(GL_LINE_LOOP);
+		rectangle.SetPointListType(PointListPattern::LineLoop);
 		rectangle.AddTextureCoordinate({ 0,1 });
 		rectangle.AddTextureCoordinate({ 0, 0 });
 		rectangle.AddTextureCoordinate({ 1,0 });
 		rectangle.AddTextureCoordinate({ 1,1 });
 
 		rectangle.AddPoint({ -width / 2, -height / 2,0 });
-
 		rectangle.AddPoint({ -width / 2,height / 2 ,0 });
 		rectangle.AddPoint({ width / 2,height / 2 ,0 });
 		rectangle.AddPoint({ width / 2,-height / 2,0 });
@@ -221,7 +220,7 @@ namespace MESH
 	Mesh create_line(glm::vec3  a, glm::vec3  b, Color4ub color) noexcept
 	{
 		Mesh line;
-		line.SetPointListType(GL_LINES);
+		line.SetPointListType(PointListPattern::Lines);
 		line.AddColor(color);
 		line.AddPoint(a);
 		line.AddPoint(b);
@@ -230,7 +229,7 @@ namespace MESH
 	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c)
 	{
 		Mesh triangle;
-		triangle.SetPointListType(GL_TRIANGLES);
+		triangle.SetPointListType(PointListPattern::Triangles);
 		triangle.AddPoint(a);
 		triangle.AddPoint(b);
 		triangle.AddPoint(c);

@@ -13,7 +13,7 @@ public:
 	void SetScale(const glm::vec2& new_scale) noexcept;
 	float GetRotation() const noexcept;
 	void SetRotation(float new_rotation) noexcept;
-	void mtranslation(const glm::vec2& mVector);
+
 
 private:
 	glm::vec2 translation{};

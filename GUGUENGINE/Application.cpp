@@ -8,11 +8,7 @@ GLuint mVertexArrayObject;
 GLuint mShaderProgramID;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 
-Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
-//Mesh mMesh = MESH::create_rectangle();
-//Mesh mMesh = MESH::create_circle(1.0f, { 0, 0, 0 }, 6);//hexagon
-//Mesh mMesh = MESH::create_wire_box();
-
+Mesh mMesh = MESH::create_rectangle();
 bool initShaderProgram() {
 
 	//#3
@@ -27,6 +23,7 @@ bool initShaderProgram() {
 		"passColorAttribute = colorAttribute;"
 		"}";
 
+
 	//#4
 	const GLchar* fragmentShaderSource =
 		"#version 330 core\n"
@@ -36,6 +33,8 @@ bool initShaderProgram() {
 		"{"
 		"fragmentColor = vec4(passColorAttribute, 1.0);"
 		"}";
+
+
 
 	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
 	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
@@ -93,43 +92,30 @@ bool initShaderProgram() {
 
 
 bool defineVertexArrayObject() {
-	
 
-//	float color[] = {
-//	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
-//	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-//	0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
-//	,	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
-//	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-//	0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
-//	,1.0f, 0.0f, 0.0f,
-//		0.0f, 1.0f, 0.0f, 
-//		0.0f, 0.0f, 1.f, 
-//		1.0f, 0.0f, 0.0f, 
-//		0.0f, 1.f, 0.f
-//};  
+	//#1
+
 
 	float color[] = {
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f,
-	1.0f, 1.0f, 1.0f
+		1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
+		0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
+		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
 	};
 
+	//Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
+	
 
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, mMesh.GetPointCount() * 3 * sizeof(float), &mMesh.GetPoint()[0], GL_STATIC_DRAW);
-	
+	glBufferData(GL_ARRAY_BUFFER, sizeof(mMesh), &mMesh.GetPoint()[0], GL_STATIC_DRAW);
+
 	glGenBuffers(1, &mColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(color),color, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
+
+
 
 	//#6
 	glGenVertexArrays(1, &mVertexArrayObject);
@@ -189,12 +175,12 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	if (key == GLFW_KEY_N)
+	if (key == GLFW_MOUSE_BUTTON_LEFT)
 	{
 		double xpos, ypos;
 		//getting cursor position
 		glfwGetCursorPos(window, &xpos, &ypos);
-		std::cout << "Cursor Position at (" << xpos << " : " << ypos <<")"<< std::endl;
+		std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	}
 }
 
@@ -241,6 +227,8 @@ int main()
 	glfwSetKeyCallback(window, keyCallback);
 	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
 
+
+
 	glewExperimental = GL_TRUE;
 	GLenum errorCode = glewInit();
 	if (GLEW_OK != errorCode) {
@@ -250,6 +238,7 @@ int main()
 		glfwTerminate();
 		std::exit(EXIT_FAILURE);
 	}
+
 
 
 	if (!GLEW_VERSION_3_3) {
@@ -307,7 +296,7 @@ int main()
 		numOfFrames++;
 		if (currentTime - lastTime >= 1.0) {
 
-			//printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
+			printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
 			numOfFrames = 0;
 			lastTime = currentTime;
 		}
@@ -318,7 +307,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		glDrawArrays(mMesh.GetPointListPattern(), 0, mMesh.GetPointCount());
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 
 		count++;
