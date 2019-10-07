@@ -4,11 +4,11 @@
 #include "Mesh.h"
 
 int framebufferWidth, framebufferHeight;
-GLuint triangleVertexArrayObject;
-GLuint triangleShaderProgramID;
-GLuint trianglePositionVertexBufferObjectID, triangleColorVertexBufferObjectID;
+GLuint mVertexArrayObject;
+GLuint mShaderProgramID;
+GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 
-
+Mesh mMesh = MESH::create_rectangle();
 bool initShaderProgram() {
 
 	//#3
@@ -46,7 +46,7 @@ bool initShaderProgram() {
 	if (!result)
 	{
 		glGetShaderInfoLog(vertexShader, 512, NULL, errorLog);
-		std::cerr << "ERROR: vertex shader 컴파일 실패\n" << errorLog << std::endl;
+		std::cerr << "ERROR: FAIL vertex shader compile\n" << errorLog << std::endl;
 		glDeleteShader(vertexShader);
 		return false;
 	}
@@ -60,29 +60,29 @@ bool initShaderProgram() {
 	if (!result)
 	{
 		glGetShaderInfoLog(fragmentShader, 512, NULL, errorLog);
-		std::cerr << "ERROR: fragment shader 컴파일 실패\n" << errorLog << std::endl;
+		std::cerr << "ERROR: FAIL fragment shader compile\n" << errorLog << std::endl;
 
 		return false;
 	}
 
 
 	//#5
-	triangleShaderProgramID = glCreateProgram();
+	mShaderProgramID = glCreateProgram();
 
-	glAttachShader(triangleShaderProgramID, vertexShader);
-	glAttachShader(triangleShaderProgramID, fragmentShader);
+	glAttachShader(mShaderProgramID, vertexShader);
+	glAttachShader(mShaderProgramID, fragmentShader);
 
-	glLinkProgram(triangleShaderProgramID);
+	glLinkProgram(mShaderProgramID);
 
 
 	glDeleteShader(vertexShader);
 	glDeleteShader(fragmentShader);
 
 
-	glGetProgramiv(triangleShaderProgramID, GL_LINK_STATUS, &result);
+	glGetProgramiv(mShaderProgramID, GL_LINK_STATUS, &result);
 	if (!result) {
-		glGetProgramInfoLog(triangleShaderProgramID, 512, NULL, errorLog);
-		std::cerr << "ERROR: shader program 연결 실패\n" << errorLog << std::endl;
+		glGetProgramInfoLog(mShaderProgramID, 512, NULL, errorLog);
+		std::cerr << "ERROR: FAIL shader program connect\n" << errorLog << std::endl;
 		return false;
 	}
 
@@ -102,41 +102,42 @@ bool defineVertexArrayObject() {
 		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
 	};
 
-	Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
+	//Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
+	
 
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
-	glGenBuffers(1, &trianglePositionVertexBufferObjectID);
-	glBindBuffer(GL_ARRAY_BUFFER, trianglePositionVertexBufferObjectID);
+	glGenBuffers(1, &mPositionVertexBufferObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(mMesh), &mMesh.GetPoint()[0], GL_STATIC_DRAW);
 
-	glGenBuffers(1, &triangleColorVertexBufferObjectID);
-	glBindBuffer(GL_ARRAY_BUFFER, triangleColorVertexBufferObjectID);
+	glGenBuffers(1, &mColorVertexBufferObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
 
 
 
 	//#6
-	glGenVertexArrays(1, &triangleVertexArrayObject);
-	glBindVertexArray(triangleVertexArrayObject);
+	glGenVertexArrays(1, &mVertexArrayObject);
+	glBindVertexArray(mVertexArrayObject);
 
 
-	GLint positionAttribute = glGetAttribLocation(triangleShaderProgramID, "positionAttribute");
+	GLint positionAttribute = glGetAttribLocation(mShaderProgramID, "positionAttribute");
 	if (positionAttribute == -1) {
 		std::cerr << "position 속성 설정 실패" << std::endl;
 		return false;
 	}
-	glBindBuffer(GL_ARRAY_BUFFER, trianglePositionVertexBufferObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glVertexAttribPointer(positionAttribute, 3, GL_FLOAT, GL_FALSE, 0, 0);
 
 	glEnableVertexAttribArray(positionAttribute);
 
-	GLint colorAttribute = glGetAttribLocation(triangleShaderProgramID, "colorAttribute");
+	GLint colorAttribute = glGetAttribLocation(mShaderProgramID, "colorAttribute");
 	if (colorAttribute == -1) {
 		std::cerr << "color 속성 설정 실패" << std::endl;
 		return false;
 	}
-	glBindBuffer(GL_ARRAY_BUFFER, triangleColorVertexBufferObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
 	glVertexAttribPointer(colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(colorAttribute);
 
@@ -276,11 +277,7 @@ int main()
 	}
 
 
-
-
-
 	glfwSwapInterval(1);
-
 
 
 	double lastTime = glfwGetTime();
@@ -288,11 +285,8 @@ int main()
 	int count = 0;
 
 
-
-
-
-	glUseProgram(triangleShaderProgramID);
-	glBindVertexArray(triangleVertexArrayObject);
+	glUseProgram(mShaderProgramID);
+	glBindVertexArray(mVertexArrayObject);
 
 
 	while (!glfwWindowShouldClose(window)) {
@@ -313,7 +307,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		glDrawArrays(GL_TRIANGLE_STRIP, 0, 3);
+		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
 
 
 		count++;
@@ -328,10 +322,10 @@ int main()
 	glBindVertexArray(0);
 
 
-	glDeleteProgram(triangleShaderProgramID);
-	glDeleteBuffers(1, &trianglePositionVertexBufferObjectID);
-	glDeleteBuffers(1, &triangleColorVertexBufferObjectID);
-	glDeleteVertexArrays(1, &triangleVertexArrayObject);
+	glDeleteProgram(mShaderProgramID);
+	glDeleteBuffers(1, &mPositionVertexBufferObjectID);
+	glDeleteBuffers(1, &mColorVertexBufferObjectID);
+	glDeleteVertexArrays(1, &mVertexArrayObject);
 	glfwTerminate();
 
 	std::exit(EXIT_SUCCESS);
