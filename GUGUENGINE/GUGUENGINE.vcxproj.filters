@@ -39,6 +39,9 @@
     <Filter Include="소스 파일\Application\glCheck">
       <UniqueIdentifier>{31a3151d-de7c-4d20-b311-206ee6061844}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Application\Command">
+      <UniqueIdentifier>{423282f1-4e9d-4aad-ba0c-b01158ce8d10}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -68,6 +71,15 @@
     <ClCompile Include="glCheck.cpp">
       <Filter>소스 파일\Application\glCheck</Filter>
     </ClCompile>
+    <ClCompile Include="Command.cpp">
+      <Filter>소스 파일\Application\Command</Filter>
+    </ClCompile>
+    <ClCompile Include="Component.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="Object.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -96,6 +108,18 @@
     </ClInclude>
     <ClInclude Include="glCheck.h">
       <Filter>소스 파일\Application\glCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="Command.h">
+      <Filter>소스 파일\Application\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="CommandType.h">
+      <Filter>소스 파일\Application\Command</Filter>
+    </ClInclude>
+    <ClInclude Include="Component.h">
+      <Filter>소스 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="Object.h">
+      <Filter>소스 파일\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
