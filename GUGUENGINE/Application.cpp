@@ -2,99 +2,17 @@
 #include "glew.h"		
 #include "external/glfw/include/GLFW/glfw3.h"
 #include "Mesh.h"
+#include "Shader.h"
 
 int framebufferWidth, framebufferHeight;
 GLuint mVertexArrayObject;
-GLuint mShaderProgramID;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
+Shader mShader;
 
-Mesh mMesh = MESH::create_rectangle();
-bool initShaderProgram() {
-
-	//#3
-	const GLchar* vertexShaderSource =
-		"#version 330 core\n"
-		"in vec3 positionAttribute;"
-		"in vec3 colorAttribute;"
-		"out vec3 passColorAttribute;"
-		"void main()"
-		"{"
-		"gl_Position = vec4(positionAttribute, 1.0);"
-		"passColorAttribute = colorAttribute;"
-		"}";
-
-
-	//#4
-	const GLchar* fragmentShaderSource =
-		"#version 330 core\n"
-		"in vec3 passColorAttribute;"
-		"out vec4 fragmentColor;"
-		"void main()"
-		"{"
-		"fragmentColor = vec4(passColorAttribute, 1.0);"
-		"}";
-
-
-
-	GLuint vertexShader = glCreateShader(GL_VERTEX_SHADER);
-	glShaderSource(vertexShader, 1, &vertexShaderSource, NULL);
-	glCompileShader(vertexShader);
-
-	GLint result;
-	GLchar errorLog[512];
-	glGetShaderiv(vertexShader, GL_COMPILE_STATUS, &result);
-	if (!result)
-	{
-		glGetShaderInfoLog(vertexShader, 512, NULL, errorLog);
-		std::cerr << "ERROR: FAIL vertex shader compile\n" << errorLog << std::endl;
-		glDeleteShader(vertexShader);
-		return false;
-	}
-
-
-	GLuint fragmentShader = glCreateShader(GL_FRAGMENT_SHADER);
-	glShaderSource(fragmentShader, 1, &fragmentShaderSource, NULL);
-	glCompileShader(fragmentShader);
-
-	glGetShaderiv(fragmentShader, GL_COMPILE_STATUS, &result);
-	if (!result)
-	{
-		glGetShaderInfoLog(fragmentShader, 512, NULL, errorLog);
-		std::cerr << "ERROR: FAIL fragment shader compile\n" << errorLog << std::endl;
-
-		return false;
-	}
-
-
-	//#5
-	mShaderProgramID = glCreateProgram();
-
-	glAttachShader(mShaderProgramID, vertexShader);
-	glAttachShader(mShaderProgramID, fragmentShader);
-
-	glLinkProgram(mShaderProgramID);
-
-
-	glDeleteShader(vertexShader);
-	glDeleteShader(fragmentShader);
-
-
-	glGetProgramiv(mShaderProgramID, GL_LINK_STATUS, &result);
-	if (!result) {
-		glGetProgramInfoLog(mShaderProgramID, 512, NULL, errorLog);
-		std::cerr << "ERROR: FAIL shader program connect\n" << errorLog << std::endl;
-		return false;
-	}
-
-	return true;
-}
-
-
+//Mesh mMesh = MESH::create_rectangle();
+Mesh mMesh = MESH::create_box();
 
 bool defineVertexArrayObject() {
-
-	//#1
-
 
 	float color[] = {
 		1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
@@ -122,7 +40,7 @@ bool defineVertexArrayObject() {
 	glBindVertexArray(mVertexArrayObject);
 
 
-	GLint positionAttribute = glGetAttribLocation(mShaderProgramID, "positionAttribute");
+	GLint positionAttribute = glGetAttribLocation(mShader.GetShaderID(), "positionAttribute");
 	if (positionAttribute == -1) {
 		std::cerr << "position 속성 설정 실패" << std::endl;
 		return false;
@@ -132,7 +50,7 @@ bool defineVertexArrayObject() {
 
 	glEnableVertexAttribArray(positionAttribute);
 
-	GLint colorAttribute = glGetAttribLocation(mShaderProgramID, "colorAttribute");
+	GLint colorAttribute = glGetAttribLocation(mShader.GetShaderID(), "colorAttribute");
 	if (colorAttribute == -1) {
 		std::cerr << "color 속성 설정 실패" << std::endl;
 		return false;
@@ -148,9 +66,6 @@ bool defineVertexArrayObject() {
 	return true;
 }
 
-
-
-
 void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	//처음 2개의 파라미터는 viewport rectangle의 왼쪽 아래 좌표
@@ -162,14 +77,10 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 	framebufferHeight = height;
 }
 
-
-
 void errorCallback(int errorCode, const char* errorDescription)
 {
 	std::cerr << "Error: " << errorDescription << std::endl;
 }
-
-
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -183,16 +94,12 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 		std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	}
 }
-
-
-
-
 int main()
 {
 
 	//glfwSetErrorCallback(errorCallback);
 
-
+	//Shader mShader();
 	if (!glfwInit()) {
 
 		std::cerr << "Error: GLFW 초기화 실패" << std::endl;
@@ -256,9 +163,9 @@ int main()
 	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
 
+	
 
-
-	if (!initShaderProgram()) {
+	if (!mShader.LoadFromSource()) {
 
 		std::cerr << "Error: Shader Program 생성 실패" << std::endl;
 
@@ -285,7 +192,7 @@ int main()
 	int count = 0;
 
 
-	glUseProgram(mShaderProgramID);
+	glUseProgram(mShader.GetShaderID());
 	glBindVertexArray(mVertexArrayObject);
 
 
@@ -322,7 +229,7 @@ int main()
 	glBindVertexArray(0);
 
 
-	glDeleteProgram(mShaderProgramID);
+	glDeleteProgram(mShader.GetShaderID());
 	glDeleteBuffers(1, &mPositionVertexBufferObjectID);
 	glDeleteBuffers(1, &mColorVertexBufferObjectID);
 	glDeleteVertexArrays(1, &mVertexArrayObject);

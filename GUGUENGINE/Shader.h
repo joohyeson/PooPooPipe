@@ -6,6 +6,8 @@
 #pragma once
 #include <map>
 #include <string>
+#include "glew.h"		
+#include "external/glfw/include/GLFW/glfw3.h"
 
 
 	//class Color4f;
@@ -15,17 +17,19 @@
 	class[[nodiscard]] Shader
 	{
 	public:
-		Shader() noexcept = default;
-		Shader(const std::string& vertex_shader_source_code, const std::string& fragment_shader_source_code);
+		Shader();
+	
 		~Shader() noexcept = default;
 
-		bool LoadFromSource(const std::string& vertex_shader_source_code,
-							const std::string& fragment_shader_source_code);
+		bool LoadFromSource();
 
 		//void SendUniformVariable(const std::string& variable_name, const matrix3& affine_matrix) noexcept;
 		void SendUniformVariable(const std::string& variable_name, float number) noexcept;
 		void SendUniformVariable(const std::string& variable_name, int number) noexcept;
 		void SendUniformVariable(const std::string& variable_name, Color4f color) noexcept;
+		//GLuint setShaderID(GLuint m);
+		GLuint GetShaderID(void) noexcept;
+	
 
 		//bool initShaderProgram();
 
@@ -33,22 +37,23 @@
 
 		void Delete() noexcept;
 
-	public:
 		static void Select(const Shader& shader) noexcept;
 		static void SelectNothing() noexcept;
 
-	public:
+
 		Shader(const Shader& other) = delete;
 		Shader(Shader&& other) noexcept = delete;
 		Shader& operator=(const Shader& other) = delete;
 		Shader& operator=(Shader&& other) noexcept = delete;
+		
 
 	private:
 		int GetUniformLocation(const std::string& name) noexcept;
-
-	private:
-		unsigned                   handleToShader = 0;
+		GLuint mShaderProgramID=0;
+	
+		unsigned int                   handleToShader = 0;
 		std::map<std::string, int> uniformNameToLocation{};
+	
 	};
 
 
