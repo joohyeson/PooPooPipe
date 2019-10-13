@@ -9,9 +9,9 @@ GLuint mVertexArrayObject;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 Shader mShader;
 
-//Mesh mMesh = MESH::create_rectangle();
-Mesh mMesh = MESH::create_box();
-
+Mesh mMesh = MESH::create_rectangle();
+//Mesh mMesh = MESH::create_box();
+//Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { 0.0f, 0.5f, 0.0f });
 bool defineVertexArrayObject() {
 
 	float color[] = {
@@ -20,25 +20,20 @@ bool defineVertexArrayObject() {
 		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
 	};
 
-	//Mesh mMesh = MESH::create_triangle({ 0.0f, 0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { -0.5f, -0.5f, 0.0f });
 	
-
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(mMesh), &mMesh.GetPoint()[0], GL_STATIC_DRAW);
-
+	glBufferData(GL_ARRAY_BUFFER, mMesh.GetPointCount()*sizeof(float)*3, &mMesh.GetPoint()[0], GL_STATIC_DRAW);
+	
 	glGenBuffers(1, &mColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
 
-
-
 	//#6
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
-
 
 	GLint positionAttribute = glGetAttribLocation(mShader.GetShaderID(), "positionAttribute");
 	if (positionAttribute == -1) {
@@ -106,8 +101,6 @@ int main()
 		std::exit(EXIT_FAILURE);
 	}
 
-
-
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
@@ -162,9 +155,6 @@ int main()
 	std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
 	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
-
-	
-
 	if (!mShader.LoadFromSource()) {
 
 		std::cerr << "Error: Shader Program 생성 실패" << std::endl;
@@ -214,7 +204,7 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		glDrawArrays(GL_TRIANGLE_FAN, 0, 4);
+		glDrawArrays(mMesh.GetPointListPattern(), 0, mMesh.GetPointCount());
 
 
 		count++;

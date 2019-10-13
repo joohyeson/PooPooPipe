@@ -27,8 +27,8 @@ public:
 	Color4ub    GetColor(std::size_t index = 0) const noexcept;
 	std::vector<glm::vec2>      GetTextureCoordinate() const noexcept;
 
-	PointListPattern GetPointListPattern() const noexcept;
-	void             SetPointListType(PointListPattern type) noexcept;
+	GLenum GetPointListPattern() const noexcept;
+	void             SetPointListType(GLenum type) noexcept;
 
 	void AddColor(Color4ub color) noexcept;
 	void AddPoint(glm::vec3  point) noexcept;
@@ -45,7 +45,7 @@ private:
 	std::vector<glm::vec3>  points{};
 	std::vector<Color4ub> colors{};
 	std::vector<glm::vec2>  textureCoordinates{};
-	PointListPattern      pointListType = PointListPattern::Lines;
+	GLenum      pointListType =GL_LINES;
 };
 
 namespace MESH
