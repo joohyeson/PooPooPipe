@@ -7,6 +7,7 @@
 #include <cmath>
 #include <valarray>
 #include "Mesh.h"
+#include "glm/gtx/matrix_transform_2d.hpp"
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
 constexpr float HALF_PI = PI / 2.0f;
@@ -197,6 +198,7 @@ namespace MESH
 		Mesh rectangle;
 
 		rectangle.SetPointListType(GL_LINE_LOOP);
+
 		rectangle.AddTextureCoordinate({ 0,1 });
 		rectangle.AddTextureCoordinate({ 0, 0 });
 		rectangle.AddTextureCoordinate({ 1,0 });
@@ -229,10 +231,29 @@ namespace MESH
 	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c)
 	{
 		Mesh triangle;
+
 		triangle.SetPointListType(GL_TRIANGLES);
-		triangle.AddPoint(a);
-		triangle.AddPoint(b);
-		triangle.AddPoint(c);
+
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+		
+		glm::vec3 mA = { myMatrix1[0][0] * a.x + myMatrix1[1][0] * a.y + myMatrix1[2][0] * a.z,
+		myMatrix1[0][1] * a.x + myMatrix1[1][1] * a.y + myMatrix1[2][1] * a.z ,
+		myMatrix1[0][2] * a.x + myMatrix1[1][2] * a.y + myMatrix1[2][2] * a.z };
+
+		glm::vec3 mB = { myMatrix1[0][0] * b.x + myMatrix1[1][0] * b.y + myMatrix1[2][0] * b.z,
+		myMatrix1[0][1] * b.x + myMatrix1[1][1] * b.y + myMatrix1[2][1] * b.z ,
+		myMatrix1[0][2] * b.x + myMatrix1[1][2] * b.y + myMatrix1[2][2] * b.z };
+
+		glm::vec3 mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
+		myMatrix1[0][1] * c.x + myMatrix1[1][1] * c.y + myMatrix1[2][1] * c.z ,
+		myMatrix1[0][2] * c.x + myMatrix1[1][2] * c.y + myMatrix1[2][2] * c.z };
+
+		triangle.AddPoint(mA);
+		triangle.AddPoint(mB);
+		triangle.AddPoint(mC);
+
 		return triangle;
 	}
 }

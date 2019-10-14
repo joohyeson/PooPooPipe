@@ -1,5 +1,5 @@
 #include "Transform.h"
-
+#include "glm/gtc/matrix_transform.hpp"
 void Transform::Init(void)
 {
 	rotation = 0.f;
@@ -17,6 +17,7 @@ glm::vec2 Transform::GetScale() const noexcept
 }
 void Transform::SetTranslation(const glm::vec2& new_translation) noexcept
 {
+
 	translation = new_translation;
 }
 void Transform::SetScale(const glm::vec2& new_scale) noexcept

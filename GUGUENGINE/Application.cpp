@@ -9,9 +9,9 @@ GLuint mVertexArrayObject;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 Shader mShader;
 
-Mesh mMesh = MESH::create_rectangle();
+//Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
-//Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 0.0f }, { 0.5f, -0.5f, 0.0f }, { 0.0f, 0.5f, 0.0f });
+Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 bool defineVertexArrayObject() {
 
 	float color[] = {
