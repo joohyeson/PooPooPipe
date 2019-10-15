@@ -8,15 +8,15 @@ int framebufferWidth, framebufferHeight;
 GLuint mVertexArrayObject;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 Shader mShader;
-
+#define WIDTH 800
+#define HEIGHT 600
 int check = 0;
-double xpos = 0;
-double ypos = 0;
+glm::vec3 curser = { 0, 0, 0 };
 
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
-
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
+
 Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
 
 bool defineVertexArrayObject() {
@@ -32,7 +32,6 @@ bool defineVertexArrayObject() {
 		0.0f, 1.0f, 0.0f,
 		0.0f, 0.0f, 1.0f,
 	};
-
 
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
@@ -67,9 +66,7 @@ bool defineVertexArrayObject() {
 	glVertexAttribPointer(colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, 0);
 	glEnableVertexAttribArray(colorAttribute);
 
-
 	glBindVertexArray(0);
-
 
 	return true;
 }
@@ -113,6 +110,9 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	std::cout << "Cursor Position (" << xpos << " : " << ypos << std::endl;
+	
+		curser = { xpos, ypos , 1 };
+		std::cout << "x: " << curser.x << "y: " << curser.y << std::endl;		
 }
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
@@ -125,6 +125,10 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 		time += 0.9f;
 		std::cout << "TIME:" << time << std::endl;
 		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
+	}
+	else
+	{
+		check = 0;
 	}
 }
 
@@ -150,8 +154,8 @@ int main()
 
 
 	GLFWwindow* window = glfwCreateWindow(
-		800,
-		600,
+		WIDTH,
+		HEIGHT,
 		"OpenGL Example",
 		NULL, NULL);
 	if (!window) {
@@ -162,7 +166,6 @@ int main()
 
 
 	glfwMakeContextCurrent(window);
-
 
 	glfwSetKeyCallback(window, keyCallback);
 	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
@@ -212,6 +215,8 @@ int main()
 
 	while (!glfwWindowShouldClose(window)) {
 
+		
+		
 		if (!defineVertexArrayObject()) {
 
 			std::cerr << "Error: Shader Program 생성 실패" << std::endl;
@@ -247,11 +252,9 @@ int main()
 
 
 		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
-
-		//while (check == 1)
-		//{
-		//	mMesh.SetPoint(xpos, ypos, 0);
-		//}
+		
+		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
+		
 		count++;
 
 		glfwSwapBuffers(window);

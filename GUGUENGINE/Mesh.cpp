@@ -15,6 +15,8 @@ constexpr float HALF_PI = PI / 2.0f;
 constexpr float QUARTER_PI = PI / 4.0f;
 constexpr float TWO_PI = 2.0f * PI;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+///
+
 	//Returns the total amount of points representing the mesh
 Transform* m;
 std::size_t Mesh::GetPointCount() const noexcept
@@ -142,19 +144,23 @@ namespace MESH
 
 		/*float theta = (PI*2) / point_count;*/
 		float theta = TWO_PI / point_count;
-		glm::vec3  originPoint = point;
-
+		
+		glm::vec3  originPoint = { point.x/2000 , -1*(point.y)/2000, point.z};
+		
+		
 		circle.SetPointListType(GL_TRIANGLE_FAN);
+		circle.ClearPoints();
 		circle.AddPoint(originPoint);
 
-		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+		glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {point.x,point.y});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
+		//glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
 		for (int i = 0; i <= point_count; i++)
 		{
 			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i),0 };
-			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
+			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i) + originPoint.x, radius * -cos(theta * i)+ originPoint.y, 0 });
+			
 			circle.AddPoint(mA);
 			circle.AddColor(color);
 		}

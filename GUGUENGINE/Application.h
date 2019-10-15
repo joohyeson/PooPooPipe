@@ -18,7 +18,8 @@ private:
 	SDL_GLContext glContext = nullptr;
 	int sizeX = 300;
 	int sizeY = 400;
-
+	int height = 600;
+	int width = 800;
 	int mouse_X;
 	int mouse_Y;
 
