@@ -25,9 +25,14 @@ std::size_t Mesh::GetPointCount() const noexcept
 //Returns the i th point in the mesh
 std::vector<glm::vec3> Mesh::GetPoint() const noexcept
 {
-
 	return points;
 }
+
+void Mesh::SetPoint(std::vector<glm::vec3> point)
+{
+	points = point;
+}
+
 /*Returns the i th color in the mesh. As long as index is within the range [0,PointCount) then this will return a valid color.
 If the mesh actually has no colors then the Black color will be returned. If the index กร color size then the last (back) color will be returned.*/
 Color4ub Mesh::GetColor(std::size_t index) const noexcept
@@ -129,27 +134,28 @@ void Mesh::Clear() noexcept
 
 namespace MESH
 {
-	Mesh create_circle(float radius, Color4ub color, std::size_t point_count, float time) noexcept
+
+	Mesh create_circle(float radius, Color4ub color, std::size_t point_count, glm::vec3 point ,float time) noexcept
 	{
 
 		Mesh circle;
 
 		/*float theta = (PI*2) / point_count;*/
 		float theta = TWO_PI / point_count;
-		glm::vec3  originPoint = { 0,0, 0 };
+		glm::vec3  originPoint = point;
 
 		circle.SetPointListType(GL_TRIANGLE_FAN);
 		circle.AddPoint(originPoint);
 
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
-	//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
 		for (int i = 0; i <= point_count; i++)
 		{
-
-			glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i),0 };
-			circle.AddPoint(point);
+			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i),0 };
+			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
+			circle.AddPoint(mA);
 			circle.AddColor(color);
 		}
 
