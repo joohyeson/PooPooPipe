@@ -15,8 +15,9 @@ double ypos = 0;
 
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
+
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
-Mesh mMesh = MESH::create_circle(0.2f, { 255, 255, 255 }, 6, { 0, 0, 0 });
+Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
 
 bool defineVertexArrayObject() {
 
@@ -91,15 +92,21 @@ void errorCallback(int errorCode, const char* errorDescription)
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+	static float time = 0;
+	double xpos, ypos;
+	//getting cursor position
+	glfwGetCursorPos(window, &xpos, &ypos);
+	std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	if (key == GLFW_KEY_F)
+
+	if ( key == GLFW_KEY_D)
 	{
-		double xpos, ypos;
-		//getting cursor position
-		glfwGetCursorPos(window, &xpos, &ypos);
-		std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
+		time += 0.3f;
+		std::cout << "TIME:"<<time << std::endl;
+		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
 	}
+
 
 }
 
@@ -110,10 +117,14 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
+	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		std::cout << "Left mouse button pressed" << std::endl;
 		check = 1;
+		time += 0.9f;
+		std::cout << "TIME:" << time << std::endl;
+		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
 	}
 }
 
@@ -196,29 +207,29 @@ int main()
 
 
 
-	if (!defineVertexArrayObject()) {
 
-		std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
-
-		glfwTerminate();
-		std::exit(EXIT_FAILURE);
-	}
-
-
-	glfwSwapInterval(1);
-
-
-	double lastTime = glfwGetTime();
-	int numOfFrames = 0;
-	int count = 0;
-
-
-	glUseProgram(mShader.GetShaderID());
-	glBindVertexArray(mVertexArrayObject);
 
 
 	while (!glfwWindowShouldClose(window)) {
 
+		if (!defineVertexArrayObject()) {
+
+			std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
+
+			glfwTerminate();
+			std::exit(EXIT_FAILURE);
+		}
+
+		glfwSwapInterval(1);
+
+
+		double lastTime = glfwGetTime();
+		int numOfFrames = 0;
+		int count = 0;
+
+
+		glUseProgram(mShader.GetShaderID());
+		glBindVertexArray(mVertexArrayObject);
 
 		double currentTime = glfwGetTime();
 		numOfFrames++;
@@ -237,10 +248,10 @@ int main()
 
 		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
 
-		while (check == 1)
-		{
-			mMesh.SetPoint(xpos, ypos, 0);
-		}
+		//while (check == 1)
+		//{
+		//	mMesh.SetPoint(xpos, ypos, 0);
+		//}
 		count++;
 
 		glfwSwapBuffers(window);

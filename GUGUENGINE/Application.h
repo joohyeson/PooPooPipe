@@ -19,4 +19,7 @@ private:
 	int sizeX = 300;
 	int sizeY = 400;
 
+	int mouse_X;
+	int mouse_Y;
+
 };
