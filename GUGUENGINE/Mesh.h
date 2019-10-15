@@ -24,6 +24,8 @@ class [[nodiscard]] Mesh
 public:
 	std::size_t GetPointCount() const noexcept;
 	std::vector<glm::vec3>   GetPoint() const noexcept;
+	void	 SetPoint(std::vector<glm::vec3> point);
+	
 	Color4ub    GetColor(std::size_t index = 0) const noexcept;
 	std::vector<glm::vec2>      GetTextureCoordinate() const noexcept;
 
@@ -50,7 +52,7 @@ private:
 
 namespace MESH
 {
-	Mesh create_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30) noexcept;
+	Mesh create_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30, glm::vec3 point = {0, 0, 0}) noexcept;
 	Mesh create_wire_circle(float radius = 1, Color4ub color = Color4ub{ 255 },
 		std::size_t point_count = 30) noexcept;
 	Mesh create_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;

@@ -9,24 +9,36 @@ GLuint mVertexArrayObject;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 Shader mShader;
 
+int check = 0;
+double xpos = 0;
+double ypos = 0;
+
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
-Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
+//Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
+Mesh mMesh = MESH::create_circle(0.2f, { 255, 255, 255 }, 6, { 0, 0, 0 });
+
 bool defineVertexArrayObject() {
 
 	float color[] = {
 		1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
 		0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-		0.0f, 0.0f, 1.0f  //vertex 3 : BLUE (0,0,1)
+		0.0f, 0.0f, 1.0f,  //vertex 3 : BLUE (0,0,1)
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
+		1.0f, 0.0f, 0.0f,
+		0.0f, 1.0f, 0.0f,
+		0.0f, 0.0f, 1.0f,
 	};
 
-	
+
 	//#2
 	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, mMesh.GetPointCount()*sizeof(float)*3, &mMesh.GetPoint()[0], GL_STATIC_DRAW);
-	
+	glBufferData(GL_ARRAY_BUFFER, mMesh.GetPointCount() * sizeof(float) * 3, &mMesh.GetPoint()[0], GL_STATIC_DRAW);
+
 	glGenBuffers(1, &mColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
@@ -81,14 +93,31 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 {
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-	if (key == GLFW_MOUSE_BUTTON_LEFT)
+	if (key == GLFW_KEY_F)
 	{
 		double xpos, ypos;
 		//getting cursor position
 		glfwGetCursorPos(window, &xpos, &ypos);
 		std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	}
+
 }
+
+void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+{
+	std::cout << "Cursor Position (" << xpos << " : " << ypos << std::endl;
+}
+
+void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+{
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	{
+		std::cout << "Left mouse button pressed" << std::endl;
+		check = 1;
+	}
+}
+
+
 int main()
 {
 
@@ -126,6 +155,8 @@ int main()
 
 	glfwSetKeyCallback(window, keyCallback);
 	glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+	glfwSetCursorPosCallback(window, cursorPositionCallback);
+	glfwSetMouseButtonCallback(window, mouseButtonCallback);
 
 
 
@@ -204,9 +235,12 @@ int main()
 		glClear(GL_COLOR_BUFFER_BIT);
 
 
-		glDrawArrays(mMesh.GetPointListPattern(), 0, mMesh.GetPointCount());
+		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
 
-
+		while (check == 1)
+		{
+			mMesh.SetPoint(xpos, ypos, 0);
+		}
 		count++;
 
 		glfwSwapBuffers(window);
