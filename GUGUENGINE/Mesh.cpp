@@ -8,6 +8,7 @@
 #include <valarray>
 #include "Mesh.h"
 #include "glm/gtx/matrix_transform_2d.hpp"
+#include "Transform.h"
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
 constexpr float HALF_PI = PI / 2.0f;
@@ -15,6 +16,7 @@ constexpr float QUARTER_PI = PI / 4.0f;
 constexpr float TWO_PI = 2.0f * PI;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 	//Returns the total amount of points representing the mesh
+Transform* m;
 std::size_t Mesh::GetPointCount() const noexcept
 {
 	return points.size();
@@ -127,7 +129,7 @@ void Mesh::Clear() noexcept
 
 namespace MESH
 {
-	Mesh create_circle(float radius, Color4ub color, std::size_t point_count) noexcept
+	Mesh create_circle(float radius, Color4ub color, std::size_t point_count, float time) noexcept
 	{
 
 		Mesh circle;
@@ -138,6 +140,10 @@ namespace MESH
 
 		circle.SetPointListType(GL_TRIANGLE_FAN);
 		circle.AddPoint(originPoint);
+
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+	//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
 		for (int i = 0; i <= point_count; i++)
 		{
@@ -157,11 +163,17 @@ namespace MESH
 		wireCircle.AddColor(color);
 		wireCircle.SetPointListType(GL_LINE_LOOP);
 		float theta = TWO_PI / point_count;
+
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+
 		/*float theta = (PI*2) / point_count;*/
 		for (int i = 0; i < point_count; i++)
 		{
-			glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
-			wireCircle.AddPoint(point);
+			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
+			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
+			wireCircle.AddPoint(mA);
 		}
 
 		return wireCircle;
@@ -181,10 +193,20 @@ namespace MESH
 		rectangle.AddTextureCoordinate({ 1,0 });
 		rectangle.AddTextureCoordinate({ 1,1 });
 
-		rectangle.AddPoint({ -width / 2, -height / 2, 0 });
-		rectangle.AddPoint({ -width / 2,height / 2 ,0 });
-		rectangle.AddPoint({ width / 2,height / 2 ,0 });
-		rectangle.AddPoint({ width / 2,-height / 2 ,0 });
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+
+		glm::vec3 mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
+		glm::vec3 mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
+		glm::vec3 mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
+		glm::vec3 mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+
+		rectangle.AddPoint(mA);
+		rectangle.AddPoint(mB);
+		rectangle.AddPoint(mC);
+		rectangle.AddPoint(mD);
+
 		rectangle.AddColor(color);
 
 		rectangle.AddColor(color);
@@ -204,10 +226,19 @@ namespace MESH
 		rectangle.AddTextureCoordinate({ 1,0 });
 		rectangle.AddTextureCoordinate({ 1,1 });
 
-		rectangle.AddPoint({ -width / 2, -height / 2,0 });
-		rectangle.AddPoint({ -width / 2,height / 2 ,0 });
-		rectangle.AddPoint({ width / 2,height / 2 ,0 });
-		rectangle.AddPoint({ width / 2,-height / 2,0 });
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+
+		glm::vec3 mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
+		glm::vec3 mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
+		glm::vec3 mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
+		glm::vec3 mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+
+		rectangle.AddPoint(mA);
+		rectangle.AddPoint(mB);
+		rectangle.AddPoint(mC);
+		rectangle.AddPoint(mD);
 
 
 		rectangle.AddColor(color);
@@ -224,31 +255,30 @@ namespace MESH
 		Mesh line;
 		line.SetPointListType(GL_LINES);
 		line.AddColor(color);
-		line.AddPoint(a);
-		line.AddPoint(b);
-		return line;
-	}
-	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c)
-	{
-		Mesh triangle;
-
-		triangle.SetPointListType(GL_TRIANGLES);
-
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+
+		glm::vec3 mA = m->mMatrix(myMatrix1, a);
+		glm::vec3 mB = m->mMatrix(myMatrix1, b);
+
+		line.AddPoint(mA);
+		line.AddPoint(mB);
+		return line;
+	}
+	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time)
+	{
+		Mesh triangle;
+		triangle.ClearPoints();
+		triangle.SetPointListType(GL_TRIANGLES);
+
+		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3, 0.7});
+		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 		
-		glm::vec3 mA = { myMatrix1[0][0] * a.x + myMatrix1[1][0] * a.y + myMatrix1[2][0] * a.z,
-		myMatrix1[0][1] * a.x + myMatrix1[1][1] * a.y + myMatrix1[2][1] * a.z ,
-		myMatrix1[0][2] * a.x + myMatrix1[1][2] * a.y + myMatrix1[2][2] * a.z };
-
-		glm::vec3 mB = { myMatrix1[0][0] * b.x + myMatrix1[1][0] * b.y + myMatrix1[2][0] * b.z,
-		myMatrix1[0][1] * b.x + myMatrix1[1][1] * b.y + myMatrix1[2][1] * b.z ,
-		myMatrix1[0][2] * b.x + myMatrix1[1][2] * b.y + myMatrix1[2][2] * b.z };
-
-		glm::vec3 mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
-		myMatrix1[0][1] * c.x + myMatrix1[1][1] * c.y + myMatrix1[2][1] * c.z ,
-		myMatrix1[0][2] * c.x + myMatrix1[1][2] * c.y + myMatrix1[2][2] * c.z };
+		glm::vec3 mA = m->mMatrix(myMatrix1, a);
+		glm::vec3 mB = m->mMatrix(myMatrix1, b);
+		glm::vec3 mC = m->mMatrix(myMatrix1, c);
 
 		triangle.AddPoint(mA);
 		triangle.AddPoint(mB);

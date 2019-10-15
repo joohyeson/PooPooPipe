@@ -11,7 +11,7 @@ Shader mShader;
 
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
-Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
+Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f }, 0.0f);
 bool defineVertexArrayObject() {
 
 	float color[] = {
@@ -79,15 +79,26 @@ void errorCallback(int errorCode, const char* errorDescription)
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
+	static float time = 0;
+	double xpos, ypos;
+	//getting cursor position
+	glfwGetCursorPos(window, &xpos, &ypos);
+	std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 	if (key == GLFW_MOUSE_BUTTON_LEFT)
 	{
-		double xpos, ypos;
-		//getting cursor position
-		glfwGetCursorPos(window, &xpos, &ypos);
-		std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
+	
 	}
+	if ( key == GLFW_KEY_D)
+	{
+		time += 0.3f;
+		std::cout << "TIME:"<<time << std::endl;
+		mMesh= MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f }, time);
+	}
+	
+	
+
 }
 int main()
 {
@@ -165,29 +176,29 @@ int main()
 
 
 
-	if (!defineVertexArrayObject()) {
 
-		std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
-
-		glfwTerminate();
-		std::exit(EXIT_FAILURE);
-	}
-
-
-	glfwSwapInterval(1);
-
-
-	double lastTime = glfwGetTime();
-	int numOfFrames = 0;
-	int count = 0;
-
-
-	glUseProgram(mShader.GetShaderID());
-	glBindVertexArray(mVertexArrayObject);
 
 
 	while (!glfwWindowShouldClose(window)) {
 
+		if (!defineVertexArrayObject()) {
+
+			std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
+
+			glfwTerminate();
+			std::exit(EXIT_FAILURE);
+		}
+
+		glfwSwapInterval(1);
+
+
+		double lastTime = glfwGetTime();
+		int numOfFrames = 0;
+		int count = 0;
+
+
+		glUseProgram(mShader.GetShaderID());
+		glBindVertexArray(mVertexArrayObject);
 
 		double currentTime = glfwGetTime();
 		numOfFrames++;

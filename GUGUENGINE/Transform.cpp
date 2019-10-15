@@ -3,8 +3,8 @@
 void Transform::Init(void)
 {
 	rotation = 0.f;
-	translation = { 0, 0 };
-	scale = { 10,10 };
+	translation = { 0.f, 0.f };
+	scale = { 1.0f,1.0f };
 }
 
 glm::vec2 Transform::GetTranslation() const noexcept
@@ -31,4 +31,12 @@ float Transform::GetRotation() const noexcept
 void Transform::SetRotation(float new_rotation) noexcept
 {
 	rotation = new_rotation;
+}
+glm::vec3 Transform::mMatrix(glm::mat3 myMatrix1, glm::vec3 c) noexcept
+{
+	glm::vec3 mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
+	myMatrix1[0][1] * c.x + myMatrix1[1][1] * c.y + myMatrix1[2][1] * c.z ,
+	myMatrix1[0][2] * c.x + myMatrix1[1][2] * c.y + myMatrix1[2][2] * c.z };
+
+	return mC;
 }

@@ -58,6 +58,6 @@ namespace MESH
 	Mesh create_wire_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	Mesh create_wire_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	Mesh create_line(glm::vec2  a = { 0, 0 }, glm::vec2  b = { 1, 0 }, Color4ub color = Color4ub{ 255 }) noexcept;
-	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c);
+	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time);
 }
 
