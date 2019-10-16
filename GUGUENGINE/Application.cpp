@@ -10,14 +10,14 @@ GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 Shader mShader;
 #define WIDTH 800
 #define HEIGHT 600
-int check = 0;
+int moveCheck = 0;
 glm::vec3 curser = { 0, 0, 0 };
 
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 
-Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
+Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
 
 bool defineVertexArrayObject() {
 
@@ -120,16 +120,14 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		moveCheck += 1;
 		std::cout << "Left mouse button pressed" << std::endl;
-		check = 1;
 		time += 0.9f;
 		std::cout << "TIME:" << time << std::endl;
-		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
+		//mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, time);
 	}
-	else
-	{
-		check = 0;
-	}
+	
+	
 }
 
 
@@ -252,8 +250,12 @@ int main()
 
 
 		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
+
+		if(moveCheck%2 == 1)
+		{
+			mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
+		}
 		
-		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
 		
 		count++;
 

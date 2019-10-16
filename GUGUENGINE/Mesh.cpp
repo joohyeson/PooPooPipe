@@ -145,8 +145,7 @@ namespace MESH
 		/*float theta = (PI*2) / point_count;*/
 		float theta = TWO_PI / point_count;
 		
-		glm::vec3  originPoint = { point.x/2000 , -1*(point.y)/2000, point.z};
-		
+		glm::vec3  originPoint = { (point.x - 400) / 400 , -1*((point.y) - 300) / 300, point.z};
 		
 		circle.SetPointListType(GL_TRIANGLE_FAN);
 		circle.ClearPoints();
@@ -224,7 +223,6 @@ namespace MESH
 		rectangle.AddColor(color);
 
 		return rectangle;
-
 	}
 	Mesh create_wire_rectangle(float width, float height, Color4ub color) noexcept
 	{
