@@ -43,6 +43,8 @@ public:
 	void ClearPoints() noexcept;
 	void Clear() noexcept;
 
+	glm::vec3 origin = {0, 0, 0};
+	float radius_r = 0.f;
 private:
 	std::vector<glm::vec3>  points{};
 	std::vector<Color4ub> colors{};

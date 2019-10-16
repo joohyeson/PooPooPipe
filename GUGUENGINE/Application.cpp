@@ -14,12 +14,13 @@ Shader mShader;
 #define HEIGHT 600
 int moveCheck = 0;
 glm::vec3 curser = { 0, 0, 0 };
-
+glm::vec3 getOrigin = { 0, 0, 0 };
+float r = 0.f;
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 
-Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
+Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
 
 
 GLuint CreateTexture(char const* filename)
@@ -285,11 +286,11 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
 
-	if ( key == GLFW_KEY_D)
+	if (key == GLFW_KEY_D)
 	{
 		time += 0.3f;
-		std::cout << "TIME:"<<time << std::endl;
-		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
+		std::cout << "TIME:" << time << std::endl;
+		mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y, 0 }, time);
 	}
 
 
@@ -298,9 +299,9 @@ void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods
 void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	std::cout << "Cursor Position (" << xpos << " : " << ypos << std::endl;
-	
-		curser = { xpos, ypos , 1 };
-		std::cout << "x: " << curser.x << "y: " << curser.y << std::endl;		
+
+	curser = { (xpos - 400) / 400, -1 * ((ypos)-300) / 300, 1 };
+	std::cout << "x: " << curser.x << "y: " << curser.y << std::endl;
 }
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
@@ -314,8 +315,8 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 		std::cout << "TIME:" << time << std::endl;
 		//mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, time);
 	}
-	
-	
+
+
 }
 
 
@@ -395,14 +396,10 @@ int main()
 	}
 
 
-
-
-
-
 	while (!glfwWindowShouldClose(window)) {
 
-		
-		
+
+
 		if (!defineVertexArrayObject()) {
 
 			std::cerr << "Error: Shader Program 생성 실패" << std::endl;
@@ -445,19 +442,36 @@ int main()
 
 		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
 
-		if(moveCheck%2 == 1)
+		getOrigin.x = mMesh.origin.x;
+		getOrigin.y = mMesh.origin.y;
+
+		r = mMesh.radius_r;
+
+
+		if (curser.x <= (getOrigin.x + r / 2) &&
+			curser.x >= (getOrigin.x - r / 2) &&
+			curser.y <= (getOrigin.y + r) &&
+			curser.y >= (getOrigin.y - r))
 		{
-			mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
+			if (moveCheck % 2 == 1)
+			{
+				mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
+			}
 		}
-		
-		
+		else
+		{
+			moveCheck = 0;
+		}
+
+
+
+
 		count++;
 
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 
 	}
-
 
 	glUseProgram(0);
 	glBindVertexArray(0);
