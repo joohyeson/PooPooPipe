@@ -10,6 +10,12 @@ GLuint mVertexArrayObject;
 GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 GLuint triangleTextureCoordinateBufferObjectID;
 Shader mShader;
+
+GLuint mVertexArrayObject2;
+GLuint mPositionVertexBufferObjectID2, mColorVertexBufferObjectID2;
+GLuint triangleTextureCoordinateBufferObjectID2;
+Shader mShader2;
+
 #define WIDTH 800
 #define HEIGHT 600
 int moveCheck = 0;
@@ -20,10 +26,10 @@ float r = 0.f;
 //Mesh mMesh = MESH::create_box();
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 
-Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
+Mesh mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 1 }, 0);
+Mesh mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0.4,0.3,1}, 0);
 
-
-GLuint CreateTexture(char const* filename)
+GLuint CreateTexture(char const* filename, int i)
 {
 	// Determine the format of the image.
 	// Note: The second paramter ('size') is currently unused, and we should use 0 for it.
@@ -62,24 +68,6 @@ GLuint CreateTexture(char const* filename)
 	// How many bits-per-pixel is the source image?
 	int bitsPerPixel = FreeImage_GetBPP(bitmap);
 
-	// Convert our image up to 32 bits (8 bits per channel, Red/Green/Blue/Alpha) -
-	// but only if the image is not already 32 bits (i.e. 8 bits per channel).
-	// Note: ConvertTo32Bits returns a CLONE of the image data - so if we
-	// allocate this back to itself without using our bitmap32 intermediate
-	// we will LEAK the original bitmap data, and valgrind will show things like this:
-	//
-	// LEAK SUMMARY:
-	//  definitely lost: 24 bytes in 2 blocks
-	//  indirectly lost: 1,024,874 bytes in 14 blocks    <--- Ouch.
-	//
-	// Using our intermediate and cleaning up the initial bitmap data we get:
-	//
-	// LEAK SUMMARY:
-	//  definitely lost: 16 bytes in 1 blocks
-	//  indirectly lost: 176 bytes in 4 blocks
-	//
-	// All above leaks (192 bytes) are caused by XGetDefault (in /usr/lib/libX11.so.6.3.0) - we have no control over this.
-	//
 	FIBITMAP* bitmap32;
 	if (bitsPerPixel == 32)
 	{
@@ -97,10 +85,6 @@ GLuint CreateTexture(char const* filename)
 	int imageHeight = FreeImage_GetHeight(bitmap32);
 	//std::cout << "Image: " << filename << " is size: " << imageWidth << "x" << imageHeight << "." << std::endl;
 
-	// Get a pointer to the texture data as an array of unsigned bytes.
-	// Note: At this point bitmap32 ALWAYS holds a 32-bit colour version of our image - so we get our data from that.
-	// Also, we don't need to delete or delete[] this textureData because it's not on the heap (so attempting to do
-	// so will cause a crash) - just let it go out of scope and the memory will be returned to the stack.
 	GLubyte* textureData = FreeImage_GetBits(bitmap32);
 
 	// Generate a texture ID and bind to it
@@ -108,9 +92,6 @@ GLuint CreateTexture(char const* filename)
 	glGenTextures(1, &tempTextureID);
 	glBindTexture(GL_TEXTURE_2D, tempTextureID);
 
-	// Construct the texture.
-	// Note: The 'Data format' is the format of the image data as provided by the image library. FreeImage decodes images into
-	// BGR/BGRA format, but we want to work with it in the more common RGBA format, so we specify the 'Internal format' as such.
 	glTexImage2D(GL_TEXTURE_2D,    // Type of texture
 		0,                // Mipmap level (0 being the top level i.e. full size)
 		GL_RGBA,          // Internal format
@@ -130,7 +111,7 @@ GLuint CreateTexture(char const* filename)
 	glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
 
 
-	glBindTexture(GL_TEXTURE_2D, 0);
+	glBindTexture(GL_TEXTURE_2D, i);
 
 
 	// Check for OpenGL texture creation errors
@@ -179,27 +160,6 @@ GLuint CreateTexture(char const* filename)
 
 bool defineVertexArrayObject() {
 
-	//float color[] = {
-	//	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
-	//	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-	//	0.0f, 0.0f, 1.0f,  //vertex 3 : BLUE (0,0,1)
-	//	1.0f, 0.0f, 0.0f,
-	//	0.0f, 1.0f, 0.0f,
-	//	0.0f, 0.0f, 1.0f,
-	//	1.0f, 0.0f, 0.0f,
-	//	0.0f, 1.0f, 0.0f,
-	//	0.0f, 0.0f, 1.0f,
-	//};
-
-	/*float textureCoordinate[] = { 0.5f, 0.5f,
-								0.5f, 0.0f,
-								0.0f, 0.25f,
-								0.0f, 0.75f,
-								0.5f, 1.0f,
-								1.0f, 0.75f,
-								1.0f, 0.25f ,
-								0.5f, 0.0f};*/
-
 	float textureCoordinate[] = { 0.5f, 0.5f,
 							0.5f, 0.0f,
 							1.0f, 0.25f ,
@@ -214,10 +174,6 @@ bool defineVertexArrayObject() {
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, mMesh.GetPointCount() * sizeof(float) * 3, &mMesh.GetPoint()[0], GL_STATIC_DRAW);
-
-	//glGenBuffers(1, &mColorVertexBufferObjectID);
-	//glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
 
 	glGenBuffers(1, &triangleTextureCoordinateBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, triangleTextureCoordinateBufferObjectID);
@@ -237,15 +193,6 @@ bool defineVertexArrayObject() {
 
 	glEnableVertexAttribArray(positionAttribute);
 
-	//GLint colorAttribute = glGetAttribLocation(mShader.GetShaderID(), "colorAttribute");
-	//if (colorAttribute == -1) {
-	//	std::cerr << "color 속성 설정 실패" << std::endl;
-	//	return false;
-	//}
-	//glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	//glVertexAttribPointer(colorAttribute, 3, GL_FLOAT, GL_FALSE, 0, 0);
-	//glEnableVertexAttribArray(colorAttribute);
-
 	GLint textureCoordinateAttribute = glGetAttribLocation(mShader.GetShaderID(), "textureCoordinateAttribute");
 	if (textureCoordinateAttribute == -1) {
 		std::cerr << "Texture Coordinate 속성 설정 실패" << std::endl;
@@ -256,6 +203,58 @@ bool defineVertexArrayObject() {
 	glEnableVertexAttribArray(textureCoordinateAttribute);
 
 	glBindVertexArray(0);
+	
+
+	return true;
+}
+
+bool defineVertexArrayObject2() {
+
+	float textureCoordinate[] = { 0.5f, 0.5f,
+							0.5f, 0.0f,
+							1.0f, 0.25f ,
+							1.0f, 0.75f,
+							0.5f, 1.0f,
+							0.0f, 0.75f,
+							0.0f, 0.25f,
+							0.5f, 0.0f };
+
+	//#2
+	//Vertex Buffer Object(VBO)를 생성하여 vertex 데이터를 복사한다.
+	glGenBuffers(1, &mPositionVertexBufferObjectID2);
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID2);
+	glBufferData(GL_ARRAY_BUFFER, mMesh2.GetPointCount() * sizeof(float) * 3, &mMesh2.GetPoint()[0], GL_STATIC_DRAW);
+
+	glGenBuffers(1, &triangleTextureCoordinateBufferObjectID2);
+	glBindBuffer(GL_ARRAY_BUFFER, triangleTextureCoordinateBufferObjectID2);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(textureCoordinate), textureCoordinate, GL_STATIC_DRAW);
+
+	//#6
+	glGenVertexArrays(1, &mVertexArrayObject2);
+	glBindVertexArray(mVertexArrayObject2);
+
+
+	GLint positionAttribute2 = glGetAttribLocation(mShader2.GetShaderID(), "positionAttribute");
+	if (positionAttribute2 == -1) {
+		std::cerr << "position 속성 설정 실패" << std::endl;
+		return false;
+	}
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID2);
+	glVertexAttribPointer(positionAttribute2, 3, GL_FLOAT, GL_FALSE, 0, 0);
+
+	glEnableVertexAttribArray(positionAttribute2);
+
+	GLint textureCoordinateAttribute2 = glGetAttribLocation(mShader2.GetShaderID(), "textureCoordinateAttribute");
+	if (textureCoordinateAttribute2 == -1) {
+		std::cerr << "Texture Coordinate 속성 설정 실패" << std::endl;
+		return false;
+	}
+	glBindBuffer(GL_ARRAY_BUFFER, triangleTextureCoordinateBufferObjectID2);
+	glVertexAttribPointer(textureCoordinateAttribute2, 2, GL_FLOAT, GL_FALSE, 0, 0);
+	glEnableVertexAttribArray(textureCoordinateAttribute2);
+
+	glBindVertexArray(0);
+
 
 	return true;
 }
@@ -395,10 +394,16 @@ int main()
 		std::exit(EXIT_FAILURE);
 	}
 
+	if (!mShader2.LoadFromSource()) {
+
+		std::cerr << "Error: Shader Program 생성 실패" << std::endl;
+
+		glfwTerminate();
+		std::exit(EXIT_FAILURE);
+	}
+
 
 	while (!glfwWindowShouldClose(window)) {
-
-
 
 		if (!defineVertexArrayObject()) {
 
@@ -408,22 +413,45 @@ int main()
 			std::exit(EXIT_FAILURE);
 		}
 
-		glfwSwapInterval(1);
+		glUseProgram(mShader.GetShaderID());
+		glBindVertexArray(mVertexArrayObject);
+
+		GLuint texureId = CreateTexture("assets\\image0.png", 0);
+
+		GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
+		glUniform1i(texLoc, 0);
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, texureId);
+		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
+
+
+
+	
+		if (!defineVertexArrayObject2()) {
+
+			std::cerr << "Error: Shader Program 생성 실패" << std::endl;
+
+			glfwTerminate();
+			std::exit(EXIT_FAILURE);
+		}
+
+		
+		glBindVertexArray(mVertexArrayObject2);
+		GLuint texureId2 = CreateTexture("assets\\numBoard.jpg", 1);
+		GLint tex2Loc = glGetUniformLocation(mShader2.GetShaderID(), "tex");
+		glUniform1i(tex2Loc, 1);
+		glActiveTexture(GL_TEXTURE1);
+		glBindTexture(GL_TEXTURE_2D, texureId2);
+		glDrawArrays(mMesh2.GetPointListPattern(), 0, 8);
+		
+
+	
+
 
 
 		double lastTime = glfwGetTime();
 		int numOfFrames = 0;
 		int count = 0;
-
-
-		glUseProgram(mShader.GetShaderID());
-		glBindVertexArray(mVertexArrayObject);
-
-		GLuint texureId = CreateTexture("assets\\image0.png");
-
-		glUniform1i(glGetUniformLocation(mShader.GetShaderID(), "tex"), 0);
-		glActiveTexture(GL_TEXTURE0);
-		glBindTexture(GL_TEXTURE_2D, texureId);
 
 		double currentTime = glfwGetTime();
 		numOfFrames++;
@@ -434,14 +462,15 @@ int main()
 			lastTime = currentTime;
 		}
 
-
+		//glfwSwapInterval(1);
+		glfwSwapBuffers(window);
 
 		glClearColor(0, 0, 0, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
+	
 
-		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
-
+		
 		getOrigin.x = mMesh.origin.x;
 		getOrigin.y = mMesh.origin.y;
 
@@ -463,19 +492,14 @@ int main()
 			moveCheck = 0;
 		}
 
-
-
-
 		count++;
 
-		glfwSwapBuffers(window);
+		//glfwSwapBuffers(window);
 		glfwPollEvents();
 
 	}
-
 	glUseProgram(0);
 	glBindVertexArray(0);
-
 
 	glDeleteProgram(mShader.GetShaderID());
 	glDeleteBuffers(1, &mPositionVertexBufferObjectID);
