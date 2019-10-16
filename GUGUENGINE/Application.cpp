@@ -21,13 +21,15 @@ Shader mShader2;
 int moveCheck = 0;
 glm::vec3 curser = { 0, 0, 0 };
 glm::vec3 getOrigin = { 0, 0, 0 };
+glm::vec3 getOrigin2 = { 0, 0, 0 };
+
 float r = 0.f;
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 
-Mesh mMesh = MESH::create_circle(0.4f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
-Mesh mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0.4,0.3,0}, 0);
+Mesh mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
+Mesh mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0.4,0.3,0 }, 0);
 
 GLuint CreateTexture(char const* filename, int i)
 {
@@ -203,7 +205,7 @@ bool defineVertexArrayObject() {
 	glEnableVertexAttribArray(textureCoordinateAttribute);
 
 	glBindVertexArray(0);
-	
+
 
 	return true;
 }
@@ -299,7 +301,7 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
 	std::cout << "Cursor Position (" << xpos << " : " << ypos << std::endl;
 
-	curser = { (xpos - WIDTH/2) / (WIDTH/2), -1 * ((ypos)-HEIGHT/2) / (HEIGHT/2), 1 };
+	curser = { (xpos - WIDTH / 2) / (WIDTH / 2), -1 * ((ypos)-HEIGHT / 2) / (HEIGHT / 2), 1 };
 	std::cout << "x: " << curser.x << "y: " << curser.y << std::endl;
 }
 
@@ -405,6 +407,27 @@ int main()
 
 	while (!glfwWindowShouldClose(window)) {
 
+
+
+
+
+		if (!defineVertexArrayObject2()) {
+
+			std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
+
+			glfwTerminate();
+			std::exit(EXIT_FAILURE);
+		}
+
+
+		glBindVertexArray(mVertexArrayObject2);
+
+		GLint tex2Loc = glGetUniformLocation(mShader2.GetShaderID(), "tex");
+		glUniform1i(tex2Loc, 1);
+		glActiveTexture(GL_TEXTURE1);
+
+		glDrawArrays(mMesh2.GetPointListPattern(), 0, 8);
+
 		if (!defineVertexArrayObject()) {
 
 			std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
@@ -425,27 +448,6 @@ int main()
 		glDrawArrays(mMesh.GetPointListPattern(), 0, 8);
 
 
-
-	
-		if (!defineVertexArrayObject2()) {
-
-			std::cerr << "Error: Shader Program 积己 角菩" << std::endl;
-
-			glfwTerminate();
-			std::exit(EXIT_FAILURE);
-		}
-
-		
-		glBindVertexArray(mVertexArrayObject2);
-		GLuint texureId2 = CreateTexture("assets\\image0.png", 1);
-		GLint tex2Loc = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-		glUniform1i(tex2Loc, 1);
-		glActiveTexture(GL_TEXTURE1);
-		glBindTexture(GL_TEXTURE_2D, texureId2);
-		glDrawArrays(mMesh2.GetPointListPattern(), 0, 8);
-		
-
-	
 
 
 
@@ -468,11 +470,14 @@ int main()
 		glClearColor(255, 255, 255, 1);
 		glClear(GL_COLOR_BUFFER_BIT);
 
-	
 
-		
+
+
 		getOrigin.x = mMesh.origin.x;
 		getOrigin.y = mMesh.origin.y;
+
+		getOrigin2.x = mMesh2.origin.x;
+		getOrigin2.y = mMesh2.origin.y;
 
 		r = mMesh.radius_r;
 
@@ -484,12 +489,23 @@ int main()
 		{
 			if (moveCheck % 2 == 1)
 			{
-				mMesh = MESH::create_circle(0.4f, { 255, 255, 255 }, 6, { curser.x, curser.y ,0 }, 0);
+				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { curser.x, curser.y ,0 }, 0);
 			}
 		}
 		else
 		{
 			moveCheck = 0;
+		}
+
+		if (getOrigin.x <= (getOrigin2.x + r / 2) &&
+			getOrigin.x >= (getOrigin2.x - r / 2) &&
+			getOrigin.y <= (getOrigin2.y + r) &&
+			getOrigin.y >= (getOrigin2.y - r))
+		{
+			if (moveCheck % 2 == 0)
+			{
+				mMesh = mMesh2;
+			}
 		}
 
 		count++;
