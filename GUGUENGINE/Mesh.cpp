@@ -153,15 +153,15 @@ namespace MESH
 		circle.ClearPoints();
 		circle.AddPoint(originPoint);
 
-		glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {point.x,point.y});
+		glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {originPoint.x,originPoint.y});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		//glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
+		glm::mat3 myMatrix2 = glm::rotate(glm::mat3(), time);
 
 		for (int i = 0; i <= point_count; i++)
 		{
 			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i),0 };
-			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i) + originPoint.x, radius * -cos(theta * i)+ originPoint.y, 0 });
-			
+			glm::vec3 mA = m->mMatrix(myMatrix2, { radius * sin(theta * i) , radius * -cos(theta * i), 1 });
+			mA = m->mMatrix(myMatrix1, { mA.x, mA.y, mA.z });
 			circle.AddPoint(mA);
 			circle.AddColor(color);
 		}

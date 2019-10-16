@@ -15,7 +15,7 @@ GLuint mVertexArrayObject2;
 GLuint mPositionVertexBufferObjectID2, mColorVertexBufferObjectID2;
 GLuint triangleTextureCoordinateBufferObjectID2;
 Shader mShader2;
-
+ float time = 0;
 #define WIDTH 800
 #define HEIGHT 800
 int moveCheck = 0;
@@ -24,11 +24,12 @@ glm::vec3 getOrigin = { 0, 0, 0 };
 glm::vec3 getOrigin2 = { 0, 0, 0 };
 
 float r = 0.f;
+int rotationCheck = 0;
 //Mesh mMesh = MESH::create_rectangle();
 //Mesh mMesh = MESH::create_box();
 //Mesh mMesh = MESH::create_triangle({ -0.5f, -0.5f, 1.0f }, { 0.5f, -0.5f, 1.0f }, { 0.0f, 0.5f, 1.0f });
 
-Mesh mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0, 0, 0 }, 0);
+Mesh mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
 Mesh mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { 0.4,0.3,0 }, 0);
 
 GLuint CreateTexture(char const* filename, int i)
@@ -279,21 +280,13 @@ void errorCallback(int errorCode, const char* errorDescription)
 
 void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	static float time = 0;
+	
 	double xpos, ypos;
 	//getting cursor position
 	glfwGetCursorPos(window, &xpos, &ypos);
 	std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
 	if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
 		glfwSetWindowShouldClose(window, GLFW_TRUE);
-
-	if (key == GLFW_KEY_D)
-	{
-		time += 0.3f;
-		std::cout << "TIME:" << time << std::endl;
-		/*mMesh = MESH::create_circle(0.4f, { 255, 255, 255 }, 6, { curser.x, curser.y, 0 }, time);*/
-	}
-
 
 }
 
@@ -307,16 +300,20 @@ void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 
 void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
-	static float time = 0;
+	
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		moveCheck += 1;
 		std::cout << "Left mouse button pressed" << std::endl;
-		time += 0.9f;
+		
 		std::cout << "TIME:" << time << std::endl;
 		//mMesh = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, time);
 	}
-
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		time += 0.9f;
+		rotationCheck = 1;
+	}
 
 }
 
@@ -407,10 +404,6 @@ int main()
 
 	while (!glfwWindowShouldClose(window)) {
 
-
-
-
-
 		if (!defineVertexArrayObject2()) {
 
 			std::cerr << "Error: Shader Program 생성 실패" << std::endl;
@@ -489,7 +482,7 @@ int main()
 		{
 			if (moveCheck % 2 == 1)
 			{
-				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { curser.x, curser.y ,0 }, 0);
+				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { curser.x, curser.y ,0 }, time);
 			}
 		}
 		else
@@ -505,6 +498,12 @@ int main()
 			if (moveCheck % 2 == 0)
 			{
 				mMesh = mMesh2;
+				if (rotationCheck == 1)
+				{
+					mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { getOrigin.x, getOrigin.y ,1}, time);
+					mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, {0.4f, 0.3f,1 }, time);
+					rotationCheck = 0;
+				}
 			}
 		}
 
