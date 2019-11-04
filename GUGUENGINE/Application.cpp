@@ -340,7 +340,7 @@ void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 }
 
 
-int main()
+void gameLoop()
 {
 	if (!glfwInit()) {
 
