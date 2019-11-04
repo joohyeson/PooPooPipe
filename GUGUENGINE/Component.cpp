@@ -27,7 +27,7 @@ ComponentType Component::GetType() const
 	return mType;
 }
 
-/*void Component::SetState(bool active)
+void Component::SetState(bool active)
 {
 	mbActive = active;
 }
@@ -35,4 +35,4 @@ ComponentType Component::GetType() const
 bool Component::GetState() const
 {
 	return mbActive;
-}*/
+}

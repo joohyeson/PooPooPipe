@@ -1,4 +1,0 @@
-//statemanager
-//init
-//loop
-//delete

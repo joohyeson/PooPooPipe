@@ -172,7 +172,6 @@ xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="glCheck.cpp" />
     <ClCompile Include="Input.cpp" />
-    <ClCompile Include="LevelSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -193,7 +192,6 @@ xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="glCheck.h" />
     <ClInclude Include="Input.h" />
-    <ClInclude Include="LevelSystem.h" />
     <ClInclude Include="Mesh.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -201,7 +199,6 @@ xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$
     <ClInclude Include="Shader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
-    <ClInclude Include="System.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>

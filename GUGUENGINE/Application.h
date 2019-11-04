@@ -9,7 +9,6 @@ public:
 	bool IsGameRunning() const { return isGameRunning; }
 	bool ValidCheck(void);
 	void Update(void);
-	void gameLoop();
 
 private:
 	bool isGameRunning = false;
