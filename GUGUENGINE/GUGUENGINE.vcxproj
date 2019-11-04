@@ -105,7 +105,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\glfw;$(SolutionDir)external\SDL2\include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\glfw;$(SolutionDir)external\SDL2\include;$(SolutionDir)external\FreeImage\Dist\x64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
       <TreatWarningAsError>false</TreatWarningAsError>
       <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
@@ -113,12 +113,13 @@
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\SDL2\lib;$(SolutionDir)external\glew\lib\Release\x64</AdditionalLibraryDirectories>
-      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\SDL2\lib;$(SolutionDir)external\glew\lib\Release\x64;$(SolutionDir)external\FreeImage\Dist\x64</AdditionalLibraryDirectories>
+      <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
       <TargetMachine>MachineX64</TargetMachine>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"</Command>
+      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -160,7 +161,8 @@
       <AdditionalDependencies>glew32.lib;opengl32.lib;glfw3.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
     <PostBuildEvent>
-      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"</Command>
+      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>
@@ -170,6 +172,7 @@
     <ClCompile Include="Component.cpp" />
     <ClCompile Include="glCheck.cpp" />
     <ClCompile Include="Input.cpp" />
+    <ClCompile Include="LevelSystem.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mesh.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -190,6 +193,7 @@
     <ClInclude Include="ComponentType.h" />
     <ClInclude Include="glCheck.h" />
     <ClInclude Include="Input.h" />
+    <ClInclude Include="LevelSystem.h" />
     <ClInclude Include="Mesh.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -197,6 +201,7 @@
     <ClInclude Include="Shader.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
+    <ClInclude Include="System.h" />
     <ClInclude Include="Timer.h" />
     <ClInclude Include="Transform.h" />
   </ItemGroup>
