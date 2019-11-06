@@ -1,15 +1,10 @@
-/*
- * Rudy Castan
- * Graphics Library
- * CS230
- */
 #pragma once
 #include "Color.h"
 #include "glm/glm.hpp"
 #include "glew.h"
- //#include <CS230/math/vector2.hpp>
 #include <cstddef>
 #include <vector>
+#include "Component.h"
 
 
 enum class [[nodiscard]] PointListPattern
@@ -19,9 +14,11 @@ enum class [[nodiscard]] PointListPattern
 	//GL_LINES, GL_LINE_STRIP, GL_LINE_LOOP, GL_TRIANGLES, GL_TRIANGLE_STRIP, GL_TRIANGLE_FAN
 };
 
-class [[nodiscard]] Mesh
+class [[nodiscard]] Mesh : public Component
 {
-public:
+public:	
+	void Init() override;
+	
 	std::size_t GetPointCount() const noexcept;
 	std::vector<glm::vec3>   GetPoint() const noexcept;
 	void	 SetPoint(std::vector<glm::vec3> point);
@@ -45,6 +42,7 @@ public:
 
 	glm::vec3 origin = {0, 0, 0};
 	float radius_r = 0.f;
+	
 private:
 	std::vector<glm::vec3>  points{};
 	std::vector<Color4ub> colors{};
@@ -61,7 +59,7 @@ namespace MESH
 	Mesh create_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	Mesh create_wire_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	Mesh create_wire_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
-	Mesh create_line(glm::vec2  a = { 0, 0 }, glm::vec2  b = { 1, 0 }, Color4ub color = Color4ub{ 255 }) noexcept;
+	Mesh create_line(glm::vec3  a = { 0, 0,0 }, glm::vec3  b = { 1, 0,0 }, Color4ub color = Color4ub{ 255 }) noexcept;
 	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time);
 }
 

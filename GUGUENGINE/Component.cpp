@@ -1,14 +1,14 @@
 #include "Component.h"
 
-Component::Component(ComponentType type):
+/*Component::Component(ComponentType type):
 	mOwner(nullptr),
 	mType(type),
 	mbActive(true)
 {
 
-}
+}*/
 
-Component::~Component()
+/*Component::~Component()
 {
 }
 
@@ -25,7 +25,7 @@ Object* Component::GetOwner()
 ComponentType Component::GetType() const
 {
 	return mType;
-}
+}*/
 
 /*void Component::SetState(bool active)
 {

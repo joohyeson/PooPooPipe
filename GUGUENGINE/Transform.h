@@ -1,12 +1,15 @@
 #pragma once
 #include "glm/glm.hpp"
+#include "Component.h"
 
-class Transform {
+class Transform : public Component
+{
 public:
-	Transform() {};
+	void Init() override;
+	
+	Transform();
 	~Transform() {};
 
-	void Init(void);
 
 	glm::vec2 GetTranslation() const noexcept;
 	glm::vec2 GetScale() const noexcept;

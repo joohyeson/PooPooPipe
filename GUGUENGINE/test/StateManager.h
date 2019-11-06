@@ -2,6 +2,7 @@
 
 #include "../LevelSystem.h"
 #include "../System.h"
+#include <vector>
 
 enum GameLevel
 {
@@ -21,6 +22,7 @@ public:
 	void ChangeLevel(GameLevel changeLV);
 
 	GameLevel current;
+	std::vector<LevelSystem*> levels;
 
 };
 extern StateManager* STATEMANAGER;

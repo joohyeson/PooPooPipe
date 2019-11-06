@@ -6,7 +6,7 @@ public:
 	LevelSystem();
 	virtual ~LevelSystem(){}
 	
-	virtual void Init();
-	virtual void Update();
-	virtual void Close();
+	virtual void Init() = 0;
+	virtual void Update() = 0;
+	virtual void Close() = 0;
 };

@@ -4,7 +4,8 @@
 4.the term                Spring 2019 */
 //#include <CS230/graphics/Mesh.hpp>
 //#include <CS230/math/angles.hpp>
-#include <cmath>
+//
+//#include <cmath>
 #include <valarray>
 #include "Mesh.h"
 #include "glm/gtx/matrix_transform_2d.hpp"
@@ -15,7 +16,6 @@ constexpr float HALF_PI = PI / 2.0f;
 constexpr float QUARTER_PI = PI / 4.0f;
 constexpr float TWO_PI = 2.0f * PI;
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////
-///
 
 	//Returns the total amount of points representing the mesh
 Transform* m;
@@ -136,10 +136,8 @@ void Mesh::Clear() noexcept
 
 namespace MESH
 {
-
 	Mesh create_circle(float radius, Color4ub color, std::size_t point_count, glm::vec3 point ,float time) noexcept
 	{
-
 		Mesh circle;
 
 		/*float theta = (PI*2) / point_count;*/
@@ -168,6 +166,7 @@ namespace MESH
 
 		return circle;
 	}
+	
 	Mesh create_wire_circle(float radius, Color4ub color,
 		std::size_t point_count) noexcept
 	{
@@ -191,12 +190,14 @@ namespace MESH
 
 		return wireCircle;
 	}
+	
 	Mesh create_box(float dimension, Color4ub color) noexcept
 	{
 
 		return create_rectangle(dimension, dimension, color);
 
 	}
+	
 	Mesh create_rectangle(float width, float height, Color4ub color) noexcept
 	{//use tan()
 		Mesh rectangle;
@@ -226,6 +227,7 @@ namespace MESH
 
 		return rectangle;
 	}
+	
 	Mesh create_wire_rectangle(float width, float height, Color4ub color) noexcept
 	{
 
@@ -251,17 +253,17 @@ namespace MESH
 		rectangle.AddPoint(mB);
 		rectangle.AddPoint(mC);
 		rectangle.AddPoint(mD);
-
-
+		
 		rectangle.AddColor(color);
 
 		return rectangle;
-
 	}
+	
 	Mesh create_wire_box(float dimension, Color4ub color) noexcept
 	{
 		return create_wire_rectangle(dimension, dimension, color);
 	}
+
 	Mesh create_line(glm::vec3  a, glm::vec3  b, Color4ub color) noexcept
 	{
 		Mesh line;
@@ -278,15 +280,16 @@ namespace MESH
 		line.AddPoint(mB);
 		return line;
 	}
+	
 	Mesh create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time)
 	{
 		Mesh triangle;
 		triangle.ClearPoints();
 		triangle.SetPointListType(GL_TRIANGLES);
 
-		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3, 0.7});
-		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
+		glm::mat3 myMatrix2 = glm::translate(glm::mat3(), {0.3, 0.7});
+		glm::mat3 myMatrix3 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		
 		glm::vec3 mA = m->mMatrix(myMatrix1, a);
 		glm::vec3 mB = m->mMatrix(myMatrix1, b);

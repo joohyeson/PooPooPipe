@@ -7,15 +7,27 @@ class Object;
 class Component
 {
 public:
-	Component(ComponentType type);
+	Component();
+	Component(ComponentType type): mType(type){}
 	virtual ~Component();
-	virtual void Initialize() = 0;
-	virtual void Update(float dt) = 0;
+	
+	virtual void Init();
+	virtual void Update(float dt);
 
-	void SetOwner(Object* owner);
+	void SetOwner(Object* owner)
+	{
+		pObject = owner;
+	}
 
-	Object* GetOwner();
-	ComponentType GetType() const;
+	Object* GetOwner()
+	{
+		return pObject;
+	}
+	
+	ComponentType GetType()
+	{
+		return mType;
+	}
 	
 	/*void SetState(bool active);
 	bool GetState() const;*/
@@ -23,10 +35,13 @@ public:
 private:
 	Component(const Component& rhs) = delete;
 	Component& operator=(const Component& rhs) = delete;
-protected:
-	Object* mOwner;
+	
 private:
 	ComponentType	mType;
-	bool mbActive;
+	Object* mOwner;
+	Object* pObject = nullptr;
+//	bool mbActive;
+	
+
 };
 

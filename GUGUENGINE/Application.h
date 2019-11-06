@@ -1,14 +1,20 @@
 #pragma once
-#include "Application.h"
-#include "Input.h"
 
-class Application {
+#include "Input.h"
+#include "System.h"
+
+class Application : public System
+{
 public:
-	Application()=default;
-	~Application() {};
+	Application();
+	~Application();
+
+	void Init() override;
+	void Update() override;
+	
 	bool IsGameRunning() const { return isGameRunning; }
 	bool ValidCheck(void);
-	void Update(void);
+	
 	void gameLoop();
 
 private:
@@ -17,6 +23,7 @@ private:
 	SDL_Window* window=nullptr;
 	SDL_Renderer* renderer=nullptr;
 	SDL_GLContext glContext = nullptr;
+	
 	int sizeX = 300;
 	int sizeY = 400;
 	int height = 600;
@@ -25,3 +32,4 @@ private:
 	int mouse_Y;
 
 };
+

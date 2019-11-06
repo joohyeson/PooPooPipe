@@ -18,17 +18,8 @@
     <Filter Include="소스 파일\Object">
       <UniqueIdentifier>{36d2fa9d-ddc5-48d5-90b0-ed77f5beb5a2}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Component">
-      <UniqueIdentifier>{f9482630-11b7-4a7d-917e-455381a9d15e}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Application\Timer">
       <UniqueIdentifier>{9af39eaf-7b9b-498a-8210-a54538b4480b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Component\Transform">
-      <UniqueIdentifier>{99e3b5d3-6b6d-4c98-bcd9-a98f75ed7c67}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Component\Mesh">
-      <UniqueIdentifier>{716ddbcf-c236-4425-a700-68387fadb489}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Application\Shader">
       <UniqueIdentifier>{923a567d-ebf7-4b80-80e6-d34093e2b012}</UniqueIdentifier>
@@ -48,6 +39,15 @@
     <Filter Include="소스 파일\Object\Components">
       <UniqueIdentifier>{ee5fbdd1-ea9e-4f07-8bef-7e0d4efeb963}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Object\Component">
+      <UniqueIdentifier>{f9482630-11b7-4a7d-917e-455381a9d15e}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Object\Component\Transform">
+      <UniqueIdentifier>{99e3b5d3-6b6d-4c98-bcd9-a98f75ed7c67}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Object\Component\Mesh">
+      <UniqueIdentifier>{716ddbcf-c236-4425-a700-68387fadb489}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -63,10 +63,10 @@
       <Filter>소스 파일\Application\Timer</Filter>
     </ClCompile>
     <ClCompile Include="Transform.cpp">
-      <Filter>소스 파일\Component\Transform</Filter>
+      <Filter>소스 파일\Object\Component\Transform</Filter>
     </ClCompile>
     <ClCompile Include="Mesh.cpp">
-      <Filter>소스 파일\Component\Mesh</Filter>
+      <Filter>소스 파일\Object\Component\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
       <Filter>소스 파일\Application\Shader</Filter>
@@ -89,6 +89,12 @@
     <ClCompile Include="Component.cpp">
       <Filter>소스 파일\Object\Components</Filter>
     </ClCompile>
+    <ClCompile Include="Engine.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="ObjectFactory.cpp">
+      <Filter>소스 파일\Object</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -101,10 +107,10 @@
       <Filter>소스 파일\Application\Timer</Filter>
     </ClInclude>
     <ClInclude Include="Transform.h">
-      <Filter>소스 파일\Component\Transform</Filter>
+      <Filter>소스 파일\Object\Component\Transform</Filter>
     </ClInclude>
     <ClInclude Include="Mesh.h">
-      <Filter>소스 파일\Component\Mesh</Filter>
+      <Filter>소스 파일\Object\Component\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>소스 파일\Application\Shader</Filter>
@@ -135,6 +141,12 @@
     </ClInclude>
     <ClInclude Include="ComponentType.h">
       <Filter>소스 파일\Object\Components</Filter>
+    </ClInclude>
+    <ClInclude Include="Engine.h">
+      <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="ObjectFactory.h">
+      <Filter>소스 파일\Object</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

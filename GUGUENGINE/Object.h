@@ -1,43 +1,46 @@
 #pragma once
 #include "Transform.h"
 #include "ComponentType.h"
-#include <vector>
+#include "Mesh.h"
 
+using ObjectID = unsigned;
 
+class ObjectFactory;
 class Component;
-class Object
+
+class Object 
 {
-
 public:
-	
+	friend class ObjectFactory;
+
 	Object();
-	virtual ~Object();
-	
-	void SetName(const char* name);
-	const std::string& GetName() const;
-	unsigned int GetId() const;
+	~Object(){}
 
-	//void GetComponent(ComponentType type, /**/);
-	
-	//void GetAllComponents(ComponentType type, /**/);
-	
-	virtual void Shutdown();
-	
-protected:
-	void AddComponent(Component* component);
-	virtual void Initialize();
-	
-private:
-	virtual void Update(float dt);
-	void UpdateComponents(float dt);
-	
-	virtual void Close();
+	void Init();
+	void Destroy(Object* obj);
 
-	Object(const Object&) = delete;
-	Object(Object&&) = delete;
-	Object& operator=(const Object&) = delete;
-	Object& operator=(Object&&) = delete;
+	bool AddComponent(Component* component);
 
-	void Remove();
+	ObjectID GetObjectID()
+	{
+		return objectID;
+	}
+	void SetObjectID(ObjectID objID)
+	{
+		objectID = objID;
+	}
+	void SetName(const std::string& name)
+	{
+		objName = name;
+	}
+	std::string GetName() const
+	{
+		return objName;
+	}
+	std::string objName = "";
 
+	ObjectID objectID;
+	Transform* transform;
+	Mesh* mesh;
 };
+

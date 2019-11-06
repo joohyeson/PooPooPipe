@@ -4,6 +4,9 @@
 #include "Mesh.h"
 #include "Shader.h"
 #include "FreeImage.h"
+#include "Application.h"
+#include <glm/detail/type_vec3.hpp>
+#include <glm/detail/func_trigonometric.inl>
 
 int framebufferWidth, framebufferHeight;
 GLuint mVertexArrayObject;
@@ -590,4 +593,8 @@ void gameLoop()
 	glfwTerminate();
 
 	std::exit(EXIT_SUCCESS);
+}
+
+void Application::Update()
+{
 }
