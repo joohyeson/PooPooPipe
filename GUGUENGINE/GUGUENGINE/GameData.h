@@ -1,0 +1,5 @@
+struct GameData
+{
+	int level;
+};
+
