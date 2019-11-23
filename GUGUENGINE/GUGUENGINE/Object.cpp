@@ -1,6 +1,7 @@
 #include "Object.h"
 //#include "Graphics.h"
 #include "ObjectManager.h"
+#include "Graphics.h"
 
 Object::Object()
 {
@@ -22,9 +23,10 @@ void Object::AddComponent(Component* component)
 	{
 		return;
 	}
-	
+
 	component->SetOwner(this);
 	mComponents.push_back(component);
+
 }
 
 
@@ -36,6 +38,7 @@ void Object::UpdateComponents(float dt)
 		if(mComponents[endIndex]->mbActive)
 		{
 			mComponents[endIndex]->Update();
+			
 		}
 		else
 		{

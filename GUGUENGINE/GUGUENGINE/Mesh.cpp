@@ -33,16 +33,6 @@ float color[] = {
 	0.0f, 1.0f, 0.0f,
 	0.0f, 0.0f, 1.0f,
 };//It will be changed when color4up is completed
-float verticesFlat[] = {
-   0.0f,   0.0f, 0.0f,    //center
-   -0.5f,   1.0f, 0.0f,    // left top
-   0.5f,   1.0f, 0.0f,    // right top
-   1.0f,   0.0f, 0.0f,    // right
-   0.5f,   -1.0f, 0.0f,    // right bottom (notice sign)
-   -0.5f,  -1.0f, 0.0f,    // left bottom
-   -1.0f,   0.0f, 0.0f,     // left
-	0.0f, 0.0f, 0.0f
-};
 Mesh::Mesh() : Component(COMPONENTTYPE_MESH),  mVertexArrayObject (0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0)
 {
 	points.clear();
@@ -56,14 +46,14 @@ Mesh::~Mesh()
 }
 void Mesh::Initialize()
 {
-	mMesh= MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
+	mMesh= MESH::createHexagon({ 600, 300, 0 });
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
 	//Vertex Buffer Object(VBO)¸
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesFlat), verticesFlat, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, 24*sizeof(float), mMesh.data(), GL_STATIC_DRAW);
 
 	glGenBuffers(1, &mColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
@@ -72,28 +62,22 @@ void Mesh::Initialize()
 }
 void Mesh::Update()
 {
-	GLint positionAttribute = glGetAttribLocation(shaderID, "positionAttribute");
-	if (positionAttribute == -1) {
-		std::cerr << "position error" << std::endl;
-		
-	}
+
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
+	//glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(float), mMesh.data(), GL_STATIC_DRAW);
 	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 
 	glEnableVertexAttribArray(0);
 
-	GLint colorAttribute = glGetAttribLocation(shaderID, "colorAttribute");
-	if (colorAttribute == -1) {
-		std::cerr << "color error" << std::endl;
-		
-	}
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
+	//glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glEnableVertexAttribArray(1);
 
 	glBindVertexArray(mVertexArrayObject);
-	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/24 * sizeof(float));
-//	glDrawArray
+
+	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/4);
+	
 }
 
 void Mesh::Delete()
@@ -224,36 +208,33 @@ void Mesh::Clear() noexcept
 
 namespace MESH
 {
-	std::vector<glm::vec3> create_circle(float radius, Color4ub color, std::size_t point_count, glm::vec3 point, float time) noexcept
+	
+	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept
 	{
-		
-		std::vector<glm::vec3> circle;
+		std::vector<glm::vec3> hexaVector;
+		float radius = 0.5;
+		float pointCount = 6.f;
+		float theta = TWO_PI / pointCount;
 
-		/*float theta = (PI*2) / point_count;*/
-		float theta = TWO_PI / point_count;
-
-		glm::vec3  originPoint = { (point.x - 400) / 400 , -1 * ((point.y) - 300) / 300, point.z };
+		glm::vec3  originPoint = { (point.x - 400) / 400 , -1 * ((point.y) - 300) / 300, 0};
 
 		//circle.SetPointListType(GL_TRIANGLE_FAN);
 		
-		circle.clear();
-		
-		circle.push_back(originPoint);
+		hexaVector.clear();
+		//hexaVector.push_back(originPoint);
 
 		glm::mat3 myMatrix1 = glm::translate(glm::mat3(), { point.x,point.y });
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		//glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
-		for (int i = 0; i <= point_count; i++)
+		for (int i = 0; i < pointCount; i++)
 		{
-			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i),0 };
-			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i) + originPoint.x, radius * -cos(theta * i) + originPoint.y, 0 });
-
-			circle.push_back(mA);
-			//circle.AddColor(color);
+			glm::vec3  radiusPoint = { radius * sin(theta * i), radius * -cos(theta * i),0 };
+			glm::vec3 mA =m->mMatrix(myMatrix1,{ radiusPoint.x , radiusPoint.y, 0 });
+			hexaVector.push_back(mA);
 		}
-		return circle;
-		//return circle;
+		return hexaVector;
+		
 	}
 
 	std::vector<glm::vec3> create_wire_circle(float radius, Color4ub color,

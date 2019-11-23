@@ -43,7 +43,7 @@ public:
 	Mesh& operator=(const Mesh& rhs);*/
 
 	//void BuildMesh();
-	//bool Update(Shader& mShader);
+	//bool Draw(Shader& mShader);
 	void Delete();
 	
 	std::size_t GetPointCount() const noexcept;
@@ -66,10 +66,6 @@ public:
 	void ClearTextureCoordinates() noexcept;
 	void ClearPoints() noexcept;
 	void Clear() noexcept;
-	void setShaderID(int mShaderID)
-	{
-		shaderID = mShaderID;
-	}
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
 private:
 	std::vector<glm::vec3> mMesh;
@@ -85,7 +81,7 @@ private:
 
 namespace MESH
 {
-	std::vector<glm::vec3> create_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30, glm::vec3 point = { 0, 0, 0 }, float time = 0) noexcept;
+	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
 	std::vector<glm::vec3> create_wire_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30) noexcept;
 	std::vector<glm::vec3> create_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	std::vector<glm::vec3> create_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;

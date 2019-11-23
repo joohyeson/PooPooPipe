@@ -13,7 +13,7 @@ int framebufferWidth, framebufferHeight;
 int moveCheck = 0;
 glm::vec3 curser = { 0, 0, 0 };
 Mesh mMesh;
-std::vector<glm::vec3> mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
+//std::vector<glm::vec3> mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
 void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 {
 	glViewport(0, 0, width, height);
@@ -89,7 +89,7 @@ void Application::Update()
 		
 		/*mMesh.Initialize();
 
-		mMesh.Update();*/
+		mMesh.Draw();*/
 
 		/*glfwSwapInterval(1);
 

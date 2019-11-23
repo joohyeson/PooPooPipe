@@ -9,9 +9,8 @@ void Level1::Init()
 {
 	puzzle1 = OBJECT_MANAGER->CreateObject();
 	mShader.BuildShader();
-	mMesh.setShaderID(mShader.GetShaderID());
 	
-	puzzle1->AddComponent(new Mesh());
+	//puzzle1->AddComponent(new Mesh());
 	//puzzle1->AddComponent(new Transform());
 }
 
