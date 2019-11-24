@@ -47,16 +47,21 @@ Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVe
 	points.clear();
 	colors.clear();
 	textureCoordinates.clear();
+	transform.Initialize();
 }
 
 Mesh::~Mesh()
 {
 	Delete();
 }
+void Mesh::setTransfrom(glm::vec2 m)
+{
+	transform.SetTranslation(m);
+}
 void Mesh::Initialize()
 {
 	vertex = createHexagon({ 0, 0, 0 });
-	SetVertex(0.f, 0.f);
+	SetVertex(transform.GetTranslation());
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
@@ -72,24 +77,22 @@ void Mesh::Initialize()
 }
 void Mesh::Update()
 {
-
+	//SetVertex(transform.GetTranslation());
+	//std::cout <<"Transform X:"<<transform.GetTranslation().x<<"Transform Y"<< transform.GetTranslation().y<< std::endl;
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	//glBufferData(GL_ARRAY_BUFFER, 24 * sizeof(float), mMesh.data(), GL_STATIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (GLvoid*)0);
 
 	glEnableVertexAttribArray(0);
 
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	//glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glEnableVertexAttribArray(1);
 
 	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/7);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-
-
 }
 
 void Mesh::Delete()
@@ -118,9 +121,9 @@ void Mesh::SetPoint(std::vector<glm::vec3> point)
 {
 	points = point;
 }
-void Mesh::SetVertex(float x, float y)
+void Mesh::SetVertex(glm::vec2 mVec)
 {
-	glm::mat3 T = glm::translate(glm::mat3(), { 0.5f,0.3f });
+	glm::mat3 T = glm::translate(glm::mat3(), { mVec.x, mVec.y });
 	glm::mat3 R = glm::rotate(glm::mat3(), 0.f);
 
 	for (int i = 0; i < vertex.size(); i++)
@@ -128,7 +131,6 @@ void Mesh::SetVertex(float x, float y)
 		glm::vec3 mA = m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1 });
 
 		vertex.at(i) = { mA.x, mA.y, 1 };
-
 	}
 }
 

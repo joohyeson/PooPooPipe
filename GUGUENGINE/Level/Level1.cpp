@@ -42,7 +42,10 @@ void Level1::Init()
 	
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
+	puzzle1->mesh->setTransfrom({ 0.5f, 0.f });
 	puzzle1->mesh->Initialize();
+
+	
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);

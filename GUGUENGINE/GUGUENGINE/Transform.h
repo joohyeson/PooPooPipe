@@ -9,7 +9,7 @@ public:
 		translation = { 0.f, 0.f };
 		scale = { 1.0f,1.0f };
 	};
-	~Transform() override;
+	//~Transform();
 
 	void Initialize(void);
 	void Update();

@@ -13,6 +13,7 @@
 #include <vector>
 #include "Component.h"
 #include "Shader.h"
+#include "Transform.h"
 
 
 class Shader;
@@ -62,13 +63,13 @@ public:
 
 	void ClearColors() noexcept;
 	bool HasMoreThanOneColor() const noexcept;
-
+	void setTransfrom(glm::vec2 m);
 	void ClearTextureCoordinates() noexcept;
 	void ClearPoints() noexcept;
 	void Clear() noexcept;
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
 	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
-	void SetVertex(float x, float y);
+	void SetVertex(glm::vec2 mVec);
 private:
 	std::vector<glm::vec3> vertex;
 	std::vector<glm::vec3>  points{};
@@ -79,6 +80,7 @@ private:
 	GLenum      pointListType = GL_LINES;
 	GLuint mVertexArrayObject;
 	GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
+	Transform transform;
 };
 
 namespace MESH
