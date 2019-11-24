@@ -1,26 +1,33 @@
 #include "ObjectManager.h"
+#include <cassert>
 #include "Object.h"
+#include <iostream>
 
-extern ObjectManager* OBJECT_MANAGER = nullptr;
 
-ObjectManager::ObjectManager()
+extern ObjectFactory* OBJECT_FACTORY = nullptr;
+
+ObjectFactory::ObjectFactory()
 {
-	OBJECT_MANAGER = this;
+	std::cout << "ObjectFactory constructor called" << std::endl;
+	assert(OBJECT_FACTORY == nullptr && "ObjectFactory is already created");
+	OBJECT_FACTORY = this;
 	last_objectID = 0;
 }
 
-ObjectManager::~ObjectManager()
+ObjectFactory::~ObjectFactory()
 {
+	//DestroyAllObjects();
 }
 
-void ObjectManager::Update()
+void ObjectFactory::Update()
 {
+
 	for (auto obj : ObjectsToBeDeleted)
 	{
 		if (obj == nullptr)
 			continue;
 
-		auto delete_objID = ObjectIDMap.find(obj->m_id);
+		auto delete_objID = ObjectIDMap.find(obj->objectID);
 
 		if (delete_objID != ObjectIDMap.end())
 		{
@@ -31,52 +38,50 @@ void ObjectManager::Update()
 	ObjectsToBeDeleted.clear();
 }
 
-void ObjectManager::Destroy(Object* gameObject)
+void ObjectFactory::Destroy(Object* obj)
 {
-	ObjectsToBeDeleted.push_back(gameObject);
+	ObjectsToBeDeleted.push_back(obj);
 }
 
-void ObjectManager::CreateObjectID(Object* gameObject)
+void ObjectFactory::GiveObjectID(Object* obj)
 {
 	++last_objectID;
-	gameObject->m_id = last_objectID;
+	obj->objectID = last_objectID;
 
-	ObjectIDMap[last_objectID] = gameObject;
+	ObjectIDMap[last_objectID] = obj;
 }
 
-Object* ObjectManager::CreateObject()
+Object* ObjectFactory::CreateEmptyObject()
 {
 	Object* obj = new Object();
 
-	CreateObjectID(obj);
+	GiveObjectID(obj);
 
 	return obj;
 }
 
-void ObjectManager::DestroyAllObjects()
+void ObjectFactory::DestroyAllObjects()
 {
 	Update();
-	for (auto GUGU : ObjectIDMap)
-		delete GUGU.second;
+	for (auto blue : ObjectIDMap)
+		delete blue.second;
 
 	ObjectIDMap.clear();
 }
-
-Object* ObjectManager::FindObjectwithName(std::string& name) const
+Object* ObjectFactory::FindObjectwithName(std::string& name) const
 {
 	for (const auto obj : ObjectIDMap)
 	{
-		if (obj.second->m_name == name)
+		if (obj.second->objName == name)
 			return obj.second;
 	}
 	return nullptr;
 }
-
-Object* ObjectManager::FindObjectwithID(ObjectID id) const
+Object* ObjectFactory::FindObjectwithID(ObjectID id) const
 {
 	for (const auto obj : ObjectIDMap)
 	{
-		if (obj.second->GetId() == id)
+		if (obj.second->GetObjectID() == id)
 			return obj.second;
 	}
 	return nullptr;

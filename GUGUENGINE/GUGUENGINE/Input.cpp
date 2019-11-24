@@ -1,9 +1,12 @@
 
 #include "Input.h"
-
+#include <glm\detail\type_vec.hpp>
 
 Input::Input(){}
 Input::~Input(){}
+
+
+
 
 std::bitset <SDL_NUM_SCANCODES> Input::keyPressed;
 std::bitset <SDL_NUM_SCANCODES>  Input::keyReleased;
@@ -12,6 +15,14 @@ std::bitset <SDL_NUM_SCANCODES>  Input::keyTriggered;
 std::bitset <NUM_MOUSECODES>  Input::mousePressed;
 std::bitset <NUM_MOUSECODES>  Input::mouseReleased;
 std::bitset <NUM_MOUSECODES>  Input::mouseTriggered;
+
+void Input::Reset(void)
+{
+	keyReleased.reset();
+	keyTriggered.reset();
+	mouseReleased.reset();
+	mouseTriggered.reset();
+}
 
 void Input::ResetKeyboardStatus(void)
 {

@@ -1,75 +1,52 @@
+/*
+*  Choi Jinwoo
+*  2018/09/25
+*  BLUE ENGINE
+*/
+
 #pragma once
+#include<string>
 #include "Transform.h"
-#include "ComponentType.h"
-#include <vector>
 #include "Mesh.h"
-#include "Component.h"
-#include "System.h"
 
 
-class ObjectManager;
+using ObjectID = unsigned;
+
+class ObjectFactory;
 class Component;
-class Object : public System
+
+class Object
 {
-	using ComponentVector = std::vector<Component*>;
-
 public:
+	friend class ObjectFactory;
 
-	unsigned    m_id/* = 0*/;	        // Object unique id - By 
-
-	std::string m_name = "Unnamed";	// Object name - By User
-	
 	Object();
-	virtual ~Object(){}
+	~Object();
 
-	bool active = true;		// Object active toggle
-	bool isDead = false;    // Object dead toggle
-	
-	Transform*	transform;	// Transform component
-	Mesh*		mesh;
-
-	void				SetName(const char* name)
-	{
-		m_name = name;
-	}
-	const std::string& GetName() const
-	{
-		return m_name;
-	}
-	unsigned			GetId() const
-	{
-		return m_id;
-	}
+	void Init();
 	void Destroy(Object* obj);
-	template <typename T>
-	void GetComponent(ComponentType type, T*& pComp);
-	template <typename T>
-	void GetAllComponents(ComponentType type, std::vector<T*>& comps);
-	//virtual void Shutdown();
-	
-//protected:
-	void		AddComponent(Component* component);
-	//virtual void Initialize();
-	
-public:
-	void UpdateComponents(float dt);
-	//virtual void Close();
-	void Init() override {}
-	void Update() override {}
-	
-	Object(const Object&) = delete;
-	Object(Object&&) = delete;
-	
-	Object& operator=(const Object&) = delete;
-	Object& operator=(Object&&) = delete;
-	
-	void	RemoveComponent(Component* component);
-	void	RemoveAllComponents(void);
-	void	RemoveAllComponents(ComponentType type);
 
-private:
-	ComponentVector		mComponents;
-	typedef ComponentVector::iterator VecItor;
+	bool AddComponent(Component* component);
+
+	ObjectID GetObjectID()
+	{
+		return objectID;
+	}
+	void SetObjectID(ObjectID objID)
+	{
+		objectID = objID;
+	}
+	void SetName(const std::string& name)
+	{
+		objName = name;
+	}
+	std::string GetName() const
+	{
+		return objName;
+	}
+	std::string objName = "";
+
+	ObjectID objectID;
+	Transform* transform;
+	Mesh* mesh;
 };
-
-

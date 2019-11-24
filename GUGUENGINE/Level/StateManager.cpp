@@ -1,5 +1,7 @@
 #include "StateManager.h"
 #include "Level1.h"
+#include "Level2.h"
+
 
 StateManager* STATE_MANAGER = nullptr;
 
@@ -16,7 +18,7 @@ void StateManager::Init()
 {
 	current = LV_TEST1;
 	levels.push_back(new Level1());
-	//levels.push_back(new Level2());
+	levels.push_back(new Level2());
 	levels.at(current)->Init();
 }
 

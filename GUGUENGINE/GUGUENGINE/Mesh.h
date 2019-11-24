@@ -30,22 +30,22 @@ public:
 
 	Mesh();
 	~Mesh() override;
-	
-	void Initialize(void) override;
-	void Update() override;
 
-	
+	void Initialize(void) ;
+	void Update();
+
+
 	/*Mesh(const Mesh& rhs)
 	{
 		this->colors = rhs.colors;
-		
+
 	}
 	Mesh& operator=(const Mesh& rhs);*/
 
 	//void BuildMesh();
 	//bool Draw(Shader& mShader);
 	void Delete();
-	
+
 	std::size_t GetPointCount() const noexcept;
 	std::vector<glm::vec3>   GetPoint() const noexcept;
 	void	 SetPoint(std::vector<glm::vec3> point);
@@ -67,21 +67,23 @@ public:
 	void ClearPoints() noexcept;
 	void Clear() noexcept;
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
+	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
+	void SetVertex(float x, float y);
 private:
-	std::vector<glm::vec3> mMesh;
+	std::vector<glm::vec3> vertex;
 	std::vector<glm::vec3>  points{};
 	std::vector<Color4ub> colors{};
 	std::vector<glm::vec2>  textureCoordinates{};
 	int shaderID = 0;
 	Shader mShader;
 	GLenum      pointListType = GL_LINES;
-	GLuint mVertexArrayObject ;
+	GLuint mVertexArrayObject;
 	GLuint mPositionVertexBufferObjectID, mColorVertexBufferObjectID;
 };
 
 namespace MESH
 {
-	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
+	//std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
 	std::vector<glm::vec3> create_wire_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30) noexcept;
 	std::vector<glm::vec3> create_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
 	std::vector<glm::vec3> create_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;

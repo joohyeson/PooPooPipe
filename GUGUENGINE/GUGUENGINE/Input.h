@@ -1,17 +1,29 @@
 #pragma once
-
-#include <SDL.h>
+#include "external/SDL2/include/SDL.h"
+//#include <SDL.h>
 #include <bitset>
-#include <include/GLFW/glfw3.h>
+//#include <include/GLFW/glfw3.h>
 
 #define NUM_MOUSECODES 4
 typedef int MouseButton;
 
-class Input {
+
+class Input 
+{
 public:
+
+	static Input& realInupt()
+	{
+		static Input input;
+		return input;
+	}
+
+
 
 	Input();
 	~Input();
+
+	void Reset(void);
 
 	static void ResetKeyboardStatus(void);
 	void SetKeyPressed(SDL_Scancode key, SDL_EventType keyEvent);

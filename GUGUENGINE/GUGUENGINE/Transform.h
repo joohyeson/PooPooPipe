@@ -11,8 +11,8 @@ public:
 	};
 	~Transform() override;
 
-	void Initialize(void) override;
-	void Update() override;
+	void Initialize(void);
+	void Update();
 	glm::vec2 GetTranslation() const noexcept;
 	glm::vec2 GetScale() const noexcept;
 	void SetTranslation(const glm::vec2& new_translation) noexcept;

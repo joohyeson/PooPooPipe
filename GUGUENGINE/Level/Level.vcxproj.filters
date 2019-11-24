@@ -16,24 +16,36 @@
     <Filter Include="Source Files\Level">
       <UniqueIdentifier>{99c578ad-24f3-4669-900e-72b2ad7aab38}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Level1">
+      <UniqueIdentifier>{1d8b6a5d-a94b-4202-8411-2c0e3265e4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\Level2">
+      <UniqueIdentifier>{07802b89-f7cb-449c-be65-1dfccd410534}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="Level1.cpp">
-      <Filter>Source Files\Level</Filter>
-    </ClCompile>
     <ClCompile Include="StateManager.cpp">
       <Filter>Source Files\Level</Filter>
     </ClCompile>
     <ClCompile Include="..\GUGUENGINE\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level1.cpp">
+      <Filter>Source Files\Level\Level1</Filter>
+    </ClCompile>
+    <ClCompile Include="Level2.cpp">
+      <Filter>Source Files\Level\Level2</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="Level1.h">
-      <Filter>Source Files\Level</Filter>
-    </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Source Files\Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level1.h">
+      <Filter>Source Files\Level\Level1</Filter>
+    </ClInclude>
+    <ClInclude Include="Level2.h">
+      <Filter>Source Files\Level\Level2</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

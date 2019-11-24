@@ -4,7 +4,7 @@
 #include  "Shader.h"
 //#include "include/GLFW/glfw3.h"
 #include "System.h"
-
+#include "Input.h"
 class Application : public System
 {
 public:
@@ -17,8 +17,16 @@ public:
 	void Init() override;
 	void Update() override;
 
+	void PollKeyboardEvent(SDL_Event& currentEvent);
+	void PollMouseEvent(SDL_Event& currentEvent);
+
+	void setMyWindow(GLFWwindow& m);
+	GLFWwindow* getMyWindow();
+	SDL_Event& GetEvent() { return SDLevent; }
+
 	
 private:
+	SDL_Event SDLevent;
 	bool isGameRunning = false;
 	int sizeX = 300;
 	int sizeY = 400;
@@ -30,3 +38,4 @@ private:
 	GLFWwindow* Mywindow;
 
 };
+extern Application* APPLICATION;

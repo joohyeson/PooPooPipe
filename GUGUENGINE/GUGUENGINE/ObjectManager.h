@@ -1,26 +1,27 @@
 #pragma once
-
-#include "Object.h"
 #include"System.h"
 #include<map>
 #include<vector>
 #include <string>
 
-
 class Object;
 using ObjectID = unsigned;
 
-class ObjectManager : public System
+class ObjectFactory : public System
 {
 public:
-	ObjectManager();
-	~ObjectManager() override;
+	ObjectFactory();
+	~ObjectFactory();
 
 	void Init() override {}
 	void Update() override;
+
 	void Destroy(Object* gameObject);
-	void CreateObjectID(Object* gameObject);
-	Object* CreateObject();
+
+	void GiveObjectID(Object* gameObject);
+
+	Object* CreateEmptyObject();
+
 	void DestroyAllObjects();
 
 	Object* FindObjectwithName(std::string& name) const;
@@ -33,4 +34,4 @@ private:
 	std::vector<Object*> ObjectsToBeDeleted;
 };
 
-extern ObjectManager* OBJECT_MANAGER;
+extern ObjectFactory* OBJECT_FACTORY;

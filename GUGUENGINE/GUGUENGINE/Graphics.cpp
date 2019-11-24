@@ -36,7 +36,7 @@ void Graphics::Update()
 		if (obj == nullptr)
 			continue;
 
-		auto delete_objID = MeshMap.find(obj->GetOwner()->GetId());
+		auto delete_objID = MeshMap.find(obj->GetOwner()->GetObjectID());
 
 		if (delete_objID != MeshMap.end())
 		{
@@ -73,8 +73,8 @@ void Graphics::ChangeBackgroundColor(float r, float g, float b, float a)
 
 void Graphics::AddMesh(Mesh* mesh)
 {
-	std::cout << mesh->GetOwner()->GetId() << std::endl;
-	MeshMap[mesh->GetOwner()->GetId()] = mesh;
+	std::cout << mesh->GetOwner()->GetObjectID() << std::endl;
+	MeshMap[mesh->GetOwner()->GetObjectID()] = mesh;
 }
 
 void Graphics::DeleteMesh(Mesh* mesh)

@@ -30,9 +30,6 @@
     <Filter Include="소스 파일\Component\Mesh">
       <UniqueIdentifier>{716ddbcf-c236-4425-a700-68387fadb489}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Application\Shader">
-      <UniqueIdentifier>{923a567d-ebf7-4b80-80e6-d34093e2b012}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Application\Color">
       <UniqueIdentifier>{23562e6f-b83a-44b8-a06e-ee11ea64a431}</UniqueIdentifier>
     </Filter>
@@ -54,6 +51,9 @@
     <Filter Include="소스 파일\Graphics">
       <UniqueIdentifier>{732010b0-6ffb-4305-912c-4047c02bb7c7}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Application\Input\Shader">
+      <UniqueIdentifier>{923a567d-ebf7-4b80-80e6-d34093e2b012}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -72,7 +72,7 @@
       <Filter>소스 파일\Component\Mesh</Filter>
     </ClCompile>
     <ClCompile Include="Shader.cpp">
-      <Filter>소스 파일\Application\Shader</Filter>
+      <Filter>소스 파일\Application\Input\Shader</Filter>
     </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>소스 파일\Application\Color</Filter>
@@ -134,7 +134,7 @@
       <Filter>소스 파일\Component\Mesh</Filter>
     </ClInclude>
     <ClInclude Include="Shader.h">
-      <Filter>소스 파일\Application\Shader</Filter>
+      <Filter>소스 파일\Application\Input\Shader</Filter>
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>소스 파일\Application\Color</Filter>

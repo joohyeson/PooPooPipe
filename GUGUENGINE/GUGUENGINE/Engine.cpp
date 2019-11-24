@@ -30,7 +30,7 @@ void Engine::Init()
 	//std::cout << "Initialize Engine" << std::endl;
 	////Order is important
 	AddSystem(new Application());
-	AddSystem(new ObjectManager());
+	AddSystem(new ObjectFactory());
 	//AddSystem(new Graphics());
 	AddSystem(new StateManager());
 	for (auto GUGU : Systems)

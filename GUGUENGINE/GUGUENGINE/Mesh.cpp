@@ -21,7 +21,16 @@ constexpr float TWO_PI = 2.0f * PI;
 
 	//Returns the total amount of points representing the mesh
 Transform* m;
-
+float verticesFlat[] = {
+	0.0f,   0.0f, 0.0f,    //center
+	-0.5f,   1.0f, 0.0f,    // left top
+	0.5f,   1.0f, 0.0f,    // right top
+	1.0f,   0.0f, 0.0f,    // right
+	0.5f,   -1.0f, 0.0f,    // right bottom (notice sign)
+	-0.5f,  -1.0f, 0.0f,    // left bottom
+	-1.0f,   0.0f, 0.0f,     // left
+	-0.5f,   1.0f, 0.0f    // left top
+};
 float color[] = {
 	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
 	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
@@ -33,7 +42,7 @@ float color[] = {
 	0.0f, 1.0f, 0.0f,
 	0.0f, 0.0f, 1.0f,
 };//It will be changed when color4up is completed
-Mesh::Mesh() : Component(COMPONENTTYPE_MESH),  mVertexArrayObject (0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0)
+Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0)
 {
 	points.clear();
 	colors.clear();
@@ -46,18 +55,19 @@ Mesh::~Mesh()
 }
 void Mesh::Initialize()
 {
-	mMesh= MESH::createHexagon({ 600, 300, 0 });
+	vertex = createHexagon({ 0, 0, 0 });
+	SetVertex(0.f, 0.f);
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
-	//Vertex Buffer Object(VBO)¸
+	//Vertex Buffer Object(VBO)?
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, 24*sizeof(float), mMesh.data(), GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, /*sizeof(glm::vec3) * vertex.size()*/sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
 
 	glGenBuffers(1, &mColorVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_STATIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_DYNAMIC_DRAW);
 
 }
 void Mesh::Update()
@@ -74,10 +84,12 @@ void Mesh::Update()
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glEnableVertexAttribArray(1);
 
-	glBindVertexArray(mVertexArrayObject);
+	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/7);
 
-	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/4);
-	
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+
+
 }
 
 void Mesh::Delete()
@@ -105,6 +117,19 @@ std::vector<glm::vec3> Mesh::GetPoint() const noexcept
 void Mesh::SetPoint(std::vector<glm::vec3> point)
 {
 	points = point;
+}
+void Mesh::SetVertex(float x, float y)
+{
+	glm::mat3 T = glm::translate(glm::mat3(), { 0.5f,0.3f });
+	glm::mat3 R = glm::rotate(glm::mat3(), 0.f);
+
+	for (int i = 0; i < vertex.size(); i++)
+	{
+		glm::vec3 mA = m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1 });
+
+		vertex.at(i) = { mA.x, mA.y, 1 };
+
+	}
 }
 
 /*Returns the i th color in the mesh. As long as index is within the range [0,PointCount) then this will return a valid color.
@@ -206,36 +231,25 @@ void Mesh::Clear() noexcept
 	ClearTextureCoordinates();
 }
 
+std::vector<glm::vec3> Mesh::createHexagon(glm::vec3 point) noexcept
+{
+
+	std::vector<glm::vec3> hexaVector;
+
+	hexaVector.push_back({ 0.0f,   0.0f, 1.0f });
+	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
+	hexaVector.push_back({ 0.1f,   0.2f, 1.0f });
+	hexaVector.push_back({ 0.2f,   0.0f, 1.0f });
+	hexaVector.push_back({ 0.1f,   -0.2f, 1.0f });
+	hexaVector.push_back({ -0.1f,  -0.2f, 1.0f });
+	hexaVector.push_back({ -0.2f,   0.0f, 1.0f });
+	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
+
+	return hexaVector;
+
+}
 namespace MESH
 {
-	
-	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept
-	{
-		std::vector<glm::vec3> hexaVector;
-		float radius = 0.5;
-		float pointCount = 6.f;
-		float theta = TWO_PI / pointCount;
-
-		glm::vec3  originPoint = { (point.x - 400) / 400 , -1 * ((point.y) - 300) / 300, 0};
-
-		//circle.SetPointListType(GL_TRIANGLE_FAN);
-		
-		hexaVector.clear();
-		//hexaVector.push_back(originPoint);
-
-		glm::mat3 myMatrix1 = glm::translate(glm::mat3(), { point.x,point.y });
-		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		//glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
-
-		for (int i = 0; i < pointCount; i++)
-		{
-			glm::vec3  radiusPoint = { radius * sin(theta * i), radius * -cos(theta * i),0 };
-			glm::vec3 mA =m->mMatrix(myMatrix1,{ radiusPoint.x , radiusPoint.y, 0 });
-			hexaVector.push_back(mA);
-		}
-		return hexaVector;
-		
-	}
 
 	std::vector<glm::vec3> create_wire_circle(float radius, Color4ub color,
 		std::size_t point_count) noexcept
@@ -294,7 +308,7 @@ namespace MESH
 		//rectangle.AddColor(color);
 
 		return rectangle;
-		
+
 	}
 	std::vector<glm::vec3> create_wire_rectangle(float width, float height, Color4ub color) noexcept
 	{
@@ -308,8 +322,8 @@ namespace MESH
 		rectangle.AddTextureCoordinate({ 1,0 });
 		rectangle.AddTextureCoordinate({ 1,1 });
 */
-		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
-		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
+//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
+//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
 
 		glm::vec3 mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });

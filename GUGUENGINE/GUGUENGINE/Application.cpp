@@ -6,7 +6,7 @@
 #include "Application.h"
 
 int framebufferWidth, framebufferHeight;
-
+Application* APPLICATION = nullptr;
 //Shader mShader;
 #define WIDTH 800
 #define HEIGHT 600
@@ -22,93 +22,34 @@ void framebufferSizeCallback(GLFWwindow* window, int width, int height)
 	framebufferHeight = height;
 }
 
-void errorCallback(int errorCode, const char* errorDescription)
-{
-	std::cerr << "Error: " << errorDescription << std::endl;
-}
-
-void keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
-{
-	static float time = 0;
-	double xpos, ypos;
-	//getting cursor position
-	glfwGetCursorPos(window, &xpos, &ypos);
-	std::cout << "Cursor Position at (" << xpos << " : " << ypos << std::endl;
-	//if (key == GLFW_KEY_ESCAPE && action == GLFW_PRESS)
-	//	glfwSetWindowShouldClose(window, GLFW_TRUE);
-
-	//if (key == GLFW_KEY_D)
-	//{
-	//	//glClearColor(0.7f, 0.7f, 0.7f, 1);
-	//	time += 0.3f;
-	//	std::cout << "TIME:" << time << std::endl;
-	//	mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 0, 0, 0 }, time);
-	//}
-}
-
-void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
-{
-	std::cout << "Cursor Position (" << xpos << " : " << ypos << std::endl;
-
-	curser = { xpos, ypos , 1 };
-	std::cout << "x: " << curser.x << "y: " << curser.y << std::endl;
-}
-
-void mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		std::cout << "Left mouse button pressed" << std::endl;
-	}
-}
-
 void Application::Init()
 {
 	std::cout << "Initialize" << std::endl;
-	//mShader.BuildShader();
-	//mMesh.setShaderID(mShader.GetShaderID());
+	APPLICATION = this;
 }
 
 void Application::Update()
 {
-	/*while (!glfwWindowShouldClose(Mywindow)) {*/
+	double lastTime = glfwGetTime();
+	int numOfFrames = 0;
+	int count = 0;
 
-		double lastTime = glfwGetTime();
-		int numOfFrames = 0;
-		int count = 0;
+	double currentTime = glfwGetTime();
+	numOfFrames++;
+	if (currentTime - lastTime >= 1.0) {
 
-		double currentTime = glfwGetTime();
-		numOfFrames++;
-		if (currentTime - lastTime >= 1.0) {
+		printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
+		numOfFrames = 0;
+		lastTime = currentTime;
+	}
 
-			printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
-			numOfFrames = 0;
-			lastTime = currentTime;
-		}
-		
-		/*mMesh.Initialize();
+	/*if (moveCheck % 2 == 1)
+	{
+		mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
+	}*/
 
-		mMesh.Draw();*/
-
-		/*glfwSwapInterval(1);
-
-		glClearColor(0.4f, 0.3f, 0.3f, 1);
-		glClear(GL_COLOR_BUFFER_BIT);*/
-
-		//glUseProgram(mShader.GetShaderID());
-
-		//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/24*sizeof(float));
-
-		/*if (moveCheck % 2 == 1)
-		{
-			mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
-		}*/
-
-		/*count++;*/
-
-		glfwSwapBuffers(Mywindow);
-		glfwPollEvents();
+	glfwSwapBuffers(Mywindow);
+	glfwPollEvents();
 	
 }
 
@@ -131,6 +72,7 @@ Application::Application()
 		HEIGHT,
 		"OpenGL Example",
 		NULL, NULL);
+
 	if (!Mywindow) {
 
 		glfwTerminate();
@@ -139,10 +81,10 @@ Application::Application()
 
 	glfwMakeContextCurrent(Mywindow);
 
-	glfwSetKeyCallback(Mywindow, keyCallback);
-	glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
-	glfwSetCursorPosCallback(Mywindow, cursorPositionCallback);
-	glfwSetMouseButtonCallback(Mywindow, mouseButtonCallback);
+	//glfwSetKeyCallback(Mywindow, keyCallback);
+	//glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
+	//glfwSetCursorPosCallback(Mywindow, cursorPositionCallback);
+	//glfwSetMouseButtonCallback(Mywindow, mouseButtonCallback);
 
 	glewExperimental = GL_TRUE;
 	GLenum errorCode = glewInit();
@@ -174,13 +116,33 @@ Application::~Application()
 	glUseProgram(0);
 	glBindVertexArray(0);
 
-	//mShader.Delete();
-	//mMesh.Delete();
-
 	glfwTerminate();
 
 	std::exit(EXIT_SUCCESS);
 }
 
+void Application::PollKeyboardEvent(SDL_Event& currentEvent)
+{
+	if (currentEvent.type == SDL_KEYDOWN || currentEvent.type == SDL_KEYUP)
+	{
+		Input::realInupt().SetKeyPressed(currentEvent.key.keysym.scancode, (SDL_EventType)currentEvent.type);
+	}
+}
 
+void Application::PollMouseEvent(SDL_Event& currentEvent)
+{
+	if (currentEvent.type == SDL_MOUSEBUTTONDOWN || currentEvent.type == SDL_MOUSEBUTTONUP)
+	{
+		Input::realInupt().SetMousePressed(currentEvent.button.button, (SDL_EventType)currentEvent.type);
+	}
+}
 
+void Application::setMyWindow(GLFWwindow& m)
+{
+	Mywindow = &m;
+
+}
+GLFWwindow* Application::getMyWindow()
+{
+	return Mywindow;
+}
