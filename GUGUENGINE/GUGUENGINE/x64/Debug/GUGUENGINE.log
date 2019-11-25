@@ -1,2 +1,21 @@
-﻿  GUGUENGINE.vcxproj -> C:\Users\KMU\Desktop\JEBALYO\GUGUENGINE\x64\Debug\GUGUENGINE.lib
-  0 File(s) copied
+﻿  Application.cpp
+  Color.cpp
+  Command.cpp
+  Engine.cpp
+  FitPuzzleComponent.cpp
+  glCheck.cpp
+  Graphics.cpp
+  Image.cpp
+  Input.cpp
+  Sound.cpp
+  StageManager.cpp
+  Texture.cpp
+  Timer.cpp
+  Transform.cpp
+  코드를 생성하고 있습니다...
+  Mesh.cpp
+  Object.cpp
+  ObjectManager.cpp
+  Shader.cpp
+  코드를 생성하고 있습니다...
+  GUGUENGINE.vcxproj -> C:\Users\user\Desktop\GUGUENGINE\GUGUENGINE\x64\Debug\GUGUENGINE.lib

@@ -60,6 +60,9 @@
     <Filter Include="소스 파일\Image">
       <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Sound">
+      <UniqueIdentifier>{421bc659-a9ee-4958-99b7-e49ad7a32ae4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>소스 파일\Texture</Filter>
+    </ClCompile>
+    <ClCompile Include="Sound.cpp">
+      <Filter>소스 파일\Sound</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -216,6 +222,9 @@
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>소스 파일\Texture</Filter>
+    </ClInclude>
+    <ClInclude Include="Sound.h">
+      <Filter>소스 파일\Sound</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
