@@ -42,7 +42,18 @@ float color[] = {
 	0.0f, 1.0f, 0.0f,
 	0.0f, 0.0f, 1.0f,
 };//It will be changed when color4up is completed
-Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0)
+
+float textureCoordinate[] = {
+						0.5f, 0.5f,0,
+						0.5f, 0.0f,0,
+						1.0f, 0.25f ,0,
+						1.0f, 0.75f,0,
+						0.5f, 1.0f,0,
+						0.0f, 0.75f,0,
+						0.0f, 0.25f,0,
+						0.5f, 0.0f, 0};
+
+Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0)
 {
 	points.clear();
 	colors.clear();
@@ -70,9 +81,9 @@ void Mesh::Initialize()
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, /*sizeof(glm::vec3) * vertex.size()*/sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
 
-	glGenBuffers(1, &mColorVertexBufferObjectID);
-	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_DYNAMIC_DRAW);
+	glGenBuffers(1, &mTextureCoordinateBufferObjectID);
+	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(textureCoordinate), textureCoordinate, GL_DYNAMIC_DRAW);
 
 }
 void Mesh::Update()
@@ -85,11 +96,13 @@ void Mesh::Update()
 
 	glEnableVertexAttribArray(0);
 
-	glBindBuffer(GL_ARRAY_BUFFER, mColorVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_DYNAMIC_DRAW);
+	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(textureCoordinate), textureCoordinate, GL_DYNAMIC_DRAW);
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glEnableVertexAttribArray(1);
 
+
+	//glBindVertexArray(0);
 	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/7);
 
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
@@ -104,6 +117,12 @@ void Mesh::Delete()
 GLuint* Mesh::GetVertexArrayObjectPointer(void) noexcept
 {
 	GLuint* m = &mVertexArrayObject;
+
+	return m;
+}
+GLuint Mesh::GetVertexArrayObject(void) noexcept
+{
+	GLuint m = mVertexArrayObject;
 
 	return m;
 }
@@ -157,18 +176,7 @@ Color4ub Mesh::GetColor(std::size_t index) const noexcept
 	   If the index กร texture coordinate size then the last (back) texture coordinate will be returned.*/
 std::vector<glm::vec2>  Mesh::GetTextureCoordinate()  const noexcept
 {
-	//::vector<glm::vec2>  ZERO = { 0,0 };
 
-	/*if (index < textureCoordinates.size() && index >= 0)
-	{
-		return textureCoordinates;
-	}
-	else if (textureCoordinates.empty() == true)
-	{
-		return ZERO;
-	}*/
-	/*else
-		return textureCoordinates.back*/
 	return textureCoordinates;
 
 }
@@ -235,7 +243,6 @@ void Mesh::Clear() noexcept
 
 std::vector<glm::vec3> Mesh::createHexagon(glm::vec3 point) noexcept
 {
-
 	std::vector<glm::vec3> hexaVector;
 
 	hexaVector.push_back({ 0.0f,   0.0f, 1.0f });
@@ -248,7 +255,6 @@ std::vector<glm::vec3> Mesh::createHexagon(glm::vec3 point) noexcept
 	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
 
 	return hexaVector;
-
 }
 namespace MESH
 {

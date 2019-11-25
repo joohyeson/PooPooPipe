@@ -1,17 +1,19 @@
+#include "glew.h"
+#include "filesystem"
 class Image;
 class Color4ub;
 
 class [[nodiscard]] Texture
 {
 public:
-	Texture() = default;
+	Texture();
 
 	bool LoadFromPNG(const std::filesystem::path& file_path) noexcept;
 	bool LoadFromImage(const Image& image) noexcept;
 	bool LoadFromMemory(int image_width, int image_height, const Color4ub* colors) noexcept;
 
 	static void SelectTextureForSlot(const Texture& texture, unsigned int slot = 0) noexcept;
-
+	GLuint CreateTexture(char const* filename, int i);
 	void DeleteTexture() noexcept;
 
 	unsigned int GetTextureHandle() const noexcept { return textureHandle; }
@@ -31,3 +33,4 @@ private:
 	int          width = 0;
 	int          height = 0;
 };
+extern Texture* TEXTURE;

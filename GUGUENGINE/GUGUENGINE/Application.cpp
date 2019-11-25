@@ -48,7 +48,7 @@ void Application::Update()
 		mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
 	}*/
 
-	glfwSwapBuffers(Mywindow);
+	//glfwSwapBuffers(Mywindow);
 	glfwPollEvents();
 	
 }

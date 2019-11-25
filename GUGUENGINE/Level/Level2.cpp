@@ -1,10 +1,8 @@
 #include "Level2.h"
-#include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include "../GUGUENGINE/Input.h"
 #include <iostream>
-#include "../GUGUENGINE/external/SDL2/include/SDL_scancode.h"
 #include "../GUGUENGINE/Application.h"
 
 void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -41,7 +39,7 @@ void Level2::Init()
 
 void Level2::Update()
 {
-	glfwSwapInterval(1);
+	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.8f, 0.3f, 0.3f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -51,4 +49,7 @@ void Level2::Update()
 
 void Level2::Close()
 {
+	//ENGINE->Quit();
+
+	OBJECT_FACTORY->DestroyAllObjects();
 }

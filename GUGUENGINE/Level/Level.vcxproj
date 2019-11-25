@@ -77,13 +77,13 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>
       </SubSystem>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;SDL2.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
-      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\GUGUENGINE.lib;$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\glew\lib\Release\x64;$(SolutionDir)external\SDL2\lib\x64;$(SolutionDir)external\fmod\lib\x64;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;SDL2.lib;fmod_vc.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)x64\Debug\GUGUENGINE.lib;$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\glew\lib\Release\x64;$(SolutionDir)external\SDL2\lib\x64;$(SolutionDir)external\fmod\lib\x64;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
     </Link>
     <PostBuildEvent>
       <Command>
@@ -96,12 +96,12 @@
       <Optimization>Disabled</Optimization>
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
-      <AdditionalLibraryDirectories>$(SolutionDir)external\SDL2\lib\x86;$(SolutionDir)external\glew\lib\Release\Win32;$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\fmod\lib\x86;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;SDL2.lib;fmod_vc.lib;%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)external\SDL2\lib\x86;$(SolutionDir)external\glew\lib\Release\Win32;$(SolutionDir)external\glfw\lib-vc2019;$(SolutionDir)external\fmod\lib\x86;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget);%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>opengl32.lib;glfw3.lib;glew32.lib;SDL2.lib;fmod_vc.lib;FreeImage.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">

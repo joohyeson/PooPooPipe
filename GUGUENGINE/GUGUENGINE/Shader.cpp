@@ -12,22 +12,32 @@
 
 const GLchar* vertex_shader_source =
 "#version 330 core\n"
-"layout (location = 0) in vec3 positionAttribute;"
-"layout (location = 1) in vec3 colorAttribute;"
-"out vec3 passColorAttribute;"
+"in vec3 positionAttribute;"
+//"in vec3 colorAttribute;"
+"in vec2 textureCoordinateAttribute;"
+//"out vec3 passColorAttribute;"
+"out vec2 passTextureCoordinateAttribute;"
 "void main()"
 "{"
 "gl_Position = vec4(positionAttribute, 1.0);"
-"passColorAttribute = colorAttribute;"
+//"passColorAttribute = colorAttribute;"
+"passTextureCoordinateAttribute = textureCoordinateAttribute;"
 "}";
 
 const GLchar* fragment_shader_source =
 "#version 330 core\n"
-"in vec3 passColorAttribute;"
+//"in vec3 passColorAttribute;"
+"in vec2 passTextureCoordinateAttribute;"
 "out vec4 fragmentColor;"
+"uniform sampler2D tex;"
 "void main()"
 "{"
-"fragmentColor = vec4(passColorAttribute, 1.0);"
+//컬러만 출력
+//"fragmentColor = vec4(passColorAttribute, 1.0);"
+//텍스처만 출력
+"fragmentColor = texture(tex, passTextureCoordinateAttribute);"
+//텍스처와 컬러 같이 출력
+//"fragmentColor = texture(tex, passTextureCoordinateAttribute)*vec4(passColorAttribute, 1.0); "
 "}";
 
 Shader::Shader()

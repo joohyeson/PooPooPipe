@@ -16,9 +16,9 @@ public:
 	void Close() override;
 	
 private:
-	Object* puzzle1;
+	Object* puzzle1, *puzzle2;
 	int key;
 	Mesh mMesh;
-	Shader mShader;
+	Shader mShader, mShader2;
 	
 };
