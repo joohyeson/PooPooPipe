@@ -54,6 +54,12 @@
     <Filter Include="소스 파일\Application\Input\Shader">
       <UniqueIdentifier>{923a567d-ebf7-4b80-80e6-d34093e2b012}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Texture">
+      <UniqueIdentifier>{b54f2ca9-757d-4178-a433-327727125109}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Image">
+      <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -112,6 +118,12 @@
     </ClCompile>
     <ClCompile Include="Graphics.cpp">
       <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="Image.cpp">
+      <Filter>소스 파일\Image</Filter>
+    </ClCompile>
+    <ClCompile Include="Texture.cpp">
+      <Filter>소스 파일\Texture</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -198,6 +210,12 @@
     </ClInclude>
     <ClInclude Include="Graphics.h">
       <Filter>소스 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="Image.h">
+      <Filter>소스 파일\Image</Filter>
+    </ClInclude>
+    <ClInclude Include="Texture.h">
+      <Filter>소스 파일\Texture</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

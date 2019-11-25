@@ -1,7 +1,3 @@
-//#include "Application.h"
-//#include "Engine.h"
-//#include "../GUGUENGINE/Engine.h"
-
 #include "../GUGUENGINE/Engine.h"
 
 int main(void)
