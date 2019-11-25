@@ -24,7 +24,6 @@ glm::vec2 Transform::GetScale() const noexcept
 }
 void Transform::SetTranslation(const glm::vec2& new_translation) noexcept
 {
-
 	translation = new_translation;
 }
 void Transform::SetScale(const glm::vec2& new_scale) noexcept
