@@ -13,7 +13,7 @@ glm::vec2 cursor1;
 int moveCheck1 = 0;
 float degree = 0;
 int rightCheck1 = 0;
-GLuint texureId31;
+GLuint texureId22;
 GLuint texureId21;
 
 void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -23,7 +23,7 @@ void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, in
 		std::cout << "Change level to Level3" << std::endl;
 		STATE_MANAGER->ChangeLevel(LV_TEST3);
 	}
-}
+} 
 
 void level2cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
@@ -56,7 +56,7 @@ void Level2::Init()
 
 	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId21 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureId31 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	texureId22 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 
 	mShader.BuildShader();
 	mShader2.BuildShader();
@@ -161,7 +161,7 @@ void Level2::Update()
 	GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
 	glUniform1i(texLoc, 0);
 	glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, texureId);
+	//glBindTexture(GL_TEXTURE_2D, texureId21);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
 
 	puzzle2->mesh->Update();
@@ -179,7 +179,7 @@ void Level2::Update()
 	GLint texLoc3 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
 	glUniform1i(texLoc3, 1);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId31);
+	glBindTexture(GL_TEXTURE_2D, texureId22);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
 
 	puzzle4->mesh->Update();
@@ -188,7 +188,7 @@ void Level2::Update()
 	GLint texLoc4 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
 	glUniform1i(texLoc4, 1);
 	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId31);
+	glBindTexture(GL_TEXTURE_2D, texureId22);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
 
 
