@@ -25,7 +25,7 @@ public:
 	SDL_Event& GetEvent() { return SDLevent; }
 
 	int height = 600;
-	int width = 800;
+	int width = 600;
 private:
 	SDL_Event SDLevent;
 	bool isGameRunning = false;

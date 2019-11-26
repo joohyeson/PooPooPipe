@@ -11,10 +11,10 @@ int check1 = 0;
 glm::vec2 cursor1;
 
 int moveCheck1 = 0;
-
+float degree = 0;
+int rightCheck1 = 0;
 GLuint texureId31;
 GLuint texureId21;
-
 
 void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -37,6 +37,14 @@ void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 		moveCheck1 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
+
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		rightCheck1 += 1;
+		std::cout << "rightCheck1: " << rightCheck1 << std::endl;
+		std::cout << "RIGHT mouse button pressed" << std::endl;
+		
+	}
 }
 
 void Level2::Init()
@@ -49,7 +57,6 @@ void Level2::Init()
 	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId21 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId31 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-
 
 	mShader.BuildShader();
 	mShader2.BuildShader();
@@ -129,8 +136,26 @@ void Level2::Update()
 		}
 	}
 
+	if (rightCheck1 !=0)
+	{
+		degree += static_cast<float>(glm::radians(60.f));
+		puzzle1->mesh->setRotation(degree);
+		rightCheck1 = 0;
+		//moveCheck = 0;
+
+		std::cout << puzzle1->mesh->getVertex(0).x << ", " << puzzle1->mesh->getVertex(0).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(1).x << ", " << puzzle1->mesh->getVertex(1).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(2).x << ", " << puzzle1->mesh->getVertex(2).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(3).x << ", " << puzzle1->mesh->getVertex(3).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(4).x << ", " << puzzle1->mesh->getVertex(4).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(5).x << ", " << puzzle1->mesh->getVertex(5).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(6).x << ", " << puzzle1->mesh->getVertex(6).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(7).x << ", " << puzzle1->mesh->getVertex(7).y << std::endl;
+	}
 
 	puzzle1->mesh->Update();
+
+	
 	glUseProgram(mShader.GetShaderID());
 	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
 	GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
@@ -156,7 +181,6 @@ void Level2::Update()
 	glActiveTexture(GL_TEXTURE1);
 	glBindTexture(GL_TEXTURE_2D, texureId31);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
-
 
 	puzzle4->mesh->Update();
 	glUseProgram(mShader2.GetShaderID());

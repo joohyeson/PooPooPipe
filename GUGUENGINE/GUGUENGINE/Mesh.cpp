@@ -11,6 +11,7 @@
 #include "Transform.h"
 #include <iostream>
 #include "Shader.h"
+#include <cmath>
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
 constexpr float HALF_PI = PI / 2.0f;
@@ -69,9 +70,17 @@ void Mesh::setTransfrom(glm::vec2 m)
 {
 	transform.SetTranslation(m);
 }
+void Mesh::setRotation(float m)
+{
+	transform.SetRotation(m);
+}
 glm::vec2 Mesh::getTransfrom()
 {
 	return transform.GetTranslation();
+}
+glm::vec2 Mesh::getVertex(int i)
+{
+	return { vertex.at(i).x, vertex.at(i).y };
 }
 void Mesh::Initialize()
 {
@@ -147,12 +156,12 @@ void Mesh::SetPoint(std::vector<glm::vec3> point)
 void Mesh::SetVertex(glm::vec2 mVec)
 {
 	glm::mat3 T = glm::translate(glm::mat3(), { mVec.x, mVec.y });
-	glm::mat3 R = glm::rotate(glm::mat3(), 0.f);
+	glm::mat3 R = glm::rotate(glm::mat3(), transform.GetRotation());
 	vertex = createHexagon({ 0,0,0 });
 	for (int i = 0; i < vertex.size(); i++)
 	{
-		glm::vec3 mA = m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1 });
-
+		glm::vec3 mA = m->mMatrix(T*R, { vertex.at(i).x, vertex.at(i).y, 1});
+		mA = { round(mA.x * 10.f) / 10.f , round(mA.y* 10.f) / 10.f,1 };
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }
