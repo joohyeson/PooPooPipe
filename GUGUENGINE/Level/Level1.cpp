@@ -7,6 +7,9 @@
 #include "../GUGUENGINE/Texture.h"
 
 int check = 0;
+glm::vec2 cursor;
+
+int moveCheck = 0;
 GLuint texureId;
 GLuint texureId2;
 void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -18,15 +21,16 @@ void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, in
 	}
 }
 
-void  level1cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+void level1cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	
+	cursor = { (xpos - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * ((ypos)-APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
 void  level1mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_RIGHT&& action == GLFW_PRESS)
+	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		moveCheck += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 }
@@ -38,12 +42,13 @@ void Level1::Init()
 
 	texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	
 	mShader.BuildShader();
-	//Shader mShader2;
 	mShader2.BuildShader();
+	
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
-	puzzle1->mesh->setTransfrom({ 0.5f, 0.7f });
+	puzzle1->mesh->setTransfrom({ 0.f, 0.7f });
 	puzzle1->mesh->Initialize();
 
 	puzzle2->AddComponent(new Mesh());
@@ -54,8 +59,7 @@ void Level1::Init()
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level1mouseButtonCallback);
-	//puzzle1->Init()
-	//puzzle1->AddComponent(new Transform());
+
 }
 
 void Level1::Update()
@@ -65,7 +69,7 @@ void Level1::Update()
 		check++;
 		std::cout << "HELLO" << std::endl;
 	}
-	
+	puzzle1->mesh->setTransfrom({ cursor });
 	puzzle1->mesh->Update();
 	glUseProgram(mShader.GetShaderID());
 	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());

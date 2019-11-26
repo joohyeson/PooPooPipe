@@ -10,8 +10,8 @@ Application* APPLICATION = nullptr;
 //Shader mShader;
 #define WIDTH 800
 #define HEIGHT 600
-int moveCheck = 0;
-glm::vec3 curser = { 0, 0, 0 };
+//int moveCheck = 0;
+//glm::vec3 curser = { 0, 0, 0 };
 Mesh mMesh;
 //std::vector<glm::vec3> mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
 void framebufferSizeCallback(GLFWwindow* window, int width, int height)

@@ -88,7 +88,7 @@ void Mesh::Initialize()
 }
 void Mesh::Update()
 {
-	//SetVertex(transform.GetTranslation());
+	SetVertex(transform.GetTranslation());
 	//std::cout <<"Transform X:"<<transform.GetTranslation().x<<"Transform Y"<< transform.GetTranslation().y<< std::endl;
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
@@ -144,7 +144,7 @@ void Mesh::SetVertex(glm::vec2 mVec)
 {
 	glm::mat3 T = glm::translate(glm::mat3(), { mVec.x, mVec.y });
 	glm::mat3 R = glm::rotate(glm::mat3(), 0.f);
-
+	vertex = createHexagon({ 0,0,0 });
 	for (int i = 0; i < vertex.size(); i++)
 	{
 		glm::vec3 mA = m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1 });
