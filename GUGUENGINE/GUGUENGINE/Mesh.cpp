@@ -69,6 +69,10 @@ void Mesh::setTransfrom(glm::vec2 m)
 {
 	transform.SetTranslation(m);
 }
+glm::vec2 Mesh::getTransfrom()
+{
+	return transform.GetTranslation();
+}
 void Mesh::Initialize()
 {
 	vertex = createHexagon({ 0, 0, 0 });

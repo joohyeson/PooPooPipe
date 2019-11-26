@@ -71,6 +71,7 @@ public:
 	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
 	void SetVertex(glm::vec2 mVec);
 	GLuint GetVertexArrayObject(void) noexcept;
+	glm::vec2 getTransfrom();
 private:
 	std::vector<glm::vec3> vertex;
 	std::vector<glm::vec3>  points{};

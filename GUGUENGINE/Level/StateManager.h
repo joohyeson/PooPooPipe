@@ -8,7 +8,9 @@
 enum GameLevels
 {
 	LV_TEST1,
-	LV_TEST2
+	LV_TEST2,
+	LV_TEST3
+
 	//Add here to make more levels. (LV_Main, LV_Tutorial...etc.)
 };
 
