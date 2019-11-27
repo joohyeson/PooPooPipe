@@ -111,6 +111,7 @@ void Level2::Update()
 		{
 			puzzle1->mesh->setTransfrom({ cursor1 });
 			//moveCheck = 0;
+			rightCheck1 = 0;
 		}
 	}
 	else

@@ -18,6 +18,10 @@ GLuint texureId32;
 GLuint texureId33;
 GLuint texureId34;
 
+int rightCheck2 = 0;
+
+float degree2 = 0;
+
 
 void level3keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -41,6 +45,15 @@ void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 		moveCheck3 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
+
+	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	{
+		rightCheck2 += 1;
+		std::cout << "rightCheck2: " << rightCheck2 << std::endl;
+		std::cout << "RIGHT mouse button pressed" << std::endl;
+
+	}
+	
 }
 
 void Level3::Init()
@@ -56,7 +69,6 @@ void Level3::Init()
 	puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle10 = OBJECT_FACTORY->CreateEmptyObject();
 
-	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId31 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId32 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	texureId33 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
@@ -154,6 +166,7 @@ void Level3::Update()
 		if (moveCheck3 % 2 == 1)
 		{
 			puzzle1->mesh->setTransfrom({ cursor3 });
+			rightCheck2 = 0;
 			//moveCheck = 0;
 		}
 	}
@@ -181,6 +194,23 @@ void Level3::Update()
 		}
 	}
 
+	if (rightCheck2 != 0)
+	{
+		degree2 += static_cast<float>(glm::radians(60.f));
+		puzzle1->mesh->setRotation(degree2);
+		rightCheck2 = 0;
+		//moveCheck = 0;
+
+		std::cout << puzzle1->mesh->getVertex(0).x << ", " << puzzle1->mesh->getVertex(0).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(1).x << ", " << puzzle1->mesh->getVertex(1).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(2).x << ", " << puzzle1->mesh->getVertex(2).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(3).x << ", " << puzzle1->mesh->getVertex(3).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(4).x << ", " << puzzle1->mesh->getVertex(4).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(5).x << ", " << puzzle1->mesh->getVertex(5).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(6).x << ", " << puzzle1->mesh->getVertex(6).y << std::endl;
+		std::cout << puzzle1->mesh->getVertex(7).x << ", " << puzzle1->mesh->getVertex(7).y << std::endl;
+	}
+	
 	puzzle1->mesh->Update();
 	glUseProgram(mShader.GetShaderID());
 	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
