@@ -1,10 +1,14 @@
 #pragma once
 
 #include "fmod.hpp"
+#include "System.h"
 
-class Sound
+class Sound : public System
 {
 public:
+	void Init() override;
+	void Update() override;
+
 	Sound();
 	~Sound();
 
@@ -14,16 +18,19 @@ public:
 	bool IsPaused();
 	void Play(int loop = -1);
 	void Pause();
-	void Resunme();
+	void Resume();
 	void Stop();
 	void Rewind();
 
-	void SetVolume();
+	void SetVolume(int volume);
 	int GetVolume();
 
 private:
-	FMOD::System* system = 0;
-	FMOD::Sound* sound = 0;
-	FMOD::Channel* channel = 0;
+	FMOD::System* system;
+	FMOD::Sound* sound;
+	FMOD::Channel* channel;
+	int m_volume;
+
+	FMOD_RESULT result;
 	
 };

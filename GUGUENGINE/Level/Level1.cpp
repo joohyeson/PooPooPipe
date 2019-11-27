@@ -36,6 +36,13 @@ void Level1::Init()
 	puzzle1 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle2 = OBJECT_FACTORY->CreateEmptyObject();
 
+	bgm.Init();
+	bgm.LoadMusic("assets\\up.mp3");
+	if(!bgm.IsPlaying())
+	{
+		bgm.Play();
+	}
+
 	texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	mShader.BuildShader();
@@ -65,6 +72,8 @@ void Level1::Update()
 		check++;
 		std::cout << "HELLO" << std::endl;
 	}
+
+	bgm.Update();
 	
 	puzzle1->mesh->Update();
 	glUseProgram(mShader.GetShaderID());
