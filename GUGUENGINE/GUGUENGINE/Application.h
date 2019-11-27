@@ -24,14 +24,14 @@ public:
 	GLFWwindow* getMyWindow();
 	SDL_Event& GetEvent() { return SDLevent; }
 
-	
+	int height = 600;
+	int width = 600;
 private:
 	SDL_Event SDLevent;
 	bool isGameRunning = false;
 	int sizeX = 300;
 	int sizeY = 400;
-	int height = 600;
-	int width = 800;
+	
 	int mouse_X;
 	int mouse_Y;
 	Shader mShader;
