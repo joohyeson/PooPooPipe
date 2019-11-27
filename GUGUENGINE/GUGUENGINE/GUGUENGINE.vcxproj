@@ -120,8 +120,9 @@
       <IgnoreAllDefaultLibraries>false</IgnoreAllDefaultLibraries>
     </Link>
     <PostBuildEvent>
-      <Command>
-      </Command>
+      <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
@@ -165,7 +166,8 @@
     </Link>
     <PostBuildEvent>
       <Command>xcopy /y /d "$(SolutionDir)external\glew\bin\Release\$(Platform)\glew32.dll" "$(TargetDir)"
-xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$(TargetDir)"</Command>
+xcopy /y /d "$(SolutionDir)external\FreeImage\Dist\$(Platform)\FreeImage.dll" "$(TargetDir)"
+xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(TargetDir)"</Command>
     </PostBuildEvent>
   </ItemDefinitionGroup>
   <ItemGroup>

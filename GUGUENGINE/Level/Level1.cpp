@@ -46,12 +46,11 @@ void Level1::Init()
 	puzzle3 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle4 = OBJECT_FACTORY->CreateEmptyObject();
 
-	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 
 
-<<<<<<< HEAD
+
 	bgm.Init();
 	bgm.LoadMusic("assets\\up.mp3");
 	if(!bgm.IsPlaying())
@@ -59,10 +58,9 @@ void Level1::Init()
 		bgm.Play();
 	}
 
-	texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
+	texureId3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-=======
->>>>>>> 346ed081468116eafdfc1899d48f309d5a45d0c9
+
 	mShader.BuildShader();
 	mShader2.BuildShader();
 
@@ -100,9 +98,7 @@ void Level1::Update()
 		std::cout << "HELLO" << std::endl;
 	}
 
-<<<<<<< HEAD
 	bgm.Update();
-=======
 	getOrigin.x = puzzle1->mesh->getTransfrom().x;
 	getOrigin.y = puzzle1->mesh->getTransfrom().y;
 
@@ -143,7 +139,6 @@ void Level1::Update()
 			}*/
 		}
 	}
->>>>>>> 346ed081468116eafdfc1899d48f309d5a45d0c9
 	
 
 	puzzle1->mesh->Update();
