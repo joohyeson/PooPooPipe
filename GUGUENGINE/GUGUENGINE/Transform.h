@@ -1,6 +1,9 @@
 #pragma once
 #include "external/glm/glm/glm.hpp"
 #include "Component.h"
+#include "Mathematics/Vector3.hpp"
+#include "Mathematics/Vector2.hpp"
+
 class Transform : public Component
 {
 public:
@@ -13,17 +16,17 @@ public:
 
 	void Initialize(void);
 	void Update();
-	glm::vec2 GetTranslation() const noexcept;
-	glm::vec2 GetScale() const noexcept;
-	void SetTranslation(const glm::vec2& new_translation) noexcept;
-	void SetScale(const glm::vec2& new_scale) noexcept;
+	Mathematics::Vector2<float> GetTranslation() const noexcept;
+	Mathematics::Vector2<float> GetScale() const noexcept;
+	void SetTranslation(const Mathematics::Vector2<float>& new_translation) noexcept;
+	void SetScale(const Mathematics::Vector2<float>& new_scale) noexcept;
 	float GetRotation() const noexcept;
 	void SetRotation(float new_rotation) noexcept;
-	glm::vec3 mMatrix(glm::mat3 myMatrix1, glm::vec3 c) noexcept;
+	Mathematics::Vector3<float> mMatrix(glm::mat3 myMatrix1, Mathematics::Vector3<float> c) noexcept;
 
 private:
 
-	glm::vec2 translation{};
-	glm::vec2 scale{};
+	Mathematics::Vector2<float> translation{};
+	Mathematics::Vector2<float> scale{};
 	float rotation;
 };

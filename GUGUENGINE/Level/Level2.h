@@ -2,6 +2,7 @@
 
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
+#include "../GUGUENGINE/Mathematics/Vector3.hpp"
 
 class Level2 : public LevelManager
 {
@@ -15,6 +16,6 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-	glm::vec3 getOrigin = { 0, 0, 0 };
-	glm::vec3 getOrigin2 = { 0, 0, 0 };
+	Mathematics::Vector3<float> getOrigin = { 0.f, 0.f, 0.f };
+	Mathematics::Vector3<float> getOrigin2 = { 0.f, 0.f, 0.f };
 };

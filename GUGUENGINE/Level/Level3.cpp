@@ -6,9 +6,10 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
+#include "../GUGUENGINE/Mathematics/MathFunctions.hpp"
 
 int check3 = 0;
-glm::vec2 cursor3;
+Mathematics::Vector2<float> cursor3;
 
 int moveCheck3 = 0;
 
@@ -34,7 +35,7 @@ void level3keyCallback(GLFWwindow* window, int key, int scancode, int action, in
 
 void level3cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	cursor3 = { (xpos - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * ((ypos)-APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor3 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos)-APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
 
 void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
@@ -165,7 +166,7 @@ void Level3::Update()
 	{
 		if (moveCheck3 % 2 == 1)
 		{
-			puzzle1->mesh->setTransfrom({ cursor3 });
+			puzzle1->mesh->setTransfrom({ cursor3.x, cursor3.y });
 			rightCheck2 = 0;
 			//moveCheck = 0;
 		}
@@ -196,7 +197,7 @@ void Level3::Update()
 
 	if (rightCheck2 != 0)
 	{
-		degree2 += static_cast<float>(glm::radians(60.f));
+		degree2 += static_cast<float>(Mathematics::DegreeToRadian(60.f));
 		puzzle1->mesh->setRotation(degree2);
 		rightCheck2 = 0;
 		//moveCheck = 0;

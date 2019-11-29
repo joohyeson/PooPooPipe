@@ -12,6 +12,8 @@
 #include <iostream>
 #include "Shader.h"
 #include <cmath>
+#include "Mathematics/Vector2.hpp"
+#include "Mathematics/Vector3.hpp"
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
 constexpr float HALF_PI = PI / 2.0f;
@@ -66,33 +68,33 @@ Mesh::~Mesh()
 {
 	Delete();
 }
-void Mesh::setTransfrom(glm::vec2 m)
+void Mesh::setTransfrom(Mathematics::Vector2<float> m)
 {
-	transform.SetTranslation(m);
+	transform.SetTranslation({m.x, m.y});
 }
 void Mesh::setRotation(float m)
 {
 	transform.SetRotation(m);
 }
-glm::vec2 Mesh::getTransfrom()
+Mathematics::Vector2<float> Mesh::getTransfrom()
 {
-	return transform.GetTranslation();
+	return { transform.GetTranslation().x, transform.GetTranslation().y };
 }
-glm::vec2 Mesh::getVertex(int i)
+Mathematics::Vector2<float> Mesh::getVertex(int i)
 {
 	return { vertex.at(i).x, vertex.at(i).y };
 }
 void Mesh::Initialize()
 {
 	vertex = createHexagon({ 0, 0, 0 });
-	SetVertex(transform.GetTranslation());
+	SetVertex({ transform.GetTranslation().x, transform.GetTranslation().y });
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
 	//Vertex Buffer Object(VBO)?
 	glGenBuffers(1, &mPositionVertexBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, /*sizeof(glm::vec3) * vertex.size()*/sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
+	glBufferData(GL_ARRAY_BUFFER, /*sizeof(Mathematics::Vector3<float>) * vertex.size()*/sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
 
 	glGenBuffers(1, &mTextureCoordinateBufferObjectID);
 	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
@@ -101,11 +103,11 @@ void Mesh::Initialize()
 }
 void Mesh::Update()
 {
-	SetVertex(transform.GetTranslation());
+	SetVertex({ transform.GetTranslation().x, transform.GetTranslation().y });
 	//std::cout <<"Transform X:"<<transform.GetTranslation().x<<"Transform Y"<< transform.GetTranslation().y<< std::endl;
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(glm::vec3), (GLvoid*)0);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Mathematics::Vector3<float>), (GLvoid*)0);
 
 	glEnableVertexAttribArray(0);
 
@@ -144,23 +146,25 @@ std::size_t Mesh::GetPointCount() const noexcept
 	return points.size();
 }
 //Returns the i th point in the mesh
-std::vector<glm::vec3> Mesh::GetPoint() const noexcept
+std::vector<Mathematics::Vector3<float>> Mesh::GetPoint() const noexcept
 {
 	return points;
 }
 
-void Mesh::SetPoint(std::vector<glm::vec3> point)
+void Mesh::SetPoint(std::vector<Mathematics::Vector3<float>> point)
 {
 	points = point;
 }
-void Mesh::SetVertex(glm::vec2 mVec)
+void Mesh::SetVertex(Mathematics::Vector2<float> mVec)
 {
 	glm::mat3 T = glm::translate(glm::mat3(), { mVec.x, mVec.y });
 	glm::mat3 R = glm::rotate(glm::mat3(), transform.GetRotation());
 	vertex = createHexagon({ 0,0,0 });
 	for (int i = 0; i < vertex.size(); i++)
 	{
-		glm::vec3 mA = m->mMatrix(T*R, { vertex.at(i).x, vertex.at(i).y, 1});
+		Mathematics::Vector3<float> mA = { m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).x,
+			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).y,
+			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).z };
 		mA = { round(mA.x * 10.f) / 10.f , round(mA.y* 10.f) / 10.f,1 };
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
@@ -187,7 +191,7 @@ Color4ub Mesh::GetColor(std::size_t index) const noexcept
 /*Returns the i th texture coordinate in the mesh. As long as index is within the range [0,PointCount) then this will return a valid texture coordinate.
 	   If the mesh actually has no texture coordinates then the {0,0} texture coordinate will be returned.
 	   If the index กร texture coordinate size then the last (back) texture coordinate will be returned.*/
-std::vector<glm::vec2>  Mesh::GetTextureCoordinate()  const noexcept
+std::vector<Mathematics::Vector2<float>>  Mesh::GetTextureCoordinate()  const noexcept
 {
 
 	return textureCoordinates;
@@ -209,13 +213,13 @@ void Mesh::AddColor(Color4ub color) noexcept
 	colors.push_back(color);
 }
 //Adds a new point to the mesh
-void Mesh::AddPoint(glm::vec3  point) noexcept
+void Mesh::AddPoint(Mathematics::Vector3<float>  point) noexcept
 {
 	points.push_back(point);
 
 }
 //Adds a new texture coordinate to the mesh
-void Mesh::AddTextureCoordinate(glm::vec2  texture_coordinate) noexcept
+void Mesh::AddTextureCoordinate(Mathematics::Vector2<float> texture_coordinate) noexcept
 {
 	textureCoordinates.push_back(texture_coordinate);
 }
@@ -254,9 +258,9 @@ void Mesh::Clear() noexcept
 	ClearTextureCoordinates();
 }
 
-std::vector<glm::vec3> Mesh::createHexagon(glm::vec3 point) noexcept
+std::vector<Mathematics::Vector3<float>> Mesh::createHexagon(Mathematics::Vector3<float>point) noexcept
 {
-	std::vector<glm::vec3> hexaVector;
+	std::vector<Mathematics::Vector3<float>> hexaVector;
 
 	hexaVector.push_back({ 0.0f,   0.0f, 1.0f });
 	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
@@ -272,10 +276,10 @@ std::vector<glm::vec3> Mesh::createHexagon(glm::vec3 point) noexcept
 namespace MESH
 {
 
-	std::vector<glm::vec3> create_wire_circle(float radius, Color4ub color,
-		std::size_t point_count) noexcept
+	std::vector<Mathematics::Vector3<float>> create_wire_circle(float radius, Color4ub color,
+	std::size_t point_count) noexcept
 	{
-		std::vector<glm::vec3> wireCircle;
+		std::vector<Mathematics::Vector3<float>> wireCircle;
 		//wireCircle.AddColor(color);
 		//wireCircle.SetPointListType(GL_LINE_LOOP);
 		float theta = TWO_PI / point_count;
@@ -287,23 +291,23 @@ namespace MESH
 		/*float theta = (PI*2) / point_count;*/
 		for (int i = 0; i < point_count; i++)
 		{
-			glm::vec3 mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
-			//glm::vec3  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
+			Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
+			//Mathematics::Vector3<float>  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
 			wireCircle.push_back(mA);
 		}
 
 		return wireCircle;
 	}
 
-	std::vector<glm::vec3> create_box(float dimension, Color4ub color) noexcept
+	std::vector<Mathematics::Vector3<float>> create_box(float dimension, Color4ub color) noexcept
 	{
 
 		return create_rectangle(dimension, dimension, color);
 
 	}
-	std::vector<glm::vec3> create_rectangle(float width, float height, Color4ub color) noexcept
+	std::vector<Mathematics::Vector3<float>> create_rectangle(float width, float height, Color4ub color) noexcept
 	{//use tan()
-		std::vector<glm::vec3> rectangle;
+		std::vector<Mathematics::Vector3<float>> rectangle;
 		//rectangle.SetPointListType(GL_TRIANGLE_FAN);
 		/*rectangle.AddTextureCoordinate({ 0,1 });
 		rectangle.AddTextureCoordinate({ 0, 0 });
@@ -314,10 +318,10 @@ namespace MESH
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
 
-		glm::vec3 mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
-		glm::vec3 mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
-		glm::vec3 mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
-		glm::vec3 mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
+		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
+		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
+		Mathematics::Vector3<float> mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
 
 		rectangle.push_back(mA);
 		rectangle.push_back(mB);
@@ -331,10 +335,10 @@ namespace MESH
 		return rectangle;
 
 	}
-	std::vector<glm::vec3> create_wire_rectangle(float width, float height, Color4ub color) noexcept
+	std::vector<Mathematics::Vector3<float>> create_wire_rectangle(float width, float height, Color4ub color) noexcept
 	{
 
-		std::vector<glm::vec3> rectangle;
+		std::vector<Mathematics::Vector3<float>> rectangle;
 
 		/*rectangle.SetPointListType(GL_LINE_LOOP);
 
@@ -347,10 +351,10 @@ namespace MESH
 //glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
 
-		glm::vec3 mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
-		glm::vec3 mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
-		glm::vec3 mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
-		glm::vec3 mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
+		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
+		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
+		Mathematics::Vector3<float> mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
 
 		rectangle.push_back(mA);
 		rectangle.push_back(mB);
@@ -362,29 +366,29 @@ namespace MESH
 		return rectangle;
 
 	}
-	std::vector<glm::vec3> create_wire_box(float dimension, Color4ub color) noexcept
+	std::vector<Mathematics::Vector3<float>> create_wire_box(float dimension, Color4ub color) noexcept
 	{
 		return create_wire_rectangle(dimension, dimension, color);
 	}
-	std::vector<glm::vec3> create_line(glm::vec3  a, glm::vec3  b, Color4ub color) noexcept
+	std::vector<Mathematics::Vector3<float>> create_line(Mathematics::Vector3<float>  a, Mathematics::Vector3<float>  b, Color4ub color) noexcept
 	{
-		std::vector<glm::vec3> line;
+		std::vector<Mathematics::Vector3<float>> line;
 		//line.SetPointListType(GL_LINES);
 		//line.AddColor(color);
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
 
-		glm::vec3 mA = m->mMatrix(myMatrix1, a);
-		glm::vec3 mB = m->mMatrix(myMatrix1, b);
+		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, a);
+		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, b);
 
 		line.push_back(mA);
 		line.push_back(mB);
 		return line;
 	}
-	std::vector<glm::vec3> create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time)
+	std::vector<Mathematics::Vector3<float>> create_triangle(Mathematics::Vector3<float> a, Mathematics::Vector3<float> b, Mathematics::Vector3<float> c, float time)
 	{
-		std::vector<glm::vec3> triangle;
+		std::vector<Mathematics::Vector3<float>> triangle;
 		/*triangle.ClearPoints();
 		triangle.SetPointListType(GL_TRIANGLES);*/
 
@@ -392,9 +396,9 @@ namespace MESH
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
 		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
-		glm::vec3 mA = m->mMatrix(myMatrix1, a);
-		glm::vec3 mB = m->mMatrix(myMatrix1, b);
-		glm::vec3 mC = m->mMatrix(myMatrix1, c);
+		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, a);
+		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, b);
+		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, c);
 
 		triangle.push_back(mA);
 		triangle.push_back(mB);

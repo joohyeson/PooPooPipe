@@ -14,6 +14,8 @@
 #include "Component.h"
 #include "Shader.h"
 #include "Transform.h"
+#include "Mathematics/Vector2.hpp"
+#include "Mathematics/Vector3.hpp"
 
 
 class Shader;
@@ -48,37 +50,37 @@ public:
 	void Delete();
 
 	std::size_t GetPointCount() const noexcept;
-	std::vector<glm::vec3>   GetPoint() const noexcept;
-	void	 SetPoint(std::vector<glm::vec3> point);
+	std::vector<Mathematics::Vector3<float>>   GetPoint() const noexcept;
+	void	 SetPoint(std::vector<Mathematics::Vector3<float>> point);
 
 	Color4ub    GetColor(std::size_t index = 0) const noexcept;
-	std::vector<glm::vec2>      GetTextureCoordinate() const noexcept;
+	std::vector<Mathematics::Vector2<float>>      GetTextureCoordinate() const noexcept;
 
 	GLenum GetPointListPattern() const noexcept;
 	void  SetPointListType(GLenum type) noexcept;
 
 	void AddColor(Color4ub color) noexcept;
-	void AddPoint(glm::vec3  point) noexcept;
-	void AddTextureCoordinate(glm::vec2  texture_coordinate) noexcept;
+	void AddPoint(Mathematics::Vector3<float>  point) noexcept;
+	void AddTextureCoordinate(Mathematics::Vector2<float>  texture_coordinate) noexcept;
 
 	void ClearColors() noexcept;
 	bool HasMoreThanOneColor() const noexcept;
-	void setTransfrom(glm::vec2 m);
+	void setTransfrom(Mathematics::Vector2<float> m);
 	void ClearTextureCoordinates() noexcept;
 	void ClearPoints() noexcept;
 	void Clear() noexcept;
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
-	std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
-	void SetVertex(glm::vec2 mVec);
+	std::vector<Mathematics::Vector3<float>> createHexagon(Mathematics::Vector3<float> point) noexcept;
+	void SetVertex(Mathematics::Vector2<float> mVec);
 	GLuint GetVertexArrayObject(void) noexcept;
-	glm::vec2 getTransfrom();
+	Mathematics::Vector2<float> getTransfrom();
 	void setRotation(float m);
-	glm::vec2 getVertex(int i);
+	Mathematics::Vector2<float> getVertex(int i);
 private:
-	std::vector<glm::vec3> vertex;
-	std::vector<glm::vec3>  points{};
+	std::vector<Mathematics::Vector3<float>> vertex;
+	std::vector<Mathematics::Vector3<float>>  points{};
 	std::vector<Color4ub> colors{};
-	std::vector<glm::vec2>  textureCoordinates{};
+	std::vector<Mathematics::Vector2<float>>  textureCoordinates{};
 	int shaderID = 0;
 	Shader mShader;
 	GLenum      pointListType = GL_LINES;
@@ -90,13 +92,13 @@ private:
 
 namespace MESH
 {
-	//std::vector<glm::vec3> createHexagon(glm::vec3 point) noexcept;
-	std::vector<glm::vec3> create_wire_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30) noexcept;
-	std::vector<glm::vec3> create_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
-	std::vector<glm::vec3> create_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
-	std::vector<glm::vec3> create_wire_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
-	std::vector<glm::vec3> create_wire_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
-	std::vector<glm::vec3> create_line(glm::vec2  a = { 0, 0 }, glm::vec2  b = { 1, 0 }, Color4ub color = Color4ub{ 255 }) noexcept;
-	std::vector<glm::vec3> create_triangle(glm::vec3 a, glm::vec3 b, glm::vec3 c, float time);
+	//std::vector<Mathematics::Vector3<float>> createHexagon(Mathematics::Vector3<float> point) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_wire_circle(float radius = 1, Color4ub color = Color4ub{ 255 }, std::size_t point_count = 30) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_wire_rectangle(float width = 1, float height = 1, Color4ub color = Color4ub{ 255 }) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_wire_box(float dimension = 1, Color4ub color = Color4ub{ 255 }) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_line(Mathematics::Vector2<float>  a = { 0, 0 }, Mathematics::Vector2<float>  b = { 1, 0 }, Color4ub color = Color4ub{ 255 }) noexcept;
+	std::vector<Mathematics::Vector3<float>> create_triangle(Mathematics::Vector3<float> a, Mathematics::Vector3<float> b, Mathematics::Vector3<float> c, float time);
 }
 

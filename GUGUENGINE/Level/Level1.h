@@ -3,6 +3,7 @@
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Sound.h"
+#include "../GUGUENGINE/Mathematics/Vector3.hpp"
 
 class Sound;
 
@@ -10,10 +11,12 @@ class Level1 : public LevelManager
 {
 public:
 
-	
 	Level1()
 	{
 		puzzle1 = nullptr;
+		puzzle2 = nullptr;
+		puzzle3 = nullptr;
+		puzzle4 = nullptr;
 		key=0;
 	}
 
@@ -29,8 +32,7 @@ private:
 
 	Sound bgm;
 
-
-	glm::vec3 getOrigin = { 0, 0, 0 };
-	glm::vec3 getOrigin2 = { 0, 0, 0 };
+	Mathematics::Vector3<float> getOrigin = { 0, 0, 0 };
+	Mathematics::Vector3<float> getOrigin2 = { 0, 0, 0 };
 
 };

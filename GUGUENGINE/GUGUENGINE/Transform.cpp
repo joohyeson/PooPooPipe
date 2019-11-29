@@ -1,5 +1,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "Transform.h"
+#include "Mathematics/Vector3.hpp"
+#include "Mathematics/Matrix.hpp"
 
 void Transform::Initialize(void)
 {
@@ -14,19 +16,19 @@ void Transform::Update()
 	time++;
 }
 
-glm::vec2 Transform::GetTranslation() const noexcept
+Mathematics::Vector2<float> Transform::GetTranslation() const noexcept
 {
 	return translation;
 }
-glm::vec2 Transform::GetScale() const noexcept
+Mathematics::Vector2<float> Transform::GetScale() const noexcept
 {
 	return scale;
 }
-void Transform::SetTranslation(const glm::vec2& new_translation) noexcept
+void Transform::SetTranslation(const Mathematics::Vector2<float>& new_translation) noexcept
 {
 	translation = new_translation;
 }
-void Transform::SetScale(const glm::vec2& new_scale) noexcept
+void Transform::SetScale(const Mathematics::Vector2<float>& new_scale) noexcept
 {
 	scale = new_scale;
 }
@@ -38,9 +40,9 @@ void Transform::SetRotation(float new_rotation) noexcept
 {
 	rotation = new_rotation;
 }
-glm::vec3 Transform::mMatrix(glm::mat3 myMatrix1, glm::vec3 c) noexcept
+Mathematics::Vector3<float> Transform::mMatrix(glm::mat3 myMatrix1, Mathematics::Vector3<float> c) noexcept
 {
-	glm::vec3 mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
+	Mathematics::Vector3<float> mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
 	myMatrix1[0][1] * c.x + myMatrix1[1][1] * c.y + myMatrix1[2][1] * c.z ,
 	myMatrix1[0][2] * c.x + myMatrix1[1][2] * c.y + myMatrix1[2][2] * c.z };
 

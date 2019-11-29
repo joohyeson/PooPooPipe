@@ -63,6 +63,9 @@
     <Filter Include="소스 파일\Shader">
       <UniqueIdentifier>{923a567d-ebf7-4b80-80e6-d34093e2b012}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Mathmatics">
+      <UniqueIdentifier>{55369132-71f7-4ce8-816b-f8e9b5edfceb}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="Sound.cpp">
       <Filter>소스 파일\Sound</Filter>
+    </ClCompile>
+    <ClCompile Include="Mathematics\Vector4.cpp">
+      <Filter>소스 파일\Mathmatics</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -225,6 +231,27 @@
     </ClInclude>
     <ClInclude Include="Sound.h">
       <Filter>소스 파일\Sound</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\MathFunctions.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\MathLibrary.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Vector2.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Vector3.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Vector4.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Matrix3.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Mathematics\Matrix4.hpp">
+      <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

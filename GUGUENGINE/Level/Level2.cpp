@@ -6,9 +6,11 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
+#include "../GUGUENGINE/Mathematics/Vector2.hpp"
+#include "../GUGUENGINE/Mathematics/MathFunctions.hpp"
 
 int check1 = 0;
-glm::vec2 cursor1;
+Mathematics::Vector2<float> cursor1({ 0.f, 0.f });
 
 int moveCheck1 = 0;
 float degree = 0;
@@ -27,7 +29,7 @@ void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, in
 
 void level2cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	cursor1 = { (xpos - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * ((ypos)-APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor1 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>((ypos))-APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
 void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
@@ -109,7 +111,7 @@ void Level2::Update()
 	{
 		if (moveCheck1 % 2 == 1)
 		{
-			puzzle1->mesh->setTransfrom({ cursor1 });
+			puzzle1->mesh->setTransfrom({ cursor1.x, cursor1.y });
 			//moveCheck = 0;
 			rightCheck1 = 0;
 		}
@@ -127,19 +129,13 @@ void Level2::Update()
 		if (moveCheck1 % 2 == 0)
 		{
 			puzzle1->mesh->setTransfrom({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().y });
-			/*if (rotationCheck == 1)
-			{
-				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { -0.3, 0.3, 1 }, time);
-				std::cout << time;
-				mMesh2 = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { -0.3, 0.3, 1 }, time);
-				rotationCheck = 0;
-			}*/
+
 		}
 	}
 
 	if (rightCheck1 !=0)
 	{
-		degree += static_cast<float>(glm::radians(60.f));
+		degree += static_cast<float>(Mathematics::DegreeToRadian(60.f));
 		puzzle1->mesh->setRotation(degree);
 		rightCheck1 = 0;
 		//moveCheck = 0;
