@@ -12,8 +12,7 @@
 #include <iostream>
 #include "Shader.h"
 #include <cmath>
-#include "Mathematics/Vector2.hpp"
-#include "Mathematics/Vector3.hpp"
+#include "Mathematics/MathLibrary.hpp"
 ////////////////////////////////////////////////////////delete//////////////////////////////////////////////
 constexpr float PI = 3.1415926535897932384626433832795f;
 constexpr float HALF_PI = PI / 2.0f;
@@ -157,15 +156,17 @@ void Mesh::SetPoint(std::vector<Mathematics::Vector3<float>> point)
 }
 void Mesh::SetVertex(Mathematics::Vector2<float> mVec)
 {
-	glm::mat3 T = glm::translate(glm::mat3(), { mVec.x, mVec.y });
-	glm::mat3 R = glm::rotate(glm::mat3(), transform.GetRotation());
+	Mathematics::Matrix3<float> T = Mathematics::Matrix3<float>::Translate({ mVec.x, mVec.y,1 });
+	Mathematics::Matrix3<float> R = Mathematics::Matrix3<float>::Rotate( transform.GetRotation());
+	//glm::mat3 R = glm::rotate(glm::mat3(), transform.GetRotation());
 	vertex = createHexagon({ 0,0,0 });
 	for (int i = 0; i < vertex.size(); i++)
 	{
-		Mathematics::Vector3<float> mA = { m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).x,
+	/*	Mathematics::Vector3<float> mA = { m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).x,
 			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).y,
-			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).z };
-		mA = { round(mA.x * 10.f) / 10.f , round(mA.y* 10.f) / 10.f,1 };
+			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).z };*/
+		 //mA = { round(mA.x * 10.f) / 10.f , round(mA.y* 10.f) / 10.f,1 };
+		Mathematics::Vector3<float> mA =(T*R)*vertex.at(i);
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }

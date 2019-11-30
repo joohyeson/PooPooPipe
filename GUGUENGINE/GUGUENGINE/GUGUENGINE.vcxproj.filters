@@ -247,10 +247,10 @@
     <ClInclude Include="Mathematics\Vector4.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
-    <ClInclude Include="Matrix3.hpp">
+    <ClInclude Include="Mathematics\Matrix4.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
-    <ClInclude Include="Mathematics\Matrix4.hpp">
+    <ClInclude Include="Mathematics\Matrix3.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
   </ItemGroup>

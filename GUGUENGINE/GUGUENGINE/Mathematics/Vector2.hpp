@@ -3,7 +3,8 @@
 
 namespace Mathematics {
 	template <typename T>
-	struct Vector2 {
+	class Vector2 {
+	public:
 		//==============================================Components============================================
 		T x;
 		T y;

@@ -233,11 +233,11 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Mathematics\MathFunctions.hpp" />
     <ClInclude Include="Mathematics\MathLibrary.hpp" />
+    <ClInclude Include="Mathematics\Matrix3.hpp" />
     <ClInclude Include="Mathematics\Matrix4.hpp" />
     <ClInclude Include="Mathematics\Vector2.hpp" />
     <ClInclude Include="Mathematics\Vector3.hpp" />
     <ClInclude Include="Mathematics\Vector4.hpp" />
-    <ClInclude Include="Matrix3.hpp" />
     <ClInclude Include="Mesh.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

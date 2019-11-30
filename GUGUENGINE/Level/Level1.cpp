@@ -9,7 +9,7 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
 int check = 0;
-Mathematics::Vector2<float>cursor;
+Mathematics::Vector2<float> cursor;
 
 int moveCheck = 0;
 

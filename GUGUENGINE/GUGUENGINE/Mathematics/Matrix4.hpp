@@ -3,7 +3,8 @@
 
 namespace Mathematics {
 	template <typename T>
-	struct Matrix4 {
+	class Matrix4 {
+	public:
 		//===========================================Union For Memory=========================================
 		union {
 			T Elements[4 * 4];
@@ -25,9 +26,10 @@ namespace Mathematics {
 		//=========================================*= Operator Override=======================================
 		Matrix4<T> &operator*=(const Matrix4<T> &p_Matrix4);
 		//==========================================* Operator Override=======================================
-		friend Vector2<T> operator*(const Matrix4 &p_LValue, const Vector2<T> &p_RValue);
-		friend Vector3<T> operator*(const Matrix4 &p_LValue, const Vector3<T> &p_RValue);
-		friend Vector4<T> operator*(const Matrix4 &p_LValue, const Vector4<T> &p_RValue);
+		friend Vector2<T> operator*(const Matrix4<T>& p_LValue, const Vector2<T>& p_RValue);
+		//Vector2<T> operator*(const Matrix4<T> &p_LValue, const Vector2<T> &p_RValue);
+		friend Vector3<T> operator*(const Matrix4<T> &p_LValue, const Vector3<T> &p_RValue);
+		friend Vector4<T> operator*(const Matrix4<T> &p_LValue, const Vector4<T> &p_RValue);
 		friend Matrix4<T>  operator*(Matrix4<T> p_LValue, const Matrix4<T> &p_RValue);
 		//============================================Identity Matrix4=========================================
 		static Matrix4<T> Identiy();
@@ -82,10 +84,10 @@ namespace Mathematics {
 	template <typename T>
 	Vector4<T> Matrix4<T>::Multiply(const Vector4<T>& p_Vector) const {
 		return Vector4<T>(
-			Column[0].x * p_Vector.x + Column[1].x * p_Vector.y + Column[2].x * p_Vector.z + Column[3].x * p_Vector.WComponent,
-			Column[0].y * p_Vector.x + Column[1].y * p_Vector.y + Column[2].y * p_Vector.z + Column[3].y * p_Vector.WComponent,
-			Column[0].z * p_Vector.x + Column[1].z * p_Vector.y + Column[2].z * p_Vector.z + Column[3].z * p_Vector.WComponent,
-			Column[0].WComponent * p_Vector.x + Column[1].WComponent * p_Vector.y + Column[2].WComponent * p_Vector.z + Column[3].WComponent * p_Vector.WComponent
+			Column[0].x * p_Vector.x + Column[1].x * p_Vector.y + Column[2].x * p_Vector.z + Column[3].x * p_Vector.w,
+			Column[0].y * p_Vector.x + Column[1].y * p_Vector.y + Column[2].y * p_Vector.z + Column[3].y * p_Vector.w,
+			Column[0].z * p_Vector.x + Column[1].z * p_Vector.y + Column[2].z * p_Vector.z + Column[3].z * p_Vector.w,
+			Column[0].w * p_Vector.x + Column[1].w * p_Vector.y + Column[2].w * p_Vector.z + Column[3].w * p_Vector.w
 			);
 	}
 	template <typename T>
@@ -108,6 +110,9 @@ namespace Mathematics {
 	Matrix4<T>& Matrix4<T>::operator*=(const Matrix4<T>& p_Matrix4) {
 		return Multiply(p_Matrix4);
 	}
+
+
+
 	//==========================================* Operator Override=======================================
 	template <typename T>
 	Vector2<T> operator*(const Matrix4<T>& p_LValue, const Vector2<T>& p_RValue) {

@@ -1,7 +1,7 @@
 #include "glm/gtc/matrix_transform.hpp"
 #include "Transform.h"
 #include "Mathematics/Vector3.hpp"
-#include "Mathematics/Matrix.hpp"
+//#include "Mathematics/Matrix.hpp"
 
 void Transform::Initialize(void)
 {
