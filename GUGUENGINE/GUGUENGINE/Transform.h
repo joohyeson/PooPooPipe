@@ -1,5 +1,4 @@
 #pragma once
-#include "external/glm/glm/glm.hpp"
 #include "Component.h"
 #include "Mathematics/Vector3.hpp"
 #include "Mathematics/Vector2.hpp"

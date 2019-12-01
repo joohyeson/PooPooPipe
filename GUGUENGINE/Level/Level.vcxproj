@@ -77,7 +77,7 @@
       <SDLCheck>true</SDLCheck>
       <ConformanceMode>true</ConformanceMode>
       <LanguageStandard>stdcpp17</LanguageStandard>
-      <AdditionalIncludeDirectories>$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)external\fmod\inc;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\FreeImage\Dist\$(PlatformTarget)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>

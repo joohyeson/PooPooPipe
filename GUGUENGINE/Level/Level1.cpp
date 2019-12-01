@@ -50,8 +50,6 @@ void Level1::Init()
 	texureId2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 
-
-
 	bgm.Init();
 	bgm.LoadMusic("assets\\up.mp3");
 	if(!bgm.IsPlaying())
@@ -100,11 +98,11 @@ void Level1::Update()
 	}
 
 	bgm.Update();
-	getOrigin.x = puzzle1->mesh->getTransfrom().x;
-	getOrigin.y = puzzle1->mesh->getTransfrom().y;
+	getOrigin.x = puzzle1->mesh->GetTransform().x;
+	getOrigin.y = puzzle1->mesh->GetTransform().y;
 
-	getOrigin2.x = puzzle2->mesh->getTransfrom().x;
-	getOrigin2.y = puzzle2->mesh->getTransfrom().y;
+	getOrigin2.x = puzzle2->mesh->GetTransform().x;
+	getOrigin2.y = puzzle2->mesh->GetTransform().y;
 	float r = sqrt(5) / 10;
 
 	if (cursor.x <= (getOrigin.x + r / 2) &&
@@ -130,7 +128,7 @@ void Level1::Update()
 	{
 		if (moveCheck % 2 == 0)
 		{
-			puzzle1->mesh->setTransform({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().x });
+			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().x });
 			/*if (rotationCheck == 1)
 			{
 				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { -0.3, 0.3, 1 }, time);
@@ -141,7 +139,6 @@ void Level1::Update()
 		}
 	}
 	
-
 	puzzle1->mesh->Update();
 	glUseProgram(mShader.GetShaderID());
 	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
@@ -149,7 +146,7 @@ void Level1::Update()
 	glUniform1i(texLoc, 0);
 	glActiveTexture(GL_TEXTURE0);
 	//glBindTexture(GL_TEXTURE_2D, texureId);
-	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
+	glDrawArrays(mMesh.GetPointListPattern(), 0, /*mMesh.GetPointCount()*/8);
 
 	puzzle2->mesh->Update();
 	glUseProgram(mShader2.GetShaderID());

@@ -3,6 +3,7 @@
 
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
+#include "../GUGUENGINE/Shader.h"
 
 class Level3 : public LevelManager
 {

@@ -7,12 +7,9 @@
 #include <map>
 #include <string>
 #include "external/glew/include/GL/glew.h"	
-#include "external/glfw/include/GLFW/glfw3.h"
 
 
 class Color4f;
-//struct matrix3;
-//struct vector3;
 
 class Mesh;
 
@@ -33,7 +30,6 @@ public:
 	constexpr unsigned GetShaderHandler() const noexcept { return handleToShader; }
 
 	void Delete() noexcept;
-
 
 	Shader(const Shader & other) = delete;
 	Shader(Shader && other) noexcept = delete;

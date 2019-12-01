@@ -7,6 +7,7 @@
 #include <iostream>
 #include "Graphics.h"
 #include "ObjectManager.h"
+#include <cassert>
 
 Object::Object()
 {

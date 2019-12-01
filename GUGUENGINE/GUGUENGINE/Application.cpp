@@ -2,7 +2,7 @@
 #include "glew.h"		
 #include "external/glfw/include/GLFW/glfw3.h"
 #include "Mesh.h"
-#include "Shader.h"
+//#include "Shader.h"
 #include "Application.h"
 
 int framebufferWidth, framebufferHeight;

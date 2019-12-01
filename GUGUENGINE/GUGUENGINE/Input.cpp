@@ -1,6 +1,6 @@
 
 #include "Input.h"
-#include <glm\detail\type_vec.hpp>
+
 
 Input::Input(){}
 Input::~Input(){}

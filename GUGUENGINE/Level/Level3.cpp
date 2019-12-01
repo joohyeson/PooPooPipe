@@ -7,6 +7,7 @@
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/MathFunctions.hpp"
+#include "../GUGUENGINE/external/glfw/include/GLFW/glfw3.h"
 
 int check3 = 0;
 Vector2<float> cursor3;
@@ -151,11 +152,11 @@ void Level3::Update()
 		std::cout << "HELLO" << std::endl;
 	}
 
-	getOrigin.x = puzzle1->mesh->getTransfrom().x;
-	getOrigin.y = puzzle1->mesh->getTransfrom().y;
+	getOrigin.x = puzzle1->mesh->GetTransform().x;
+	getOrigin.y = puzzle1->mesh->GetTransform().y;
 
-	getOrigin2.x = puzzle2->mesh->getTransfrom().x;
-	getOrigin2.y = puzzle2->mesh->getTransfrom().y;
+	getOrigin2.x = puzzle2->mesh->GetTransform().x;
+	getOrigin2.y = puzzle2->mesh->GetTransform().y;
 	
 	float r = sqrt(5) / 10;
 
@@ -183,7 +184,7 @@ void Level3::Update()
 	{
 		if (moveCheck3 % 2 == 0)
 		{
-			puzzle1->mesh->setTransform({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().y });
+			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().y });
 			
 			/*if (rotationCheck == 1)
 			{
@@ -202,14 +203,14 @@ void Level3::Update()
 		rightCheck2 = 0;
 		//moveCheck = 0;
 
-		std::cout << puzzle1->mesh->getVertex(0).x << ", " << puzzle1->mesh->getVertex(0).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(1).x << ", " << puzzle1->mesh->getVertex(1).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(2).x << ", " << puzzle1->mesh->getVertex(2).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(3).x << ", " << puzzle1->mesh->getVertex(3).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(4).x << ", " << puzzle1->mesh->getVertex(4).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(5).x << ", " << puzzle1->mesh->getVertex(5).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(6).x << ", " << puzzle1->mesh->getVertex(6).y << std::endl;
-		std::cout << puzzle1->mesh->getVertex(7).x << ", " << puzzle1->mesh->getVertex(7).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(0).x << ", " << puzzle1->mesh->GetVertex(0).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(1).x << ", " << puzzle1->mesh->GetVertex(1).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(2).x << ", " << puzzle1->mesh->GetVertex(2).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(3).x << ", " << puzzle1->mesh->GetVertex(3).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(4).x << ", " << puzzle1->mesh->GetVertex(4).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(5).x << ", " << puzzle1->mesh->GetVertex(5).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(6).x << ", " << puzzle1->mesh->GetVertex(6).y << std::endl;
+		std::cout << puzzle1->mesh->GetVertex(7).x << ", " << puzzle1->mesh->GetVertex(7).y << std::endl;
 	}
 	
 	puzzle1->mesh->Update();
