@@ -1,7 +1,7 @@
 #pragma once
 #include "MathLibrary.hpp"
 
-namespace Mathematics {
+
 
 	
 	template <typename T>
@@ -48,10 +48,8 @@ namespace Mathematics {
 	Vector4<T> operator*(const Matrix3<T>& p_LValue, const Vector4<T>& p_RValue);
 	template <typename T>
 	Matrix3<T>  operator*(Matrix3<T> p_LValue, const Matrix3<T>& p_RValue);
-}
 
 
-namespace Mathematics {
 	//=============================================Constructor============================================
 	template <typename T>
 	Matrix3<T>::Matrix3() {
@@ -147,7 +145,7 @@ namespace Mathematics {
 	Matrix3<T> Matrix3<T>::Rotate(T p_Angle) {
 		Matrix3<T> Result(1.0f);
 
-		//T ValueRadian = Mathematics::DegreeToRadian(p_Angle);
+		//T ValueRadian = DegreeToRadian(p_Angle);
 		T ValueSine = sin(p_Angle);
 		T ValueCosine = cos(p_Angle);
 
@@ -179,4 +177,4 @@ namespace Mathematics {
 		Result.Elements[2 * 2 * 2] = 1;
 		return Result;
 	}
-}
+

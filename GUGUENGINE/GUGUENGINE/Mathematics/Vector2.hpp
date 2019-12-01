@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
-namespace Mathematics {
+
 	template <typename T>
 	class Vector2 {
 	public:
@@ -42,8 +42,8 @@ namespace Mathematics {
 		//=========================================<< Operator Override=======================================
 		friend std::ostream &operator<<(std::ostream &p_Stream, const Vector2<T>&p_Vector);
 };
-}
-namespace Mathematics {
+
+
 	//=============================================Constructor============================================
 	template <typename T>
 	Vector2<T>::Vector2() {
@@ -139,4 +139,3 @@ namespace Mathematics {
 		p_Stream << "[Vector2<T>] (" << p_Vector.x << ", " << p_Vector.y << ")";
 		return p_Stream;
 	}
-}

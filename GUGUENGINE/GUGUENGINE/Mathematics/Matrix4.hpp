@@ -1,7 +1,6 @@
 #pragma once
 #include "MathLibrary.hpp"
 
-namespace Mathematics {
 	template <typename T>
 	class Matrix4 {
 	public:
@@ -44,10 +43,10 @@ namespace Mathematics {
 		//=================================================Scale==============================================
 		static Matrix4<T> Scale(const Vector3<T> &p_Scale);
 	};
-}
 
 
-namespace Mathematics {
+
+
 	//=============================================Constructor============================================
 	template <typename T>
 	Matrix4<T>::Matrix4() {
@@ -212,4 +211,3 @@ namespace Mathematics {
 		Result.Elements[2 + 2 * 4] = p_Scale.z;
 		return Result;
 	}
-}

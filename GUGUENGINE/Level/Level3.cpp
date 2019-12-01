@@ -9,7 +9,7 @@
 #include "../GUGUENGINE/Mathematics/MathFunctions.hpp"
 
 int check3 = 0;
-Mathematics::Vector2<float> cursor3;
+Vector2<float> cursor3;
 
 int moveCheck3 = 0;
 
@@ -88,52 +88,52 @@ void Level3::Init()
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
-	puzzle1->mesh->setTransfrom({ 0.7f, 0.7f });
+	puzzle1->mesh->setTransform({ 0.7f, 0.7f });
 	puzzle1->mesh->Initialize();
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
-	puzzle2->mesh->setTransfrom({ 0.0f, 0.3f }); 
+	puzzle2->mesh->setTransform({ 0.0f, 0.3f }); 
 	puzzle2->mesh->Initialize();
 
 	puzzle3->AddComponent(new Mesh());
 	puzzle3->Init();
-	puzzle3->mesh->setTransfrom({ -0.3f, 0.1f });
+	puzzle3->mesh->setTransform({ -0.3f, 0.1f });
 	puzzle3->mesh->Initialize();
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
-	puzzle4->mesh->setTransfrom({ 0.3f, 0.1f });
+	puzzle4->mesh->setTransform({ 0.3f, 0.1f });
 	puzzle4->mesh->Initialize();
 
 	puzzle5->AddComponent(new Mesh());
 	puzzle5->Init();
-	puzzle5->mesh->setTransfrom({ 0.3f, 0.5f });
+	puzzle5->mesh->setTransform({ 0.3f, 0.5f });
 	puzzle5->mesh->Initialize();
 
 	puzzle6->AddComponent(new Mesh());
 	puzzle6->Init();
-	puzzle6->mesh->setTransfrom({ -0.3f, 0.5f });
+	puzzle6->mesh->setTransform({ -0.3f, 0.5f });
 	puzzle6->mesh->Initialize();
 
 	puzzle7->AddComponent(new Mesh());
 	puzzle7->Init();
-	puzzle7->mesh->setTransfrom({ 0.0f, 0.7f }); 
+	puzzle7->mesh->setTransform({ 0.0f, 0.7f }); 
 	puzzle7->mesh->Initialize();
 
 	puzzle8->AddComponent(new Mesh());
 	puzzle8->Init();
-	puzzle8->mesh->setTransfrom({ 0.0f, -0.1f }); 
+	puzzle8->mesh->setTransform({ 0.0f, -0.1f }); 
 	puzzle8->mesh->Initialize();
 
 	puzzle9->AddComponent(new Mesh());
 	puzzle9->Init();
-	puzzle9->mesh->setTransfrom({ -0.3f, -0.3f });
+	puzzle9->mesh->setTransform({ -0.3f, -0.3f });
 	puzzle9->mesh->Initialize();
 
 	puzzle10->AddComponent(new Mesh());
 	puzzle10->Init();
-	puzzle10->mesh->setTransfrom({ 0.3f, -0.3f });
+	puzzle10->mesh->setTransform({ 0.3f, -0.3f });
 	puzzle10->mesh->Initialize();
 
 	
@@ -166,7 +166,7 @@ void Level3::Update()
 	{
 		if (moveCheck3 % 2 == 1)
 		{
-			puzzle1->mesh->setTransfrom({ cursor3.x, cursor3.y });
+			puzzle1->mesh->setTransform({ cursor3.x, cursor3.y });
 			rightCheck2 = 0;
 			//moveCheck = 0;
 		}
@@ -183,7 +183,7 @@ void Level3::Update()
 	{
 		if (moveCheck3 % 2 == 0)
 		{
-			puzzle1->mesh->setTransfrom({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().y });
+			puzzle1->mesh->setTransform({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().y });
 			
 			/*if (rotationCheck == 1)
 			{
@@ -197,7 +197,7 @@ void Level3::Update()
 
 	if (rightCheck2 != 0)
 	{
-		degree2 += static_cast<float>(Mathematics::DegreeToRadian(60.f));
+		degree2 += static_cast<float>(DegreeToRadian(60.f));
 		puzzle1->mesh->setRotation(degree2);
 		rightCheck2 = 0;
 		//moveCheck = 0;

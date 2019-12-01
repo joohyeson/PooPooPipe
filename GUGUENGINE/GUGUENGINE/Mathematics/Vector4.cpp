@@ -1,16 +1,15 @@
 #include "Vector4.hpp"
 
-namespace Mathematics {
 //=============================================Constructor============================================
 template <typename T>
-Vector4<T>::Vector4<T>() {
+Vector4<T>::Vector4() {
 	x = 0.0f;
 	y = 0.0f;
 	z = 0.0f;
 	w = 0.0f;
 }
 template <typename T>
-Vector4<T>::Vector4<T>(const T& p_XValue, const T& p_YValue, const T& p_ZValue, const T& p_WValue) {
+Vector4<T>::Vector4(const T& p_XValue, const T& p_YValue, const T& p_ZValue, const T& p_WValue) {
 	this->x = p_XValue;
 	this->y = p_YValue;
 	this->z = p_ZValue;
@@ -107,5 +106,4 @@ template <typename T>
 	std::ostream &operator<<(std::ostream &p_Stream, const Vector4<T> &p_Vector) {
 	p_Stream << "[Vector4<T>] (" << p_Vector.x << ", " << p_Vector.y << ", " << p_Vector.z << ", " << p_Vector.w << ")";
 	return p_Stream;
-}
 }

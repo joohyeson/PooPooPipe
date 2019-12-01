@@ -16,16 +16,16 @@ public:
 
 	void Initialize(void);
 	void Update();
-	Mathematics::Vector2<float> GetTranslation() const noexcept;
-	Mathematics::Vector2<float> GetScale() const noexcept;
-	void SetTranslation(const Mathematics::Vector2<float>& new_translation) noexcept;
-	void SetScale(const Mathematics::Vector2<float>& new_scale) noexcept;
+	Vector2<float> GetTranslation() const noexcept;
+	Vector2<float> GetScale() const noexcept;
+	void SetTranslation(const Vector2<float>& new_translation) noexcept;
+	void SetScale(const Vector2<float>& new_scale) noexcept;
 	float GetRotation() const noexcept;
 	void SetRotation(float new_rotation) noexcept;
 
 private:
 
-	Mathematics::Vector2<float> translation{};
-	Mathematics::Vector2<float> scale{};
+	Vector2<float> translation{};
+	Vector2<float> scale{};
 	float rotation;
 };

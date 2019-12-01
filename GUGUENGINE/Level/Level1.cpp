@@ -9,7 +9,7 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
 int check = 0;
-Mathematics::Vector2<float> cursor;
+Vector2<float> cursor;
 
 int moveCheck = 0;
 
@@ -67,22 +67,22 @@ void Level1::Init()
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
-	puzzle1->mesh->setTransfrom({ 0.5f, 0.7f });
+	puzzle1->mesh->setTransform({ 0.5f, 0.7f });
 	puzzle1->mesh->Initialize();
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
-	puzzle2->mesh->setTransfrom({ 0.0f, 0.3f });
+	puzzle2->mesh->setTransform({ 0.0f, 0.3f });
 	puzzle2->mesh->Initialize();
 
 	puzzle3->AddComponent(new Mesh());
 	puzzle3->Init();
-	puzzle3->mesh->setTransfrom({ -0.3f, 0.1f });
+	puzzle3->mesh->setTransform({ -0.3f, 0.1f });
 	puzzle3->mesh->Initialize();
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
-	puzzle4->mesh->setTransfrom({ 0.3f, 0.1f });
+	puzzle4->mesh->setTransform({ 0.3f, 0.1f });
 	puzzle4->mesh->Initialize();
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
@@ -114,7 +114,7 @@ void Level1::Update()
 	{
 		if (moveCheck % 2 == 1)
 		{
-			puzzle1->mesh->setTransfrom({ cursor.x, cursor.y });
+			puzzle1->mesh->setTransform({ cursor.x, cursor.y });
 			//moveCheck = 0;
 		}
 	}
@@ -130,7 +130,7 @@ void Level1::Update()
 	{
 		if (moveCheck % 2 == 0)
 		{
-			puzzle1->mesh->setTransfrom({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().x });
+			puzzle1->mesh->setTransform({ puzzle2->mesh->getTransfrom().x ,puzzle2->mesh->getTransfrom().x });
 			/*if (rotationCheck == 1)
 			{
 				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { -0.3, 0.3, 1 }, time);

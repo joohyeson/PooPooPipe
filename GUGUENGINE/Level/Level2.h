@@ -16,6 +16,6 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-	Mathematics::Vector3<float> getOrigin = { 0.f, 0.f, 0.f };
-	Mathematics::Vector3<float> getOrigin2 = { 0.f, 0.f, 0.f };
+	Vector3<float> getOrigin = { 0.f, 0.f, 0.f };
+	Vector3<float> getOrigin2 = { 0.f, 0.f, 0.f };
 };

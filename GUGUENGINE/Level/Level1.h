@@ -32,7 +32,7 @@ private:
 
 	Sound bgm;
 
-	Mathematics::Vector3<float> getOrigin = { 0, 0, 0 };
-	Mathematics::Vector3<float> getOrigin2 = { 0, 0, 0 };
+	Vector3<float> getOrigin = { 0, 0, 0 };
+	Vector3<float> getOrigin2 = { 0, 0, 0 };
 
 };

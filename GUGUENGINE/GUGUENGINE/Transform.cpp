@@ -16,19 +16,19 @@ void Transform::Update()
 	time++;
 }
 
-Mathematics::Vector2<float> Transform::GetTranslation() const noexcept
+Vector2<float> Transform::GetTranslation() const noexcept
 {
 	return translation;
 }
-Mathematics::Vector2<float> Transform::GetScale() const noexcept
+Vector2<float> Transform::GetScale() const noexcept
 {
 	return scale;
 }
-void Transform::SetTranslation(const Mathematics::Vector2<float>& new_translation) noexcept
+void Transform::SetTranslation(const Vector2<float>& new_translation) noexcept
 {
 	translation = new_translation;
 }
-void Transform::SetScale(const Mathematics::Vector2<float>& new_scale) noexcept
+void Transform::SetScale(const Vector2<float>& new_scale) noexcept
 {
 	scale = new_scale;
 }

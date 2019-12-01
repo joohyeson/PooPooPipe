@@ -1,7 +1,7 @@
 #pragma once
 #include <iostream>
 
- namespace Mathematics {
+
 	template <typename T>
 	class Vector3 {
 	public:
@@ -43,25 +43,25 @@
 		//=========================================<< Operator Override=======================================
 		friend std::ostream &operator<<(std::ostream &p_Stream, const Vector3<T> &p_Vector);
 };
-}
 
- namespace Mathematics {
+
+
 	 //=============================================Constructor============================================
 	 template <typename T>
-	 Mathematics::Vector3<T>::Vector3() {
+	 Vector3<T>::Vector3() {
 		 x = 0.0f;
 		 y = 0.0f;
 		 z = 0.0f;
 	 }
 	 template <typename T>
-	 Mathematics::Vector3<T>::Vector3(const T& p_XValue, const T& p_YValue, const T& p_ZValue) {
+	 Vector3<T>::Vector3(const T& p_XValue, const T& p_YValue, const T& p_ZValue) {
 		 this->x = p_XValue;
 		 this->y = p_YValue;
 		 this->z = p_ZValue;
 	 }
 	 //==============================================Addition==============================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::Add(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::Add(const Vector3<T>& p_Vector) {
 		 x += p_Vector.x;
 		 y += p_Vector.y;
 		 z += p_Vector.z;
@@ -69,7 +69,7 @@
 	 }
 	 //=============================================Subtraction============================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::Subtract(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::Subtract(const Vector3<T>& p_Vector) {
 		 x -= p_Vector.x;
 		 y -= p_Vector.y;
 		 z -= p_Vector.z;
@@ -77,7 +77,7 @@
 	 }
 	 //============================================Multiplication==========================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::Multiply(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::Multiply(const Vector3<T>& p_Vector) {
 		 x *= p_Vector.x;
 		 y *= p_Vector.y;
 		 z *= p_Vector.z;
@@ -85,7 +85,7 @@
 	 }
 	 //===============================================Division=============================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::Divide(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::Divide(const Vector3<T>& p_Vector) {
 		 x /= p_Vector.x;
 		 y /= p_Vector.y;
 		 z /= p_Vector.z;
@@ -93,32 +93,32 @@
 	 }
 	 //=========================================+= Operator Override=======================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::operator+=(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::operator+=(const Vector3<T>& p_Vector) {
 		 return Add(p_Vector);
 	 }
 	 //=========================================-= Operator Override=======================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::operator-=(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::operator-=(const Vector3<T>& p_Vector) {
 		 return Subtract(p_Vector);
 	 }
 	 //=========================================*= Operator Override=======================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::operator*=(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::operator*=(const Vector3<T>& p_Vector) {
 		 return Multiply(p_Vector);
 	 }
 	 //=========================================/= Operator Override=======================================
 	 template <typename T>
-	 Mathematics::Vector3<T>& Vector3<T>::operator/=(const Vector3<T>& p_Vector) {
+	 Vector3<T>& Vector3<T>::operator/=(const Vector3<T>& p_Vector) {
 		 return Divide(p_Vector);
 	 }
 	 //=========================================== Operator Override=======================================
 	 template <typename T>
-	 bool Mathematics::Vector3<T>::operator==(const Vector3<T>& p_Vector) {
+	 bool Vector3<T>::operator==(const Vector3<T>& p_Vector) {
 		 return (x == p_Vector.x && y == p_Vector.y && z == p_Vector.z);
 	 }
 	 //=========================================!= Operator Override=======================================
 	 template <typename T>
-	 bool Mathematics::Vector3<T>::operator!=(const Vector3<T>& p_Vector) {
+	 bool Vector3<T>::operator!=(const Vector3<T>& p_Vector) {
 		 return !(*this == p_Vector);
 	 }
 	 //==========================================+ Operator Override=======================================
@@ -147,4 +147,4 @@
 		 p_Stream << "[Vector3<T>] (" << p_Vector.x << ", " << p_Vector.y << ", " << p_Vector.z << ")";
 		 return p_Stream;
 	 }
- }
+ 
