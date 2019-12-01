@@ -40,11 +40,4 @@ void Transform::SetRotation(float new_rotation) noexcept
 {
 	rotation = new_rotation;
 }
-Mathematics::Vector3<float> Transform::mMatrix(glm::mat3 myMatrix1, Mathematics::Vector3<float> c) noexcept
-{
-	Mathematics::Vector3<float> mC = { myMatrix1[0][0] * c.x + myMatrix1[1][0] * c.y + myMatrix1[2][0] * c.z,
-	myMatrix1[0][1] * c.x + myMatrix1[1][1] * c.y + myMatrix1[2][1] * c.z ,
-	myMatrix1[0][2] * c.x + myMatrix1[1][2] * c.y + myMatrix1[2][2] * c.z };
 
-	return mC;
-}

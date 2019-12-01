@@ -287,14 +287,14 @@ namespace MESH
 
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
-
+		//glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+		Mathematics::Matrix3<float> myMatrix1 = Mathematics::Matrix3<float>::Rotate(0.3f);
 		/*float theta = (PI*2) / point_count;*/
 		for (int i = 0; i < point_count; i++)
 		{
-			Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { radius * sin(theta * i), radius * -cos(theta * i), 0 });
+			Mathematics::Vector3<float> mA = myMatrix1 * Mathematics::Vector3<float>(radius * sin(theta * i), radius * -cos(theta * i), 1);
 			//Mathematics::Vector3<float>  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
-			wireCircle.push_back(mA);
+			wireCircle.push_back({ mA.x, mA.y, 1 });
 		}
 
 		return wireCircle;
@@ -317,17 +317,17 @@ namespace MESH
 
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+		Mathematics::Matrix3<float> myMatrix1 = Mathematics::Matrix3<float>::Rotate(0.3f);
 
-		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
-		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
-		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
-		Mathematics::Vector3<float> mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+		Mathematics::Vector3<float> mA =myMatrix1* Mathematics::Vector3( -width / 2, -height / 2, 1.f );
+		Mathematics::Vector3<float> mB = myMatrix1*Mathematics::Vector3(-width / 2,height / 2  , 1.f);
+		Mathematics::Vector3<float> mC = myMatrix1*Mathematics::Vector3( width / 2,height / 2, 1.f );
+		Mathematics::Vector3<float> mD = myMatrix1*Mathematics::Vector3( width / 2,-height / 2, 1.f );
 
-		rectangle.push_back(mA);
-		rectangle.push_back(mB);
-		rectangle.push_back(mC);
-		rectangle.push_back(mD);
+		rectangle.push_back({ mA.x, mA.y, 1 });
+		rectangle.push_back({ mB.x, mB.y, 1 });
+		rectangle.push_back({ mC.x, mC.y, 1 });
+		rectangle.push_back({ mD.x, mD.y, 1 });
 
 		//ectangle.AddColor(color);
 
@@ -350,17 +350,18 @@ namespace MESH
 */
 //glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 //glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+		Mathematics::Matrix3<float> myMatrix1 = Mathematics::Matrix3<float>::Rotate(0.3f);
 
-		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, { -width / 2, -height / 2,0 });
-		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, { -width / 2,height / 2 ,0 });
-		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, { width / 2,height / 2 ,0 });
-		Mathematics::Vector3<float> mD = m->mMatrix(myMatrix1, { width / 2,-height / 2,0 });
+		Mathematics::Vector3<float> mA = myMatrix1 * Mathematics::Vector3(-width / 2, -height / 2, 1.f);
+		Mathematics::Vector3<float> mB = myMatrix1 * Mathematics::Vector3(-width / 2, height / 2, 1.f);
+		Mathematics::Vector3<float> mC = myMatrix1 * Mathematics::Vector3(width / 2, height / 2, 1.f);
+		Mathematics::Vector3<float> mD = myMatrix1 * Mathematics::Vector3(width / 2, -height / 2, 1.f);
 
-		rectangle.push_back(mA);
-		rectangle.push_back(mB);
-		rectangle.push_back(mC);
-		rectangle.push_back(mD);
+		rectangle.push_back({ mA.x, mA.y, 1 });
+		rectangle.push_back({ mB.x, mB.y, 1 });
+		rectangle.push_back({ mC.x, mC.y, 1 });
+		rectangle.push_back({ mD.x, mD.y, 1 });
+
 
 		//rectangle.AddColor(color);
 
@@ -378,10 +379,10 @@ namespace MESH
 		//line.AddColor(color);
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3,0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), 0.3f);
+		Mathematics::Matrix3<float> myMatrix1 = Mathematics::Matrix3<float>::Rotate(0.3f);
+		Mathematics::Vector3<float> mA = myMatrix1 * a;
+		Mathematics::Vector3<float> mB = myMatrix1 * b;
 
-		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, a);
-		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, b);
 
 		line.push_back(mA);
 		line.push_back(mB);
@@ -395,12 +396,12 @@ namespace MESH
 
 		//glm::mat3 myMatrix1 = glm::translate(glm::mat3(), {0.3, 0.7});
 		//glm::mat3 myMatrix1 = glm::scale(glm::mat3(), { 0.1, 0.1 });
-		glm::mat3 myMatrix1 = glm::rotate(glm::mat3(), time);
 
-		Mathematics::Vector3<float> mA = m->mMatrix(myMatrix1, a);
-		Mathematics::Vector3<float> mB = m->mMatrix(myMatrix1, b);
-		Mathematics::Vector3<float> mC = m->mMatrix(myMatrix1, c);
+		Mathematics::Matrix3<float> myMatrix1 = Mathematics::Matrix3<float>::Rotate(0.3f);
 
+		Mathematics::Vector3<float> mA = myMatrix1 * a;
+		Mathematics::Vector3<float> mB = myMatrix1 * b;
+		Mathematics::Vector3<float> mC = myMatrix1 * c;
 		triangle.push_back(mA);
 		triangle.push_back(mB);
 		triangle.push_back(mC);

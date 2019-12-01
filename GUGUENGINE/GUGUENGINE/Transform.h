@@ -22,7 +22,6 @@ public:
 	void SetScale(const Mathematics::Vector2<float>& new_scale) noexcept;
 	float GetRotation() const noexcept;
 	void SetRotation(float new_rotation) noexcept;
-	Mathematics::Vector3<float> mMatrix(glm::mat3 myMatrix1, Mathematics::Vector3<float> c) noexcept;
 
 private:
 
