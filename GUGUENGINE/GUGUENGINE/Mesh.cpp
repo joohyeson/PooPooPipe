@@ -7,7 +7,6 @@
 #include <cmath>
 #include <valarray>
 #include "Mesh.h"
-#include "glm/gtx/matrix_transform_2d.hpp"
 #include "Transform.h"
 #include <iostream>
 #include "Shader.h"
@@ -158,15 +157,13 @@ void Mesh::SetVertex(Mathematics::Vector2<float> mVec)
 {
 	Mathematics::Matrix3<float> T = Mathematics::Matrix3<float>::Translate({ mVec.x, mVec.y,1 });
 	Mathematics::Matrix3<float> R = Mathematics::Matrix3<float>::Rotate( transform.GetRotation());
-	//glm::mat3 R = glm::rotate(glm::mat3(), transform.GetRotation());
+    Mathematics::Matrix3<float> S = Mathematics::Matrix3<float>::Scale({0.2f, 0.2f, 0});
+
 	vertex = createHexagon({ 0,0,0 });
+
 	for (int i = 0; i < vertex.size(); i++)
 	{
-	/*	Mathematics::Vector3<float> mA = { m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).x,
-			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).y,
-			m->mMatrix(T * R, { vertex.at(i).x, vertex.at(i).y, 1}).z };*/
-		 //mA = { round(mA.x * 10.f) / 10.f , round(mA.y* 10.f) / 10.f,1 };
-		Mathematics::Vector3<float> mA =(T*R)*vertex.at(i);
+		Mathematics::Vector3<float> mA =(T*R*S)*vertex.at(i);
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }
@@ -261,16 +258,27 @@ void Mesh::Clear() noexcept
 
 std::vector<Mathematics::Vector3<float>> Mesh::createHexagon(Mathematics::Vector3<float>point) noexcept
 {
-	std::vector<Mathematics::Vector3<float>> hexaVector;
+    std::vector<Mathematics::Vector3<float>> hexaVector;
 
-	hexaVector.push_back({ 0.0f,   0.0f, 1.0f });
-	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
-	hexaVector.push_back({ 0.1f,   0.2f, 1.0f });
-	hexaVector.push_back({ 0.2f,   0.0f, 1.0f });
-	hexaVector.push_back({ 0.1f,   -0.2f, 1.0f });
-	hexaVector.push_back({ -0.1f,  -0.2f, 1.0f });
-	hexaVector.push_back({ -0.2f,   0.0f, 1.0f });
-	hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
+    //hexaVector.push_back({ 0.0f,   0.0f, 1.0f });
+    //hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
+    //hexaVector.push_back({ 0.1f,   0.2f, 1.0f });
+    //hexaVector.push_back({ 0.2f,   0.0f, 1.0f });
+    //hexaVector.push_back({ 0.1f,   -0.2f, 1.0f });
+    //hexaVector.push_back({ -0.1f,  -0.2f, 1.0f });
+    //hexaVector.push_back({ -0.2f,   0.0f, 1.0f });
+    //hexaVector.push_back({ -0.1f,   0.2f, 1.0f });
+    float theta = TWO_PI / 6;
+    Mathematics::Vector3<float> mA = { 0, 0,0 };
+    hexaVector.push_back({ 0, 0, 1 });
+    for (int i = 0; i < 6; i++)
+    {
+        mA = Mathematics::Vector3<float>(sin(theta * i), -cos(theta * i), 1);
+        //Mathematics::Vector3<float>  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };
+        hexaVector.push_back({ mA.x, mA.y, 1 });
+
+    }
+    hexaVector.push_back({sin(theta * 0), -cos(theta * 0), 1});
 
 	return hexaVector;
 }
