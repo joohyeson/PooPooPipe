@@ -145,6 +145,28 @@ void Mesh::Update()
     glBindBuffer(GL_ARRAY_BUFFER, 0);
 }
 
+void Mesh::ColorMeshUpdate()
+{
+	SetVertex(originVertex);
+
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(verticesFlat), &vertex.at(0), GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vector3<float>), (GLvoid*)0);
+
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, sizeof(color), color, GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+	glEnableVertexAttribArray(1);
+
+
+	//glBindVertexArray(0);
+	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/7);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+}
+
 void Mesh::Delete()
 {
     glDeleteBuffers(1, &mPositionVertexBufferObjectID);

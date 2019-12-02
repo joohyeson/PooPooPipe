@@ -61,8 +61,8 @@ void Level2::Init()
 	texureId21 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId22 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 
-	mShader.BuildShader();
-	mShader2.BuildShader();
+	mShader.BuildTextureShader();
+	mShader2.BuildTextureShader();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();

@@ -76,16 +76,16 @@ void Level3::Init()
 	texureId33 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
 	texureId34 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
 
-	mShader.BuildShader();
-	mShader2.BuildShader();
-	mShader3.BuildShader();
-	mShader4.BuildShader();
-	mShader5.BuildShader();
-	mShader6.BuildShader();
-	mShader7.BuildShader();
-	mShader8.BuildShader();
-	mShader9.BuildShader();
-	mShader10.BuildShader();
+	mShader.BuildTextureShader();
+	mShader2.BuildTextureShader();
+	mShader3.BuildTextureShader();
+	mShader4.BuildTextureShader();
+	mShader5.BuildTextureShader();
+	mShader6.BuildTextureShader();
+	mShader7.BuildTextureShader();
+	mShader8.BuildTextureShader();
+	mShader9.BuildTextureShader();
+	mShader10.BuildTextureShader();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();

@@ -12,10 +12,9 @@ int check = 0;
 Vector2<float> cursor;
 
 int moveCheck = 0;
-
+GLuint texureId4;
 GLuint texureId3;
 GLuint texureId2;
-
 
 void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -49,6 +48,7 @@ void Level1::Init()
 
 	texureId2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	texureId4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 
 	bgm.Init();
 	bgm.LoadMusic("assets\\up.mp3");
@@ -57,11 +57,11 @@ void Level1::Init()
 		bgm.Play();
 	}
 
-	texureId3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureId2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	//texureId3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
+	//texureId2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 
-	mShader.BuildShader();
-	mShader2.BuildShader();
+	mShader.BuildColorShader();
+	mShader2.BuildTextureShader();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
@@ -128,7 +128,7 @@ void Level1::Update()
 	{
 		if (moveCheck % 2 == 0)
 		{
-			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().x });
+			puzzle1->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
 			/*if (rotationCheck == 1)
 			{
 				mMesh = MESH::create_circle(0.3f, { 255, 255, 255 }, 6, { -0.3, 0.3, 1 }, time);
@@ -139,21 +139,19 @@ void Level1::Update()
 		}
 	}
 	
-	puzzle1->mesh->Update();
-	glUseProgram(mShader.GetShaderID());
-	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
-	GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
-	glUniform1i(texLoc, 0);
-	glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, texureId);
-	glDrawArrays(mMesh.GetPointListPattern(), 0, /*mMesh.GetPointCount()*/8);
 
+
+	/*GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
+	glUniform1i(texLoc, 0);
+	glActiveTexture(GL_TEXTURE0);*/
+	//glBindTexture(GL_TEXTURE_2D, texureId);
+	
 	puzzle2->mesh->Update();
 	glUseProgram(mShader2.GetShaderID());
 	glBindVertexArray(puzzle2->mesh->GetVertexArrayObject());
 	GLint texLoc2 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc2, 1);
-	glActiveTexture(GL_TEXTURE1);
+	glUniform1i(texLoc2, 0);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texureId2);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
 
@@ -161,21 +159,24 @@ void Level1::Update()
 	glUseProgram(mShader2.GetShaderID());
 	glBindVertexArray(puzzle3->mesh->GetVertexArrayObject());
 	GLint texLoc3 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc3, 1);
-	glActiveTexture(GL_TEXTURE1);
+	glUniform1i(texLoc3, 0);
+	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texureId3);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
-
 
 	puzzle4->mesh->Update();
 	glUseProgram(mShader2.GetShaderID());
 	glBindVertexArray(puzzle4->mesh->GetVertexArrayObject());
 	GLint texLoc4 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc4, 1);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId3);
+	glUniform1i(texLoc4, 0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D, texureId4);
 	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
 
+	puzzle1->mesh->ColorMeshUpdate();
+	glUseProgram(mShader.GetShaderID());
+	/*glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());*/
+	glDrawArrays(mMesh.GetPointListPattern(), 0, /*mMesh.GetPointCount()*/8);
 	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

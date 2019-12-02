@@ -25,7 +25,7 @@ void Graphics::Init()
 	SDL_GetWindowSize(SDL_GL_GetCurrentWindow(), &screenWidth, &screenHeight);
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_BLEND);
-	shader.BuildShader();
+	shader.BuildTextureShader();
 	
 }
 

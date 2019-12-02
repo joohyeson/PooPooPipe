@@ -45,8 +45,8 @@ public:
     GLenum                     GetPointListPattern() const noexcept;
     Vector2<float>                      GetTransform();
     Vector2<float>                      GetVertex(int i);
-
-    void	 SetPoint(std::vector<Vector3<float>> point);
+	void ColorMeshUpdate();
+    void	SetPoint(std::vector<Vector3<float>> point);
     void setRotation(float m);
     void SetVertex(std::vector<Vector3<float>> shapeType);
     void SetOriginVertex(std::vector<Vector3<float>> vertexType);
