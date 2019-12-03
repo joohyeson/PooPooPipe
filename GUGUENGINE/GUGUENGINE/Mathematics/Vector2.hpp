@@ -1,16 +1,24 @@
 #pragma once
 #include <iostream>
+#include <cassert>
 
 
-	template <typename T>
+template <typename T>
 	class Vector2 {
 	public:
+		T width=600;
+		T height=600;
 		//==============================================Components============================================
 		T x;
 		T y;
 		//=============================================Constructor============================================
 		Vector2();
 		Vector2(const T& p_XValue, const T& p_YValue);
+		Vector2<T> rotate_by(float angle_in_radians, Vector2<T> v) noexcept;
+		T magnitude(Vector2<T> a) noexcept;
+		Vector2<T> normalize( Vector2<T> a) noexcept;
+		T dot(Vector2<T> a, Vector2<T> b) noexcept;
+		 T magnitude_squared(Vector2<T> a) noexcept;
 		//==============================================Addition==============================================
 		Vector2<T> &Add(const Vector2<T> &p_Vector);
 		//=============================================Subtraction============================================
@@ -42,8 +50,37 @@
 		//=========================================<< Operator Override=======================================
 		friend std::ostream &operator<<(std::ostream &p_Stream, const Vector2<T>&p_Vector);
 };
+	template <typename T>
+	[[nodiscard]] T Vector2<T>::magnitude(const Vector2<T> a) noexcept
+	{
+		T magNotSquared;
 
+		magNotSquared = std::sqrt(magnitude_squared(a));
 
+		return magNotSquared;
+	}
+	template <typename T>
+	T Vector2<T>::magnitude_squared(Vector2<T> a) noexcept
+	{
+		T magSquared;
+
+		magSquared = (a.x) * (a.x) + (a.y) * (a.y);
+
+		return magSquared;
+	}
+
+	template <typename T>
+	Vector2<T> Vector2<T>::normalize(const Vector2<T> a) noexcept
+	{
+		Vector2<T> normVector;
+		assert(magnitude(a) != 0.0f);
+		{
+			normVector.x = a.x / magnitude(a);
+			normVector.y = a.y / magnitude(a);
+		}
+
+		return normVector;
+	}
 	//=============================================Constructor============================================
 	template <typename T>
 	Vector2<T>::Vector2() {
@@ -138,4 +175,24 @@
 	std::ostream& operator<<(std::ostream& p_Stream, const Vector2<T>& p_Vector) {
 		p_Stream << "[Vector2<T>] (" << p_Vector.x << ", " << p_Vector.y << ")";
 		return p_Stream;
+	}
+	template <typename T>
+	Vector2<T> Vector2<T>::rotate_by(float angle_in_radians, Vector2<T> v) noexcept
+	{
+		Vector2<T> rotateBy;
+
+		rotateBy.x = v.x * std::cos(angle_in_radians) - (v.y * std::sin(angle_in_radians));
+		rotateBy.y = v.y * std::cos(angle_in_radians) + (v.x * std::sin(angle_in_radians));
+
+		return rotateBy;
+	}
+
+	template <typename T>
+	 T Vector2<T>::dot(Vector2<T> a, Vector2<T> b) noexcept
+	{
+		T dotProduct;
+
+		dotProduct = a.x * b.x + a.y * b.y;
+
+		return dotProduct;
 	}

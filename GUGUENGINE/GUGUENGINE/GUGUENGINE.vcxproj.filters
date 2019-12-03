@@ -66,6 +66,9 @@
     <Filter Include="소스 파일\Mathmatics">
       <UniqueIdentifier>{55369132-71f7-4ce8-816b-f8e9b5edfceb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Camera">
+      <UniqueIdentifier>{dd8e3f8c-9b51-4c15-b028-1ba3bec5125b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -136,6 +139,12 @@
     </ClCompile>
     <ClCompile Include="Mathematics\Vector4.cpp">
       <Filter>소스 파일\Mathmatics</Filter>
+    </ClCompile>
+    <ClCompile Include="Camera.cpp">
+      <Filter>소스 파일\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="CameraView.cpp">
+      <Filter>소스 파일\Camera</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +261,12 @@
     </ClInclude>
     <ClInclude Include="Mathematics\Matrix3.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="CameraView.h">
+      <Filter>소스 파일\Camera</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
