@@ -1,4 +1,4 @@
-#include <cassert>
+﻿#include <cassert>
 #include <filesystem>
 #include "Image.h"
 #include "Texture.h"
@@ -7,6 +7,7 @@
 #include <iostream>
 #include "FreeImage.h"
 #include "Mesh.h"
+#include "external/stb/include/stb_image.h"
 Texture* TEXTURE = nullptr;
 Texture::Texture()
 {
@@ -85,99 +86,24 @@ bool Texture::LoadFromPNG(const std::filesystem::path& file_path) noexcept
 
 	GLuint Texture::CreateTexture(char const* filename, int i)
 	{
-		FREE_IMAGE_FORMAT format = FreeImage_GetFileType(filename, 0);
 
-		if (format == -1)
-		{
-			std::cout << "Could not find image: " << filename << " - Aborting." << std::endl;
-			exit(-1);
-		}
-
-		if (format == FIF_UNKNOWN)
-		{
-			std::cout << "Couldn't determine file format - attempting to get from file extension..." << std::endl;
-			format = FreeImage_GetFIFFromFilename(filename);
-			if (!FreeImage_FIFSupportsReading(format))
-			{
-				std::cout << "Detected image format cannot be read!" << std::endl;
-				exit(-1);
-			}
-		}
-		FIBITMAP* bitmap = FreeImage_Load(format, filename);
-		int bitsPerPixel = FreeImage_GetBPP(bitmap);
-
-		FIBITMAP* bitmap32;
-		if (bitsPerPixel == 32)
-		{
-			bitmap32 = bitmap;
-		}
-		else
-		{
-			std::cout << "Source image has " << bitsPerPixel << " bits per pixel. Converting to 32-bit colour." << std::endl;
-			bitmap32 = FreeImage_ConvertTo32Bits(bitmap);
-		}
-
-		int imageWidth = FreeImage_GetWidth(bitmap32);
-		int imageHeight = FreeImage_GetHeight(bitmap32);
-
-		GLubyte* textureData = FreeImage_GetBits(bitmap32);
-
-		GLuint tempTextureID;
-		glGenTextures(1, &tempTextureID);
-		glBindTexture(GL_TEXTURE_2D, tempTextureID);
-
-		glTexImage2D(GL_TEXTURE_2D,
-			0,
-			GL_RGBA,
-			imageWidth,
-			imageHeight,
-			0,
-			GL_BGRA,
-			GL_UNSIGNED_BYTE,
-			textureData);
-
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+		unsigned int texture;
+		glGenTextures(1, &texture);
+		glBindTexture(GL_TEXTURE_2D, texture);
+	
+		int width, height, nrChannels;
+		unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+	
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		glPixelStorei(GL_UNPACK_ALIGNMENT, 1);
-
-
+		
 		glBindTexture(GL_TEXTURE_2D, i);
-
-		GLenum glError = glGetError();
-		if (glError)
-		{
-			std::cout << "There was an error loading the texture: " << filename << std::endl;
-
-			switch (glError)
-			{
-			case GL_INVALID_ENUM:
-				std::cout << "Invalid enum." << std::endl;
-				break;
-
-			case GL_INVALID_VALUE:
-				std::cout << "Invalid value." << std::endl;
-				break;
-
-			case GL_INVALID_OPERATION:
-				std::cout << "Invalid operation." << std::endl;
-
-			default:
-				std::cout << "Unrecognised GLenum." << std::endl;
-				break;
-			}
-
-			std::cout << "See https://www.opengl.org/sdk/docs/man/html/glTexImage2D.xhtml for further details." << std::endl;
-		}
-
-		FreeImage_Unload(bitmap32);
-		if (bitsPerPixel != 32)
-		{
-			FreeImage_Unload(bitmap);
-		}
-
-		return tempTextureID;
+	
+		stbi_image_free(data);
+		return texture;
 		
 	}
 
