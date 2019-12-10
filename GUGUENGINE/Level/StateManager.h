@@ -7,6 +7,8 @@
 //You have to make sure GameLevels has same order with push_back in Init() function.
 enum GameLevels
 {
+	
+	MAINMENU, 
 	LV_TEST1,
 	LV_TEST2,
 	LV_TEST3

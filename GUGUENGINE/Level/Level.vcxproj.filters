@@ -25,6 +25,9 @@
     <Filter Include="Source Files\Level\Level3">
       <UniqueIdentifier>{a421774a-5a96-46a8-85e2-e921e8da35e2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Mainmenu">
+      <UniqueIdentifier>{f5bc77eb-ab3e-40e8-a8c0-a856d6ffec73}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StateManager.cpp">
@@ -36,11 +39,14 @@
     <ClCompile Include="Level1.cpp">
       <Filter>Source Files\Level\Level1</Filter>
     </ClCompile>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Source Files\Level\Level3</Filter>
+    </ClCompile>
     <ClCompile Include="Level2.cpp">
       <Filter>Source Files\Level\Level2</Filter>
     </ClCompile>
-    <ClCompile Include="Level3.cpp">
-      <Filter>Source Files\Level\Level3</Filter>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Source Files\Level\Mainmenu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -55,6 +61,9 @@
     </ClInclude>
     <ClInclude Include="Level3.h">
       <Filter>Source Files\Level\Level3</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Source Files\Level\Mainmenu</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

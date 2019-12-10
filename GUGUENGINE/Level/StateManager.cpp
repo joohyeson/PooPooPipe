@@ -2,7 +2,7 @@
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
-
+#include "MainMenu.h"
 
 StateManager* STATE_MANAGER = nullptr;
 
@@ -17,7 +17,8 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = LV_TEST1;
+	current = MAINMENU;
+	levels.push_back(new MainMenu());
 	levels.push_back(new Level1());
 	levels.push_back(new Level2());
 	levels.push_back(new Level3());

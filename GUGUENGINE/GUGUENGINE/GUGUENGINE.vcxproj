@@ -185,7 +185,9 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FitPuzzleComponent.cpp" />
     <ClCompile Include="glCheck.cpp" />
-    <ClCompile Include="Graphics.cpp" />
+    <ClCompile Include="Graphics.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mathematics\Vector4.cpp" />

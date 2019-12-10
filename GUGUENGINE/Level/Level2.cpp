@@ -16,6 +16,7 @@ Vector2<float> cursor1({ 0.f, 0.f });
 int moveCheck1 = 0;
 float degree = 0;
 int rightCheck1 = 0;
+GLuint texureId23;
 GLuint texureId22;
 GLuint texureId21;
 
@@ -60,29 +61,29 @@ void Level2::Init()
 	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId21 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureId22 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-
+	texureId23 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	mShader.BuildTextureShader();
 	mShader2.BuildTextureShader();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
 	puzzle1->mesh->setTransform({ 0.5f, 0.7f });
-	puzzle1->mesh->Initialize();
+	puzzle1->mesh->InitializeTextureMesh();
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
 	puzzle2->mesh->setTransform({ 0.0f, 0.3f });
-	puzzle2->mesh->Initialize();
+	puzzle2->mesh->InitializeTextureMesh();
 
 	puzzle3->AddComponent(new Mesh());
 	puzzle3->Init();
 	puzzle3->mesh->setTransform({ -0.3f, 0.1f });
-	puzzle3->mesh->Initialize();
+	puzzle3->mesh->InitializeTextureMesh();
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
 	puzzle4->mesh->setTransform({ 0.3f, 0.1f });
-	puzzle4->mesh->Initialize();
+	puzzle4->mesh->InitializeTextureMesh();
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
@@ -141,55 +142,14 @@ void Level2::Update()
 		rightCheck1 = 0;
 		//moveCheck = 0;
 
-		std::cout << puzzle1->mesh->GetVertex(0).x << ", " << puzzle1->mesh->GetVertex(0).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(1).x << ", " << puzzle1->mesh->GetVertex(1).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(2).x << ", " << puzzle1->mesh->GetVertex(2).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(3).x << ", " << puzzle1->mesh->GetVertex(3).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(4).x << ", " << puzzle1->mesh->GetVertex(4).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(5).x << ", " << puzzle1->mesh->GetVertex(5).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(6).x << ", " << puzzle1->mesh->GetVertex(6).y << std::endl;
-		std::cout << puzzle1->mesh->GetVertex(7).x << ", " << puzzle1->mesh->GetVertex(7).y << std::endl;
-	}
-
-	puzzle1->mesh->Update();
-
 	
-	glUseProgram(mShader.GetShaderID());
-	glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
-	GLint texLoc = glGetUniformLocation(mShader.GetShaderID(), "tex");
-	glUniform1i(texLoc, 0);
-	glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, texureId21);
-	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
+	}
+	
+	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureId23);
+	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureId22);
+	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureId22);
 
-	puzzle2->mesh->Update();
-	glUseProgram(mShader2.GetShaderID());
-	glBindVertexArray(puzzle2->mesh->GetVertexArrayObject());
-	GLint texLoc2 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc2, 1);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId21);
-	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
-
-	puzzle3->mesh->Update();
-	glUseProgram(mShader2.GetShaderID());
-	glBindVertexArray(puzzle3->mesh->GetVertexArrayObject());
-	GLint texLoc3 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc3, 1);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId22);
-	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
-
-	puzzle4->mesh->Update();
-	glUseProgram(mShader2.GetShaderID());
-	glBindVertexArray(puzzle4->mesh->GetVertexArrayObject());
-	GLint texLoc4 = glGetUniformLocation(mShader2.GetShaderID(), "tex");
-	glUniform1i(texLoc4, 1);
-	glActiveTexture(GL_TEXTURE1);
-	glBindTexture(GL_TEXTURE_2D, texureId22);
-	glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
-
-
+	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureId21);
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.5f, 0.3f, 0.3f, 1);
