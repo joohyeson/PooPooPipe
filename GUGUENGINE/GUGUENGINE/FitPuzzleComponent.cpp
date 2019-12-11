@@ -2,32 +2,17 @@
 
 void PuzzleComponent::Update(float dt)
 {
-	switch (mCurrentstate)
-	{
-		case FitIn:
-		{
-			///
-		}
-		case FitOut:
-		{
-			///
-		}
-		case Connect:
-		{
-			///
-		}
-		case NotConnect:
-		{
-			///
-		}
-		case Rotate:
-		{
-			///
-		}
-		case Translate:
-		{
-			///
-		}
-	}
 	
+}
+
+bool PuzzleComponent::giveDir(int i)
+{
+	if(i == 0)
+	{
+		return dirArray1;
+	}
+	else
+	{
+		return dirArray2;
+	}
 }

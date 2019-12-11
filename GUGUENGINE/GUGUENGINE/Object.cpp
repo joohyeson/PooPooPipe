@@ -14,6 +14,7 @@ Object::Object()
 	objectID = 0;
 	transform = nullptr;
 	mesh = nullptr;
+	pipe = nullptr;
 }
 
 Object::~Object()
@@ -27,6 +28,9 @@ void Object::Init()
 
 	if (mesh != nullptr)
 		mesh->Init();
+	
+	if (pipe != nullptr)
+		pipe->Init();
 }
 
 void Object::Destroy(Object* obj)
@@ -46,6 +50,9 @@ bool Object::AddComponent(Component* component)
 		return true;
 	case COMPONENTTYPE_TRANSFORM:
 		transform = dynamic_cast<Transform*>(component);
+		return true;
+	case COMPONENTTYPE_PIPE:
+		pipe = dynamic_cast<PuzzleComponent*>(component);
 		return true;
 	default:
 		assert(!"Can't add an unknown component");

@@ -1,14 +1,8 @@
-/*
-*  Choi Jinwoo
-*  2018/09/25
-*  BLUE ENGINE
-*/
-
 #pragma once
 #include<string>
 #include "Transform.h"
 #include "Mesh.h"
-
+#include "FitPuzzleComponent.h"
 
 using ObjectID = unsigned;
 
@@ -49,4 +43,6 @@ public:
 	ObjectID objectID;
 	Transform* transform;
 	Mesh* mesh;
+	PuzzleComponent* pipe
+	;
 };

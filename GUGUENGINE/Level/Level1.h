@@ -5,6 +5,7 @@
 #include "../GUGUENGINE/Sound.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/FitPuzzleComponent.h"
 
 class Sound;
 

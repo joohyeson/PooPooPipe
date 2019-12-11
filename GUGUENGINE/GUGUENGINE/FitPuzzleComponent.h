@@ -1,23 +1,49 @@
 #pragma once
-#include "Object.h"
+#include "Component.h"
 
-enum PuzzleState
+
+enum PuzzleDirection
 {
-	FitIn,
-	FitOut,
-	Connect,
-	NotConnect,
-	Rotate,
-	Translate,
+	NE,
+	E,
+	SE,
+	SW,
+	W,
+	NW,
 };
 
-class PuzzleComponent : public Component
+class [[nodiscard]] PuzzleComponent : public Component
 {
 public:
-	PuzzleComponent();
-	virtual void Update(float dt);
+	PuzzleComponent() : Component(COMPONENTTYPE_PIPE)
+	{
+		dirArray1[0] =  true;
+		dirArray1[1] = false;
+		dirArray1[2] = false;
+		dirArray1[3] = true;
+		dirArray1[4] = false;
+		dirArray1[5] = false;
+
+		dirArray2[0] = true;
+		dirArray2[1] = false;
+		dirArray2[2] = true;
+		dirArray2[3] = false;;
+		dirArray2[4] = false;
+		dirArray2[5] = false;	
+	}
+	~PuzzleComponent() override
+	{
+		
+	}
+	void Update(float dt);
+	bool giveDir(int i);
 private:
-	bool connectCheck;
-	PuzzleState mCurrentstate;
+	
+	//bool dirArray1[6] = { true, false,false,true,false,false };
+	//bool dirArray2[6] = { true, false,false,false,true,false };
+	bool dirArray1[6];
+	bool dirArray2[6];
+
 };
+
 //etc,,,
