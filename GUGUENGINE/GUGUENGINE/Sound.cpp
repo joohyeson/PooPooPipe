@@ -1,7 +1,7 @@
 #include "Sound.h"
 #include <iostream>
 
-Sound* soundPtr;
+Sound* soundPtr = nullptr;
 
 void Sound::Init()
 {
@@ -22,6 +22,7 @@ void Sound::Update()
 		result = channel->isPlaying(&playing);
 		if (!playing)
 		{
+			playing = true;
 		}
 	}
 }
@@ -61,6 +62,7 @@ bool Sound::IsPaused()
 
 void Sound::Play(int loop)
 {
+	result = channel->setLoopCount(loop);
 	result = system->playSound(sound, 0, false, &channel);
 }
 
@@ -71,12 +73,11 @@ void Sound::Pause()
 
 void Sound::Resume()
 {
-	
 }
 
 void Sound::Stop()
 {
-	
+	result = channel->stop();
 }
 
 void Sound::Rewind()
@@ -85,14 +86,20 @@ void Sound::Rewind()
 }
 
 
-void Sound::SetVolume(int volume)
+void Sound::SetVolume(float volume)
 {
 	m_volume = volume;
+	channel->setVolume(volume);
 }
 
-int Sound::GetVolume()
+float Sound::GetVolume()
 {
 	return m_volume;
+}
+
+void Sound::SetLoopCount(int loopCount)
+{
+	channel->setLoopCount(loopCount);
 }
 
 

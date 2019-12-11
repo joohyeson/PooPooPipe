@@ -44,7 +44,7 @@ public:
 	GLenum                     GetPointListPattern() const noexcept;
 	Vector2<float>                      GetTransform();
 	Vector2<float>                      GetVertex(int i);
-	void InitializeTextureMesh();
+	void InitializeTextureMesh(float width = 1, float height = 1);
 	void InitializeColorMesh();
 	void ColorMeshUpdate(unsigned shaderHandler);
 	void	SetPoint(std::vector<Vector3<float>> point);

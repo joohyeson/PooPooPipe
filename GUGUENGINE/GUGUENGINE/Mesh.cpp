@@ -71,9 +71,8 @@ Vector2<float> Mesh::GetVertex(int i)
 {
 	return { vertex.at(i).x, vertex.at(i).y };
 }
-void Mesh::InitializeTextureMesh()
+void Mesh::InitializeTextureMesh(float width, float height)
 {
-
 	switch (meshType)
 	{
 	case hexagon:
@@ -81,7 +80,6 @@ void Mesh::InitializeTextureMesh()
 		break;
 	case box:
 		originVertex = create_box();
-
 		break;
 	case wire_box:
 		originVertex = create_wire_box();
@@ -90,10 +88,10 @@ void Mesh::InitializeTextureMesh()
 		originVertex = create_wire_circle();
 		break;
 	case wire_rectangle:
-		originVertex = create_wire_rectangle();
+		originVertex = create_wire_rectangle(width, height);
 		break;
 	case rectangle:
-		originVertex = create_rectangle();
+		originVertex = create_rectangle(width, height);
 		break;
 	case triangle:
 		originVertex = create_triangle();

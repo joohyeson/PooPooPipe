@@ -21,15 +21,19 @@ public:
 	void Resume();
 	void Stop();
 	void Rewind();
+	
 
-	void SetVolume(int volume);
-	int GetVolume();
+	void SetVolume(float volume);
+	float GetVolume();
+
+	void SetLoopCount(int loopCount);
 
 private:
 	FMOD::System* system;
 	FMOD::Sound* sound;
 	FMOD::Channel* channel;
-	int m_volume;
+
+	float m_volume;
 
 	FMOD_RESULT result;
 	

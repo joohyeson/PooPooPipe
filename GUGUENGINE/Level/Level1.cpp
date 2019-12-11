@@ -16,6 +16,8 @@ GLuint texureId4;
 GLuint texureId3;
 GLuint texureId2;
 
+Sound se;
+
 void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -34,6 +36,10 @@ void  level1mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		se.Play(1);
+		se.SetVolume(0.5f);
+		se.SetLoopCount(1);
+
 		moveCheck += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
@@ -50,11 +56,15 @@ void Level1::Init()
 	texureId3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	texureId4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 
+	se.Init();
+	se.LoadMusic("assets\\coin.mp3");
+	
 	bgm.Init();
 	bgm.LoadMusic("assets\\up.mp3");
 	if(!bgm.IsPlaying())
 	{
 		bgm.Play();
+		bgm.SetVolume(0.05f);
 	}
 
 	//texureId3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
@@ -100,6 +110,8 @@ void Level1::Update()
 	}
 
 	bgm.Update();
+	se.Update();
+	
 	getOrigin.x = puzzle1->mesh->GetTransform().x;
 	getOrigin.y = puzzle1->mesh->GetTransform().y;
 
@@ -128,6 +140,7 @@ void Level1::Update()
 		getOrigin.y <= (getOrigin2.y + r) &&
 		getOrigin.y >= (getOrigin2.y - r))
 	{
+		
 		if (moveCheck % 2 == 0)
 		{
 			puzzle1->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
