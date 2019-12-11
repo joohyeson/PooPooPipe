@@ -12,6 +12,8 @@ Vector2<float> cursor0;
 int moveCheck0 = 0;
 
 GLuint textureId00;
+GLuint textureId01;
+
 Sound bgm;
 
 void menuKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
@@ -47,25 +49,33 @@ void MainMenu::Init()
 {
 	bgm.Init();
 	bgm.LoadMusic("assets\\airplane.mp3");
-
-	if(!bgm.IsPlaying())
+	if (!bgm.IsPlaying())
 	{
-		bgm.Play(2);
+		bgm.Play(0);
 		bgm.SetVolume(0.1f);
 	}
 	
 	gameLogo = OBJECT_FACTORY->CreateEmptyObject();
+	startButton = OBJECT_FACTORY->CreateEmptyObject();
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
+	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
 
 	mShader.BuildTextureShader();
 
 	gameLogo->AddComponent(new Mesh());
 	gameLogo->Init();
 	
-	gameLogo->mesh->setTransform({ 0,0 });
+	gameLogo->mesh->setTransform({ 0,0.5 });
 	gameLogo->mesh->SetMeshType(rectangle);
 	gameLogo->mesh->InitializeTextureMesh(6.f, 2.f);
+
+	startButton->AddComponent(new Mesh());
+	startButton->Init();
+
+	startButton->mesh->setTransform({ 0,-0.2 });
+	startButton->mesh->SetMeshType(rectangle);
+	startButton->mesh->InitializeTextureMesh(4.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -74,17 +84,17 @@ void MainMenu::Init()
 
 void MainMenu::Update()
 {
+
 	bgm.Update();
 	
-	getOrigin.x = gameLogo->mesh->GetTransform().x;
-	getOrigin.y = gameLogo->mesh->GetTransform().y;
+	getOrigin.x = startButton->mesh->GetTransform().x;
+	getOrigin.y = startButton->mesh->GetTransform().y;
 
-	float r = sqrt(5) / 10;
 
-	if (cursor0.x <= (getOrigin.x + r / 2) &&
-		cursor0.x >= (getOrigin.x - r / 2) &&
-		cursor0.y <= (getOrigin.y + r) &&
-		cursor0.y >= (getOrigin.y - r))
+	if (cursor0.x <= (getOrigin.x + 2.f &&
+		cursor0.x >= (getOrigin.x - 2.f) &&
+		cursor0.y <= (getOrigin.y + 0.5f) &&
+		cursor0.y >= (getOrigin.y - 0.5)))
 	{
 		if (moveCheck0 % 2 == 1)
 		{
@@ -97,6 +107,7 @@ void MainMenu::Update()
 	}
 
 	gameLogo->mesh->Update(mShader.GetShaderHandler(),textureId00);
+	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
