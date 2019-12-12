@@ -16,4 +16,19 @@ void PuzzleComponent::Update()
 	
 }
 
+void PuzzleComponent::SetDirection(bool a, bool b, bool c, bool d, bool e, bool f)
+{
+	dirArray1[0] = a;
+	dirArray1[1] = b;
+	dirArray1[2] = c;
+	dirArray1[3] = d;
+	dirArray1[4] = e;
+	dirArray1[5] = f;
+}
+
+int PuzzleComponent::GetDirValue(PuzzleDirection index)
+{
+	return this->dirArray1[index];
+}
+
 

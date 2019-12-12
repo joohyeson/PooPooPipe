@@ -46,10 +46,9 @@ void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 
 	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
 	{
-		rightCheck1 += 1;
+		rightCheck1 = 1;
 		std::cout << "rightCheck1: " << rightCheck1 << std::endl;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
-		
 	}
 }
 
@@ -80,17 +79,19 @@ void Level2::Init()
 	puzzle2->mesh->setTransform({ 0.0f, 0.3f });
 	puzzle2->mesh->InitializeTextureMesh();
 
-
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->AddComponent(new PuzzleComponent);
+	puzzle1->pipe->SetDirection(true, false, false, true, false, false);
 	puzzle1->mesh->SetMeshType(hexagon);
 	puzzle1->Init();
 	puzzle1->mesh->setTransform({ 0.7f, 0.3f });
 	puzzle1->mesh->InitializeTextureMesh();
 
 	puzzle4->AddComponent(new Mesh());
+	puzzle4->AddComponent(new PuzzleComponent);
+	puzzle4->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle4->Init();
-	puzzle4->mesh->setTransform({ 0.3f, 0.1f });
+	puzzle4->mesh->setTransform({ 0.33f, 0.3f });
 	puzzle4->mesh->InitializeTextureMesh();
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
@@ -121,16 +122,36 @@ void Level2::Update()
 	{
 		if (moveCheck1 % 2 == 1)
 		{
-
-
 			puzzle1->mesh->setTransform({ cursor1.x, cursor1.y });
-			//moveCheck = 0;
+		}
+		if (rightCheck1 != 0)
+		{
+			puzzle1->pipe->Update();
+
+			degree += static_cast<float>(DegreeToRadian(60.f));
+			puzzle1->mesh->setRotation(degree);
 			rightCheck1 = 0;
+
+			if (puzzle1->pipe->GetDirValue(E) == puzzle4->pipe->GetDirValue(W))
+			{
+				std::cout << "pipe connect\n";
+			}
+			else
+			{
+				std::cout << "Not connect\n";
+			}
+			
+
+			se1.Play(1);
+			se1.SetVolume(0.5f);
+			se1.SetLoopCount(1);
+			
 		}
 	}
 	else
 	{
 		moveCheck1 = 0;
+		rightCheck1 = 0;
 	}
 
 	if (getOrigin.x <= (getOrigin2.x + r / 2) &&
@@ -139,27 +160,12 @@ void Level2::Update()
 		getOrigin.y >= (getOrigin2.y - r))
 	{
 		if (moveCheck1 % 2 == 0)
-		{
-
+		{	
 			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().y });
-
 		}
 	}
 
-	if (rightCheck1 !=0)
-	{
-		degree += static_cast<float>(DegreeToRadian(60.f));
-		puzzle1->mesh->setRotation(degree);
-		rightCheck1 = 0;
-
-		se1.Play(1);
-		se1.SetVolume(0.5f);
-		se1.SetLoopCount(1);
-		puzzle1->pipe->Update();
-
-		//moveCheck = 0;
 	
-	}
 
 	se1.Update();
 	
@@ -174,6 +180,7 @@ void Level2::Update()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glfwPollEvents();
+
 
 }
 
