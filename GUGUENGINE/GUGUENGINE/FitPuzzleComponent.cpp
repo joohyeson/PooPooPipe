@@ -1,18 +1,19 @@
-#include "FitPuzzleComponent.h"
+﻿#include "FitPuzzleComponent.h"
 
-void PuzzleComponent::Update(float dt)
+void PuzzleComponent::Update()
 {
+	bool temp = dirArray1[0];
+	
+	for(int i = 0; i < 6; i++)
+	{
+		dirArray1[i] = dirArray1[i + 1];
+		if(i == 5)
+		{
+			dirArray1[i] = temp;
+		}
+		std::cout << dirArray1[i];
+	}
 	
 }
 
-bool PuzzleComponent::giveDir(int i)
-{
-	if(i == 0)
-	{
-		return dirArray1;
-	}
-	else
-	{
-		return dirArray2;
-	}
-}
+
