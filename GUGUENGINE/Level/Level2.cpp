@@ -70,20 +70,23 @@ void Level2::Init()
 	mShader.BuildTextureShader();
 	mShader2.BuildTextureShader();
 
-	puzzle1->AddComponent(new Mesh());
-	puzzle1->Init();
-	puzzle1->mesh->setTransform({ 0.5f, 0.7f });
-	puzzle1->mesh->InitializeTextureMesh();
+	puzzle3->AddComponent(new Mesh());
+	puzzle3->Init();
+	puzzle3->mesh->setTransform({ 0.5f, 0.7f });
+	puzzle3->mesh->InitializeTextureMesh();
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
 	puzzle2->mesh->setTransform({ 0.0f, 0.3f });
 	puzzle2->mesh->InitializeTextureMesh();
 
-	puzzle3->AddComponent(new Mesh());
-	puzzle3->Init();
-	puzzle3->mesh->setTransform({ -0.3f, 0.1f });
-	puzzle3->mesh->InitializeTextureMesh();
+
+	puzzle1->AddComponent(new Mesh());
+	puzzle1->AddComponent(new PuzzleComponent);
+	puzzle1->mesh->SetMeshType(hexagon);
+	puzzle1->Init();
+	puzzle1->mesh->setTransform({ 0.7f, 0.3f });
+	puzzle1->mesh->InitializeTextureMesh();
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
@@ -152,6 +155,7 @@ void Level2::Update()
 		se1.Play(1);
 		se1.SetVolume(0.5f);
 		se1.SetLoopCount(1);
+		puzzle1->pipe->Update();
 
 		//moveCheck = 0;
 	

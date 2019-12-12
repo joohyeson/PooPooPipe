@@ -81,9 +81,7 @@ void Level1::Init()
 	puzzle2->mesh->InitializeTextureMesh();
 
 	puzzle3->AddComponent(new Mesh());
-	puzzle3->AddComponent(new PuzzleComponent);
 	puzzle3->Init();
-	puzzle3->pipe->giveDir(1);
 	puzzle3->mesh->SetMeshType(box);
 	puzzle3->mesh->setTransform({ -0.3f, 0.1f });
 	puzzle3->mesh->InitializeTextureMesh();
