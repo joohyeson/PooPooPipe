@@ -20,6 +20,8 @@ GLuint texureId23;
 GLuint texureId22;
 GLuint texureId21;
 
+Sound se1;
+
 void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
@@ -53,6 +55,9 @@ void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 
 void Level2::Init()
 {
+	se1.Init();
+	se1.LoadMusic("assets\\coin.mp3");
+	
 	puzzle1 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle2 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle3 = OBJECT_FACTORY->CreateEmptyObject();
@@ -113,6 +118,8 @@ void Level2::Update()
 	{
 		if (moveCheck1 % 2 == 1)
 		{
+
+
 			puzzle1->mesh->setTransform({ cursor1.x, cursor1.y });
 			//moveCheck = 0;
 			rightCheck1 = 0;
@@ -130,6 +137,7 @@ void Level2::Update()
 	{
 		if (moveCheck1 % 2 == 0)
 		{
+
 			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().y });
 
 		}
@@ -140,10 +148,16 @@ void Level2::Update()
 		degree += static_cast<float>(DegreeToRadian(60.f));
 		puzzle1->mesh->setRotation(degree);
 		rightCheck1 = 0;
-		//moveCheck = 0;
 
+		se1.Play(1);
+		se1.SetVolume(0.5f);
+		se1.SetLoopCount(1);
+
+		//moveCheck = 0;
 	
 	}
+
+	se1.Update();
 	
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureId23);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureId22);

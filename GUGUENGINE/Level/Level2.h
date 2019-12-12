@@ -4,7 +4,9 @@
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/Sound.h"
 
+class Sound;
 class Level2 : public LevelManager
 {
 public:

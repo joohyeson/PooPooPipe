@@ -12,7 +12,6 @@ class Sound;
 class Level1 : public LevelManager
 {
 public:
-
 	Level1()
 	{
 		puzzle1 = nullptr;
@@ -33,7 +32,6 @@ private:
 	Shader mShader, mShader2;
 
 	Sound bgm;
-
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };

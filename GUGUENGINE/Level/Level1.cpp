@@ -36,10 +36,6 @@ void  level1mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
-		se.Play(1);
-		se.SetVolume(0.5f);
-		se.SetLoopCount(1);
-
 		moveCheck += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
