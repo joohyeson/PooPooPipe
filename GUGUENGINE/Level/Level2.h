@@ -4,21 +4,33 @@
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
-#include "../GUGUENGINE/Sound.h"
+#include "../GUGUENGINE/FitPuzzleComponent.h"
 
-class Sound;
+class sound;
+
 class Level2 : public LevelManager
 {
 public:
+	Level2()
+	{
+		movePuzzle = nullptr;
+		blackPuzzle = nullptr;
+		puzzleUp = nullptr;
+		puzzleDown = nullptr;
+		key = 0;
+	}
+
 	void Init() override;
 	void Update() override;
 	void Close() override;
 
 private:
-	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4;
+	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-	Vector3<float> getOrigin = { 0.f, 0.f, 0.f };
-	Vector3<float> getOrigin2 = { 0.f, 0.f, 0.f };
+
+	Vector3<float> getOrigin = { 0, 0, 0 };
+	Vector3<float> getOrigin2 = { 0, 0, 0 };
+
 };

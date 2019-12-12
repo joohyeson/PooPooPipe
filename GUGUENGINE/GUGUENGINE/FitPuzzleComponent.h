@@ -5,12 +5,13 @@
 
 enum PuzzleDirection
 {
+	NW,
 	NE,
 	E,
 	SE,
 	SW,
 	W,
-	NW,
+
 };
 
 class [[nodiscard]] PuzzleComponent : public Component
@@ -18,12 +19,12 @@ class [[nodiscard]] PuzzleComponent : public Component
 public:
 	PuzzleComponent() : Component(COMPONENTTYPE_PIPE)
 	{
-		dirArray1[0] =  true;
+		dirArray1[0] = false;
 		dirArray1[1] = false;
-		dirArray1[2] = false;
-		dirArray1[3] = true;
+		dirArray1[2] = true;
+		dirArray1[3] = false;
 		dirArray1[4] = false;
-		dirArray1[5] = false;
+		dirArray1[5] = true;
 
 		/*dirArray2[0] = true;
 		dirArray2[1] = false;
@@ -39,7 +40,8 @@ public:
 		
 	}
 	void Update();
-
+	void SetDirection(bool a, bool b, bool c, bool d, bool e, bool f);
+	int GetDirValue(PuzzleDirection index);
 private:
 	
 	//bool dirArray1[6] = { true, false,false,true,false,false };
