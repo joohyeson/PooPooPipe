@@ -8,8 +8,8 @@
 int framebufferWidth, framebufferHeight;
 Application* APPLICATION = nullptr;
 //Shader mShader;
-#define WIDTH 600
-#define HEIGHT 600
+#define WIDTH 800
+#define HEIGHT 800
 //int moveCheck = 0;
 //Vector3<float> curser = { 0, 0, 0 };
 Mesh mMesh;

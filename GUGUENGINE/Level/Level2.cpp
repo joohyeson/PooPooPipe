@@ -1,4 +1,3 @@
-#include "Level2.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include "../GUGUENGINE/Input.h"
@@ -7,132 +6,140 @@
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
-#include "../GUGUENGINE/Mathematics/MathFunctions.hpp"
-#include "../GUGUENGINE/external/glfw/include/GLFW/glfw3.h"
+#include "Level2.h"
+#include "../GUGUENGINE/Sound.h"
 
-int check1 = 0;
-Vector2<float> cursor1({ 0.f, 0.f });
 
-int moveCheck1 = 0;
+int check2 = 0;
+Vector2<float> cursor2;
+
+int moveCheck2 = 0;
+int connectCheck2 = 0;
 float degree = 0;
-int rightCheck1 = 0;
-GLuint texureId23;
-GLuint texureId22;
-GLuint texureId21;
+int rightCheck2 = 0;
 
-Sound se1;
+GLuint texureIdLine2;
+GLuint texureIdCurve2;
+GLuint texureIdBlack2;
+
+Sound se2;
 
 void level2keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
-		std::cout << "Change level to Level3" << std::endl;
 		STATE_MANAGER->ChangeLevel(LV_TEST3);
 	}
-} 
+}
 
 void level2cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 {
-	cursor1 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>((ypos))-APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor2 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
+
 void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
 {
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
-		moveCheck1 += 1;
+		moveCheck2 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 
 	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
 	{
-		rightCheck1 = 1;
-		std::cout << "rightCheck1: " << rightCheck1 << std::endl;
+		rightCheck2 = 1;
+		std::cout << "rightCheck2: " << rightCheck2 << std::endl;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 }
 
 void Level2::Init()
 {
-	se1.Init();
-	se1.LoadMusic("assets\\coin.mp3");
-	
-	puzzle1 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle2 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle3 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle4 = OBJECT_FACTORY->CreateEmptyObject();
+	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
+	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
+	puzzleUp = OBJECT_FACTORY->CreateEmptyObject();
+	puzzleDown = OBJECT_FACTORY->CreateEmptyObject();
 
-	//texureId = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureId21 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureId22 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	texureId23 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-	mShader.BuildTextureShader();
+	texureIdLine2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
+	texureIdBlack2 = TEXTURE->CreateTexture("assets\\image1.png", 0);
+	texureIdCurve2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+
+	se2.Init();
+	se2.LoadMusic("assets\\coin.mp3");
+
+	mShader.BuildColorShader();
 	mShader2.BuildTextureShader();
 
-	puzzle3->AddComponent(new Mesh());
-	puzzle3->Init();
-	puzzle3->mesh->setTransform({ 0.5f, 0.7f });
-	puzzle3->mesh->InitializeTextureMesh();
+	movePuzzle->AddComponent(new Mesh());
+	movePuzzle->AddComponent(new PuzzleComponent());
+	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
+	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
+	movePuzzle->mesh->SetMeshType(hexagon);
+	movePuzzle->Init();
+	movePuzzle->mesh->setTransform({ 0.5f, 0.7f });
+	movePuzzle->mesh->InitializeColorMesh();
 
-	puzzle2->AddComponent(new Mesh());
-	puzzle2->Init();
-	puzzle2->mesh->setTransform({ 0.0f, 0.3f });
-	puzzle2->mesh->InitializeTextureMesh();
+	blackPuzzle->AddComponent(new Mesh());
+	blackPuzzle->Init();
+	blackPuzzle->mesh->setTransform({ 0.0f, 0.3f });
+	blackPuzzle->mesh->InitializeTextureMesh();
 
-	puzzle1->AddComponent(new Mesh());
-	puzzle1->AddComponent(new PuzzleComponent);
-	puzzle1->pipe->SetDirection(true, false, false, true, false, false);
-	puzzle1->mesh->SetMeshType(hexagon);
-	puzzle1->Init();
-	puzzle1->mesh->setTransform({ 0.7f, 0.3f });
-	puzzle1->mesh->InitializeTextureMesh();
+	puzzleUp->AddComponent(new Mesh());
+	puzzleUp->AddComponent(new PuzzleComponent());
+	puzzleUp->Init();
+	puzzleUp->mesh->setTransform({ -0.18f, 0.597f });
+	puzzleUp->mesh->setRotation(DegreeToRadian(180.f));
+	puzzleUp->pipe->SetDirection(true, false, false, true, false, false);
+	puzzleUp->mesh->InitializeTextureMesh();
 
-	puzzle4->AddComponent(new Mesh());
-	puzzle4->AddComponent(new PuzzleComponent);
-	puzzle4->pipe->SetDirection(false, false, false, true, false, true);
-	puzzle4->Init();
-	puzzle4->mesh->setTransform({ 0.33f, 0.3f });
-	puzzle4->mesh->InitializeTextureMesh();
+	puzzleDown->AddComponent(new Mesh());
+	puzzleDown->AddComponent(new PuzzleComponent());
+	puzzleDown->Init();
+	puzzleDown->mesh->setTransform({ 0.17f, 0.01f });
+	puzzleDown->mesh->setRotation(DegreeToRadian(180.f));
+	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
+	puzzleDown->mesh->InitializeTextureMesh();
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level2mouseButtonCallback);
-
 }
 
 void Level2::Update()
 {
-	if (check1 < 1)
+	if (check2 < 1)
 	{
-		check1++;
+		check2++;
 		std::cout << "HELLO" << std::endl;
 	}
+	se2.Update();
 
-	getOrigin.x = puzzle1->mesh->GetTransform().x;
-	getOrigin.y = puzzle1->mesh->GetTransform().y;
+	getOrigin.x = movePuzzle->mesh->GetTransform().x;
+	getOrigin.y = movePuzzle->mesh->GetTransform().y;
 
-	getOrigin2.x = puzzle2->mesh->GetTransform().x;
-	getOrigin2.y = puzzle2->mesh->GetTransform().y;
+	getOrigin2.x = blackPuzzle->mesh->GetTransform().x;
+	getOrigin2.y = blackPuzzle->mesh->GetTransform().y;
 	float r = sqrt(5) / 10;
 
-	if (cursor1.x <= (getOrigin.x + r / 2) &&
-		cursor1.x >= (getOrigin.x - r / 2) &&
-		cursor1.y <= (getOrigin.y + r) &&
-		cursor1.y >= (getOrigin.y - r))
+	if (cursor2.x <= (getOrigin.x + r / 2) &&
+		cursor2.x >= (getOrigin.x - r / 2) &&
+		cursor2.y <= (getOrigin.y + r) &&
+		cursor2.y >= (getOrigin.y - r))
 	{
-		if (moveCheck1 % 2 == 1)
+		if (moveCheck2 % 2 == 1)
 		{
-			puzzle1->mesh->setTransform({ cursor1.x, cursor1.y });
+			movePuzzle->mesh->setTransform({ cursor2.x, cursor2.y });
 		}
-		if (rightCheck1 != 0)
+		if (rightCheck2 != 0)
 		{
-			puzzle1->pipe->Update();
+			movePuzzle->pipe->Update();
 
 			degree += static_cast<float>(DegreeToRadian(60.f));
-			puzzle1->mesh->setRotation(degree);
-			rightCheck1 = 0;
+			movePuzzle->mesh->setRotation(degree);
+			rightCheck2 = 0;
 
-			if (puzzle1->pipe->GetDirValue(E) == puzzle4->pipe->GetDirValue(W))
+			if ((movePuzzle->pipe->GetDirValue(SE) == puzzleDown->pipe->GetDirValue(NW)) && (movePuzzle->pipe->GetDirValue(NW) == puzzleUp->pipe->GetDirValue(SE)))
 			{
 				std::cout << "pipe connect\n";
 			}
@@ -140,18 +147,17 @@ void Level2::Update()
 			{
 				std::cout << "Not connect\n";
 			}
-			
 
-			se1.Play(1);
-			se1.SetVolume(0.5f);
-			se1.SetLoopCount(1);
-			
+
+			se2.Play(1);
+			se2.SetVolume(0.5f);
+			se2.SetLoopCount(1);
+
 		}
 	}
 	else
 	{
-		moveCheck1 = 0;
-		rightCheck1 = 0;
+		moveCheck2 = 0;
 	}
 
 	if (getOrigin.x <= (getOrigin2.x + r / 2) &&
@@ -159,28 +165,31 @@ void Level2::Update()
 		getOrigin.y <= (getOrigin2.y + r) &&
 		getOrigin.y >= (getOrigin2.y - r))
 	{
-		if (moveCheck1 % 2 == 0)
-		{	
-			puzzle1->mesh->setTransform({ puzzle2->mesh->GetTransform().x ,puzzle2->mesh->GetTransform().y });
+		if (moveCheck2 % 2 == 0)
+		{
+			movePuzzle->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
+			connectCheck2 = 1;
+		}
+		else
+		{
+			connectCheck2 = 0;
 		}
 	}
 
-	
+	se2.Update();
 
-	se1.Update();
-	
-	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureId23);
-	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureId22);
-	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureId22);
+	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
+	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
+	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
 
-	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureId21);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
-	glClearColor(0.5f, 0.3f, 0.3f, 1);
+	glClearColor(0.4f, 0.3f, 0.3f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glfwPollEvents();
-
 
 }
 

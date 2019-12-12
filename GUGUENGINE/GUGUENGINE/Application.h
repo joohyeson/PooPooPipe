@@ -25,8 +25,8 @@ public:
 	GLFWwindow* getMyWindow();
 	SDL_Event& GetEvent() { return SDLevent; }
 
-	int height = 600;
-	int width = 600;
+	int height = 800;
+	int width = 800;
 private:
 	SDL_Event SDLevent;
 	bool isGameRunning = false;
