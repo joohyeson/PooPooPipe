@@ -13,9 +13,16 @@ int check3 = 0;
 Vector2<float> cursor3;
 
 int moveCheck3 = 0;
-int connectCheck3 = 0;
+int moveCheck3_2 = 0;
+int moveCheck3_3 = 0;
+
+//int connectCheck3 = 0;
 float degree2 = 0;
+
 int rightCheck3 = 0;
+int rightCheck3_2 = 0;
+int rightCheck3_3 = 0;
+
 
 GLuint texureIdLine3;
 GLuint texureIdCurve3;
@@ -42,12 +49,18 @@ void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		moveCheck3 += 1;
+		moveCheck3_2 += 1;
+		moveCheck3_3 += 1;
+
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 
 	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
 	{
 		rightCheck3 = 1;
+		rightCheck3_2 = 1;
+		rightCheck3_3 = 1;
+
 		std::cout << "rightCheck2: " << rightCheck3 << std::endl;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
@@ -103,7 +116,7 @@ void Level3::Init()
 	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle2->mesh->SetMeshType(hexagon);
 	movePuzzle2->Init();
-	movePuzzle2->mesh->setTransform({ 0.9f, 0.7f });
+	movePuzzle2->mesh->setTransform({ 0.9f, 0.3f });
 	movePuzzle2->mesh->InitializeColorMesh();
 
 	movePuzzle3->AddComponent(new Mesh());
@@ -111,7 +124,7 @@ void Level3::Init()
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle3->mesh->SetMeshType(hexagon);
 	movePuzzle3->Init();
-	movePuzzle3->mesh->setTransform({ 1.0f, 0.7f });
+	movePuzzle3->mesh->setTransform({ 1.0f, 0.0f });
 	movePuzzle3->mesh->InitializeColorMesh();
 
 	startPuzzle->AddComponent(new Mesh());
@@ -120,6 +133,9 @@ void Level3::Init()
 	startPuzzle->mesh->InitializeTextureMesh();
 
 	endPuzzle->AddComponent(new Mesh());
+	endPuzzle->AddComponent(new PuzzleComponent());
+	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
+
 	endPuzzle->Init();
 	endPuzzle->mesh->setTransform({ -0.5f, -0.5f });
 	endPuzzle->mesh->InitializeTextureMesh();
@@ -213,13 +229,41 @@ void Level3::Init()
 	blackPuzzle3->mesh->setTransform({ -0.67f, -0.2f });
 	blackPuzzle3->mesh->InitializeTextureMesh();
 
+	/*std::cout << "this is 2" << std::endl;
+
+	std::cout << puzzle2->pipe->GetDirValue(NW) << std::endl;
+	std::cout << puzzle2->pipe->GetDirValue(NE) << std::endl;
+	std::cout << puzzle2->pipe->GetDirValue(E) << std::endl;
+	std::cout << puzzle2->pipe->GetDirValue(SE) << std::endl;
+	std::cout << puzzle2->pipe->GetDirValue(SW) << std::endl;
+	std::cout << puzzle2->pipe->GetDirValue(W) << std::endl;
+
+	std::cout << "this is 7" << std::endl;
+
+	std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
+	std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
+	std::cout << puzzle7->pipe->GetDirValue(E) << std::endl;
+	std::cout << puzzle7->pipe->GetDirValue(SE) << std::endl;
+	std::cout << puzzle7->pipe->GetDirValue(SW) << std::endl;
+	std::cout << puzzle7->pipe->GetDirValue(W) << std::endl;
+	std::cout << "this is 6" << std::endl;
+
+	std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
+	std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
+	std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
+	std::cout << puzzle6->pipe->GetDirValue(SE) << std::endl;
+	std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
+	std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;*/
+	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level3keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level3cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level3mouseButtonCallback);
 }
 
 void Level3::Update()
-{
+{												  
+
+
 	if (check3 < 1)
 	{
 		check3++;
@@ -236,6 +280,18 @@ void Level3::Update()
 	getOrigin1_2.x = blackPuzzle1->mesh->GetTransform().x;
 	getOrigin1_2.y = blackPuzzle1->mesh->GetTransform().y;
 
+	getOrigin2_1.x = movePuzzle2->mesh->GetTransform().x;
+	getOrigin2_1.y = movePuzzle2->mesh->GetTransform().y;
+
+	getOrigin2_2.x = blackPuzzle2->mesh->GetTransform().x;
+	getOrigin2_2.y = blackPuzzle2->mesh->GetTransform().y;
+
+	getOrigin3_1.x = movePuzzle3->mesh->GetTransform().x;
+	getOrigin3_1.y = movePuzzle3->mesh->GetTransform().y;
+
+	getOrigin3_2.x = blackPuzzle3->mesh->GetTransform().x;
+	getOrigin3_2.y = blackPuzzle3->mesh->GetTransform().y;
+	
 	if (cursor3.x <= (getOrigin1_1.x + r / 2) &&
 		cursor3.x >= (getOrigin1_1.x - r / 2) &&
 		cursor3.y <= (getOrigin1_1.y + r) &&
@@ -248,10 +304,10 @@ void Level3::Update()
 		if (rightCheck3 != 0)
 		{
 			movePuzzle->pipe->Update();
+			rightCheck3 = 0;
 
 			degree2 += static_cast<float>(DegreeToRadian(60.f));
 			movePuzzle->mesh->setRotation(degree2);
-			rightCheck3 = 0;
 
 			if ((movePuzzle->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
 			{
@@ -261,7 +317,32 @@ void Level3::Update()
 			{
 				std::cout << "Not connect\n";
 			}
+			std::cout << "this is 2" << std::endl;
 
+			std::cout << puzzle2->pipe->GetDirValue(NW) << std::endl;
+			std::cout << puzzle2->pipe->GetDirValue(NE) << std::endl;
+			std::cout << puzzle2->pipe->GetDirValue(E) << std::endl;
+			std::cout << puzzle2->pipe->GetDirValue(SE) << std::endl;
+			std::cout << puzzle2->pipe->GetDirValue(SW) << std::endl;
+			std::cout << puzzle2->pipe->GetDirValue(W) << std::endl;
+			
+			std::cout << "this is 7" << std::endl;
+			
+			std::cout << movePuzzle->pipe->GetDirValue(NW) << std::endl;
+			std::cout << movePuzzle->pipe->GetDirValue(NE) << std::endl;
+			std::cout << movePuzzle->pipe->GetDirValue(E) << std::endl;
+			std::cout << movePuzzle->pipe->GetDirValue(SE) << std::endl;
+			std::cout << movePuzzle->pipe->GetDirValue(SW) << std::endl;
+			std::cout << movePuzzle->pipe->GetDirValue(W) << std::endl;
+			std::cout << "this is 6" << std::endl;
+			
+			std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(E) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(SE) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(SW) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(W) << std::endl;
+			
 			se3.Play(1);
 			se3.SetVolume(0.5f);
 			se3.SetLoopCount(1);
@@ -270,24 +351,264 @@ void Level3::Update()
 	else
 	{
 		moveCheck3 = 0;
+		rightCheck3 = 0;
 	}
 
-	if (getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
+	if (cursor3.x <= (getOrigin2_1.x + r / 2) &&
+		cursor3.x >= (getOrigin2_1.x - r / 2) &&
+		cursor3.y <= (getOrigin2_1.y + r) &&
+		cursor3.y >= (getOrigin2_1.y - r))
+	{
+		if (moveCheck3_2 % 2 == 1)
+		{
+			movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
+		}
+		if (rightCheck3_2 != 0)
+		{
+			movePuzzle2->pipe->Update();
+			rightCheck3_2 = 0;
+
+			degree2 += static_cast<float>(DegreeToRadian(60.f));
+			movePuzzle2->mesh->setRotation(degree2);
+
+			if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
+			{
+				std::cout << "pipe connect\n";
+			}
+			else
+			{
+				std::cout << "Not connect\n";
+			}
+
+			std::cout << "this is 2" << std::endl;
+
+			std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(SE) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;
+
+			std::cout << "this is 7" << std::endl;
+
+			std::cout << movePuzzle2->pipe->GetDirValue(NW) << std::endl;
+			std::cout << movePuzzle2->pipe->GetDirValue(NE) << std::endl;
+			std::cout << movePuzzle2->pipe->GetDirValue(E) << std::endl;
+			std::cout << movePuzzle2->pipe->GetDirValue(SE) << std::endl;
+			std::cout << movePuzzle2->pipe->GetDirValue(SW) << std::endl;
+			std::cout << movePuzzle2->pipe->GetDirValue(W) << std::endl;
+			
+			std::cout << "this is 6" << std::endl;
+
+			std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(E) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(SE) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(SW) << std::endl;
+			std::cout << puzzle7->pipe->GetDirValue(W) << std::endl;
+			
+			se3.Play(1);
+			se3.SetVolume(0.5f);
+			se3.SetLoopCount(1);
+		}
+	}
+	else
+	{
+		moveCheck3_2 = 0;
+		rightCheck3_2 = 0;
+	}
+
+	if (cursor3.x <= (getOrigin3_1.x + r / 2) &&
+		cursor3.x >= (getOrigin3_1.x - r / 2) &&
+		cursor3.y <= (getOrigin3_1.y + r) &&
+		cursor3.y >= (getOrigin3_1.y - r))
+	{
+		if (moveCheck3_3 % 2 == 1)
+		{
+			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
+		}
+		if (rightCheck3_3 != 0)
+		{
+			movePuzzle3->pipe->Update();
+			rightCheck3_3 = 0;
+
+			degree2 += static_cast<float>(DegreeToRadian(60.f));
+			movePuzzle3->mesh->setRotation(degree2);
+
+			if ((movePuzzle3->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle3->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NE)))
+			{
+				std::cout << "pipe connect\n";
+			}
+			else
+			{
+				std::cout << "Not connect\n";
+			}
+
+			std::cout << "this is 2" << std::endl;
+
+			std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(SE) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
+			std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;
+
+			std::cout << "this is 7" << std::endl;
+
+			std::cout << movePuzzle3->pipe->GetDirValue(NW) << std::endl;
+			std::cout << movePuzzle3->pipe->GetDirValue(NE) << std::endl;
+			std::cout << movePuzzle3->pipe->GetDirValue(E) << std::endl;
+			std::cout << movePuzzle3->pipe->GetDirValue(SE) << std::endl;
+			std::cout << movePuzzle3->pipe->GetDirValue(SW) << std::endl;
+			std::cout << movePuzzle3->pipe->GetDirValue(W) << std::endl;
+			std::cout << "this is 6" << std::endl;
+
+			std::cout << endPuzzle->pipe->GetDirValue(NW) << std::endl;
+			std::cout << endPuzzle->pipe->GetDirValue(NE) << std::endl;
+			std::cout << endPuzzle->pipe->GetDirValue(E) << std::endl;
+			std::cout << endPuzzle->pipe->GetDirValue(SE) << std::endl;
+			std::cout << endPuzzle->pipe->GetDirValue(SW) << std::endl;
+			std::cout << endPuzzle->pipe->GetDirValue(W) << std::endl;
+			
+			se3.Play(1);
+			se3.SetVolume(0.5f);
+			se3.SetLoopCount(1);
+		}
+	}
+	else
+	{
+		moveCheck3_3 = 0;
+		rightCheck3_3 = 0;
+	}
+	
+
+	//
+	if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
 		getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
 		getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-		getOrigin1_1.y >= (getOrigin1_2.y - r))
+		getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
+		(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
+			getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
+			getOrigin1_1.y <= (getOrigin2_2.y + r) &&
+			getOrigin1_1.y >= (getOrigin2_2.y - r)) ||
+			(getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin1_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin1_1.y >= (getOrigin3_2.y - r)))
 	{
 		if (moveCheck3 % 2 == 0)
 		{
-			movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
-			connectCheck3 = 1;
-		}
-		else
-		{
-			connectCheck3 = 0;
+			if((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
+				getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
+				getOrigin1_1.y <= (getOrigin1_2.y + r) &&
+				getOrigin1_1.y >= (getOrigin1_2.y - r)))
+			{
+				movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+			}
+
+			if ((getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
+				getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
+				getOrigin1_1.y <= (getOrigin2_2.y + r) &&
+				getOrigin1_1.y >= (getOrigin2_2.y - r)))
+			{
+				movePuzzle->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+
+			}
+			
+			if((getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin1_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin1_1.y >= (getOrigin3_2.y - r)))
+			{
+				movePuzzle->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+			}		
 		}
 	}
 
+	if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
+		getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
+		getOrigin2_1.y <= (getOrigin1_2.y + r) &&
+		getOrigin2_1.y >= (getOrigin1_2.y - r)) ||
+		(getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
+			getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
+			getOrigin2_1.y <= (getOrigin2_2.y + r) &&
+			getOrigin2_1.y >= (getOrigin2_2.y - r)) ||
+			(getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin2_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin2_1.y >= (getOrigin3_2.y - r))
+		)
+	{
+		if (moveCheck3_2 % 2 == 0)
+		{
+			if((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
+				getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
+				getOrigin2_1.y <= (getOrigin1_2.y + r) &&
+				getOrigin2_1.y >= (getOrigin1_2.y - r)))
+			{
+				movePuzzle2->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+			}
+			if ((getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
+				getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
+				getOrigin2_1.y <= (getOrigin2_2.y + r) &&
+				getOrigin2_1.y >= (getOrigin2_2.y - r)))
+			{
+				movePuzzle2->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+			}
+			if((getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin2_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin2_1.y >= (getOrigin3_2.y - r)))
+			{
+				movePuzzle2->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+
+			}
+		}
+	}
+
+	if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
+		getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
+		getOrigin3_1.y <= (getOrigin1_2.y + r) &&
+		getOrigin3_1.y >= (getOrigin1_2.y - r))||
+		(getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
+			getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
+			getOrigin3_1.y <= (getOrigin2_2.y + r) &&
+			getOrigin3_1.y >= (getOrigin2_2.y - r))||
+			(getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin3_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin3_1.y >= (getOrigin3_2.y - r))
+		)
+	{
+		
+		if (moveCheck3_3 % 2 == 0)
+		{
+			if((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
+				getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
+				getOrigin3_1.y <= (getOrigin1_2.y + r) &&
+				getOrigin3_1.y >= (getOrigin1_2.y - r)))
+			{
+				movePuzzle3->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+
+			}
+			if((getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
+				getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
+				getOrigin3_1.y <= (getOrigin2_2.y + r) &&
+				getOrigin3_1.y >= (getOrigin2_2.y - r)))
+			{
+				movePuzzle3->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+			}
+			if((getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
+				getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
+				getOrigin3_1.y <= (getOrigin3_2.y + r) &&
+				getOrigin3_1.y >= (getOrigin3_2.y - r)))
+			{
+				movePuzzle3->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+
+			}
+		}
+	}
+	
 	se3.Update();
 
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);

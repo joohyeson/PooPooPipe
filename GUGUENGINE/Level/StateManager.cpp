@@ -17,7 +17,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = LV_TEST3;
 	levels.push_back(new MainMenu());
 	levels.push_back(new Level1());
 	levels.push_back(new Level2());

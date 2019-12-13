@@ -59,4 +59,10 @@ private:
 	Vector3<float> getOrigin1_1 = { 0, 0, 0 };
 	Vector3<float> getOrigin1_2 = { 0, 0, 0 };
 
+	Vector3<float> getOrigin2_1 = { 0, 0, 0 };
+	Vector3<float> getOrigin2_2 = { 0, 0, 0 };
+
+	Vector3<float> getOrigin3_1 = { 0, 0, 0 };
+	Vector3<float> getOrigin3_2 = { 0, 0, 0 };
+
 };
