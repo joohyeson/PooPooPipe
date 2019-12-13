@@ -37,6 +37,8 @@ public:
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
 
+		button = nullptr;
+		clear = nullptr;
 		key = 0;
 	}
 
@@ -52,6 +54,9 @@ private:
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 
+	Object* button;
+	Object* clear;
+
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -64,5 +69,7 @@ private:
 
 	Vector3<float> getOrigin3_1 = { 0, 0, 0 };
 	Vector3<float> getOrigin3_2 = { 0, 0, 0 };
+
+	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 
 };

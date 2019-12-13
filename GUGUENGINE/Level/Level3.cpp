@@ -15,9 +15,13 @@ Vector2<float> cursor3;
 int moveCheck3 = 0;
 int moveCheck3_2 = 0;
 int moveCheck3_3 = 0;
+int connectMove = 0;
 
 //int connectCheck3 = 0;
 float degree2 = 0;
+float degree2_2 = 0;
+float degree2_3 = 0;
+
 
 int rightCheck3 = 0;
 int rightCheck3_2 = 0;
@@ -28,7 +32,20 @@ GLuint texureIdLine3;
 GLuint texureIdCurve3;
 GLuint texureIdBlack3;
 
+GLuint texureIdStart3;
+GLuint texureIdEnd3;
+
+GLuint texureIdLine3_1;
+GLuint texureIdCurve3_2;
+
+GLuint texureIdbutton3;
+GLuint texureIdclear3;
+
 Sound se3;
+
+bool conecTcheck1 = false;
+bool conecTcheck2 = false;
+bool conecTcheck3 = false;
 
 void level3keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
@@ -51,7 +68,7 @@ void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 		moveCheck3 += 1;
 		moveCheck3_2 += 1;
 		moveCheck3_3 += 1;
-
+		connectMove += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 
@@ -92,11 +109,21 @@ void Level3::Init()
 
 	startPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	endPuzzle = OBJECT_FACTORY->CreateEmptyObject();
-
+	button = OBJECT_FACTORY->CreateEmptyObject();
+	clear = OBJECT_FACTORY->CreateEmptyObject();
 	texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	
+	texureIdStart3 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
+	texureIdEnd3 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
+	
+	texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
+	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 
+	texureIdbutton3 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
+	
 	se3.Init();
 	se3.LoadMusic("assets\\coin.mp3");
 
@@ -130,14 +157,15 @@ void Level3::Init()
 	startPuzzle->AddComponent(new Mesh());
 	startPuzzle->Init();
 	startPuzzle->mesh->setTransform({ -0.5f, 0.7f });
+	startPuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	startPuzzle->mesh->InitializeTextureMesh();
 
 	endPuzzle->AddComponent(new Mesh());
 	endPuzzle->AddComponent(new PuzzleComponent());
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
-
 	endPuzzle->Init();
 	endPuzzle->mesh->setTransform({ -0.5f, -0.5f });
+	endPuzzle->mesh->setRotation(DegreeToRadian(240.f));
 	endPuzzle->mesh->InitializeTextureMesh();
 
 	puzzle1->AddComponent(new Mesh());
@@ -229,6 +257,19 @@ void Level3::Init()
 	blackPuzzle3->mesh->setTransform({ -0.67f, -0.2f });
 	blackPuzzle3->mesh->InitializeTextureMesh();
 
+
+	button->AddComponent(new Mesh());
+	button->mesh->setTransform({ 0.7f, -0.6f });
+	button->mesh->SetMeshType(rectangle);
+	button->Init();
+	button->mesh->InitializeTextureMesh(1.f, 1.f);
+
+	clear->AddComponent(new Mesh());
+	clear->mesh->setTransform({ 10.0f, 10.0f });
+	clear->mesh->SetMeshType(rectangle);
+	clear->Init();
+	clear->mesh->InitializeTextureMesh(1.f, 1.f);
+	
 	/*std::cout << "this is 2" << std::endl;
 
 	std::cout << puzzle2->pipe->GetDirValue(NW) << std::endl;
@@ -291,7 +332,10 @@ void Level3::Update()
 
 	getOrigin3_2.x = blackPuzzle3->mesh->GetTransform().x;
 	getOrigin3_2.y = blackPuzzle3->mesh->GetTransform().y;
-	
+
+	buttonClick_1.x = button->mesh->GetTransform().x;
+	buttonClick_1.y = button->mesh->GetTransform().y;
+
 	if (cursor3.x <= (getOrigin1_1.x + r / 2) &&
 		cursor3.x >= (getOrigin1_1.x - r / 2) &&
 		cursor3.y <= (getOrigin1_1.y + r) &&
@@ -304,21 +348,24 @@ void Level3::Update()
 		if (rightCheck3 != 0)
 		{
 			movePuzzle->pipe->Update();
-			rightCheck3 = 0;
 
 			degree2 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degree2);
+			movePuzzle->mesh->setRotation(degree2);	
 
 			if ((movePuzzle->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
 			{
 				std::cout << "pipe connect\n";
+				conecTcheck1 = true;
 			}
 			else
 			{
+				conecTcheck1 = false;
 				std::cout << "Not connect\n";
 			}
-			std::cout << "this is 2" << std::endl;
 
+			rightCheck3 = 0;
+
+			std::cout << "this is 2" << std::endl;
 			std::cout << puzzle2->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle2->pipe->GetDirValue(NE) << std::endl;
 			std::cout << puzzle2->pipe->GetDirValue(E) << std::endl;
@@ -326,16 +373,15 @@ void Level3::Update()
 			std::cout << puzzle2->pipe->GetDirValue(SW) << std::endl;
 			std::cout << puzzle2->pipe->GetDirValue(W) << std::endl;
 			
-			std::cout << "this is 7" << std::endl;
-			
+			std::cout << "movepuzzle" << std::endl;		
 			std::cout << movePuzzle->pipe->GetDirValue(NW) << std::endl;
 			std::cout << movePuzzle->pipe->GetDirValue(NE) << std::endl;
 			std::cout << movePuzzle->pipe->GetDirValue(E) << std::endl;
 			std::cout << movePuzzle->pipe->GetDirValue(SE) << std::endl;
 			std::cout << movePuzzle->pipe->GetDirValue(SW) << std::endl;
 			std::cout << movePuzzle->pipe->GetDirValue(W) << std::endl;
-			std::cout << "this is 6" << std::endl;
 			
+			std::cout << "this is 7" << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(E) << std::endl;
@@ -366,22 +412,25 @@ void Level3::Update()
 		if (rightCheck3_2 != 0)
 		{
 			movePuzzle2->pipe->Update();
-			rightCheck3_2 = 0;
 
-			degree2 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle2->mesh->setRotation(degree2);
+			degree2_2 += static_cast<float>(DegreeToRadian(60.f));
+
+			
+			movePuzzle2->mesh->setRotation(degree2_2);
 
 			if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
 			{
+				conecTcheck2 = true;
 				std::cout << "pipe connect\n";
 			}
 			else
 			{
+				conecTcheck2 = false;
 				std::cout << "Not connect\n";
 			}
+			rightCheck3_2 = 0;
 
-			std::cout << "this is 2" << std::endl;
-
+			std::cout << "this is 6" << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
@@ -389,8 +438,7 @@ void Level3::Update()
 			std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;
 
-			std::cout << "this is 7" << std::endl;
-
+			std::cout << "movepuzzle2" << std::endl;
 			std::cout << movePuzzle2->pipe->GetDirValue(NW) << std::endl;
 			std::cout << movePuzzle2->pipe->GetDirValue(NE) << std::endl;
 			std::cout << movePuzzle2->pipe->GetDirValue(E) << std::endl;
@@ -398,7 +446,7 @@ void Level3::Update()
 			std::cout << movePuzzle2->pipe->GetDirValue(SW) << std::endl;
 			std::cout << movePuzzle2->pipe->GetDirValue(W) << std::endl;
 			
-			std::cout << "this is 6" << std::endl;
+			std::cout << "this is 7" << std::endl;
 
 			std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
@@ -430,22 +478,25 @@ void Level3::Update()
 		if (rightCheck3_3 != 0)
 		{
 			movePuzzle3->pipe->Update();
-			rightCheck3_3 = 0;
+			degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 
-			degree2 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle3->mesh->setRotation(degree2);
 
-			if ((movePuzzle3->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle3->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NE)))
+			movePuzzle3->mesh->setRotation(degree2_3);
+
+			if ((movePuzzle3->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle3->pipe->GetDirValue(SE) == endPuzzle->pipe->GetDirValue(NW)))
 			{
+				conecTcheck3 = true;
 				std::cout << "pipe connect\n";
 			}
 			else
 			{
+				conecTcheck3 = false;
 				std::cout << "Not connect\n";
 			}
 
-			std::cout << "this is 2" << std::endl;
+			rightCheck3_3 = 0;
 
+			std::cout << "this is 2" << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
@@ -454,15 +505,14 @@ void Level3::Update()
 			std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;
 
 			std::cout << "this is 7" << std::endl;
-
 			std::cout << movePuzzle3->pipe->GetDirValue(NW) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(NE) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(E) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(SE) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(SW) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(W) << std::endl;
+			
 			std::cout << "this is 6" << std::endl;
-
 			std::cout << endPuzzle->pipe->GetDirValue(NW) << std::endl;
 			std::cout << endPuzzle->pipe->GetDirValue(NE) << std::endl;
 			std::cout << endPuzzle->pipe->GetDirValue(E) << std::endl;
@@ -608,7 +658,26 @@ void Level3::Update()
 			}
 		}
 	}
-	
+
+	if (cursor3.x <= (buttonClick_1.x + 0.5f) &&
+		cursor3.x >= (buttonClick_1.x - 0.5f) &&
+		cursor3.y <= (buttonClick_1.y + 0.5f) &&
+		cursor3.y >= (buttonClick_1.y - 0.5f))
+	{
+		if (connectMove % 2 == 1)
+		{
+			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
+			{
+				clear->mesh->setTransform({ 0.7f, -0.6f });
+				std::cout << "clear" << std::endl;
+			}
+			connectMove = 0;
+		}
+	}
+	else
+	{
+		connectMove = 0;
+	}
 	se3.Update();
 
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
@@ -629,12 +698,15 @@ void Level3::Update()
 	blackPuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
 	blackPuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
 
-	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
-	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
+	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart3);
+	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd3);
 
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
-	movePuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
-	movePuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3_2);
+	movePuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3_1);
+	movePuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3_2);
+
+	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
+	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

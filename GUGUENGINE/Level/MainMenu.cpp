@@ -18,13 +18,13 @@ Sound bgm;
 
 void menuKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
 {
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	/*if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
 		bgm.Stop();
 		std::cout << "Change level to Level1" << std::endl;
 		STATE_MANAGER->ChangeLevel(LV_TEST1);
-	}
-	else if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+	}*/
+	/*else*/ if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
 	{
 		bgm.Stop();
 		std::cout << "Stop music" << std::endl;
