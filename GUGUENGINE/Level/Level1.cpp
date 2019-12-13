@@ -17,6 +17,7 @@ int connectCheck1 = 0;
 GLuint texureIdLine1;
 GLuint texureIdCurve1;
 GLuint texureIdBlack1;
+GLuint textureBackground1;
 
 Sound se;
 
@@ -49,6 +50,18 @@ void  level1mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 
 void Level1::Init()
 {
+
+	background = OBJECT_FACTORY->CreateEmptyObject();
+
+	background->AddComponent(new Mesh());
+	background->Init();
+
+	background->mesh->setTransform({ 0,0 });
+	background->mesh->SetMeshType(rectangle);
+	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
+
+	
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleLeft = OBJECT_FACTORY->CreateEmptyObject();
@@ -61,14 +74,6 @@ void Level1::Init()
 	se.Init();
 	se.LoadMusic("assets\\coin.mp3");
 
-	bgm.Init();
-	bgm.LoadMusic("assets\\up.mp3");
-
-	if (!bgm.IsPlaying())
-	{
-		bgm.Play();
-		bgm.SetVolume(0.05f);
-	}
 
 	mShader.BuildColorShader();
 	mShader2.BuildTextureShader();
@@ -107,8 +112,7 @@ void Level1::Update()
 		check++;
 		std::cout << "HELLO" << std::endl;
 	}
-
-	bgm.Update();
+	
 	se.Update();
 
 	getOrigin.x = movePuzzle->mesh->GetTransform().x;
@@ -149,6 +153,7 @@ void Level1::Update()
 		}
 	}
 
+	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground1);
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack1);
 	puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
 	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve1);

@@ -28,6 +28,8 @@ int rightCheck3_2 = 0;
 int rightCheck3_3 = 0;
 
 
+GLuint textureBackground3;
+
 GLuint texureIdLine3;
 GLuint texureIdCurve3;
 GLuint texureIdBlack3;
@@ -85,6 +87,16 @@ void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 
 void Level3::Init()
 {
+	background = OBJECT_FACTORY->CreateEmptyObject();
+
+	background->AddComponent(new Mesh());
+	background->Init();
+
+	background->mesh->setTransform({ 0,0 });
+	background->mesh->SetMeshType(rectangle);
+	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	textureBackground3 = TEXTURE->CreateTexture("assets\\background.png", 0);
+	
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	movePuzzle2 = OBJECT_FACTORY->CreateEmptyObject();
 	movePuzzle3 = OBJECT_FACTORY->CreateEmptyObject();
@@ -121,7 +133,7 @@ void Level3::Init()
 	texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 
-	texureIdbutton3 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	
 	se3.Init();
@@ -157,7 +169,7 @@ void Level3::Init()
 	startPuzzle->AddComponent(new Mesh());
 	startPuzzle->Init();
 	startPuzzle->mesh->setTransform({ -0.5f, 0.7f });
-	startPuzzle->mesh->setRotation(DegreeToRadian(60.f));
+	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
 	startPuzzle->mesh->InitializeTextureMesh();
 
 	endPuzzle->AddComponent(new Mesh());
@@ -165,7 +177,6 @@ void Level3::Init()
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
 	endPuzzle->Init();
 	endPuzzle->mesh->setTransform({ -0.5f, -0.5f });
-	endPuzzle->mesh->setRotation(DegreeToRadian(240.f));
 	endPuzzle->mesh->InitializeTextureMesh();
 
 	puzzle1->AddComponent(new Mesh());
@@ -680,6 +691,7 @@ void Level3::Update()
 	}
 	se3.Update();
 
+	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);

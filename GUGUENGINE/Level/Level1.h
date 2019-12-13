@@ -14,6 +14,7 @@ class Level1 : public LevelManager
 public:
 	Level1()
 	{
+		background = nullptr;
 		movePuzzle = nullptr;
 		blackPuzzle = nullptr;
 		puzzleLeft = nullptr;
@@ -26,12 +27,11 @@ public:
 	void Close() override;
 
 private:
+	Object* background;
 	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-
-	Sound bgm;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };

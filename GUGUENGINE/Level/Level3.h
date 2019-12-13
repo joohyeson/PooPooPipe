@@ -13,6 +13,7 @@ class Level3 : public LevelManager
 public:
 	Level3()
 	{
+		background = nullptr;
 		movePuzzle = nullptr;
 		movePuzzle2 = nullptr;
 		movePuzzle3 = nullptr;
@@ -47,6 +48,7 @@ public:
 	void Close() override;
 
 private:
+	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;

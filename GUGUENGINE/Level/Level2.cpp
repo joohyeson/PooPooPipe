@@ -21,6 +21,7 @@ int rightCheck2 = 0;
 GLuint texureIdLine2;
 GLuint texureIdCurve2;
 GLuint texureIdBlack2;
+GLuint textureBackground2;
 
 Sound se2;
 
@@ -56,6 +57,16 @@ void  level2mouseButtonCallback(GLFWwindow* window, int button, int action, int 
 
 void Level2::Init()
 {
+	background = OBJECT_FACTORY->CreateEmptyObject();
+
+	background->AddComponent(new Mesh());
+	background->Init();
+
+	background->mesh->setTransform({ 0,0 });
+	background->mesh->SetMeshType(rectangle);
+	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
+	
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleUp = OBJECT_FACTORY->CreateEmptyObject();
@@ -178,6 +189,7 @@ void Level2::Update()
 
 	se2.Update();
 
+	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground2);
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
 	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);

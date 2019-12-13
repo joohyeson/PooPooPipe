@@ -13,6 +13,7 @@ class Level2 : public LevelManager
 public:
 	Level2()
 	{
+		background = 0;
 		movePuzzle = nullptr;
 		blackPuzzle = nullptr;
 		puzzleUp = nullptr;
@@ -25,6 +26,7 @@ public:
 	void Close() override;
 
 private:
+	Object* background;
 	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown;
 	int key;
 	Mesh mMesh;
