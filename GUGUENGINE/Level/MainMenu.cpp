@@ -13,6 +13,7 @@ int moveCheck0 = 0;
 
 GLuint textureId00;
 GLuint textureId01;
+GLuint textureId02;
 
 Sound bgm;
 
@@ -54,8 +55,18 @@ void MainMenu::Init()
 		bgm.Play(0);
 		bgm.SetVolume(0.1f);
 	}
+
+	background = OBJECT_FACTORY->CreateEmptyObject();
+
+	background->AddComponent(new Mesh());
+	background->Init();
 	
-	gameLogo = OBJECT_FACTORY->CreateEmptyObject();
+	background->mesh->setTransform({ 0,0 });
+	background->mesh->SetMeshType(rectangle);
+	background->mesh->InitializeTextureMesh(10.f,10.f);
+	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
+	
+	
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
@@ -63,12 +74,7 @@ void MainMenu::Init()
 
 	mShader.BuildTextureShader();
 
-	gameLogo->AddComponent(new Mesh());
-	gameLogo->Init();
 	
-	gameLogo->mesh->setTransform({ 0,0.5 });
-	gameLogo->mesh->SetMeshType(rectangle);
-	gameLogo->mesh->InitializeTextureMesh(6.f, 2.f);
 
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
@@ -106,7 +112,7 @@ void MainMenu::Update()
 		moveCheck0 = 0;
 	}
 
-	gameLogo->mesh->Update(mShader.GetShaderHandler(),textureId00);
+	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

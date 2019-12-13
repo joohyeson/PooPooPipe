@@ -13,7 +13,7 @@ class MainMenu : public LevelManager
 public:
 	MainMenu()
 	{
-		gameLogo = nullptr;
+		background = nullptr;
 		startButton = nullptr;
 	}
 
@@ -22,7 +22,7 @@ public:
 	void Close() override;
 	
 private:
-	Object* gameLogo;
+	Object* background;
 	Object* startButton;
 	Mesh mMesh;
 	Shader mShader;
