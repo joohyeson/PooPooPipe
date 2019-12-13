@@ -58,8 +58,8 @@ void Graphics::Update()
 	{
 		if (mesh.second != nullptr)
 		{
-			mesh.second->Initialize();
-			mesh.second->Update();
+			mesh.second->InitializeColorMesh();
+			mesh.second->Update(0,0);
 		}
 	}
 

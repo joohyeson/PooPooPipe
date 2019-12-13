@@ -2,7 +2,7 @@
 #include "Application.h"
 //#include "Input.h"
 #include  "Shader.h"
-#include "external/glfw/include/GLFW/glfw3.h"
+#include "../GLFW/glfw3.h"
 //#include "include/GLFW/glfw3.h"
 #include "System.h"
 #include "Input.h"

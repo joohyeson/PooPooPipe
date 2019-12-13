@@ -1,6 +1,6 @@
 #include "State.h"
 
-StateMachine::StateMachine(ComponentType type) : Component(type), m_pCurr(nullptr), m_pNext(nullptr)
+StateMachine::StateMachine(::ComponentType type) : Component(type), m_pCurr(nullptr), m_pNext(nullptr)
 {
 	
 }

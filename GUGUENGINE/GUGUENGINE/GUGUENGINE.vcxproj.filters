@@ -98,9 +98,6 @@
     <ClCompile Include="Command.cpp">
       <Filter>소스 파일\Application\Command</Filter>
     </ClCompile>
-    <ClCompile Include="Component.cpp">
-      <Filter>소스 파일\Component</Filter>
-    </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>소스 파일\Object</Filter>
     </ClCompile>

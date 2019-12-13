@@ -13,7 +13,7 @@ public:
 class StateMachine : public Component
 {
 public:
-	StateMachine(ComponentType type);
+	StateMachine(::ComponentType type);
 	virtual ~StateMachine(void);
 	virtual void Update(float dt);
 	void setNextState(State* pNext);

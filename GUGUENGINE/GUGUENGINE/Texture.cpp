@@ -5,7 +5,6 @@
 #include "glew.h"
 #include "glCheck.h"
 #include <iostream>
-#include "FreeImage.h"
 #include "Mesh.h"
 #include "external/stb/include/stb_image.h"
 Texture* TEXTURE = nullptr;
