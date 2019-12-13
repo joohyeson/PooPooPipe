@@ -1,9 +1,10 @@
-/*
- * Rudy Castan
- * Graphics Library
- * CS230
- */
 #pragma once
+/*
+ *juhye.son
+ *10.1.2019
+ *juhye.son990902@gmail.com
+ *Shader.h
+ */
 #include <map>
 #include <string>
 #include "external/glew/include/GL/glew.h"	

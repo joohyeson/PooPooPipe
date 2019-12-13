@@ -1,3 +1,9 @@
+/*
+ *juhye.son
+ *9.15.2019
+ *juhye.son990902@gmail.com
+ *glcheck.h
+ */
 #include "glCheck.h"
 #include <glew.h>
 #include <cassert>

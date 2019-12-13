@@ -13,10 +13,10 @@
 
 class sound;
 
-class Level3 : public LevelManager
+class Level4 : public LevelManager
 {
 public:
-	Level3()
+	Level4()
 	{
 		background = nullptr;
 		movePuzzle = nullptr;
@@ -36,8 +36,6 @@ public:
 		puzzle8 = nullptr;
 		puzzle9 = nullptr;
 		puzzle10 = nullptr;
-		puzzle11 = nullptr;
-		puzzle12 = nullptr;
 
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
@@ -56,8 +54,8 @@ private:
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 
-	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
-	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12;
+	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
+	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 

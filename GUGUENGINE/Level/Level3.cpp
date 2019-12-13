@@ -1,6 +1,12 @@
+/*
+ *hakyung.kim
+ *12.13.2019
+ *digipen.hagyeong@gmail.com
+ *Level3.cpp
+ */
+
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
-#include "../GUGUENGINE/Input.h"
 #include <iostream>
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
@@ -27,6 +33,7 @@ int rightCheck3 = 0;
 int rightCheck3_2 = 0;
 int rightCheck3_3 = 0;
 
+int chekNext = 0;
 
 GLuint textureBackground3;
 
@@ -49,20 +56,20 @@ bool conecTcheck1 = false;
 bool conecTcheck2 = false;
 bool conecTcheck3 = false;
 
-void level3keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext ==1)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST1);
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
 }
 
-void level3cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+void level3cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
 	cursor3 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
 
-void  level3mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -324,7 +331,7 @@ void Level3::Update()
 
 	se3.Update();
 
-	float r = sqrt(5) / 10;
+	float r = static_cast<float>(sqrt(5) / 10);
 
 	getOrigin1_1.x = movePuzzle->mesh->GetTransform().x;
 	getOrigin1_1.y = movePuzzle->mesh->GetTransform().y;
@@ -680,6 +687,7 @@ void Level3::Update()
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
 				clear->mesh->setTransform({ 0.7f, -0.6f });
+				chekNext = 1;
 				std::cout << "clear" << std::endl;
 			}
 			connectMove = 0;

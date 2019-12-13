@@ -1,11 +1,6 @@
-/*
-*  Choi Jinwoo
-*  2018/09/25
-*  BLUE ENGINE
-*/
+
 #include"Object.h"
 #include <iostream>
-#include "Graphics.h"
 #include "ObjectManager.h"
 #include <cassert>
 
@@ -35,7 +30,6 @@ void Object::Init()
 
 void Object::Destroy(Object* obj)
 {
-	std::cout << "Destroy called" << std::endl;
 	OBJECT_FACTORY->Destroy(obj);
 }
 
@@ -46,7 +40,6 @@ bool Object::AddComponent(Component* component)
 	{
 	case COMPONENTTYPE_MESH:
 		mesh = dynamic_cast<Mesh*>(component);
-		//GRAPHICS->AddMesh(mesh);
 		return true;
 	case COMPONENTTYPE_TRANSFORM:
 		transform = dynamic_cast<Transform*>(component);

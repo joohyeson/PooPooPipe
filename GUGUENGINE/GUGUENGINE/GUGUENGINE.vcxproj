@@ -166,6 +166,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
       <ConformanceMode>true</ConformanceMode>
       <AdditionalIncludeDirectories>$(SolutionDir)external\SDL2\include;$(SolutionDir)external\glfw\$(PlatformTarget)\include\GLFW;$(SolutionDir)external\glew\include\GL;$(SolutionDir)external\glm;$(SolutionDir)external\fmod\inc;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <LanguageStandard>stdcpp17</LanguageStandard>
+      <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
     <Link>
       <EnableCOMDATFolding>true</EnableCOMDATFolding>
@@ -189,15 +190,10 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraView.cpp" />
     <ClCompile Include="Color.cpp" />
-    <ClCompile Include="Command.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FitPuzzleComponent.cpp" />
     <ClCompile Include="glCheck.cpp" />
-    <ClCompile Include="Graphics.cpp">
-      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">true</ExcludedFromBuild>
-    </ClCompile>
     <ClCompile Include="Image.cpp" />
-    <ClCompile Include="Input.cpp" />
     <ClCompile Include="Mathematics\Vector4.cpp" />
     <ClCompile Include="Mesh.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -240,9 +236,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FitPuzzleComponent.h" />
     <ClInclude Include="glCheck.h" />
-    <ClInclude Include="Graphics.h" />
     <ClInclude Include="Image.h" />
-    <ClInclude Include="Input.h" />
     <ClInclude Include="GameData.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Mathematics\MathFunctions.hpp" />

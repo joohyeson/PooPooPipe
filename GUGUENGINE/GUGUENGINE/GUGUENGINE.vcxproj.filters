@@ -12,9 +12,6 @@
     <Filter Include="소스 파일\Application">
       <UniqueIdentifier>{6c2ee68d-c17b-44ef-95c1-a3ee422b1be0}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Application\Input">
-      <UniqueIdentifier>{2443fe75-4f19-466f-b253-cca39df89cfa}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Object">
       <UniqueIdentifier>{36d2fa9d-ddc5-48d5-90b0-ed77f5beb5a2}</UniqueIdentifier>
     </Filter>
@@ -29,9 +26,6 @@
     </Filter>
     <Filter Include="소스 파일\Component\Mesh">
       <UniqueIdentifier>{716ddbcf-c236-4425-a700-68387fadb489}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Application\Color">
-      <UniqueIdentifier>{23562e6f-b83a-44b8-a06e-ee11ea64a431}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Application\glCheck">
       <UniqueIdentifier>{31a3151d-de7c-4d20-b311-206ee6061844}</UniqueIdentifier>
@@ -54,9 +48,6 @@
     <Filter Include="소스 파일\Texture">
       <UniqueIdentifier>{b54f2ca9-757d-4178-a433-327727125109}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Image">
-      <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Sound">
       <UniqueIdentifier>{421bc659-a9ee-4958-99b7-e49ad7a32ae4}</UniqueIdentifier>
     </Filter>
@@ -66,16 +57,19 @@
     <Filter Include="소스 파일\Mathmatics">
       <UniqueIdentifier>{55369132-71f7-4ce8-816b-f8e9b5edfceb}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Camera">
+    <Filter Include="소스 파일\Graphics\Color">
+      <UniqueIdentifier>{23562e6f-b83a-44b8-a06e-ee11ea64a431}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Graphics\Camera">
       <UniqueIdentifier>{dd8e3f8c-9b51-4c15-b028-1ba3bec5125b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Graphics\Image">
+      <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
       <Filter>소스 파일\Application</Filter>
-    </ClCompile>
-    <ClCompile Include="Input.cpp">
-      <Filter>소스 파일\Application\Input</Filter>
     </ClCompile>
     <ClCompile Include="Timer.cpp">
       <Filter>소스 파일\Application\Timer</Filter>
@@ -89,14 +83,8 @@
     <ClCompile Include="Shader.cpp">
       <Filter>소스 파일\Shader</Filter>
     </ClCompile>
-    <ClCompile Include="Color.cpp">
-      <Filter>소스 파일\Application\Color</Filter>
-    </ClCompile>
     <ClCompile Include="glCheck.cpp">
       <Filter>소스 파일\Application\glCheck</Filter>
-    </ClCompile>
-    <ClCompile Include="Command.cpp">
-      <Filter>소스 파일\Application\Command</Filter>
     </ClCompile>
     <ClCompile Include="Object.cpp">
       <Filter>소스 파일\Object</Filter>
@@ -122,11 +110,8 @@
     <ClCompile Include="Engine.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
-    <ClCompile Include="Graphics.cpp">
-      <Filter>소스 파일\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="Image.cpp">
-      <Filter>소스 파일\Image</Filter>
+      <Filter>소스 파일\Graphics\Image</Filter>
     </ClCompile>
     <ClCompile Include="Texture.cpp">
       <Filter>소스 파일\Texture</Filter>
@@ -138,18 +123,18 @@
       <Filter>소스 파일\Mathmatics</Filter>
     </ClCompile>
     <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일\Camera</Filter>
+      <Filter>소스 파일\Graphics\Camera</Filter>
     </ClCompile>
     <ClCompile Include="CameraView.cpp">
-      <Filter>소스 파일\Camera</Filter>
+      <Filter>소스 파일\Graphics\Camera</Filter>
+    </ClCompile>
+    <ClCompile Include="Color.cpp">
+      <Filter>소스 파일\Graphics\Color</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
       <Filter>소스 파일\Application</Filter>
-    </ClInclude>
-    <ClInclude Include="Input.h">
-      <Filter>소스 파일\Application\Input</Filter>
     </ClInclude>
     <ClInclude Include="ComponentType.h">
       <Filter>소스 파일\Component</Filter>
@@ -165,9 +150,6 @@
     </ClInclude>
     <ClInclude Include="Shader.h">
       <Filter>소스 파일\Shader</Filter>
-    </ClInclude>
-    <ClInclude Include="Color.h">
-      <Filter>소스 파일\Application\Color</Filter>
     </ClInclude>
     <ClInclude Include="glCheck.h">
       <Filter>소스 파일\Application\glCheck</Filter>
@@ -226,11 +208,8 @@
     <ClInclude Include="LevelManager.h">
       <Filter>소스 파일\LevelManager</Filter>
     </ClInclude>
-    <ClInclude Include="Graphics.h">
-      <Filter>소스 파일\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="Image.h">
-      <Filter>소스 파일\Image</Filter>
+      <Filter>소스 파일\Graphics\Image</Filter>
     </ClInclude>
     <ClInclude Include="Texture.h">
       <Filter>소스 파일\Texture</Filter>
@@ -259,11 +238,14 @@
     <ClInclude Include="Mathematics\Matrix3.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>소스 파일\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="CameraView.h">
-      <Filter>소스 파일\Camera</Filter>
+      <Filter>소스 파일\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Camera.h">
+      <Filter>소스 파일\Graphics\Camera</Filter>
+    </ClInclude>
+    <ClInclude Include="Color.h">
+      <Filter>소스 파일\Graphics\Color</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

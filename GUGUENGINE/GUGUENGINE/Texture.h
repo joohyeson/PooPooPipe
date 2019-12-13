@@ -1,3 +1,9 @@
+/*
+ *juhye.son
+ *11.13.2019
+ *juhye.son990902@gmail.com
+ *Texture.h
+ */
 #include "glew.h"
 #include "filesystem"
 class Image;

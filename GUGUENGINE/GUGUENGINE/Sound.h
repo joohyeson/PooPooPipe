@@ -1,5 +1,10 @@
 #pragma once
-
+/*
+ *eunjin.hong
+ *9.23.2019
+ *chocob0217@gmail.com
+ *Sound.h
+ */
 #include "fmod.hpp"
 #include "System.h"
 

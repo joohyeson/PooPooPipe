@@ -1,7 +1,9 @@
-/*1.    joohye son
-  2.   project
-  3.   CS200
-  4.   Fall 2019*/
+/*
+ *juhye.son
+ *9.23.2019
+ *juhye.son990902@gmail.com
+ *Mesh.h
+ */
 #pragma once
 
 #include "glew.h"

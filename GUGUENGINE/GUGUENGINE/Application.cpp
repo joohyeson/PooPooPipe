@@ -1,21 +1,25 @@
+/*
+ *juhye.son
+ *9.17.2019
+ *juhye.son990902@gmail.com
+ *Application.cpp
+ */
 #include <iostream>
 #include "glew.h"		
 #include "../GLFW/glfw3.h"
 #include "Mesh.h"
-//#include "Shader.h"
 #include "Application.h"
 
 int framebufferWidth, framebufferHeight;
 Application* APPLICATION = nullptr;
-//Shader mShader;
+
 #define WIDTH 800
 #define HEIGHT 800
-//int moveCheck = 0;
-//Vector3<float> curser = { 0, 0, 0 };
-Mesh mMesh;
-//std::vector<Vector3<float>> mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { 400, 300, 0 }, 0);
 
-void framebufferSizeCallback(GLFWwindow* window, int width, int height)
+Mesh mMesh;
+
+
+void framebufferSizeCallback(GLFWwindow* /*window*/, int width, int height)
 {
 	glViewport(0, 0, width, height);
 
@@ -33,7 +37,6 @@ void Application::Update()
 {
 	double lastTime = glfwGetTime();
 	int numOfFrames = 0;
-	int count = 0;
 
 	double currentTime = glfwGetTime();
 	numOfFrames++;
@@ -44,12 +47,6 @@ void Application::Update()
 		lastTime = currentTime;
 	}
 
-	/*if (moveCheck % 2 == 1)
-	{
-		mMeshVec = MESH::create_circle(0.7f, { 255, 255, 255 }, 6, { curser.x, curser.y ,1 }, 0);
-	}*/
-
-	//glfwSwapBuffers(Mywindow);
 	glfwPollEvents();
 	
 }
@@ -66,10 +63,8 @@ Application::Application()
 	glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-	//glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
-	//const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-	//GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+
 	Mywindow = glfwCreateWindow(
 		WIDTH,
 		HEIGHT,
@@ -83,11 +78,6 @@ Application::Application()
 	}
 
 	glfwMakeContextCurrent(Mywindow);
-
-	//glfwSetKeyCallback(Mywindow, keyCallback);
-	//glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
-	//glfwSetCursorPosCallback(Mywindow, cursorPositionCallback);
-	//glfwSetMouseButtonCallback(Mywindow, mouseButtonCallback);
 
 	glewExperimental = GL_TRUE;
 	GLenum errorCode = glewInit();
@@ -121,23 +111,7 @@ Application::~Application()
 
 	glfwTerminate();
 
-	std::exit(EXIT_SUCCESS);
-}
-
-void Application::PollKeyboardEvent(SDL_Event& currentEvent)
-{
-	if (currentEvent.type == SDL_KEYDOWN || currentEvent.type == SDL_KEYUP)
-	{
-		Input::realInupt().SetKeyPressed(currentEvent.key.keysym.scancode, (SDL_EventType)currentEvent.type);
-	}
-}
-
-void Application::PollMouseEvent(SDL_Event& currentEvent)
-{
-	if (currentEvent.type == SDL_MOUSEBUTTONDOWN || currentEvent.type == SDL_MOUSEBUTTONUP)
-	{
-		Input::realInupt().SetMousePressed(currentEvent.button.button, (SDL_EventType)currentEvent.type);
-	}
+	//std::exit(EXIT_SUCCESS);
 }
 
 void Application::setMyWindow(GLFWwindow& m)

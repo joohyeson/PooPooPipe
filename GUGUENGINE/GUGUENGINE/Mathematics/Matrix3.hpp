@@ -100,13 +100,13 @@
 	template <typename T>
 	Matrix3<T>& Matrix3<T>::Multiply(const Matrix3<T>& p_Matrix3) {
 		T Matrix3Data[9];
-		for (int Row = 0; Row < 3; Row++) {
-			for (int Column = 0; Column < 3; Column++) {
+		for (int mRow = 0; mRow < 3; mRow++) {
+			for (int mColumn = 0; mColumn < 3; mColumn++) {
 				T Sum = 0.0f;
 				for (int Component = 0; Component < 3; Component++) {
-					Sum += Elements[Column + Component * 3] * p_Matrix3.Elements[Component + Row * 3];
+					Sum += Elements[mColumn + Component * 3] * p_Matrix3.Elements[Component + mRow * 3];
 				}
-				Matrix3Data[Column + Row * 3] = Sum;
+				Matrix3Data[mColumn + mRow * 3] = Sum;
 			}
 		}
 		memcpy(Elements, Matrix3Data, 3 * 3 * sizeof(T));

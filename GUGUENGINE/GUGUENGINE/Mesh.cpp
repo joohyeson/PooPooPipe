@@ -1,7 +1,10 @@
-/*1.    joohye son
-  2.   project
-  3.   CS200
-  4.   Fall 2019*/
+/*
+ *juhye.son
+ *9.23.2019
+ *juhye.son990902@gmail.com
+ *Mesh.cpp
+ */
+
 #include <cmath>
 #include <valarray>
 #include "Mesh.h"
@@ -28,7 +31,7 @@ float verticesFlat[] = {
 float color[] = {
 	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
 	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-	0.0f, 0.0f, 1.0f,  //vertex 3 : GUGU (0,0,1)
+	0.0f, 0.0f, 1.0f,  //vertex 3 : blue (0,0,1)
 	1.0f, 0.0f, 0.0f,
 
 };//It will be changed when color4up is completed
@@ -262,7 +265,7 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 
 	vertex = originVertex;
 
-	for (int i = 0; i < vertex.size(); i++)
+	for (unsigned int i = 0; i < vertex.size(); i++)
 	{
 		Vector3<float> mA = (/*CAMERA->CameraToWorld() */T * R *S) * vertex.at(i);
 		vertex.at(i) = { mA.x, mA.y, 1 };
@@ -291,7 +294,7 @@ GLenum Mesh::GetPointListPattern()  const noexcept
 void Mesh::AddColor(Vector3<float> mColor) noexcept
 {
 	colors.clear();
-	for (int i = 0; i < GetPointCount(); i++)
+	for (unsigned int i = 0; i < GetPointCount(); i++)
 	{
 		colors.push_back(mColor);
 	}
@@ -300,7 +303,7 @@ void Mesh::AddColor(Vector3<float> mColor) noexcept
 void Mesh::SetColor(Vector3<float> mColor) noexcept
 {
 	colors.clear();
-	for (int i = 0; i < GetPointCount(); i++)
+	for (unsigned int i = 0; i < GetPointCount(); i++)
 	{
 		colors.push_back(mColor);
 	}
@@ -351,7 +354,7 @@ std::vector<Vector3<float>> Mesh::createHexagon() noexcept
 	std::vector<Vector3<float>> hexaVector;
 	pointListType = GL_TRIANGLE_FAN;
 
-	float theta = M_PI * 2 / 6;
+	float theta = static_cast<float>(M_PI * 2 / 6);
 
 	Vector3<float> mA = { 0, 0,1 };
 	hexaVector.push_back(mA);
@@ -381,9 +384,9 @@ std::vector<Vector3<float>> Mesh::create_wire_circle(float radius,
 	std::vector<Vector3<float>> wireCircle;
 	pointListType = GL_LINE_LOOP;
 
-	float theta = M_PI * 2 / point_count;
+	float theta  = static_cast<float>(M_PI * 2 / point_count);
 
-	for (int i = 0; i < point_count; i++)
+	for (unsigned int i = 0; i < point_count; i++)
 	{
 		Vector3<float> mA = Vector3<float>(radius * sin(theta * i), radius * -cos(theta * i), 1);
 		//Vector3<float>  point = { radius * sin(theta * i), radius * -cos(theta * i), 0 };

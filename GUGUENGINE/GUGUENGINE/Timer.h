@@ -1,4 +1,10 @@
 #pragma once
+/*
+ *juhye.son
+ *9.10.2019
+ *juhye.son990902@gmail.com
+ *Timer.cpp
+ */
 #include <chrono>
 
 class Timer {

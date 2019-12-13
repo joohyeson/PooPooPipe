@@ -1,15 +1,15 @@
-/* 1.your name            joohye Son
-2.the assignment number   3
-3.the course name         CS230
-4.the term                Spring 2019 */
-//#include <CS230/graphics/Color4f.hpp>
-//#include <CS230/graphics/Color4ub.hpp>
+/*
+ *juhye.son
+ *9.10.2019
+ *juhye.son990902@gmail.com
+ *Color.cpp
+ */
 
 #include "Color.h"
 
-	Color4ub::Color4ub(unsigned_byte grey, unsigned_byte alpha) noexcept :red(grey), green(grey), GUGU(grey), alpha(alpha) {};
+	Color4ub::Color4ub(unsigned_byte grey, unsigned_byte alpha) noexcept :red(grey), green(grey), blue(grey), alpha(alpha) {};
 
-	Color4ub::Color4ub(unsigned_byte red, unsigned_byte green, unsigned_byte GUGU, unsigned_byte alpha) noexcept : red(red), green(green), GUGU(GUGU), alpha(alpha) {};
+	Color4ub::Color4ub(unsigned_byte red, unsigned_byte green, unsigned_byte blue, unsigned_byte alpha) noexcept : red(red), green(green), blue(blue), alpha(alpha) {};
 
 	Color4ub to_color4ub(const Color4f& float_colors)//from float to ub
 	{
@@ -31,9 +31,9 @@
 			a.green = static_cast<Color4ub::unsigned_byte>(float_colors.green) * 255;
 			return a;
 		}
-		if (float_colors.GUGU <1.0f&& float_colors.GUGU >0.0f)
+		if (float_colors.blue <1.0f&& float_colors.blue >0.0f)
 		{
-			a.GUGU = static_cast<Color4ub::unsigned_byte>(float_colors.GUGU) * 255;
+			a.blue = static_cast<Color4ub::unsigned_byte>(float_colors.blue) * 255;
 			return a;
 		}
 
@@ -43,9 +43,9 @@
 		return a;
 
 	}
-	Color4f::Color4f(float grey, float alpha) noexcept : red(grey), green(grey), GUGU(grey), alpha(alpha) {};
+	Color4f::Color4f(float grey, float alpha) noexcept : red(grey), green(grey), blue(grey), alpha(alpha) {};
 
-	Color4f::Color4f(float red, float green, float GUGU, float alpha) noexcept : red(red), green(green), GUGU(GUGU), alpha(alpha) {};
+	Color4f::Color4f(float red, float green, float blue, float alpha) noexcept : red(red), green(green), blue(blue), alpha(alpha) {};
 
 	Color4f to_color4f(const Color4ub & eight_bit_color)//from up to float
 	{
@@ -53,7 +53,7 @@
 		a.alpha = static_cast<float>(eight_bit_color.alpha) / 255;
 		a.red = static_cast<float>(eight_bit_color.red) / 255;
 		a.green = static_cast<float>(eight_bit_color.green) / 255;
-		a.GUGU = static_cast<float>(eight_bit_color.GUGU) / 255;
+		a.blue = static_cast<float>(eight_bit_color.blue) / 255;
 
 		return a;
 	}

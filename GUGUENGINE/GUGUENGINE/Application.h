@@ -1,11 +1,15 @@
 #pragma once
+/*
+ *juhye.son
+ *9.17.2019
+ *juhye.son990902@gmail.com
+ *Application.h
+ */
 #include "Application.h"
-//#include "Input.h"
 #include  "Shader.h"
 #include "../GLFW/glfw3.h"
-//#include "include/GLFW/glfw3.h"
 #include "System.h"
-#include "Input.h"
+
 class Application : public System
 {
 public:
@@ -18,17 +22,15 @@ public:
 	void Init() override;
 	void Update() override;
 
-	void PollKeyboardEvent(SDL_Event& currentEvent);
-	void PollMouseEvent(SDL_Event& currentEvent);
+	
 
 	void setMyWindow(GLFWwindow& m);
 	GLFWwindow* getMyWindow();
-	SDL_Event& GetEvent() { return SDLevent; }
+
 
 	int height = 800;
 	int width = 800;
 private:
-	SDL_Event SDLevent;
 	bool isGameRunning = false;
 	int sizeX = 300;
 	int sizeY = 400;

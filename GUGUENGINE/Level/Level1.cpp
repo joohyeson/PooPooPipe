@@ -1,7 +1,6 @@
 #include "Level1.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
-#include "../GUGUENGINE/Input.h"
 #include <iostream>
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
@@ -21,7 +20,7 @@ GLuint textureBackground1;
 
 Sound se;
 
-void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	if (connectCheck1 == 1)
 	{
@@ -33,12 +32,12 @@ void level1keyCallback(GLFWwindow* window, int key, int scancode, int action, in
 	}
 }
 
-void level1cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
 	cursor = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
 
-void  level1mouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void  level1mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -120,7 +119,8 @@ void Level1::Update()
 
 	getOrigin2.x = blackPuzzle->mesh->GetTransform().x;
 	getOrigin2.y = blackPuzzle->mesh->GetTransform().y;
-	float r = sqrt(5) / 10;
+	
+	float r = static_cast<float>(sqrt(5) / 10);
 
 	if (cursor.x <= (getOrigin.x + r / 2) &&
 		cursor.x >= (getOrigin.x - r / 2) &&

@@ -1,4 +1,9 @@
-
+/*
+ *juhye.son
+ *10.14.2019
+ *juhye.son990902@gmail.com
+ *Image.h
+ */
 #include "Image.h"
 #include <algorithm>
 #include <cassert>

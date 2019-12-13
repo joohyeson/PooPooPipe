@@ -1,4 +1,10 @@
-﻿#include <cassert>
+﻿/*
+ *juhye.son
+ *11.13.2019
+ *juhye.son990902@gmail.com
+ *Texture.cpp
+ */
+#include <cassert>
 #include <filesystem>
 #include "Image.h"
 #include "Texture.h"
@@ -90,9 +96,9 @@ bool Texture::LoadFromPNG(const std::filesystem::path& file_path) noexcept
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 	
-		int width, height, nrChannels;
-		unsigned char* data = stbi_load(filename, &width, &height, &nrChannels, 0);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
+		int mwidth, mheight, mnrChannels;
+		unsigned char* data = stbi_load(filename, &mwidth, &mheight, &mnrChannels, 0);
+		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mwidth, mheight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 	
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);

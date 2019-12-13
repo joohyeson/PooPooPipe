@@ -1,7 +1,12 @@
+/*
+ *eunjin.hong
+ *12.10.2019
+ *chocob0217@gmail.com
+ *MainMenu.cpp
+ */
 #include "MainMenu.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
-#include "../GUGUENGINE/Input.h"
 #include <iostream>
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
@@ -17,26 +22,20 @@ GLuint textureId02;
 
 Sound bgm;
 
-void menuKeyCallback(GLFWwindow* window, int key, int scancode, int action, int mods)
+void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
-	/*if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-	{
-		bgm.Stop();
-		std::cout << "Change level to Level1" << std::endl;
-		STATE_MANAGER->ChangeLevel(LV_TEST1);
-	}*/
-	/*else*/ if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
 	{
 		bgm.Stop();
 		std::cout << "Stop music" << std::endl;
 	}
 
 }
-void menuCursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
 	cursor0 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
 }
-void  menuMouseButtonCallback(GLFWwindow* window, int button, int action, int mods)
+void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -79,7 +78,7 @@ void MainMenu::Init()
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
 
-	startButton->mesh->setTransform({ 0,-0.2 });
+	startButton->mesh->setTransform({ 0.0f,-0.2f });
 	startButton->mesh->SetMeshType(rectangle);
 	startButton->mesh->InitializeTextureMesh(4.f, 1.f);
 	
@@ -97,10 +96,10 @@ void MainMenu::Update()
 	getOrigin.y = startButton->mesh->GetTransform().y;
 
 
-	if (cursor0.x <= (getOrigin.x + 2.f &&
-		cursor0.x >= (getOrigin.x - 2.f) &&
-		cursor0.y <= (getOrigin.y + 0.5f) &&
-		cursor0.y >= (getOrigin.y - 0.5)))
+	if ((cursor0.x <= (getOrigin.x + 2.f) &&
+		(cursor0.x >= (getOrigin.x - 2.f)) &&
+		(cursor0.y <= (getOrigin.y + 0.5f)) &&
+		(cursor0.y >= (getOrigin.y - 0.5))))
 	{
 		if (moveCheck0 % 2 == 1)
 		{

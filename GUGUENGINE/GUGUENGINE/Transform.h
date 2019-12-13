@@ -1,4 +1,10 @@
 #pragma once
+/*
+ *juhye.son
+ *9.23.2019
+ *juhye.son990902@gmail.com
+ *Transform.h
+ */
 #include "Component.h"
 #include "Mathematics/Vector3.hpp"
 #include "Mathematics/Vector2.hpp"

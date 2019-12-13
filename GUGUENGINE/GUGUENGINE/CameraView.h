@@ -1,10 +1,10 @@
-/*
- * Rudy Castan
- * Graphics Library
- * CS230
- */
 #pragma once
-
+/*
+ *juhye.son
+ *9.17.2019
+ *juhye.son990902@gmail.com
+ *CameraView.h
+ */
 #include "Mathematics/Vector2.hpp"
 #include "Mathematics/Matrix3.hpp"
 

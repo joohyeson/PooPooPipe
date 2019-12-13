@@ -1,3 +1,9 @@
+/*
+ *juhye.son
+ *10.14.2019
+ *juhye.son990902@gmail.com
+ *Image.h
+ */
 #include "Color.h"
 #include <filesystem>
 class [[nodiscard]] Image

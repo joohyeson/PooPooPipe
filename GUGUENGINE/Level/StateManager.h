@@ -3,20 +3,16 @@
 #include "../GUGUENGINE/System.h"
 #include "../GUGUENGINE/LevelManager.h"
 
-//Define enum to manage levels.
-//You have to make sure GameLevels has same order with push_back in Init() function.
+//define enum for level
 enum GameLevels
-{
-	
+{	
 	MAINMENU, 
 	LV_TEST1,
 	LV_TEST2,
-	LV_TEST3
-
-	//Add here to make more levels. (LV_Main, LV_Tutorial...etc.)
+	LV_TEST3,
+	LV_TEST4
 };
 
-//This class manage the state. 
 class StateManager : public System
 {
 public:
@@ -25,12 +21,12 @@ public:
 	void Init() override;
 	void Update() override;
 
-	//You can change level with this function. To call this function, use " BLUE::STATEMANAGER->ChangeLevel(BLUE::<GameLevels>); " in Level class.
+	//change level
 	void ChangeLevel(GameLevels changeLV);
 
 	//Store the current level.
 	GameLevels current;
-	//Store the levels. You can update multiple levels at the same time with using this.
+	//Store the levels.
 	std::vector<LevelManager*> levels;
 };
 extern StateManager* STATE_MANAGER;

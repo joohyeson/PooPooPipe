@@ -1,18 +1,10 @@
-/*
-   Rudy Castan
-   Graphics Library
-   CS230
-
-   Use this to automatically error check an OpenGL Calls.
-   ie
-		glCheck(glClearColor(0,0,0,1));
-		int GetVertexAttributeLocation(...)
-		{
-			int location = glCheck(glGetAttribLocation(handleToShader, vertex_field_name));
-			return location;
-		}
- */
 #pragma once
+/*
+ *juhye.son
+ *9.15.2019
+ *juhye.son990902@gmail.com
+ *glcheck.h
+ */
 
 void glCheckError(const char* file, unsigned int line, const char* expression);
 void glClearErrors();

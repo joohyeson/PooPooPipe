@@ -1,7 +1,12 @@
-
+/*
+ *juhye.son
+ *9.23.2019
+ *juhye.son990902@gmail.com
+ *Transform.cpp
+ */
 #include "Transform.h"
 #include "Mathematics/Vector3.hpp"
-//#include "Mathematics/Matrix.hpp"
+
 
 void Transform::Initialize(void)
 {

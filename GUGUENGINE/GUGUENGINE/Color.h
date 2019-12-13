@@ -1,22 +1,23 @@
-/*
- * Rudy Castan
- * Graphics Library
- * CS230
- */
 #pragma once
+/*
+ *juhye.son
+ *9.10.2019
+ *juhye.son990902@gmail.com
+ *Color.h
+ */
 
 	class[[nodiscard]] Color4f
 	{
 	public:
 		float red = 0;
 		float green = 0;
-		float GUGU = 0;
+		float blue = 0;
 		float alpha = 1.0f;
 
 	public:
 		Color4f() noexcept = default;
 		Color4f(float grey, float alpha = 1.0f) noexcept;
-		Color4f(float red, float green, float GUGU, float alpha = 1.0f) noexcept;
+		Color4f(float red, float green, float blue, float alpha = 1.0f) noexcept;
 	};
 
 	static_assert(sizeof(Color4f) == 16, "Color4f should be 4 floats");
@@ -25,12 +26,6 @@
 	Color4f to_color4f(const Color4ub& eight_bit_color);
 
 
-/*
- * Rudy Castan
- * Graphics Library
- * CS230
- */
-#pragma once
 
 
 	class[[nodiscard]] Color4ub
@@ -40,13 +35,13 @@
 
 		unsigned_byte red = 0;
 		unsigned_byte green = 0;
-		unsigned_byte GUGU = 0;
+		unsigned_byte blue = 0;
 		unsigned_byte alpha = 255;
 
 	public:
 		Color4ub() noexcept = default;
 		explicit Color4ub(unsigned_byte grey, unsigned_byte alpha = 0xff) noexcept;
-		Color4ub(unsigned_byte red, unsigned_byte green, unsigned_byte GUGU, unsigned_byte alpha = 0xff) noexcept;
+		Color4ub(unsigned_byte red, unsigned_byte green, unsigned_byte blue, unsigned_byte alpha = 0xff) noexcept;
 	};
 
 	static_assert(sizeof(Color4ub) == 4,

@@ -1,3 +1,9 @@
+/*
+ * juhye.son
+ * 9.17.2019
+ * juhye.son990902@gmail.com
+ * CameraView.cpp
+ */
 #include "CameraView.h"
 
 // For RightHanded_OriginCenter

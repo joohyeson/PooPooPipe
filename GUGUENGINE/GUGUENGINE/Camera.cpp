@@ -1,7 +1,9 @@
-/*1.    joohye son
-  2.   camera programming
-  3.   CS230
-  4.   Spring 2019*/
+/*
+ *juhye.son
+ *9.17.2019
+ *juhye.son990902@gmail.com
+ *Camera.cpp
+ */
 #include "Camera.h"
 
 Camera::Camera(Vector2<float> camera_center, Vector2<float> camera_up) noexcept
