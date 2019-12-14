@@ -8,6 +8,7 @@
  *we can change level
  */
 #include "StateManager.h"
+#include "DigipenLogo.h"
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
@@ -27,7 +28,8 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = DIGIPENLOGO;
+	levels.push_back(new DigipenLogo());
 	levels.push_back(new MainMenu());
 	levels.push_back(new Level1());
 	levels.push_back(new Level2());

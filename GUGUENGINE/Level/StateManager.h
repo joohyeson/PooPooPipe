@@ -13,7 +13,8 @@
 
 //define enum for level
 enum GameLevels
-{	
+{
+	DIGIPENLOGO,
 	MAINMENU, 
 	LV_TEST1,
 	LV_TEST2,

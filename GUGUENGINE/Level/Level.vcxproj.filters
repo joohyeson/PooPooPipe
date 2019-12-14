@@ -54,6 +54,9 @@
     <ClCompile Include="Level4.cpp">
       <Filter>Source Files\Level\Level4</Filter>
     </ClCompile>
+    <ClCompile Include="DigipenLogo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.h">
@@ -73,6 +76,9 @@
     </ClInclude>
     <ClInclude Include="Level4.h">
       <Filter>Source Files\Level\Level4</Filter>
+    </ClInclude>
+    <ClInclude Include="DigipenLogo.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
