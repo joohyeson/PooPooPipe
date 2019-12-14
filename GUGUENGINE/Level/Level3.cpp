@@ -495,12 +495,12 @@ void Level3::Update()
 	if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
 	{
 		conecTcheck2 = true;
-		std::cout << "pipe connect\n";
+		//std::cout << "pipe connect\n";
 	}
 	else
 	{
 		conecTcheck2 = false;
-		std::cout << "Not connect\n";
+		//std::cout << "Not connect\n";
 	}
 	
 	if (cursor3.x <= (getOrigin3_1.x + r / 2) &&
