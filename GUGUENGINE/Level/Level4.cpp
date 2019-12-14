@@ -56,11 +56,33 @@ bool conecTcheck4_1 = false;
 bool conecTcheck4_2 = false;
 bool conecTcheck4_3 = false;
 
+bool blCheck3 = false;
+bool blCheck3_2 = false;
+
+bool blCheck4 = false;
+bool blCheck4_2 = false;
+
 void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext4 == 1)
 	{
-		glfwTerminate();
+		STATE_MANAGER->ChangeLevel(MAINMENU);
+		chekNext4 = 0;
+
+		conecTcheck4_1 = false;
+		conecTcheck4_2 = false;
+		conecTcheck4_3 = false;
+
+		degree4 = 0;
+		degree4_2 = 0;
+		degree4_3 = 0;
+
+		blCheck3 = false;
+		blCheck3_2 = false;
+
+		blCheck4 = false;
+		blCheck4_2 = false;
+
 	}
 }
 
@@ -283,8 +305,6 @@ void Level4::Init()
 
 void Level4::Update()
 {
-
-
 	if (check4 < 1)
 	{
 		check4++;
@@ -332,23 +352,12 @@ void Level4::Update()
 			degree4 += static_cast<float>(DegreeToRadian(60.f));
 			movePuzzle->mesh->setRotation(degree4);
 
-			if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
-			{
-				std::cout << "pipe connect\n";
-				conecTcheck4_1 = true;
-			}
-			else
-			{
-				conecTcheck4_1 = false;
-				std::cout << "Not connect\n";
-			}
-
 			rightCheck4 = 0;
 
 			se4.Play(1);
 			se4.SetVolume(0.5f);
 			se4.SetLoopCount(1);
-		}
+		}		
 	}
 	else
 	{
@@ -356,6 +365,70 @@ void Level4::Update()
 		rightCheck4 = 0;
 	}
 
+	
+	if (blCheck3)
+	{
+		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
+		{
+			std::cout << "pipe connect\n";
+			conecTcheck4_1 = true;
+		}
+		else
+		{
+			conecTcheck4_1 = false;
+			//std::cout << "Not connect\n";
+		}
+	}
+	
+	if (blCheck3_2)
+	{
+		std::cout << "nnnnbbbbb\n";
+
+		if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
+		{
+			std::cout << "fccsadf\n";
+
+			conecTcheck4_1 = true;
+			std::cout << "pipe connect\n";
+		}
+		else if ((movePuzzle->pipe->GetDirValue(E) == puzzle10->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(W) == endPuzzle->pipe->GetDirValue(E)))
+		{
+			conecTcheck4_1 = true;
+			std::cout << "pipe connect\n";
+		}
+		else
+		{
+			conecTcheck4_1 = false;
+			//std::cout << "Not connect\n";
+		}
+	}
+	//if (blCheck3)
+	//{
+	//	if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
+	//	{
+	//		std::cout << "pipe connect\n";
+	//		conecTcheck4_1 = true;
+	//	}
+	//	else
+	//	{
+	//		conecTcheck4_1 = false;
+	//		//std::cout << "Not connect\n";
+	//	}
+	//}
+	//if (blCheck3_2)
+	//{
+	//	if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
+	//	{
+	//		conecTcheck4_1 = true;
+	//		std::cout << "pipe connect\n";
+	//	}
+	//	else
+	//	{
+	//		conecTcheck4_1 = false;
+	//		//std::cout << "Not connect\n";
+	//	}
+	//}
+	
 	if (cursor4.x <= (getOrigin2_1.x + r / 2) &&
 		cursor4.x >= (getOrigin2_1.x - r / 2) &&
 		cursor4.y <= (getOrigin2_1.y + r) &&
@@ -374,16 +447,6 @@ void Level4::Update()
 
 			movePuzzle2->mesh->setRotation(degree4_2);
 
-			if ((movePuzzle2->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle2->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
-			{
-				conecTcheck4_2 = true;
-				std::cout << "pipe connect\n";
-			}
-			else
-			{
-				conecTcheck4_2 = false;
-				std::cout << "Not connect\n";
-			}
 			rightCheck4_2 = 0;
 
 			se4.Play(1);
@@ -397,6 +460,17 @@ void Level4::Update()
 		rightCheck4_2 = 0;
 	}
 
+	if ((movePuzzle2->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle2->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
+	{
+		conecTcheck4_2 = true;
+		//std::cout << "pipe connect\n";
+	}
+	else
+	{
+		conecTcheck4_2 = false;
+		//std::cout << "Not connect\n";
+	}
+	
 	if (cursor4.x <= (getOrigin3_1.x + r / 2) &&
 		cursor4.x >= (getOrigin3_1.x - r / 2) &&
 		cursor4.y <= (getOrigin3_1.y + r) &&
@@ -411,19 +485,7 @@ void Level4::Update()
 			movePuzzle3->pipe->Update();
 			degree4_3 += static_cast<float>(DegreeToRadian(60.f));
 
-
 			movePuzzle3->mesh->setRotation(degree4_3);
-
-			if ((movePuzzle3->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle3->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
-			{
-				conecTcheck4_3 = true;
-				std::cout << "pipe connect\n";
-			}
-			else
-			{
-				conecTcheck4_3 = false;
-				std::cout << "Not connect\n";
-			}
 
 			rightCheck4_3 = 0;
 
@@ -438,7 +500,33 @@ void Level4::Update()
 		rightCheck4_3 = 0;
 	}
 
-
+	if (blCheck4)
+	{
+		if ((movePuzzle3->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle3->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
+		{
+			std::cout << "pipe connect\n";
+			conecTcheck4_3 = true;
+		}
+		else
+		{
+			conecTcheck4_3 = false;
+			//std::cout << "Not connect\n";
+		}
+	}
+	if (blCheck4_2)
+	{
+		if ((movePuzzle3->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle3->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
+		{
+			conecTcheck4_3 = true;
+			//std::cout << "pipe connect\n";
+		}
+		else
+		{
+			conecTcheck4_3 = false;
+			//std::cout << "Not connect\n";
+		}
+	}
+	
 	//
 	if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
 		getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
@@ -461,6 +549,8 @@ void Level4::Update()
 				getOrigin1_1.y >= (getOrigin1_2.y - r)))
 			{
 				movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+				blCheck3 = true;
+				blCheck3_2 = false;
 			}
 
 			if ((getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
@@ -469,7 +559,8 @@ void Level4::Update()
 				getOrigin1_1.y >= (getOrigin2_2.y - r)))
 			{
 				movePuzzle->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
-
+				blCheck3 = false;
+				blCheck3_2 = false;
 			}
 
 			if ((getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
@@ -478,6 +569,8 @@ void Level4::Update()
 				getOrigin1_1.y >= (getOrigin3_2.y - r)))
 			{
 				movePuzzle->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+				blCheck3 = false;
+				blCheck3_2 = true;
 			}
 		}
 	}
@@ -546,7 +639,8 @@ void Level4::Update()
 				getOrigin3_1.y >= (getOrigin1_2.y - r)))
 			{
 				movePuzzle3->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
-
+				blCheck4 = true;
+				blCheck4_2 = false;
 			}
 			if ((getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
@@ -554,6 +648,8 @@ void Level4::Update()
 				getOrigin3_1.y >= (getOrigin2_2.y - r)))
 			{
 				movePuzzle3->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+				blCheck4 = false;
+				blCheck4_2 = false;
 			}
 			if ((getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
 				getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
@@ -561,7 +657,8 @@ void Level4::Update()
 				getOrigin3_1.y >= (getOrigin3_2.y - r)))
 			{
 				movePuzzle3->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
-
+				blCheck4 = false;
+				blCheck4_2 = true;
 			}
 		}
 	}
@@ -578,6 +675,7 @@ void Level4::Update()
 				clear->mesh->setTransform({ -0.7f, -0.6f });
 				chekNext4 = 1;
 				std::cout << "clear" << std::endl;
+
 			}
 			connectMove4 = 0;
 		}

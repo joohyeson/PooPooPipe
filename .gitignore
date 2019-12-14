@@ -4,3 +4,16 @@ GAM200_SFML_FUN/.vs/
 .vs/
 GUGUENGINE/Level/x64/
 GUGUENGINE/GUGUENGINE/x64/
+*.csv
+*.exe
+*.pdb
+*.obj
+*.tlog
+*.lastbuildstate
+*.log
+*.idb
+*.dll
+*.ipdb
+*.iobj
+*.lib
+*.ilk

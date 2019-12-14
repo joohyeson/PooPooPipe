@@ -15,6 +15,8 @@
 int check0 = 0;
 Vector2<float> cursor0;
 int moveCheck0 = 0;
+int moveCheck0_2 = 0;
+
 
 GLuint textureId00;
 GLuint textureId01;
@@ -41,6 +43,7 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		moveCheck0 += 1;
+		moveCheck0_2 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 }
@@ -52,7 +55,7 @@ void MainMenu::Init()
 	if (!bgm.IsPlaying())
 	{
 		bgm.Play(0);
-		bgm.SetVolume(0.1f);
+		bgm.SetVolume(0.3f);
 	}
 
 	background = OBJECT_FACTORY->CreateEmptyObject();
@@ -67,13 +70,13 @@ void MainMenu::Init()
 	
 	
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
+	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
+
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
 	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
 
 	mShader.BuildTextureShader();
-
-	
 
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
@@ -81,6 +84,13 @@ void MainMenu::Init()
 	startButton->mesh->setTransform({ 0.0f,-0.2f });
 	startButton->mesh->SetMeshType(rectangle);
 	startButton->mesh->InitializeTextureMesh(4.f, 1.f);
+
+	tutorialButton->AddComponent(new Mesh());
+	tutorialButton->Init();
+
+	tutorialButton->mesh->setTransform({ 0.0f,-0.5f });
+	tutorialButton->mesh->SetMeshType(rectangle);
+	tutorialButton->mesh->InitializeTextureMesh(4.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -95,15 +105,19 @@ void MainMenu::Update()
 	getOrigin.x = startButton->mesh->GetTransform().x;
 	getOrigin.y = startButton->mesh->GetTransform().y;
 
-
-	if ((cursor0.x <= (getOrigin.x + 2.f) &&
-		(cursor0.x >= (getOrigin.x - 2.f)) &&
-		(cursor0.y <= (getOrigin.y + 0.5f)) &&
-		(cursor0.y >= (getOrigin.y - 0.5))))
+	getOrigin2.x = tutorialButton->mesh->GetTransform().x;
+	getOrigin2.y = tutorialButton->mesh->GetTransform().y;
+	
+	if ((cursor0.x <= (getOrigin.x + 0.43f) &&
+		(cursor0.x >= (getOrigin.x - 0.43f)) &&
+		(cursor0.y <= (getOrigin.y + 0.095f)) &&
+		(cursor0.y >= (getOrigin.y - 0.095f))))
 	{
 		if (moveCheck0 % 2 == 1)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST1);
+			STATE_MANAGER->ChangeLevel(LV_TEST3);
+			std::cout << "DEmo is " << std::endl;
+			moveCheck0 = 0;
 		}
 	}
 	else
@@ -111,8 +125,27 @@ void MainMenu::Update()
 		moveCheck0 = 0;
 	}
 
+	if ((cursor0.x <= (getOrigin2.x + 0.43f) &&
+		(cursor0.x >= (getOrigin2.x - 0.43f)) &&
+		(cursor0.y <= (getOrigin2.y + 0.095f)) &&
+		(cursor0.y >= (getOrigin2.y - 0.095f))))
+	{
+		if (moveCheck0_2 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST1);
+			std::cout << "TUTO is " << std::endl;
+			moveCheck0_2 = 0;
+		}
+	}
+	else
+	{
+		moveCheck0_2 = 0;
+	}
+	
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
+	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
+
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

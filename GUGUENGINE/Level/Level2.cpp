@@ -28,7 +28,7 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST3);
+		STATE_MANAGER->ChangeLevel(MAINMENU);
 	}
 }
 

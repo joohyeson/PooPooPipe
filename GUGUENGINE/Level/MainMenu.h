@@ -20,6 +20,7 @@ public:
 	{
 		background = nullptr;
 		startButton = nullptr;
+		tutorialButton = nullptr;
 	}
 
 	void Init() override;
@@ -29,6 +30,8 @@ public:
 private:
 	Object* background;
 	Object* startButton;
+	Object* tutorialButton;
+
 	Mesh mMesh;
 	Shader mShader;
 
@@ -36,4 +39,6 @@ private:
 	int key;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
+	Vector3<float> getOrigin2 = { 0, 0, 0 };
+
 };
