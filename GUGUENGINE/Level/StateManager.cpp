@@ -1,3 +1,12 @@
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.14.2019
+ *digipen.hagyeong@gmail.com
+ *StateManager.cpp
+ *to manage stage
+ *we can change level
+ */
 #include "StateManager.h"
 #include "Level1.h"
 #include "Level2.h"

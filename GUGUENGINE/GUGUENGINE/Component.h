@@ -1,5 +1,12 @@
 #pragma once
-
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *Component.h
+ *for make component
+ */
 #include"ComponentType.h"
 
 class Object;

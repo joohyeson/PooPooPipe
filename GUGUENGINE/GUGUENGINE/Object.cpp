@@ -1,4 +1,11 @@
-
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Object.cpp
+ *to make object
+ */
 #include"Object.h"
 #include <iostream>
 #include "ObjectManager.h"

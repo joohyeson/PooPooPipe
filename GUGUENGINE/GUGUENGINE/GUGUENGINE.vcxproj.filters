@@ -33,15 +33,6 @@
     <Filter Include="소스 파일\Application\Command">
       <UniqueIdentifier>{423282f1-4e9d-4aad-ba0c-b01158ce8d10}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\stage">
-      <UniqueIdentifier>{4003f3bf-044e-4f2d-84ea-d5e93d510f20}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Object\State">
-      <UniqueIdentifier>{f28ae35a-4df9-4369-a184-1ca02d6d963f}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\LevelManager">
-      <UniqueIdentifier>{c906c0a4-9890-4dca-bb20-34d655a616f1}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Graphics">
       <UniqueIdentifier>{732010b0-6ffb-4305-912c-4047c02bb7c7}</UniqueIdentifier>
     </Filter>
@@ -92,20 +83,8 @@
     <ClCompile Include="ObjectManager.cpp">
       <Filter>소스 파일\Object</Filter>
     </ClCompile>
-    <ClCompile Include="StageManager.cpp">
-      <Filter>소스 파일\stage</Filter>
-    </ClCompile>
-    <ClCompile Include="ArcheType.cpp">
-      <Filter>소스 파일\Object</Filter>
-    </ClCompile>
     <ClCompile Include="FitPuzzleComponent.cpp">
       <Filter>소스 파일\Component</Filter>
-    </ClCompile>
-    <ClCompile Include="State.cpp">
-      <Filter>소스 파일\Object\State</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>소스 파일\Object\State</Filter>
     </ClCompile>
     <ClCompile Include="Engine.cpp">
       <Filter>소스 파일</Filter>
@@ -169,44 +148,14 @@
     <ClInclude Include="ObjectManager.h">
       <Filter>소스 파일\Object</Filter>
     </ClInclude>
-    <ClInclude Include="Stage.h">
-      <Filter>소스 파일\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="ArcheType.h">
-      <Filter>소스 파일\Object</Filter>
-    </ClInclude>
     <ClInclude Include="FitPuzzleComponent.h">
       <Filter>소스 파일\Component</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>소스 파일\Object\State</Filter>
-    </ClInclude>
-    <ClInclude Include="State.h">
-      <Filter>소스 파일\Object\State</Filter>
-    </ClInclude>
-    <ClInclude Include="StageTypes.h">
-      <Filter>소스 파일\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="RegisterStage.h">
-      <Filter>소스 파일\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="GameData.h">
-      <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="StageManager.h">
-      <Filter>소스 파일\stage</Filter>
-    </ClInclude>
-    <ClInclude Include="StageBuilder.h">
-      <Filter>소스 파일\stage</Filter>
     </ClInclude>
     <ClInclude Include="System.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
     <ClInclude Include="Engine.h">
       <Filter>소스 파일</Filter>
-    </ClInclude>
-    <ClInclude Include="LevelManager.h">
-      <Filter>소스 파일\LevelManager</Filter>
     </ClInclude>
     <ClInclude Include="Image.h">
       <Filter>소스 파일\Graphics\Image</Filter>
@@ -246,6 +195,9 @@
     </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>소스 파일\Graphics\Color</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelManager.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

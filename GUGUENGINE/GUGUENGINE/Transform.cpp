@@ -3,6 +3,7 @@
  *9.23.2019
  *juhye.son990902@gmail.com
  *Transform.cpp
+ *for translataion, rotatation, scaling
  */
 #include "Transform.h"
 #include "Mathematics/Vector3.hpp"

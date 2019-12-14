@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Object.h
+ *this is object header 
+ */
 #include<string>
 #include "Transform.h"
 #include "Mesh.h"

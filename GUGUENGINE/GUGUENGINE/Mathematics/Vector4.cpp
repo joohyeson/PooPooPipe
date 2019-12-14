@@ -1,3 +1,10 @@
+/*
+ *hakyung.kim
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *Vector4.hpp
+ * vector4 math custom library
+ */
 #include "Vector4.hpp"
 
 //=============================================Constructor============================================

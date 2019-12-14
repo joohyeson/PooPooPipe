@@ -1,5 +1,12 @@
 ﻿#include "FitPuzzleComponent.h"
-
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *FitPuzzleComponent.cpp
+ *for add component to pipe
+ */
 void PuzzleComponent::Update()
 {
 	bool temp = dirArray1[0];

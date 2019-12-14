@@ -3,12 +3,14 @@
  *9.17.2019
  *juhye.son990902@gmail.com
  *Application.cpp
+ *make window 
  */
 #include <iostream>
 #include "glew.h"		
 #include "../GLFW/glfw3.h"
 #include "Mesh.h"
 #include "Application.h"
+#include "external/stb/include/stb_image.h"
 
 int framebufferWidth, framebufferHeight;
 Application* APPLICATION = nullptr;
@@ -68,7 +70,7 @@ Application::Application()
 	Mywindow = glfwCreateWindow(
 		WIDTH,
 		HEIGHT,
-		"OpenGL Example",
+		"PooPooPipe",
 		NULL, NULL);
 
 	if (!Mywindow) {
@@ -78,7 +80,12 @@ Application::Application()
 	}
 
 	glfwMakeContextCurrent(Mywindow);
+	GLFWimage icons[1];
 
+	icons[0].pixels = stbi_load("assets/character.png", &icons[0].width, &icons[0].height, 0, 0);
+
+
+	glfwSetWindowIcon(Mywindow, 1, icons);
 	glewExperimental = GL_TRUE;
 	GLenum errorCode = glewInit();
 	if (GLEW_OK != errorCode) {

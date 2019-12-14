@@ -3,6 +3,7 @@
  *11.13.2019
  *juhye.son990902@gmail.com
  *Texture.cpp
+ * for inserting image files
  */
 #include <cassert>
 #include <filesystem>

@@ -1,3 +1,11 @@
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *ObjectManager.cpp
+ *for manage object
+ */
 #include "ObjectManager.h"
 #include <cassert>
 #include "Object.h"
@@ -15,9 +23,7 @@ ObjectFactory::ObjectFactory()
 }
 
 ObjectFactory::~ObjectFactory()
-{
-	//DestroyAllObjects();
-}
+{}
 
 void ObjectFactory::Update()
 {
@@ -63,8 +69,8 @@ Object* ObjectFactory::CreateEmptyObject()
 void ObjectFactory::DestroyAllObjects()
 {
 	Update();
-	for (auto blue : ObjectIDMap)
-		delete blue.second;
+	for (auto gugu : ObjectIDMap)
+		delete gugu.second;
 
 	ObjectIDMap.clear();
 }

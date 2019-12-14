@@ -1,8 +1,11 @@
 /*
  *hakyung.kim
+ *uijin.lee
  *12.13.2019
  *digipen.hagyeong@gmail.com
- *Level3.cpp
+ *if you want to check pipe connect, you can remove "//"pipe connect
+ *this is level 4
+ *Level4.cpp
  */
 
 #include "StateManager.h"
@@ -23,7 +26,6 @@ int moveCheck4_2 = 0;
 int moveCheck4_3 = 0;
 int connectMove4 = 0;
 
-//int connectCheck3 = 0;
 float degree4 = 0;
 float degree4_2 = 0;
 float degree4_3 = 0;
@@ -49,7 +51,7 @@ GLuint texureIdCurve4_2;
 
 GLuint texureIdbutton4;
 GLuint texureIdclear4;
-
+GLuint texureSpace4;
 Sound se4;
 
 bool conecTcheck4_1 = false;
@@ -150,6 +152,8 @@ void Level4::Init()
 	endPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	button = OBJECT_FACTORY->CreateEmptyObject();
 	clear = OBJECT_FACTORY->CreateEmptyObject();
+	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+
 	
 	texureIdLine4 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -163,7 +167,7 @@ void Level4::Init()
 
 	texureIdbutton4 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear4 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-
+	texureSpace4 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	se4.Init();
 	se4.LoadMusic("assets\\coin.mp3");
 
@@ -298,6 +302,12 @@ void Level4::Init()
 	clear->Init();
 	clear->mesh->InitializeTextureMesh(1.f, 1.f);
 
+	spacePress->AddComponent(new Mesh());
+	spacePress->mesh->setTransform({ 0.0f, -0.85f });
+	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->Init();
+	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level4keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level4cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level4mouseButtonCallback);
@@ -370,7 +380,7 @@ void Level4::Update()
 	{
 		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
 		{
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 			conecTcheck4_1 = true;
 		}
 		else
@@ -382,19 +392,15 @@ void Level4::Update()
 	
 	if (blCheck3_2)
 	{
-		std::cout << "nnnnbbbbb\n";
-
 		if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
 		{
-			std::cout << "fccsadf\n";
-
 			conecTcheck4_1 = true;
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 		}
 		else if ((movePuzzle->pipe->GetDirValue(E) == puzzle10->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(W) == endPuzzle->pipe->GetDirValue(E)))
 		{
 			conecTcheck4_1 = true;
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 		}
 		else
 		{
@@ -402,32 +408,6 @@ void Level4::Update()
 			//std::cout << "Not connect\n";
 		}
 	}
-	//if (blCheck3)
-	//{
-	//	if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
-	//	{
-	//		std::cout << "pipe connect\n";
-	//		conecTcheck4_1 = true;
-	//	}
-	//	else
-	//	{
-	//		conecTcheck4_1 = false;
-	//		//std::cout << "Not connect\n";
-	//	}
-	//}
-	//if (blCheck3_2)
-	//{
-	//	if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
-	//	{
-	//		conecTcheck4_1 = true;
-	//		std::cout << "pipe connect\n";
-	//	}
-	//	else
-	//	{
-	//		conecTcheck4_1 = false;
-	//		//std::cout << "Not connect\n";
-	//	}
-	//}
 	
 	if (cursor4.x <= (getOrigin2_1.x + r / 2) &&
 		cursor4.x >= (getOrigin2_1.x - r / 2) &&
@@ -712,7 +692,8 @@ void Level4::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
-
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
+	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

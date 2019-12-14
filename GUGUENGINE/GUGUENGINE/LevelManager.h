@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.12.2019
+ *digipen.hagyeong@gmail.com
+ *LevelManager.cpp
+ *for manage level
+ */
 class LevelManager
 {
 public:

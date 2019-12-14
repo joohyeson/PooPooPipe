@@ -3,6 +3,7 @@
  *10.14.2019
  *juhye.son990902@gmail.com
  *Image.h
+ *for insert image
  */
 #include "Image.h"
 #include <algorithm>

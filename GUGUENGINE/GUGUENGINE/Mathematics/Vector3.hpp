@@ -1,4 +1,11 @@
 #pragma once
+/*
+ *hakyung.kim
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *Vector3.hpp
+ *vector3 math custom library
+ */
 #include <iostream>
 
 

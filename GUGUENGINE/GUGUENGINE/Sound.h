@@ -4,6 +4,7 @@
  *9.23.2019
  *chocob0217@gmail.com
  *Sound.h
+ *this is a header for sound
  */
 #include "fmod.hpp"
 #include "System.h"

@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.14.2019
+ *digipen.hagyeong@gmail.com
+ *StateManager.h
+ *this is header for statemanage.cpp
+ */
 #include<vector>
 #include "../GUGUENGINE/System.h"
 #include "../GUGUENGINE/LevelManager.h"

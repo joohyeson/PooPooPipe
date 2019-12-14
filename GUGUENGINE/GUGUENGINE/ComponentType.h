@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *CompotnentType.h
+ *this is component type header
+ */
 #include <string>
 
 enum ComponentType {

@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.1.2019
+ *digipen.hagyeong@gmail.com
+ *Command.h
+ *this is command 
+ */
 #include "CommandType.h"
 
 class Command

@@ -1,9 +1,11 @@
 #pragma once
 /*
  *hakyung.kim
+ *uijin.lee
  *12.13.2019
  *digipen.hagyeong@gmail.com
- *Level3.h
+ *this is level4 header
+ *Level4.h
  */
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
@@ -40,7 +42,8 @@ public:
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
-
+		spacePress = nullptr;
+		
 		button = nullptr;
 		clear = nullptr;
 		key = 0;
@@ -52,7 +55,7 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
+	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, *spacePress;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
 	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;

@@ -3,6 +3,7 @@
  *9.23.2019
  *chocob0217@gmail.com
  *Sound.cpp
+ *for add sound
  */
 #include "Sound.h"
 #include <iostream>

@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *FitPuzzleComponent.h
+ *this is headerflie for fit puzzle component
+ */
 #include "Component.h"
 #include "Mesh.h"
 
@@ -19,21 +27,12 @@ class [[nodiscard]] PuzzleComponent : public Component
 public:
 	PuzzleComponent() : Component(COMPONENTTYPE_PIPE)
 	{
-		dirArray1[0] = false;
+		dirArray1[0] = false;  
 		dirArray1[1] = false;
 		dirArray1[2] = true;
 		dirArray1[3] = false;
 		dirArray1[4] = false;
-		dirArray1[5] = true;
-
-		/*dirArray2[0] = true;
-		dirArray2[1] = false;
-		dirArray2[2] = true;
-		dirArray2[3] = false;;
-		dirArray2[4] = false;
-		dirArray2[5] = false;*/
-		
-		
+		dirArray1[5] = true;				
 	}
 	~PuzzleComponent() override
 	{
@@ -44,11 +43,7 @@ public:
 	int GetDirValue(PuzzleDirection index);
 private:
 	
-	//bool dirArray1[6] = { true, false,false,true,false,false };
-	//bool dirArray2[6] = { true, false,false,false,true,false };
-	bool dirArray1[6];
-	bool dirArray2[6];
-	
+	bool dirArray1[6]; // for hex	
 	int clickCount = 0;
 };
 

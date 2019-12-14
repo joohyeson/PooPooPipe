@@ -1,4 +1,11 @@
 #pragma once
+/*
+ *hakyung.kim
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *Matrix3.hpp
+ *Matrix3 math custom library
+ */
 #include "MathLibrary.hpp"
 
 

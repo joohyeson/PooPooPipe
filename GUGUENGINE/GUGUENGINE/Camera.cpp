@@ -3,6 +3,7 @@
  *9.17.2019
  *juhye.son990902@gmail.com
  *Camera.cpp
+ *for add camera
  */
 #include "Camera.h"
 

@@ -1,5 +1,12 @@
 #pragma once
-
+/*
+ *hakyung.kim
+ *uijin.lee
+ *11.1.2019
+ *digipen.hagyoeng@gmail.com
+ *CommandType.h
+ *this is command type
+ */
 #include <string>
 
 enum CommandType {

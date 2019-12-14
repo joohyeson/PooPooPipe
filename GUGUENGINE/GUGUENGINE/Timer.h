@@ -3,7 +3,8 @@
  *juhye.son
  *9.10.2019
  *juhye.son990902@gmail.com
- *Timer.cpp
+ *Timer.h
+ *this is timer header
  */
 #include <chrono>
 

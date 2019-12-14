@@ -1,3 +1,12 @@
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Level2.cpp
+ *this is level2
+ */
+
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include <iostream>
@@ -8,7 +17,6 @@
 #include "Level2.h"
 #include "../GUGUENGINE/Sound.h"
 
-
 int check2 = 0;
 Vector2<float> cursor2;
 
@@ -16,19 +24,23 @@ int moveCheck2 = 0;
 int connectCheck2 = 0;
 float degree = 0;
 int rightCheck2 = 0;
+int checkToPipe = 0;
 
 GLuint texureIdLine2;
 GLuint texureIdCurve2;
 GLuint texureIdBlack2;
 GLuint textureBackground2;
+GLuint textureSpace2;
+
 
 Sound se2;
 
 void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && checkToPipe == 1)
 	{
 		STATE_MANAGER->ChangeLevel(MAINMENU);
+		checkToPipe = 0;
 	}
 }
 
@@ -70,10 +82,12 @@ void Level2::Init()
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleUp = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleDown = OBJECT_FACTORY->CreateEmptyObject();
+	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack2 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	textureSpace2 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
@@ -111,6 +125,12 @@ void Level2::Init()
 	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
 	puzzleDown->mesh->InitializeTextureMesh();
 
+	spacePress->AddComponent(new Mesh());
+	spacePress->mesh->setTransform({ 0.0f, -0.5f });
+	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->Init();
+	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level2mouseButtonCallback);
@@ -152,12 +172,13 @@ void Level2::Update()
 			if ((movePuzzle->pipe->GetDirValue(SE) == puzzleDown->pipe->GetDirValue(NW)) && (movePuzzle->pipe->GetDirValue(NW) == puzzleUp->pipe->GetDirValue(SE)))
 			{
 				std::cout << "pipe connect\n";
+				checkToPipe = 1;
 			}
 			else
 			{
 				std::cout << "Not connect\n";
+				checkToPipe = 0;
 			}
-
 
 			se2.Play(1);
 			se2.SetVolume(0.5f);
@@ -192,6 +213,7 @@ void Level2::Update()
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
 	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace2);
 
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 

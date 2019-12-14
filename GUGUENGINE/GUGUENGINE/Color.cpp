@@ -3,6 +3,7 @@
  *9.10.2019
  *juhye.son990902@gmail.com
  *Color.cpp
+ *for add color
  */
 
 #include "Color.h"

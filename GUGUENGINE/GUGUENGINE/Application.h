@@ -4,6 +4,7 @@
  *9.17.2019
  *juhye.son990902@gmail.com
  *Application.h
+ *this is applicaiotn header
  */
 #include "Application.h"
 #include  "Shader.h"

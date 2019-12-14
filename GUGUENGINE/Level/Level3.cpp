@@ -3,6 +3,8 @@
  *12.13.2019
  *digipen.hagyeong@gmail.com
  *Level3.cpp
+ *if you want to check pipe connect, you can remove "//"pipe connect
+ *this is level3
  */
 
 #include "StateManager.h"
@@ -23,7 +25,6 @@ int moveCheck3_2 = 0;
 int moveCheck3_3 = 0;
 int connectMove = 0;
 
-//int connectCheck3 = 0;
 float degree2 = 0;
 float degree2_2 = 0;
 float degree2_3 = 0;
@@ -49,6 +50,8 @@ GLuint texureIdCurve3_2;
 
 GLuint texureIdbutton3;
 GLuint texureIdclear3;
+GLuint texureSpace3;
+
 
 Sound se3;
 
@@ -152,6 +155,9 @@ void Level3::Init()
 	endPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	button = OBJECT_FACTORY->CreateEmptyObject();
 	clear = OBJECT_FACTORY->CreateEmptyObject();
+
+	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	
 	texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -164,7 +170,7 @@ void Level3::Init()
 
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	
+	texureSpace3 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	se3.Init();
 	se3.LoadMusic("assets\\coin.mp3");
 
@@ -309,32 +315,12 @@ void Level3::Init()
 	clear->mesh->SetMeshType(rectangle);
 	clear->Init();
 	clear->mesh->InitializeTextureMesh(1.f, 1.f);
-	
-	/*std::cout << "this is 2" << std::endl;
 
-	std::cout << puzzle2->pipe->GetDirValue(NW) << std::endl;
-	std::cout << puzzle2->pipe->GetDirValue(NE) << std::endl;
-	std::cout << puzzle2->pipe->GetDirValue(E) << std::endl;
-	std::cout << puzzle2->pipe->GetDirValue(SE) << std::endl;
-	std::cout << puzzle2->pipe->GetDirValue(SW) << std::endl;
-	std::cout << puzzle2->pipe->GetDirValue(W) << std::endl;
-
-	std::cout << "this is 7" << std::endl;
-
-	std::cout << puzzle7->pipe->GetDirValue(NW) << std::endl;
-	std::cout << puzzle7->pipe->GetDirValue(NE) << std::endl;
-	std::cout << puzzle7->pipe->GetDirValue(E) << std::endl;
-	std::cout << puzzle7->pipe->GetDirValue(SE) << std::endl;
-	std::cout << puzzle7->pipe->GetDirValue(SW) << std::endl;
-	std::cout << puzzle7->pipe->GetDirValue(W) << std::endl;
-	std::cout << "this is 6" << std::endl;
-
-	std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
-	std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
-	std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
-	std::cout << puzzle6->pipe->GetDirValue(SE) << std::endl;
-	std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
-	std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;*/
+	spacePress->AddComponent(new Mesh());
+	spacePress->mesh->setTransform({ 0.0f, -0.85f });
+	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->Init();
+	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level3keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level3cursorPositionCallback);
@@ -414,7 +400,6 @@ void Level3::Update()
 			std::cout << puzzle7->pipe->GetDirValue(SE) << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(SW) << std::endl;
 			std::cout << puzzle7->pipe->GetDirValue(W) << std::endl;
-			
 			se3.Play(1);
 			se3.SetVolume(0.5f);
 			se3.SetLoopCount(1);
@@ -430,13 +415,13 @@ void Level3::Update()
 	{
 		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
 		{
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 			conecTcheck1 = true;
 		}
 		else
 		{
 			conecTcheck1 = false;
-			std::cout << "Not connect\n";
+			//std::cout << "Not connect\n";
 		}
 	}
 	if (blCheck1_2)
@@ -444,12 +429,12 @@ void Level3::Update()
 		if ((movePuzzle->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(SE) == endPuzzle->pipe->GetDirValue(NW)))
 		{
 			conecTcheck1 = true;
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 		}
 		else
 		{
 			conecTcheck1 = false;
-			std::cout << "Not connect\n";
+			//std::cout << "Not connect\n";
 		}
 	}
 	
@@ -535,7 +520,7 @@ void Level3::Update()
 
 			rightCheck3_3 = 0;
 
-			std::cout << "this is 2" << std::endl;
+			std::cout << "this is 6" << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NW) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(NE) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(E) << std::endl;
@@ -543,7 +528,7 @@ void Level3::Update()
 			std::cout << puzzle6->pipe->GetDirValue(SW) << std::endl;
 			std::cout << puzzle6->pipe->GetDirValue(W) << std::endl;
 
-			std::cout << "this is 7" << std::endl;
+			std::cout << "this is movepuzzle3" << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(NW) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(NE) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(E) << std::endl;
@@ -551,7 +536,7 @@ void Level3::Update()
 			std::cout << movePuzzle3->pipe->GetDirValue(SW) << std::endl;
 			std::cout << movePuzzle3->pipe->GetDirValue(W) << std::endl;
 			
-			std::cout << "this is 6" << std::endl;
+			std::cout << "this is endpuzzle" << std::endl;
 			std::cout << endPuzzle->pipe->GetDirValue(NW) << std::endl;
 			std::cout << endPuzzle->pipe->GetDirValue(NE) << std::endl;
 			std::cout << endPuzzle->pipe->GetDirValue(E) << std::endl;
@@ -574,13 +559,13 @@ void Level3::Update()
 	{
 		if ((movePuzzle3->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle3->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
 		{
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 			conecTcheck3 = true;
 		}
 		else
 		{
 			conecTcheck3 = false;
-			std::cout << "Not connect\n";
+			//std::cout << "Not connect\n";
 		}
 	}
 	if (blCheck2_2)
@@ -588,12 +573,12 @@ void Level3::Update()
 		if ((movePuzzle3->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle3->pipe->GetDirValue(SE) == endPuzzle->pipe->GetDirValue(NW)))
 		{
 			conecTcheck3 = true;
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 		}
 		else
 		{
 			conecTcheck3 = false;
-			std::cout << "Not connect\n";
+			//std::cout << "Not connect\n";
 		}
 	}
 
@@ -785,6 +770,8 @@ void Level3::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
+
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

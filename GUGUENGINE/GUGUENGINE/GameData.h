@@ -1,5 +1,0 @@
-struct GameData
-{
-	int level;
-};
-

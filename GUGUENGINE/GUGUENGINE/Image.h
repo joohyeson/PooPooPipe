@@ -3,6 +3,7 @@
  *10.14.2019
  *juhye.son990902@gmail.com
  *Image.h
+ *this is header file for image
  */
 #include "Color.h"
 #include <filesystem>

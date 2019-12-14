@@ -4,6 +4,7 @@
  *9.23.2019
  *juhye.son990902@gmail.com
  *Transform.h
+ *this is trnasform header
  */
 #include "Component.h"
 #include "Mathematics/Vector3.hpp"
@@ -17,7 +18,6 @@ public:
 		translation = { 0.f, 0.f };
 		scale = { 1.0f,1.0f };
 	};
-	//~Transform();
 
 	void Initialize(void);
 	void Update();

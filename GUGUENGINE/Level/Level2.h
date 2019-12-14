@@ -1,5 +1,12 @@
 #pragma once
-
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Level2.h
+ *this is level2 header
+ */
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -18,6 +25,7 @@ public:
 		blackPuzzle = nullptr;
 		puzzleUp = nullptr;
 		puzzleDown = nullptr;
+		spacePress = nullptr;
 		key = 0;
 	}
 
@@ -27,7 +35,7 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown;
+	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, *spacePress;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

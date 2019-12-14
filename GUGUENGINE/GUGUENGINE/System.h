@@ -1,14 +1,21 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *System.h
+ *Systems that run all cpp
+ */
 class System
 {
 public:
-	//Initialize the System
+	//Initialize
 	virtual void Init() = 0;
 
-	//All Systems are updated every frame
+	//All Systems update
 	virtual void Update() = 0;
 
-	//All Systems need a virtual destructor to their destructors called
 	virtual ~System()
 	{
 	}

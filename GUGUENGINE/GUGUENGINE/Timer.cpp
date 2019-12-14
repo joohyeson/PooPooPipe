@@ -3,6 +3,7 @@
  *9.10.2019
  *juhye.son990902@gmail.com
  *Timer.cpp
+ *for check time
  */
 #include "Timer.h"
 

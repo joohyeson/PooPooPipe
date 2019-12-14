@@ -1,3 +1,11 @@
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Level1.cpp
+ *this is level1
+ */
 #include "Level1.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
@@ -17,6 +25,7 @@ GLuint texureIdLine1;
 GLuint texureIdCurve1;
 GLuint texureIdBlack1;
 GLuint textureBackground1;
+GLuint textureSpace1;
 
 Sound se;
 
@@ -26,8 +35,8 @@ void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 	{
 		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		{
-			std::cout << "Change level to Level2" << std::endl;
 			STATE_MANAGER->ChangeLevel(LV_TEST2);
+			connectCheck1 = 0;
 		}
 	}
 }
@@ -65,11 +74,14 @@ void Level1::Init()
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleLeft = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleRight = OBJECT_FACTORY->CreateEmptyObject();
+	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+
 
 	texureIdLine1 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack1 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve1 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-
+	textureSpace1 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+	
 	se.Init();
 	se.LoadMusic("assets\\coin.mp3");
 
@@ -99,6 +111,12 @@ void Level1::Init()
 	puzzleRight->mesh->setTransform({ 0.34f, 0.3f });
 	puzzleRight->mesh->InitializeTextureMesh();
 
+	spacePress->AddComponent(new Mesh());
+	spacePress->mesh->setTransform({ 0.0f, -0.5f });
+	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->Init();
+	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level1mouseButtonCallback);
@@ -109,7 +127,6 @@ void Level1::Update()
 	if (check < 1)
 	{
 		check++;
-		std::cout << "HELLO" << std::endl;
 	}
 	
 	se.Update();
@@ -157,6 +174,8 @@ void Level1::Update()
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack1);
 	puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
 	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve1);
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace1);
+
 
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
 

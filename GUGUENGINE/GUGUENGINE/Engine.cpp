@@ -1,3 +1,10 @@
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *Engine.cpp
+ */
 #include<SDL.h>
 #include <glew.h>
 
@@ -5,8 +12,6 @@
 #include "Engine.h"
 #include"Application.h"
 #include <iostream>
-//#include "Graphics.h"
-#include "StateManager.h"
 #include "ObjectManager.h"
 #include "../Level/StateManager.h"
 
@@ -25,12 +30,8 @@ Engine::~Engine()
 
 void Engine::Init()
 {
-	
-	//std::cout << "Initialize Engine" << std::endl;
-	////Order is important
 	AddSystem(new Application());
 	AddSystem(new ObjectFactory());
-	//AddSystem(new Graphics());
 	AddSystem(new StateManager());
 	for (auto GUGU : Systems)
 	{

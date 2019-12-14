@@ -1,4 +1,12 @@
 #pragma once
+/*
+ *hakyung.kim
+ *uijin.lee
+ *10.1.2019
+ *digipen.hagyeong@gmail.com
+ *ObjectManager.h
+ *this is objectmanager header
+ */
 #include"System.h"
 #include<map>
 #include<vector>

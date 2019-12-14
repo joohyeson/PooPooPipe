@@ -1,4 +1,11 @@
 #pragma once
+/*
+ *hakyung.kim
+ *11.18.2019
+ *digipen.hagyeong@gmail.com
+ *MathFunciont.hpp
+ *that make degree to radian
+ */
 #define _USE_MATH_DEFINES
 #include <math.h>
 

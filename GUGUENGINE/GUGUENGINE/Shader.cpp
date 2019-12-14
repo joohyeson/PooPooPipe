@@ -3,6 +3,7 @@
  *10.1.2019
  *juhye.son990902@gmail.com
  *Shader.cpp
+ *It include fragment shader and vertex shader
  */
 #include <cassert>
 #include <iostream>

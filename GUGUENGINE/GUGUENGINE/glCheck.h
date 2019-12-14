@@ -4,6 +4,7 @@
  *9.15.2019
  *juhye.son990902@gmail.com
  *glcheck.h
+ *this is clcheck header
  */
 
 void glCheckError(const char* file, unsigned int line, const char* expression);

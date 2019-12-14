@@ -4,6 +4,7 @@
  *10.1.2019
  *juhye.son990902@gmail.com
  *Shader.h
+ *this is a shader header
  */
 #include <map>
 #include <string>
@@ -41,7 +42,6 @@ public:
 	Shader& operator=(Shader && other) noexcept = delete;
 
 private:
-	//int GetUniformLocation(const std::string& name) noexcept;
 	GLuint mShaderProgramID = 0;
 	GLuint mVertexShaderProgramID = 0;
 	GLuint mFragmentShaderProgramID = 0;

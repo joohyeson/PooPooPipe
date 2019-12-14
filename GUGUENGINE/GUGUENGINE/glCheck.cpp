@@ -3,6 +3,7 @@
  *9.15.2019
  *juhye.son990902@gmail.com
  *glcheck.h
+ *for check error opengl
  */
 #include "glCheck.h"
 #include <glew.h>

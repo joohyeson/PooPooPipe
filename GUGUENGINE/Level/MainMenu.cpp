@@ -3,6 +3,7 @@
  *12.10.2019
  *chocob0217@gmail.com
  *MainMenu.cpp
+ *this is mainmenu
  */
 #include "MainMenu.h"
 #include "StateManager.h"
@@ -21,6 +22,8 @@ int moveCheck0_2 = 0;
 GLuint textureId00;
 GLuint textureId01;
 GLuint textureId02;
+GLuint textureId03;
+
 
 Sound bgm;
 
@@ -75,6 +78,7 @@ void MainMenu::Init()
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
 	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
+	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
 
 	mShader.BuildTextureShader();
 
@@ -116,7 +120,6 @@ void MainMenu::Update()
 		if (moveCheck0 % 2 == 1)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST3);
-			std::cout << "DEmo is " << std::endl;
 			moveCheck0 = 0;
 		}
 	}
@@ -133,7 +136,6 @@ void MainMenu::Update()
 		if (moveCheck0_2 % 2 == 1)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST1);
-			std::cout << "TUTO is " << std::endl;
 			moveCheck0_2 = 0;
 		}
 	}
@@ -144,7 +146,7 @@ void MainMenu::Update()
 	
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
-	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
+	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

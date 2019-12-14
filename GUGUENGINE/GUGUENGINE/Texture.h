@@ -3,6 +3,7 @@
  *11.13.2019
  *juhye.son990902@gmail.com
  *Texture.h
+ *header to texture.cpp
  */
 #include "glew.h"
 #include "filesystem"
