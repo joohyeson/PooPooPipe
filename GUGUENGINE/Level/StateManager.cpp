@@ -9,11 +9,14 @@
  */
 #include "StateManager.h"
 #include "DigipenLogo.h"
+#include "Option.h"
+#include "FmodLogo.h"
 #include "Level1.h"
 #include "Level2.h"
 #include "Level3.h"
 #include "MainMenu.h"
 #include "Level4.h"
+
 
 StateManager* STATE_MANAGER = nullptr;
 
@@ -30,7 +33,9 @@ void StateManager::Init()
 {
 	current = DIGIPENLOGO;
 	levels.push_back(new DigipenLogo());
+	levels.push_back(new FmodLogo());
 	levels.push_back(new MainMenu());
+	levels.push_back(new LevelOption());
 	levels.push_back(new Level1());
 	levels.push_back(new Level2());
 	levels.push_back(new Level3());

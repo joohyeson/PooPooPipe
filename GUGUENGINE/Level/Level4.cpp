@@ -64,6 +64,7 @@ bool blCheck3_2 = false;
 bool blCheck4 = false;
 bool blCheck4_2 = false;
 
+
 void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext4 == 1)
@@ -84,7 +85,32 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 		blCheck4 = false;
 		blCheck4_2 = false;
+	}
 
+
+	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+	{
+		chekNext4 = 0;
+
+		conecTcheck4_1 = false;
+		conecTcheck4_2 = false;
+		conecTcheck4_3 = false;
+
+		degree4 = 0;
+		degree4_2 = 0;
+		degree4_3 = 0;
+
+		blCheck3 = false;
+		blCheck3_2 = false;
+
+		blCheck4 = false;
+		blCheck4_2 = false;
+		STATE_MANAGER->ChangeLevel(MAINMENU);
+	}
+
+	if(key == GLFW_KEY_ESCAPE)
+	{
+		glfwTerminate();
 	}
 }
 

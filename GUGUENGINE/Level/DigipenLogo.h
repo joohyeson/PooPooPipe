@@ -4,7 +4,7 @@
  *12.10.2019
  *chocob0217@gmail.com
  *DigipenLogo.h
- *this is mainmenu
+ *this is digipen logo
  */
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"

@@ -15,11 +15,13 @@
 enum GameLevels
 {
 	DIGIPENLOGO,
-	MAINMENU, 
+	FMODLOGO,
+	MAINMENU,
+	OPTION,
 	LV_TEST1,
 	LV_TEST2,
 	LV_TEST3,
-	LV_TEST4
+	LV_TEST4,
 };
 
 class StateManager : public System

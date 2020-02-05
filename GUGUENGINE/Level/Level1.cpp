@@ -39,6 +39,11 @@ void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 			connectCheck1 = 0;
 		}
 	}
+
+	if (key == GLFW_KEY_ESCAPE)
+	{
+		glfwTerminate();
+	}
 }
 
 void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
@@ -115,7 +120,7 @@ void Level1::Init()
 	spacePress->mesh->setTransform({ 0.0f, -0.5f });
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
-	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	spacePress->mesh->InitializeTextureMesh(7.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);

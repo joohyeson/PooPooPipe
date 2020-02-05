@@ -32,6 +32,7 @@ private:
 	Object* background;
 	Object* startButton;
 	Object* tutorialButton;
+	Object* optionButton;
 
 	Mesh mMesh;
 	Shader mShader;
@@ -41,5 +42,6 @@ private:
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
+	Vector3<float> getOrigin3 = { 0, 0, 0 };
 
 };

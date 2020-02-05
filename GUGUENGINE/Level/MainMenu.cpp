@@ -17,13 +17,15 @@ int check0 = 0;
 Vector2<float> cursor0;
 int moveCheck0 = 0;
 int moveCheck0_2 = 0;
+int moveCheck0_3 = 0;
 
 
-GLuint textureId00;
-GLuint textureId01;
-GLuint textureId02;
-GLuint textureId03;
+GLuint textureId00;	//game title
+GLuint textureId01; //game start
+GLuint textureId02; //title
+GLuint textureId03; //tutorial
 
+GLuint textureId04;	//option button
 
 Sound bgm;
 
@@ -34,7 +36,12 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 		bgm.Stop();
 		std::cout << "Stop music" << std::endl;
 	}
-
+	
+	if (key == GLFW_KEY_ESCAPE)
+	{
+		glfwTerminate();
+	}
+	
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
@@ -47,12 +54,14 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 	{
 		moveCheck0 += 1;
 		moveCheck0_2 += 1;
+		moveCheck0_3 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
 }
 
 void MainMenu::Init()
 {
+	bgm.Stop();
 	bgm.Init();
 	bgm.LoadMusic("assets\\airplane.mp3");
 	if (!bgm.IsPlaying())
@@ -74,11 +83,13 @@ void MainMenu::Init()
 	
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
+	optionButton = OBJECT_FACTORY->CreateEmptyObject();
 
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
 	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
 	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
+	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
 
 	mShader.BuildTextureShader();
 
@@ -92,9 +103,17 @@ void MainMenu::Init()
 	tutorialButton->AddComponent(new Mesh());
 	tutorialButton->Init();
 
-	tutorialButton->mesh->setTransform({ 0.0f,-0.5f });
+	tutorialButton->mesh->setTransform({ 0.0f,-0.45f });
 	tutorialButton->mesh->SetMeshType(rectangle);
-	tutorialButton->mesh->InitializeTextureMesh(4.f, 1.f);
+	tutorialButton->mesh->InitializeTextureMesh(5.f, 1.f);
+
+
+	optionButton->AddComponent(new Mesh());
+	optionButton->Init();
+	
+	optionButton->mesh->setTransform({ 0.0f,-0.7f });
+	optionButton->mesh->SetMeshType(rectangle);
+	optionButton->mesh->InitializeTextureMesh(4.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -111,6 +130,9 @@ void MainMenu::Update()
 
 	getOrigin2.x = tutorialButton->mesh->GetTransform().x;
 	getOrigin2.y = tutorialButton->mesh->GetTransform().y;
+
+	getOrigin3.x = optionButton->mesh->GetTransform().x;
+	getOrigin3.y = optionButton->mesh->GetTransform().y;
 	
 	if ((cursor0.x <= (getOrigin.x + 0.43f) &&
 		(cursor0.x >= (getOrigin.x - 0.43f)) &&
@@ -143,10 +165,28 @@ void MainMenu::Update()
 	{
 		moveCheck0_2 = 0;
 	}
+
+	if ((cursor0.x <= (getOrigin3.x + 0.43f) &&
+		(cursor0.x >= (getOrigin3.x - 0.43f)) &&
+		(cursor0.y <= (getOrigin3.y + 0.095f)) &&
+		(cursor0.y >= (getOrigin3.y - 0.095f))))
+	{
+		if (moveCheck0_3 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+			moveCheck0_3 = 0;
+		}
+	}
+	else
+	{
+		moveCheck0_3 = 0;
+	}
+
 	
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
+	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

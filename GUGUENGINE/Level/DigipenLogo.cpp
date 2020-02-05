@@ -1,3 +1,10 @@
+/*
+ *eunjin.hong
+ *12.10.2019
+ *chocob0217@gmail.com
+ *DigipenLogo.h
+ *this is digipen logo
+ */
 #include "DigipenLogo.h"
 #include <windows.h>
 #include "../GUGUENGINE/ObjectManager.h"
@@ -24,7 +31,6 @@ void DigipenLogo::Init()
 	digipenLogo->mesh->SetMeshType(rectangle);
 	digipenLogo->mesh->InitializeTextureMesh(9.65f, 5.0f);
 
-
 }
 
 void DigipenLogo::Update()
@@ -38,7 +44,7 @@ void DigipenLogo::Update()
 	glfwPollEvents();
 
 	Sleep(3000);
-	STATE_MANAGER->ChangeLevel(MAINMENU);
+	STATE_MANAGER->ChangeLevel(FMODLOGO);
 	
 }
 

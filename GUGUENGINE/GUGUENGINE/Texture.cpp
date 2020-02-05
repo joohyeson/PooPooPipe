@@ -94,6 +94,10 @@ bool Texture::LoadFromPNG(const std::filesystem::path& file_path) noexcept
 	{
 
 		unsigned int texture;
+
+		glEnable(GL_BLEND);
+		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+	
 		glGenTextures(1, &texture);
 		glBindTexture(GL_TEXTURE_2D, texture);
 	
@@ -105,7 +109,8 @@ bool Texture::LoadFromPNG(const std::filesystem::path& file_path) noexcept
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-		
+
+	
 		glBindTexture(GL_TEXTURE_2D, i);
 	
 		stbi_image_free(data);

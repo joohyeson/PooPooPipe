@@ -31,6 +31,12 @@
     <Filter Include="Source Files\Level\Level4">
       <UniqueIdentifier>{57581872-9cb9-472d-a1c1-fec262dcdb0c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Logo">
+      <UniqueIdentifier>{8f441883-d158-44c4-b9c4-d0c56a2abe5b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\Option">
+      <UniqueIdentifier>{1991c292-fb50-4213-841a-57ea3a1ff762}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StateManager.cpp">
@@ -55,7 +61,13 @@
       <Filter>Source Files\Level\Level4</Filter>
     </ClCompile>
     <ClCompile Include="DigipenLogo.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Level\Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="FmodLogo.cpp">
+      <Filter>Source Files\Level\Logo</Filter>
+    </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Source Files\Level\Option</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -78,7 +90,13 @@
       <Filter>Source Files\Level\Level4</Filter>
     </ClInclude>
     <ClInclude Include="DigipenLogo.h">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Level\Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="FmodLogo.h">
+      <Filter>Source Files\Level\Logo</Filter>
+    </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>Source Files\Level\Option</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

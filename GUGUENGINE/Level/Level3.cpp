@@ -87,6 +87,27 @@ void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		blCheck2_2 = false;
 		
 	}
+
+	if(key == GLFW_KEY_A && action == GLFW_PRESS)
+	{
+		degree2 = 0;
+		degree2_2 = 0;
+		degree2_3 = 0;
+
+		blCheck1 = false;
+		blCheck1_2 = false;
+
+		blCheck2 = false;
+		blCheck2_2 = false;
+
+
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
+	}
+
+	if (key == GLFW_KEY_ESCAPE)
+	{
+		glfwTerminate();
+	}
 }
 
 void level3cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)

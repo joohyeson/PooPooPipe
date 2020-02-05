@@ -39,11 +39,9 @@
 		}
 
 
-
-
 		return a;
-
 	}
+
 	Color4f::Color4f(float grey, float alpha) noexcept : red(grey), green(grey), blue(grey), alpha(alpha) {};
 
 	Color4f::Color4f(float red, float green, float blue, float alpha) noexcept : red(red), green(green), blue(blue), alpha(alpha) {};

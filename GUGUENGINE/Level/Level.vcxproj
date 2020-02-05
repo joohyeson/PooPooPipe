@@ -147,6 +147,7 @@
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp" />
     <ClCompile Include="DigipenLogo.cpp" />
+    <ClCompile Include="FmodLogo.cpp" />
     <ClCompile Include="Level1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -158,12 +159,14 @@
     </ClCompile>
     <ClCompile Include="Level4.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="Option.cpp" />
     <ClCompile Include="StateManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DigipenLogo.h" />
+    <ClInclude Include="FmodLogo.h" />
     <ClInclude Include="Level1.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>
@@ -171,6 +174,7 @@
     <ClInclude Include="Level3.h" />
     <ClInclude Include="Level4.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="Option.h" />
     <ClInclude Include="StateManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClInclude>

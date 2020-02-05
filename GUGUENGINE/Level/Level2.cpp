@@ -32,8 +32,8 @@ GLuint texureIdBlack2;
 GLuint textureBackground2;
 GLuint textureSpace2;
 
-
 Sound se2;
+
 
 void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
@@ -41,6 +41,11 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 	{
 		STATE_MANAGER->ChangeLevel(MAINMENU);
 		checkToPipe = 0;
+	}
+
+	if (key == GLFW_KEY_ESCAPE)
+	{
+		glfwTerminate();
 	}
 }
 
@@ -129,7 +134,7 @@ void Level2::Init()
 	spacePress->mesh->setTransform({ 0.0f, -0.5f });
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
-	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	spacePress->mesh->InitializeTextureMesh(7.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
