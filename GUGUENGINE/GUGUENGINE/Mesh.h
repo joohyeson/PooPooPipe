@@ -53,7 +53,7 @@ public:
 	void	SetPoint(std::vector<Vector3<float>> point);
 	void setRotation(float mRota);
 	void SetVertex(std::vector<Vector3<float>> shapeType);
-	void SetOriginVertex(std::vector<Vector3<float>> vertexType);
+	void SetOriginVertex(MESHTYPE meshType);
 	void SetMeshType(MESHTYPE mMeshType)
 	{
 		meshType = mMeshType;
@@ -63,6 +63,9 @@ public:
 		pointListType = mPattern;
 	}
 	void SetColor(Vector3<float> mColor) noexcept;
+    void SetSize(Vector2<float> mSize) noexcept {
+        shapeSIze = { mSize.x, mSize.y };
+    }
 	void AddColor(Vector3<float> mColor) noexcept;
 	void AddPoint(Vector3<float>  point) noexcept;
 	void AddTextureCoordinate(Vector3<float>  texture_coordinate) noexcept;
@@ -77,13 +80,13 @@ public:
 
 	std::vector<Vector3<float>> create_wire_circle(float radius = 1, std::size_t point_count = 30) noexcept;
 	std::vector<Vector3<float>> create_box(float dimension = 1) noexcept;
-	std::vector<Vector3<float>> create_rectangle(float width = 1, float height = 1) noexcept;
-	std::vector<Vector3<float>> create_wire_rectangle(float width = 1, float height = 1) noexcept;
-	std::vector<Vector3<float>> create_wire_box(float dimension = 1) noexcept;
+	std::vector<Vector3<float>> create_rectangle() noexcept;
+	std::vector<Vector3<float>> create_wire_rectangle() noexcept;
+
 	std::vector<Vector3<float>> create_line(Vector2<float>  start = { 0.0f, 0.0f }, Vector2<float>  end = { 1.0f, -1.0f }) noexcept;
 	std::vector<Vector3<float>> create_triangle(Vector3<float> a = { -1.0f,-1.0f, 1.0f }, Vector3<float> b = { 1.0f,-1.0f, 1.0f, }, Vector3<float> c = { 0.f,1.0f, 1.0f, }) noexcept;
 	std::vector<Vector3<float>> createEllipse() noexcept;
-
+private:
 	std::vector<Vector3<float>> originVertex;
 	std::vector<Vector3<float>> vertex;
 
@@ -97,7 +100,7 @@ public:
 	MESHTYPE meshType;
 	Transform transform;
 	Camera mCamera;
-
+    Vector2<float> shapeSIze = { 1.f, 1.f };
 };
 
 

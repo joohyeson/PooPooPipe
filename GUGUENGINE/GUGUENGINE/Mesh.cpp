@@ -19,33 +19,6 @@
 
   //Returns the total amount of points representing the mesh
 Transform* m;
-float verticesFlat[] = {
-	0.0f,   0.0f, 0.0f,    //center
-	-0.5f,   1.0f, 0.0f,    // left top
-	0.5f,   1.0f, 0.0f,    // right top
-	1.0f,   0.0f, 0.0f,    // right
-	0.5f,   -1.0f, 0.0f,    // right bottom (notice sign)
-	-0.5f,  -1.0f, 0.0f,    // left bottom
-	-1.0f,   0.0f, 0.0f,     // left
-	-0.5f,   1.0f, 0.0f    // left top
-};
-float color[] = {
-	1.0f, 0.0f, 0.0f, //vertex 1 : RED (1,0,0)
-	0.0f, 1.0f, 0.0f, //vertex 2 : GREEN (0,1,0) 
-	0.0f, 0.0f, 1.0f,  //vertex 3 : blue (0,0,1)
-	1.0f, 0.0f, 0.0f,
-
-};//It will be changed when color4up is completed
-
-float textureCoordinate[] = {
-						0.5f, 0.5f,0,
-						0.5f, 0.0f,0,
-						1.0f, 0.25f ,0,
-						1.0f, 0.75f,0,
-						0.5f, 1.0f,0,
-						0.0f, 0.75f,0,
-						0.0f, 0.25f,0,
-						0.5f, 0.0f, 0 };
 
 Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagon)
 {
@@ -77,38 +50,11 @@ Vector2<float> Mesh::GetVertex(int i)
 }
 void Mesh::InitializeTextureMesh(float width, float height)
 {
-	switch (meshType)
-	{
-	case hexagon:
-		originVertex = createHexagon();
-		break;
-	case box:
-		originVertex = create_box();
-		break;
-	case wire_box:
-		originVertex = create_wire_box();
-		break;
-	case wire_circle:
-		originVertex = create_wire_circle();
-		break;
-	case wire_rectangle:
-		originVertex = create_wire_rectangle(width, height);
-		break;
-	case rectangle:
-		originVertex = create_rectangle(width, height);
-		break;
-	case triangle:
-		originVertex = create_triangle();
-		break;
-	case line:
-		originVertex = create_line();
-		break;
-	case ellipse:
-		originVertex = createEllipse();
-		break;
-	}
+    shapeSIze = { width, height };
+    SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
+   
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
@@ -125,37 +71,7 @@ void Mesh::InitializeTextureMesh(float width, float height)
 void Mesh::InitializeColorMesh()
 {
 
-	switch (meshType)
-	{
-	case hexagon:
-		originVertex = createHexagon();
-		break;
-	case box:
-		originVertex = create_box();
-
-		break;
-	case wire_box:
-		originVertex = create_wire_box();
-		break;
-	case wire_circle:
-		originVertex = create_wire_circle();
-		break;
-	case wire_rectangle:
-		originVertex = create_wire_rectangle();
-		break;
-	case rectangle:
-		originVertex = create_rectangle();
-		break;
-	case triangle:
-		originVertex = create_triangle();
-		break;
-	case line:
-		originVertex = create_line();
-		break;
-	case ellipse:
-		originVertex = createEllipse();
-		break;
-	}
+    SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
 	glGenVertexArrays(1, &mVertexArrayObject);
@@ -272,9 +188,35 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }
-void Mesh::SetOriginVertex(std::vector<Vector3<float>> vertexType)
+void Mesh::SetOriginVertex(MESHTYPE meshType)
 {
-	originVertex = vertexType;
+    switch (meshType)
+    {
+    case hexagon:
+        originVertex = createHexagon();
+        break;
+    case box:
+        originVertex = create_box();
+        break;
+    case wire_circle:
+        originVertex = create_wire_circle();
+        break;
+    case wire_rectangle:
+        originVertex = create_wire_rectangle();
+        break;
+    case rectangle:
+        originVertex = create_rectangle();
+        break;
+    case triangle:
+        originVertex = create_triangle();
+        break;
+    case line:
+        originVertex = create_line();
+        break;
+    case ellipse:
+        originVertex = createEllipse();
+        break;
+    }
 }
 
 /*Returns the i th texture coordinate in the mesh. As long as index is within the range [0,PointCount) then this will return a valid texture coordinate.
@@ -421,7 +363,7 @@ std::vector<Vector3<float>> Mesh::create_box(float dimension) noexcept
 	return box;
 
 }
-std::vector<Vector3<float>> Mesh::create_rectangle(float width, float height) noexcept
+std::vector<Vector3<float>> Mesh::create_rectangle() noexcept
 {
 	std::vector<Vector3<float>> rectangle;
 
@@ -433,10 +375,10 @@ std::vector<Vector3<float>> Mesh::create_rectangle(float width, float height) no
 	textureCoordinates.push_back({ 1,1 ,0 });
 
 
-	Vector3<float> mA = Vector3(-width / 2, -height / 2, 1.f);
-	Vector3<float> mB = Vector3(-width / 2, height / 2, 1.f);
-	Vector3<float> mC = Vector3(width / 2, height / 2, 1.f);
-	Vector3<float> mD = Vector3(width / 2, -height / 2, 1.f);
+	Vector3<float> mA = Vector3(-shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
+	Vector3<float> mB = Vector3(-shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
+	Vector3<float> mC = Vector3(shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
+	Vector3<float> mD = Vector3(shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
 
 	rectangle.push_back({ mA.x, mA.y, 1 });
 	rectangle.push_back({ mB.x, mB.y, 1 });
@@ -446,7 +388,7 @@ std::vector<Vector3<float>> Mesh::create_rectangle(float width, float height) no
 	return rectangle;
 
 }
-std::vector<Vector3<float>> Mesh::create_wire_rectangle(float width, float height) noexcept
+std::vector<Vector3<float>> Mesh::create_wire_rectangle() noexcept
 {
 
 	std::vector<Vector3<float>> rectangle;
@@ -458,23 +400,18 @@ std::vector<Vector3<float>> Mesh::create_wire_rectangle(float width, float heigh
 	textureCoordinates.push_back({ 1,1 ,0 });
 
 
-	Vector3<float> mA = Vector3(-width / 2, -height / 2, 1.f);
-	Vector3<float> mB = Vector3(-width / 2, height / 2, 1.f);
-	Vector3<float> mC = Vector3(width / 2, height / 2, 1.f);
-	Vector3<float> mD = Vector3(width / 2, -height / 2, 1.f);
+	Vector3<float> mA = Vector3(-shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
+	Vector3<float> mB = Vector3(-shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
+	Vector3<float> mC = Vector3(shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
+	Vector3<float> mD = Vector3(shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
 
 	rectangle.push_back({ mA.x, mA.y, 1 });
 	rectangle.push_back({ mB.x, mB.y, 1 });
 	rectangle.push_back({ mC.x, mC.y, 1 });
 	rectangle.push_back({ mD.x, mD.y, 1 });
 
-
 	return rectangle;
 
-}
-std::vector<Vector3<float>> Mesh::create_wire_box(float dimension) noexcept
-{
-	return create_wire_rectangle(dimension, dimension);
 }
 
 std::vector<Vector3<float>> Mesh::create_triangle(Vector3<float> a, Vector3<float> b, Vector3<float> c) noexcept

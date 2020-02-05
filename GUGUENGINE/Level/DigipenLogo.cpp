@@ -14,7 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 
-
 GLuint textureDigipenLogo;
 
 void DigipenLogo::Init()
@@ -29,8 +28,8 @@ void DigipenLogo::Init()
 
 	digipenLogo->mesh->setTransform({0,0});
 	digipenLogo->mesh->SetMeshType(rectangle);
- 
-	digipenLogo->mesh->InitializeTextureMesh(7.0f, 3.0f);
+
+	digipenLogo->mesh->InitializeTextureMesh(7.0f, 3.f);
 
 }
 

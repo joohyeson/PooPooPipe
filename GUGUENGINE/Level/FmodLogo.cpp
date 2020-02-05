@@ -14,7 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 
-
 GLuint textureFmodLogo;
 
 void FmodLogo::Init()
@@ -30,7 +29,7 @@ void FmodLogo::Init()
 	fmodLogo->mesh->setTransform({ 0,0 });
 	fmodLogo->mesh->SetMeshType(rectangle);
 
-	fmodLogo->mesh->InitializeTextureMesh(7.0f, 3.0f);
+	fmodLogo->mesh->InitializeTextureMesh(7.0f, 3.f);
 
 
 }
