@@ -50,7 +50,7 @@ Vector2<float> Mesh::GetVertex(int i)
 }
 void Mesh::InitializeTextureMesh(float width, float height)
 {
-    shapeSIze = { width, height };
+    shapeSize = { width, height };
     SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
@@ -103,22 +103,12 @@ void Mesh::Update(unsigned shaderHandler, GLuint id)
 	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
 	glEnableVertexAttribArray(1);
 
-
-	//	glDrawArrays(GetPointListPattern(), 0, GetPointCount());
-		//glBindVertexArray(0);
-		//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/7);
-
 	glBindBuffer(GL_ARRAY_BUFFER, 0);
 
 	glUseProgram(shaderHandler);
 	glBindTexture(GL_TEXTURE_2D, id);
 	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
-	//glBindVertexArray(puzzle1->mesh->GetVertexArrayObject());
-	//GLint texLoc = glGetUniformLocation(shaderHandler, "tex");
-	//glUniform1i(texLoc, 0);
-	//glActiveTexture(GL_TEXTURE0);
-	//glBindTexture(GL_TEXTURE_2D, texureId22);
-	//glDrawArrays(GL_TRIANGLE_FAN/*mMesh.GetPointListPattern()*/, 0, /*mMesh.GetPointCount()*/8);
+
 }
 
 void Mesh::ColorMeshUpdate(unsigned shaderHandler)
@@ -271,7 +261,10 @@ void Mesh::Clear() noexcept
 	points.clear();
 	textureCoordinates.clear();
 }
-
+std::vector<Vector3<float>> Mesh::SplitAnimation() noexcept
+{
+    textureCoordinates.clear();
+}
 std::vector<Vector3<float>> Mesh::createEllipse() noexcept
 {
 	std::vector<Vector3<float>> ellipseVector;
@@ -375,10 +368,10 @@ std::vector<Vector3<float>> Mesh::create_rectangle() noexcept
 	textureCoordinates.push_back({ 1,1 ,0 });
 
 
-	Vector3<float> mA = Vector3(-shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
-	Vector3<float> mB = Vector3(-shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
-	Vector3<float> mC = Vector3(shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
-	Vector3<float> mD = Vector3(shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
+	Vector3<float> mA = Vector3(-shapeSize.x / 2, -shapeSize.y / 2, 1.f);
+	Vector3<float> mB = Vector3(-shapeSize.x / 2, shapeSize.y / 2, 1.f);
+	Vector3<float> mC = Vector3(shapeSize.x / 2, shapeSize.y / 2, 1.f);
+	Vector3<float> mD = Vector3(shapeSize.x / 2, -shapeSize.y / 2, 1.f);
 
 	rectangle.push_back({ mA.x, mA.y, 1 });
 	rectangle.push_back({ mB.x, mB.y, 1 });
@@ -400,10 +393,10 @@ std::vector<Vector3<float>> Mesh::create_wire_rectangle() noexcept
 	textureCoordinates.push_back({ 1,1 ,0 });
 
 
-	Vector3<float> mA = Vector3(-shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
-	Vector3<float> mB = Vector3(-shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
-	Vector3<float> mC = Vector3(shapeSIze.x / 2, shapeSIze.y / 2, 1.f);
-	Vector3<float> mD = Vector3(shapeSIze.x / 2, -shapeSIze.y / 2, 1.f);
+	Vector3<float> mA = Vector3(-shapeSize.x / 2, -shapeSize.y / 2, 1.f);
+	Vector3<float> mB = Vector3(-shapeSize.x / 2, shapeSize.y / 2, 1.f);
+	Vector3<float> mC = Vector3(shapeSize.x / 2, shapeSize.y / 2, 1.f);
+	Vector3<float> mD = Vector3(shapeSize.x / 2, -shapeSize.y / 2, 1.f);
 
 	rectangle.push_back({ mA.x, mA.y, 1 });
 	rectangle.push_back({ mB.x, mB.y, 1 });

@@ -64,7 +64,7 @@ public:
 	}
 	void SetColor(Vector3<float> mColor) noexcept;
     void SetSize(Vector2<float> mSize) noexcept {
-        shapeSIze = { mSize.x, mSize.y };
+        shapeSize = { mSize.x, mSize.y };
     }
 	void AddColor(Vector3<float> mColor) noexcept;
 	void AddPoint(Vector3<float>  point) noexcept;
@@ -82,7 +82,7 @@ public:
 	std::vector<Vector3<float>> create_box(float dimension = 1) noexcept;
 	std::vector<Vector3<float>> create_rectangle() noexcept;
 	std::vector<Vector3<float>> create_wire_rectangle() noexcept;
-
+    std::vector<Vector3<float>> SplitAnimation() noexcept;
 	std::vector<Vector3<float>> create_line(Vector2<float>  start = { 0.0f, 0.0f }, Vector2<float>  end = { 1.0f, -1.0f }) noexcept;
 	std::vector<Vector3<float>> create_triangle(Vector3<float> a = { -1.0f,-1.0f, 1.0f }, Vector3<float> b = { 1.0f,-1.0f, 1.0f, }, Vector3<float> c = { 0.f,1.0f, 1.0f, }) noexcept;
 	std::vector<Vector3<float>> createEllipse() noexcept;
@@ -100,7 +100,7 @@ private:
 	MESHTYPE meshType;
 	Transform transform;
 	Camera mCamera;
-    Vector2<float> shapeSIze = { 1.f, 1.f };
+    Vector2<float> shapeSize = { 1.f, 1.f };
 };
 
 
