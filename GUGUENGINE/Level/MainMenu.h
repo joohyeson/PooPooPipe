@@ -33,6 +33,7 @@ private:
 	Object* startButton;
 	Object* tutorialButton;
 	Object* optionButton;
+	Object* test;
 
 	Mesh mMesh;
 	Shader mShader;

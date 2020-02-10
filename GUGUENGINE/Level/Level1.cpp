@@ -181,7 +181,6 @@ void Level1::Update()
 	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve1);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace1);
 
-
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

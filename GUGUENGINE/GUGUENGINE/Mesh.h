@@ -82,7 +82,7 @@ public:
 	std::vector<Vector3<float>> create_box(float dimension = 1) noexcept;
 	std::vector<Vector3<float>> create_rectangle() noexcept;
 	std::vector<Vector3<float>> create_wire_rectangle() noexcept;
-    std::vector<Vector3<float>> SplitAnimation() noexcept;
+   void SplitAnimation() noexcept;
 	std::vector<Vector3<float>> create_line(Vector2<float>  start = { 0.0f, 0.0f }, Vector2<float>  end = { 1.0f, -1.0f }) noexcept;
 	std::vector<Vector3<float>> create_triangle(Vector3<float> a = { -1.0f,-1.0f, 1.0f }, Vector3<float> b = { 1.0f,-1.0f, 1.0f, }, Vector3<float> c = { 0.f,1.0f, 1.0f, }) noexcept;
 	std::vector<Vector3<float>> createEllipse() noexcept;

@@ -24,7 +24,7 @@ GLuint textureId00;	//game title
 GLuint textureId01; //game start
 GLuint textureId02; //title
 GLuint textureId03; //tutorial
-
+GLuint textureId05;//test
 GLuint textureId04;	//option button
 
 Sound bgm;
@@ -80,17 +80,16 @@ void MainMenu::Init()
 	background->mesh->InitializeTextureMesh(10.f,10.f);
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
 	
-	
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton = OBJECT_FACTORY->CreateEmptyObject();
-
+	test = OBJECT_FACTORY->CreateEmptyObject();
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
 	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
 	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
 	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
-
+	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
 	mShader.BuildTextureShader();
 
 	startButton->AddComponent(new Mesh());
@@ -107,13 +106,19 @@ void MainMenu::Init()
 	tutorialButton->mesh->SetMeshType(rectangle);
 	tutorialButton->mesh->InitializeTextureMesh(5.f, 1.f);
 
-
 	optionButton->AddComponent(new Mesh());
 	optionButton->Init();
 	
 	optionButton->mesh->setTransform({ 0.0f,-0.7f });
 	optionButton->mesh->SetMeshType(rectangle);
 	optionButton->mesh->InitializeTextureMesh(4.f, 1.f);
+
+	test->AddComponent(new Mesh());
+	test->Init();
+
+	test->mesh->setTransform({ 0.0f,0.7f });
+	test->mesh->SetMeshType(rectangle);
+	test->mesh->InitializeTextureMesh(1.f, 1.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -187,7 +192,7 @@ void MainMenu::Update()
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
-
+	test->mesh->Update(mShader.GetShaderHandler(), textureId05);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

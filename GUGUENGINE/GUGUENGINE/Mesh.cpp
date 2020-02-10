@@ -165,7 +165,7 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 {
 	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
 	//glUniformMatrix3fv(location, 1, GL_FALSE, m);
-	//
+	
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
 	Matrix3<float> S = Matrix3<float>::Scale({ 0.2f, 0.2f, 0.2f });
@@ -261,9 +261,9 @@ void Mesh::Clear() noexcept
 	points.clear();
 	textureCoordinates.clear();
 }
-std::vector<Vector3<float>> Mesh::SplitAnimation() noexcept
+void Mesh::SplitAnimation() noexcept
 {
-    textureCoordinates.clear();
+	textureCoordinates.clear();
 }
 std::vector<Vector3<float>> Mesh::createEllipse() noexcept
 {
@@ -333,7 +333,7 @@ std::vector<Vector3<float>> Mesh::create_wire_circle(float radius,
 }
 
 std::vector<Vector3<float>> Mesh::create_box(float dimension) noexcept
-{
+{	
 	std::vector<Vector3<float>> box;
 
 	pointListType = GL_TRIANGLE_FAN;
@@ -342,7 +342,7 @@ std::vector<Vector3<float>> Mesh::create_box(float dimension) noexcept
 	textureCoordinates.push_back({ 0,0,0 });
 	textureCoordinates.push_back({ 1,0 ,0 });
 	textureCoordinates.push_back({ 1,1,0 });
-
+;
 	Vector3<float> mA = Vector3(-dimension / 2, -dimension / 2, 1.f);
 	Vector3<float> mB = Vector3(-dimension / 2, dimension / 2, 1.f);
 	Vector3<float> mC = Vector3(dimension / 2, dimension / 2, 1.f);
