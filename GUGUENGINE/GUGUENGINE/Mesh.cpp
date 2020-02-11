@@ -19,7 +19,7 @@
 
   //Returns the total amount of points representing the mesh
 Transform* m;
-
+int splitCheck = 0;
 Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagon)
 {
 	points.clear();
@@ -263,7 +263,41 @@ void Mesh::Clear() noexcept
 }
 void Mesh::SplitAnimation() noexcept
 {
+	std::vector<Vector3<float>> tempTexture = textureCoordinates;
+
 	textureCoordinates.clear();
+
+	if (splitCheck == 0)
+	{
+		textureCoordinates.push_back({ 0, 1, 0 });
+		textureCoordinates.push_back({ 0, 0, 0 });
+		textureCoordinates.push_back({ 1 / 8.f, 0.f, 0 });
+		textureCoordinates.push_back({ 1 / 8.f, 1.f, 0 });
+		splitCheck++;
+	}
+	else if(splitCheck/30==8)
+	{
+		textureCoordinates.push_back({ 0, 1, 0 });
+		textureCoordinates.push_back({ 0, 0, 0 });
+		textureCoordinates.push_back({ 1 / 8.f, 0.f, 0 });
+		textureCoordinates.push_back({ 1 / 8.f, 1.f, 0 });
+		splitCheck = 0;
+
+	}
+	else if(splitCheck%31==0)
+	{
+		textureCoordinates.push_back(tempTexture.at(3));
+		textureCoordinates.push_back(tempTexture.at(2));
+		textureCoordinates.push_back({ tempTexture.at(2).x+(1/8.f), tempTexture.at(2).y, tempTexture.at(2).z });
+		textureCoordinates.push_back({ tempTexture.at(3).x + (1 / 8.f), tempTexture.at(3).y, tempTexture.at(3).z });
+		splitCheck++;
+	}
+	else
+	{
+		textureCoordinates = tempTexture;
+		splitCheck++;
+	}
+
 }
 std::vector<Vector3<float>> Mesh::createEllipse() noexcept
 {

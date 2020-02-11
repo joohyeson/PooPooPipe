@@ -34,6 +34,7 @@ private:
 	Object* tutorialButton;
 	Object* optionButton;
 	Object* test;
+	Object* test2;
 
 	Mesh mMesh;
 	Shader mShader;

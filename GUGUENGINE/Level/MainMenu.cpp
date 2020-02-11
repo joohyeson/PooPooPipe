@@ -26,6 +26,7 @@ GLuint textureId02; //title
 GLuint textureId03; //tutorial
 GLuint textureId05;//test
 GLuint textureId04;	//option button
+GLuint textureId06;//man
 
 Sound bgm;
 
@@ -84,12 +85,14 @@ void MainMenu::Init()
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton = OBJECT_FACTORY->CreateEmptyObject();
 	test = OBJECT_FACTORY->CreateEmptyObject();
+	test2 = OBJECT_FACTORY->CreateEmptyObject();
 
 	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
 	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
 	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
 	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
 	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
+	textureId06= TEXTURE->CreateTexture("assets\\man.png", 0);
 	mShader.BuildTextureShader();
 
 	startButton->AddComponent(new Mesh());
@@ -118,7 +121,14 @@ void MainMenu::Init()
 
 	test->mesh->setTransform({ 0.0f,0.7f });
 	test->mesh->SetMeshType(rectangle);
-	test->mesh->InitializeTextureMesh(1.f, 1.f);
+	test->mesh->InitializeTextureMesh(2.f, 2.f);
+
+	test2->AddComponent(new Mesh());
+	test2->Init();
+		  
+	test2->mesh->setTransform({ -0.7f, -0.7f });
+	test2->mesh->SetMeshType(rectangle);
+	test2->mesh->InitializeTextureMesh(2.f, 2.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -192,7 +202,12 @@ void MainMenu::Update()
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
+
+	test->mesh->SplitAnimation();
 	test->mesh->Update(mShader.GetShaderHandler(), textureId05);
+
+	test2->mesh->SplitAnimation();
+	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
