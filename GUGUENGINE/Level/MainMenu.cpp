@@ -19,6 +19,7 @@ int moveCheck0 = 0;
 int moveCheck0_2 = 0;
 int moveCheck0_3 = 0;
 
+float volume = 0.5f;
 
 GLuint textureId00;	//game title
 GLuint textureId01; //game start
@@ -42,7 +43,32 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 	{
 		glfwTerminate();
 	}
-	
+
+	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+	{
+		std::cout << "Up Key" << std::endl;
+
+		if (volume < 1.0f)
+		{
+			volume += 0.1f;
+			bgm.SetVolume(volume);
+
+			std::cout << volume << std::endl;
+		}
+	}
+
+	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
+	{
+		std::cout << "Down Key" << std::endl;
+
+		if (volume > 0.0f)
+		{
+			volume -= 0.1f;
+			bgm.SetVolume(volume);
+
+			std::cout << volume << std::endl;
+		}
+	}
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
@@ -68,7 +94,6 @@ void MainMenu::Init()
 	if (!bgm.IsPlaying())
 	{
 		bgm.Play(0);
-		bgm.SetVolume(0.3f);
 	}
 
 	background = OBJECT_FACTORY->CreateEmptyObject();
