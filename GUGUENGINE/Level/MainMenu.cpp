@@ -12,11 +12,6 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
-float ndc[] = {
-2.f / 800.f, 0, 0,
-0, 2.f / 600.f, 0,
-0, 0, 1
-};
 
 int check0 = 0;
 Vector2<float> cursor0;
@@ -213,7 +208,7 @@ void MainMenu::Update()
 		if (moveCheck0_2 % 2 == 1)
 		{
 			std::cout << "to level1" << std::endl;
-			//STATE_MANAGER->ChangeLevel(LV_TEST1);
+			STATE_MANAGER->ChangeLevel(LV_TEST1);
 			moveCheck0_2 = 0;
 		}
 	}
@@ -229,7 +224,7 @@ void MainMenu::Update()
 	{
 		if (moveCheck0_3 % 2 == 1)
 		{
-			//STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(OPTION);
 			std::cout << "to option" << std::endl;
 			moveCheck0_3 = 0;
 		}
