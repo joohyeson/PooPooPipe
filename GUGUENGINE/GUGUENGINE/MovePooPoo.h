@@ -19,6 +19,7 @@ private:
 	GLuint texturePP;
 	Object* objectPP = nullptr;
 	bool isSuccess = false;
+	Vector2<float> betweenDelta = { 0.0f, 0.0f };
 	Vector2<float> startD = { 0.0f, 0.0f };
 	Vector2<float> endD = { 0.5f, 0.5f };
 };

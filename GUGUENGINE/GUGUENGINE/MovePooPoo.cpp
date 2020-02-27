@@ -3,7 +3,8 @@
 #include "Texture.h"
 
 MovePooPoo::MovePooPoo() :
-	startD({ 0.f, 0.f }), endD({10.f, 10.f }) {
+	startD({ 50.f, 50.f }), endD({-50.f, 50.f }) {
+	betweenDelta = { endD.x - startD.x, endD.y - startD.x };
 	Init();
 };
 
@@ -26,28 +27,44 @@ void MovePooPoo::Init()
 void MovePooPoo::Update(int shaderHandler)
 {
 	objectPP->mesh->SplitAnimation();
-	objectPP->mesh->UpdateNDC(shaderHandler, texturePP);
 	if (isSuccess == true)
 	{
-		if ((startD.x == endD.x) &&
-			(startD.y == endD.y))
-		{
-			startD = endD;
-			isSuccess = false;
-		}
-		else if ((startD.x != endD.x) ||
+	
+		if ((startD.x != endD.x) ||
 			(startD.y != endD.y))
 		{
-			startD.x += 0.1f;
-			startD.y += 0.1f;
+			if (startD.x > endD.x)
+			{
+				startD.x -= 0.1f;
+			}
+			else if(startD.x < endD.x)
+			{
+				startD.x += 0.1f;
+			}
+
+			if (startD.y > endD.y)
+			{
+				startD.y -= 0.1f;
+			}
+			else if (startD.y < endD.y)
+			{
+				startD.y += 0.1f;
+			}
+
+			if ((startD.x == endD.x) &&
+				(startD.y == endD.y))
+			{
+				std::cout << startD.x << " " << startD.y << std::endl;
+				std::cout << endD.x << " " << endD.y << std::endl;
+				std::cout << "correct" << std::endl;
+
+				isSuccess = false;
+			}
 			objectPP->mesh->setTransform({ startD });
 		}
-		else
-		{
-			objectPP->mesh->setTransform({ endD });
-			isSuccess = false;
-		}
 	}
+	objectPP->mesh->UpdateNDC(shaderHandler, texturePP);
+	
 
 }
 
