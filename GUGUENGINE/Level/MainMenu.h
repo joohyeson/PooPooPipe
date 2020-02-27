@@ -40,6 +40,7 @@ private:
 
 	Mesh mMesh;
 	Shader mShader;
+	Shader testNDCShader;//it will be deleted when NDC function is completed
 
 	
 	int key;

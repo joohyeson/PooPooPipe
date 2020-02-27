@@ -16,6 +16,7 @@
 #include "Camera.h"
 #include "CameraView.h"
 #include <math.h>
+#include "Application.h"
 
   //Returns the total amount of points representing the mesh
 Transform* m;
@@ -112,7 +113,7 @@ void Mesh::Update(unsigned shaderHandler, GLuint id)
 }
 void Mesh::UpdateNDC(unsigned shaderHandler, GLuint id)
 {
-	SetVertex(originVertex);
+	SetVertexNDC(originVertex);
 
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
 	glBufferData(GL_ARRAY_BUFFER, GetPointCount() * sizeof(float) * 3, &vertex.at(0), GL_DYNAMIC_DRAW);
@@ -132,8 +133,8 @@ void Mesh::UpdateNDC(unsigned shaderHandler, GLuint id)
 	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
 
 	float ndc[] = {
-	2.f / 800.f, 0, 0,
-	0, 2.f / 600.f, 0,
+	2.f /APPLICATION->width, 0, 0,
+	0, 2.f / APPLICATION->height, 0,
 	0, 0, 1
 	};
 
@@ -190,11 +191,28 @@ std::vector<Vector3<float>> Mesh::GetPoint() const noexcept
 	return vertex;
 }
 
-void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
+void Mesh::SetVertexNDC(std::vector<Vector3<float>> shapeType)
 {
 	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
 	//glUniformMatrix3fv(location, 1, GL_FALSE, m);
 	
+	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
+	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
+	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
+
+	vertex = originVertex;
+
+	for (unsigned int i = 0; i < vertex.size(); i++)
+	{
+		Vector3<float> mA = (/*CAMERA->CameraToWorld() */T * R *S) * vertex.at(i);
+		vertex.at(i) = { mA.x, mA.y, 1 };
+	}
+}
+void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
+{
+	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
+	//glUniformMatrix3fv(location, 1, GL_FALSE, m);
+
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
 	Matrix3<float> S = Matrix3<float>::Scale({ 0.2f, 0.2f, 0.2f });
@@ -203,7 +221,7 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 
 	for (unsigned int i = 0; i < vertex.size(); i++)
 	{
-		Vector3<float> mA = (/*CAMERA->CameraToWorld() */T * R *S) * vertex.at(i);
+		Vector3<float> mA = (/*CAMERA->CameraToWorld() */T * R * S) * vertex.at(i);
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }

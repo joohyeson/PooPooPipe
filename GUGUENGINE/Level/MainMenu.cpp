@@ -12,6 +12,11 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
+float ndc[] = {
+2.f / 800.f, 0, 0,
+0, 2.f / 600.f, 0,
+0, 0, 1
+};
 
 int check0 = 0;
 Vector2<float> cursor0;
@@ -72,7 +77,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor0 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor0 = { static_cast<float>(xpos) -APPLICATION->height/2 ,  -(static_cast<float>(ypos)-APPLICATION->width/2)};
 }
 void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
@@ -83,6 +88,7 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 		moveCheck0_2 += 1;
 		moveCheck0_3 += 1;
 		std::cout << "LEFT mouse button pressed" << std::endl;
+
 	}
 }
 
@@ -100,10 +106,10 @@ void MainMenu::Init()
 
 	background->AddComponent(new Mesh());
 	background->Init();
-	
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(10.f,10.f);
+	background->mesh->InitializeTextureMesh(800.f,800.f);
+
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
 	
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
@@ -118,42 +124,43 @@ void MainMenu::Init()
 	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
 	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
 	textureId06= TEXTURE->CreateTexture("assets\\man.png", 0);
+
 	mShader.BuildTextureShader();
-	mPP.Init();
+	testNDCShader.BuildTextureShaderNDC();
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
 
-	startButton->mesh->setTransform({ 0.0f,-0.2f });
+	startButton->mesh->setTransform({ 0.f,-20.f });
 	startButton->mesh->SetMeshType(rectangle);
-	startButton->mesh->InitializeTextureMesh(4.f, 1.f);
+	startButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	tutorialButton->AddComponent(new Mesh());
 	tutorialButton->Init();
 
-	tutorialButton->mesh->setTransform({ 0.0f,-0.45f });
+	tutorialButton->mesh->setTransform({ 0.0f,-80.f });
 	tutorialButton->mesh->SetMeshType(rectangle);
-	tutorialButton->mesh->InitializeTextureMesh(5.f, 1.f);
+	tutorialButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	optionButton->AddComponent(new Mesh());
 	optionButton->Init();
 	
-	optionButton->mesh->setTransform({ 0.0f,-0.7f });
+	optionButton->mesh->setTransform({ 0.0f,-140.f });
 	optionButton->mesh->SetMeshType(rectangle);
-	optionButton->mesh->InitializeTextureMesh(4.f, 1.f);
+	optionButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
-	//test->AddComponent(new Mesh());
-	//test->Init();
+	test->AddComponent(new Mesh());
+	test->Init();
 
-	//test->mesh->setTransform({ 0.0f,0.7f });
-	//test->mesh->SetMeshType(rectangle);
-	//test->mesh->InitializeTextureMesh(2.f, 2.f);
+	test->mesh->setTransform({ 0.0f,56.f });
+	test->mesh->SetMeshType(rectangle);
+	test->mesh->InitializeTextureMesh(160.f, 160.f);
 
-	test2->AddComponent(new Mesh());
+	/*test2->AddComponent(new Mesh());
 	test2->Init();
 		  
 	test2->mesh->setTransform({ -0.7f, -0.7f });
 	test2->mesh->SetMeshType(rectangle);
-	test2->mesh->InitializeTextureMesh(2.f, 2.f);
+	test2->mesh->InitializeTextureMesh(2.f, 2.f);*/
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
@@ -176,18 +183,19 @@ void MainMenu::Update()
 
 	if (moveCheck0 %2== 1)
 	{
-		std::cout << moveCheck0 << std::endl;
+		std::cout << cursor0.x<<", "<<cursor0.y << std::endl;
 		mPP.SetIsSuccess(true);
 	}
 
 
-	if ((cursor0.x <= (getOrigin.x + 0.43f) &&
-		(cursor0.x >= (getOrigin.x - 0.43f)) &&
-		(cursor0.y <= (getOrigin.y + 0.095f)) &&
-		(cursor0.y >= (getOrigin.y - 0.095f))))
+	if ((cursor0.x <= (getOrigin.x + 140.0f) &&
+		(cursor0.x >= (getOrigin.x - 140.0f)) &&
+		(cursor0.y <= (getOrigin.y + 35.f)) &&
+		(cursor0.y >= (getOrigin.y - 35.6f))))
 	{
 		if (moveCheck0 % 2 == 1)
 		{
+			std::cout << "to test" << std::endl;
 			STATE_MANAGER->ChangeLevel(LV_TEST3);
 			moveCheck0 = 0;
 		}
@@ -197,14 +205,15 @@ void MainMenu::Update()
 		moveCheck0 = 0;
 	}
 
-	if ((cursor0.x <= (getOrigin2.x + 0.43f) &&
-		(cursor0.x >= (getOrigin2.x - 0.43f)) &&
-		(cursor0.y <= (getOrigin2.y + 0.095f)) &&
-		(cursor0.y >= (getOrigin2.y - 0.095f))))
+	if ((cursor0.x <= (getOrigin2.x + 140) &&
+		(cursor0.x >= (getOrigin2.x - 140)) &&
+		(cursor0.y <= (getOrigin2.y + 35)) &&
+		(cursor0.y >= (getOrigin2.y - 35))))
 	{
 		if (moveCheck0_2 % 2 == 1)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST1);
+			std::cout << "to level1" << std::endl;
+			//STATE_MANAGER->ChangeLevel(LV_TEST1);
 			moveCheck0_2 = 0;
 		}
 	}
@@ -213,14 +222,15 @@ void MainMenu::Update()
 		moveCheck0_2 = 0;
 	}
 
-	if ((cursor0.x <= (getOrigin3.x + 0.43f) &&
-		(cursor0.x >= (getOrigin3.x - 0.43f)) &&
-		(cursor0.y <= (getOrigin3.y + 0.095f)) &&
-		(cursor0.y >= (getOrigin3.y - 0.095f))))
+	if ((cursor0.x <= (getOrigin3.x + 140) &&
+		(cursor0.x >= (getOrigin3.x - 140)) &&
+		(cursor0.y <= (getOrigin3.y + 35)) &&
+		(cursor0.y >= (getOrigin3.y - 35))))
 	{
 		if (moveCheck0_3 % 2 == 1)
 		{
-			STATE_MANAGER->ChangeLevel(OPTION);
+			//STATE_MANAGER->ChangeLevel(OPTION);
+			std::cout << "to option" << std::endl;
 			moveCheck0_3 = 0;
 		}
 	}
@@ -229,18 +239,18 @@ void MainMenu::Update()
 		moveCheck0_3 = 0;
 	}
 
-	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
-	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
-	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
-	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
+	background->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId02);
+	startButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId01);
+	tutorialButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId03);
+	optionButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId04);
 
-	mPP.Update(mShader.GetShaderHandler());
+	mPP.Update(testNDCShader.GetShaderHandler());
 
-	/*test->mesh->SplitAnimation();
-	test->mesh->Update(mShader.GetShaderHandler(), textureId05);*/
+	test->mesh->SplitAnimation();
+	test->mesh->Update(mShader.GetShaderHandler(), textureId05);
 
-	test2->mesh->SplitAnimation();
-	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);
+	/*test2->mesh->SplitAnimation();
+	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);*/
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
