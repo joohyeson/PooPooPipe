@@ -20,6 +20,10 @@
 int check3 = 0;
 Vector2<float> cursor3;
 
+int movable1 = 0;
+int movable2 = 0;
+int movable3 = 0;
+
 int moveCheck3 = 0;
 int moveCheck3_2 = 0;
 int moveCheck3_3 = 0;
@@ -28,7 +32,6 @@ int connectMove = 0;
 float degree2 = 0;
 float degree2_2 = 0;
 float degree2_3 = 0;
-
 
 int rightCheck3 = 0;
 int rightCheck3_2 = 0;
@@ -125,6 +128,20 @@ void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 		moveCheck3_3 += 1;
 		connectMove += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
+
+		if (movable1 == 1)
+		{
+			movable1 = 0;
+		}
+		if (movable2 == 1)
+		{
+			movable2 = 0;
+		}
+		if (movable3 == 1)
+		{
+			movable3 = 0;
+		}
+
 	}
 
 	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
@@ -387,7 +404,12 @@ void Level3::Update()
 	{
 		if (moveCheck3 % 2 == 1)
 		{
-			movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
+			if (movable1 == 0)
+			{
+				movable1 = 1;
+			}
+			
+			//movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (rightCheck3 != 0)
 		{
@@ -428,8 +450,13 @@ void Level3::Update()
 	}
 	else
 	{
+		//movable1 = 0;
 		moveCheck3 = 0;
 		rightCheck3 = 0;
+	}
+	if (movable1 == 1)
+	{
+		movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
 	}
 
 	if (blCheck1)
@@ -466,7 +493,11 @@ void Level3::Update()
 	{
 		if (moveCheck3_2 % 2 == 1)
 		{
-			movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
+			if (movable2 == 0)
+			{
+				movable2 = 1;
+			}
+			//movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (rightCheck3_2 != 0)
 		{
@@ -511,6 +542,11 @@ void Level3::Update()
 	{
 		moveCheck3_2 = 0;
 		rightCheck3_2 = 0;
+		//movable2 = 0;
+	}
+	if (movable2 == 1)
+	{
+		movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
 	}
 
 	if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
@@ -531,7 +567,11 @@ void Level3::Update()
 	{
 		if (moveCheck3_3 % 2 == 1)
 		{
-			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
+			if (movable3 == 0)
+			{
+				movable3 = 1;
+			}
+			//movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (rightCheck3_3 != 0)
 		{
@@ -574,8 +614,13 @@ void Level3::Update()
 	{
 		moveCheck3_3 = 0;
 		rightCheck3_3 = 0;
+		//movable3 = 0;
 	}
-	
+	if (movable3 == 1)
+	{
+		movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
+	}
+
 	if (blCheck2)
 	{
 		if ((movePuzzle3->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle3->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
@@ -603,141 +648,149 @@ void Level3::Update()
 		}
 	}
 
-
-	
 	//
-	if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-		getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-		getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-		getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
-		(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
-			getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
-			getOrigin1_1.y <= (getOrigin2_2.y + r) &&
-			getOrigin1_1.y >= (getOrigin2_2.y - r)) ||
-			(getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin1_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin1_1.y >= (getOrigin3_2.y - r)))
+	if (movable1 == 0)
 	{
-		if (moveCheck3 % 2 == 0)
-		{
-			if((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-				getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-				getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-				getOrigin1_1.y >= (getOrigin1_2.y - r)))
-			{
-				movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
-				blCheck1 = true;
-				blCheck1_2 = false;
-
-			}
-			else if ((getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
+		if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
+			getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
+			getOrigin1_1.y <= (getOrigin1_2.y + r) &&
+			getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
+			(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
 				getOrigin1_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin1_1.y >= (getOrigin2_2.y - r)))
+				getOrigin1_1.y >= (getOrigin2_2.y - r)) ||
+				(getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin1_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin1_1.y >= (getOrigin3_2.y - r)))
+		{
+			if (moveCheck3 % 2 == 0)
 			{
-				movePuzzle->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
-				blCheck1_2 = false;
-				blCheck1 = false;
-			}
-			else if((getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin1_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin1_1.y >= (getOrigin3_2.y - r)))
-			{
-				movePuzzle->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
-				blCheck1_2 = true;
-				blCheck1 = false;
+				if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
+					getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
+					getOrigin1_1.y <= (getOrigin1_2.y + r) &&
+					getOrigin1_1.y >= (getOrigin1_2.y - r)))
+				{
+					movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+					blCheck1 = true;
+					blCheck1_2 = false;
 
+				}
+				else if ((getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
+					getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
+					getOrigin1_1.y <= (getOrigin2_2.y + r) &&
+					getOrigin1_1.y >= (getOrigin2_2.y - r)))
+				{
+					movePuzzle->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+					blCheck1_2 = false;
+					blCheck1 = false;
+				}
+				else if ((getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin1_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin1_1.y >= (getOrigin3_2.y - r)))
+				{
+					movePuzzle->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+					blCheck1_2 = true;
+					blCheck1 = false;
+
+				}
 			}
 		}
 	}
-
-	if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
-		getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
-		getOrigin2_1.y <= (getOrigin1_2.y + r) &&
-		getOrigin2_1.y >= (getOrigin1_2.y - r)) ||
-		(getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
-			getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
-			getOrigin2_1.y <= (getOrigin2_2.y + r) &&
-			getOrigin2_1.y >= (getOrigin2_2.y - r)) ||
-			(getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin2_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin2_1.y >= (getOrigin3_2.y - r))
-		)
+	
+	if (movable2 == 0)
 	{
-		if (moveCheck3_2 % 2 == 0)
-		{
-			if((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
-				getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
-				getOrigin2_1.y <= (getOrigin1_2.y + r) &&
-				getOrigin2_1.y >= (getOrigin1_2.y - r)))
-			{
-				movePuzzle2->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
-			}
-			if ((getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
+		if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
+			getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
+			getOrigin2_1.y <= (getOrigin1_2.y + r) &&
+			getOrigin2_1.y >= (getOrigin1_2.y - r)) ||
+			(getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
 				getOrigin2_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin2_1.y >= (getOrigin2_2.y - r)))
+				getOrigin2_1.y >= (getOrigin2_2.y - r)) ||
+				(getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin2_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin2_1.y >= (getOrigin3_2.y - r))
+			)
+		{
+			if (moveCheck3_2 % 2 == 0)
 			{
-				movePuzzle2->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
-			}
-			if((getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin2_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin2_1.y >= (getOrigin3_2.y - r)))
-			{
-				movePuzzle2->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+				if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
+					getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
+					getOrigin2_1.y <= (getOrigin1_2.y + r) &&
+					getOrigin2_1.y >= (getOrigin1_2.y - r)))
+				{
+					movePuzzle2->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+				}
+				if ((getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
+					getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
+					getOrigin2_1.y <= (getOrigin2_2.y + r) &&
+					getOrigin2_1.y >= (getOrigin2_2.y - r)))
+				{
+					movePuzzle2->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+				}
+				if ((getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin2_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin2_1.y >= (getOrigin3_2.y - r)))
+				{
+					movePuzzle2->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+				}
 			}
 		}
 	}
 
-	if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
-		getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
-		getOrigin3_1.y <= (getOrigin1_2.y + r) &&
-		getOrigin3_1.y >= (getOrigin1_2.y - r))||
-		(getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
-			getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
-			getOrigin3_1.y <= (getOrigin2_2.y + r) &&
-			getOrigin3_1.y >= (getOrigin2_2.y - r))||
-			(getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin3_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin3_1.y >= (getOrigin3_2.y - r))
-		)
+	if (movable3 == 0)
 	{
-		if (moveCheck3_3 % 2 == 0)
-		{
-			if((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
-				getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
-				getOrigin3_1.y <= (getOrigin1_2.y + r) &&
-				getOrigin3_1.y >= (getOrigin1_2.y - r)))
-			{
-				movePuzzle3->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
-				blCheck2 = true;
-				blCheck2_2 = false;
-			}
-			if((getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
+		if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
+			getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
+			getOrigin3_1.y <= (getOrigin1_2.y + r) &&
+			getOrigin3_1.y >= (getOrigin1_2.y - r)) ||
+			(getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
 				getOrigin3_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin3_1.y >= (getOrigin2_2.y - r)))
+				getOrigin3_1.y >= (getOrigin2_2.y - r)) ||
+				(getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin3_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin3_1.y >= (getOrigin3_2.y - r))
+			)
+		{
+			if (moveCheck3_3 % 2 == 0)
 			{
-				movePuzzle3->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
-				blCheck2 = false;
-				blCheck2_2 = false;
-			}
-			if((getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
-				getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
-				getOrigin3_1.y <= (getOrigin3_2.y + r) &&
-				getOrigin3_1.y >= (getOrigin3_2.y - r)))
-			{
-				movePuzzle3->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
-				blCheck2 = false;
-				blCheck2_2 = true;
+				if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
+					getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
+					getOrigin3_1.y <= (getOrigin1_2.y + r) &&
+					getOrigin3_1.y >= (getOrigin1_2.y - r)))
+				{
+					movePuzzle3->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+					blCheck2 = true;
+					blCheck2_2 = false;
+				}
+				if ((getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
+					getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
+					getOrigin3_1.y <= (getOrigin2_2.y + r) &&
+					getOrigin3_1.y >= (getOrigin2_2.y - r)))
+				{
+					movePuzzle3->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+					blCheck2 = false;
+					blCheck2_2 = false;
+				}
+				if ((getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
+					getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
+					getOrigin3_1.y <= (getOrigin3_2.y + r) &&
+					getOrigin3_1.y >= (getOrigin3_2.y - r)))
+				{
+					movePuzzle3->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+					blCheck2 = false;
+					blCheck2_2 = true;
+				}
 			}
 		}
 	}
+
 
 	if (cursor3.x <= (buttonClick_1.x + 0.5f) &&
 		cursor3.x >= (buttonClick_1.x - 0.5f) &&
