@@ -56,7 +56,7 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 		moveCheck0 += 1;
 		moveCheck0_2 += 1;
 		moveCheck0_3 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
+		std::cout << "LEFT mouse button pressed" << std::endl;
 	}
 }
 
@@ -94,7 +94,7 @@ void MainMenu::Init()
 	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
 	textureId06= TEXTURE->CreateTexture("assets\\man.png", 0);
 	mShader.BuildTextureShader();
-
+	mPP.Init();
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
 
@@ -116,12 +116,12 @@ void MainMenu::Init()
 	optionButton->mesh->SetMeshType(rectangle);
 	optionButton->mesh->InitializeTextureMesh(4.f, 1.f);
 
-	test->AddComponent(new Mesh());
-	test->Init();
+	//test->AddComponent(new Mesh());
+	//test->Init();
 
-	test->mesh->setTransform({ 0.0f,0.7f });
-	test->mesh->SetMeshType(rectangle);
-	test->mesh->InitializeTextureMesh(2.f, 2.f);
+	//test->mesh->setTransform({ 0.0f,0.7f });
+	//test->mesh->SetMeshType(rectangle);
+	//test->mesh->InitializeTextureMesh(2.f, 2.f);
 
 	test2->AddComponent(new Mesh());
 	test2->Init();
@@ -148,7 +148,14 @@ void MainMenu::Update()
 
 	getOrigin3.x = optionButton->mesh->GetTransform().x;
 	getOrigin3.y = optionButton->mesh->GetTransform().y;
-	
+
+	if (moveCheck0 %2== 1)
+	{
+		std::cout << moveCheck0 << std::endl;
+		mPP.SetIsSuccess(true);
+	}
+
+
 	if ((cursor0.x <= (getOrigin.x + 0.43f) &&
 		(cursor0.x >= (getOrigin.x - 0.43f)) &&
 		(cursor0.y <= (getOrigin.y + 0.095f)) &&
@@ -197,14 +204,15 @@ void MainMenu::Update()
 		moveCheck0_3 = 0;
 	}
 
-	
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
 
-	test->mesh->SplitAnimation();
-	test->mesh->Update(mShader.GetShaderHandler(), textureId05);
+	mPP.Update(mShader.GetShaderHandler());
+
+	/*test->mesh->SplitAnimation();
+	test->mesh->Update(mShader.GetShaderHandler(), textureId05);*/
 
 	test2->mesh->SplitAnimation();
 	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);

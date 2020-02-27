@@ -110,6 +110,9 @@
     <ClCompile Include="Color.cpp">
       <Filter>소스 파일\Graphics\Color</Filter>
     </ClCompile>
+    <ClCompile Include="MovePooPoo.cpp">
+      <Filter>소스 파일\Graphics</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -198,6 +201,9 @@
     </ClInclude>
     <ClInclude Include="LevelManager.h">
       <Filter>소스 파일</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePooPoo.h">
+      <Filter>소스 파일\Graphics</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

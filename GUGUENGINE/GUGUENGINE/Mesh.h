@@ -39,6 +39,7 @@ public:
 
 
 	void Update(unsigned shaderHandler, GLuint id);
+	void UpdateNDC(unsigned shaderHandler, GLuint id);
 	void Delete();
 
 	std::size_t                            GetPointCount() const noexcept;

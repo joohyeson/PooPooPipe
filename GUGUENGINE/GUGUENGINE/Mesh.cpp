@@ -110,7 +110,36 @@ void Mesh::Update(unsigned shaderHandler, GLuint id)
 	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
 
 }
+void Mesh::UpdateNDC(unsigned shaderHandler, GLuint id)
+{
+	SetVertex(originVertex);
 
+	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, GetPointCount() * sizeof(float) * 3, &vertex.at(0), GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vector3<float>), (GLvoid*)0);
+
+	glEnableVertexAttribArray(0);
+
+	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
+	glBufferData(GL_ARRAY_BUFFER, GetPointCount() * sizeof(float) * 3, &textureCoordinates.at(0), GL_DYNAMIC_DRAW);
+	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
+	glEnableVertexAttribArray(1);
+
+	glBindBuffer(GL_ARRAY_BUFFER, 0);
+
+	glUseProgram(shaderHandler);
+	glBindTexture(GL_TEXTURE_2D, id);
+	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
+
+	float ndc[] = {
+	2.f / 800.f, 0, 0,
+	0, 2.f / 600.f, 0,
+	0, 0, 1
+	};
+
+	int location = glGetUniformLocation(shaderHandler, "ndc");
+	glUniformMatrix3fv(location, 1, GL_FALSE, ndc);
+}
 void Mesh::ColorMeshUpdate(unsigned shaderHandler)
 {
 

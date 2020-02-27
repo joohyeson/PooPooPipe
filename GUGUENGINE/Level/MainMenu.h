@@ -11,7 +11,7 @@
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/Sound.h"
-
+#include "..//GUGUENGINE/MovePooPoo.h"
 class Sound;
 
 class MainMenu : public LevelManager
@@ -35,6 +35,8 @@ private:
 	Object* optionButton;
 	Object* test;
 	Object* test2;
+
+	MovePooPoo mPP;
 
 	Mesh mMesh;
 	Shader mShader;

@@ -23,11 +23,19 @@ public:
 	~Shader() noexcept = default;
 
 	void BuildTextureShader();
+	void BuildTextureShaderNDC();
 	void BuildColorShader();
+	
+
 	void VertexShaderCompile();
+	void VertexShaderCompileNDC();
 	void VertexShaderColorCompile();
+
+
 	void FragmentShaderCompile();
 	void FragmentShaderColorCompile();
+
+
 	void LinkShader();
 
 	GLuint GetShaderID(void) noexcept;
