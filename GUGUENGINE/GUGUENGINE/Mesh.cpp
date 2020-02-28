@@ -37,6 +37,10 @@ void Mesh::setTransform(Vector2<float> mTrans)
 {
 	transform.SetTranslation({ mTrans.x, mTrans.y });
 }
+void Mesh::AddTransform(Vector2<float> mTrans)
+{
+	transform.AddTranslation({ mTrans.x, mTrans.y });
+}
 void Mesh::setRotation(float mRota)
 {
 	transform.SetRotation(mRota);
@@ -90,6 +94,7 @@ void Mesh::InitializeColorMesh()
 }
 void Mesh::Update(unsigned shaderHandler, GLuint id)
 {
+
 	SetVertex(originVertex);
 
 	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
@@ -484,6 +489,7 @@ std::vector<Vector3<float>> Mesh::create_wire_rectangle() noexcept
 	rectangle.push_back({ mD.x, mD.y, 1 });
 
 	return rectangle;
+
 }
 
 std::vector<Vector3<float>> Mesh::create_triangle(Vector3<float> a, Vector3<float> b, Vector3<float> c) noexcept
