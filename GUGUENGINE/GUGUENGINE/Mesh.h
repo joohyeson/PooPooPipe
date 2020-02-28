@@ -20,6 +20,7 @@
 enum MESHTYPE
 {
 	hexagon,
+	hexagonNDC, 
 	wire_circle,
 	box,
 	rectangle,
@@ -78,7 +79,7 @@ public:
 
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
 	std::vector<Vector3<float>> createHexagon() noexcept;
-
+	std::vector<Vector3<float>> createHexagonNDC() noexcept;
 	GLuint GetVertexArrayObject(void) noexcept;
 
 	std::vector<Vector3<float>> create_wire_circle(float radius = 1, std::size_t point_count = 30) noexcept;

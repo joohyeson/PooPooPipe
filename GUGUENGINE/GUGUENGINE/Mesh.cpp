@@ -21,7 +21,7 @@
   //Returns the total amount of points representing the mesh
 Transform* m;
 int splitCheck = 0;
-Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagon)
+Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagonNDC)
 {
 	points.clear();
 	colors.clear();
@@ -59,7 +59,10 @@ void Mesh::InitializeTextureMesh(float width, float height)
     SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
-   
+	if (meshType == hexagonNDC)
+	{
+		SetVertexNDC(originVertex);
+	}
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
 
@@ -203,6 +206,10 @@ void Mesh::SetVertexNDC(std::vector<Vector3<float>> shapeType)
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
 	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
+	if (meshType == hexagonNDC)
+	{
+		S = Matrix3<float>::Scale({ 80.f, 80.f, 1.f });
+	}
 
 	vertex = originVertex;
 
@@ -236,6 +243,9 @@ void Mesh::SetOriginVertex(MESHTYPE meshType)
     case hexagon:
         originVertex = createHexagon();
         break;
+	case hexagonNDC:
+		originVertex = createHexagonNDC();
+		break;
     case box:
         originVertex = create_box();
         break;
@@ -370,7 +380,7 @@ std::vector<Vector3<float>> Mesh::createEllipse() noexcept
 
 	return ellipseVector;
 }
-std::vector<Vector3<float>> Mesh::createHexagon() noexcept
+std::vector<Vector3<float>> Mesh::createHexagonNDC() noexcept
 {
 	std::vector<Vector3<float>> hexaVector;
 	pointListType = GL_TRIANGLE_FAN;
@@ -398,7 +408,34 @@ std::vector<Vector3<float>> Mesh::createHexagon() noexcept
 
 	return hexaVector;
 }
+std::vector<Vector3<float>> Mesh::createHexagon() noexcept
+{
+	std::vector<Vector3<float>> hexaVector;
+	pointListType = GL_TRIANGLE_FAN;
 
+	float theta = static_cast<float>(M_PI * 2 / 6);
+
+	Vector3<float> mA = { 0, 0,1 };
+	hexaVector.push_back(mA);
+	for (int i = 0; i < 6; i++)
+	{
+		mA = Vector3<float>(sin(theta * i)  , -cos(theta * i) , 1);
+		hexaVector.push_back({ mA.x, mA.y, 1 });
+
+	}
+	hexaVector.push_back({ sin(theta * 0), -cos(theta * 0), 1 });
+
+	textureCoordinates.push_back({ 0.5f, 0.5f, 0 });
+	textureCoordinates.push_back({ 0.5f, 0.0f ,0 });
+	textureCoordinates.push_back({ 1.0f, 0.25f,0 });
+	textureCoordinates.push_back({ 1.0f, 0.75f ,0 });
+	textureCoordinates.push_back({ 0.5f, 1.0f,0 });
+	textureCoordinates.push_back({ 0.0f, 0.75f,0 });
+	textureCoordinates.push_back({ 0.0f, 0.25f ,0 });
+	textureCoordinates.push_back({ 0.5f, 0.0f ,0 });
+
+	return hexaVector;
+}
 std::vector<Vector3<float>> Mesh::create_wire_circle(float radius,
 	std::size_t point_count) noexcept
 {

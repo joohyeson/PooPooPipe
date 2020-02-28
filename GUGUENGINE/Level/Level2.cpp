@@ -51,7 +51,7 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 void level2cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor2 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor2 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
 }
 
 void  level2mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
@@ -80,7 +80,7 @@ void Level2::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
 	
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
@@ -97,44 +97,47 @@ void Level2::Init()
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
 
-	mShader.BuildColorShader();
+	mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
 	movePuzzle->AddComponent(new Mesh());
 	movePuzzle->AddComponent(new PuzzleComponent());
 	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle->mesh->SetMeshType(hexagon);
+	movePuzzle->mesh->SetMeshType(hexagonNDC);
 	movePuzzle->Init();
-	movePuzzle->mesh->setTransform({ 0.5f, 0.7f });
-	movePuzzle->mesh->InitializeColorMesh();
+	movePuzzle->mesh->setTransform({ 160.0f, 280.0f });
+	movePuzzle->mesh->InitializeTextureMesh();
 
 	blackPuzzle->AddComponent(new Mesh());
+	blackPuzzle->mesh->SetMeshType(hexagonNDC);
 	blackPuzzle->Init();
-	blackPuzzle->mesh->setTransform({ 0.0f, 0.3f });
+	blackPuzzle->mesh->setTransform({ 0.0f, 120.0f });
 	blackPuzzle->mesh->InitializeTextureMesh();
 
 	puzzleUp->AddComponent(new Mesh());
 	puzzleUp->AddComponent(new PuzzleComponent());
 	puzzleUp->Init();
-	puzzleUp->mesh->setTransform({ -0.18f, 0.597f });
+	puzzleUp->mesh->setTransform({ -72.f, 238.8f });
 	puzzleUp->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleUp->pipe->SetDirection(true, false, false, true, false, false);
+	puzzleUp->mesh->SetMeshType(hexagonNDC);
 	puzzleUp->mesh->InitializeTextureMesh();
 
 	puzzleDown->AddComponent(new Mesh());
 	puzzleDown->AddComponent(new PuzzleComponent());
 	puzzleDown->Init();
-	puzzleDown->mesh->setTransform({ 0.17f, 0.01f });
+	puzzleDown->mesh->setTransform({ 72.f, 4.f });
 	puzzleDown->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
+	puzzleDown->mesh->SetMeshType(hexagonNDC);
 	puzzleDown->mesh->InitializeTextureMesh();
 
 	spacePress->AddComponent(new Mesh());
-	spacePress->mesh->setTransform({ 0.0f, -0.5f });
+	spacePress->mesh->setTransform({ 0.0f, -160.f });
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
-	spacePress->mesh->InitializeTextureMesh(7.f, 1.f);
+	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
@@ -157,10 +160,10 @@ void Level2::Update()
 	getOrigin2.y = blackPuzzle->mesh->GetTransform().y;
 	float r = static_cast<float>(sqrt(5) / 10);
 
-	if (cursor2.x <= (getOrigin.x + r / 2) &&
-		cursor2.x >= (getOrigin.x - r / 2) &&
-		cursor2.y <= (getOrigin.y + r) &&
-		cursor2.y >= (getOrigin.y - r))
+	if (cursor2.x <= (getOrigin.x + (r / 2)*400) &&
+		cursor2.x >= (getOrigin.x - (r / 2) * 400) &&
+		cursor2.y <= (getOrigin.y + r  * 400) &&
+		cursor2.y >= (getOrigin.y - r*400))
 	{
 		if (moveCheck2 % 2 == 1)
 		{
@@ -196,10 +199,10 @@ void Level2::Update()
 		moveCheck2 = 0;
 	}
 
-	if (getOrigin.x <= (getOrigin2.x + r / 2) &&
-		getOrigin.x >= (getOrigin2.x - r / 2) &&
-		getOrigin.y <= (getOrigin2.y + r) &&
-		getOrigin.y >= (getOrigin2.y - r))
+	if (getOrigin.x <= (getOrigin2.x + (r / 2) * 400) &&
+		getOrigin.x >= (getOrigin2.x - (r / 2) * 400) &&
+		getOrigin.y <= (getOrigin2.y + r*400) &&
+		getOrigin.y >= (getOrigin2.y - r*400))
 	{
 		if (moveCheck2 % 2 == 0)
 		{
@@ -214,13 +217,13 @@ void Level2::Update()
 
 	se2.Update();
 
-	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground2);
-	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
-	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
-	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace2);
+	background->mesh->UpdateNDC(mShader.GetShaderHandler(), textureBackground2);
+	blackPuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdBlack2);
+	puzzleUp->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine2);
+	puzzleDown->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve2);
+	spacePress->mesh->UpdateNDC(mShader.GetShaderHandler(), textureSpace2);
 
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
+	movePuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine2);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
