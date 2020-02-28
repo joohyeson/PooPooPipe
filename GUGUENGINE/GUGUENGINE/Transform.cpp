@@ -34,6 +34,10 @@ void Transform::SetTranslation(const Vector2<float>& new_translation) noexcept
 {
 	translation = new_translation;
 }
+void Transform::AddTranslation(const Vector2<float>& new_translation) noexcept
+{
+	translation += new_translation;
+}
 void Transform::SetScale(const Vector2<float>& new_scale) noexcept
 {
 	scale = new_scale;

@@ -37,6 +37,10 @@ void Mesh::setTransform(Vector2<float> mTrans)
 {
 	transform.SetTranslation({ mTrans.x, mTrans.y });
 }
+void Mesh::AddTransform(Vector2<float> mTrans)
+{
+	transform.AddTranslation({ mTrans.x, mTrans.y });
+}
 void Mesh::setRotation(float mRota)
 {
 	transform.SetRotation(mRota);

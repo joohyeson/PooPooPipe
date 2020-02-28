@@ -36,7 +36,7 @@ private:
 	Object* test;
 	Object* test2;
 
-	MovePooPoo mPP;
+	MovePooPoo getDirectionPooPoo;
 
 	Mesh mMesh;
 	Shader mShader;
