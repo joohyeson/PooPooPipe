@@ -11,6 +11,7 @@
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/FitPuzzleComponent.h"
+#include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/Sound.h"
 
 class Sound;

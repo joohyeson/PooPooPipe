@@ -13,8 +13,8 @@
 template <typename T>
 	class Vector2 {
 	public:
-		T width=800;
-		T height=800;
+		T width=600;
+		T height=600;
 		//==============================================Components============================================
 		T x;
 		T y;

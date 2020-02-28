@@ -11,6 +11,7 @@
 #include "Transform.h"
 #include "Mesh.h"
 #include "FitPuzzleComponent.h"
+#include "HexCoordinates.h"
 
 using ObjectID = unsigned;
 
@@ -51,6 +52,6 @@ public:
 	ObjectID objectID;
 	Transform* transform;
 	Mesh* mesh;
-	PuzzleComponent* pipe
-	;
+	PuzzleComponent* pipe;
+	HexCoordinates* coor;
 };

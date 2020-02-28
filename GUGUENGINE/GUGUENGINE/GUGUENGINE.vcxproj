@@ -190,6 +190,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FitPuzzleComponent.cpp" />
     <ClCompile Include="glCheck.cpp" />
+    <ClCompile Include="HexCoordinates.cpp" />
     <ClCompile Include="Image.cpp" />
     <ClCompile Include="Mathematics\Vector4.cpp" />
     <ClCompile Include="Mesh.cpp">
@@ -224,6 +225,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClInclude Include="Engine.h" />
     <ClInclude Include="FitPuzzleComponent.h" />
     <ClInclude Include="glCheck.h" />
+    <ClInclude Include="HexCoordinates.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="LevelManager.h" />
     <ClInclude Include="Mathematics\MathFunctions.hpp" />

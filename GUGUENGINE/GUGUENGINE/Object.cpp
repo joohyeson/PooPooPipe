@@ -17,6 +17,7 @@ Object::Object()
 	transform = nullptr;
 	mesh = nullptr;
 	pipe = nullptr;
+	coor = nullptr;
 }
 
 Object::~Object()
@@ -33,6 +34,9 @@ void Object::Init()
 	
 	if (pipe != nullptr)
 		pipe->Init();
+
+	if (coor != nullptr)
+		coor->Init();
 }
 
 void Object::Destroy(Object* obj)
@@ -54,6 +58,10 @@ bool Object::AddComponent(Component* component)
 	case COMPONENTTYPE_PIPE:
 		pipe = dynamic_cast<PuzzleComponent*>(component);
 		return true;
+	case COMPONENTTYPE_COORDINATES:
+		coor = dynamic_cast<HexCoordinates*>(component);
+		return true;
+
 	default:
 		assert(!"Can't add an unknown component");
 		break;

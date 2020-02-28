@@ -19,7 +19,6 @@ enum PuzzleDirection
 	SE,
 	SW,
 	W,
-
 };
 
 class [[nodiscard]] PuzzleComponent : public Component
@@ -36,7 +35,6 @@ public:
 	}
 	~PuzzleComponent() override
 	{
-		
 	}
 	void Update();
 	void SetDirection(bool a, bool b, bool c, bool d, bool e, bool f);

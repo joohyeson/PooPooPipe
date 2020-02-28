@@ -24,7 +24,6 @@ public:
 	Vector2<float> GetTranslation() const noexcept;
 	Vector2<float> GetScale() const noexcept;
 	void SetTranslation(const Vector2<float>& new_translation) noexcept;
-	void AddTranslation(const Vector2<float>& new_translation) noexcept;
 	void SetScale(const Vector2<float>& new_scale) noexcept;
 	float GetRotation() const noexcept;
 	void SetRotation(float new_rotation) noexcept;

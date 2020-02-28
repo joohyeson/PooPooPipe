@@ -179,7 +179,7 @@ void MainMenu::Update()
 	if (moveCheck0 %2== 1)
 	{
 		std::cout << cursor0.x<<", "<<cursor0.y << std::endl;
-		getDirectionPooPoo.SetIsSuccess(true);
+		mPP.SetIsSuccess(true);
 	}
 
 
@@ -239,7 +239,7 @@ void MainMenu::Update()
 	tutorialButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId04);
 
-	getDirectionPooPoo.Update(testNDCShader.GetShaderHandler());
+	mPP.Update(testNDCShader.GetShaderHandler());
 
 	test->mesh->SplitAnimation();
 	test->mesh->Update(mShader.GetShaderHandler(), textureId05);

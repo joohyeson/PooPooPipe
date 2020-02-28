@@ -73,7 +73,6 @@ public:
 	void AddTextureCoordinate(Vector3<float>  texture_coordinate) noexcept;
 
 	void setTransform(Vector2<float> mTrans);
-	void AddTransform(Vector2<float> mTrans);
 	void Clear() noexcept;
 
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;

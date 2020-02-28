@@ -113,6 +113,9 @@
     <ClCompile Include="MovePooPoo.cpp">
       <Filter>소스 파일\Graphics</Filter>
     </ClCompile>
+    <ClCompile Include="HexCoordinates.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -204,6 +207,9 @@
     </ClInclude>
     <ClInclude Include="MovePooPoo.h">
       <Filter>소스 파일\Graphics</Filter>
+    </ClInclude>
+    <ClInclude Include="HexCoordinates.h">
+      <Filter>소스 파일\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

@@ -20,6 +20,9 @@
 int check3 = 0;
 Vector2<float> cursor3;
 
+int coorcheck = 0;
+
+
 int movable1 = 0;
 int movable2 = 0;
 int movable3 = 0;
@@ -110,6 +113,16 @@ void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
+	}
+
+	if (key == GLFW_KEY_TAB)
+	{
+		if (coorcheck == 1)
+		{
+			coorcheck = 0;
+		}
+
+		coorcheck += 1;
 	}
 }
 
@@ -258,6 +271,9 @@ void Level3::Init()
 	puzzle1->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle1->mesh->InitializeTextureMesh();
 
+	puzzle1->coor->SetAngle();
+
+
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->AddComponent(new PuzzleComponent());
 	puzzle2->Init();
@@ -366,7 +382,58 @@ void Level3::Init()
 }
 
 void Level3::Update()
-{												  
+{		
+	if (coorcheck == 1)
+	{
+		Vector2<float> origin = puzzle1->mesh->GetTransform();
+		Vector2<float> coordi = { 0, 0 };
+		std::cout << "puzzle1 center : " << origin.x << " , " << origin.y << std::endl;
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::NE_, 0.2f);
+		std::cout << "puzzle1 NE_ : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::N_, 0.2f);
+		std::cout << "puzzle1 N_ : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::NW_, 0.2f);
+		std::cout << "puzzle1 NW_ : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::SW_, 0.2f);
+		std::cout << "puzzle1 SW_ : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+		button->mesh->setTransform({ coordi.x, coordi.y });
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::S_, 0.2f);
+		std::cout << "puzzle1 S_, : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+	
+
+		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
+			DirAngle::SE_, 0.2f);
+		std::cout << "puzzle1 SE_, : " <<
+			coordi.x << " , " << coordi.y << std::endl;
+
+
+	
+
+		coorcheck = 0;
+	}
+	else
+	{
+		coorcheck = 0;
+	}
+	
+
 	if (check3 < 1)
 	{
 		check3++;

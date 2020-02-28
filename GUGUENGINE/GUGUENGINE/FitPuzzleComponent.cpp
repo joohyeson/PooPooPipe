@@ -20,7 +20,6 @@ void PuzzleComponent::Update()
 		}
 		std::cout << dirArray1[i];
 	}
-	
 }
 
 void PuzzleComponent::SetDirection(bool a, bool b, bool c, bool d, bool e, bool f)
