@@ -20,7 +20,6 @@
 enum MESHTYPE
 {
 	hexagon,
-	hexagonNDC, 
 	wire_circle,
 	box,
 	rectangle,
@@ -40,7 +39,6 @@ public:
 
 
 	void Update(unsigned shaderHandler, GLuint id);
-	void UpdateNDC(unsigned shaderHandler, GLuint id);
 	void Delete();
 
 	std::size_t                            GetPointCount() const noexcept;
@@ -49,7 +47,7 @@ public:
 	GLenum                     GetPointListPattern() const noexcept;
 	Vector2<float>                      GetTransform();
 	Vector2<float>                      GetVertex(int i);
-	void SetVertexNDC(std::vector<Vector3<float>> shapeType);
+
 	void InitializeTextureMesh(float width = 1, float height = 1);
 	void InitializeColorMesh();
 	void ColorMeshUpdate(unsigned shaderHandler);
@@ -79,7 +77,6 @@ public:
 
 	GLuint* GetVertexArrayObjectPointer(void) noexcept;
 	std::vector<Vector3<float>> createHexagon() noexcept;
-	std::vector<Vector3<float>> createHexagonNDC() noexcept;
 	GLuint GetVertexArrayObject(void) noexcept;
 
 	std::vector<Vector3<float>> create_wire_circle(float radius = 1, std::size_t point_count = 30) noexcept;

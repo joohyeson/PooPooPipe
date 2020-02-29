@@ -10,7 +10,7 @@
 #include "glew.h"
 #include "Shader.h"
 
-const GLchar* vertex_shader_source_NDC =
+const GLchar* vertex_shader_source =
 "#version 330 core\n"
 "in vec2 positionAttribute;"
 "in vec2 textureCoordinateAttribute;"
@@ -21,18 +21,6 @@ const GLchar* vertex_shader_source_NDC =
 //"gl_Position = vec4(positionAttribute.xy, 0.0, 1.0);"
 "vec3 p = ndc * vec3(positionAttribute.xy, 1.0);"
 "gl_Position = vec4(p.xy, 0.0, 1.0);"
-"passTextureCoordinateAttribute = textureCoordinateAttribute;"
-"}";
-
-
-const GLchar* vertex_shader_source =
-"#version 330 core\n"
-"in vec2 positionAttribute;"
-"in vec2 textureCoordinateAttribute;"
-"out vec2 passTextureCoordinateAttribute;"
-"void main()"
-"{"
-"gl_Position = vec4(positionAttribute.xy, 0.0, 1.0);"
 "passTextureCoordinateAttribute = textureCoordinateAttribute;"
 "}";
 
@@ -82,14 +70,7 @@ void Shader::BuildTextureShader()
 	FragmentShaderCompile();
 	LinkShader();
 }
-void Shader::BuildTextureShaderNDC()
-{
-	mShaderProgramID = glCreateProgram();
 
-	VertexShaderCompileNDC();
-	FragmentShaderCompile();
-	LinkShader();
-}
 void Shader::BuildColorShader()
 {
 	mShaderProgramID = glCreateProgram();
@@ -120,27 +101,7 @@ void Shader::VertexShaderCompile()
 
 	}
 }
-void Shader::VertexShaderCompileNDC()
-{
-	mVertexShaderProgramID = glCreateShader(GL_VERTEX_SHADER);
 
-	glShaderSource(mVertexShaderProgramID, 1, &vertex_shader_source_NDC, NULL);
-	glCompileShader(mVertexShaderProgramID);
-
-	GLint vertex_compiled;
-	glGetShaderiv(mVertexShaderProgramID, GL_COMPILE_STATUS, &vertex_compiled);
-	if (vertex_compiled != GL_TRUE)
-	{
-		GLsizei log_length = 0;
-		GLchar message[1024];
-		glGetShaderInfoLog(mVertexShaderProgramID, 1024, &log_length, message);
-		glDeleteShader(mVertexShaderProgramID);
-
-		printf("%s\n", &(message[0]));
-		printf("Vertex Shader_Error: fail to compile!\n");
-
-	}
-}
 void Shader::VertexShaderColorCompile()
 {
 	mVertexShaderProgramID = glCreateShader(GL_VERTEX_SHADER);

@@ -225,13 +225,13 @@ void Level3::Init()
 	se3.Init();
 	se3.LoadMusic("assets\\coin.mp3");
 
-	mShader.BuildTextureShaderNDC();
+	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
 	movePuzzle->AddComponent(new Mesh());
 	movePuzzle->AddComponent(new PuzzleComponent());
 	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
-	movePuzzle->mesh->SetMeshType(hexagonNDC);
+	movePuzzle->mesh->SetMeshType(hexagon);
 	movePuzzle->Init();
 	movePuzzle->mesh->setTransform({ 320.f, 280.f });
 	movePuzzle->mesh->InitializeTextureMesh();
@@ -239,7 +239,7 @@ void Level3::Init()
 	movePuzzle2->AddComponent(new Mesh());
 	movePuzzle2->AddComponent(new PuzzleComponent());
 	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle2->mesh->SetMeshType(hexagonNDC);
+	movePuzzle2->mesh->SetMeshType(hexagon);
 	movePuzzle2->Init();
 	movePuzzle2->mesh->setTransform({ 360.f, 120.f });
 	movePuzzle2->mesh->InitializeTextureMesh();
@@ -247,7 +247,7 @@ void Level3::Init()
 	movePuzzle3->AddComponent(new Mesh());
 	movePuzzle3->AddComponent(new PuzzleComponent());
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
-	movePuzzle3->mesh->SetMeshType(hexagonNDC);
+	movePuzzle3->mesh->SetMeshType(hexagon);
 	movePuzzle3->Init();
 	movePuzzle3->mesh->setTransform({ 400.0f, 0.0f });
 	movePuzzle3->mesh->InitializeTextureMesh();
@@ -257,7 +257,7 @@ void Level3::Init()
 	startPuzzle->mesh->setTransform({ -200.f, 280.f });
 	
 	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
-	startPuzzle->mesh->SetMeshType(hexagonNDC);
+	startPuzzle->mesh->SetMeshType(hexagon);
 	startPuzzle->mesh->InitializeTextureMesh();
 
 	endPuzzle->AddComponent(new Mesh());
@@ -266,14 +266,14 @@ void Level3::Init()
 	endPuzzle->Init();
 	
 	endPuzzle->mesh->setTransform({ -200.f, -200.f });
-	endPuzzle->mesh->SetMeshType(hexagonNDC);
+	endPuzzle->mesh->SetMeshType(hexagon);
 	endPuzzle->mesh->InitializeTextureMesh();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->Init();
 	puzzle1->mesh->setTransform({ -64.f, 280.f });
 	puzzle1->mesh->setRotation(DegreeToRadian(60.f));
-	puzzle1->mesh->SetMeshType(hexagonNDC);
+	puzzle1->mesh->SetMeshType(hexagon);
 	puzzle1->mesh->InitializeTextureMesh();
 
 	puzzle1->coor->SetAngle();
@@ -284,7 +284,7 @@ void Level3::Init()
 	puzzle2->Init();
 	puzzle2->mesh->setTransform({ 72.f, 280.f });
 	puzzle2->pipe->SetDirection(false, false, false, true, false, true);
-	puzzle2->mesh->SetMeshType(hexagonNDC);
+	puzzle2->mesh->SetMeshType(hexagon);
 	puzzle2->mesh->InitializeTextureMesh();
 
 	puzzle3->AddComponent(new Mesh());
@@ -889,35 +889,35 @@ void Level3::Update()
 	}
 	se3.Update();
 
-	background->mesh->UpdateNDC(mShader.GetShaderHandler(), textureBackground3);
-	puzzle1->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine3);
-	puzzle2->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle3->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle4->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle5->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine3);
-	puzzle6->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle7->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
+	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);
+	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
+	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
+	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
 
-	puzzle8->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine3);
-	puzzle9->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle10->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine3);
-	puzzle11->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
-	puzzle12->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3);
+	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
+	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
+	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
+	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
 
-	blackPuzzle1->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdBlack3);
-	blackPuzzle2->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdBlack3);
-	blackPuzzle3->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdBlack3);
+	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
+	blackPuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
+	blackPuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack3);
 
-	startPuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdStart3);
-	endPuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdEnd3);
+	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart3);
+	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd3);
 
-	movePuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3_2);
-	movePuzzle2->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine3_1);
-	movePuzzle3->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve3_2);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3_2);
+	movePuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3_1);
+	movePuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3_2);
 
-	button->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdbutton3);
-	clear->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdclear3);
-	spacePress->mesh->UpdateNDC(mShader.GetShaderHandler(), texureSpace3);
+	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
+	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

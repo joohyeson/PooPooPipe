@@ -97,20 +97,20 @@ void Level2::Init()
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
 
-	mShader.BuildTextureShaderNDC();
+	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
 	movePuzzle->AddComponent(new Mesh());
 	movePuzzle->AddComponent(new PuzzleComponent());
 	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle->mesh->SetMeshType(hexagonNDC);
+	movePuzzle->mesh->SetMeshType(hexagon);
 	movePuzzle->Init();
 	movePuzzle->mesh->setTransform({ 160.0f, 280.0f });
 	movePuzzle->mesh->InitializeTextureMesh();
 
 	blackPuzzle->AddComponent(new Mesh());
-	blackPuzzle->mesh->SetMeshType(hexagonNDC);
+	blackPuzzle->mesh->SetMeshType(hexagon);
 	blackPuzzle->Init();
 	blackPuzzle->mesh->setTransform({ 0.0f, 120.0f });
 	blackPuzzle->mesh->InitializeTextureMesh();
@@ -121,7 +121,7 @@ void Level2::Init()
 	puzzleUp->mesh->setTransform({ -72.f, 238.8f });
 	puzzleUp->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleUp->pipe->SetDirection(true, false, false, true, false, false);
-	puzzleUp->mesh->SetMeshType(hexagonNDC);
+	puzzleUp->mesh->SetMeshType(hexagon);
 	puzzleUp->mesh->InitializeTextureMesh();
 
 	puzzleDown->AddComponent(new Mesh());
@@ -130,7 +130,7 @@ void Level2::Init()
 	puzzleDown->mesh->setTransform({ 72.f, 4.f });
 	puzzleDown->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
-	puzzleDown->mesh->SetMeshType(hexagonNDC);
+	puzzleDown->mesh->SetMeshType(hexagon);
 	puzzleDown->mesh->InitializeTextureMesh();
 
 	spacePress->AddComponent(new Mesh());
@@ -217,13 +217,13 @@ void Level2::Update()
 
 	se2.Update();
 
-	background->mesh->UpdateNDC(mShader.GetShaderHandler(), textureBackground2);
-	blackPuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdBlack2);
-	puzzleUp->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine2);
-	puzzleDown->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdCurve2);
-	spacePress->mesh->UpdateNDC(mShader.GetShaderHandler(), textureSpace2);
+	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground2);
+	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
+	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
+	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
+	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace2);
 
-	movePuzzle->mesh->UpdateNDC(mShader.GetShaderHandler(), texureIdLine2);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

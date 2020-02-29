@@ -29,7 +29,7 @@ void DigipenLogo::Init()
 	digipenLogo->mesh->setTransform({0,0});
 	digipenLogo->mesh->SetMeshType(rectangle);
 
-	digipenLogo->mesh->InitializeTextureMesh(7.0f, 3.f);
+	digipenLogo->mesh->InitializeTextureMesh(100.f, 100.f);
 
 }
 

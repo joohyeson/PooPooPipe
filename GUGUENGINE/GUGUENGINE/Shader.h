@@ -23,12 +23,10 @@ public:
 	~Shader() noexcept = default;
 
 	void BuildTextureShader();
-	void BuildTextureShaderNDC();
 	void BuildColorShader();
 	
 
 	void VertexShaderCompile();
-	void VertexShaderCompileNDC();
 	void VertexShaderColorCompile();
 
 

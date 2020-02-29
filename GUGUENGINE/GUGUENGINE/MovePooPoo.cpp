@@ -55,7 +55,7 @@ void MovePooPoo::Update(int shaderHandler)
 		}
 	}
 
-	objectPP->mesh->UpdateNDC(shaderHandler, texturePP);
+	objectPP->mesh->Update(shaderHandler, texturePP);
 }
 void MovePooPoo::SetSpeed(int Speed)
 {

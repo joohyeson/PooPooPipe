@@ -21,7 +21,7 @@
   //Returns the total amount of points representing the mesh
 Transform* m;
 int splitCheck = 0;
-Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagonNDC)
+Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagon)
 {
 	points.clear();
 	colors.clear();
@@ -59,9 +59,9 @@ void Mesh::InitializeTextureMesh(float width, float height)
     SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
-	if (meshType == hexagonNDC)
+	if (meshType == hexagon)
 	{
-		SetVertexNDC(originVertex);
+		SetVertex(originVertex);
 	}
 	glGenVertexArrays(1, &mVertexArrayObject);
 	glBindVertexArray(mVertexArrayObject);
@@ -117,30 +117,8 @@ void Mesh::Update(unsigned shaderHandler, GLuint id)
 	glBindTexture(GL_TEXTURE_2D, id);
 	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
 
-}
-void Mesh::UpdateNDC(unsigned shaderHandler, GLuint id)
-{
-	SetVertexNDC(originVertex);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mPositionVertexBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, GetPointCount() * sizeof(float) * 3, &vertex.at(0), GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, sizeof(Vector3<float>), (GLvoid*)0);
-
-	glEnableVertexAttribArray(0);
-
-	glBindBuffer(GL_ARRAY_BUFFER, mTextureCoordinateBufferObjectID);
-	glBufferData(GL_ARRAY_BUFFER, GetPointCount() * sizeof(float) * 3, &textureCoordinates.at(0), GL_DYNAMIC_DRAW);
-	glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (GLvoid*)0);
-	glEnableVertexAttribArray(1);
-
-	glBindBuffer(GL_ARRAY_BUFFER, 0);
-
-	glUseProgram(shaderHandler);
-	glBindTexture(GL_TEXTURE_2D, id);
-	glDrawArrays(GetPointListPattern(), 0, static_cast<GLsizei>(GetPointCount()));
-
 	float ndc[] = {
-	2.f /APPLICATION->width, 0, 0,
+	2.f / APPLICATION->width, 0, 0,
 	0, 2.f / APPLICATION->height, 0,
 	0, 0, 1
 	};
@@ -148,6 +126,7 @@ void Mesh::UpdateNDC(unsigned shaderHandler, GLuint id)
 	int location = glGetUniformLocation(shaderHandler, "ndc");
 	glUniformMatrix3fv(location, 1, GL_FALSE, ndc);
 }
+
 void Mesh::ColorMeshUpdate(unsigned shaderHandler)
 {
 
@@ -198,27 +177,6 @@ std::vector<Vector3<float>> Mesh::GetPoint() const noexcept
 	return vertex;
 }
 
-void Mesh::SetVertexNDC(std::vector<Vector3<float>> shapeType)
-{
-	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
-	//glUniformMatrix3fv(location, 1, GL_FALSE, m);
-	
-	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
-	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
-	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
-	if (meshType == hexagonNDC)
-	{
-		S = Matrix3<float>::Scale({ 80.f, 80.f, 1.f });
-	}
-
-	vertex = originVertex;
-
-	for (unsigned int i = 0; i < vertex.size(); i++)
-	{
-		Vector3<float> mA = (/*CAMERA->CameraToWorld() */T * R *S) * vertex.at(i);
-		vertex.at(i) = { mA.x, mA.y, 1 };
-	}
-}
 void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 {
 	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
@@ -226,7 +184,11 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
-	Matrix3<float> S = Matrix3<float>::Scale({ 0.2f, 0.2f, 0.2f });
+	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
+	if (meshType == hexagon)
+	{
+		S = Matrix3<float>::Scale({ 80.f, 80.f, 1.f });
+	}
 
 	vertex = originVertex;
 
@@ -243,9 +205,6 @@ void Mesh::SetOriginVertex(MESHTYPE meshType)
     case hexagon:
         originVertex = createHexagon();
         break;
-	case hexagonNDC:
-		originVertex = createHexagonNDC();
-		break;
     case box:
         originVertex = create_box();
         break;
@@ -380,34 +339,6 @@ std::vector<Vector3<float>> Mesh::createEllipse() noexcept
 
 	return ellipseVector;
 }
-std::vector<Vector3<float>> Mesh::createHexagonNDC() noexcept
-{
-	std::vector<Vector3<float>> hexaVector;
-	pointListType = GL_TRIANGLE_FAN;
-
-	float theta = static_cast<float>(M_PI * 2 / 6);
-
-	Vector3<float> mA = { 0, 0,1 };
-	hexaVector.push_back(mA);
-	for (int i = 0; i < 6; i++)
-	{
-		mA = Vector3<float>(sin(theta * i), -cos(theta * i), 1);
-		hexaVector.push_back({ mA.x, mA.y, 1 });
-
-	}
-	hexaVector.push_back({ sin(theta * 0), -cos(theta * 0), 1 });
-
-	textureCoordinates.push_back({ 0.5f, 0.5f, 0 });
-	textureCoordinates.push_back({ 0.5f, 0.0f ,0 });
-	textureCoordinates.push_back({ 1.0f, 0.25f,0 });
-	textureCoordinates.push_back({ 1.0f, 0.75f ,0 });
-	textureCoordinates.push_back({ 0.5f, 1.0f,0 });
-	textureCoordinates.push_back({ 0.0f, 0.75f,0 });
-	textureCoordinates.push_back({ 0.0f, 0.25f ,0 });
-	textureCoordinates.push_back({ 0.5f, 0.0f ,0 });
-
-	return hexaVector;
-}
 std::vector<Vector3<float>> Mesh::createHexagon() noexcept
 {
 	std::vector<Vector3<float>> hexaVector;
@@ -419,7 +350,7 @@ std::vector<Vector3<float>> Mesh::createHexagon() noexcept
 	hexaVector.push_back(mA);
 	for (int i = 0; i < 6; i++)
 	{
-		mA = Vector3<float>(sin(theta * i)  , -cos(theta * i) , 1);
+		mA = Vector3<float>(sin(theta * i), -cos(theta * i), 1);
 		hexaVector.push_back({ mA.x, mA.y, 1 });
 
 	}
@@ -453,7 +384,6 @@ std::vector<Vector3<float>> Mesh::create_wire_circle(float radius,
 
 	return wireCircle;
 }
-
 std::vector<Vector3<float>> Mesh::create_box(float dimension) noexcept
 {	
 	std::vector<Vector3<float>> box;

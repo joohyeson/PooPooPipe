@@ -121,7 +121,7 @@ void MainMenu::Init()
 	textureId06= TEXTURE->CreateTexture("assets\\man.png", 0);
 
 	mShader.BuildTextureShader();
-	testNDCShader.BuildTextureShaderNDC();
+	//testNDCShader.BuildTextureShaderNDC();
 	startButton->AddComponent(new Mesh());
 	startButton->Init();
 
@@ -143,13 +143,13 @@ void MainMenu::Init()
 	optionButton->mesh->SetMeshType(rectangle);
 	optionButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
-	test->AddComponent(new Mesh());
+	/*test->AddComponent(new Mesh());
 	test->Init();
 
 	test->mesh->setTransform({ 0.0f,56.f });
 	test->mesh->SetMeshType(rectangle);
 	test->mesh->InitializeTextureMesh(160.f, 160.f);
-
+*/
 	/*test2->AddComponent(new Mesh());
 	test2->Init();
 		  
@@ -234,15 +234,15 @@ void MainMenu::Update()
 		moveCheck0_3 = 0;
 	}
 
-	background->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId02);
-	startButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId01);
-	tutorialButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId03);
-	optionButton->mesh->UpdateNDC(testNDCShader.GetShaderHandler(), textureId04);
+	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
+	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
+	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
+	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
 
-	getDirectionPooPoo.Update(testNDCShader.GetShaderHandler());
+	getDirectionPooPoo.Update(mShader.GetShaderHandler());
 
-	test->mesh->SplitAnimation();
-	test->mesh->Update(mShader.GetShaderHandler(), textureId05);
+	//test->mesh->SplitAnimation();
+	//test->mesh->Update(mShader.GetShaderHandler(), textureId05);
 
 	/*test2->mesh->SplitAnimation();
 	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);*/

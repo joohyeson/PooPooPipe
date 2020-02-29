@@ -120,7 +120,7 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 void level4cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor4 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor4 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
 }
 
 void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
@@ -169,7 +169,7 @@ void Level4::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
@@ -215,7 +215,7 @@ void Level4::Init()
 	se4.Init();
 	se4.LoadMusic("assets\\coin.mp3");
 
-	mShader.BuildColorShader();
+	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
 	movePuzzle->AddComponent(new Mesh());
@@ -223,28 +223,28 @@ void Level4::Init()
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	movePuzzle->Init();
-	movePuzzle->mesh->setTransform({ 0.8f, 0.7f });
-	movePuzzle->mesh->InitializeColorMesh();
+	movePuzzle->mesh->setTransform({ 320.f, 280.f });
+	movePuzzle->mesh->InitializeTextureMesh();
 
 	movePuzzle2->AddComponent(new Mesh());
 	movePuzzle2->AddComponent(new PuzzleComponent());
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle2->mesh->SetMeshType(hexagon);
 	movePuzzle2->Init();
-	movePuzzle2->mesh->setTransform({ 0.9f, 0.3f });
-	movePuzzle2->mesh->InitializeColorMesh();
+	movePuzzle2->mesh->setTransform({ 360.f, 120.f });
+	movePuzzle2->mesh->InitializeTextureMesh();
 
 	movePuzzle3->AddComponent(new Mesh());
 	movePuzzle3->AddComponent(new PuzzleComponent());
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle3->mesh->SetMeshType(hexagon);
 	movePuzzle3->Init();
-	movePuzzle3->mesh->setTransform({ 1.0f, 0.0f });
-	movePuzzle3->mesh->InitializeColorMesh();
+	movePuzzle3->mesh->setTransform({ 400.0f, 0.0f });
+	movePuzzle3->mesh->InitializeTextureMesh();
 
 	startPuzzle->AddComponent(new Mesh());
 	startPuzzle->Init();
-	startPuzzle->mesh->setTransform({ -0.8f, 0.7f });
+	startPuzzle->mesh->setTransform({ -320.f, 280.f });
 	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
 	startPuzzle->mesh->InitializeTextureMesh();
 
@@ -253,104 +253,104 @@ void Level4::Init()
 	endPuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 	endPuzzle->Init();
-	endPuzzle->mesh->setTransform({ 0.58f, -0.5f });
+	endPuzzle->mesh->setTransform({ 232.f, -200.f });
 	endPuzzle->mesh->InitializeTextureMesh();
 
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->AddComponent(new PuzzleComponent());
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle1->Init();
-	puzzle1->mesh->setTransform({ -0.46f, 0.7f });
+	puzzle1->mesh->setTransform({ -184.f, 280.f });
 	puzzle1->mesh->InitializeTextureMesh();
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
-	puzzle2->mesh->setTransform({ -0.12f, 0.7f });
+	puzzle2->mesh->setTransform({ -48.f, 280.f });
 	puzzle2->mesh->InitializeTextureMesh();
 
 	puzzle3->AddComponent(new Mesh());
 	puzzle3->Init();
-	puzzle3->mesh->setTransform({ -0.63f, 0.4f });
+	puzzle3->mesh->setTransform({ -252.f, 160.f });
 	puzzle3->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle3->mesh->InitializeTextureMesh();
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
-	puzzle4->mesh->setTransform({ 0.057f, 0.4f });
+	puzzle4->mesh->setTransform({ 22.8f, 160.f });
 	puzzle4->mesh->InitializeTextureMesh();
 
 	puzzle5->AddComponent(new Mesh());
 	puzzle5->Init();
-	puzzle5->mesh->setTransform({ -0.46f, 0.1f });
+	puzzle5->mesh->setTransform({ -0.46f*400, 0.1f * 400 });
 	puzzle5->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle5->mesh->InitializeTextureMesh();
 
 	puzzle6->AddComponent(new Mesh());
 	puzzle6->AddComponent(new PuzzleComponent());
 	puzzle6->Init();
-	puzzle6->mesh->setTransform({ -0.115f, 0.1f });
+	puzzle6->mesh->setTransform({ -0.115f * 400, 0.1f * 400 });
 	puzzle6->mesh->setRotation(DegreeToRadian(300.f));
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
 	puzzle6->mesh->InitializeTextureMesh();
 
 	puzzle7->AddComponent(new Mesh());
 	puzzle7->Init();
-	puzzle7->mesh->setTransform({ 0.23f, 0.1f });
+	puzzle7->mesh->setTransform({ 0.23f * 400, 0.1f * 400 });
 	puzzle7->mesh->setRotation(DegreeToRadian(240.f));
 	puzzle7->mesh->InitializeTextureMesh();
 
 	puzzle8->AddComponent(new Mesh());
 	puzzle8->Init();
-	puzzle8->mesh->setTransform({ 0.057f, -0.2f });
+	puzzle8->mesh->setTransform({ 0.057f * 400, -0.2f * 400 });
 	puzzle8->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle8->mesh->InitializeTextureMesh();
 
 	puzzle9->AddComponent(new Mesh());
 	puzzle9->Init();
-	puzzle9->mesh->setTransform({ 0.4f, -0.2f });
+	puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
 	puzzle9->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle9->mesh->InitializeTextureMesh();
 
 	puzzle10->AddComponent(new Mesh());
 	puzzle10->AddComponent(new PuzzleComponent());
 	puzzle10->Init();
-	puzzle10->mesh->setTransform({ -0.115f, -0.5f });
+	puzzle10->mesh->setTransform({ -0.115f * 400, -0.5f * 400 });
 	puzzle10->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 	puzzle10->mesh->InitializeTextureMesh();
 
 	blackPuzzle1->AddComponent(new Mesh());
 	blackPuzzle1->Init();
-	blackPuzzle1->mesh->setTransform({ -0.29f, 0.4f });
+	blackPuzzle1->mesh->setTransform({ -0.29f * 400, 0.4f * 400 });
 	blackPuzzle1->mesh->InitializeTextureMesh();
 
 	blackPuzzle2->AddComponent(new Mesh());
 	blackPuzzle2->Init();
-	blackPuzzle2->mesh->setTransform({ -0.29f, -0.2f });
+	blackPuzzle2->mesh->setTransform({ -0.29f * 400, -0.2f * 400 });
 	blackPuzzle2->mesh->InitializeTextureMesh();
 
 	blackPuzzle3->AddComponent(new Mesh());
 	blackPuzzle3->Init();
-	blackPuzzle3->mesh->setTransform({ 0.23f, -0.5f });
+	blackPuzzle3->mesh->setTransform({ 0.23f * 400, -0.5f * 400 });
 	blackPuzzle3->mesh->InitializeTextureMesh();
 
 	button->AddComponent(new Mesh());
-	button->mesh->setTransform({ -0.7f, -0.6f });
+	button->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
 	button->mesh->SetMeshType(rectangle);
 	button->Init();
-	button->mesh->InitializeTextureMesh(1.f, 1.f);
+	button->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	clear->AddComponent(new Mesh());
-	clear->mesh->setTransform({ -10.0f, 10.0f });
+	clear->mesh->setTransform({ -10.0f * 400, 10.0f * 400 });
 	clear->mesh->SetMeshType(rectangle);
 	clear->Init();
-	clear->mesh->InitializeTextureMesh(1.f, 1.f);
+	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	spacePress->AddComponent(new Mesh());
-	spacePress->mesh->setTransform({ 0.0f, -0.85f });
+	spacePress->mesh->setTransform({ 0.0f * 400, -0.85f * 400 });
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
-	spacePress->mesh->InitializeTextureMesh(5.f, 1.f);
+	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level4keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level4cursorPositionCallback);
@@ -367,7 +367,7 @@ void Level4::Update()
 
 	se4.Update();
 
-	float r = static_cast<float>(sqrt(5) / 10);
+	float r = static_cast<float>(sqrt(5) / 10)*400;
 
 	getOrigin1_1.x = movePuzzle->mesh->GetTransform().x;
 	getOrigin1_1.y = movePuzzle->mesh->GetTransform().y;
@@ -719,16 +719,16 @@ void Level4::Update()
 		}
 	}
 
-	if (cursor4.x <= (buttonClick_1.x + 0.5f) &&
-		cursor4.x >= (buttonClick_1.x - 0.5f) &&
-		cursor4.y <= (buttonClick_1.y + 0.5f) &&
-		cursor4.y >= (buttonClick_1.y - 0.5f))
+	if (cursor4.x <= (buttonClick_1.x + 0.5f * 400) &&
+		cursor4.x >= (buttonClick_1.x - 0.5f * 400) &&
+		cursor4.y <= (buttonClick_1.y + 0.5f * 400) &&
+		cursor4.y >= (buttonClick_1.y - 0.5f * 400))
 	{
 		if (connectMove4 % 2 == 1)
 		{
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
-				clear->mesh->setTransform({ -0.7f, -0.6f });
+				clear->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
 				chekNext4 = 1;
 				std::cout << "clear" << std::endl;
 

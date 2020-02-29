@@ -29,7 +29,7 @@ void FmodLogo::Init()
 	fmodLogo->mesh->setTransform({ 0,0 });
 	fmodLogo->mesh->SetMeshType(rectangle);
 
-	fmodLogo->mesh->InitializeTextureMesh(7.0f, 3.f);
+	fmodLogo->mesh->InitializeTextureMesh(560.0f, 240.f);
 
 
 }
