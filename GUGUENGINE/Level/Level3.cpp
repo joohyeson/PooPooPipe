@@ -396,48 +396,40 @@ void Level3::Update()
 		std::cout << "puzzle1 center : " << origin.x << " , " << origin.y << std::endl;
 
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::NE_, 0.2f);
+			DirAngle::NE_, 80.f);
 		std::cout << "puzzle1 NE_ : " <<
 			coordi.x << " , " << coordi.y << std::endl;
 
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::N_, 0.2f);
+			DirAngle::N_, 80.f);
 		std::cout << "puzzle1 N_ : " <<
 			coordi.x << " , " << coordi.y << std::endl;
-
+		
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::NW_, 0.2f);
+			DirAngle::NW_, 80.f);
 		std::cout << "puzzle1 NW_ : " <<
 			coordi.x << " , " << coordi.y << std::endl;
-
+		//
+		button->mesh->setTransform({ coordi.x, coordi.y });
+		//
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::SW_, 0.2f);
+			DirAngle::SW_, 80.f);
 		std::cout << "puzzle1 SW_ : " <<
 			coordi.x << " , " << coordi.y << std::endl;
-
-		button->mesh->setTransform({ coordi.x, coordi.y });
-
+	
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::S_, 0.2f);
+			DirAngle::S_, 80.f);
 		std::cout << "puzzle1 S_, : " <<
 			coordi.x << " , " << coordi.y << std::endl;
 
-	
-
 		coordi = puzzle1->coor->ReturnPuzzleCoor(origin,
-			DirAngle::SE_, 0.2f);
+			DirAngle::SE_, 80.f);
 		std::cout << "puzzle1 SE_, : " <<
 			coordi.x << " , " << coordi.y << std::endl;
 
-
-	
-
 		coorcheck = 0;
 	}
-	else
-	{
-		coorcheck = 0;
-	}
+
 	
 
 	if (check3 < 1)

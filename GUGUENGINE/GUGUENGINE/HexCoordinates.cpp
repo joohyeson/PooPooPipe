@@ -3,7 +3,8 @@
 Vector2<float> HexCoordinates::ReturnPuzzleCoor(Vector2<float> center, DirAngle direction, float radius)
 {
 	Vector2<float>PuzzleCoor = center;
-	int angle = 0;
+	float angle = 0;
+
 	switch (direction)
 	{
 	case NE_:
@@ -29,6 +30,8 @@ Vector2<float> HexCoordinates::ReturnPuzzleCoor(Vector2<float> center, DirAngle 
 	}
 
 	float r = radius;
+	angle = DegreeToRadian(angle);
+
 	PuzzleCoor.x = r * cos(angle) + PuzzleCoor.x;
 	PuzzleCoor.y = r * sin(angle) + PuzzleCoor.y;
 
