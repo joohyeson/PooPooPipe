@@ -16,6 +16,7 @@
 #include "Level3.h"
 #include "MainMenu.h"
 #include "Level4.h"
+#include "MovingCheck.h"
 
 
 StateManager* STATE_MANAGER = nullptr;
@@ -31,7 +32,8 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = MOVINGCHECK;
+	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
 	levels.push_back(new MainMenu());
@@ -40,6 +42,7 @@ void StateManager::Init()
 	levels.push_back(new Level2());
 	levels.push_back(new Level3());
 	levels.push_back(new Level4());
+	levels.push_back(new MovingCheck());
 
 
 	levels.at(current)->Init();

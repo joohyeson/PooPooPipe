@@ -159,6 +159,7 @@
     </ClCompile>
     <ClCompile Include="Level4.cpp" />
     <ClCompile Include="MainMenu.cpp" />
+    <ClCompile Include="MovingCheck.cpp" />
     <ClCompile Include="Option.cpp" />
     <ClCompile Include="StateManager.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -174,6 +175,7 @@
     <ClInclude Include="Level3.h" />
     <ClInclude Include="Level4.h" />
     <ClInclude Include="MainMenu.h" />
+    <ClInclude Include="MovingCheck.h" />
     <ClInclude Include="Option.h" />
     <ClInclude Include="StateManager.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

@@ -37,6 +37,9 @@
     <Filter Include="Source Files\Level\Option">
       <UniqueIdentifier>{1991c292-fb50-4213-841a-57ea3a1ff762}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\MovingCheck">
+      <UniqueIdentifier>{e9f7edf1-1f59-496f-822d-9697e93352df}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="StateManager.cpp">
@@ -69,6 +72,9 @@
     <ClCompile Include="Option.cpp">
       <Filter>Source Files\Level\Option</Filter>
     </ClCompile>
+    <ClCompile Include="MovingCheck.cpp">
+      <Filter>Source Files\Level\MovingCheck</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.h">
@@ -97,6 +103,9 @@
     </ClInclude>
     <ClInclude Include="Option.h">
       <Filter>Source Files\Level\Option</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingCheck.h">
+      <Filter>Source Files\Level\MovingCheck</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

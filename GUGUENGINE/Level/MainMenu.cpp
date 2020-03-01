@@ -182,7 +182,6 @@ void MainMenu::Update()
 		getDirectionPooPoo.SetIsSuccess(true);
 	}
 
-
 	if ((cursor0.x <= (getOrigin.x + 140.0f) &&
 		(cursor0.x >= (getOrigin.x - 140.0f)) &&
 		(cursor0.y <= (getOrigin.y + 35.f)) &&
