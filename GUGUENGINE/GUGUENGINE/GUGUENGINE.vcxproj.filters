@@ -57,6 +57,12 @@
     <Filter Include="소스 파일\Graphics\Image">
       <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Graphics\MovePooPoo">
+      <UniqueIdentifier>{adf909f7-73be-4109-a483-fd1cd700debd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="소스 파일\Graphics\GenerateMap">
+      <UniqueIdentifier>{95e8f812-94cd-4de6-b606-da5d635530c8}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -110,11 +116,14 @@
     <ClCompile Include="Color.cpp">
       <Filter>소스 파일\Graphics\Color</Filter>
     </ClCompile>
-    <ClCompile Include="MovePooPoo.cpp">
-      <Filter>소스 파일\Graphics</Filter>
-    </ClCompile>
     <ClCompile Include="HexCoordinates.cpp">
       <Filter>소스 파일\Component</Filter>
+    </ClCompile>
+    <ClCompile Include="MovePooPoo.cpp">
+      <Filter>소스 파일\Graphics\MovePooPoo</Filter>
+    </ClCompile>
+    <ClCompile Include="GenerateMap.cpp">
+      <Filter>소스 파일\Graphics\GenerateMap</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -205,11 +214,14 @@
     <ClInclude Include="LevelManager.h">
       <Filter>소스 파일</Filter>
     </ClInclude>
-    <ClInclude Include="MovePooPoo.h">
-      <Filter>소스 파일\Graphics</Filter>
-    </ClInclude>
     <ClInclude Include="HexCoordinates.h">
       <Filter>소스 파일\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="MovePooPoo.h">
+      <Filter>소스 파일\Graphics\MovePooPoo</Filter>
+    </ClInclude>
+    <ClInclude Include="GenerateMap.h">
+      <Filter>소스 파일\Graphics\GenerateMap</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

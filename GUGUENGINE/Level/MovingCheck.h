@@ -52,7 +52,6 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-	void NextCenterCoor(float radius, int column, int row);
 private:
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;

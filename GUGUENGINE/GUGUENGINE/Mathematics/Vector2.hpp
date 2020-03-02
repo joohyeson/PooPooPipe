@@ -13,12 +13,13 @@
 template <typename T>
 	class Vector2 {
 	public:
-		T width=800;
-		T height=800;
+		
 		//==============================================Components============================================
 		T x;
 		T y;
 		//=============================================Constructor============================================
+		T width = 800;
+		T height = 800;
 		Vector2();
 		Vector2(const T& p_XValue, const T& p_YValue);
 		Vector2<T> rotate_by(float angle_in_radians, Vector2<T> v) noexcept;
