@@ -229,32 +229,25 @@ void MovingCheck::Init()
 
 	startPuzzle->AddComponent(new Mesh());
 	startPuzzle->Init();
-	startPuzzle->mesh->setTransform({ -320.f, 280.f });
 	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
 	startPuzzle->mesh->InitializeTextureMesh();
 	myMap.SaveObject(startPuzzle);
 	
-
-	
-
 	puzzle1->AddComponent(new Mesh());
 	puzzle1->AddComponent(new PuzzleComponent());
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle1->Init();
-	puzzle1->mesh->setTransform({ -184.f, 280.f });
 	puzzle1->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle1);
 
 	puzzle2->AddComponent(new Mesh());
 	puzzle2->Init();
-	puzzle2->mesh->setTransform({ -48.f, 280.f });
 	puzzle2->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle2);
 
 
 	puzzle3->AddComponent(new Mesh());
 	puzzle3->Init();
-	puzzle3->mesh->setTransform({ -252.f, 160.f });
 	puzzle3->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle3->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle3);
@@ -262,14 +255,12 @@ void MovingCheck::Init()
 
 	puzzle4->AddComponent(new Mesh());
 	puzzle4->Init();
-	puzzle4->mesh->setTransform({ 22.8f, 160.f });
 	puzzle4->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle4);
 
 
 	puzzle5->AddComponent(new Mesh());
 	puzzle5->Init();
-	puzzle5->mesh->setTransform({ -0.46f * 400, 0.1f * 400 });
 	puzzle5->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle5->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle5);
@@ -277,14 +268,12 @@ void MovingCheck::Init()
 
 	blackPuzzle1->AddComponent(new Mesh());
 	blackPuzzle1->Init();
-	blackPuzzle1->mesh->setTransform({ -0.29f * 400, 0.4f * 400 });
 	blackPuzzle1->mesh->InitializeTextureMesh();
 	myMap.SaveObject(blackPuzzle1);
 
 	puzzle6->AddComponent(new Mesh());
 	puzzle6->AddComponent(new PuzzleComponent());
 	puzzle6->Init();
-	puzzle6->mesh->setTransform({ -0.115f * 400, 0.1f * 400 });
 	puzzle6->mesh->setRotation(DegreeToRadian(300.f));
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
 	puzzle6->mesh->InitializeTextureMesh();
@@ -293,7 +282,6 @@ void MovingCheck::Init()
 
 	puzzle7->AddComponent(new Mesh());
 	puzzle7->Init();
-	puzzle7->mesh->setTransform({ 0.23f * 400, 0.1f * 400 });
 	puzzle7->mesh->setRotation(DegreeToRadian(240.f));
 	puzzle7->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle7);
@@ -301,7 +289,6 @@ void MovingCheck::Init()
 
 	puzzle8->AddComponent(new Mesh());
 	puzzle8->Init();
-	puzzle8->mesh->setTransform({ 0.057f * 400, -0.2f * 400 });
 	puzzle8->mesh->setRotation(DegreeToRadian(60.f));
 	puzzle8->mesh->InitializeTextureMesh();
 	myMap.SaveObject(puzzle8);
@@ -309,7 +296,6 @@ void MovingCheck::Init()
 
 	blackPuzzle2->AddComponent(new Mesh());
 	blackPuzzle2->Init();
-	blackPuzzle2->mesh->setTransform({ -0.29f * 400, -0.2f * 400 });
 	blackPuzzle2->mesh->InitializeTextureMesh();
 	myMap.SaveObject(blackPuzzle2);
 
@@ -325,7 +311,6 @@ void MovingCheck::Init()
 	puzzle10->AddComponent(new Mesh());
 	puzzle10->AddComponent(new PuzzleComponent());
 	puzzle10->Init();
-	puzzle10->mesh->setTransform({ -0.115f * 400, -0.5f * 400 });
 	puzzle10->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 	puzzle10->mesh->InitializeTextureMesh();
@@ -334,7 +319,6 @@ void MovingCheck::Init()
 
 	blackPuzzle3->AddComponent(new Mesh());
 	blackPuzzle3->Init();
-	blackPuzzle3->mesh->setTransform({ 0.23f * 400, -0.5f * 400 });
 	blackPuzzle3->mesh->InitializeTextureMesh();
 	myMap.SaveObject(blackPuzzle3);
 
@@ -343,7 +327,6 @@ void MovingCheck::Init()
 	endPuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 	endPuzzle->Init();
-	endPuzzle->mesh->setTransform({ 232.f, -200.f });
 	endPuzzle->mesh->InitializeTextureMesh();
 	myMap.SaveObject(endPuzzle);
 
