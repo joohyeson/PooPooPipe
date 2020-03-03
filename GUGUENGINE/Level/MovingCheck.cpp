@@ -171,7 +171,7 @@ void MovingCheck::Init()
 	puzzle7 = OBJECT_FACTORY->CreateEmptyObject();
 
 	puzzle8 = OBJECT_FACTORY->CreateEmptyObject();
-	//puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
+	puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle10 = OBJECT_FACTORY->CreateEmptyObject();
 
 	blackPuzzle1 = OBJECT_FACTORY->CreateEmptyObject();
@@ -300,11 +300,12 @@ void MovingCheck::Init()
 	myMap.SaveObject(blackPuzzle2);
 
 
-	//puzzle9->AddComponent(new Mesh());
-	//puzzle9->Init();
-	//puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
-	//puzzle9->mesh->setRotation(DegreeToRadian(60.f));
-	//puzzle9->mesh->InitializeTextureMesh();
+	puzzle9->AddComponent(new Mesh());
+	puzzle9->AddComponent(new CollisionCheck());
+	puzzle9->Init();
+	puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
+	puzzle9->mesh->setRotation(DegreeToRadian(60.f));
+	puzzle9->mesh->InitializeTextureMesh();
 	//myMap.SaveObject(puzzle9);
 
 
@@ -739,7 +740,15 @@ void MovingCheck::Update()
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4);
-	//puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
+	if (puzzle9->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, puzzle9->mesh) == true)
+	{
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
+	}
+	else
+	{
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
+	}
+	
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
 	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);

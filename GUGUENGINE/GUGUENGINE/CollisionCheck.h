@@ -12,17 +12,24 @@
 
 class CollisionCheck :public Component{
 public:
-	CollisionCheck() :Component(COMPONENTTYOE_COLLISIONCHECK) {};
 
-	//bool Box2BoxCollision(Mesh* boxA, Mesh* boxB);
+	CollisionCheck() :Component(COMPONENTTYOE_COLLISIONCHECK) {};
+	struct Edge;
+
+	bool Box2BoxCollision(Mesh* boxA, Mesh* boxB);
 	bool Point2BoxCollision(Vector2<float> point, Mesh* box);
-	//bool Point2PointCollision(Vector2<float> pointA, Vector2<float> pointB);
-	//bool Point2HexagonCollision(Vector2<float> point, Mesh* hexagonCenter);
+	bool Point2HexagonCollision(Vector2<float> point, Mesh* hexagon);
+
+	float GetDeterminant(Edge edge, Vector2<float> point);
+	float ShortestDistanceSqr(Vector2<float>& p,  Edge& edge);
 
 	Vector2<float> GetMin(Mesh* mBox);   // bottom-left
 	Vector2<float> GetMax(Mesh* mBox);  // top-right
-
+	
 private:
 	bool isLive = false;
 	bool isCollide = false;
 };
+
+
+
