@@ -186,6 +186,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClCompile Include="Application.cpp" />
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="CameraView.cpp" />
+    <ClCompile Include="CollisionCheck.cpp" />
     <ClCompile Include="Color.cpp" />
     <ClCompile Include="Engine.cpp" />
     <ClCompile Include="FitPuzzleComponent.cpp" />
@@ -216,6 +217,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClInclude Include="Application.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="CameraView.h" />
+    <ClInclude Include="CollisionCheck.h" />
     <ClInclude Include="Color.h" />
     <ClInclude Include="Command.h" />
     <ClInclude Include="CommandType.h" />

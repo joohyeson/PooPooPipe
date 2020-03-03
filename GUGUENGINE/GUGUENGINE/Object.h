@@ -12,6 +12,7 @@
 #include "Mesh.h"
 #include "FitPuzzleComponent.h"
 #include "HexCoordinates.h"
+#include "CollisionCheck.h"
 
 using ObjectID = unsigned;
 
@@ -54,4 +55,5 @@ public:
 	Mesh* mesh;
 	PuzzleComponent* pipe;
 	HexCoordinates* coor;
+	CollisionCheck* collision;
 };

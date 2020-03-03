@@ -32,7 +32,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MOVINGCHECK;
+	current = MAINMENU;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
@@ -55,6 +55,8 @@ void StateManager::Update()
 
 void StateManager::ChangeLevel(GameLevels changeLV)
 {
+
 	current = changeLV;
 	levels.at(current)->Init();
+	
 }

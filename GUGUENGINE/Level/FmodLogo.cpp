@@ -50,6 +50,6 @@ void FmodLogo::Update()
 void FmodLogo::Close()
 {
 	mShader.Delete();
-	ENGINE->Quit();
+	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 }

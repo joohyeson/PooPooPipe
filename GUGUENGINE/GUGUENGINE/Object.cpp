@@ -18,6 +18,7 @@ Object::Object()
 	mesh = nullptr;
 	pipe = nullptr;
 	coor = nullptr;
+	collision = nullptr;
 }
 
 Object::~Object()
@@ -37,6 +38,9 @@ void Object::Init()
 
 	if (coor != nullptr)
 		coor->Init();
+
+	if (collision != nullptr)
+		collision->Init();
 }
 
 void Object::Destroy(Object* obj)
@@ -60,6 +64,9 @@ bool Object::AddComponent(Component* component)
 		return true;
 	case COMPONENTTYPE_COORDINATES:
 		coor = dynamic_cast<HexCoordinates*>(component);
+		return true;
+	case COMPONENTTYOE_COLLISIONCHECK:
+		collision = dynamic_cast<CollisionCheck*>(component);
 		return true;
 
 	default:

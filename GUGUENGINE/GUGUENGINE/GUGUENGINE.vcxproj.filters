@@ -63,6 +63,9 @@
     <Filter Include="소스 파일\Graphics\GenerateMap">
       <UniqueIdentifier>{95e8f812-94cd-4de6-b606-da5d635530c8}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Component\CollisionCheck">
+      <UniqueIdentifier>{b6c005aa-47e7-428e-8fb3-7314db48fc32}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -124,6 +127,9 @@
     </ClCompile>
     <ClCompile Include="GenerateMap.cpp">
       <Filter>소스 파일\Graphics\GenerateMap</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionCheck.cpp">
+      <Filter>소스 파일\Component\CollisionCheck</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -222,6 +228,9 @@
     </ClInclude>
     <ClInclude Include="GenerateMap.h">
       <Filter>소스 파일\Graphics\GenerateMap</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionCheck.h">
+      <Filter>소스 파일\Component\CollisionCheck</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

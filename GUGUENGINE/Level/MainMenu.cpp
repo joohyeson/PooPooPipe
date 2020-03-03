@@ -123,6 +123,7 @@ void MainMenu::Init()
 	mShader.BuildTextureShader();
 	//testNDCShader.BuildTextureShaderNDC();
 	startButton->AddComponent(new Mesh());
+	startButton->AddComponent(new CollisionCheck());
 	startButton->Init();
 
 	startButton->mesh->setTransform({ 0.f,-20.f });
@@ -132,14 +133,14 @@ void MainMenu::Init()
 	tutorialButton->AddComponent(new Mesh());
 	tutorialButton->Init();
 
-	tutorialButton->mesh->setTransform({ 0.0f,-80.f });
+	tutorialButton->mesh->setTransform({ 0.0f,-100.f });
 	tutorialButton->mesh->SetMeshType(rectangle);
 	tutorialButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	optionButton->AddComponent(new Mesh());
 	optionButton->Init();
 	
-	optionButton->mesh->setTransform({ 0.0f,-140.f });
+	optionButton->mesh->setTransform({ 0.0f,-180.f });
 	optionButton->mesh->SetMeshType(rectangle);
 	optionButton->mesh->InitializeTextureMesh(280.f, 70.f);
 
@@ -166,15 +167,6 @@ void MainMenu::Update()
 {
 
 	bgm.Update();
-	
-	getOrigin.x = startButton->mesh->GetTransform().x;
-	getOrigin.y = startButton->mesh->GetTransform().y;
-
-	getOrigin2.x = tutorialButton->mesh->GetTransform().x;
-	getOrigin2.y = tutorialButton->mesh->GetTransform().y;
-
-	getOrigin3.x = optionButton->mesh->GetTransform().x;
-	getOrigin3.y = optionButton->mesh->GetTransform().y;
 
 	if (moveCheck0 %2== 1)
 	{
@@ -182,33 +174,28 @@ void MainMenu::Update()
 		getDirectionPooPoo.SetIsSuccess(true);
 	}
 
-	if ((cursor0.x <= (getOrigin.x + 140.0f) &&
-		(cursor0.x >= (getOrigin.x - 140.0f)) &&
-		(cursor0.y <= (getOrigin.y + 35.f)) &&
-		(cursor0.y >= (getOrigin.y - 35.6f))))
+	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
 	{
 		if (moveCheck0 % 2 == 1)
 		{
 			std::cout << "to test" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_TEST3);
 			moveCheck0 = 0;
+			STATE_MANAGER->ChangeLevel(LV_TEST3);
 		}
 	}
 	else
 	{
 		moveCheck0 = 0;
 	}
+	
 
-	if ((cursor0.x <= (getOrigin2.x + 140) &&
-		(cursor0.x >= (getOrigin2.x - 140)) &&
-		(cursor0.y <= (getOrigin2.y + 35)) &&
-		(cursor0.y >= (getOrigin2.y - 35))))
+	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh))
 	{
 		if (moveCheck0_2 % 2 == 1)
 		{
 			std::cout << "to level1" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_TEST1);
 			moveCheck0_2 = 0;
+			STATE_MANAGER->ChangeLevel(LV_TEST1);
 		}
 	}
 	else
@@ -216,10 +203,7 @@ void MainMenu::Update()
 		moveCheck0_2 = 0;
 	}
 
-	if ((cursor0.x <= (getOrigin3.x + 140) &&
-		(cursor0.x >= (getOrigin3.x - 140)) &&
-		(cursor0.y <= (getOrigin3.y + 35)) &&
-		(cursor0.y >= (getOrigin3.y - 35))))
+	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh))
 	{
 		if (moveCheck0_3 % 2 == 1)
 		{
@@ -258,6 +242,7 @@ void MainMenu::Close()
 {
 	bgm.Free();
 	mShader.Delete();
-	ENGINE->Quit();
+	mMesh.Delete();
+	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 }
