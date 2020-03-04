@@ -30,6 +30,8 @@ public:
 	}
 	//void Update();
 	Vector2<float> ReturnPuzzleCoor(Vector2<float> center,  DirAngle direction, float radius);
+
 private:
 	float CoorAngle[6] = { 30.f, 90.f, 150.f, -150.f, -90.f, -30.f}; // for hex	
 };
+
