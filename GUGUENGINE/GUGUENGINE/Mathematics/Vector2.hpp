@@ -21,6 +21,16 @@ template <typename T>
 		T width = 800;
 		T height = 800;
 		Vector2();
+
+		struct Edge
+		{
+			Edge() :start(0.f, 0.f), end(0.f, 0.f) {};
+			Edge(Vector2<float> start, Vector2<float> end) : start(start), end(end) {}
+
+			Vector2<float> start = { 0.f, 0.f };
+			Vector2<float> end = { 0.f, 0.f };
+		};
+
 		Vector2(const T& p_XValue, const T& p_YValue);
 		Vector2<T> rotate_by(float angle_in_radians, Vector2<T> v) noexcept;
 		T magnitude(Vector2<T> a) noexcept;

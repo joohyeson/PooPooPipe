@@ -10,13 +10,7 @@
 #include "Mesh.h"
 
 
-struct CollisionCheck::Edge
-{
-	Edge(Vector2<float> start, Vector2<float> end) : start(start), end(end) {}
 
-	Vector2<float> start;
-	Vector2<float> end;
-};
 
 bool CollisionCheck::Box2BoxCollision(Mesh* boxA, Mesh* boxB)
 {
@@ -79,7 +73,7 @@ Vector2<float> CollisionCheck::GetMax(Mesh* mBox) {
 	return mBox->GetVertex(2);
 } // top-right
 
-float CollisionCheck::ShortestDistanceSqr(Vector2<float>& p,  Edge& edge)
+float CollisionCheck::ShortestDistanceSqr(Vector2<float>& p, Vector2<float>::Edge& edge)
 {
 	Vector2<float> mDot;
 	Vector2<float> rToP = { p.x - edge.start.x, p.y - edge.start.y };
@@ -102,7 +96,7 @@ float CollisionCheck::ShortestDistanceSqr(Vector2<float>& p,  Edge& edge)
 
 }
 
-float CollisionCheck::GetDeterminant(Edge edge, Vector2<float> point)
+float CollisionCheck::GetDeterminant(Vector2<float>::Edge edge, Vector2<float> point)
 {
 	return ((edge.end.x - edge.start.x) * (point.y - edge.start.y)) - ((edge.end.y - edge.start.y) * (point.x - edge.start.x));
 }

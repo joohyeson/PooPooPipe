@@ -65,7 +65,7 @@ bool Object::AddComponent(Component* component)
 	case COMPONENTTYPE_COORDINATES:
 		coor = dynamic_cast<HexCoordinates*>(component);
 		return true;
-	case COMPONENTTYOE_COLLISIONCHECK:
+	case COMPONENTTYPE_COLLISIONCHECK:
 		collision = dynamic_cast<CollisionCheck*>(component);
 		return true;
 

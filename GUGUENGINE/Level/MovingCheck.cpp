@@ -333,6 +333,7 @@ void MovingCheck::Init()
 
 
 	button->AddComponent(new Mesh());
+	button->AddComponent(new CollisionCheck());
 	button->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
 	button->mesh->SetMeshType(rectangle);
 	button->Init();
@@ -708,10 +709,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (cursor5.x <= (buttonClick_1.x + 0.5f * 400) &&
-		cursor5.x >= (buttonClick_1.x - 0.5f * 400) &&
-		cursor5.y <= (buttonClick_1.y + 0.5f * 400) &&
-		cursor5.y >= (buttonClick_1.y - 0.5f * 400))
+	if (button->collision->Point2BoxCollision(cursor5, button->mesh)==true)
 	{
 		if (connectMove4Test % 2 == 1)
 		{

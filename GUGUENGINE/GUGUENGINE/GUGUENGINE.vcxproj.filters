@@ -66,6 +66,9 @@
     <Filter Include="소스 파일\Component\CollisionCheck">
       <UniqueIdentifier>{b6c005aa-47e7-428e-8fb3-7314db48fc32}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Graphics\GenerateMap\HexagonElement">
+      <UniqueIdentifier>{02d4f031-6147-422b-afe1-87b64dd99dc9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -130,6 +133,9 @@
     </ClCompile>
     <ClCompile Include="CollisionCheck.cpp">
       <Filter>소스 파일\Component\CollisionCheck</Filter>
+    </ClCompile>
+    <ClCompile Include="HexagonElements.cpp">
+      <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -231,6 +237,9 @@
     </ClInclude>
     <ClInclude Include="CollisionCheck.h">
       <Filter>소스 파일\Component\CollisionCheck</Filter>
+    </ClInclude>
+    <ClInclude Include="HexagonElements.h">
+      <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
