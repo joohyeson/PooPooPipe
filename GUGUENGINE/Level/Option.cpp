@@ -48,7 +48,7 @@ void LevelOption::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(10.f, 10.f);
+	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackgroundOption = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 
@@ -56,10 +56,10 @@ void LevelOption::Init()
 	option = OBJECT_FACTORY->CreateEmptyObject();
 	option->AddComponent(new Mesh());
 	option->Init();
-
-	option->mesh->setTransform({ 0.0f,0.8f });
+	
+	option->mesh->setTransform({ 0.0f,350.f });
 	option->mesh->SetMeshType(rectangle);
-	option->mesh->InitializeTextureMesh(6.f, 1.5f);
+	option->mesh->InitializeTextureMesh(400.f, 100.f);
 	textureOption = TEXTURE->CreateTexture("assets\\option.png", 0);
 
 	
@@ -67,26 +67,26 @@ void LevelOption::Init()
 	music->AddComponent(new Mesh());
 	music->Init();
 
-	music->mesh->setTransform({ -0.7f,0.5f });
+	music->mesh->setTransform({ -300.f,240.f });
 	music->mesh->SetMeshType(rectangle);
-	music->mesh->InitializeTextureMesh(3.f, 1.f);
+	music->mesh->InitializeTextureMesh(240.f, 80.f);
 	textureMusic = TEXTURE->CreateTexture("assets\\music.png", 0);
 
 
 	arrowRight = OBJECT_FACTORY->CreateEmptyObject();
 	arrowRight->AddComponent(new Mesh());
 	arrowRight->Init();
-	arrowRight->mesh->setTransform({ 0.8f,0.5f });
+	arrowRight->mesh->setTransform({ 350.f,240.f });
 	arrowRight->mesh->SetMeshType(rectangle);
-	arrowRight->mesh->InitializeTextureMesh(1.f, 1.f);
+	arrowRight->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowRight = TEXTURE->CreateTexture("assets\\arrow_right.png", 0);
 
 	arrowLeft= OBJECT_FACTORY->CreateEmptyObject();
 	arrowLeft->AddComponent(new Mesh());
 	arrowLeft->Init();
-	arrowLeft->mesh->setTransform({ -0.3f,0.5f });
+	arrowLeft->mesh->setTransform({ -160.f,240.f });
 	arrowLeft->mesh->SetMeshType(rectangle);
-	arrowLeft->mesh->InitializeTextureMesh(1.f, 1.f);
+	arrowLeft->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowLeft = TEXTURE->CreateTexture("assets\\arrow_left.png", 0);
 	
 	mShader.BuildColorShader();
