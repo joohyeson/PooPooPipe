@@ -162,42 +162,35 @@ void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 
 void Level4::Init()
 {
-	background = OBJECT_FACTORY->CreateEmptyObject();
-
-	background->AddComponent(new Mesh());
-	background->Init();
-
-	background->mesh->setTransform({ 0,0 });
-	background->mesh->SetMeshType(rectangle);
+	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
-	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
-	movePuzzle2 = OBJECT_FACTORY->CreateEmptyObject();
-	movePuzzle3 = OBJECT_FACTORY->CreateEmptyObject();
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f });
+	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
+	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
-	puzzle1 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle2 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle3 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle4 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle5 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle6 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle7 = OBJECT_FACTORY->CreateEmptyObject();
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -184.f, 280.f });
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -48.f, 280.f });
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -252.f, 160.f });
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 22.8f, 160.f });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -0.46f * 400, 0.1f * 400 });
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, 0.1f * 400 });
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.23f * 400, 0.1f * 400 });
 
-	puzzle8 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
-	puzzle10 = OBJECT_FACTORY->CreateEmptyObject();
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.057f * 400, -0.2f * 400 });
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.4f * 400, -0.2f * 400 });
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, -0.5f * 400 });
+	
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -0.29f * 400, 0.4f * 400 });
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -0.29f * 400, -0.2f * 400 });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.23f * 400, -0.5f * 400 });
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateEmptyObject();
-	blackPuzzle2 = OBJECT_FACTORY->CreateEmptyObject();
-	blackPuzzle3 = OBJECT_FACTORY->CreateEmptyObject();
-
-	startPuzzle = OBJECT_FACTORY->CreateEmptyObject();
-	endPuzzle = OBJECT_FACTORY->CreateEmptyObject();
-	button = OBJECT_FACTORY->CreateEmptyObject();
-	clear = OBJECT_FACTORY->CreateEmptyObject();
-	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -320.f, 280.f });
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 232.f, -200.f });
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -0.7f * 400, -0.6f * 400 });
+	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -10.0f * 400, 10.0f * 400 });
+	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f * 400, -0.85f * 400 });
 	
 	texureIdLine4 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -218,138 +211,38 @@ void Level4::Init()
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
-	movePuzzle->AddComponent(new Mesh());
-	movePuzzle->AddComponent(new PuzzleComponent());
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
-	movePuzzle->Init();
-	movePuzzle->mesh->setTransform({ 320.f, 280.f });
-	movePuzzle->mesh->InitializeTextureMesh();
 
-	movePuzzle2->AddComponent(new Mesh());
-	movePuzzle2->AddComponent(new PuzzleComponent());
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
-	movePuzzle2->mesh->SetMeshType(hexagon);
-	movePuzzle2->Init();
-	movePuzzle2->mesh->setTransform({ 360.f, 120.f });
-	movePuzzle2->mesh->InitializeTextureMesh();
 
-	movePuzzle3->AddComponent(new Mesh());
-	movePuzzle3->AddComponent(new PuzzleComponent());
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle3->mesh->SetMeshType(hexagon);
-	movePuzzle3->Init();
-	movePuzzle3->mesh->setTransform({ 400.0f, 0.0f });
-	movePuzzle3->mesh->InitializeTextureMesh();
 
-	startPuzzle->AddComponent(new Mesh());
-	startPuzzle->Init();
-	startPuzzle->mesh->setTransform({ -320.f, 280.f });
 	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
-	startPuzzle->mesh->InitializeTextureMesh();
 
-	endPuzzle->AddComponent(new Mesh());
-	endPuzzle->AddComponent(new PuzzleComponent());
 	endPuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
-	endPuzzle->Init();
-	endPuzzle->mesh->setTransform({ 232.f, -200.f });
-	endPuzzle->mesh->InitializeTextureMesh();
-
-	puzzle1->AddComponent(new Mesh());
-	puzzle1->AddComponent(new PuzzleComponent());
+	
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
-	puzzle1->Init();
-	puzzle1->mesh->setTransform({ -184.f, 280.f });
-	puzzle1->mesh->InitializeTextureMesh();
 
-	puzzle2->AddComponent(new Mesh());
-	puzzle2->Init();
-	puzzle2->mesh->setTransform({ -48.f, 280.f });
-	puzzle2->mesh->InitializeTextureMesh();
-
-	puzzle3->AddComponent(new Mesh());
-	puzzle3->Init();
-	puzzle3->mesh->setTransform({ -252.f, 160.f });
 	puzzle3->mesh->setRotation(DegreeToRadian(180.f));
-	puzzle3->mesh->InitializeTextureMesh();
 
-	puzzle4->AddComponent(new Mesh());
-	puzzle4->Init();
-	puzzle4->mesh->setTransform({ 22.8f, 160.f });
-	puzzle4->mesh->InitializeTextureMesh();
-
-	puzzle5->AddComponent(new Mesh());
-	puzzle5->Init();
-	puzzle5->mesh->setTransform({ -0.46f*400, 0.1f * 400 });
 	puzzle5->mesh->setRotation(DegreeToRadian(60.f));
-	puzzle5->mesh->InitializeTextureMesh();
 
-	puzzle6->AddComponent(new Mesh());
-	puzzle6->AddComponent(new PuzzleComponent());
-	puzzle6->Init();
-	puzzle6->mesh->setTransform({ -0.115f * 400, 0.1f * 400 });
 	puzzle6->mesh->setRotation(DegreeToRadian(300.f));
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
-	puzzle6->mesh->InitializeTextureMesh();
-
-	puzzle7->AddComponent(new Mesh());
-	puzzle7->Init();
-	puzzle7->mesh->setTransform({ 0.23f * 400, 0.1f * 400 });
+	
 	puzzle7->mesh->setRotation(DegreeToRadian(240.f));
-	puzzle7->mesh->InitializeTextureMesh();
-
-	puzzle8->AddComponent(new Mesh());
-	puzzle8->Init();
-	puzzle8->mesh->setTransform({ 0.057f * 400, -0.2f * 400 });
+	
 	puzzle8->mesh->setRotation(DegreeToRadian(60.f));
-	puzzle8->mesh->InitializeTextureMesh();
-
-	puzzle9->AddComponent(new Mesh());
-	puzzle9->Init();
-	puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
+	
 	puzzle9->mesh->setRotation(DegreeToRadian(60.f));
-	puzzle9->mesh->InitializeTextureMesh();
-
-	puzzle10->AddComponent(new Mesh());
-	puzzle10->AddComponent(new PuzzleComponent());
-	puzzle10->Init();
-	puzzle10->mesh->setTransform({ -0.115f * 400, -0.5f * 400 });
+	
 	puzzle10->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
-	puzzle10->mesh->InitializeTextureMesh();
 
-	blackPuzzle1->AddComponent(new Mesh());
-	blackPuzzle1->Init();
-	blackPuzzle1->mesh->setTransform({ -0.29f * 400, 0.4f * 400 });
-	blackPuzzle1->mesh->InitializeTextureMesh();
-
-	blackPuzzle2->AddComponent(new Mesh());
-	blackPuzzle2->Init();
-	blackPuzzle2->mesh->setTransform({ -0.29f * 400, -0.2f * 400 });
-	blackPuzzle2->mesh->InitializeTextureMesh();
-
-	blackPuzzle3->AddComponent(new Mesh());
-	blackPuzzle3->Init();
-	blackPuzzle3->mesh->setTransform({ 0.23f * 400, -0.5f * 400 });
-	blackPuzzle3->mesh->InitializeTextureMesh();
-
-	button->AddComponent(new Mesh());
-	button->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
-	button->mesh->SetMeshType(rectangle);
-	button->Init();
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
-
-	clear->AddComponent(new Mesh());
-	clear->mesh->setTransform({ -10.0f * 400, 10.0f * 400 });
-	clear->mesh->SetMeshType(rectangle);
-	clear->Init();
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
-
-	spacePress->AddComponent(new Mesh());
-	spacePress->mesh->setTransform({ 0.0f * 400, -0.85f * 400 });
-	spacePress->mesh->SetMeshType(rectangle);
-	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level4keyCallback);
