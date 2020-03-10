@@ -390,10 +390,7 @@ void MovingCheck::Update()
 	buttonClick_1.x = button->mesh->GetTransform().x;
 	buttonClick_1.y = button->mesh->GetTransform().y;
 
-	if (cursor5.x <= (getOrigin1_1.x + r / 2) &&
-		cursor5.x >= (getOrigin1_1.x - r / 2) &&
-		cursor5.y <= (getOrigin1_1.y + r) &&
-		cursor5.y >= (getOrigin1_1.y - r))
+	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle->mesh) == true)
 	{
 		if (moveCheckTest % 2 == 1)
 		{
@@ -457,10 +454,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (cursor5.x <= (getOrigin2_1.x + r / 2) &&
-		cursor5.x >= (getOrigin2_1.x - r / 2) &&
-		cursor5.y <= (getOrigin2_1.y + r) &&
-		cursor5.y >= (getOrigin2_1.y - r))
+	if (movePuzzle2->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle2->mesh) == true)
 	{
 		if (moveCheckTest_2 % 2 == 1)
 		{
@@ -503,10 +497,7 @@ void MovingCheck::Update()
 		//std::cout << "Not connect\n";
 	}
 
-	if (cursor5.x <= (getOrigin3_1.x + r / 2) &&
-		cursor5.x >= (getOrigin3_1.x - r / 2) &&
-		cursor5.y <= (getOrigin3_1.y + r) &&
-		cursor5.y >= (getOrigin3_1.y - r))
+	if (movePuzzle3->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle3->mesh) == true)
 	{
 		if (moveCheckTest_3 % 2 == 1)
 		{
@@ -567,10 +558,7 @@ void MovingCheck::Update()
 	//
 	if (movableTest_1 == 0)
 	{
-		if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-			getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-			getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-			getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
+		if (movePuzzle->collision->Point2HexagonCollision(blackPuzzle1->mesh->GetTransform(), movePuzzle->mesh) == true ||
 			(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
 				getOrigin1_1.y <= (getOrigin2_2.y + r) &&

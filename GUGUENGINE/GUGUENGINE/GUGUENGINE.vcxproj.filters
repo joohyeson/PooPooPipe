@@ -69,6 +69,9 @@
     <Filter Include="소스 파일\Graphics\GenerateMap\HexagonElement">
       <UniqueIdentifier>{02d4f031-6147-422b-afe1-87b64dd99dc9}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Graphics\GenerateMap\GetDirection">
+      <UniqueIdentifier>{ac5d630d-5739-4544-8eaa-9ef6fea4b646}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -136,6 +139,9 @@
     </ClCompile>
     <ClCompile Include="HexagonElements.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
+    </ClCompile>
+    <ClCompile Include="GetDirection.cpp">
+      <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -240,6 +246,9 @@
     </ClInclude>
     <ClInclude Include="HexagonElements.h">
       <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
+    </ClInclude>
+    <ClInclude Include="GetDirection.h">
+      <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
