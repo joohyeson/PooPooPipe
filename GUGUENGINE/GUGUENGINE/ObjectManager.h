@@ -12,8 +12,19 @@
 #include<vector>
 #include <string>
 
+#include "Mathematics/Vector2.hpp"
+
 class Object;
 using ObjectID = unsigned;
+
+enum Type
+{
+	Puzzle,
+	MovePuzzle,
+	BlackPuzzle,
+	DirPuzzle,
+	shape_rec,
+};
 
 class ObjectFactory : public System
 {
@@ -34,6 +45,8 @@ public:
 
 	Object* FindObjectwithName(std::string& name) const;
 	Object* FindObjectwithID(ObjectID id) const;
+
+	Object* CreateObject(Type archetype, Vector2<float> transform);
 
 private:
 	ObjectID last_objectID;

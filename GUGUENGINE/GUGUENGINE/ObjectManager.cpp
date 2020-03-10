@@ -92,3 +92,60 @@ Object* ObjectFactory::FindObjectwithID(ObjectID id) const
 	}
 	return nullptr;
 }
+
+Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //does not have ''SetDirection" and "SetAngle"
+{
+	Object* obj;
+	obj = OBJECT_FACTORY->CreateEmptyObject();
+
+	switch (archetype)
+	{
+	case Puzzle:
+	{
+		obj->AddComponent(new Mesh());
+		obj->Init();
+		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->InitializeTextureMesh();
+		break;
+	}
+	case MovePuzzle: //have to write down 'SetDirection' in every level
+	{
+		obj->AddComponent(new Mesh());
+		obj->AddComponent(new PuzzleComponent());
+		//movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
+		obj->mesh->SetMeshType(hexagon);
+		obj->Init();
+		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->InitializeColorMesh();
+		break;
+	}
+	case DirPuzzle: //have to write down 'SetDirection' in every level
+	{
+		obj->AddComponent(new Mesh());
+		obj->AddComponent(new PuzzleComponent());
+		//endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
+		obj->Init();
+		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->InitializeTextureMesh();
+		break;
+	}
+	case BlackPuzzle:
+	{
+		obj->AddComponent(new Mesh());
+		obj->Init();
+		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->InitializeTextureMesh();
+		break;
+	}
+	case shape_rec:
+	{
+		obj->AddComponent(new Mesh());
+		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->SetMeshType(rectangle);
+		obj->Init();
+		break;
+	}
+	}
+
+	return obj;
+}
