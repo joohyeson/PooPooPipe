@@ -171,7 +171,7 @@ void MovingCheck::Init()
 	puzzle7 = OBJECT_FACTORY->CreateEmptyObject();
 
 	puzzle8 = OBJECT_FACTORY->CreateEmptyObject();
-	//puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
+	puzzle9 = OBJECT_FACTORY->CreateEmptyObject();
 	puzzle10 = OBJECT_FACTORY->CreateEmptyObject();
 
 	blackPuzzle1 = OBJECT_FACTORY->CreateEmptyObject();
@@ -300,11 +300,12 @@ void MovingCheck::Init()
 	myMap.SaveObject(blackPuzzle2);
 
 
-	//puzzle9->AddComponent(new Mesh());
-	//puzzle9->Init();
-	//puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
-	//puzzle9->mesh->setRotation(DegreeToRadian(60.f));
-	//puzzle9->mesh->InitializeTextureMesh();
+	puzzle9->AddComponent(new Mesh());
+	puzzle9->AddComponent(new CollisionCheck());
+	puzzle9->Init();
+	puzzle9->mesh->setTransform({ 0.4f * 400, -0.2f * 400 });
+	puzzle9->mesh->setRotation(DegreeToRadian(60.f));
+	puzzle9->mesh->InitializeTextureMesh();
 	//myMap.SaveObject(puzzle9);
 
 
@@ -332,6 +333,7 @@ void MovingCheck::Init()
 
 
 	button->AddComponent(new Mesh());
+	button->AddComponent(new CollisionCheck());
 	button->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
 	button->mesh->SetMeshType(rectangle);
 	button->Init();
@@ -388,10 +390,7 @@ void MovingCheck::Update()
 	buttonClick_1.x = button->mesh->GetTransform().x;
 	buttonClick_1.y = button->mesh->GetTransform().y;
 
-	if (cursor5.x <= (getOrigin1_1.x + r / 2) &&
-		cursor5.x >= (getOrigin1_1.x - r / 2) &&
-		cursor5.y <= (getOrigin1_1.y + r) &&
-		cursor5.y >= (getOrigin1_1.y - r))
+	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle->mesh) == true)
 	{
 		if (moveCheckTest % 2 == 1)
 		{
@@ -455,10 +454,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (cursor5.x <= (getOrigin2_1.x + r / 2) &&
-		cursor5.x >= (getOrigin2_1.x - r / 2) &&
-		cursor5.y <= (getOrigin2_1.y + r) &&
-		cursor5.y >= (getOrigin2_1.y - r))
+	if (movePuzzle2->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle2->mesh) == true)
 	{
 		if (moveCheckTest_2 % 2 == 1)
 		{
@@ -501,10 +497,7 @@ void MovingCheck::Update()
 		//std::cout << "Not connect\n";
 	}
 
-	if (cursor5.x <= (getOrigin3_1.x + r / 2) &&
-		cursor5.x >= (getOrigin3_1.x - r / 2) &&
-		cursor5.y <= (getOrigin3_1.y + r) &&
-		cursor5.y >= (getOrigin3_1.y - r))
+	if (movePuzzle3->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle3->mesh) == true)
 	{
 		if (moveCheckTest_3 % 2 == 1)
 		{
@@ -565,10 +558,7 @@ void MovingCheck::Update()
 	//
 	if (movableTest_1 == 0)
 	{
-		if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-			getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-			getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-			getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
+		if (movePuzzle->collision->Point2HexagonCollision(blackPuzzle1->mesh->GetTransform(), movePuzzle->mesh) == true ||
 			(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
 				getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
 				getOrigin1_1.y <= (getOrigin2_2.y + r) &&
@@ -707,10 +697,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (cursor5.x <= (buttonClick_1.x + 0.5f * 400) &&
-		cursor5.x >= (buttonClick_1.x - 0.5f * 400) &&
-		cursor5.y <= (buttonClick_1.y + 0.5f * 400) &&
-		cursor5.y >= (buttonClick_1.y - 0.5f * 400))
+	if (button->collision->Point2BoxCollision(cursor5, button->mesh)==true)
 	{
 		if (connectMove4Test % 2 == 1)
 		{
@@ -739,7 +726,15 @@ void MovingCheck::Update()
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4);
-	//puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
+	if (puzzle9->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, puzzle9->mesh) == true)
+	{
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
+	}
+	else
+	{
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
+	}
+	
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
 	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
