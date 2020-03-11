@@ -46,6 +46,12 @@
     <Filter Include="Source Files\Level\Mainmenu">
       <UniqueIdentifier>{f5bc77eb-ab3e-40e8-a8c0-a856d6ffec73}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Stage\Level5">
+      <UniqueIdentifier>{82575af5-d030-4a22-8ebb-bbb9845f0304}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\Stage\Level6">
+      <UniqueIdentifier>{25762504-0859-4e30-8580-732cd20383da}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp">
@@ -81,6 +87,12 @@
     <ClCompile Include="StateManager.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Level5.cpp">
+      <Filter>Source Files\Level\Stage\Level5</Filter>
+    </ClCompile>
+    <ClCompile Include="Level6.cpp">
+      <Filter>Source Files\Level\Stage\Level6</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level1.h">
@@ -112,6 +124,12 @@
     </ClInclude>
     <ClInclude Include="StateManager.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Level5.h">
+      <Filter>Source Files\Level\Stage\Level5</Filter>
+    </ClInclude>
+    <ClInclude Include="Level6.h">
+      <Filter>Source Files\Level\Stage\Level6</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
