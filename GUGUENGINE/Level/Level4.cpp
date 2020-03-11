@@ -73,7 +73,7 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext4 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 		chekNext4 = 0;
 
 		conecTcheck4_1 = false;
@@ -109,10 +109,10 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 		blCheck4 = false;
 		blCheck4_2 = false;
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 	}
 
-	if(key == GLFW_KEY_ESCAPE)
+	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
 	}
@@ -166,32 +166,32 @@ void Level4::Init()
 	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
-	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f });
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 60.f);
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -184.f, 280.f });
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -48.f, 280.f });
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -252.f, 160.f });
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -252.f, 160.f }, 180.f);
 	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 22.8f, 160.f });
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -0.46f * 400, 0.1f * 400 });
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, 0.1f * 400 });
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.23f * 400, 0.1f * 400 });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -0.46f * 400, 0.1f * 400 }, 60.f);
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, 0.1f * 400 }, 300.f);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.23f * 400, 0.1f * 400 }, 240.f);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.057f * 400, -0.2f * 400 });
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.4f * 400, -0.2f * 400 });
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, -0.5f * 400 });
-	
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.057f * 400, -0.2f * 400 }, 60.f);
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.4f * 400, -0.2f * 400 }, 60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -0.115f * 400, -0.5f * 400 }, 180.f);
+
 	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -0.29f * 400, 0.4f * 400 });
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -0.29f * 400, -0.2f * 400 });
 	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.23f * 400, -0.5f * 400 });
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -320.f, 280.f });
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 232.f, -200.f });
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -320.f, 280.f }, 240.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 232.f, -200.f }, 60.f);
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -0.7f * 400, -0.6f * 400 });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -10.0f * 400, 10.0f * 400 });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f * 400, -0.85f * 400 });
-	
+
 	texureIdLine4 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve4 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -212,39 +212,17 @@ void Level4::Init()
 	mShader2.BuildTextureShader();
 
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
-
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
-
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
-
-	startPuzzle->mesh->setRotation(DegreeToRadian(-240.f));
-
-	endPuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
-	
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
-
-	puzzle3->mesh->setRotation(DegreeToRadian(180.f));
-
-	puzzle5->mesh->setRotation(DegreeToRadian(60.f));
-
-	puzzle6->mesh->setRotation(DegreeToRadian(300.f));
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
-	
-	puzzle7->mesh->setRotation(DegreeToRadian(240.f));
-	
-	puzzle8->mesh->setRotation(DegreeToRadian(60.f));
-	
-	puzzle9->mesh->setRotation(DegreeToRadian(60.f));
-	
-	puzzle10->mesh->setRotation(DegreeToRadian(180.f));
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
-	
+
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level4keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level4cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level4mouseButtonCallback);
@@ -255,38 +233,11 @@ void Level4::Update()
 	if (check4 < 1)
 	{
 		check4++;
-		std::cout << "HELLO" << std::endl;
 	}
 
 	se4.Update();
 
-	float r = static_cast<float>(sqrt(5) / 10)*400;
-
-	getOrigin1_1.x = movePuzzle->mesh->GetTransform().x;
-	getOrigin1_1.y = movePuzzle->mesh->GetTransform().y;
-
-	getOrigin1_2.x = blackPuzzle1->mesh->GetTransform().x;
-	getOrigin1_2.y = blackPuzzle1->mesh->GetTransform().y;
-
-	getOrigin2_1.x = movePuzzle2->mesh->GetTransform().x;
-	getOrigin2_1.y = movePuzzle2->mesh->GetTransform().y;
-
-	getOrigin2_2.x = blackPuzzle2->mesh->GetTransform().x;
-	getOrigin2_2.y = blackPuzzle2->mesh->GetTransform().y;
-
-	getOrigin3_1.x = movePuzzle3->mesh->GetTransform().x;
-	getOrigin3_1.y = movePuzzle3->mesh->GetTransform().y;
-
-	getOrigin3_2.x = blackPuzzle3->mesh->GetTransform().x;
-	getOrigin3_2.y = blackPuzzle3->mesh->GetTransform().y;
-
-	buttonClick_1.x = button->mesh->GetTransform().x;
-	buttonClick_1.y = button->mesh->GetTransform().y;
-
-	if (cursor4.x <= (getOrigin1_1.x + r / 2) &&
-		cursor4.x >= (getOrigin1_1.x - r / 2) &&
-		cursor4.y <= (getOrigin1_1.y + r) &&
-		cursor4.y >= (getOrigin1_1.y - r))
+	if (movePuzzle->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle->mesh))
 	{
 		if (moveCheck4 % 2 == 1)
 		{
@@ -308,7 +259,7 @@ void Level4::Update()
 			se4.Play(1);
 			se4.SetVolume(0.5f);
 			se4.SetLoopCount(1);
-		}		
+		}
 	}
 	else
 	{
@@ -319,7 +270,7 @@ void Level4::Update()
 	{
 		movePuzzle->mesh->setTransform({ cursor4.x, cursor4.y });
 	}
-	
+
 	if (blCheck3)
 	{
 		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
@@ -333,7 +284,7 @@ void Level4::Update()
 			//std::cout << "Not connect\n";
 		}
 	}
-	
+
 	if (blCheck3_2)
 	{
 		if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
@@ -352,11 +303,8 @@ void Level4::Update()
 			//std::cout << "Not connect\n";
 		}
 	}
-	
-	if (cursor4.x <= (getOrigin2_1.x + r / 2) &&
-		cursor4.x >= (getOrigin2_1.x - r / 2) &&
-		cursor4.y <= (getOrigin2_1.y + r) &&
-		cursor4.y >= (getOrigin2_1.y - r))
+
+	if (movePuzzle2->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle2->mesh))
 	{
 		if (moveCheck4_2 % 2 == 1)
 		{
@@ -402,11 +350,8 @@ void Level4::Update()
 		conecTcheck4_2 = false;
 		//std::cout << "Not connect\n";
 	}
-	
-	if (cursor4.x <= (getOrigin3_1.x + r / 2) &&
-		cursor4.x >= (getOrigin3_1.x - r / 2) &&
-		cursor4.y <= (getOrigin3_1.y + r) &&
-		cursor4.y >= (getOrigin3_1.y - r))
+
+	if (movePuzzle3->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle3->mesh))
 	{
 		if (moveCheck4_3 % 2 == 1)
 		{
@@ -466,156 +411,96 @@ void Level4::Update()
 			//std::cout << "Not connect\n";
 		}
 	}
-	
+
 	//
 	if (movable4_1 == 0)
 	{
-		if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-			getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-			getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-			getOrigin1_1.y >= (getOrigin1_2.y - r)) ||
-			(getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
-				getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
-				getOrigin1_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin1_1.y >= (getOrigin2_2.y - r)) ||
-				(getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin1_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin1_1.y >= (getOrigin3_2.y - r)))
+		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
+
 		{
 			if (moveCheck4 % 2 == 0)
 			{
-				if ((getOrigin1_1.x <= (getOrigin1_2.x + r / 2) &&
-					getOrigin1_1.x >= (getOrigin1_2.x - r / 2) &&
-					getOrigin1_1.y <= (getOrigin1_2.y + r) &&
-					getOrigin1_1.y >= (getOrigin1_2.y - r)))
+				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
-					movePuzzle->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+					movePuzzle->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					blCheck3 = true;
 					blCheck3_2 = false;
 				}
 
-				if ((getOrigin1_1.x <= (getOrigin2_2.x + r / 2) &&
-					getOrigin1_1.x >= (getOrigin2_2.x - r / 2) &&
-					getOrigin1_1.y <= (getOrigin2_2.y + r) &&
-					getOrigin1_1.y >= (getOrigin2_2.y - r)))
+				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
-					movePuzzle->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+					movePuzzle->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					blCheck3 = false;
 					blCheck3_2 = false;
 				}
 
-				if ((getOrigin1_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin1_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin1_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin1_1.y >= (getOrigin3_2.y - r)))
+				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
-					movePuzzle->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+					movePuzzle->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					blCheck3 = false;
 					blCheck3_2 = true;
 				}
 			}
 		}
+		else
+			conecTcheck4_1 = false;
 	}
-	
+
 	if (movable4_2 == 0)
 	{
-		if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
-			getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
-			getOrigin2_1.y <= (getOrigin1_2.y + r) &&
-			getOrigin2_1.y >= (getOrigin1_2.y - r)) ||
-			(getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
-				getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
-				getOrigin2_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin2_1.y >= (getOrigin2_2.y - r)) ||
-				(getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin2_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin2_1.y >= (getOrigin3_2.y - r))
-			)
+		if ((movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh)))
 		{
 			if (moveCheck4_2 % 2 == 0)
 			{
-				if ((getOrigin2_1.x <= (getOrigin1_2.x + r / 2) &&
-					getOrigin2_1.x >= (getOrigin1_2.x - r / 2) &&
-					getOrigin2_1.y <= (getOrigin1_2.y + r) &&
-					getOrigin2_1.y >= (getOrigin1_2.y - r)))
+				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
-					movePuzzle2->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+					movePuzzle2->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 				}
-				if ((getOrigin2_1.x <= (getOrigin2_2.x + r / 2) &&
-					getOrigin2_1.x >= (getOrigin2_2.x - r / 2) &&
-					getOrigin2_1.y <= (getOrigin2_2.y + r) &&
-					getOrigin2_1.y >= (getOrigin2_2.y - r)))
+				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
-					movePuzzle2->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+					movePuzzle2->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 				}
-				if ((getOrigin2_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin2_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin2_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin2_1.y >= (getOrigin3_2.y - r)))
+				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
-					movePuzzle2->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
-
+					movePuzzle2->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 				}
 			}
 		}
+		else
+			conecTcheck4_2 = false;
 	}
 
 	if (movable4_3 == 0)
 	{
-		if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
-			getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
-			getOrigin3_1.y <= (getOrigin1_2.y + r) &&
-			getOrigin3_1.y >= (getOrigin1_2.y - r)) ||
-			(getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
-				getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
-				getOrigin3_1.y <= (getOrigin2_2.y + r) &&
-				getOrigin3_1.y >= (getOrigin2_2.y - r)) ||
-				(getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin3_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin3_1.y >= (getOrigin3_2.y - r))
-			)
+		if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
 		{
-
 			if (moveCheck4_3 % 2 == 0)
 			{
-				if ((getOrigin3_1.x <= (getOrigin1_2.x + r / 2) &&
-					getOrigin3_1.x >= (getOrigin1_2.x - r / 2) &&
-					getOrigin3_1.y <= (getOrigin1_2.y + r) &&
-					getOrigin3_1.y >= (getOrigin1_2.y - r)))
+				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
-					movePuzzle3->mesh->setTransform({ getOrigin1_2.x,getOrigin1_2.y });
+					movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					blCheck4 = true;
 					blCheck4_2 = false;
 				}
-				if ((getOrigin3_1.x <= (getOrigin2_2.x + r / 2) &&
-					getOrigin3_1.x >= (getOrigin2_2.x - r / 2) &&
-					getOrigin3_1.y <= (getOrigin2_2.y + r) &&
-					getOrigin3_1.y >= (getOrigin2_2.y - r)))
+				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
-					movePuzzle3->mesh->setTransform({ getOrigin2_2.x,getOrigin2_2.y });
+					movePuzzle3->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					blCheck4 = false;
 					blCheck4_2 = false;
 				}
-				if ((getOrigin3_1.x <= (getOrigin3_2.x + r / 2) &&
-					getOrigin3_1.x >= (getOrigin3_2.x - r / 2) &&
-					getOrigin3_1.y <= (getOrigin3_2.y + r) &&
-					getOrigin3_1.y >= (getOrigin3_2.y - r)))
+				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
-					movePuzzle3->mesh->setTransform({ getOrigin3_2.x,getOrigin3_2.y });
+					movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					blCheck4 = false;
 					blCheck4_2 = true;
 				}
 			}
 		}
+		else
+			conecTcheck4_3 = false;
 	}
 
-	if (cursor4.x <= (buttonClick_1.x + 0.5f * 400) &&
-		cursor4.x >= (buttonClick_1.x - 0.5f * 400) &&
-		cursor4.y <= (buttonClick_1.y + 0.5f * 400) &&
-		cursor4.y >= (buttonClick_1.y - 0.5f * 400))
+	if (button->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, button->mesh))
 	{
 		if (connectMove4 % 2 == 1)
 		{
@@ -662,7 +547,7 @@ void Level4::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
-	
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

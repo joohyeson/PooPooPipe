@@ -93,7 +93,7 @@ Object* ObjectFactory::FindObjectwithID(ObjectID id) const
 	return nullptr;
 }
 
-Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //does not have ''SetDirection" and "SetAngle"
+Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, float degree) //does not have ''SetDirection" and "SetAngle"
 {
 	Object* obj;
 	obj = OBJECT_FACTORY->CreateEmptyObject();
@@ -105,6 +105,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //
 		obj->AddComponent(new Mesh());
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}
@@ -116,6 +117,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //
 		obj->mesh->SetMeshType(hexagon);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeColorMesh();
 		break;
 	}
@@ -126,6 +128,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //
 		//endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}
@@ -134,6 +137,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform) //
 		obj->AddComponent(new Mesh());
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
+		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}

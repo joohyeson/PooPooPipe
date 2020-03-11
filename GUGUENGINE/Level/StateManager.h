@@ -22,7 +22,10 @@ enum GameLevels
 	LV_TEST2,
 	LV_TEST3,
 	LV_TEST4,
-	MOVINGCHECK
+	LV_TEST5,
+	LV_TEST6,
+
+	//MOVINGCHECK
 };
 
 class StateManager : public System
