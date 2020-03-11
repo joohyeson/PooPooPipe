@@ -390,7 +390,7 @@ void MovingCheck::Update()
 	buttonClick_1.x = button->mesh->GetTransform().x;
 	buttonClick_1.y = button->mesh->GetTransform().y;
 
-	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle->mesh) == true)
+	if (puzzle1->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, puzzle1->mesh) == true)
 	{
 		if (moveCheckTest % 2 == 1)
 		{
@@ -402,10 +402,10 @@ void MovingCheck::Update()
 		}
 		if (rightCheckTest != 0)
 		{
-			movePuzzle->pipe->Update();
+			puzzle1->pipe->Update();
 
 			degreeTest += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degreeTest);
+			puzzle1->mesh->setRotation(degreeTest);
 
 			rightCheckTest = 0;
 
