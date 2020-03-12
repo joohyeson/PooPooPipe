@@ -172,7 +172,8 @@ void Level3::Init()
 	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground3 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
-	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f });
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
+		false, false, false, true, false, true);
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
@@ -219,7 +220,7 @@ void Level3::Init()
 
 	mShader2.BuildTextureShader();
 
-	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
+	//movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);

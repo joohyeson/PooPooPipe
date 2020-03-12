@@ -46,7 +46,8 @@ public:
 	Object* FindObjectwithName(std::string& name) const;
 	Object* FindObjectwithID(ObjectID id) const;
 
-	Object* CreateObject(Type archetype, Vector2<float> transform, float degree = 0);
+	Object* CreateObject(Type archetype, Vector2<float> transform, float degree = 0,
+												float dir1 = 0, float dir2 = 0, float dir3 = 0, float dir4 = 0, float dir5 = 0, float dir6 = 0);
 
 private:
 	ObjectID last_objectID;
