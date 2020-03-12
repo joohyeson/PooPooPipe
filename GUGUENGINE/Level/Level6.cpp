@@ -362,6 +362,7 @@ void Level6::Init()
 	blackPuzzle3->AddComponent(new PuzzleComponent());
 	blackPuzzle3->Init();
 	blackPuzzle3->mesh->setTransform({ -132.f, -80.0f });
+	degree6_4 = 180.f;
 	blackPuzzle3->mesh->setRotation(DegreeToRadian(180.f));
 	blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
 	blackPuzzle3->mesh->InitializeTextureMesh();
@@ -432,6 +433,7 @@ void Level6::Update()
 			puzzle14->pipe->Update();
 
 			degree6 += static_cast<float>(DegreeToRadian(60.f));
+			std::cout << "1" << std::endl;
 			puzzle14->mesh->setRotation(degree6);
 
 			rightCheck6 = 0;
@@ -455,6 +457,7 @@ void Level6::Update()
 			blackPuzzle1->pipe->Update();
 
 			degree6_2 += static_cast<float>(DegreeToRadian(60.f));
+			std::cout << "2" << std::endl;
 			blackPuzzle1->mesh->setRotation(degree6_2);
 			rightCheck6_2 = 0;
 
@@ -479,6 +482,7 @@ void Level6::Update()
 		{
 			puzzle7->pipe->Update();
 			degree6_3 += static_cast<float>(DegreeToRadian(60.f));
+			
 			puzzle7->mesh->setRotation(degree6_3);
 			rightCheck6_3 = 0;
 
@@ -500,8 +504,9 @@ void Level6::Update()
 		if (rightCheck6_4 != 0)
 		{
 			blackPuzzle3->pipe->Update();
-			degree6_4 += static_cast<float>(DegreeToRadian(60.f));
-			blackPuzzle3->mesh->setRotation(degree6_4);
+			degree6_4 +=(60.f);
+			blackPuzzle3->mesh->setRotation(static_cast<float>((DegreeToRadian(degree6_4))));
+			std::cout << "4" << std::endl;
 			rightCheck6_4 = 0;
 
 			se6.Play(1);
@@ -525,7 +530,7 @@ void Level6::Update()
 			degree6_5 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle16->mesh->setRotation(degree6_5);
 			rightCheck6_5 = 0;
-
+			std::cout << "5" << std::endl;
 			se6.Play(1);
 			se6.SetVolume(0.5f);
 			se6.SetLoopCount(1);
@@ -547,7 +552,7 @@ void Level6::Update()
 			degree6_6 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle12->mesh->setRotation(degree6_6);
 			rightCheck6_6 = 0;
-
+			std::cout << "6" << std::endl;
 			se6.Play(1);
 			se6.SetVolume(0.5f);
 			se6.SetLoopCount(1);

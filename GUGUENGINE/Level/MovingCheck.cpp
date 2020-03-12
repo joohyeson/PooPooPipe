@@ -36,7 +36,7 @@ float degreeTest_2 = 0;
 float degreeTest_3 = 0;
 
 int CheckTest = 0;
-Vector2<float> cursor5;
+Vector2<float> cursorTest;
 
 int movableTest_1 = 0;
 int movableTest_2 = 0;
@@ -53,7 +53,7 @@ int rightCheckTest_3 = 0;
 
 
 
-void level5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNextTest == 1)
 	{
@@ -102,12 +102,12 @@ void level5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 	}
 }
 
-void level5cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+void TestcursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor5 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+	cursorTest = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
 }
 
-void  level5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+void  Test5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -353,9 +353,9 @@ void MovingCheck::Init()
 
 	myMap.MapAlignment();
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level5keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level5cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level5mouseButtonCallback);
+	glfwSetKeyCallback(APPLICATION->getMyWindow(), Test5keyCallback);
+	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), TestcursorPositionCallback);
+	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), Test5mouseButtonCallback);
 }
 
 void MovingCheck::Update()
@@ -390,7 +390,7 @@ void MovingCheck::Update()
 	buttonClick_1.x = button->mesh->GetTransform().x;
 	buttonClick_1.y = button->mesh->GetTransform().y;
 
-	if (puzzle1->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, puzzle1->mesh) == true)
+	if (puzzle1->collision->Point2HexagonCollision({ cursorTest.x, cursorTest.y }, puzzle1->mesh) == true)
 	{
 		if (moveCheckTest % 2 == 1)
 		{
@@ -398,7 +398,7 @@ void MovingCheck::Update()
 			{
 				movableTest_1 = 1;
 			}
-			/*movePuzzle->mesh->setTransform({ cursor5.x, cursor5.y });*/
+			/*movePuzzle->mesh->setTransform({ cursorTest.x, cursorTest.y });*/
 		}
 		if (rightCheckTest != 0)
 		{
@@ -418,7 +418,7 @@ void MovingCheck::Update()
 	}
 	if (movableTest_1 == 1)
 	{
-		movePuzzle->mesh->setTransform({ cursor5.x, cursor5.y });
+		puzzle1->mesh->setTransform({ cursorTest.x, cursorTest.y });
 	}
 
 	if (blCheckTest3)
@@ -454,7 +454,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (movePuzzle2->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle2->mesh) == true)
+	if (movePuzzle2->collision->Point2HexagonCollision({ cursorTest.x, cursorTest.y }, movePuzzle2->mesh) == true)
 	{
 		if (moveCheckTest_2 % 2 == 1)
 		{
@@ -462,7 +462,7 @@ void MovingCheck::Update()
 			{
 				movableTest_2 = 1;
 			}
-			/*movePuzzle2->mesh->setTransform({ cursor5.x, cursor5.y });*/
+			/*movePuzzle2->mesh->setTransform({ cursorTest.x, cursorTest.y });*/
 		}
 		if (rightCheckTest_2 != 0)
 		{
@@ -483,7 +483,7 @@ void MovingCheck::Update()
 	}
 	if (movableTest_2 == 1)
 	{
-		movePuzzle2->mesh->setTransform({ cursor5.x, cursor5.y });
+		movePuzzle2->mesh->setTransform({ cursorTest.x, cursorTest.y });
 	}
 
 	if ((movePuzzle2->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle2->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
@@ -497,7 +497,7 @@ void MovingCheck::Update()
 		//std::cout << "Not connect\n";
 	}
 
-	if (movePuzzle3->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, movePuzzle3->mesh) == true)
+	if (movePuzzle3->collision->Point2HexagonCollision({ cursorTest.x, cursorTest.y }, movePuzzle3->mesh) == true)
 	{
 		if (moveCheckTest_3 % 2 == 1)
 		{
@@ -524,7 +524,7 @@ void MovingCheck::Update()
 	}
 	if (movableTest_3 == 1)
 	{
-		movePuzzle3->mesh->setTransform({ cursor5.x, cursor5.y });
+		movePuzzle3->mesh->setTransform({ cursorTest.x, cursorTest.y });
 	}
 
 
@@ -532,7 +532,7 @@ void MovingCheck::Update()
 	{
 		if ((movePuzzle3->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle3->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
 		{
-			std::cout << "pipe connect\n";
+			//std::cout << "pipe connect\n";
 			conecTCheckTest_3 = true;
 		}
 		else
@@ -697,7 +697,7 @@ void MovingCheck::Update()
 		}
 	}
 
-	if (button->collision->Point2BoxCollision(cursor5, button->mesh)==true)
+	if (button->collision->Point2BoxCollision(cursorTest, button->mesh)==true)
 	{
 		if (connectMove4Test % 2 == 1)
 		{
@@ -726,7 +726,7 @@ void MovingCheck::Update()
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4);
-	if (puzzle9->collision->Point2HexagonCollision({ cursor5.x, cursor5.y }, puzzle9->mesh) == true)
+	if (puzzle9->collision->Point2HexagonCollision({ cursorTest.x, cursorTest.y }, puzzle9->mesh) == true)
 	{
 		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 	}

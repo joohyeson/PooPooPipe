@@ -48,7 +48,7 @@ void StateManager::Init()
 	levels.push_back(new Level5());
 	levels.push_back(new Level6());
 
-	//levels.push_back(new MovingCheck());
+	levels.push_back(new MovingCheck());
 
 
 	levels.at(current)->Init();
