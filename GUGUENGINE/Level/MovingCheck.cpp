@@ -163,16 +163,16 @@ void MovingCheck::Init()
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f }, 60.f);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 0.f);
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
 	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 0.f);
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, -60.f);
 	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
 	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 0.f);
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 0.f);
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f },60.f);
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
 
 	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
@@ -205,7 +205,6 @@ void MovingCheck::Init()
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
-	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 
 	myMap.SaveObject(startPuzzle);
