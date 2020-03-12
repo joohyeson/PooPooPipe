@@ -15,13 +15,13 @@ public:
 	void DoesEdgeHasNeighbor();
 	int GetObjectSize();
 	void SetFirstLine(int k);
-	void SetLastLine(int k);
-	void SetOddLine(int i);
-	void SetEvenLine(int i);
+	void SetLastLine(int k, bool isOdd);
+	void SetOddLine(int k, int i);
+	void SetEvenLine(int k, int i);
 
 private:
-	int mapColumn;
 	int mapRow;
+	int mapColumn;
 	std::vector<Object*> objects;
 	
 	std::vector< Vector2<float> > coorSaver;

@@ -41,7 +41,7 @@ public:
 
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
-		blackPuzzle3 = nullptr;
+		//blackPuzzle3 = nullptr;
 		spacePress = nullptr;
 
 		button = nullptr;
@@ -59,7 +59,7 @@ private:
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
 	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;
 
-	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
+	Object* blackPuzzle1, * blackPuzzle2;/** blackPuzzle3*/
 
 	Object* button;
 	Object* clear;

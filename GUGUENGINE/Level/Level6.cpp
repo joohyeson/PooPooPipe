@@ -217,7 +217,6 @@ void Level6::Init()
 
 	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, 160.f }, -60.f);
 	blackPuzzle1->pipe->SetDirection(true, false, false, false, false, true);
-<<<<<<< HEAD
 	blackPuzzle1->mesh->InitializeTextureMesh();
 
 	blackPuzzle2->AddComponent(new Mesh());
@@ -232,12 +231,6 @@ void Level6::Init()
 	blackPuzzle3->mesh->setTransform({ -132.f, -80.0f });
 	degree6_4 = 180.f;
 	blackPuzzle3->mesh->setRotation(DegreeToRadian(180.f));
-=======
-
-	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f, 160.f });
-
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, -80.0f }, 180.f);
->>>>>>> origin/master
 	blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
