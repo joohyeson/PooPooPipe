@@ -16,18 +16,11 @@ enum DirAngle
 class [[nodiscard]] HexCoordinates : public Component
 {
 public:
-	HexCoordinates() : Component(COMPONENTTYPE_COORDINATES)
-	{
-	
-	}
-	~HexCoordinates() override
-	{
-	}
+	HexCoordinates() : Component(COMPONENTTYPE_COORDINATES){}
+	~HexCoordinates() override{}
 
 	bool checking();
-	void SetAngle()
-	{
-	}
+	void SetAngle(){}
 	//void Update();
 	Vector2<float> ReturnPuzzleCoor(Vector2<float> center,  DirAngle direction, float radius);
 

@@ -13,6 +13,7 @@
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
+#include "..//GUGUENGINE/MovePooPoo.h"
 class sound;
 
 class MovingCheck : public LevelManager
@@ -63,7 +64,7 @@ private:
 
 	Object* button;
 	Object* clear;
-
+	MovePooPoo myPooPoo;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

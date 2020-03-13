@@ -8,22 +8,22 @@ Vector2<float> HexCoordinates::ReturnPuzzleCoor(Vector2<float> center, DirAngle 
 	switch (direction)
 	{
 	case NE_:
-		angle = 30.f;
+		angle = 0.f;
 		break;
 	case N_:
-		angle = 90.f;
+		angle = 60.f;
 		break;
 	case NW_:
-		angle = 150.f;
+		angle = 120.f;
 		break;
 	case SW_:
-		angle = -150.f;
+		angle = 180.f;
 		break;
 	case S_:
-		angle = -90.f;
+		angle = -120.f;
 		break;
 	case SE_:
-		angle = -30.f;
+		angle = -60.f;
 		break;
 	default:
 		break;

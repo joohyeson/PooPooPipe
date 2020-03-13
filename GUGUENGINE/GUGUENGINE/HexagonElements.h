@@ -7,6 +7,8 @@
  */
 #pragma once
 #include "Mathematics/Vector2.hpp"
+#include <vector>
+#include "HexCoordinates.h"
 
 class HexagonEdge {
 public:
@@ -45,5 +47,25 @@ public:
 	void clear();
 
 	HexagonEdge myEdge[6];
+
+};
+
+class HexagonCoordinates {
+public:
+
+	HexagonCoordinates(Vector2<float> ori);
+
+	void SetEveryEdgeCoordinates();
+	void SetEveryEdgeCenterCoordinates();
+
+	Vector2<float>::Edge GetEdgeCoordinates(DirAngle i);
+	Vector2<float> GetEdgeCenterCoordinates(DirAngle i);
+
+private:
+	std::vector<HexagonEdge> hexagonEdgeCoordinates;
+	std::vector<Vector2<float>> hexagonEdgeCenterCoordinates;
+	Vector2<float> origin;
+
+
 
 };
