@@ -38,6 +38,9 @@ GLuint textureBackground5;
 GLuint texureIdLine5;
 GLuint texureIdCurve5;
 GLuint texureIdThree5;
+
+GLuint textureIdMove5;
+
 GLuint texureIdV5;
 GLuint texureIdBlack5;
 
@@ -190,6 +193,9 @@ void Level5::Init()
 	texureIdBlack5 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve5 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	texureIdThree5 = TEXTURE->CreateTexture("assets\\image3.png", 0);
+
+	textureIdMove5 = TEXTURE->CreateTexture("assets\\image5.png", 0);
+	
 	texureIdV5 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
 	texureIdStart5 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
@@ -754,7 +760,8 @@ void Level5::Update()
 	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
-	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdThree5);
+	
+	puzzle7->mesh->Update(mShader2.GetShaderHandler(), textureIdMove5);		//a block which it will move when the player presses 'start'
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine5);
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdThree5);
