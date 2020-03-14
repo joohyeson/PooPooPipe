@@ -239,6 +239,20 @@ void Level3::Init()
 
 void Level3::Update()
 {
+
+	//if(rotTime.getLimitTime() == 0)
+	//{
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//	std::cout << "STOP" << std::endl;
+	//}
+	
 	if (check3 < 1)
 	{
 		check3++;
@@ -262,7 +276,8 @@ void Level3::Update()
 
 			degree2 += static_cast<float>(DegreeToRadian(60.f));
 			movePuzzle->mesh->setRotation(degree2);
-
+			//rotTime.Update();
+			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
 			rightCheck3 = 0;
 
 			se3.Play(1);
@@ -324,7 +339,9 @@ void Level3::Update()
 
 			degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 			movePuzzle2->mesh->setRotation(degree2_2);
-
+			//rotTime.Update();
+			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
+			
 			rightCheck3_2 = 0;
 
 			se3.Play(1);
@@ -370,7 +387,8 @@ void Level3::Update()
 			movePuzzle3->pipe->Update();
 			degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 			movePuzzle3->mesh->setRotation(degree2_3);
-
+			//rotTime.Update();
+			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
 			rightCheck3_3 = 0;
 
 			se3.Play(1);
