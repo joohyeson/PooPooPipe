@@ -176,7 +176,7 @@ void MovingCheck::Init()
 	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
 	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f);
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
@@ -232,7 +232,7 @@ void MovingCheck::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	myMap.MapAlignment();
-	myPooPoo.Init();
+	//myPooPoo.Init();
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), Test5keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), TestcursorPositionCallback);
@@ -245,10 +245,10 @@ void MovingCheck::Update()
 	{
 		CheckTest++;
 		std::cout << "HELLO" << std::endl;
-		myPooPoo.SetIsSuccess(true);
+		//myPooPoo.SetIsSuccess(true);
 	}
 	
-	myPooPoo.MoveInPuzzle(DirAngle::SW_, DirAngle::SE_,puzzle1->mesh->GetTransform(), mShader2.GetShaderHandler());
+	//myPooPoo.MoveInPuzzle(DirAngle::SW_, DirAngle::SE_,puzzle1->mesh->GetTransform(), mShader2.GetShaderHandler());
 	//if (myPooPoo.GetRealEndD()==myPooPoo.GetPooPooTransform())
 	//{
 	//	myPooPoo.SetIsSuccess(true);
@@ -273,7 +273,7 @@ void MovingCheck::Update()
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 
-	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
+	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 	blackPuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
 	//blackPuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack4);
 
@@ -287,7 +287,7 @@ void MovingCheck::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
-	myPooPoo.Update(mShader2.GetShaderHandler());
+	//myPooPoo.Update(mShader2.GetShaderHandler());
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

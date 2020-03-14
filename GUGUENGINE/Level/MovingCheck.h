@@ -64,7 +64,7 @@ private:
 
 	Object* button;
 	Object* clear;
-	MovePooPoo myPooPoo;
+	//MovePooPoo myPooPoo;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

@@ -5,9 +5,11 @@
 class GetDirection
 {
 public:
+	bool IsValidLocation(int puzzleNumber, int EdgeNumber);
+
+	void StartGetDirection();
 
 private:
-	bool isComeBack = false;
-	std::vector<HexagonEdges*>  neighborCheck;
+
 
 };

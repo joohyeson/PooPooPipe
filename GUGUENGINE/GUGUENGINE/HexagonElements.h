@@ -20,7 +20,8 @@ public:
 	void SetObjectID(int temp);
 	void SetObjectEdgeID(bool temp);
 	void SetHasNeigbor(bool temp);
-
+	void WhoIsNeighbor(int puzzleNum, int EdgeNum);
+	Vector2<int> GetWhoIsNeighbor();
 	Vector2<float>::Edge GetMyEdge();
 	//int GetObjectID();
 	//int GetObjectEdgeID();
@@ -31,8 +32,9 @@ private:
 
 	int objectID = 0;
 	int objectEdgeID = 0;
-
+	bool isComeBack = false;
 	bool hasNeighbor = false;
+	Vector2<int> neighborInfo;
 
 };
 

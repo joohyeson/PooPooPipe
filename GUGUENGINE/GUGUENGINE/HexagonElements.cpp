@@ -36,6 +36,17 @@ void HexagonEdge::SetHasNeigbor(bool temp)
 	hasNeighbor = temp;
 }
 
+void HexagonEdge::WhoIsNeighbor(int puzzleNum, int EdgeNum)
+{
+	neighborInfo = { puzzleNum, EdgeNum };
+}
+
+Vector2<int> HexagonEdge::GetWhoIsNeighbor()
+{
+	Vector2<int> temp = neighborInfo;
+	return temp;
+}
+
 Vector2<float>::Edge HexagonEdge::GetMyEdge()
 {
 	return myEdge;

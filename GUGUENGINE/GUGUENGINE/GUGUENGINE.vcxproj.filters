@@ -72,6 +72,9 @@
     <Filter Include="소스 파일\Graphics\GenerateMap\GetDirection">
       <UniqueIdentifier>{ac5d630d-5739-4544-8eaa-9ef6fea4b646}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Graphics\GenerateMap\Map">
+      <UniqueIdentifier>{fc76a410-57f7-4f51-8050-33b9863a968b}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -142,6 +145,9 @@
     </ClCompile>
     <ClCompile Include="GetDirection.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
+    </ClCompile>
+    <ClCompile Include="ZigZagMap.cpp">
+      <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -249,6 +255,9 @@
     </ClInclude>
     <ClInclude Include="GetDirection.h">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
+    </ClInclude>
+    <ClInclude Include="ZigZagMap.h">
+      <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
