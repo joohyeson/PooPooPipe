@@ -143,6 +143,9 @@
     <ClCompile Include="GetDirection.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
     </ClCompile>
+    <ClCompile Include="limitedRotate.cpp">
+      <Filter>소스 파일\Component</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Application.h">
@@ -249,6 +252,9 @@
     </ClInclude>
     <ClInclude Include="GetDirection.h">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
+    </ClInclude>
+    <ClInclude Include="limitedRotate.h">
+      <Filter>소스 파일\Component</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

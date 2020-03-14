@@ -196,6 +196,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClCompile Include="HexagonElements.cpp" />
     <ClCompile Include="HexCoordinates.cpp" />
     <ClCompile Include="Image.cpp" />
+    <ClCompile Include="limitedRotate.cpp" />
     <ClCompile Include="Mathematics\Vector4.cpp" />
     <ClCompile Include="Mesh.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -236,6 +237,7 @@ xcopy /y /d "$(SolutionDir)external\fmod\lib\$(PlatformTarget)\fmod.dll" "$(Targ
     <ClInclude Include="HexCoordinates.h" />
     <ClInclude Include="Image.h" />
     <ClInclude Include="LevelManager.h" />
+    <ClInclude Include="limitedRotate.h" />
     <ClInclude Include="Mathematics\MathFunctions.hpp" />
     <ClInclude Include="Mathematics\MathLibrary.hpp" />
     <ClInclude Include="Mathematics\Matrix3.hpp" />
