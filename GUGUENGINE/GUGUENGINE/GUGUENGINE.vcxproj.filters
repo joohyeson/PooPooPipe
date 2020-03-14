@@ -146,8 +146,13 @@
     <ClCompile Include="GetDirection.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
     </ClCompile>
+<<<<<<< HEAD
     <ClCompile Include="ZigZagMap.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
+=======
+    <ClCompile Include="limitedRotate.cpp">
+      <Filter>소스 파일\Component</Filter>
+>>>>>>> origin/master
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -256,8 +261,13 @@
     <ClInclude Include="GetDirection.h">
       <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
     </ClInclude>
+<<<<<<< HEAD
     <ClInclude Include="ZigZagMap.h">
       <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
+=======
+    <ClInclude Include="limitedRotate.h">
+      <Filter>소스 파일\Component</Filter>
+>>>>>>> origin/master
     </ClInclude>
   </ItemGroup>
 </Project>
