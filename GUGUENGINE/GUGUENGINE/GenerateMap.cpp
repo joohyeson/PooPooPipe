@@ -14,7 +14,7 @@ void GenerateMap::GetNextCenterCoor(float radius)
 	Vector2<float> down_;
 	int maxBlockCount = 0;
 
-	ZigZagMap myMapType(mapRow, mapColumn);
+	ZigZagMap myMapType(mapRow, mapColumn);//maptype여러개 만든 후 스위치 문 안에서 map type고르게 바꿀거임
 
 	if (mapColumn % 2 == 1)
 	{
