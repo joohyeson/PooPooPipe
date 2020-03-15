@@ -26,13 +26,13 @@ public:
 	//int GetObjectID();
 	//int GetObjectEdgeID();
 	bool GetHasNeighbor();
-
+	bool isComeBack = false;
 private:
 	Vector2<float>::Edge myEdge;
 
 	int objectID = 0;
 	int objectEdgeID = 0;
-	bool isComeBack = false;
+
 	bool hasNeighbor = false;
 	Vector2<int> neighborInfo;
 

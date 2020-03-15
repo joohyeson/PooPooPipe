@@ -1,17 +1,23 @@
-#pragma once
-#include "GenerateMap.h"
-#include <vector>
 
-class GetDirection
-{
+#pragma once
+#include"ZigZagMap.h"
+class GetDirection {
 public:
-	GetDirection(int row, int column) :mapRow(row), mapColumn(column) {};
+	//void SetAllObjects(std::vector<ObjectWay*> objectSave)
+	//{
+	//	allObjects = objectSave;
+	//}
+	GetDirection(int x, int y) :mapRow(x), mapColumn(y) {};
 	bool IsValidLocation(int puzzleNumber, int EdgeNumber);
 
-	void StartGetDirection();
-
+	void StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap);
 private:
-	int mapRow=0;
-	int mapColumn=0;
-
+	ZigZagMap* myM;
+	int startPuzzleN;
+	int StartEdgeN ;
+	int endPuzzleN ;
+	int endEdgeN ;
+	int mapColumn;
+	int mapRow;
 };
+

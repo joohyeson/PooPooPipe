@@ -38,7 +38,7 @@ public:
 	}
 	void Update();
 	void SetDirection(bool a, bool b, bool c, bool d, bool e, bool f);
-	int GetDirValue(PuzzleDirection index);
+	bool GetDirValue(PuzzleDirection index);
 private:
 	
 	bool dirArray1[6]; // for hex	

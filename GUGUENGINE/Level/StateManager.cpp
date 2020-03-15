@@ -35,7 +35,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = MOVINGCHECK;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());

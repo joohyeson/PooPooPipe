@@ -3,6 +3,7 @@
 #include "Mathematics/Vector2.hpp"
 #include <vector>
 #include "ZigZagMap.h"
+#include "GetDirection.h"
 
 GenerateMap::GenerateMap() :mapRow(6), mapColumn(5) {};
 GenerateMap::GenerateMap(int column, int row) :mapRow(column), mapColumn(row) {};
@@ -15,6 +16,7 @@ void GenerateMap::GetNextCenterCoor(float radius)
 	int maxBlockCount = 0;
 
 	ZigZagMap myMapType(mapRow, mapColumn);//maptype여러개 만든 후 스위치 문 안에서 map type고르게 바꿀거임
+	GetDirection GetD(mapRow, mapColumn);
 
 	if (mapColumn % 2 == 1)
 	{
@@ -73,6 +75,9 @@ void GenerateMap::GetNextCenterCoor(float radius)
 
 	myMapType.DoesEdgeHasNeighbor();
 	myMapType.SetAllNeighbor();
+
+	GetD.StartGetDirection(0, 1, 12, 3, &myMapType);
+
 	for (int i = 0; i <= 13; i++)
 	{
 		std::cout << "Puzzle" << i << ": ";
