@@ -195,7 +195,7 @@ void Level5::Init()
 	texureIdThree5 = TEXTURE->CreateTexture("assets\\image3.png", 0);
 
 	textureIdMove5 = TEXTURE->CreateTexture("assets\\image5.png", 0);
-	
+
 	texureIdV5 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
 	texureIdStart5 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
@@ -284,29 +284,6 @@ void Level5::Update()
 	}
 
 	se5.Update();
-
-	float r = static_cast<float>(sqrt(5) / 10);
-
-	getOrigin1_1.x = movePuzzle->mesh->GetTransform().x;
-	getOrigin1_1.y = movePuzzle->mesh->GetTransform().y;
-
-	getOrigin1_2.x = blackPuzzle1->mesh->GetTransform().x;
-	getOrigin1_2.y = blackPuzzle1->mesh->GetTransform().y;
-
-	getOrigin2_1.x = movePuzzle2->mesh->GetTransform().x;
-	getOrigin2_1.y = movePuzzle2->mesh->GetTransform().y;
-
-	getOrigin2_2.x = blackPuzzle2->mesh->GetTransform().x;
-	getOrigin2_2.y = blackPuzzle2->mesh->GetTransform().y;
-
-	getOrigin3_1.x = movePuzzle3->mesh->GetTransform().x;
-	getOrigin3_1.y = movePuzzle3->mesh->GetTransform().y;
-
-	getOrigin3_2.x = blackPuzzle3->mesh->GetTransform().x;
-	getOrigin3_2.y = blackPuzzle3->mesh->GetTransform().y;
-
-	buttonClick_1.x = button->mesh->GetTransform().x;
-	buttonClick_1.y = button->mesh->GetTransform().y;
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))
 	{
@@ -454,7 +431,7 @@ void Level5::Update()
 
 	if (blCheck6)
 	{
-		if (blCheck6_2)
+		if (blCheck5_2)
 		{
 			if ((movePuzzle2->pipe->GetDirValue(NE) == startPuzzle->pipe->GetDirValue(SW)) && (movePuzzle2->pipe->GetDirValue(E) == movePuzzle->pipe->GetDirValue(W)))
 			{
@@ -483,7 +460,7 @@ void Level5::Update()
 	}
 	if (blCheck6_2)
 	{
-		if (blCheck6)
+		if (blCheck5)
 		{
 			if ((movePuzzle2->pipe->GetDirValue(W) == movePuzzle->pipe->GetDirValue(E)) && (movePuzzle2->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
 			{
@@ -725,12 +702,8 @@ void Level5::Update()
 	}
 
 
-	if (cursor5.x <= (buttonClick_1.x + 200.f) &&
-		cursor5.x >= (buttonClick_1.x - 200.f) &&
-		cursor5.y <= (buttonClick_1.y + 200.f) &&
-		cursor5.y >= (buttonClick_1.y - 200.f))
+	if (button->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, button->mesh))
 	{
-
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 
 		if (connectMove5 % 2 == 1)
@@ -760,7 +733,7 @@ void Level5::Update()
 	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
-	
+
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), textureIdMove5);		//a block which it will move when the player presses 'start'
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine5);
