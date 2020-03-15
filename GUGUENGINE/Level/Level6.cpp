@@ -65,7 +65,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
+		STATE_MANAGER->ChangeLevel(LV_TEST7);
 		chekNext6 = 0;
 
 		conecTcheck6_1 = false;
@@ -91,7 +91,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		degree6_5 = DegreeToRadian(-180.f);
 		degree6_6 = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
+		STATE_MANAGER->ChangeLevel(LV_TEST7);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
