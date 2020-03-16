@@ -65,7 +65,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST7);
 		chekNext6 = 0;
 
 		conecTcheck6_1 = false;
@@ -91,7 +91,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		degree6_5 = DegreeToRadian(-180.f);
 		degree6_6 = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST7);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
@@ -219,18 +219,9 @@ void Level6::Init()
 	blackPuzzle1->pipe->SetDirection(true, false, false, false, false, true);
 	blackPuzzle1->mesh->InitializeTextureMesh();
 
-	blackPuzzle2->AddComponent(new Mesh());
-	blackPuzzle2->Init();
-	blackPuzzle2->mesh->setTransform({ 4.0f, 160.f });
-	//blackPuzzle2->mesh->setRotation(DegreeToRadian(180.f));
-	blackPuzzle2->mesh->InitializeTextureMesh();
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f, 160.f });
 
-	blackPuzzle3->AddComponent(new Mesh());
-	blackPuzzle3->AddComponent(new PuzzleComponent());
-	blackPuzzle3->Init();
-	blackPuzzle3->mesh->setTransform({ -132.f, -80.0f });
-	degree6_4 = 180.f;
-	blackPuzzle3->mesh->setRotation(DegreeToRadian(180.f));
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, -80.0f },180.f);
 	blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
