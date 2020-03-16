@@ -9,6 +9,7 @@
  */
 #include "Component.h"
 #include "Mesh.h"
+#include "HexagonElements.h"
 
 
 enum PuzzleDirection
@@ -39,6 +40,19 @@ public:
 	void Update();
 	void SetDirection(bool a, bool b, bool c, bool d, bool e, bool f);
 	bool GetDirValue(PuzzleDirection index);
+	SaveWay GetAllDirections() {
+		SaveWay mWay;
+		for (int i = 0; i < 6; i++)
+		{
+			mWay.ways[i] = false;
+		}
+		for (int i = 0; i < 6; i++)
+		{
+			mWay.ways[i] = dirArray1[i];
+		}
+
+		return mWay;
+	}
 private:
 	
 	bool dirArray1[6]; // for hex	

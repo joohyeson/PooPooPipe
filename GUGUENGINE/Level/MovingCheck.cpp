@@ -147,7 +147,8 @@ void  Test5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, i
 
 void MovingCheck::Init()
 {
-	GenerateMap myMap(4, 4);
+	myMap.SetColumn(4);
+	myMap.SetRow(4);
 	myMap.GetNextCenterCoor(80);
 	
 	//background = OBJECT_FACTORY->CreateEmptyObject();
@@ -176,7 +177,7 @@ void MovingCheck::Init()
 	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
 	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f, false, true, false, true, false, false);//13
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f, true, false, true, false, false, false);//02
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, true, false, true, false, false);//13
@@ -205,9 +206,9 @@ void MovingCheck::Init()
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
-	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
-	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
-	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
+	//puzzle1->pipe->SetDirection(false, false, false, true, false, true);
+	//puzzle6->pipe->SetDirection(true, false, false, false, true, false);
+	//endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 
 	myMap.SaveObject(startPuzzle);
 	myMap.SaveObject(puzzle1);
@@ -232,6 +233,7 @@ void MovingCheck::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	myMap.MapAlignment();
+	myMap.SetReadyToStart(true);
 	//myPooPoo.Init();
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), Test5keyCallback);
@@ -245,9 +247,10 @@ void MovingCheck::Update()
 	{
 		CheckTest++;
 		std::cout << "HELLO" << std::endl;
+		
 		//myPooPoo.SetIsSuccess(true);
 	}
-	
+	myMap.Update();
 	//myPooPoo.MoveInPuzzle(DirAngle::SW_, DirAngle::SE_,puzzle1->mesh->GetTransform(), mShader2.GetShaderHandler());
 	//if (myPooPoo.GetRealEndD()==myPooPoo.GetPooPooTransform())
 	//{

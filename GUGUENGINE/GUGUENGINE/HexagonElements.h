@@ -71,3 +71,7 @@ private:
 
 
 };
+
+struct SaveWay {
+	bool ways[6];
+};
