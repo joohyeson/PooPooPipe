@@ -34,42 +34,41 @@ GLuint textureSpace2;
 
 Sound se2;
 
-
-void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && checkToPipe == 1)
-	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
-		checkToPipe = 0;
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-}
-
-void level2cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor2 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
-}
-
-void  level2mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck2 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck2 = 1;
-		std::cout << "rightCheck2: " << rightCheck2 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
+//void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+//{
+//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && checkToPipe == 1)
+//	{
+//		STATE_MANAGER->ChangeLevel(MAINMENU);
+//		checkToPipe = 0;
+//	}
+//
+//	if (key == GLFW_KEY_ESCAPE)
+//	{
+//		glfwTerminate();
+//	}
+//}
+//
+//void level2cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+//{
+//	cursor2 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+//}
+//
+//void  level2mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+//{
+//	static float time = 0;
+//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+//	{
+//		moveCheck2 += 1;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//
+//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+//	{
+//		rightCheck2 = 1;
+//		std::cout << "rightCheck2: " << rightCheck2 << std::endl;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//}
 
 void Level2::Init()
 {
@@ -82,7 +81,7 @@ void Level2::Init()
 	background->mesh->SetMeshType(rectangle);
 	background->mesh->InitializeTextureMesh(800.f, 800.f);
 	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
-	
+
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleUp = OBJECT_FACTORY->CreateEmptyObject();
@@ -138,14 +137,17 @@ void Level2::Init()
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
-	
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level2mouseButtonCallback);
+
+	input.InitCallback(APPLICATION->getMyWindow());
+	//glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
+	//glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
+	//glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level2mouseButtonCallback);
 }
 
 void Level2::Update()
 {
+	input.SetInput();
+	cursor2 = input.Cursor;
 	if (check2 < 1)
 	{
 		check2++;
@@ -159,60 +161,88 @@ void Level2::Update()
 	getOrigin2.x = blackPuzzle->mesh->GetTransform().x;
 	getOrigin2.y = blackPuzzle->mesh->GetTransform().y;
 	float r = static_cast<float>(sqrt(5) / 10);
+	
 
-	if (cursor2.x <= (getOrigin.x + (r / 2)*400) &&
+	
+	if (cursor2.x <= (getOrigin.x + (r / 2) * 400) &&
 		cursor2.x >= (getOrigin.x - (r / 2) * 400) &&
-		cursor2.y <= (getOrigin.y + r  * 400) &&
-		cursor2.y >= (getOrigin.y - r*400))
+		cursor2.y <= (getOrigin.y + r * 400) &&
+		cursor2.y >= (getOrigin.y - r * 400))
 	{
-		if (moveCheck2 % 2 == 1)
+		if (input.IsPressed(input.mouseLeft) == true)
+			/*if (moveCheck2 % 2 == 1)*/
 		{
 			movePuzzle->mesh->setTransform({ cursor2.x, cursor2.y });
 		}
-		if (rightCheck2 != 0)
+
+		//if (rightCheck2 == 0)
+		//{
+	
+		//}
+
+		/*	if (rightCheck2 != 0)*/
+
+		//if (rightCheck2 == 1)
+		//{
+		if (rightCheck2 == 1)
 		{
-			movePuzzle->pipe->Update();
 
-			degree += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degree);
-			rightCheck2 = 0;
-
-			if ((movePuzzle->pipe->GetDirValue(SE) == puzzleDown->pipe->GetDirValue(NW)) && (movePuzzle->pipe->GetDirValue(NW) == puzzleUp->pipe->GetDirValue(SE)))
+			if (input.IsTrigerred(input.MouseRightTriggered) == true)
 			{
-				std::cout << "pipe connect\n";
-				checkToPipe = 1;
-			}
-			else
-			{
-				std::cout << "Not connect\n";
-				checkToPipe = 0;
-			}
+				std::cout << "get mosue right" << std::endl;
 
-			se2.Play(1);
-			se2.SetVolume(0.5f);
-			se2.SetLoopCount(1);
+
+				movePuzzle->pipe->Update();
+
+				degree += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle->mesh->setRotation(degree);
+				rightCheck2 = 0;
+
+				if ((movePuzzle->pipe->GetDirValue(SE) == puzzleDown->pipe->GetDirValue(NW)) && (movePuzzle->pipe->GetDirValue(NW) == puzzleUp->pipe->GetDirValue(SE)))
+				{
+					std::cout << "pipe connect\n";
+					checkToPipe = 1;
+				}
+				else
+				{
+					std::cout << "Not connect\n";
+					checkToPipe = 0;
+				}
+
+				se2.Play(1);
+				se2.SetVolume(0.5f);
+				se2.SetLoopCount(1);
+				rightCheck2 = 0;
+			}
 
 		}
+
 	}
-	else
+	if (input.IsPressed(input.mouseRight) == true)
 	{
-		moveCheck2 = 0;
+		/*rotateCheck = 1;*/
+		rightCheck2 = 1;
 	}
+	//else
+	//{
+	//	moveCheck2 = 0;
+	//}
 
 	if (getOrigin.x <= (getOrigin2.x + (r / 2) * 400) &&
 		getOrigin.x >= (getOrigin2.x - (r / 2) * 400) &&
-		getOrigin.y <= (getOrigin2.y + r*400) &&
-		getOrigin.y >= (getOrigin2.y - r*400))
+		getOrigin.y <= (getOrigin2.y + r * 400) &&
+		getOrigin.y >= (getOrigin2.y - r * 400))
 	{
-		if (moveCheck2 % 2 == 0)
+		if (input.IsPressed(input.mouseLeft) == false)
+			/*if (moveCheck2 % 2 == 0)*/
 		{
 			movePuzzle->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
 			connectCheck2 = 1;
 		}
-		else
-		{
-			connectCheck2 = 0;
-		}
+		//else
+		//{
+		//	connectCheck2 = 0;
+		//}
 	}
 
 	se2.Update();

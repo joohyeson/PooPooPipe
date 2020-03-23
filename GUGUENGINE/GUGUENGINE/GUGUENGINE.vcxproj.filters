@@ -75,6 +75,9 @@
     <Filter Include="소스 파일\Graphics\GenerateMap\Map">
       <UniqueIdentifier>{fc76a410-57f7-4f51-8050-33b9863a968b}</UniqueIdentifier>
     </Filter>
+    <Filter Include="소스 파일\Input">
+      <UniqueIdentifier>{40f6d802-9521-43b3-9c46-19e4fe08f7d3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Application.cpp">
@@ -148,6 +151,12 @@
     </ClCompile>
     <ClCompile Include="ZigZagMap.cpp">
       <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
+    </ClCompile>
+    <ClCompile Include="limitedRotate.cpp">
+      <Filter>소스 파일</Filter>
+    </ClCompile>
+    <ClCompile Include="glfwInput.cpp">
+      <Filter>소스 파일\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -258,6 +267,10 @@
     </ClInclude>
     <ClInclude Include="ZigZagMap.h">
       <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
+    </ClInclude>
+    <ClInclude Include="limitedRotate.h" />
+    <ClInclude Include="glfwInput.h">
+      <Filter>소스 파일\Input</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

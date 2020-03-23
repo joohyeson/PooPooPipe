@@ -18,7 +18,6 @@
 int check = 0;
 Vector2<float> cursor;
 
-int moveCheck = 0;
 int connectCheck1 = 0;
 
 GLuint texureIdLine1;
@@ -29,37 +28,6 @@ GLuint textureSpace1;
 
 Sound se;
 
-void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (connectCheck1 == 1)
-	{
-		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		{
-			STATE_MANAGER->ChangeLevel(LV_TEST2);
-			connectCheck1 = 0;
-		}
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-}
-
-void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
-}
-
-void  level1mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
 
 void Level1::Init()
 {
@@ -121,17 +89,31 @@ void Level1::Init()
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
-	
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level1mouseButtonCallback);
+
+	input.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level1::Update()
 {
+	cursor = input.Cursor;
+	input.SetInput();
 	if (check < 1)
 	{
 		check++;
+	}
+
+	if (connectCheck1 == 1)
+	{
+		if (input.IsPressed(input.keySpace) == true)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST2);
+			connectCheck1 = 0;
+		}
+	}
+
+	if(input.IsPressed(input.keyEscape) == true)
+	{
+		glfwTerminate();
 	}
 	
 	se.Update();
@@ -149,14 +131,11 @@ void Level1::Update()
 		cursor.y <= (getOrigin.y + r) &&
 		cursor.y >= (getOrigin.y - r))
 	{
-		if (moveCheck % 2 == 1)
+		if(input.IsPressed(input.mouseLeft) == true)
 		{
+			std::cout << "get mouse left" << std::endl;
 			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
-	}
-	else
-	{
-		moveCheck = 0;
 	}
 
 	if (getOrigin.x <= (getOrigin2.x + r / 2) &&
@@ -164,7 +143,7 @@ void Level1::Update()
 		getOrigin.y <= (getOrigin2.y + r) &&
 		getOrigin.y >= (getOrigin2.y - r))
 	{
-		if (moveCheck % 2 == 0)
+		if (input.IsPressed(input.mouseLeft) == false)
 		{
 			movePuzzle->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
 			connectCheck1 = 1;
