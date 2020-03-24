@@ -33,6 +33,8 @@ int rightCheck5_3 = 0;
 
 int chekNext5 = 0;
 
+bool movePuzzleCheck5 = true;
+
 GLuint textureBackground5;
 
 GLuint texureIdLine5;
@@ -241,8 +243,8 @@ void Level5::Init()
 
 	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f, 40.f }, 60.f);
 
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f }, 300.f);
-	puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f }, 240);
+	puzzle7->pipe->SetDirection(false, true, true, false, true, false);
 
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, -80.f });
 
@@ -278,6 +280,25 @@ void Level5::Init()
 
 void Level5::Update()
 {
+	if (movePuzzleCheck5)
+	{
+		if (button->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, button->mesh))
+		{
+			if (connectMove5 % 2 == 1)
+			{
+				puzzle7->pipe->Update();
+				puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
+				puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+
+				movePuzzleCheck5 = false;
+				se5.Play(1);
+				se5.SetVolume(0.5f);
+				se5.SetLoopCount(1);
+			}
+		}
+	}
+
+
 	if (check5 < 1)
 	{
 		check5++;

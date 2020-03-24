@@ -186,7 +186,7 @@ void Level4::Init()
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -0.29f * 400, -0.2f * 400 });
 	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.23f * 400, -0.5f * 400 });
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -320.f, 280.f }, 240.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -320.f, 280.f }, 120.f);
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 232.f, -200.f }, 60.f);
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -0.7f * 400, -0.6f * 400 });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -10.0f * 400, 10.0f * 400 });
