@@ -39,7 +39,8 @@ public:
 	void SetStartD(Vector2<float> startDirection);
 	Vector2<float> GetEndD();
 	Vector2<float> GetStartD();
-	void MoveInPuzzle(DirAngle startDirection, DirAngle endDirection,Vector2<float> ori, int shaderHandler);
+	void MoveInPuzzle(std::vector < Vector2<float>>);
+	//void MoveInPuzzle(DirAngle startDirection, DirAngle endDirection,Vector2<float> ori, int shaderHandler);
 	Vector2<float> GetPooPooTransform();
 private:
 	GLuint texturePP;

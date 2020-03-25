@@ -97,7 +97,7 @@ private:
 	GLuint texureIdclear4;
 	GLuint texureSpace4;
 
-
+	MovePooPoo mPooPoo;
 	GenerateMap myMap;
 
 };

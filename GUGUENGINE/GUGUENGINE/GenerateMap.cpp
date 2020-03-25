@@ -188,10 +188,15 @@ void GenerateMap::StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, 
 		int myColumn = here.y;
 
 		std::cout << "(" << myRow << ", " << myColumn << ")";
+
+		exactVector.push_back({myRow, myColumn});
+	
 		if (myRow == endPuzzleNumber &&
 			myColumn == endEdgeNumber)
 		{
 			std::cout << "Get Direction is success" << std::endl;
+			hasWay = true;
+			
 			return;
 		}
 		else

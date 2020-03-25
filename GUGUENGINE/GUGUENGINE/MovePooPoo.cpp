@@ -4,7 +4,7 @@
 #include "HexagonElements.h"
 
 MovePooPoo::MovePooPoo() :
-	startD({ 50.f, 50.f }), endD({ -50.f, 50.f }), speed(30.f) {
+	startD({ 0.f, 0.f }), endD({ 50.f, 0.f }), speed(30.f) {
 
 	Init();
 
@@ -105,23 +105,32 @@ void MovePooPoo::setDelta()
 	direction = startD.normalize({ endD.x - startD.x, endD.y - startD.y });
 	betweenDelta = { endD.x - startD.x, endD.y - startD.y };
 }
-void MovePooPoo::MoveInPuzzle(DirAngle startDirection, DirAngle endDirection, Vector2<float>ori, int shaderHandler)
+void MovePooPoo::MoveInPuzzle(std::vector < Vector2<float>> exact)
 {
-	origin = ori;
-	HexagonCoordinates myCoordinates(origin);
-	realEndD= myCoordinates.GetEdgeCenterCoordinates(endDirection);
-	if (isFirst == true)
-	{
-		SetStartD(myCoordinates.GetEdgeCenterCoordinates(startDirection));
-		SetEndD(origin);
-	}
-	else if (isFirst == false)
-	{
-		isSuccess = true;
-		SetEndD(myCoordinates.GetEdgeCenterCoordinates(endDirection));
-		SetStartD(origin);
-	}
+	int count = 0;
 
-	Update(shaderHandler);
+	while (count <= exact.size())
+	{
 
+	}
 }
+//void MovePooPoo::MoveInPuzzle(DirAngle startDirection, DirAngle endDirection, Vector2<float>ori, int shaderHandler)
+//{
+//	origin = ori;
+//	HexagonCoordinates myCoordinates(origin);
+//	realEndD= myCoordinates.GetEdgeCenterCoordinates(endDirection);
+//	if (isFirst == true)
+//	{
+//		SetStartD(myCoordinates.GetEdgeCenterCoordinates(startDirection));
+//		SetEndD(origin);
+//	}
+//	else if (isFirst == false)
+//	{
+//		isSuccess = true;
+//		SetEndD(myCoordinates.GetEdgeCenterCoordinates(endDirection));
+//		SetStartD(origin);
+//	}
+//
+//	Update(shaderHandler);
+//
+//}

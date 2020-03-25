@@ -5,6 +5,7 @@
 #include "HexagonElements.h"
 #include "ZigZagMap.h"
 #include "GenerateMap.h"
+#include "MovePooPoo.h"
 
 class GenerateMap {
 public:
@@ -31,15 +32,19 @@ public:
 	ZigZagMap myMap;
 	bool IsValidLocation(int puzzleNumber, int EdgeNumber);
 	void StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap);
+	bool GetHasWay() {
+		return hasWay;
+	}
 private:
 	
 	std::vector<Object*> objects;
 	
 	std::vector< Vector2<float> > coorSaver;//saver center coordinate
-	
+	std::vector<Vector2<int>> exactVector;
 	//ZigZagMap myMapType;
 	//GetDirection myDirection;
 	bool readyToStart = false;
+	bool hasWay = false;
 	int mapRow = 6;
 	int mapColumn = 5;
 
