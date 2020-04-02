@@ -52,6 +52,8 @@ GLuint texureIdLine9_2;
 GLuint texureIdCurve9_2;
 GLuint texureIdV9_2;
 
+GLuint texureIdCurve9_3;
+
 
 GLuint texureIdbutton9;
 GLuint texureIdclear9;
@@ -59,6 +61,11 @@ GLuint texureSpace9;
 
 Sound se9;
 
+GLint texturePlayUI9;
+GLint textureQuitUI9;
+GLint textureOptionUI9;
+GLint textureRestartUI9;
+;
 bool conecTcheck9_1 = false;
 bool conecTcheck9_2 = false;
 bool conecTcheck9_3 = false;
@@ -162,8 +169,8 @@ void Level9::Init()
 
 	texureIdLine9_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve9_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV9_2 = TEXTURE->CreateTexture("assets\\pipe2.png", 0);
-
+	texureIdV9_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
+	texureIdCurve9_3 = TEXTURE->CreateTexture("assets\\pipe2-1.png", 0);
 
 	texureIdbutton9 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear9 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -173,6 +180,44 @@ void Level9::Init()
 	se9.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
+
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->SetMeshType(rectangle);
+	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	texturePlayUI9 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->SetMeshType(rectangle);
+	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureQuitUI9 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->SetMeshType(rectangle);
+	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureOptionUI9 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->SetMeshType(rectangle);
+	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureRestartUI9 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f }, 120.f);
 
@@ -469,29 +514,29 @@ void Level9::Update()
 	se9.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground9);
-	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
+	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV9_2);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
+	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_3);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
-	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
+	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9_2);
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
 	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
-	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
+	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
 
 	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
+	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
 	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
-	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
+	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV9_2);
 	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
 
 	puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-	puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
-	puzzle20->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
+	puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
+	puzzle20->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart9);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd9);
@@ -500,6 +545,10 @@ void Level9::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace9);
 
+	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI9);
+	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
+	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI9);
+	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

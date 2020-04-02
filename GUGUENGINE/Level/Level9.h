@@ -64,6 +64,7 @@ private:
 
 	Object* button;
 	Object* clear;
+	Object* playUI, * quitUI, * optionUI, * restartUI;
 
 	int key;
 	Mesh mMesh;
