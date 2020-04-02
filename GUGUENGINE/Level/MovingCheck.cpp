@@ -149,7 +149,7 @@ void MovingCheck::Init()
 {
 	myMap.SetColumn(4);
 	myMap.SetRow(4);
-	myMap.GetNextCenterCoor(80);
+	myMap.GetNextCenterCoor(100);
 	
 	//background = OBJECT_FACTORY->CreateEmptyObject();
 
