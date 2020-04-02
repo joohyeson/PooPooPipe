@@ -54,6 +54,11 @@ GLuint texureIdbutton8;
 GLuint texureIdclear8;
 GLuint texureSpace8;
 
+GLint texturePlayUI8;
+GLint textureQuitUI8;
+GLint textureOptionUI8;
+GLint textureRestartUI8;
+
 Sound se8;
 
 bool conecTcheck8_1 = false;

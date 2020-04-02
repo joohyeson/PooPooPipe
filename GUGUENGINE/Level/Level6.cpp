@@ -52,6 +52,11 @@ GLuint texureIdbutton6;
 GLuint texureIdclear6;
 GLuint texureSpace6;
 
+GLint texturePlayUI6;
+GLint textureQuitUI6;
+GLint textureOptionUI6;
+GLint textureRestartUI6;
+
 Sound se6;
 
 bool conecTcheck6_1 = false;

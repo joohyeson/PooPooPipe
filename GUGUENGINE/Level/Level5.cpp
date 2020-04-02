@@ -56,6 +56,11 @@ GLuint texureIdbutton5;
 GLuint texureIdclear5;
 GLuint texureSpace5;
 
+GLint texturePlayUI5;
+GLint textureQuitUI5;
+GLint textureOptionUI5;
+GLint textureRestartUI5;
+
 Sound se5;
 
 bool blCheck5 = false;

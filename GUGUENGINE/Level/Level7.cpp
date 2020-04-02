@@ -49,6 +49,10 @@ GLuint texureIdLine7_2;
 GLuint texureIdCurve7_2;
 GLuint texureIdV7_2;
 
+GLint texturePlayUI7;
+GLint textureQuitUI7;
+GLint textureOptionUI7;
+GLint textureRestartUI7;
 
 GLuint texureIdbutton7;
 GLuint texureIdclear7;

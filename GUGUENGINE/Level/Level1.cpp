@@ -33,10 +33,8 @@ void Level1::Init()
 {
 
 	background = OBJECT_FACTORY->CreateEmptyObject();
-
 	background->AddComponent(new Mesh());
 	background->Init();
-
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
