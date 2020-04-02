@@ -14,6 +14,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/limitedRotate.h"
+#include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
 
@@ -77,7 +78,7 @@ private:
 
 	Object* button;
 	Object* clear;
-
+	MovePooPoo mPooPoo;
 	Object* Levelsel;
 	int key;
 	Mesh mMesh;
