@@ -221,6 +221,18 @@ void Level4::Init()
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 
+
+	mPooPoo.Init();
+
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, blackPuzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle6->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle2->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, puzzle10->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, blackPuzzle3->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
+
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
@@ -511,6 +523,7 @@ void Level4::Update()
 				clear->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
 				chekNext4 = 1;
 				std::cout << "clear" << std::endl;
+				mPooPoo.SetIsSuccess(true);
 
 			}
 			connectMove4 = 0;
@@ -549,6 +562,12 @@ void Level4::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
+
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
+
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

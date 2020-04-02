@@ -128,6 +128,8 @@ void MovePooPoo::MoveInPuzzle(int shaderHandler)
 	if (myAngles.size() ==PuzzleID)
 	{
 		isFinish = true;
+		OriginID = 0;
+		PuzzleID = 0;
 		return;
 	}
 

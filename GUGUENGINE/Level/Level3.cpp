@@ -105,7 +105,7 @@ void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		blCheck2 = false;
 		blCheck2_2 = false;
 
-
+		
 		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
 
@@ -263,6 +263,7 @@ void Level3::Update()
 		if (LevelCheck % 2 == 1)
 		{
 			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}

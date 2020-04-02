@@ -13,6 +13,8 @@
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
+#include "../GUGUENGINE/MovePooPoo.h"
+
 class sound;
 
 class Level4 : public LevelManager
@@ -75,7 +77,7 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-
+	MovePooPoo mPooPoo;
 	Vector3<float> getOrigin1_1 = { 0, 0, 0 };
 	Vector3<float> getOrigin1_2 = { 0, 0, 0 };
 
