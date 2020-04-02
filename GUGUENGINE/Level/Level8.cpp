@@ -12,6 +12,7 @@
 int check8 = 0;
 Vector2<float> cursor8;
 
+bool rotrot2 = true;
 int coorcheck8 = 0;
 
 int connectMove8 = 0;
@@ -154,6 +155,7 @@ void  level8mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 
 void Level8::Init()
 {
+	rotTime.setRotate(30);
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
@@ -264,242 +266,254 @@ void Level8::Update()
 	}
 	se8.Update();
 
-	if (puzzle1->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle1->mesh))
+	if (rotTime.getLimitTime() == 0)
 	{
-		if (rightCheck8 != 0)
+		rotrot2 = false;
+	}
+	if (rotrot2)
+	{
+		if (puzzle1->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle1->mesh))
 		{
-			puzzle1->pipe->Update();
+			if (rightCheck8 != 0)
+			{
+				puzzle1->pipe->Update();
 
-			degree8 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle1->mesh->setRotation(degree8);
+				degree8 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle1->mesh->setRotation(degree8);
+				rotTime.Update();
 
+				rightCheck8 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8 = 0;
-	}
 
-	if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh))
-	{
-		if (rightCheck8_2 != 0)
+		if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh))
 		{
-			puzzle18->pipe->Update();
+			if (rightCheck8_2 != 0)
+			{
+				puzzle18->pipe->Update();
 
-			degree8_2 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle18->mesh->setRotation(degree8_2);
+				degree8_2 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle18->mesh->setRotation(degree8_2);
+				rotTime.Update();
 
+				rightCheck8_2 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_2 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8_2 = 0;
-	}
 
-	if (puzzle4->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle4->mesh))
-	{
-		if (rightCheck8_3 != 0)
+		if (puzzle4->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle4->mesh))
 		{
-			puzzle4->pipe->Update();
+			if (rightCheck8_3 != 0)
+			{
+				puzzle4->pipe->Update();
 
-			degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle4->mesh->setRotation(degree8_3);
+				degree8_3 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle4->mesh->setRotation(degree8_3);
+				rotTime.Update();
 
+				rightCheck8_3 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_3 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8_3 = 0;
-	}
 
-	if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh))
-	{
-		if (rightCheck8_4 != 0)
+		if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh))
 		{
-			puzzle7->pipe->Update();
+			if (rightCheck8_4 != 0)
+			{
+				puzzle7->pipe->Update();
 
-			degree8_4 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle7->mesh->setRotation(degree8_4);
+				degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle7->mesh->setRotation(degree8_4);
+				rotTime.Update();
 
+				rightCheck8_4 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_4 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8_4 = 0;
-	}
 
-	if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh))
-	{
-		if (rightCheck8_5 != 0)
+		if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh))
 		{
-			puzzle20->pipe->Update();
+			if (rightCheck8_5 != 0)
+			{
+				puzzle20->pipe->Update();
 
-			degree8_5 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle20->mesh->setRotation(degree8_5);
+				degree8_5 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle20->mesh->setRotation(degree8_5);
+				rotTime.Update();
 
+				rightCheck8_5 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_5 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8_5 = 0;
-	}
 
-	if (puzzle9->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle9->mesh))
-	{
-		if (rightCheck8_6 != 0)
+		if (puzzle9->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle9->mesh))
 		{
-			puzzle9->pipe->Update();
+			if (rightCheck8_6 != 0)
+			{
+				puzzle9->pipe->Update();
 
-			degree8_6 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle9->mesh->setRotation(degree8_6);
+				degree8_6 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle9->mesh->setRotation(degree8_6);
+				rotTime.Update();
 
+				rightCheck8_6 = 0;
+
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_6 = 0;
-
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
 		}
-	}
-	else
-	{
-		rightCheck8_6 = 0;
-	}
 
-	if (puzzle17->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle17->mesh))
-	{
-		if (rightCheck8_7 != 0)
+		if (puzzle17->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle17->mesh))
 		{
-			puzzle17->pipe->Update();
+			if (rightCheck8_7 != 0)
+			{
+				puzzle17->pipe->Update();
 
-			degree8_7 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle17->mesh->setRotation(degree8_7);
+				degree8_7 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle17->mesh->setRotation(degree8_7);
+				rotTime.Update();
+				rightCheck8_7 = 0;
 
+				se8.Play(1);
+				se8.SetVolume(0.5f);
+				se8.SetLoopCount(1);
+			}
+		}
+		else
+		{
 			rightCheck8_7 = 0;
+		}
 
-			se8.Play(1);
-			se8.SetVolume(0.5f);
-			se8.SetLoopCount(1);
+		if ((puzzle1->pipe->GetDirValue(E) == puzzle2->pipe->GetDirValue(W)) && (puzzle1->pipe->GetDirValue(SW) == puzzle3->pipe->GetDirValue(NE)))
+		{
+			conecTcheck8_1 = true;
+		}
+		else
+		{
+			conecTcheck8_1 = false;
+		}
+
+		if ((puzzle18->pipe->GetDirValue(NE) == puzzle2->pipe->GetDirValue(SW)) && (puzzle18->pipe->GetDirValue(E) == puzzle19->pipe->GetDirValue(W)))
+		{
+
+			conecTcheck8_2 = true;
+		}
+		else
+		{
+			conecTcheck8_2 = false;
+		}
+
+		if ((puzzle7->pipe->GetDirValue(SW) == puzzle9->pipe->GetDirValue(NE)) && (puzzle7->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
+		{
+
+			conecTcheck8_3 = true;
+		}
+		else
+		{
+			conecTcheck8_3 = false;
+		}
+
+		if ((puzzle9->pipe->GetDirValue(NE) == puzzle7->pipe->GetDirValue(SW)) && (puzzle9->pipe->GetDirValue(W) == puzzle20->pipe->GetDirValue(E)))
+		{
+			conecTcheck8_4 = true;
+
+		}
+		else
+		{
+			conecTcheck8_4 = false;
+		}
+
+		if ((puzzle17->pipe->GetDirValue(NE) == puzzle16->pipe->GetDirValue(SW)) && (puzzle17->pipe->GetDirValue(W) == puzzle12->pipe->GetDirValue(E)))
+		{
+			conecTcheck8_9 = true;
+
+		}
+		else
+		{
+			conecTcheck8_9 = false;
+		}
+
+
+		if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(SE) == puzzle15->pipe->GetDirValue(NW)))
+		{
+			conecTcheck8_5 = true;
+		}
+		else
+		{
+			conecTcheck8_5 = false;
+		}
+
+		if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(W) == puzzle19->pipe->GetDirValue(E)))
+		{
+			conecTcheck8_6 = true;
+
+		}
+		else
+		{
+			conecTcheck8_6 = false;
+		}
+
+		if ((puzzle20->pipe->GetDirValue(NW) == puzzle6->pipe->GetDirValue(SE)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		{
+			conecTcheck8_7 = true;
+
+		}
+		else
+		{
+			conecTcheck8_7 = false;
+		}
+
+		if ((puzzle20->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		{
+			conecTcheck8_8 = true;
+
+		}
+		else
+		{
+			conecTcheck8_8 = false;
 		}
 	}
-	else
-	{
-		rightCheck8_7 = 0;
-	}
-
-	if ((puzzle1->pipe->GetDirValue(E) == puzzle2->pipe->GetDirValue(W)) && (puzzle1->pipe->GetDirValue(SW) == puzzle3->pipe->GetDirValue(NE)))
-	{
-		conecTcheck8_1 = true;
-	}
-	else
-	{
-		conecTcheck8_1 = false;
-	}
-
-	if ((puzzle18->pipe->GetDirValue(NE) == puzzle2->pipe->GetDirValue(SW)) && (puzzle18->pipe->GetDirValue(E) == puzzle19->pipe->GetDirValue(W)))
-	{
-
-		conecTcheck8_2 = true;
-	}
-	else
-	{
-		conecTcheck8_2 = false;
-	}
-
-	if ((puzzle7->pipe->GetDirValue(SW) == puzzle9->pipe->GetDirValue(NE)) && (puzzle7->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
-	{
-
-		conecTcheck8_3 = true;
-	}
-	else
-	{
-		conecTcheck8_3 = false;
-	}
-
-	if ((puzzle9->pipe->GetDirValue(NE) == puzzle7->pipe->GetDirValue(SW)) && (puzzle9->pipe->GetDirValue(W) == puzzle20->pipe->GetDirValue(E)))
-	{
-		conecTcheck8_4 = true;
-
-	}
-	else
-	{
-		conecTcheck8_4 = false;
-	}
-
-	if ((puzzle17->pipe->GetDirValue(NE) == puzzle16->pipe->GetDirValue(SW)) && (puzzle17->pipe->GetDirValue(W) == puzzle12->pipe->GetDirValue(E)))
-	{
-		conecTcheck8_9 = true;
-
-	}
-	else
-	{
-		conecTcheck8_9 = false;
-	}
-
-
-	if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(SE) == puzzle15->pipe->GetDirValue(NW)))
-	{
-		conecTcheck8_5 = true;
-	}
-	else
-	{
-		conecTcheck8_5 = false;
-	}
-
-	if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(W) == puzzle19->pipe->GetDirValue(E)))
-	{
-		conecTcheck8_6 = true;
-
-	}
-	else
-	{
-		conecTcheck8_6 = false;
-	}
-
-	if ((puzzle20->pipe->GetDirValue(NW) == puzzle6->pipe->GetDirValue(SE)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
-	{
-		conecTcheck8_7 = true;
-
-	}
-	else
-	{
-		conecTcheck8_7 = false;
-	}
-
-	if ((puzzle20->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
-	{
-		conecTcheck8_8 = true;
-
-	}
-	else
-	{
-		conecTcheck8_8 = false;
-	}
-
 	if (button->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, button->mesh))
 	{
 		if (connectMove8 % 2 == 1)

@@ -7,6 +7,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
+#include "../GUGUENGINE/limitedRotate.h"
 
 class sound;
 
@@ -90,5 +91,6 @@ private:
 
 
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
+	LimitRotate rotTime;
 
 };
