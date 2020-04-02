@@ -7,6 +7,7 @@
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
 #include "../GUGUENGINE/limitedRotate.h"
+#include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
 
@@ -71,7 +72,7 @@ private:
 
 	Object* button;
 	Object* clear;
-
+	MovePooPoo mPooPoo;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

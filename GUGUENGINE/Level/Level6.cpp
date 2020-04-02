@@ -279,6 +279,25 @@ void Level6::Init()
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
+	mPooPoo.Init();
+
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle2->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle13->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle14->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle4->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle7->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle15->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle16->mesh->GetTransform());
+
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle17->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::NW_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SE_, DirAngle::SW_, puzzle9->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, blackPuzzle3->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
+
+
+
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level6keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level6cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level6mouseButtonCallback);
@@ -431,6 +450,7 @@ void Level6::Update()
 					clear->mesh->setTransform({ 280.f, -240.f });
 					chekNext6 = 1;
 					std::cout << "clear" << std::endl;
+					mPooPoo.SetIsSuccess(true);
 					connectMove6 = 0;
 				}
 
@@ -523,6 +543,7 @@ void Level6::Update()
 				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext6 = 1;
 				std::cout << "clear" << std::endl;
+				mPooPoo.SetIsSuccess(true);
 				connectMove6 = 0;
 			}
 
@@ -573,6 +594,10 @@ void Level6::Update()
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI6);
 
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
