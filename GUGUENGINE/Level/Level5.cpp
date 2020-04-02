@@ -224,45 +224,45 @@ void Level5::Init()
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 280.f });
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 280.f + 50.f });
 	startPuzzle->pipe->SetDirection(true, false, false, true, false, false);
 	startPuzzle->mesh->setRotation(DegreeToRadian(-120.f));
 
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, -200.f }, -300);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f -430.f, -200.f - 62.f }, -300);
 	endPuzzle->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 280.f }, 60.f);
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
 
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, 280.f });
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f -430.f, 280.f + 50.f });
 
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, 160.f }, 180.f);
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f -519.f, 160.f + 22.f}, 180.f);
 
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f, 160.f });
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, 160.f + 22.f });
 
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 40.f }, 60.f);
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 40.f -5.f}, 60.f);
 
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f, 40.f }, 60.f);
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
 
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f }, 240);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 240);
 	puzzle7->pipe->SetDirection(false, true, true, false, true, false);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, -80.f });
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f });
 
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, -80.f }, 180.f);
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, -80.f - 32.f}, 180.f);
 	puzzle9->pipe->SetDirection(false, false, true, true, false, true);
 
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f, -80.f }, -60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, -80.f - 32.f}, -60.f);
 
-	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, -200.f });
+	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f  -62.f});
 
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f }, -180.f);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f  -62.f}, -180.f);
 	puzzle12->pipe->SetDirection(false, true, true, false, false, false);
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -132.f, 160.f });
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -132.f - 482.f, 160.f  +22.f});
 
-	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 4.0f, 160.f });
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 4.0f - 448.f, 160.f +22.f});
 
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -132.f, -80.0f });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -132.f - 482.f, -80.0f -32.f});
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
@@ -270,7 +270,7 @@ void Level5::Init()
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
+	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level5keyCallback);
