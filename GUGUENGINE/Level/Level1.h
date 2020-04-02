@@ -14,7 +14,6 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/Sound.h"
-#include "../GUGUENGINE/glfwInput.h"
 
 class Sound;
 
@@ -48,5 +47,4 @@ private:
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
 
-	Input input;
 };
