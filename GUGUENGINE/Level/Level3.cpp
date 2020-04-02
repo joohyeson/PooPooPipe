@@ -179,32 +179,32 @@ void Level3::Init()
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 280.f }, 60.f);
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 280.f });
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, 160.f }, 180.f);
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f, 160.f });
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f, 160.f }, 120.f);
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 40.f }, 60.f);
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f }, 240.f);
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f, -80.0f });
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f, -80.f }, 60.f);
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f, -80.f }, 60.f);
-	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, -200.f }, 60.f);
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, -200.f });
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, 160.f + 22.f });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, 160.f + 22.f }, 120.f);
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 240.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, -80.0f - 32.f });
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, -80.f - 32.f }, 60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, -80.f - 32.f }, 60.f);
+	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, 60.f);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, -200.f - 62.f });
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 140.f, 160.f });
-	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -64.f, 40.f });
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -268.f, -80.f });
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 140.f - 415.f, 160.f + 22.f });
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -64.f - 465.f, 40.f - 5.f });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -268.f - 519.f, -80.f - 32.f });
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f, 280.f }, -240.f);
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f });
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -240.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
 
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -100.f });
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
+	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 
 	texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
