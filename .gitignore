@@ -17,3 +17,5 @@ GUGUENGINE/GUGUENGINE/x64/
 *.iobj
 *.lib
 *.ilk
+GUGUENGINE/Level/assets/pressbutton1.png
+GUGUENGINE/Level/assets/button1.png

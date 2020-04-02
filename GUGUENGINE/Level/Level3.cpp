@@ -30,6 +30,7 @@ int moveCheck3 = 0;
 int moveCheck3_2 = 0;
 int moveCheck3_3 = 0;
 int connectMove = 0;
+int LevelCheck = 0;
 
 float degree2 = 0;
 float degree2_2 = 0;
@@ -56,7 +57,7 @@ GLuint texureIdCurve3_2;
 GLuint texureIdbutton3;
 GLuint texureIdclear3;
 GLuint texureSpace3;
-
+GLint LevelPage;
 Sound se3;
 
 bool blCheck1 = false;
@@ -137,6 +138,7 @@ void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 		moveCheck3 += 1;
 		moveCheck3_2 += 1;
 		moveCheck3_3 += 1;
+		LevelCheck += 1;
 		connectMove += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 
@@ -197,6 +199,8 @@ void Level3::Init()
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f, 280.f }, -240.f);
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f });
 
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -100.f });
+
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
@@ -211,6 +215,8 @@ void Level3::Init()
 
 	texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+
+	LevelPage = TEXTURE->CreateTexture("assets\\LevelUI.png", 0);
 
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -228,6 +234,7 @@ void Level3::Init()
 	puzzle6->pipe->SetDirection(false, false, true, false, true, false);
 	puzzle7->pipe->SetDirection(false, true, false, false, false, true);
 
+	Levelsel->mesh->InitializeTextureMesh(80.f, 80.f);
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
@@ -239,6 +246,21 @@ void Level3::Init()
 
 void Level3::Update()
 {
+	if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
+	{
+		if (LevelCheck % 2 == 1)
+		{
+			std::cout << "check" << std::endl;
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		if (LevelCheck % 2 == 1)
+		{
+			LevelCheck = 0;
+		}
+	}
 
 	//if(rotTime.getLimitTime() == 0)
 	//{
@@ -252,7 +274,7 @@ void Level3::Update()
 	//	std::cout << "STOP" << std::endl;
 	//	std::cout << "STOP" << std::endl;
 	//}
-	
+
 	if (check3 < 1)
 	{
 		check3++;
@@ -341,7 +363,7 @@ void Level3::Update()
 			movePuzzle2->mesh->setRotation(degree2_2);
 			//rotTime.Update();
 			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-			
+
 			rightCheck3_2 = 0;
 
 			se3.Play(1);
@@ -580,7 +602,7 @@ void Level3::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

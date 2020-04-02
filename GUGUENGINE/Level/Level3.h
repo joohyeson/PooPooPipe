@@ -48,6 +48,8 @@ public:
 		blackPuzzle3 = nullptr;
 		spacePress = nullptr;
 		
+		Levelsel = nullptr;
+
 		button = nullptr;
 		clear = nullptr;
 		key = 0;
@@ -69,6 +71,7 @@ private:
 	Object* button;
 	Object* clear;
 
+	Object* Levelsel;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

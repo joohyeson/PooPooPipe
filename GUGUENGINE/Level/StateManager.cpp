@@ -20,7 +20,7 @@
 #include "Level6.h"
 #include "Level7.h"
 #include "Level8.h"
-
+#include "LevelSelect.h"
 #include "MovingCheck.h"
 
 
@@ -51,6 +51,7 @@ void StateManager::Init()
 	levels.push_back(new Level6());
 	levels.push_back(new Level7());
 	levels.push_back(new Level8());
+	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
 
@@ -65,8 +66,6 @@ void StateManager::Update()
 
 void StateManager::ChangeLevel(GameLevels changeLV)
 {
-
 	current = changeLV;
 	levels.at(current)->Init();
-	
 }

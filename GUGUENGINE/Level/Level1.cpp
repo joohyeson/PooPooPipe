@@ -89,7 +89,6 @@ void Level1::Init()
 	spacePress->mesh->SetMeshType(rectangle);
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
-
 	input.InitCallback(APPLICATION->getMyWindow());
 }
 
