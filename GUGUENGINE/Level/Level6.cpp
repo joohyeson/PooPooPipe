@@ -148,6 +148,46 @@ void Level6::Init()
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->SetMeshType(rectangle);
+	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	texturePlayUI6 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->SetMeshType(rectangle);
+	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureQuitUI6 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->SetMeshType(rectangle);
+	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureOptionUI6 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->SetMeshType(rectangle);
+	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+
+
+
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack6 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve6 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -499,6 +539,12 @@ void Level6::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear6);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace6);
+
+
+	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI6);
+	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI6);
+	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
+	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI6);
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

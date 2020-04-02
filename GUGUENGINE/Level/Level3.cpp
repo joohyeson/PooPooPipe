@@ -665,8 +665,6 @@ void Level3::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
-<<<<<<< HEAD
-
 
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3);
@@ -674,13 +672,13 @@ void Level3::Update()
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3);
 
 
-=======
+
 	if (mPooPoo.IsFinish() == false)
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
 	
->>>>>>> 957f9012194b9cfa26d7f8827e0824e03f20546c
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

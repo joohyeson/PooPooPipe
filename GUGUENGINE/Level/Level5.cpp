@@ -196,6 +196,45 @@ void Level5::Init()
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->SetMeshType(rectangle);
+	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	texturePlayUI5 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->SetMeshType(rectangle);
+	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureQuitUI5 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->SetMeshType(rectangle);
+	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureOptionUI5 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->SetMeshType(rectangle);
+	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureRestartUI5 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+
+
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack5 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve5 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -783,6 +822,10 @@ void Level5::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear5);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace5);
 
+	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI5);
+	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI5);
+	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI5);
+	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI5);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
