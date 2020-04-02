@@ -30,7 +30,7 @@ int rightCheck6_4 = 0;
 int rightCheck6_5 = 0;
 int rightCheck6_6 = 0;
 
-
+bool rotrot = true;
 
 int chekNext6 = 0;
 
@@ -51,6 +51,11 @@ GLuint texureIdCurve6_2;
 GLuint texureIdbutton6;
 GLuint texureIdclear6;
 GLuint texureSpace6;
+
+GLint texturePlayUI6;
+GLint textureQuitUI6;
+GLint textureOptionUI6;
+GLint textureRestartUI6;
 
 Sound se6;
 
@@ -142,6 +147,46 @@ void Level6::Init()
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->SetMeshType(rectangle);
+	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	texturePlayUI6 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->SetMeshType(rectangle);
+	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureQuitUI6 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->SetMeshType(rectangle);
+	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureOptionUI6 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->SetMeshType(rectangle);
+	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+
+
 
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack6 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -243,197 +288,203 @@ void Level6::Update()
 		check6++;
 	}
 
+	if (rotTime.getLimitTime() == 0)
+	{
+		rotrot = false;
+	}
+
 	se6.Update();
 
-	if (puzzle14->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle14->mesh))
+	if (rotrot)
 	{
-		if (rightCheck6 != 0)
+		if (puzzle14->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle14->mesh))
 		{
-			puzzle14->pipe->Update();
-
-			degree6 += static_cast<float>(DegreeToRadian(60.f));
-			std::cout << "1" << std::endl;
-			puzzle14->mesh->setRotation(degree6);
-
-			rightCheck6 = 0;
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6 = 0;
-	}
-
-	if (blackPuzzle1->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle1->mesh))
-	{
-		if (rightCheck6_2 != 0)
-		{
-			blackPuzzle1->pipe->Update();
-
-			degree6_2 += static_cast<float>(DegreeToRadian(60.f));
-			std::cout << "2" << std::endl;
-			blackPuzzle1->mesh->setRotation(degree6_2);
-			rightCheck6_2 = 0;
-
-
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6_2 = 0;
-	}
-
-
-	if (puzzle7->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle7->mesh))
-	{
-		if (rightCheck6_3 != 0)
-		{
-			puzzle7->pipe->Update();
-			degree6_3 += static_cast<float>(DegreeToRadian(60.f));
-			
-			puzzle7->mesh->setRotation(degree6_3);
-			rightCheck6_3 = 0;
-
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6_3 = 0;
-	}
-
-	if (blackPuzzle3->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle3->mesh))
-	{
-		if (rightCheck6_4 != 0)
-		{
-			blackPuzzle3->pipe->Update();
-			degree6_4 +=(60.f);
-			blackPuzzle3->mesh->setRotation(static_cast<float>((DegreeToRadian(degree6_4))));
-			std::cout << "4" << std::endl;
-			rightCheck6_4 = 0;
-
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6_4 = 0;
-	}
-
-	if (puzzle16->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle16->mesh))
-	{
-		if (rightCheck6_5 != 0)
-		{
-			puzzle16->pipe->Update();
-			degree6_5 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle16->mesh->setRotation(degree6_5);
-			rightCheck6_5 = 0;
-			std::cout << "5" << std::endl;
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6_5 = 0;
-	}
-
-	if (puzzle12->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle12->mesh))
-	{
-		if (rightCheck6_6 != 0)
-		{
-			puzzle12->pipe->Update();
-			degree6_6 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle12->mesh->setRotation(degree6_6);
-			rightCheck6_6 = 0;
-			std::cout << "6" << std::endl;
-			se6.Play(1);
-			se6.SetVolume(0.5f);
-			se6.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		rightCheck6_6 = 0;
-	}
-
-	if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
-	{
-		if (connectMove6 % 2 == 1)
-		{
-			if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3)
+			if (rightCheck6 != 0)
 			{
-				std::cout << "if 5" << std::endl;
-				clear->mesh->setTransform({ 280.f, -240.f });
-				chekNext6 = 1;
-				std::cout << "clear" << std::endl;
-				connectMove6 = 0;
+				puzzle14->pipe->Update();
+
+				degree6 += static_cast<float>(DegreeToRadian(60.f));
+				std::cout << "1" << std::endl;
+				puzzle14->mesh->setRotation(degree6);
+				rotTime.Update();
+				rightCheck6 = 0;
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
 			}
+		}
+		else
+		{
+			rightCheck6 = 0;
+		}
+
+		if (blackPuzzle1->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle1->mesh))
+		{
+			if (rightCheck6_2 != 0)
+			{
+				blackPuzzle1->pipe->Update();
+				degree6_2 += static_cast<float>(DegreeToRadian(60.f));
+				std::cout << "2" << std::endl;
+				blackPuzzle1->mesh->setRotation(degree6_2);
+				rightCheck6_2 = 0;
+				rotTime.Update();
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
+			}
+		}
+		else
+		{
+			rightCheck6_2 = 0;
+		}
+
+
+		if (puzzle7->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle7->mesh))
+		{
+			if (rightCheck6_3 != 0)
+			{
+				puzzle7->pipe->Update();
+				degree6_3 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle7->mesh->setRotation(degree6_3);
+				rightCheck6_3 = 0;
+				rotTime.Update();
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
+			}
+		}
+		else
+		{
+			rightCheck6_3 = 0;
+		}
+
+		if (blackPuzzle3->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle3->mesh))
+		{
+			if (rightCheck6_4 != 0)
+			{
+				blackPuzzle3->pipe->Update();
+				degree6_4 += (60.f);
+				blackPuzzle3->mesh->setRotation(static_cast<float>((DegreeToRadian(degree6_4))));
+				std::cout << "4" << std::endl;
+				rightCheck6_4 = 0;
+				rotTime.Update();
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
+			}
+		}
+		else
+		{
+			rightCheck6_4 = 0;
+		}
+
+		if (puzzle16->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle16->mesh))
+		{
+			if (rightCheck6_5 != 0)
+			{
+				puzzle16->pipe->Update();
+				degree6_5 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle16->mesh->setRotation(degree6_5);
+				rotTime.Update();
+				rightCheck6_5 = 0;
+				std::cout << "5" << std::endl;
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
+			}
+		}
+		else
+		{
+			rightCheck6_5 = 0;
+		}
+
+		if (puzzle12->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle12->mesh))
+		{
+			if (rightCheck6_6 != 0)
+			{
+				puzzle12->pipe->Update();
+				degree6_6 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle12->mesh->setRotation(degree6_6);
+				rightCheck6_6 = 0;
+				rotTime.Update();
+				std::cout << "6" << std::endl;
+				se6.Play(1);
+				se6.SetVolume(0.5f);
+				se6.SetLoopCount(1);
+			}
+		}
+		else
+		{
+			rightCheck6_6 = 0;
+		}
+
+		if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
+		{
+			if (connectMove6 % 2 == 1)
+			{
+				if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3)
+				{
+					std::cout << "if 5" << std::endl;
+					clear->mesh->setTransform({ 280.f, -240.f });
+					chekNext6 = 1;
+					std::cout << "clear" << std::endl;
+					connectMove6 = 0;
+				}
+
+			}
+		}
+		else
+		{
+			connectMove6 = 0;
+		}
+
+		if ((puzzle14->pipe->GetDirValue(NW) == puzzle13->pipe->GetDirValue(SE)) && (puzzle14->pipe->GetDirValue(W) == puzzle4->pipe->GetDirValue(E)))
+		{
+			conecTcheck6_1 = true;
+		}
+		else
+		{
+			conecTcheck6_1 = false;
+		}
+
+		if ((puzzle7->pipe->GetDirValue(NE) == puzzle4->pipe->GetDirValue(SW)) && (puzzle7->pipe->GetDirValue(E) == puzzle15->pipe->GetDirValue(W)))
+		{
+			conecTcheck6_2 = true;
+		}
+		else
+		{
+			conecTcheck6_2 = false;
+		}
+
+		if ((puzzle16->pipe->GetDirValue(NW) == puzzle15->pipe->GetDirValue(SE)) && (puzzle16->pipe->GetDirValue(SW) == puzzle17->pipe->GetDirValue(NE)))
+		{
+			conecTcheck6_3 = true;
+		}
+		else
+		{
+			conecTcheck6_3 = false;
+		}
+
+		if ((puzzle12->pipe->GetDirValue(E) == puzzle17->pipe->GetDirValue(W)) && (puzzle12->pipe->GetDirValue(NW) == puzzle9->pipe->GetDirValue(SE)))
+		{
+			conecTcheck6_4 = true;
 
 		}
-	}
-	else
-	{
-		connectMove6 = 0;
-	}
+		else
+		{
+			conecTcheck6_4 = false;
+		}
 
-	if ((puzzle14->pipe->GetDirValue(NW) == puzzle13->pipe->GetDirValue(SE)) && (puzzle14->pipe->GetDirValue(W) == puzzle4->pipe->GetDirValue(E)))
-	{
-		conecTcheck6_1 = true;
-	}
-	else
-	{
-		conecTcheck6_1 = false;
-	}
+		if ((blackPuzzle3->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (blackPuzzle3->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		{
+			conecTcheck6_5 = true;
 
-	if ((puzzle7->pipe->GetDirValue(NE) == puzzle4->pipe->GetDirValue(SW)) && (puzzle7->pipe->GetDirValue(E) == puzzle15->pipe->GetDirValue(W)))
-	{
-		conecTcheck6_2 = true;
+		}
+		else
+		{
+			conecTcheck6_5 = false;
+		}
 	}
-	else
-	{
-		conecTcheck6_2 = false;
-	}
-
-	if ((puzzle16->pipe->GetDirValue(NW) == puzzle15->pipe->GetDirValue(SE)) && (puzzle16->pipe->GetDirValue(SW) == puzzle17->pipe->GetDirValue(NE)))
-	{
-		conecTcheck6_3 = true;
-	}
-	else
-	{
-		conecTcheck6_3 = false;
-	}
-
-	if ((puzzle12->pipe->GetDirValue(E) == puzzle17->pipe->GetDirValue(W)) && (puzzle12->pipe->GetDirValue(NW) == puzzle9->pipe->GetDirValue(SE)))
-	{
-		conecTcheck6_4 = true;
-
-	}
-	else
-	{
-		conecTcheck6_4 = false;
-	}
-
-	if ((blackPuzzle3->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (blackPuzzle3->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
-	{
-		conecTcheck6_5 = true;
-
-	}
-	else
-	{
-		conecTcheck6_5 = false;
-	}
-
 
 	if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
 	{
@@ -488,6 +539,12 @@ void Level6::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear6);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace6);
+
+
+	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI6);
+	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI6);
+	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
+	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI6);
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

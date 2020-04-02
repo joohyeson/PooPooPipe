@@ -3,7 +3,7 @@
 class LimitRotate
 {
 public:
-	LimitRotate() : limitTime(10) {}
+	LimitRotate() : limitTime(15) {}
 	~LimitRotate(){}
 
 	int getLimitTime();
@@ -12,8 +12,8 @@ public:
 	
 	void IncLimit();
 	void DecLimit();
-	
+	void setRotate(int i);
 	
 private:
-	int limitTime = 0;
+	int limitTime;
 };

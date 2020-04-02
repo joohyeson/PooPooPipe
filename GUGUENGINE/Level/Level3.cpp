@@ -58,6 +58,12 @@ GLuint texureIdbutton3;
 GLuint texureIdclear3;
 GLuint texureSpace3;
 GLint LevelPage;
+
+GLint texturePlayUI3;
+GLint textureQuitUI3;
+GLint textureOptionUI3;
+GLint textureRestartUI3;
+
 Sound se3;
 
 bool blCheck1 = false;
@@ -178,6 +184,48 @@ void Level3::Init()
 		false, false, false, true, false, true);
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
+
+
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->SetMeshType(rectangle);
+	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png",0);
+
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->SetMeshType(rectangle);
+	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png",0);
+
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->SetMeshType(rectangle);
+	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png",0);
+
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->SetMeshType(rectangle);
+	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png",0);
+
+
+
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
@@ -618,11 +666,20 @@ void Level3::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+
+	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3);
+	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3);
+	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3);
+	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3);
+
+
+
 	if (mPooPoo.IsFinish() == false)
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
 	
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

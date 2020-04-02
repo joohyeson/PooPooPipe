@@ -19,3 +19,8 @@ void LimitRotate::DecLimit() //color pipe
 {
 	limitTime -= 5;
 }
+
+void LimitRotate::setRotate(int i)
+{
+	limitTime = i;
+}
