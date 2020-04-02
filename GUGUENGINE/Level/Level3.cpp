@@ -222,7 +222,7 @@ void Level3::Init()
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace3 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	se3.Init();
-	se3.LoadMusic("assets\\coin.mp3");
+	se3.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 

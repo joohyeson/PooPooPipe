@@ -206,7 +206,7 @@ void Level4::Init()
 	texureIdclear4 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace4 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	se4.Init();
-	se4.LoadMusic("assets\\coin.mp3");
+	se4.LoadSE("assets\\coin.mp3");
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();

@@ -177,7 +177,7 @@ void Level8::Init()
 	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	se8.Init();
-	se8.LoadMusic("assets\\coin.mp3");
+	se8.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 

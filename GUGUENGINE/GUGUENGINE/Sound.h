@@ -20,6 +20,7 @@ public:
 
 	void Free();
 	void LoadMusic(const char* filePath);
+	void LoadSE(const char* filePath);
 	bool IsPlaying();
 	bool IsPaused();
 	void Play(int loop = -1);
@@ -29,7 +30,7 @@ public:
 	void Rewind();
 	
 
-	void SetVolume(float volume = 0.5f);
+	void SetVolume(float volume = 0.3f);
 	float GetVolume();
 
 	void SetLoopCount(int loopCount);

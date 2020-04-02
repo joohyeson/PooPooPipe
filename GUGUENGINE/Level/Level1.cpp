@@ -57,7 +57,7 @@ void Level1::Init()
 	textureSpace1 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	
 	se.Init();
-	se.LoadMusic("assets\\coin.mp3");
+	se.LoadSE("assets\\coin.mp3");
 
 
 	//mShader.BuildTextureShaderNDC();

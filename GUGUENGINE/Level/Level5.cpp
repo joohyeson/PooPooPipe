@@ -210,7 +210,7 @@ void Level5::Init()
 	texureIdclear5 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace5 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	se5.Init();
-	se5.LoadMusic("assets\\coin.mp3");
+	se5.LoadSE("assets\\coin.mp3");
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();

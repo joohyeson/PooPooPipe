@@ -54,6 +54,11 @@ void Sound::Free()
 
 void Sound::LoadMusic(const char* filePath)
 {
+	result = system->createSound(filePath, FMOD_LOOP_NORMAL, 0, &sound);
+}
+
+void Sound::LoadSE(const char* filePath)
+{
 	result = system->createSound(filePath, FMOD_LOOP_OFF, 0, &sound);
 }
 

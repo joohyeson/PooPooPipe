@@ -160,7 +160,7 @@ void Level6::Init()
 	texureSpace6 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	
 	se6.Init();
-	se6.LoadMusic("assets\\coin.mp3");
+	se6.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 

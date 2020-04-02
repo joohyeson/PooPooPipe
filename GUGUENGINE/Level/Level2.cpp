@@ -94,7 +94,7 @@ void Level2::Init()
 	textureSpace2 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	se2.Init();
-	se2.LoadMusic("assets\\coin.mp3");
+	se2.LoadSE("assets\\coin.mp3");
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();

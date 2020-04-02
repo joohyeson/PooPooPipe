@@ -19,7 +19,7 @@ int moveCheck0 = 0;
 int moveCheck0_2 = 0;
 int moveCheck0_3 = 0;
 
-float volume = 0.5f;
+float volume = 0.3f;
 
 GLuint textureId00;	//game title
 GLuint textureId01; //game start
@@ -28,6 +28,7 @@ GLuint textureId03; //tutorial
 GLuint textureId05;//test
 GLuint textureId04;	//option button
 GLuint textureId06;//man
+
 
 Sound bgm;
 
@@ -94,9 +95,10 @@ void MainMenu::Init()
 	bgm.Stop();
 	bgm.Init();
 	bgm.LoadMusic("assets\\airplane.mp3");
+
 	if (!bgm.IsPlaying())
 	{
-		bgm.Play(0);
+		bgm.Play();
 	}
 
 	background = OBJECT_FACTORY->CreateEmptyObject();
@@ -167,7 +169,6 @@ void MainMenu::Init()
 
 void MainMenu::Update()
 {
-
 	bgm.Update();
 
 	if (moveCheck0 %2== 1)

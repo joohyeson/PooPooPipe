@@ -25,7 +25,7 @@ void LevelSelect::Init()
 	texureIdLineLv = TEXTURE->CreateTexture("assets\\image0.png", 0);
 
 	seLv.Init();
-	seLv.LoadMusic("assets\\coin.mp3");
+	seLv.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 	levelInput.InitCallback(APPLICATION->getMyWindow());

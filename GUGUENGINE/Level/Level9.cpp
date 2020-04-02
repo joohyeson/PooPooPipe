@@ -170,7 +170,7 @@ void Level9::Init()
 	texureSpace9 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	se9.Init();
-	se9.LoadMusic("assets\\coin.mp3");
+	se9.LoadSE("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 
