@@ -72,7 +72,7 @@ void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext8 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 		chekNext8 = 0;
 
 		conecTcheck8_1 = false;
@@ -105,7 +105,7 @@ void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		degree8_6 = 0;
 		degree8_7 = 0;
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)

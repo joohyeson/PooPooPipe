@@ -73,7 +73,7 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext4 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
+		STATE_MANAGER->ChangeLevel(LV_TEST6);
 		chekNext4 = 0;
 
 		conecTcheck4_1 = false;
@@ -109,7 +109,7 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 		blCheck4 = false;
 		blCheck4_2 = false;
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
+		STATE_MANAGER->ChangeLevel(LV_TEST6);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
