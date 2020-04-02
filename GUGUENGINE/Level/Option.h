@@ -30,7 +30,7 @@ public:
 	void Close() override;
 
 private:
-	Object* background, *option, *music, *arrowRight, *arrowLeft;
+	Object* background, *option, *music, *arrowRight, *arrowLeft, *bar0;
 	int key;
 	Mesh mMesh;
 	Shader mShader;

@@ -18,6 +18,7 @@
 Vector2<float> cursor00;
 
 int moveCheck00 = 0;
+int bar0 = 0;
 
 GLuint textureBackgroundOption;
 GLuint textureOption;
@@ -25,6 +26,8 @@ GLuint textureMusic;
 
 GLuint textureArrowLeft;
 GLuint textureArrowRight;
+
+GLuint textureBar0;
 
 void optionCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
@@ -35,6 +38,8 @@ void optionMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, i
 	static float time = 0;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
+		bar0 += 1;
+
 		moveCheck00 += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 	}
@@ -88,6 +93,14 @@ void LevelOption::Init()
 	arrowLeft->mesh->SetMeshType(rectangle);
 	arrowLeft->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowLeft = TEXTURE->CreateTexture("assets\\arrow_left.png", 0);
+
+	bar0 = OBJECT_FACTORY->CreateEmptyObject();
+	bar0->AddComponent(new Mesh());
+	bar0->Init();
+	bar0->mesh->setTransform({ 95.f, 240.f });
+	bar0->mesh->SetMeshType(rectangle);
+	bar0->mesh->InitializeTextureMesh(400.f, 80.f);
+	textureBar0 = TEXTURE->CreateTexture("assets\\bar0.png", 0);
 	
 	mShader.BuildColorShader();
 	mShader.BuildTextureShader();
@@ -104,6 +117,8 @@ void LevelOption::Update()
 	
 	arrowRight->mesh->Update(mShader.GetShaderHandler(), textureArrowRight);
 	arrowLeft->mesh->Update(mShader.GetShaderHandler(), textureArrowLeft);
+
+	bar0->mesh->Update(mShader.GetShaderHandler(), textureBar0);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

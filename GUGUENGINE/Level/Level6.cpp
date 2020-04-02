@@ -451,6 +451,7 @@ void Level6::Update()
 
 		}
 	}
+
 	else
 	{
 		connectMove6 = 0;
