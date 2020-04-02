@@ -39,7 +39,8 @@ void Level1::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->setTransform({ -800.f, 200.f });
 	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	

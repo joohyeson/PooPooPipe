@@ -187,7 +187,7 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
 	if (meshType == hexagon)
 	{
-		S = Matrix3<float>::Scale({ 80.f, 80.f, 1.f });
+		S = Matrix3<float>::Scale({ 100.f, 100.f, 1.f });
 	}
 
 	vertex = originVertex;

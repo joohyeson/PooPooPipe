@@ -79,7 +79,7 @@ void Level2::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
