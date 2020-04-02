@@ -169,8 +169,8 @@ void Level9::Init()
 
 	texureIdLine9_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve9_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV9_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
-	texureIdCurve9_3 = TEXTURE->CreateTexture("assets\\pipe2-1.png", 0);
+	texureIdV9_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
+	texureIdCurve9_3 = TEXTURE->CreateTexture("assets\\55.png", 0);
 
 	texureIdbutton9 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear9 = TEXTURE->CreateTexture("assets\\clear.png", 0);

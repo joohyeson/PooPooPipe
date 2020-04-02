@@ -145,6 +145,7 @@ void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 
 void Level6::Init()
 {
+	rotTime.setRotate(100);
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
@@ -200,7 +201,7 @@ void Level6::Init()
 
 	texureIdLine6_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve6_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV6_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
+	texureIdV6_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 
 	texureIdbutton6 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear6 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -365,8 +366,8 @@ void Level6::Update()
 			if (rightCheck6_4 != 0)
 			{
 				blackPuzzle3->pipe->Update();
-				degree6_4 += (60.f);
-				blackPuzzle3->mesh->setRotation(static_cast<float>((DegreeToRadian(degree6_4))));
+				degree6_4 += static_cast<float>(DegreeToRadian(60.f));
+				blackPuzzle3->mesh->setRotation(degree6_4);
 				std::cout << "4" << std::endl;
 				rightCheck6_4 = 0;
 				rotTime.Update();
@@ -488,6 +489,30 @@ void Level6::Update()
 		}
 	}
 
+	if (conecTcheck6_1)
+	{
+		std::cout << "1" << std::endl;
+	}
+	else if (conecTcheck6_2)
+	{
+		std::cout << "2" << std::endl;
+
+	}
+	else if (conecTcheck6_3)
+	{
+		std::cout << "3" << std::endl;
+
+	}
+	else if (conecTcheck6_4)
+	{
+		std::cout << "4" << std::endl;
+
+	}
+	else if (conecTcheck6_5)
+	{
+		std::cout << "5" << std::endl;
+
+	}
 	if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
 	{
 		if (connectMove6 % 2 == 1)
