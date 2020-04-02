@@ -433,20 +433,6 @@ void Level9::Update()
 		conecTcheck9_3 = false;
 	}
 
-
-	if (conecTcheck9_1)
-	{
-		std::cout << "ya";
-	}
-	else if (conecTcheck9_2)
-	{
-		std::cout << "si";
-	}
-	else if (conecTcheck9_3)
-	{
-		std::cout << "bal";
-
-	}
 	if (button->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, button->mesh))
 	{
 		if (connectMove9 % 2 == 1)
