@@ -52,7 +52,7 @@ int rightCheckTest = 0;
 int rightCheckTest_2 = 0;
 int rightCheckTest_3 = 0;
 
-
+int puzzleIDCount = 0;
 
 void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
@@ -236,6 +236,12 @@ void MovingCheck::Init()
 	myMap.SetReadyToStart(true);
 	mPooPoo.Init();
 
+	mPooPoo.AddAngle(DirAngle::S_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle5->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::S_, endPuzzle->mesh->GetTransform());
+
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), Test5keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), TestcursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), Test5mouseButtonCallback);
@@ -256,18 +262,7 @@ void MovingCheck::Update()
 	{
 		mPooPoo.SetIsSuccess(true);
 	}
-	//myPooPoo.MoveInPuzzle(DirAngle::SW_, DirAngle::SE_,puzzle1->mesh->GetTransform(), mShader2.GetShaderHandler());
-	//if (myPooPoo.GetRealEndD()==myPooPoo.GetPooPooTransform())
-	//{
-	//	myPooPoo.SetIsSuccess(true);
-	//	//myPooPoo.SetIsFirst(true);
-	//	myPooPoo.MoveInPuzzle(DirAngle::NW_, DirAngle::SE_, puzzle5->mesh->GetTransform(), mShader2.GetShaderHandler());
-	//}
-	
-	
 
-
-	//background->mesh->Update(mShader2.GetShaderHandler(), textureBackground4);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
@@ -295,8 +290,11 @@ void MovingCheck::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
-	
-	mPooPoo.Update(mShader2.GetShaderHandler());
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
+	//mPooPoo.Update(mShader2.GetShaderHandler());
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

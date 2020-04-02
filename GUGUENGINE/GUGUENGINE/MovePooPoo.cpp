@@ -2,7 +2,8 @@
 #include "MovePooPoo.h"
 #include "Texture.h"
 #include "HexagonElements.h"
-
+static int PuzzleID = 0;
+static int OriginID = 0;
 MovePooPoo::MovePooPoo() :
 	startD({ 0.f, 0.f }), endD({ 50.f, 0.f }), speed(30.f) {
 
@@ -52,12 +53,19 @@ void MovePooPoo::Update(int shaderHandler)
 		if (startD.magnitude({ objectPP->mesh->GetTransform().x - startD.x, objectPP->mesh->GetTransform().y - startD.y }) >= distance)
 		{
 			objectPP->mesh->setTransform(endD);
-			isSuccess = false;
-			isFirst = false;
+			//isSuccess = false;
+			isFirst = PuzzleID%2;
+			PuzzleID += 1;
+
+			if (isFirst == true)
+			{
+				OriginID++;
+			}
 		}
 	}
 
 	objectPP->mesh->Update(shaderHandler, texturePP);
+
 }
 void MovePooPoo::SetSpeed(int Speed)
 {
@@ -114,23 +122,30 @@ void MovePooPoo::MoveInPuzzle(std::vector < Vector2<float>> exact)
 
 	}
 }
-//void MovePooPoo::MoveInPuzzle(DirAngle startDirection, DirAngle endDirection, Vector2<float>ori, int shaderHandler)
-//{
-//	origin = ori;
-//	HexagonCoordinates myCoordinates(origin);
-//	realEndD= myCoordinates.GetEdgeCenterCoordinates(endDirection);
-//	if (isFirst == true)
-//	{
-//		SetStartD(myCoordinates.GetEdgeCenterCoordinates(startDirection));
-//		SetEndD(origin);
-//	}
-//	else if (isFirst == false)
-//	{
-//		isSuccess = true;
-//		SetEndD(myCoordinates.GetEdgeCenterCoordinates(endDirection));
-//		SetStartD(origin);
-//	}
-//
-//	Update(shaderHandler);
-//
-//}
+void MovePooPoo::MoveInPuzzle(int shaderHandler)
+{
+	
+	if (myAngles.size() ==PuzzleID)
+	{
+		isFinish = true;
+		return;
+	}
+
+	origin = coor[OriginID];
+	HexagonCoordinates myCoordinates(origin);
+	if (isFirst == true)
+	{
+		SetStartD(myCoordinates.GetEdgeCenterCoordinates(myAngles[PuzzleID]));
+		SetEndD(origin);
+	}
+	else if (isFirst == false)
+	{
+		//isSuccess = true;
+		SetEndD(myCoordinates.GetEdgeCenterCoordinates(myAngles[PuzzleID]));
+		SetStartD(origin);
+	}
+
+	Update(shaderHandler);
+
+	
+}
