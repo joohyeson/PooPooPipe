@@ -214,7 +214,7 @@ void Level8::Init()
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe2.png", 0);
+	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
 
 
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);

@@ -47,6 +47,8 @@ GLuint texureIdEnd6;
 
 GLuint texureIdLine6_1;
 GLuint texureIdCurve6_2;
+GLuint texureIdV6_2;
+
 
 GLuint texureIdbutton6;
 GLuint texureIdclear6;
@@ -199,6 +201,7 @@ void Level6::Init()
 
 	texureIdLine6_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve6_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+	texureIdV6_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
 
 	texureIdbutton6 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear6 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -515,23 +518,23 @@ void Level6::Update()
 	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
-	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdV6);
+	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
 
-	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV6);
+	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdLine6);
 	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
-	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
+	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6_2);
 
 	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
-	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdV6);
+	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
 	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
-	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
+	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6_2);
 	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 
-	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV6);
+	blackPuzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
 	blackPuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
-	blackPuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
+	blackPuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6_2);
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart6);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd6);
