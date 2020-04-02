@@ -120,7 +120,7 @@ void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 void level4cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor4 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+	cursor4 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 }
 
 void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
@@ -163,7 +163,7 @@ void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 void Level4::Init()
 {
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 60.f);

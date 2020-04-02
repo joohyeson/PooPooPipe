@@ -15,8 +15,8 @@
 int framebufferWidth, framebufferHeight;
 Application* APPLICATION = nullptr;
 
-#define WIDTH 800
-#define HEIGHT 800
+#define WIDTH 1440
+#define HEIGHT 810
 
 Mesh mMesh;
 
@@ -67,18 +67,30 @@ Application::Application()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 	glfwWindowHint(GLFW_SAMPLES, 4);
 
+	const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+	GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+
+	
+	//APPLICATION->setFullScreen(true);
+	//glViewport(0, 0, screenMode->width, screenMode->height);
+
 	Mywindow = glfwCreateWindow(
-		WIDTH,
-		HEIGHT,
+		screenMode->width,
+		screenMode->height,
 		"PooPooPipe",
-		NULL, NULL);
+		glfwGetPrimaryMonitor(), NULL);
 
 	if (!Mywindow) {
 
 		glfwTerminate();
 		std::exit(EXIT_FAILURE);
 	}
+	glfwSetWindowMonitor(Mywindow, screenMonitor, 0, 0, screenMode->width, screenMode->height, 0);
 
+	glViewport(0, 0, screenMode->width, screenMode->height);
+
+	Application::width = screenMode->width;
+	Application::height = screenMode->height;
 	glfwMakeContextCurrent(Mywindow);
 	GLFWimage icons[1];
 
@@ -108,7 +120,9 @@ Application::Application()
 	std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
 	std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
 	std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
-
+	glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
+	//framebufferSizeCallback(Mywindow, screenMode->width, screenMode->height);
+	
 }
 
 Application::~Application()

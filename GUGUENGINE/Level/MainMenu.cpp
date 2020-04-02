@@ -73,7 +73,8 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor0 = { static_cast<float>(xpos) -APPLICATION->height/2 ,  -(static_cast<float>(ypos)-APPLICATION->width/2)};
+	cursor0 = { static_cast<float>(xpos) -APPLICATION->width/2 ,  -(static_cast<float>(ypos)-APPLICATION->height/2)};
+
 }
 void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
@@ -104,7 +105,7 @@ void MainMenu::Init()
 	background->Init();
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(800.f,800.f);
+	background->mesh->InitializeTextureMesh(1920,1080.f);
 
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
 	

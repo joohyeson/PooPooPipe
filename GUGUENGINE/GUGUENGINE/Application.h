@@ -29,8 +29,8 @@ public:
 	GLFWwindow* getMyWindow();
 
 
-	int height = 800;
-	int width = 800;
+	int height = 1920;
+	int width = 1080;
 private:
 	bool isGameRunning = false;
 	int sizeX = 300;
