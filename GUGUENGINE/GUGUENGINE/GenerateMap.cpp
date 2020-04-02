@@ -37,7 +37,7 @@ void GenerateMap::GetNextCenterCoor(float radius)
 	std::vector< Vector2<float> > tmp;
 
 	bool isFirst = true;
-	Vector2<float> beforeSave = { -320, 280 };
+	Vector2<float> beforeSave = { -200.f - 500.f, 280.f + 50.f };
 	Vector2<float> mileStone = beforeSave;
 
 
