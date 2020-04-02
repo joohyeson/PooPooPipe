@@ -44,6 +44,11 @@ public:
 		blackPuzzle3 = nullptr;
 		spacePress = nullptr;
 		
+		playUI = nullptr;
+		quitUI = nullptr;
+		optionUI = nullptr;
+		restartUI = nullptr;
+
 		button = nullptr;
 		clear = nullptr;
 		key = 0;
@@ -61,6 +66,8 @@ private:
 	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
+
+	Object* playUI, * quitUI, * optionUI, * restartUI;
 
 	Object* button;
 	Object* clear;

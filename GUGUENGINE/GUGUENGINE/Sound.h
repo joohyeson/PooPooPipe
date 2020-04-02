@@ -29,7 +29,7 @@ public:
 	void Rewind();
 	
 
-	void SetVolume(float volume = 1.0f);
+	void SetVolume(float volume = 0.5f);
 	float GetVolume();
 
 	void SetLoopCount(int loopCount);
