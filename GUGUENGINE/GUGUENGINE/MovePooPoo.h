@@ -16,32 +16,36 @@ public:
 	{
 		return isSuccess;
 	}
-	bool GetIsFirst()
-	{
-		return isFirst;
-	}
-	Vector2<float> GetRealEndD()
-	{
-		return realEndD;
-	}
-	void SetStartD(float startX, float startY);
-	void SetIsFirst(bool set)
-	{
-		isFirst = set;
-	}
+
+	
 	void SetIsHidden(bool set)
 	{
 		isHidden = set;
 	}
+	bool IsFinish()
+	{
+		return isFinish;
+	}
+
+	
+	Vector2<float> GetEndD();
+	Vector2<float> GetStartD();
+	void MoveInPuzzle(std::vector < Vector2<float>>);
+	void MoveInPuzzle(int shaderHandler);
+	Vector2<float> GetPooPooTransform();
+	void AddAngle(DirAngle startA, DirAngle endA, Vector2<float> origin)
+	{
+		myAngles.push_back(startA);
+		myAngles.push_back(endA);
+		coor.push_back(origin);
+	}
+private:
+	void SetStartD(float startX, float startY);
 	void SetEndD(float endX, float endY);
 	void SetSpeed(int Speed);
 	void SetEndD(Vector2<float> endDirection);
 	void SetStartD(Vector2<float> startDirection);
-	Vector2<float> GetEndD();
-	Vector2<float> GetStartD();
-	void MoveInPuzzle(DirAngle startDirection, DirAngle endDirection,Vector2<float> ori, int shaderHandler);
-	Vector2<float> GetPooPooTransform();
-private:
+
 	GLuint texturePP;
 	Object* objectPP = nullptr;
 	bool isSuccess = false;
@@ -57,5 +61,8 @@ private:
 	Vector2<float> origin = { 0.0f, 0.0f };
 	void setDelta();
 	Vector2<float> realEndD = { 0.0f, 0.0f };
+	bool isFinish = false;
+	std::vector<DirAngle> myAngles;
+	std::vector < Vector2<float>> coor;
 };
 

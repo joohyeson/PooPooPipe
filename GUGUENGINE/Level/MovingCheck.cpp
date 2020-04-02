@@ -52,7 +52,7 @@ int rightCheckTest = 0;
 int rightCheckTest_2 = 0;
 int rightCheckTest_3 = 0;
 
-
+int puzzleIDCount = 0;
 
 void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
@@ -147,7 +147,8 @@ void  Test5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, i
 
 void MovingCheck::Init()
 {
-	GenerateMap myMap(4, 4);
+	myMap.SetColumn(4);
+	myMap.SetRow(4);
 	myMap.GetNextCenterCoor(80);
 	
 	//background = OBJECT_FACTORY->CreateEmptyObject();
@@ -164,23 +165,23 @@ void MovingCheck::Init()
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f }, 60.f);
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f }, 60.f);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, -60.f);
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f,false, true, false, false, true, false);//14
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, false, true, false);//14
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, -60.f, false, false, false, true, false, true);//35
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f },60.f);
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f },60.f, false, true, false, false, true, false);//14
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f);
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f, true, false, true, false, false, false);//02
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, true, false, true, false, false);//13
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, false, true, false, true);//35
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -0.7f * 400, -0.6f * 400 });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -10.0f * 400, 10.0f * 400 });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f * 400, -0.85f * 400 });
@@ -205,9 +206,9 @@ void MovingCheck::Init()
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
-	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
-	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
-	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
+	//puzzle1->pipe->SetDirection(false, false, false, true, false, true);
+	//puzzle6->pipe->SetDirection(true, false, false, false, true, false);
+	//endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 
 	myMap.SaveObject(startPuzzle);
 	myMap.SaveObject(puzzle1);
@@ -232,7 +233,14 @@ void MovingCheck::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	myMap.MapAlignment();
-	//myPooPoo.Init();
+	myMap.SetReadyToStart(true);
+	mPooPoo.Init();
+
+	mPooPoo.AddAngle(DirAngle::S_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle5->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::S_, endPuzzle->mesh->GetTransform());
 
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), Test5keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), TestcursorPositionCallback);
@@ -245,21 +253,16 @@ void MovingCheck::Update()
 	{
 		CheckTest++;
 		std::cout << "HELLO" << std::endl;
+		
 		//myPooPoo.SetIsSuccess(true);
 	}
-	
-	//myPooPoo.MoveInPuzzle(DirAngle::SW_, DirAngle::SE_,puzzle1->mesh->GetTransform(), mShader2.GetShaderHandler());
-	//if (myPooPoo.GetRealEndD()==myPooPoo.GetPooPooTransform())
-	//{
-	//	myPooPoo.SetIsSuccess(true);
-	//	//myPooPoo.SetIsFirst(true);
-	//	myPooPoo.MoveInPuzzle(DirAngle::NW_, DirAngle::SE_, puzzle5->mesh->GetTransform(), mShader2.GetShaderHandler());
-	//}
-	
-	
+	myMap.Update();
 
+	if (myMap.GetHasWay() == true)
+	{
+		mPooPoo.SetIsSuccess(true);
+	}
 
-	//background->mesh->Update(mShader2.GetShaderHandler(), textureBackground4);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);
@@ -287,7 +290,11 @@ void MovingCheck::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
-	//myPooPoo.Update(mShader2.GetShaderHandler());
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
+	//mPooPoo.Update(mShader2.GetShaderHandler());
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

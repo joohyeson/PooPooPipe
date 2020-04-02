@@ -104,7 +104,10 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	case Puzzle:
 	{
 		obj->AddComponent(new Mesh());
+		obj->AddComponent(new PuzzleComponent());
+		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
+		
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeTextureMesh();
@@ -136,6 +139,8 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	case BlackPuzzle:
 	{
 		obj->AddComponent(new Mesh());
+		obj->AddComponent(new PuzzleComponent());
+		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));

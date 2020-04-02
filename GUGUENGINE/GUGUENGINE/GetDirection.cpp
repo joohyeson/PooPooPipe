@@ -1,18 +1,6 @@
 //
 //#include "GetDirection.h"
-//bool GetDirection::IsValidLocation(int puzzleNumber, int EdgeNumber)
-//{
-//	if (puzzleNumber < 0 || EdgeNumber < 0 || EdgeNumber >= 6)
-//	{
-//		return false;
-//	}
-//	else
-//	{
-//		return 
-//	}
-//}
+//#include <stack>
+//#include "Mathematics/Vector2.hpp"
+//#include "ZigZagMap.h"
 //
-//void GetDirection::StartGetDirection()
-//{
-//
-//}

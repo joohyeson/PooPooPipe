@@ -42,6 +42,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
+		bgm.Free();
 	}
 
 	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
@@ -171,7 +172,7 @@ void MainMenu::Update()
 	if (moveCheck0 %2== 1)
 	{
 		std::cout << cursor0.x<<", "<<cursor0.y << std::endl;
-		getDirectionPooPoo.SetIsSuccess(true);
+		//getDirectionPooPoo.SetIsSuccess(true);
 	}
 
 	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
@@ -222,7 +223,7 @@ void MainMenu::Update()
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
 
-	getDirectionPooPoo.Update(mShader.GetShaderHandler());
+	//getDirectionPooPoo.Update(mShader.GetShaderHandler());
 
 	//test->mesh->SplitAnimation();
 	//test->mesh->Update(mShader.GetShaderHandler(), textureId05);

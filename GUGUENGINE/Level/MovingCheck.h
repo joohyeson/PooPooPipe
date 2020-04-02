@@ -14,6 +14,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "..//GUGUENGINE/MovePooPoo.h"
+#include "..//GUGUENGINE/GenerateMap.h"
 class sound;
 
 class MovingCheck : public LevelManager
@@ -96,7 +97,7 @@ private:
 	GLuint texureIdclear4;
 	GLuint texureSpace4;
 
-
-
+	MovePooPoo mPooPoo;
+	GenerateMap myMap;
 
 };

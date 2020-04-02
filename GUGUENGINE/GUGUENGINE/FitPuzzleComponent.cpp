@@ -32,7 +32,7 @@ void PuzzleComponent::SetDirection(bool a, bool b, bool c, bool d, bool e, bool 
 	dirArray1[5] = f;
 }
 
-int PuzzleComponent::GetDirValue(PuzzleDirection index)
+bool PuzzleComponent::GetDirValue(PuzzleDirection index)
 {
 	return this->dirArray1[index];
 }
