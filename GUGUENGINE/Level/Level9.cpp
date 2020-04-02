@@ -289,6 +289,20 @@ void Level9::Init()
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
+	mPooPoo.Init();
+
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle13->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, puzzle4->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, puzzle15->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle16->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SE_, puzzle10->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle17->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::NW_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SE_, DirAngle::SW_, puzzle9->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle20->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
+
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), level9keyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level9cursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level9mouseButtonCallback);
@@ -503,6 +517,7 @@ void Level9::Update()
 				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext9 = 1;
 				std::cout << "clear" << std::endl;
+				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 			}
 		}
@@ -549,7 +564,10 @@ void Level9::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI9);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
-
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

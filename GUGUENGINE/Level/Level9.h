@@ -7,6 +7,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
+#include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
 
@@ -65,7 +66,7 @@ private:
 	Object* button;
 	Object* clear;
 	Object* playUI, * quitUI, * optionUI, * restartUI;
-
+	MovePooPoo mPooPoo;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

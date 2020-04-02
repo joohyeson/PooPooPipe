@@ -38,7 +38,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = LV_TEST6;
+	current = LV_TEST9;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
