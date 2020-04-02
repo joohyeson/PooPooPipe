@@ -13,7 +13,6 @@ int check6 = 0;
 Vector2<float> cursor6;
 
 int coorcheck6 = 0;
-
 int connectMove6 = 0;
 
 float degree6 = DegreeToRadian(60.f);
