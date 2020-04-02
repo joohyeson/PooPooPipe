@@ -26,6 +26,7 @@ enum GameLevels
 	LV_TEST6,
 	LV_TEST7,
 	LV_TEST8,
+	LV_TEST9,
 	LV_SELECT,
 	MOVINGCHECK
 };

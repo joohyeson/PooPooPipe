@@ -65,7 +65,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST7);
+		STATE_MANAGER->ChangeLevel(LV_TEST8);
 		chekNext6 = 0;
 
 		conecTcheck6_1 = false;
@@ -91,7 +91,7 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		degree6_5 = DegreeToRadian(-180.f);
 		degree6_6 = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(LV_TEST7);
+		STATE_MANAGER->ChangeLevel(LV_TEST8);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
@@ -112,9 +112,8 @@ void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 void level6cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor6 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+	cursor6 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 }
-
 void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
@@ -141,7 +140,7 @@ void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 void Level6::Init()
 {
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);

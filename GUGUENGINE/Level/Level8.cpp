@@ -72,7 +72,7 @@ void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext8 == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 		chekNext8 = 0;
 
 		conecTcheck8_1 = false;
@@ -105,7 +105,7 @@ void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		degree8_6 = 0;
 		degree8_7 = 0;
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
@@ -126,9 +126,8 @@ void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 
 void level8cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor8 = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+	cursor8 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 }
-
 void  level8mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
@@ -156,7 +155,7 @@ void  level8mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 void Level8::Init()
 {
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine8 = TEXTURE->CreateTexture("assets\\image0.png", 0);
