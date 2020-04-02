@@ -323,19 +323,6 @@ void Level3::Update()
 		}
 	}
 
-	//if(rotTime.getLimitTime() == 0)
-	//{
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//	std::cout << "STOP" << std::endl;
-	//}
-
 	if (check3 < 1)
 	{
 		check3++;
@@ -351,7 +338,6 @@ void Level3::Update()
 			{
 				movable1 = 1;
 			}
-			//movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (rightCheck3 != 0)
 		{
@@ -613,7 +599,7 @@ void Level3::Update()
 	}
 
 
-	if (button->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
 		if (connectMove % 2 == 1)
 		{
@@ -627,13 +613,13 @@ void Level3::Update()
 				mPooPoo.SetIsSuccess(true);
 			
 			}
-
 		}
 	}
 	else
 	{
 		connectMove = 0;
 	}
+
 	se3.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);

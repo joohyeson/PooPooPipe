@@ -57,5 +57,5 @@ private:
 	Object* Level6;
 	Object* Level6_pressed;
 
-	Input levelInput;
+	//Input levelInput;
 };
