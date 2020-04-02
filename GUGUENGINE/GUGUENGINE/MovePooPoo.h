@@ -52,7 +52,7 @@ private:
 	bool isHidden = true;
 	bool isFirst = true;
 	float speed = 100; 
-	float elapse = 0.01;
+	float elapse = 0.1;
 	float distance=0;
 	Vector2<float> direction = { 0, 0 };
 	Vector2<float> betweenDelta = { 0.0f, 0.0f };
