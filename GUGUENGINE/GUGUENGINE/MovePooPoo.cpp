@@ -2,8 +2,10 @@
 #include "MovePooPoo.h"
 #include "Texture.h"
 #include "HexagonElements.h"
+
 static int PuzzleID = 0;
 static int OriginID = 0;
+
 MovePooPoo::MovePooPoo() :
 	startD({ 0.f, 0.f }), endD({ 50.f, 0.f }), speed(30.f) {
 
@@ -106,6 +108,11 @@ Vector2<float> MovePooPoo::GetStartD()
 void MovePooPoo::SetIsSuccess(bool success)
 {
 	isSuccess = success;
+}
+void MovePooPoo::Clear()
+{
+	OriginID = 0;
+	PuzzleID = 0;
 }
 void MovePooPoo::setDelta()
 {

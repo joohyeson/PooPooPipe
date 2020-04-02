@@ -26,11 +26,8 @@ public:
 	{
 		return isFinish;
 	}
-	void Clear()
-	{
-		OriginID = 0;
-		PuzzleID = 0;
-	}
+	void Clear();
+
 	
 	Vector2<float> GetEndD();
 	Vector2<float> GetStartD();
