@@ -20,6 +20,7 @@ Vector2<float> cursor00;
 int moveCheck00 = 0;
 int bar0 = 0;
 
+
 GLuint textureBackgroundOption;
 GLuint textureOption;
 GLuint textureMusic;
@@ -29,9 +30,11 @@ GLuint textureArrowRight;
 
 GLuint textureBar0;
 
+GLuint textureGoToMain;
+
 void optionCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor00 = { (static_cast<float>(xpos) - APPLICATION->width / 2) / (APPLICATION->width / 2), -1 * (static_cast<float>(ypos) - APPLICATION->height / 2) / (APPLICATION->height / 2) };
+	cursor00 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 }
 void optionMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
@@ -53,7 +56,7 @@ void LevelOption::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(800.f, 800.f);
+	background->mesh->InitializeTextureMesh(1920, 1080);
 	textureBackgroundOption = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 
@@ -67,6 +70,18 @@ void LevelOption::Init()
 	option->mesh->InitializeTextureMesh(400.f, 100.f);
 	textureOption = TEXTURE->CreateTexture("assets\\option.png", 0);
 
+	goToMain = OBJECT_FACTORY->CreateEmptyObject();
+	goToMain->AddComponent(new Mesh());
+	goToMain->AddComponent(new CollisionCheck());
+	goToMain->Init();
+
+	goToMain->mesh->setTransform({ -700.0f,350.f });
+	goToMain->mesh->SetMeshType(rectangle);
+	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
+
+
+	textureGoToMain = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+	
 	
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
@@ -105,16 +120,33 @@ void LevelOption::Init()
 	mShader.BuildColorShader();
 	mShader.BuildTextureShader();
 
-
+	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), optionMouseButtonCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), optionCursorPositionCallback);
 }
 
 void LevelOption::Update()
 {
+
+	if (goToMain->collision->Point2BoxCollision(cursor00, goToMain->mesh))
+	{
+		if (moveCheck00 % 2 == 1)
+		{
+			std::cout << "to main" << std::endl;
+			moveCheck00 = 0;
+			STATE_MANAGER->ChangeLevel(MAINMENU);
+		}
+	}
+	else
+	{
+		moveCheck00 = 0;
+	}
+
 	background->mesh->Update(mShader.GetShaderHandler(), textureBackgroundOption);
 	option->mesh->Update(mShader.GetShaderHandler(), textureOption);
 	music->mesh->Update(mShader.GetShaderHandler(), textureMusic);
-	
+
+	goToMain->mesh->Update(mShader.GetShaderHandler(), textureGoToMain);
+
 	arrowRight->mesh->Update(mShader.GetShaderHandler(), textureArrowRight);
 	arrowLeft->mesh->Update(mShader.GetShaderHandler(), textureArrowLeft);
 
