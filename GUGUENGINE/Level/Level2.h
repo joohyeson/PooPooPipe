@@ -13,7 +13,6 @@
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
-#include "../GUGUENGINE/glfwInput.h"
 
 class sound;
 
@@ -37,12 +36,12 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, *spacePress;
+	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
-	Input input;
+
 };
