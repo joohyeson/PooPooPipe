@@ -56,6 +56,12 @@ GLuint texureIdCurve4_2;
 GLuint texureIdbutton4;
 GLuint texureIdclear4;
 GLuint texureSpace4;
+
+GLint texturePlayUI4;
+GLint textureQuitUI4;
+GLint textureOptionUI4;
+GLint textureRestartUI4;
+
 Sound se4;
 
 bool conecTcheck4_1 = false;
