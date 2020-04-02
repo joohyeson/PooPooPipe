@@ -181,66 +181,66 @@ void Level8::Init()
 
 	mShader2.BuildTextureShader();
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, 280.f }, 120.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f }, 120.f);
 
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f }, -180.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f }, -180.f);
 	endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 280.f });
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 280.f + 50.f });
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f, 280.f });
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f -465.f, 280.f + 50.f });
 	puzzle2->pipe->SetDirection(false, false, false, false, true, true);
 
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f, 160.f }, 120.f);
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f - 519.f, 160.f + 22.f }, 120.f);
 	puzzle3->pipe->SetDirection(false, true, false, true, false, false);
 
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, 160.f });
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f });
 	puzzle4->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 40.f });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 40.f - 5.f });
 
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 40.f });
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 40.f - 5.f });
 	puzzle6->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f });
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f });
 	puzzle7->pipe->SetDirection(false, false, true, true, false, false);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, -80.f }, 120.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f }, 120.f);
 
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, -80.f });
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, -80.f - 32.f });
 	puzzle9->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, -80.f }, -60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, -80.f - 32.f }, -60.f);
 	puzzle10->pipe->SetDirection(true, false, false, false, true, false);
 
-	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, -200.f }, 180.f);
+	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, 180.f);
 
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, -200.f }, 180.f);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, -200.f - 62.f }, 180.f);
 	puzzle12->pipe->SetDirection(false, true, true, false, false, false);
 
-	puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 280.f });
+	puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 280.f + 50.f });
 	puzzle13->pipe->SetDirection(false, false, false, false, true, true);
 
-	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, 160.f }, -60);
+	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, 160.f + 22.f }, -60);
 	puzzle14->pipe->SetDirection(false, false, false, true, true, false);
 
-	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 40.f });
+	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 40.f - 5.f });
 	puzzle15->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, -80.f }, -60.f);
+	puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, -80.f - 32.f }, -60.f);
 	puzzle16->pipe->SetDirection(true, false, false, false, true, false);
 
-	puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, -200.f });
+	puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, -200.f - 62.f });
 	puzzle17->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle18 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, 160.f });
+	puzzle18 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, 160.f + 22.f });
 	puzzle18->pipe->SetDirection(false, false, true, true, false, false);
 
-	puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, 160.f }, 60.f);
+	puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, 160.f + 22.f }, 60.f);
 	puzzle19->pipe->SetDirection(false, false, true, false, false, true);
 
-	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, -80.0f });
+	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f });
 	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
