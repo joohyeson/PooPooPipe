@@ -31,6 +31,7 @@ public:
 
 private:
 	Object* background, *option, *music, *arrowRight, *arrowLeft, *bar0;
+	Object* goToMain;
 	int key;
 	Mesh mMesh;
 	Shader mShader;
