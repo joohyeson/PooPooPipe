@@ -29,6 +29,11 @@ int movable3 = 0;
 int moveCheck3 = 0;
 int moveCheck3_2 = 0;
 int moveCheck3_3 = 0;
+int moveCheck3_4 = 0;
+int moveCheck3_5 = 0;
+int moveCheck3_6 = 0;
+
+
 int connectMove = 0;
 int LevelCheck = 0;
 
@@ -144,6 +149,10 @@ void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 		moveCheck3 += 1;
 		moveCheck3_2 += 1;
 		moveCheck3_3 += 1;
+		moveCheck3_4 += 1;
+		moveCheck3_5 += 1;
+		moveCheck3_6 += 1;
+
 		LevelCheck += 1;
 		connectMove += 1;
 		std::cout << "RIGHT mouse button pressed" << std::endl;
@@ -618,6 +627,44 @@ void Level3::Update()
 	else
 	{
 		connectMove = 0;
+	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
+	{
+		if (moveCheck3_4 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST3);
+
+		}
+	}
+	else
+	{
+		moveCheck3_4 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
+	{
+		if (moveCheck3_5 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		moveCheck3_5 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
+	{
+		if (moveCheck3_6 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		moveCheck3_6 = 0;
 	}
 
 	se3.Update();

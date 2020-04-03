@@ -21,6 +21,10 @@ int movable5_3 = 0;
 int moveCheck5 = 0;
 int moveCheck5_2 = 0;
 int moveCheck5_3 = 0;
+int moveCheck5_4 = 0;
+int moveCheck5_5 = 0;
+int moveCheck5_6 = 0;
+
 int connectMove5 = 0;
 
 float degree5 = 0;
@@ -162,6 +166,10 @@ void  level5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 		moveCheck5_2 += 1;
 		moveCheck5_3 += 1;
 		connectMove5 += 1;
+		moveCheck5_4 += 1;
+		moveCheck5_5 += 1;
+		moveCheck5_6 += 1;
+
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 
 		if (movable5_1 == 1)
@@ -779,7 +787,7 @@ void Level5::Update()
 	}
 
 
-	if (button->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, playUI->mesh))
 	{
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 
@@ -800,6 +808,44 @@ void Level5::Update()
 	else
 	{
 		connectMove5 = 0;
+	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
+	{
+		if (moveCheck5_4 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST5);
+
+		}
+	}
+	else
+	{
+		moveCheck5_4 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, optionUI->mesh))
+	{
+		if (moveCheck5_5 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		moveCheck5_5 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, quitUI->mesh))
+	{
+		if (moveCheck5_6 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		moveCheck5_6 = 0;
 	}
 
 	se5.Update();
