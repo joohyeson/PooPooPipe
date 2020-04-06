@@ -59,6 +59,9 @@ GLuint texureIdclear7;
 GLuint texureSpace7;
 
 Sound se7;
+Sound playSE7;
+
+
 
 bool conecTcheck7_1 = false;
 bool conecTcheck7_2 = false;
@@ -222,6 +225,9 @@ void Level7::Init()
 	se7.Init();
 	se7.LoadSE("assets\\coin.mp3");
 
+	playSE7.Init();
+	playSE7.LoadSE("assets\\flushing.wav");
+
 	mShader2.BuildTextureShader();
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, 280.f }, 0.f);
@@ -306,6 +312,7 @@ void Level7::Update()
 		check7++;
 	}
 	se7.Update();
+	playSE7.Update();
 
 	if (puzzle1->collision->Point2HexagonCollision({ cursor7.x,cursor7.y }, puzzle1->mesh))
 	{
@@ -554,6 +561,9 @@ void Level7::Update()
 				chekNext7 = 1;
 				std::cout << "clear" << std::endl;
 				connectMove7 = 0;
+				playSE7.Play(1);
+				playSE7.SetVolume(0.5f);
+				playSE7.SetLoopCount(1);
 			}
 			else if (conecTcheck7_3 && conecTcheck7_4 && conecTcheck7_5 && conecTcheck7_8 && conecTcheck7_9)
 			{
@@ -562,6 +572,9 @@ void Level7::Update()
 				chekNext7 = 1;
 				std::cout << "clear" << std::endl;
 				connectMove7 = 0;
+				playSE7.Play(1);
+				playSE7.SetVolume(0.5f);
+				playSE7.SetLoopCount(1);
 			}
 		}
 	}

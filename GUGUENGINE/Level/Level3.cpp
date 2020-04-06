@@ -66,6 +66,8 @@ GLint textureRestartUI3;
 
 Sound se3;
 
+Sound playSE3;
+
 bool blCheck1 = false;
 bool blCheck1_2 = false;
 
@@ -272,6 +274,10 @@ void Level3::Init()
 	se3.Init();
 	se3.LoadSE("assets\\coin.mp3");
 
+	playSE3.Init();
+	playSE3.LoadSE("assets\\flushing.wav");
+
+
 	mShader2.BuildTextureShader();
 
 	//movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
@@ -329,6 +335,7 @@ void Level3::Update()
 	}
 
 	se3.Update();
+	playSE3.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
@@ -611,6 +618,10 @@ void Level3::Update()
 				std::cout << "clear" << std::endl;
 				connectMove = 0;
 				mPooPoo.SetIsSuccess(true);
+
+				playSE3.Play(1);
+				playSE3.SetVolume(0.5f);
+				playSE3.SetLoopCount(1);
 			
 			}
 		}

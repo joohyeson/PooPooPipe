@@ -62,6 +62,7 @@ GLint textureOptionUI5;
 GLint textureRestartUI5;
 
 Sound se5;
+Sound playSE5;
 
 bool blCheck5 = false;
 bool blCheck5_2 = false;
@@ -256,6 +257,9 @@ void Level5::Init()
 	se5.Init();
 	se5.LoadSE("assets\\coin.mp3");
 
+	playSE5.Init();
+	playSE5.LoadSE("assets\\flushing.wav");
+
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
@@ -361,6 +365,7 @@ void Level5::Update()
 	}
 
 	se5.Update();
+	playSE5.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))
 	{
@@ -793,6 +798,10 @@ void Level5::Update()
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 				connectMove5 = 0;
+
+				playSE5.Play(1);
+				playSE5.SetVolume(0.5f);
+				playSE5.SetLoopCount(1);
 			}
 
 		}

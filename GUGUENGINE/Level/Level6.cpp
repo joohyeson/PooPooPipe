@@ -59,6 +59,7 @@ GLint textureOptionUI6;
 GLint textureRestartUI6;
 
 Sound se6;
+Sound playSE6;
 
 bool conecTcheck6_1 = false;
 bool conecTcheck6_2 = false;
@@ -210,6 +211,10 @@ void Level6::Init()
 	se6.Init();
 	se6.LoadSE("assets\\coin.mp3");
 
+	playSE6.Init();
+	playSE6.LoadSE("assets\\flushing.wav");
+
+
 	mShader2.BuildTextureShader();
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f - 465.f, 280.f + 50.f }, -240.f);
@@ -316,6 +321,7 @@ void Level6::Update()
 	}
 
 	se6.Update();
+	playSE6.Update();
 
 	if (rotrot)
 	{
@@ -452,6 +458,10 @@ void Level6::Update()
 					std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);
 					connectMove6 = 0;
+
+					playSE6.Play(1);
+					playSE6.SetVolume(0.5f);
+					playSE6.SetLoopCount(1);
 				}
 
 			}

@@ -61,6 +61,7 @@ GLint textureOptionUI8;
 GLint textureRestartUI8;
 
 Sound se8;
+Sound playSE8;
 
 bool conecTcheck8_1 = false;
 bool conecTcheck8_2 = false;
@@ -224,6 +225,9 @@ void Level8::Init()
 	se8.Init();
 	se8.LoadSE("assets\\coin.mp3");
 
+	playSE8.Init();
+	playSE8.LoadSE("assets\\flushing.wav");
+
 	mShader2.BuildTextureShader();
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f }, 120.f);
@@ -308,6 +312,7 @@ void Level8::Update()
 		check8++;
 	}
 	se8.Update();
+	playSE8.Update();
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -568,6 +573,9 @@ void Level8::Update()
 				chekNext8 = 1;
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
+				playSE8.Play(1);
+				playSE8.SetVolume(0.5f);
+				playSE8.SetLoopCount(1);
 			}
 			else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9)
 			{
@@ -576,6 +584,9 @@ void Level8::Update()
 				chekNext8 = 1;
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
+				playSE8.Play(1);
+				playSE8.SetVolume(0.5f);
+				playSE8.SetLoopCount(1);
 			}
 		}
 	}

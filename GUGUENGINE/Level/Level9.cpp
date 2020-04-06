@@ -60,6 +60,7 @@ GLuint texureIdclear9;
 GLuint texureSpace9;
 
 Sound se9;
+Sound playSE9;
 
 GLint texturePlayUI9;
 GLint textureQuitUI9;
@@ -179,6 +180,8 @@ void Level9::Init()
 	se9.Init();
 	se9.LoadSE("assets\\coin.mp3");
 
+	playSE9.Init();
+	playSE9.LoadSE("assets\\flushing.wav");
 	mShader2.BuildTextureShader();
 
 
@@ -315,6 +318,7 @@ void Level9::Update()
 		check9++;
 	}
 	se9.Update();
+	playSE9.Update();
 
 	if (puzzle1->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle1->mesh))
 	{
@@ -519,6 +523,11 @@ void Level9::Update()
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
+
+				playSE9.Play(1);
+				playSE9.SetVolume(0.5f);
+				playSE9.SetLoopCount(1);
+
 			}
 		}
 	}
