@@ -28,6 +28,10 @@ int movable4_3 = 0;
 int moveCheck4 = 0;
 int moveCheck4_2 = 0;
 int moveCheck4_3 = 0;
+int moveCheck4_4 = 0;
+int moveCheck4_5 = 0;
+int moveCheck4_6 = 0;
+
 int connectMove4 = 0;
 
 float degree4 = 0;
@@ -139,6 +143,10 @@ void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, 
 		moveCheck4_2 += 1;
 		moveCheck4_3 += 1;
 		connectMove4 += 1;
+		moveCheck4_4 += 1;
+		moveCheck4_5 += 1;
+		moveCheck4_6 += 1;
+
 		std::cout << "RIGHT mouse button pressed" << std::endl;
 
 		if (movable4_1 == 1)
@@ -564,13 +572,13 @@ void Level4::Update()
 			conecTcheck4_3 = false;
 	}
 
-	if (button->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 	{
 		if (connectMove4 % 2 == 1)
 		{
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
-				clear->mesh->setTransform({ -0.7f * 400, -0.6f * 400 });
+				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext4 = 1;
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
@@ -587,6 +595,45 @@ void Level4::Update()
 	{
 		connectMove4 = 0;
 	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
+	{
+		if (moveCheck4_4 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST4);
+
+		}
+	}
+	else
+	{
+		moveCheck4_4 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, optionUI->mesh))
+	{
+		if (moveCheck4_5 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		moveCheck4_5 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, quitUI->mesh))
+	{
+		if (moveCheck4_6 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		moveCheck4_6 = 0;
+	}
+
 	se4.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground4);

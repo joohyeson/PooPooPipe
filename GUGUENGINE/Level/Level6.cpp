@@ -29,6 +29,10 @@ int rightCheck6_4 = 0;
 int rightCheck6_5 = 0;
 int rightCheck6_6 = 0;
 
+int move6_1 = 0;
+int move6_2 = 0;
+int move6_3 = 0;
+
 bool rotrot = true;
 
 int chekNext6 = 0;
@@ -124,6 +128,9 @@ void level6cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double yp
 void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
+	move6_1 += 1;
+	move6_2 += 1;
+	move6_3 += 1;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		connectMove6 += 1;
@@ -543,7 +550,7 @@ void Level6::Update()
 		std::cout << "5" << std::endl;
 
 	}
-	if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, playUI->mesh))
 	{
 		if (connectMove6 % 2 == 1)
 		{
@@ -559,11 +566,49 @@ void Level6::Update()
 
 		}
 	}
-
 	else
 	{
 		connectMove6 = 0;
 	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, restartUI->mesh))
+	{
+		if (move6_1 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST6);
+
+		}
+	}
+	else
+	{
+		move6_1 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, optionUI->mesh))
+	{
+		if (move6_2 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		move6_2 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, quitUI->mesh))
+	{
+		if (move6_2 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		move6_2 = 0;
+	}
+
 	se6.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground6);

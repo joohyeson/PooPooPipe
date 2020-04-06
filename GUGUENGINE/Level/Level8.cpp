@@ -35,6 +35,10 @@ int rightCheck8_7 = 0;
 
 int chekNext8 = 0;
 
+int move8_1 = 0;
+int move8_2 = 0;
+int move8_3 = 0;
+
 GLuint textureBackground8;
 
 GLuint texureIdLine8;
@@ -138,6 +142,10 @@ void level8cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double yp
 void  level8mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
+	move8_1 += 1;
+	move8_2 += 1;
+	move8_3 += 1;
+
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		connectMove8 += 1;
@@ -562,7 +570,7 @@ void Level8::Update()
 			conecTcheck8_8 = false;
 		}
 	}
-	if (button->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, playUI->mesh))
 	{
 		if (connectMove8 % 2 == 1)
 		{
@@ -594,6 +602,45 @@ void Level8::Update()
 	{
 		connectMove8 = 0;
 	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
+	{
+		if (move8_1 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST8);
+
+		}
+	}
+	else
+	{
+		move8_1 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
+	{
+		if (move8_2 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		move8_2 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
+	{
+		if (move8_2 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		move8_2 = 0;
+	}
+
 	se8.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);

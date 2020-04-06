@@ -37,6 +37,10 @@ int rightCheck9_7 = 0;
 
 int chekNext9 = 0;
 
+int move9_1 = 0;
+int move9_2 = 0;
+int move9_3 = 0;
+
 GLuint textureBackground9;
 
 GLuint texureIdLine9;
@@ -132,6 +136,9 @@ void level9cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double yp
 void  level9mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
 	static float time = 0;
+	move9_1 += 1;
+	move9_2 += 1;
+	move9_3 += 1;
 	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
 	{
 		connectMove9 += 1;
@@ -496,13 +503,12 @@ void Level9::Update()
 		conecTcheck9_3 = false;
 	}
 
-	if (button->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, button->mesh))
+	if (playUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, playUI->mesh))
 	{
 		if (connectMove9 % 2 == 1)
 		{
 			if (autoRot)
 			{
-
 				puzzle4->pipe->Update();
 
 				degree9_rot += static_cast<float>(DegreeToRadian(-120.f));
@@ -535,6 +541,45 @@ void Level9::Update()
 	{
 		connectMove9 = 0;
 	}
+
+	if (restartUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, restartUI->mesh))
+	{
+		if (move9_1 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST9);
+
+		}
+	}
+	else
+	{
+		move9_1 = 0;
+	}
+
+
+	if (optionUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, optionUI->mesh))
+	{
+		if (move9_2 % 2 == 1)
+		{
+			STATE_MANAGER->ChangeLevel(OPTION);
+		}
+	}
+	else
+	{
+		move9_2 = 0;
+	}
+
+	if (quitUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, quitUI->mesh))
+	{
+		if (move9_2 % 2 == 1)
+		{
+			glfwTerminate();
+		}
+	}
+	else
+	{
+		move9_2 = 0;
+	}
+
 	se9.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground9);
