@@ -57,17 +57,57 @@ void StateManager::Init()
 
 	levels.push_back(new MovingCheck());
 
-
 	levels.at(current)->Init();
 }
 
 void StateManager::Update()
 {
-	levels.at(current)->Update();
+	switch (state) {
+	case State::START:
+		nextGameState = levels[0];
+		state = State::LOAD;
+		break;
+	case State::LOAD:
+		currGameState = nextGameState;
+		currGameState->Init();
+		state = State::RUNNING;
+		break;
+	case State::RUNNING:
+		if (currGameState != nextGameState) {
+			state = State::UNLOAD;
+		}
+		else {
+			currGameState->Update();
+		}
+		break;
+	case State::UNLOAD:
+		currGameState->Close();
+		if (nextGameState == nullptr) {
+			state = State::SHUTDOWN;
+			break;
+		}
+		state = State::LOAD;
+		break;
+	case State::SHUTDOWN:
+		state = State::EXIT;
+		break;
+	case State::EXIT:
+		break;
+	}
+}
+
+void StateManager::Shutdown()
+{
+	state = State::UNLOAD;
+	nextGameState = nullptr;
+}
+
+void StateManager::ReloadState()
+{
+	state = State::UNLOAD;
 }
 
 void StateManager::ChangeLevel(GameLevels changeLV)
 {
-	current = changeLV;
-	levels.at(current)->Init();
+	nextGameState = levels[changeLV];
 }

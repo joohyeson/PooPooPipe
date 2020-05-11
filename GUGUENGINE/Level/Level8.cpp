@@ -693,7 +693,7 @@ void Level8::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	ENGINE->Quit();
+	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

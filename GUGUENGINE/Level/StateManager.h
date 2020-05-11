@@ -38,13 +38,26 @@ public:
 	~StateManager();
 	void Init() override;
 	void Update() override;
-
+	void Shutdown();
+	void ReloadState();
 	//change level
 	void ChangeLevel(GameLevels changeLV);
-
+private:
+	enum class State {
+		START,
+		LOAD,
+		RUNNING,
+		UNLOAD,
+		SHUTDOWN,
+		EXIT,
+	};
 	//Store the current level.
 	GameLevels current;
 	//Store the levels.
 	std::vector<LevelManager*> levels;
+	State state;
+	LevelManager* currGameState;
+	LevelManager* nextGameState;
+
 };
 extern StateManager* STATE_MANAGER;

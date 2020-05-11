@@ -555,7 +555,6 @@ void Level9::Update()
 		move9_1 = 0;
 	}
 
-
 	if (optionUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, optionUI->mesh))
 	{
 		if (move9_2 % 2 == 1)
@@ -628,14 +627,12 @@ void Level9::Update()
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glfwPollEvents();
-
 }
 
 void Level9::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

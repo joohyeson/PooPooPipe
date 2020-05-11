@@ -51,6 +51,6 @@ void DigipenLogo::Update()
 void DigipenLogo::Close()
 {
 	mShader.Delete();
-	ENGINE->Quit();
+	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 }

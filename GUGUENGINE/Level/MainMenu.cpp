@@ -243,7 +243,7 @@ void MainMenu::Update()
 
 void MainMenu::Close()
 {
-	bgm.Free();
+	//bgm.Free();
 	mShader.Delete();
 	mMesh.Delete();
 	//ENGINE->Quit();

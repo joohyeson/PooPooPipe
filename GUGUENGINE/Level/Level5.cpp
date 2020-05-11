@@ -912,7 +912,7 @@ void Level5::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	ENGINE->Quit();
+	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }
