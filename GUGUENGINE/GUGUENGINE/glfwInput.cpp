@@ -60,7 +60,7 @@ namespace
 
 	void cursorPositionCallback(GLFWwindow*, double xpos, double ypos)
 	{
-		Cursor_ = { static_cast<float>(xpos) - APPLICATION->height / 2 ,  -(static_cast<float>(ypos) - APPLICATION->width / 2) };
+		Cursor_ = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 	}
 
 	void  mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)

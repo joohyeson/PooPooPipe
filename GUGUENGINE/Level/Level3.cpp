@@ -327,6 +327,7 @@ void Level3::Update()
 		{
 			std::cout << "check" << std::endl;
 			mPooPoo.Clear();
+			Close();
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}
@@ -735,9 +736,9 @@ void Level3::Update()
 
 void Level3::Close()
 {
-	mShader.Delete();
-	mMesh.Delete();
-	ENGINE->Quit();
+	//mShader.Delete();
+	//mMesh.Delete();
+	//ENGINE->Quit();
 
-	OBJECT_FACTORY->DestroyAllObjects();
+	//OBJECT_FACTORY->DestroyAllObjects();
 }

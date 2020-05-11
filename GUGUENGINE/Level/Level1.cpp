@@ -28,42 +28,41 @@ GLuint textureBackground1;
 GLuint textureSpace1;
 
 Sound se;
-
-void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (connectCheck1 == 1)
-	{
-		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-		{
-			STATE_MANAGER->ChangeLevel(LV_TEST2);
-			connectCheck1 = 0;
-		}
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-}
-
-void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-
-void  level1mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
+//
+//void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+//{
+//	if (connectCheck1 == 1)
+//	{
+//		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+//		{
+//			STATE_MANAGER->ChangeLevel(LV_TEST2);
+//			connectCheck1 = 0;
+//		}
+//	}
+//
+//	if (key == GLFW_KEY_ESCAPE)
+//	{
+//		glfwTerminate();
+//	}
+//}
+//
+//void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+//{
+//	cursor = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+//}
+//
+//void  level1mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+//{
+//	static float time = 0;
+//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+//	{
+//		moveCheck += 1;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//}
 
 void Level1::Init()
 {
-
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -74,13 +73,11 @@ void Level1::Init()
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
-
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleLeft = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleRight = OBJECT_FACTORY->CreateEmptyObject();
 	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
 
 	texureIdLine1 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack1 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -89,7 +86,6 @@ void Level1::Init()
 
 	se.Init();
 	se.LoadMusic("assets\\coin.mp3");
-
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
@@ -122,13 +118,13 @@ void Level1::Init()
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level1keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level1cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level1mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level1::Update()
 {
+	mInput.SetInput();
+
 	if (check < 1)
 	{
 		check++;

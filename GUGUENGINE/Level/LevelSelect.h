@@ -37,6 +37,7 @@ public:
 	void Close() override;
 
 private:
+	int getLevNum = 0;
 	Object* backgroundLv;
 	Shader mShader, mShader2;
 	Object* Level1;
@@ -57,5 +58,5 @@ private:
 	Object* Level6;
 	Object* Level6_pressed;
 
-	//Input levelInput;
+	Input levelInput;
 };

@@ -14,6 +14,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/Sound.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 class Sound;
 
@@ -39,6 +40,7 @@ private:
 	Object* background;
 	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight;
 	Object* spacePress;
+	Input mInput;
 
 	int key;
 	Mesh mMesh;

@@ -74,6 +74,7 @@ void ObjectFactory::DestroyAllObjects()
 
 	ObjectIDMap.clear();
 }
+
 Object* ObjectFactory::FindObjectwithName(std::string& name) const
 {
 	for (const auto obj : ObjectIDMap)
@@ -94,7 +95,7 @@ Object* ObjectFactory::FindObjectwithID(ObjectID id) const
 }
 
 Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, float degree,
-	float dir1, float dir2 , float dir3 , float dir4 , float dir5 , float dir6)//does not have ''SetDirection" and "SetAngle"
+	float dir1, float dir2, float dir3, float dir4, float dir5, float dir6)//does not have ''SetDirection" and "SetAngle"
 {
 	Object* obj;
 	obj = OBJECT_FACTORY->CreateEmptyObject();
@@ -107,7 +108,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->AddComponent(new PuzzleComponent());
 		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
-		
+
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));
 		obj->mesh->InitializeTextureMesh();
@@ -157,5 +158,6 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	}
 	}
 
+	
 	return obj;
 }
