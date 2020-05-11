@@ -38,6 +38,7 @@ public:
 
 private:
 	int getLevNum = 0;
+	bool changeLev = false;
 	Object* backgroundLv;
 	Shader mShader, mShader2;
 	Object* Level1;

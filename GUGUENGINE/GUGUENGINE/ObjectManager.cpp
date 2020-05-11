@@ -60,7 +60,6 @@ void ObjectFactory::GiveObjectID(Object* obj)
 Object* ObjectFactory::CreateEmptyObject()
 {
 	Object* obj = new Object();
-
 	GiveObjectID(obj);
 
 	return obj;
@@ -158,6 +157,6 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	}
 	}
 
-	
+
 	return obj;
 }

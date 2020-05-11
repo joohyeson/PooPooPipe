@@ -43,7 +43,7 @@ Sound::Sound()
 
 Sound::~Sound()
 {
-	delete soundPtr;
+	//delete soundPtr;
 }
 
 
