@@ -28,7 +28,7 @@ GLuint textureBackground1;
 GLuint textureSpace1;
 
 Sound se;
-//
+////
 //void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 //{
 //   if (connectCheck1 == 1)
@@ -145,6 +145,11 @@ void Level1::Update()
 		{
 			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
+	}
+
+	if (mInput.IsPressed(mInput.keySpace) == true)
+	{
+		STATE_MANAGER->ChangeLevel(LV_TEST2);
 	}
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground1);
