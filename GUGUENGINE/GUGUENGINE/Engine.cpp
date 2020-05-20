@@ -14,6 +14,7 @@
 #include <iostream>
 #include "ObjectManager.h"
 #include "../Level/StateManager.h"
+#include "glfwInput.h"
 
 Engine* ENGINE = nullptr;
 
@@ -48,7 +49,7 @@ void Engine::GameLoop()
 			GUGU->Update();
 		}
 	}
-
+	INPUT->Update();
 }
 
 void Engine::Quit()

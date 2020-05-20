@@ -2,6 +2,7 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
+
 enum KEY
 {
 	IGNORE,
@@ -12,39 +13,38 @@ enum KEY
 	TAB,
 	LEFT,
 	RIGHT,
+	SIZE,
 };
 
 class Input
 {
 public:
-	Input():Cursor({ 0, 0 }),keySpace(0), keyA(0), keyEscape(0), keyTap(0), mouseLeft(0), mouseRight(0){}
-	~Input(){}
+	Input();
+	~Input() {};
 
 	void InitCallback(GLFWwindow* window);
-	void SetInput();
-	bool IsPressed(int key);
-	bool IsTrigerred(int key);
-	
-	void SetMousetriggered(int i)
-	{
-		MouseRightTriggered += i;
-		if(i == 0)
-		{
-			MouseRightTriggered = 0;
-		}
-	}
-	
+	void Update();
+	bool IsPressed(KEY k);
+	bool IsKeyDown(KEY k);
+
 	Vector2<float> Cursor;
-	int keySpace;
-	int keyA;
-	int keyEscape;
-	int keyTap;
-	int mouseLeft;
-	int mouseRight;
+	//int keySpace;
+	//int keyA;
+	//int keyEscape;
+	//int keyTap;
+	//int mouseLeft;
+	//int mouseRight;
+	//int MouseRightTriggered = 0;
+private:
+	bool Key[KEY::SIZE] ;
+	bool WasKey[KEY::SIZE] ;
+	
+	friend static void key_callback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/);
+	friend static  void cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos);
+	friend static  void  mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/);
 
-	int MouseRightTriggered = 0;
 };
-
+extern Input* INPUT;
 
 
 
