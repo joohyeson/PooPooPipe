@@ -15,7 +15,7 @@
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/limitedRotate.h"
 #include "../GUGUENGINE/MovePooPoo.h"
-
+#include  "../GUGUENGINE/glfwInput.h"
 class sound;
 
 class Level3 : public LevelManager
@@ -96,4 +96,7 @@ private:
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 
 	LimitRotate rotTime;
+	Input mInput;
+	bool rot[6] = { false };
+	bool movable[3] = { false };
 };

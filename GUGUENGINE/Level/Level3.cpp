@@ -25,25 +25,25 @@ int coorcheck = 0;
 int movable1 = 0;
 int movable2 = 0;
 int movable3 = 0;
-
-int moveCheck3 = 0;
-int moveCheck3_2 = 0;
-int moveCheck3_3 = 0;
-int moveCheck3_4 = 0;
-int moveCheck3_5 = 0;
-int moveCheck3_6 = 0;
-
+//
+//int moveCheck3 = 0;
+//int moveCheck3_2 = 0;
+//int moveCheck3_3 = 0;
+//int moveCheck3_4 = 0;
+//int moveCheck3_5 = 0;
+//int moveCheck3_6 = 0;
+//
 
 int connectMove = 0;
-int LevelCheck = 0;
+//int LevelCheck = 0;
 
 float degree2 = 0;
 float degree2_2 = 0;
 float degree2_3 = 0;
-
-int rightCheck3 = 0;
-int rightCheck3_2 = 0;
-int rightCheck3_3 = 0;
+//
+//int rightCheck3 = 0;
+//int rightCheck3_2 = 0;
+//int rightCheck3_3 = 0;
 
 int chekNext = 0;
 
@@ -83,107 +83,108 @@ bool conecTcheck1 = false;
 bool conecTcheck2 = false;
 bool conecTcheck3 = false;
 
-void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext == 1)
-	{
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
-		chekNext = 0;
 
-		conecTcheck1 = false;
-		conecTcheck2 = false;
-		conecTcheck3 = false;
-
-		degree2 = 0;
-		degree2_2 = 0;
-		degree2_3 = 0;
-
-		blCheck1 = false;
-		blCheck1_2 = false;
-
-		blCheck2 = false;
-		blCheck2_2 = false;
-
-	}
-
-	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-	{
-		degree2 = 0;
-		degree2_2 = 0;
-		degree2_3 = 0;
-
-		blCheck1 = false;
-		blCheck1_2 = false;
-
-		blCheck2 = false;
-		blCheck2_2 = false;
-
-		
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-
-	if (key == GLFW_KEY_TAB)
-	{
-		if (coorcheck == 1)
-		{
-			coorcheck = 0;
-		}
-
-		coorcheck += 1;
-	}
-}
-
-void level3cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor3 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-
-void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck3 += 1;
-		moveCheck3_2 += 1;
-		moveCheck3_3 += 1;
-		moveCheck3_4 += 1;
-		moveCheck3_5 += 1;
-		moveCheck3_6 += 1;
-
-		LevelCheck += 1;
-		connectMove += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-
-		if (movable1 == 1)
-		{
-			movable1 = 0;
-		}
-		if (movable2 == 1)
-		{
-			movable2 = 0;
-		}
-		if (movable3 == 1)
-		{
-			movable3 = 0;
-		}
-
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck3 = 1;
-		rightCheck3_2 = 1;
-		rightCheck3_3 = 1;
-
-		std::cout << "rightCheck2: " << rightCheck3 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
+//void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+//{
+//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext == 1)
+//	{
+//		STATE_MANAGER->ChangeLevel(LV_TEST4);
+//		chekNext = 0;
+//
+//		conecTcheck1 = false;
+//		conecTcheck2 = false;
+//		conecTcheck3 = false;
+//
+//		degree2 = 0;
+//		degree2_2 = 0;
+//		degree2_3 = 0;
+//
+//		blCheck1 = false;
+//		blCheck1_2 = false;
+//
+//		blCheck2 = false;
+//		blCheck2_2 = false;
+//
+//	}
+//
+//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+//	{
+//		degree2 = 0;
+//		degree2_2 = 0;
+//		degree2_3 = 0;
+//
+//		blCheck1 = false;
+//		blCheck1_2 = false;
+//
+//		blCheck2 = false;
+//		blCheck2_2 = false;
+//
+//		
+//		STATE_MANAGER->ChangeLevel(LV_TEST4);
+//	}
+//
+//	if (key == GLFW_KEY_ESCAPE)
+//	{
+//		glfwTerminate();
+//	}
+//
+//	if (key == GLFW_KEY_TAB)
+//	{
+//		if (coorcheck == 1)
+//		{
+//			coorcheck = 0;
+//		}
+//
+//		coorcheck += 1;
+//	}
+//}
+//
+//void level3cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+//{
+//	cursor3 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+//}
+//
+//void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+//{
+//	static float time = 0;
+//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+//	{
+//		moveCheck3 += 1;
+//		moveCheck3_2 += 1;
+//		moveCheck3_3 += 1;
+//		moveCheck3_4 += 1;
+//		moveCheck3_5 += 1;
+//		moveCheck3_6 += 1;
+//
+//		LevelCheck += 1;
+//		connectMove += 1;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//
+//		if (movable1 == 1)
+//		{
+//			movable1 = 0;
+//		}
+//		if (movable2 == 1)
+//		{
+//			movable2 = 0;
+//		}
+//		if (movable3 == 1)
+//		{
+//			movable3 = 0;
+//		}
+//
+//	}
+//
+//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+//	{
+//		rightCheck3 = 1;
+//		rightCheck3_2 = 1;
+//		rightCheck3_3 = 1;
+//
+//		std::cout << "rightCheck2: " << rightCheck3 << std::endl;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//}
 
 void Level3::Init()
 {
@@ -196,8 +197,6 @@ void Level3::Init()
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
-
-
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -205,8 +204,7 @@ void Level3::Init()
 	playUI->mesh->setTransform({ 800.f, 300.f });
 	playUI->mesh->SetMeshType(rectangle);
 	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png",0);
-
+	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -215,8 +213,7 @@ void Level3::Init()
 	quitUI->mesh->setTransform({ 800.f, 150.f });
 	quitUI->mesh->SetMeshType(rectangle);
 	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png",0);
-
+	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
@@ -224,8 +221,7 @@ void Level3::Init()
 	optionUI->mesh->setTransform({ 800.f, 0.f });
 	optionUI->mesh->SetMeshType(rectangle);
 	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png",0);
-
+	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
 	restartUI->AddComponent(new Mesh());
@@ -233,10 +229,7 @@ void Level3::Init()
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png",0);
-
-
-
+	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
@@ -286,10 +279,8 @@ void Level3::Init()
 	playSE3.Init();
 	playSE3.LoadSE("assets\\flushing.wav");
 
-
 	mShader2.BuildTextureShader();
 
-	//movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
@@ -314,30 +305,26 @@ void Level3::Init()
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level3keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level3cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level3mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level3::Update()
 {
-	if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
+	cursor3 = mInput.Cursor;
+	if (mInput.IsPressed(KEY::LEFT) == true)
 	{
-		if (LevelCheck % 2 == 1)
+		if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 		{
-			std::cout << "check" << std::endl;
-			mPooPoo.Clear();
-			Close();
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
-		}
+
+			{
+				std::cout << "check" << std::endl;
+				mPooPoo.Clear();
+				Close();
+				STATE_MANAGER->ChangeLevel(LV_SELECT);
+			}
+		}		
 	}
-	else
-	{
-		if (LevelCheck % 2 == 1)
-		{
-			LevelCheck = 0;
-		}
-	}
+
 
 	if (check3 < 1)
 	{
@@ -349,38 +336,47 @@ void Level3::Update()
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
-		if (moveCheck3 % 2 == 1)
+		if (mInput.IsKeyDown(KEY::LEFT) == true)
 		{
-			if (movable1 == 0)
+			movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
+			movable[0] = true;
+		}
+
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[0] = true;
+		}
+		if(rot[0] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
-				movable1 = 1;
+				movePuzzle->pipe->Update();
+
+				degree2 += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle->mesh->setRotation(degree2);
+				//rotTime.Update();
+				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
+				//rightCheck3 = 0;
+
+				se3.Play(1);
+				se3.SetVolume(0.5f);
+				se3.SetLoopCount(1);
+				rot[0] = false;
 			}
 		}
-		if (rightCheck3 != 0)
-		{
-			movePuzzle->pipe->Update();
+	
+	}
+	//else
+	//{
+		//movable[0] = false;
+		//moveCheck3 = 0;
+		//rightCheck3 = 0;
+//	}
 
-			degree2 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degree2);
-			//rotTime.Update();
-			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-			rightCheck3 = 0;
-
-			se3.Play(1);
-			se3.SetVolume(0.5f);
-			se3.SetLoopCount(1);
-		}
-	}
-	else
-	{
-		//movable1 = 0;
-		moveCheck3 = 0;
-		rightCheck3 = 0;
-	}
-	if (movable1 == 1)
-	{
-		movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
-	}
+	//if (movable[0] == true)
+	//{
+	//	movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
+	//}
 
 	if (blCheck1)
 	{
@@ -411,40 +407,42 @@ void Level3::Update()
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle2->mesh) == true)
 	{
-		if (moveCheck3_2 % 2 == 1)
+		if (mInput.IsKeyDown(KEY::LEFT) == true)
 		{
-			if (movable2 == 0)
-			{
-				movable2 = 1;
-			}
+			movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
+			movable[1] = true;
 			//movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
-		if (rightCheck3_2 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle2->pipe->Update();
-
-			degree2_2 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle2->mesh->setRotation(degree2_2);
-			//rotTime.Update();
-			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-
-			rightCheck3_2 = 0;
-
-			se3.Play(1);
-			se3.SetVolume(0.5f);
-			se3.SetLoopCount(1);
+			rot[1] = true;
 		}
+		if (rot[1] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				movePuzzle2->pipe->Update();
+
+				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle2->mesh->setRotation(degree2_2);
+				//rotTime.Update();
+				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
+
+				//rightCheck3_2 = 0;
+
+				se3.Play(1);
+				se3.SetVolume(0.5f);
+				se3.SetLoopCount(1);
+				rot[1] = false;
+			}
+		}
+		
 	}
-	else
-	{
-		moveCheck3_2 = 0;
-		rightCheck3_2 = 0;
-		//movable2 = 0;
-	}
-	if (movable2 == 1)
-	{
-		movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
-	}
+	
+	//if (movable[1] == true)
+	//{
+	//	movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
+	//}
 
 	if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
 	{
@@ -458,40 +456,36 @@ void Level3::Update()
 	}
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle3->mesh) == true)
-
 	{
-		if (moveCheck3_3 % 2 == 1)
+		if (mInput.IsKeyDown(KEY::LEFT) == true)
 		{
-			if (movable3 == 0)
-			{
-				movable3 = 1;
-			}
+			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
+			movable[2] = true;
 			//movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
-		if (rightCheck3_3 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle3->pipe->Update();
-			degree2_3 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle3->mesh->setRotation(degree2_3);
-			//rotTime.Update();
-			//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-			rightCheck3_3 = 0;
+			rot[2] = true;
+		}
+		if (rot[2] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				movePuzzle3->pipe->Update();
+				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle3->mesh->setRotation(degree2_3);
+				//rotTime.Update();
+				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
+				//rightCheck3_3 = 0;
 
-			se3.Play(1);
-			se3.SetVolume(0.5f);
-			se3.SetLoopCount(1);
+				se3.Play(1);
+				se3.SetVolume(0.5f);
+				se3.SetLoopCount(1);
+				rot[2] = false;
+			}
 		}
 	}
-	else
-	{
-		moveCheck3_3 = 0;
-		rightCheck3_3 = 0;
-		//movable3 = 0;
-	}
-	if (movable3 == 1)
-	{
-		movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
-	}
+	
 
 	if (blCheck2)
 	{
@@ -520,32 +514,34 @@ void Level3::Update()
 		}
 	}
 
-	//
-
-	if (movable1 == 0)
+	if (mInput.IsPressed(KEY::LEFT) == false)
 	{
-		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
+		if (movable[0] == true)
 		{
-			if (moveCheck3 % 2 == 0)
+			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
 			{
-				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
-					movePuzzle->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
-					blCheck1 = true;
-					blCheck1_2 = false;
-
-				}
-				else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh))
-				{
-					movePuzzle->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
-					blCheck1_2 = false;
-					blCheck1 = false;
-				}
-				else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh))
-				{
-					movePuzzle->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
-					blCheck1_2 = true;
-					blCheck1 = false;
+					if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
+					{
+						movePuzzle->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
+						movable[0] = false;
+						blCheck1 = true;
+						blCheck1_2 = false;
+					}
+					else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh))
+					{
+						movePuzzle->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
+						movable[0] = false;
+						blCheck1_2 = false;
+						blCheck1 = false;
+					}
+					else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh))
+					{
+						movePuzzle->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
+						movable[0] = false;
+						blCheck1_2 = true;
+						blCheck1 = false;
+					}
 
 				}
 			}
@@ -556,24 +552,26 @@ void Level3::Update()
 		}
 	}
 
-	if (movable2 == 0)
+	if (mInput.IsPressed(KEY::LEFT) == false)
 	{
 		if ((movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh)))
-
 		{
-			if (moveCheck3_2 % 2 == 0)
+			if (movable[1] == true)
 			{
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
 					movePuzzle2->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
+					movable[1] = false;
 				}
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
 					movePuzzle2->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
+					movable[1] = false;
 				}
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
 					movePuzzle2->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
+					movable[1] = false;
 				}
 			}
 		}
@@ -582,28 +580,32 @@ void Level3::Update()
 			conecTcheck2 = false;
 		}
 	}
+	if (mInput.IsPressed(KEY::LEFT) == false)
 
-	if (movable3 == 0)
 	{
 		if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
 		{
-			if (moveCheck3_3 % 2 == 0)
+			if (movable[2] == true)
 			{
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
 					movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
+					movable[2] = false;
 					blCheck2 = true;
 					blCheck2_2 = false;
 				}
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
 					movePuzzle3->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
+					movable[2] = false;
+
 					blCheck2 = false;
 					blCheck2_2 = false;
 				}
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
 					movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
+					movable[2] = false;
 					blCheck2 = false;
 					blCheck2_2 = true;
 				}
@@ -632,7 +634,7 @@ void Level3::Update()
 				playSE3.Play(1);
 				playSE3.SetVolume(0.5f);
 				playSE3.SetLoopCount(1);
-			
+
 			}
 		}
 	}
@@ -643,41 +645,41 @@ void Level3::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
 	{
-		if (moveCheck3_4 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST3);
 
 		}
 	}
-	else
-	{
-		moveCheck3_4 = 0;
-	}
+	//else
+	//{
+	//	moveCheck3_4 = 0;
+	//}
 
 
 	if (optionUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
 	{
-		if (moveCheck3_5 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	else
-	{
-		moveCheck3_5 = 0;
-	}
+	//else
+	//{
+	//	moveCheck3_5 = 0;
+	//}
 
 	if (quitUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
 	{
-		if (moveCheck3_6 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			glfwTerminate();
 		}
 	}
-	else
-	{
-		moveCheck3_6 = 0;
-	}
+	//else
+	//{
+	//	moveCheck3_6 = 0;
+	//}
 
 	se3.Update();
 
@@ -717,13 +719,51 @@ void Level3::Update()
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3);
 
-
-
 	if (mPooPoo.IsFinish() == false)
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
-	
+
+	if (mInput.IsPressed(KEY::SPACE) == true && chekNext == 1)
+	{
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
+		chekNext = 0;
+
+		conecTcheck1 = false;
+		conecTcheck2 = false;
+		conecTcheck3 = false;
+
+		degree2 = 0;
+		degree2_2 = 0;
+		degree2_3 = 0;
+
+		blCheck1 = false;
+		blCheck1_2 = false;
+
+		blCheck2 = false;
+		blCheck2_2 = false;
+
+	}
+
+	if (mInput.IsPressed(KEY::A) == true)
+	{
+		degree2 = 0;
+		degree2_2 = 0;
+		degree2_3 = 0;
+
+		blCheck1 = false;
+		blCheck1_2 = false;
+
+		blCheck2 = false;
+		blCheck2_2 = false;
+
+
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
+	}
+
+	if (mInput.IsPressed(KEY::ESCAPE) == true) {
+		glfwTerminate();
+	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
@@ -736,9 +776,9 @@ void Level3::Update()
 
 void Level3::Close()
 {
-	//mShader.Delete();
-	//mMesh.Delete();
+	mShader.Delete();
+	mMesh.Delete();
 	//ENGINE->Quit();
 
-	//OBJECT_FACTORY->DestroyAllObjects();
+	OBJECT_FACTORY->DestroyAllObjects();
 }
