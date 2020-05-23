@@ -122,14 +122,15 @@ void Level1::Init()
 
 void Level1::Update()
 {
-	mInput.SetInput();
+	mInput.Update();
+
 	cursor = mInput.Cursor;
 
 	se.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
 	{
-		if (mInput.IsPressed(mInput.mouseLeft) == true)
+		if (mInput.IsKeyDown(KEY::LEFT) == true)
 		{
 			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
@@ -137,17 +138,13 @@ void Level1::Update()
 
 	if (blackPuzzle->collision->Point2HexagonCollision(cursor, blackPuzzle->mesh))
 	{
-		if (mInput.IsPressed(mInput.mouseLeft) == true)
+		if (mInput.IsKeyDown(KEY::LEFT) == true)
 		{
 			movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x, blackPuzzle->mesh->GetTransform().y });
 		}
-		else
-		{
-			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
-		}
 	}
 
-	if (mInput.IsPressed(mInput.keySpace) == true)
+	if (mInput.IsPressed(KEY::SPACE) == true)
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST2);
 	}

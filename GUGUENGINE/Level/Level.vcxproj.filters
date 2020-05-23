@@ -31,12 +31,6 @@
     <Filter Include="Source Files\Level\Stage">
       <UniqueIdentifier>{4ea518a6-44a4-4f7f-ac59-f73c1dbbbef4}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Level\Stage\Level1">
-      <UniqueIdentifier>{1d8b6a5d-a94b-4202-8411-2c0e3265e4d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level2">
-      <UniqueIdentifier>{07802b89-f7cb-449c-be65-1dfccd410534}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\Level\Stage\Level3">
       <UniqueIdentifier>{a421774a-5a96-46a8-85e2-e921e8da35e2}</UniqueIdentifier>
     </Filter>
@@ -64,19 +58,25 @@
     <Filter Include="Source Files\Level\Stage\Level9">
       <UniqueIdentifier>{456a0683-9702-4e70-9b2a-3e398514559d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Stage\Tutorial1">
+      <UniqueIdentifier>{1d8b6a5d-a94b-4202-8411-2c0e3265e4d5}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Level\Stage\Tutorial2">
+      <UniqueIdentifier>{07802b89-f7cb-449c-be65-1dfccd410534}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Level1.cpp">
-      <Filter>Source Files\Level\Stage\Level1</Filter>
+      <Filter>Source Files\Level\Stage\Tutorial1</Filter>
     </ClCompile>
     <ClCompile Include="Level3.cpp">
       <Filter>Source Files\Level\Stage\Level3</Filter>
     </ClCompile>
     <ClCompile Include="Level2.cpp">
-      <Filter>Source Files\Level\Stage\Level2</Filter>
+      <Filter>Source Files\Level\Stage\Tutorial2</Filter>
     </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Source Files\Level\Mainmenu</Filter>
@@ -120,10 +120,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level1.h">
-      <Filter>Source Files\Level\Stage\Level1</Filter>
+      <Filter>Source Files\Level\Stage\Tutorial1</Filter>
     </ClInclude>
     <ClInclude Include="Level2.h">
-      <Filter>Source Files\Level\Stage\Level2</Filter>
+      <Filter>Source Files\Level\Stage\Tutorial2</Filter>
     </ClInclude>
     <ClInclude Include="Level3.h">
       <Filter>Source Files\Level\Stage\Level3</Filter>

@@ -83,13 +83,14 @@ void LevelSelect::Init()
 
 void LevelSelect::Update()
 {
-	levelInput.SetInput();
+	levelInput.Update();
+
 	cursorLv = levelInput.Cursor;
 
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))
 	{
 		Level1_pressed->mesh->setTransform(Level1->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 3;
@@ -104,7 +105,7 @@ void LevelSelect::Update()
 	if (Level2->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level2->mesh))
 	{
 		Level2_pressed->mesh->setTransform(Level2->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 4;
@@ -119,7 +120,7 @@ void LevelSelect::Update()
 	if (Level3->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level3->mesh))
 	{
 		Level3_pressed->mesh->setTransform(Level3->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 5;
@@ -134,7 +135,7 @@ void LevelSelect::Update()
 	if (Level4->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level4->mesh))
 	{
 		Level4_pressed->mesh->setTransform(Level4->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 6;
@@ -149,7 +150,7 @@ void LevelSelect::Update()
 	if (Level5->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level5->mesh))
 	{
 		Level5_pressed->mesh->setTransform(Level5->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 7;
@@ -164,7 +165,7 @@ void LevelSelect::Update()
 	if (Level6->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level6->mesh))
 	{
 		Level6_pressed->mesh->setTransform(Level6->mesh->GetTransform());
-		if (levelInput.IsPressed(levelInput.mouseLeft) == true)
+		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 8;
