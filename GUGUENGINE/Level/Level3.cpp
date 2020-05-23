@@ -617,9 +617,11 @@ void Level3::Update()
 	}
 
 
+
+
 	if (playUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
-		if (connectMove % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
