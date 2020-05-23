@@ -97,6 +97,8 @@ private:
 
 	LimitRotate rotTime;
 	Input mInput;
-	bool rot[6] = { false };
+	bool rot[3] = { false };
 	bool movable[3] = { false };
+	bool move[3] = { false };
+
 };
