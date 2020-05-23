@@ -78,15 +78,18 @@ void LevelSelect::Init()
 	seLv.Init();
 	seLv.LoadMusic("assets\\coin.mp3");
 
-	mShader2.BuildTextureShader();	levelInput.InitCallback(APPLICATION->getMyWindow());
+	mShader2.BuildTextureShader();
+	levelInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void LevelSelect::Update()
 {
-	levelInput.Update();
-
 	cursorLv = levelInput.Cursor;
-
+	if(levelInput.IsPressed(KEY::ESCAPE)== true)
+	{
+		glfwTerminate();
+	}
+	
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))
 	{
 		Level1_pressed->mesh->setTransform(Level1->mesh->GetTransform());

@@ -122,25 +122,27 @@ void Level1::Init()
 
 void Level1::Update()
 {
-	mInput.Update();
-
 	cursor = mInput.Cursor;
 
 	se.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
 	{
-		if (mInput.IsKeyDown(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
 	}
 
-	if (blackPuzzle->collision->Point2HexagonCollision(cursor, blackPuzzle->mesh))
+	if (blackPuzzle->collision->Point2HexagonCollision({ movePuzzle->mesh->GetTransform().x , movePuzzle->mesh->GetTransform().y}, blackPuzzle->mesh))
 	{
-		if (mInput.IsKeyDown(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x, blackPuzzle->mesh->GetTransform().y });
+		}
+		else
+		{
+			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
 	}
 
