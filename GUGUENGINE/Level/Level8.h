@@ -8,6 +8,7 @@
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
 #include "../GUGUENGINE/limitedRotate.h"
+#include  "../GUGUENGINE/glfwInput.h"
 
 class sound;
 
@@ -92,5 +93,63 @@ private:
 
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	LimitRotate rotTime;
+
+	Vector2<float> cursor8;
+	Input mInput;
+
+	bool rot[7] = { false };
+
+	bool rotrot2 = true;
+	int coorcheck8 = 0;
+
+	int connectMove8 = 0;
+
+	float degree8 = 0;
+	float degree8_2 = 0;
+	float degree8_3 = 0;
+	float degree8_4 = 0;
+	float degree8_5 = 0;
+	float degree8_6 = 0;
+	float degree8_7 = 0;
+
+	int chekNext8 = 0;
+
+	int move8_1 = 0;
+	int move8_2 = 0;
+	int move8_3 = 0;
+
+	GLuint textureBackground8;
+
+	GLuint texureIdLine8;
+	GLuint texureIdCurve8;
+	GLuint texureIdThree8;
+	GLuint texureIdV8;
+	GLuint texureIdBlack8;
+
+	GLuint texureIdStart8;
+	GLuint texureIdEnd8;
+
+	GLuint texureIdLine8_2;
+	GLuint texureIdCurve8_2;
+	GLuint texureIdV8_2;
+
+	GLuint texureIdbutton8;
+	GLuint texureIdclear8;
+	GLuint texureSpace8;
+
+	GLint texturePlayUI8;
+	GLint textureQuitUI8;
+	GLint textureOptionUI8;
+	GLint textureRestartUI8;
+
+	bool conecTcheck8_1 = false;
+	bool conecTcheck8_2 = false;
+	bool conecTcheck8_3 = false;
+	bool conecTcheck8_4 = false;
+	bool conecTcheck8_5 = false;
+	bool conecTcheck8_6 = false;
+	bool conecTcheck8_7 = false;
+	bool conecTcheck8_8 = false;
+	bool conecTcheck8_9 = false;
 
 };

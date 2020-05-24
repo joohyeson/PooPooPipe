@@ -9,163 +9,8 @@
 #include "Level8.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check8 = 0;
-Vector2<float> cursor8;
-
-bool rotrot2 = true;
-int coorcheck8 = 0;
-
-int connectMove8 = 0;
-
-float degree8 = 0;
-float degree8_2 = 0;
-float degree8_3 = 0;
-float degree8_4 = 0;
-float degree8_5 = 0;
-float degree8_6 = 0;
-float degree8_7 = 0;
-
-int rightCheck8 = 0;
-int rightCheck8_2 = 0;
-int rightCheck8_3 = 0;
-int rightCheck8_4 = 0;
-int rightCheck8_5 = 0;
-int rightCheck8_6 = 0;
-int rightCheck8_7 = 0;
-
-int chekNext8 = 0;
-
-int move8_1 = 0;
-int move8_2 = 0;
-int move8_3 = 0;
-
-GLuint textureBackground8;
-
-GLuint texureIdLine8;
-GLuint texureIdCurve8;
-GLuint texureIdThree8;
-GLuint texureIdV8;
-GLuint texureIdBlack8;
-
-GLuint texureIdStart8;
-GLuint texureIdEnd8;
-
-GLuint texureIdLine8_2;
-GLuint texureIdCurve8_2;
-GLuint texureIdV8_2;
-
-
-GLuint texureIdbutton8;
-GLuint texureIdclear8;
-GLuint texureSpace8;
-
-GLint texturePlayUI8;
-GLint textureQuitUI8;
-GLint textureOptionUI8;
-GLint textureRestartUI8;
-
 Sound se8;
 Sound playSE8;
-
-bool conecTcheck8_1 = false;
-bool conecTcheck8_2 = false;
-bool conecTcheck8_3 = false;
-bool conecTcheck8_4 = false;
-bool conecTcheck8_5 = false;
-bool conecTcheck8_6 = false;
-bool conecTcheck8_7 = false;
-bool conecTcheck8_8 = false;
-bool conecTcheck8_9 = false;
-
-
-
-void level8keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext8 == 1)
-	{
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
-		chekNext8 = 0;
-
-		conecTcheck8_1 = false;
-		conecTcheck8_2 = false;
-		conecTcheck8_3 = false;
-		conecTcheck8_4 = false;
-		conecTcheck8_5 = false;
-		conecTcheck8_6 = false;
-		conecTcheck8_7 = false;
-		conecTcheck8_8 = false;
-		conecTcheck8_9 = false;
-
-
-		degree8 = 0;
-		degree8_2 = 0;
-		degree8_3 = 0;
-		degree8_4 = 0;
-		degree8_5 = 0;
-		degree8_6 = 0;
-		degree8_7 = 0;
-	}
-
-	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-	{
-		degree8 = 0;
-		degree8_2 = 0;
-		degree8_3 = 0;
-		degree8_4 = 0;
-		degree8_5 = 0;
-		degree8_6 = 0;
-		degree8_7 = 0;
-
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-
-	if (key == GLFW_KEY_TAB)
-	{
-		if (coorcheck8 == 1)
-		{
-			coorcheck8 = 0;
-		}
-
-		coorcheck8 += 1;
-	}
-}
-
-void level8cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor8 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-void  level8mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	move8_1 += 1;
-	move8_2 += 1;
-	move8_3 += 1;
-
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		connectMove8 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck8 = 1;
-		rightCheck8_2 = 1;
-		rightCheck8_3 = 1;
-		rightCheck8_4 = 1;
-		rightCheck8_5 = 1;
-		rightCheck8_6 = 1;
-		rightCheck8_7 = 1;
-
-		std::cout << "rightCheck2: " << rightCheck8 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
 
 void Level8::Init()
 {
@@ -308,19 +153,15 @@ void Level8::Init()
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level8keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level8cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level8mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level8::Update()
 {
-	if (check8 < 1)
-	{
-		check8++;
-	}
 	se8.Update();
 	playSE8.Update();
+
+	cursor8 = mInput.Cursor;
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -330,156 +171,176 @@ void Level8::Update()
 	{
 		if (puzzle1->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle1->mesh))
 		{
-			if (rightCheck8 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle1->pipe->Update();
+				rot[0] = true;
+			}
+			if (rot[0] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle1->pipe->Update();
 
-				degree8 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle1->mesh->setRotation(degree8);
-				rotTime.Update();
+					degree8 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle1->mesh->setRotation(degree8);
+					rotTime.Update();
 
-				rightCheck8 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[0] == false;
+				}
 			}
 		}
-		else
-		{
-			rightCheck8 = 0;
-		}
+
 
 		if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh))
 		{
-			if (rightCheck8_2 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle18->pipe->Update();
+				rot[1] = true;
+			}
+			if (rot[1] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle18->pipe->Update();
 
-				degree8_2 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle18->mesh->setRotation(degree8_2);
-				rotTime.Update();
+					degree8_2 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle18->mesh->setRotation(degree8_2);
+					rotTime.Update();
 
-				rightCheck8_2 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[1] == false;
+				}
 			}
 		}
-		else
-		{
-			rightCheck8_2 = 0;
-		}
+
 
 		if (puzzle4->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle4->mesh))
 		{
-			if (rightCheck8_3 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle4->pipe->Update();
+				rot[2] = true;
+			}
+			if (rot[2] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle4->pipe->Update();
 
-				degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle4->mesh->setRotation(degree8_3);
-				rotTime.Update();
+					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle4->mesh->setRotation(degree8_3);
+					rotTime.Update();
 
-				rightCheck8_3 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[2] = false;
+				}
 			}
 		}
-		else
-		{
-			rightCheck8_3 = 0;
-		}
+
 
 		if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh))
 		{
-			if (rightCheck8_4 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle7->pipe->Update();
-
-				degree8_4 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle7->mesh->setRotation(degree8_4);
-				rotTime.Update();
-
-				rightCheck8_4 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+				rot[3] = true;
 			}
-		}
-		else
-		{
-			rightCheck8_4 = 0;
+			if (rot[3] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle7->pipe->Update();
+
+					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle7->mesh->setRotation(degree8_4);
+					rotTime.Update();
+
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[3] = false;
+				}
+			}
 		}
 
 		if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh))
 		{
-			if (rightCheck8_5 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle20->pipe->Update();
+				rot[4] = true;
+			}
+			if (rot[4] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle20->pipe->Update();
 
-				degree8_5 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle20->mesh->setRotation(degree8_5);
-				rotTime.Update();
+					degree8_5 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle20->mesh->setRotation(degree8_5);
+					rotTime.Update();
 
-				rightCheck8_5 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[4] = false;
+				}
 			}
 		}
-		else
-		{
-			rightCheck8_5 = 0;
-		}
+
 
 		if (puzzle9->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle9->mesh))
 		{
-			if (rightCheck8_6 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle9->pipe->Update();
-
-				degree8_6 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle9->mesh->setRotation(degree8_6);
-				rotTime.Update();
-
-				rightCheck8_6 = 0;
-
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+				rot[5] = true;
 			}
-		}
-		else
-		{
-			rightCheck8_6 = 0;
+			if (rot[5] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle9->pipe->Update();
+
+					degree8_6 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle9->mesh->setRotation(degree8_6);
+					rotTime.Update();
+
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[5] = false;
+				}
+			}
 		}
 
 		if (puzzle17->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle17->mesh))
 		{
-			if (rightCheck8_7 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle17->pipe->Update();
+				rot[6] = true;
+			}
+			if (rot[6] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle17->pipe->Update();
 
-				degree8_7 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle17->mesh->setRotation(degree8_7);
-				rotTime.Update();
-				rightCheck8_7 = 0;
+					degree8_7 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle17->mesh->setRotation(degree8_7);
+					rotTime.Update();
 
-				se8.Play(1);
-				se8.SetVolume(0.5f);
-				se8.SetLoopCount(1);
+					se8.Play(1);
+					se8.SetVolume(0.5f);
+					se8.SetLoopCount(1);
+					rot[6] = false;
+				}
 			}
 		}
-		else
-		{
-			rightCheck8_7 = 0;
-		}
+
 
 		if ((puzzle1->pipe->GetDirValue(E) == puzzle2->pipe->GetDirValue(W)) && (puzzle1->pipe->GetDirValue(SW) == puzzle3->pipe->GetDirValue(NE)))
 		{
@@ -572,7 +433,7 @@ void Level8::Update()
 	}
 	if (playUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, playUI->mesh))
 	{
-		if (connectMove8 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_6 && conecTcheck8_7)
 			{
@@ -605,40 +466,27 @@ void Level8::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
-		if (move8_1 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST8);
 
 		}
 	}
-	else
-	{
-		move8_1 = 0;
-	}
-
 
 	if (optionUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
 	{
-		if (move8_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	else
-	{
-		move8_2 = 0;
-	}
 
 	if (quitUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
 	{
-		if (move8_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			glfwTerminate();
 		}
-	}
-	else
-	{
-		move8_2 = 0;
 	}
 
 	se8.Update();
@@ -679,6 +527,30 @@ void Level8::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
+
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
+	{
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
+		chekNext8 = 0;
+
+		conecTcheck8_1 = false;
+		conecTcheck8_2 = false;
+		conecTcheck8_3 = false;
+		conecTcheck8_4 = false;
+		conecTcheck8_5 = false;
+		conecTcheck8_6 = false;
+		conecTcheck8_7 = false;
+		conecTcheck8_8 = false;
+		conecTcheck8_9 = false;
+
+		degree8 = 0;
+		degree8_2 = 0;
+		degree8_3 = 0;
+		degree8_4 = 0;
+		degree8_5 = 0;
+		degree8_6 = 0;
+		degree8_7 = 0;
+	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
