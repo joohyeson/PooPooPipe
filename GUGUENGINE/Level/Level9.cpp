@@ -350,16 +350,19 @@ void Level9::Update()
 		}
 		if (rot[0] == true)
 		{
-			puzzle1->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle1->pipe->Update();
 
-			degree9 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle1->mesh->setRotation(degree9);
+				degree9 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle1->mesh->setRotation(degree9);
 
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[0] = false;
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[0] = false;
+			}
 		}
 	}
 
@@ -372,15 +375,18 @@ void Level9::Update()
 		}
 		if (rot[1] == true)
 		{
-			puzzle19->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle19->pipe->Update();
 
-			degree9_2 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle19->mesh->setRotation(degree9_2);
+				degree9_2 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle19->mesh->setRotation(degree9_2);
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[1] = false;
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[1] = false;
+			}
 		}
 	}
 
@@ -393,16 +399,18 @@ void Level9::Update()
 		}
 		if (rot[2] == true)
 		{
-			puzzle14->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle14->pipe->Update();
 
-			degree9_3 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle14->mesh->setRotation(degree9_3);
+				degree9_3 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle14->mesh->setRotation(degree9_3);
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[2] = false;
-
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[2] = false;
+			}
 		}
 	}
 
@@ -414,15 +422,19 @@ void Level9::Update()
 		}
 		if (rot[3] == true)
 		{
-			puzzle6->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle6->pipe->Update();
 
-			degree9_4 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle6->mesh->setRotation(degree9_4);
+				degree9_4 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle6->mesh->setRotation(degree9_4);
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[3] = false;
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[3] = false;
+
+			}
 
 		}
 	}
@@ -435,16 +447,18 @@ void Level9::Update()
 		}
 		if (rot[4] == true)
 		{
-			puzzle20->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle20->pipe->Update();
 
-			degree9_5 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle20->mesh->setRotation(degree9_5);
+				degree9_5 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle20->mesh->setRotation(degree9_5);
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[4] = false;
-
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[4] = false;
+			}
 		}
 	}
 
@@ -456,16 +470,19 @@ void Level9::Update()
 		}
 		if (rot[5] == true)
 		{
-			puzzle16->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle16->pipe->Update();
 
-			degree9_6 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle16->mesh->setRotation(degree9_6);
+				degree9_6 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle16->mesh->setRotation(degree9_6);
 
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[5] = false;
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[5] = false;
+			}
 		}
 	}
 
@@ -477,15 +494,18 @@ void Level9::Update()
 		}
 		if (rot[6] == true)
 		{
-			puzzle12->pipe->Update();
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				puzzle12->pipe->Update();
 
-			degree9_7 += static_cast<float>(DegreeToRadian(60.f));
-			puzzle12->mesh->setRotation(degree9_7);
+				degree9_7 += static_cast<float>(DegreeToRadian(60.f));
+				puzzle12->mesh->setRotation(degree9_7);
 
-			se9.Play(1);
-			se9.SetVolume(0.5f);
-			se9.SetLoopCount(1);
-			rot[6] = false;
+				se9.Play(1);
+				se9.SetVolume(0.5f);
+				se9.SetLoopCount(1);
+				rot[6] = false;
+			}
 
 		}
 	}
