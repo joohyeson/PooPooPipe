@@ -140,7 +140,7 @@ void Level3::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle6->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
-
+	current.KnowCurrent(1);
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 

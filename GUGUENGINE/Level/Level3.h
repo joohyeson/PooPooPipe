@@ -7,6 +7,7 @@
  *Level3.h
  *this is level3 header
  */
+#include "LevelSelect.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -139,7 +140,7 @@ private:
 	GLint textureQuitUI3;
 	GLint textureOptionUI3;
 	GLint textureRestartUI3;
-
+	
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;
 
@@ -150,5 +151,5 @@ private:
 	bool conecTcheck2 = false;
 	bool conecTcheck3 = false;
 
-
+	LevelSelect current;
 };
