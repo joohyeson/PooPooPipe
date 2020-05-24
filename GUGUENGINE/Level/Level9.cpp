@@ -27,19 +27,19 @@ float degree9_6 = DegreeToRadian(-180.f);
 float degree9_7 = DegreeToRadian(120.f);
 float degree9_rot = DegreeToRadian(-120.f);
 
-int rightCheck9 = 0;
-int rightCheck9_2 = 0;
-int rightCheck9_3 = 0;
-int rightCheck9_4 = 0;
-int rightCheck9_5 = 0;
-int rightCheck9_6 = 0;
-int rightCheck9_7 = 0;
+//int rightCheck9 = 0;
+//int rightCheck9_2 = 0;
+//int rightCheck9_3 = 0;
+//int rightCheck9_4 = 0;
+//int rightCheck9_5 = 0;
+//int rightCheck9_6 = 0;
+//int rightCheck9_7 = 0;
 
 int chekNext9 = 0;
 
-int move9_1 = 0;
-int move9_2 = 0;
-int move9_3 = 0;
+//int move9_1 = 0;
+//int move9_2 = 0;
+//int move9_3 = 0;
 
 GLuint textureBackground9;
 
@@ -75,93 +75,108 @@ bool conecTcheck9_1 = false;
 bool conecTcheck9_2 = false;
 bool conecTcheck9_3 = false;
 
-
-
-void level9keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext9 == 1)
-	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
-		chekNext9 = 0;
-
-		conecTcheck9_1 = false;
-		conecTcheck9_2 = false;
-		conecTcheck9_3 = false;
-
-		degree9 = 0;
-		degree9_2 = DegreeToRadian(60.f);
-		degree9_3 = DegreeToRadian(-60.f);
-		degree9_4 = DegreeToRadian(60.f);
-		degree9_5 = 0;
-		degree9_6 = DegreeToRadian(-180.f);
-		degree9_7 = DegreeToRadian(120.f);
-		degree9_rot = DegreeToRadian(-120.f);
-	}
-
-	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-	{
-		degree9 = 0;
-		degree9_2 = DegreeToRadian(60.f);
-		degree9_3 = DegreeToRadian(-60.f);
-		degree9_4 = DegreeToRadian(60.f);
-		degree9_5 = 0;
-		degree9_6 = DegreeToRadian(-180.f);
-		degree9_7 = DegreeToRadian(120.f);
-		degree9_rot = DegreeToRadian(-120.f);
-
-		STATE_MANAGER->ChangeLevel(MAINMENU);
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-
-	if (key == GLFW_KEY_TAB)
-	{
-		if (coorcheck9 == 1)
-		{
-			coorcheck9 = 0;
-		}
-
-		coorcheck9 += 1;
-	}
-}
-
-void level9cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor9 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-
-void  level9mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	move9_1 += 1;
-	move9_2 += 1;
-	move9_3 += 1;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		connectMove9 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck9 = 1;
-		rightCheck9_2 = 1;
-		rightCheck9_3 = 1;
-		rightCheck9_4 = 1;
-		rightCheck9_5 = 1;
-		rightCheck9_6 = 1;
-		rightCheck9_7 = 1;
-
-		std::cout << "rightCheck2: " << rightCheck9 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
+//
+//
+//void level9keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+//{
+//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext9 == 1)
+//	{
+//		STATE_MANAGER->ChangeLevel(MAINMENU);
+//		chekNext9 = 0;
+//
+//		conecTcheck9_1 = false;
+//		conecTcheck9_2 = false;
+//		conecTcheck9_3 = false;
+//
+//		degree9 = 0;
+//		degree9_2 = DegreeToRadian(60.f);
+//		degree9_3 = DegreeToRadian(-60.f);
+//		degree9_4 = DegreeToRadian(60.f);
+//		degree9_5 = 0;
+//		degree9_6 = DegreeToRadian(-180.f);
+//		degree9_7 = DegreeToRadian(120.f);
+//		degree9_rot = DegreeToRadian(-120.f);
+//	}
+//
+//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+//	{
+//		degree9 = 0;
+//		degree9_2 = DegreeToRadian(60.f);
+//		degree9_3 = DegreeToRadian(-60.f);
+//		degree9_4 = DegreeToRadian(60.f);
+//		degree9_5 = 0;
+//		degree9_6 = DegreeToRadian(-180.f);
+//		degree9_7 = DegreeToRadian(120.f);
+//		degree9_rot = DegreeToRadian(-120.f);
+//
+//		STATE_MANAGER->ChangeLevel(MAINMENU);
+//	}
+//
+//	if (key == GLFW_KEY_ESCAPE)
+//	{
+//		glfwTerminate();
+//	}
+//
+//	if (key == GLFW_KEY_TAB)
+//	{
+//		if (coorcheck9 == 1)
+//		{
+//			coorcheck9 = 0;
+//		}
+//
+//		coorcheck9 += 1;
+//	}
+//}
+//
+//void level9cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+//{
+//	cursor9 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+//}
+//
+//void  level9mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+//{
+//	static float time = 0;
+//	move9_1 += 1;
+//	move9_2 += 1;
+//	move9_3 += 1;
+//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+//	{
+//		connectMove9 += 1;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//
+//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+//	{
+//		rightCheck9 = 1;
+//		rightCheck9_2 = 1;
+//		rightCheck9_3 = 1;
+//		rightCheck9_4 = 1;
+//		rightCheck9_5 = 1;
+//		rightCheck9_6 = 1;
+//		rightCheck9_7 = 1;
+//
+//		std::cout << "rightCheck2: " << rightCheck9 << std::endl;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//}
 
 void Level9::Init()
 {
+	chekNext9 = 0;
+
+	conecTcheck9_1 = false;
+	conecTcheck9_2 = false;
+	conecTcheck9_3 = false;
+
+	degree9 = 0;
+	degree9_2 = DegreeToRadian(60.f);
+	degree9_3 = DegreeToRadian(-60.f);
+	degree9_4 = DegreeToRadian(60.f);
+	degree9_5 = 0;
+	degree9_6 = DegreeToRadian(-180.f);
+	degree9_7 = DegreeToRadian(120.f);
+	degree9_rot = DegreeToRadian(-120.f);
+	
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(1920, 1920.f);
 	textureBackground9 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
@@ -313,13 +328,13 @@ void Level9::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle20->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level9keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level9cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level9mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
+
 }
 
 void Level9::Update()
 {
+	cursor9 = mInput.Cursor;
 	if (check9 < 1)
 	{
 		check9++;
@@ -329,149 +344,150 @@ void Level9::Update()
 
 	if (puzzle1->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle1->mesh))
 	{
-		if (rightCheck9 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[0] = true;
+		}
+		if (rot[0] == true)
 		{
 			puzzle1->pipe->Update();
 
 			degree9 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle1->mesh->setRotation(degree9);
 
-			rightCheck9 = 0;
 
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[0] = false;
 		}
 	}
-	else
-	{
-		rightCheck9 = 0;
-	}
+
 
 	if (puzzle19->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle19->mesh))
 	{
-		if (rightCheck9_2 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[1] = true;
+		}
+		if (rot[1] == true)
 		{
 			puzzle19->pipe->Update();
 
 			degree9_2 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle19->mesh->setRotation(degree9_2);
 
-			rightCheck9_2 = 0;
-
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[1] = false;
 		}
 	}
-	else
-	{
-		rightCheck9_2 = 0;
-	}
+
 
 	if (puzzle14->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle14->mesh))
 	{
-		if (rightCheck9_3 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[2] = true;
+		}
+		if (rot[2] == true)
 		{
 			puzzle14->pipe->Update();
 
 			degree9_3 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle14->mesh->setRotation(degree9_3);
 
-			rightCheck9_3 = 0;
-
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[2] = false;
+
 		}
-	}
-	else
-	{
-		rightCheck9_3 = 0;
 	}
 
 	if (puzzle6->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle6->mesh))
 	{
-		if (rightCheck9_4 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[3] = true;
+		}
+		if (rot[3] == true)
 		{
 			puzzle6->pipe->Update();
 
 			degree9_4 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle6->mesh->setRotation(degree9_4);
 
-			rightCheck9_4 = 0;
-
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[3] = false;
+
 		}
-	}
-	else
-	{
-		rightCheck9_4 = 0;
 	}
 
 	if (puzzle20->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle20->mesh))
 	{
-		if (rightCheck9_5 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[4] = true;
+		}
+		if (rot[4] == true)
 		{
 			puzzle20->pipe->Update();
 
 			degree9_5 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle20->mesh->setRotation(degree9_5);
 
-			rightCheck9_5 = 0;
-
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[4] = false;
+
 		}
-	}
-	else
-	{
-		rightCheck9_5 = 0;
 	}
 
 	if (puzzle16->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle16->mesh))
 	{
-		if (rightCheck9_6 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[5] = true;
+		}
+		if (rot[5] == true)
 		{
 			puzzle16->pipe->Update();
 
 			degree9_6 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle16->mesh->setRotation(degree9_6);
 
-			rightCheck9_6 = 0;
 
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[5] = false;
 		}
-	}
-	else
-	{
-		rightCheck9_6 = 0;
 	}
 
 	if (puzzle12->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle12->mesh))
 	{
-		if (rightCheck9_7 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
+		{
+			rot[6] = true;
+		}
+		if (rot[6] == true)
 		{
 			puzzle12->pipe->Update();
 
 			degree9_7 += static_cast<float>(DegreeToRadian(60.f));
 			puzzle12->mesh->setRotation(degree9_7);
 
-			rightCheck9_7 = 0;
-
 			se9.Play(1);
 			se9.SetVolume(0.5f);
 			se9.SetLoopCount(1);
+			rot[6] = false;
+
 		}
-	}
-	else
-	{
-		rightCheck9_7 = 0;
 	}
 
 	if ((puzzle15->pipe->GetDirValue(SE) == puzzle16->pipe->GetDirValue(NW)))
@@ -544,40 +560,30 @@ void Level9::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, restartUI->mesh))
 	{
-		if (move9_1 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST9);
 
 		}
 	}
-	else
-	{
-		move9_1 = 0;
-	}
 
 	if (optionUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, optionUI->mesh))
 	{
-		if (move9_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	else
-	{
-		move9_2 = 0;
-	}
+
 
 	if (quitUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, quitUI->mesh))
 	{
-		if (move9_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			glfwTerminate();
 		}
 	}
-	else
-	{
-		move9_2 = 0;
-	}
+
 
 	se9.Update();
 
@@ -620,6 +626,29 @@ void Level9::Update()
 	if (mPooPoo.IsFinish() == false)
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
+
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
+	{
+		chekNext9 = 0;
+		
+		conecTcheck9_1 = false;
+		conecTcheck9_2 = false;
+		conecTcheck9_3 = false;
+		
+		degree9 = 0;
+		degree9_2 = DegreeToRadian(60.f);
+		degree9_3 = DegreeToRadian(-60.f);
+		degree9_4 = DegreeToRadian(60.f);
+		degree9_5 = 0;
+		degree9_6 = DegreeToRadian(-180.f);
+		degree9_7 = DegreeToRadian(120.f);
+		degree9_rot = DegreeToRadian(-120.f);
+		STATE_MANAGER->ChangeLevel(MAINMENU);
+
+	}
+	if (mInput.IsPressed(KEY::ESCAPE) == true) {
+		glfwTerminate();
 	}
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
