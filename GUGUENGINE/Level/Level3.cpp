@@ -22,6 +22,22 @@ Sound playSE3;
 
 void Level3::Init()
 {
+	chekNext = 0;
+
+	conecTcheck1 = false;
+	conecTcheck2 = false;
+	conecTcheck3 = false;
+
+	degree2 = 0;
+	degree2_2 = 0;
+	degree2_3 = 0;
+
+	blCheck1 = false;
+	blCheck1_2 = false;
+
+	blCheck2 = false;
+	blCheck2_2 = false;
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground3 = TEXTURE->CreateTexture("assets\\background.png", 0);
