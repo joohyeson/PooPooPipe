@@ -404,6 +404,12 @@ void Level9::Update()
 				se9.SetLoopCount(1);
 
 				autoRot = false;
+
+				if (!conecTcheck9_1 || !conecTcheck9_2 || !conecTcheck9_3)
+				{
+					std::cout << "fail" << std::endl;
+					STATE_MANAGER->ReloadState();
+				}
 			}
 
 			if (conecTcheck9_1 && conecTcheck9_2 && conecTcheck9_3)

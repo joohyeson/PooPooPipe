@@ -23,6 +23,22 @@ Sound playSE4;
 
 void Level4::Init()
 {
+	chekNext4 = 0;
+
+	conecTcheck4_1 = false;
+	conecTcheck4_2 = false;
+	conecTcheck4_3 = false;
+
+	degree4 = 0;
+	degree4_2 = 0;
+	degree4_3 = 0;
+
+	blCheck3 = false;
+	blCheck3_2 = false;
+
+	blCheck4 = false;
+	blCheck4_2 = false;
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);

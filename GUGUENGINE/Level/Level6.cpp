@@ -189,6 +189,9 @@ void Level6::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot = false;
+		STATE_MANAGER->ReloadState();
+		std::cout << "rotation limit!!!" << std::endl;
+
 	}
 
 	se6.Update();
