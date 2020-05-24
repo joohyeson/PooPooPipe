@@ -86,7 +86,8 @@ void Level3::Init()
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
 
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 800.f, -300.f }, 180.f);
-
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
+	
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
@@ -103,6 +104,7 @@ void Level3::Init()
 	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -151,6 +153,7 @@ void Level3::Update()
 	
 	if (Levelsel->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 				chekNext = 0;
@@ -174,6 +177,10 @@ void Level3::Update()
 				Close();
 				STATE_MANAGER->ChangeLevel(LV_SELECT);
 			}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 	}
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
@@ -522,7 +529,7 @@ void Level3::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
-
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3);
