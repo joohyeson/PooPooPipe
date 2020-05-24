@@ -50,7 +50,8 @@ public:
 		spacePress = nullptr;
 		
 		Levelsel = nullptr;
-
+		Levelsel_pressed = nullptr;
+		
 		playUI = nullptr;
 		quitUI = nullptr;
 		optionUI = nullptr;
@@ -79,7 +80,7 @@ private:
 	Object* button;
 	Object* clear;
 	MovePooPoo mPooPoo;
-	Object* Levelsel;
+	Object* Levelsel, *Levelsel_pressed;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -132,6 +133,7 @@ private:
 	GLuint texureIdclear3;
 	GLuint texureSpace3;
 	GLint LevelPage;
+	GLint LevelPage_pressed;
 
 	GLint texturePlayUI3;
 	GLint textureQuitUI3;

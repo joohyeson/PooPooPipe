@@ -85,8 +85,9 @@ void Level3::Init()
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -240.f);
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
 
-	Levelsel = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -100.f });
-
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 800.f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
+	
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
@@ -102,7 +103,8 @@ void Level3::Init()
 	texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 
-	LevelPage = TEXTURE->CreateTexture("assets\\LevelUI.png", 0);
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -122,7 +124,7 @@ void Level3::Init()
 	puzzle6->pipe->SetDirection(false, false, true, false, true, false);
 	puzzle7->pipe->SetDirection(false, true, false, false, false, true);
 
-	Levelsel->mesh->InitializeTextureMesh(80.f, 80.f);
+	
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
@@ -149,11 +151,11 @@ void Level3::Update()
 	
 	cursor3 = mInput.Cursor;
 	
-	if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
+	if (Levelsel->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 	{
-		if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-			{
 				chekNext = 0;
 
 				conecTcheck1 = false;
@@ -175,7 +177,10 @@ void Level3::Update()
 				Close();
 				STATE_MANAGER->ChangeLevel(LV_SELECT);
 			}
-		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 	}
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
@@ -524,7 +529,7 @@ void Level3::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
-
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3);
