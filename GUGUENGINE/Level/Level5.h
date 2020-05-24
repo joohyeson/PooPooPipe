@@ -6,6 +6,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
+#include "../GUGUENGINE/glfwInput.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
@@ -83,5 +84,8 @@ private:
 	Vector3<float> getOrigin3_2 = { 0, 0, 0 };
 
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
-
+	Input mInput;
+	bool rot[3] = { false };
+	bool movable[3] = { false };
+	bool move[3] = { false };
 };
