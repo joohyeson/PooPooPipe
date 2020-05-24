@@ -6,6 +6,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
+#include "../GUGUENGINE/glfwInput.h"
 #include "../GUGUENGINE/limitedRotate.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 
@@ -93,5 +94,8 @@ private:
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 
 	LimitRotate rotTime;
-
+	Input mInput;
+	bool rot[6] = { false };
+	bool movable[3] = { false };
+	bool move[3] = { false };
 };
