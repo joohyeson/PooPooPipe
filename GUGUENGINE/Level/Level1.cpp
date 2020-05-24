@@ -130,7 +130,8 @@ void Level1::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
+			movePuzzle->mesh->setTransform(cursor);
+			movable = true;
 		}
 	}
 
@@ -138,14 +139,28 @@ void Level1::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x, blackPuzzle->mesh->GetTransform().y });
-		}
-		else
-		{
-			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
+			movePuzzle->mesh->setTransform(cursor);
+			movable = true;
 		}
 	}
 
+	if (movable == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
+			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+			{
+				{
+					if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
+					{
+						movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
+						movable = false;
+						
+					}
+				}
+			}
+		}
+	}
 	if (mInput.IsPressed(KEY::SPACE) == true)
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST2);

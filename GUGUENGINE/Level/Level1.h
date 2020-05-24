@@ -41,7 +41,7 @@ private:
 	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight;
 	Object* spacePress;
 	Input mInput;
-
+	bool movable = false;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
