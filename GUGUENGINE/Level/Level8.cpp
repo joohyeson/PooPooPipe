@@ -188,11 +188,10 @@ void Level8::Update()
 					se8.Play(1);
 					se8.SetVolume(0.5f);
 					se8.SetLoopCount(1);
-					rot[0] == false;
+					rot[0] = false;
 				}
 			}
 		}
-
 
 		if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh))
 		{
@@ -213,7 +212,7 @@ void Level8::Update()
 					se8.Play(1);
 					se8.SetVolume(0.5f);
 					se8.SetLoopCount(1);
-					rot[1] == false;
+					rot[1] = false;
 				}
 			}
 		}
@@ -336,6 +335,7 @@ void Level8::Update()
 					se8.Play(1);
 					se8.SetVolume(0.5f);
 					se8.SetLoopCount(1);
+
 					rot[6] = false;
 				}
 			}
