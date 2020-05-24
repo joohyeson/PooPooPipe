@@ -187,24 +187,6 @@ void Level5::Update()
 {
 	cursor5 = mInput.Cursor;
 
-	if (movePuzzleCheck5)
-	{
-		if (button->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, button->mesh))
-		{
-			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
-			{
-				puzzle7->pipe->Update();
-				puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
-				puzzle7->pipe->SetDirection(true, true, false, true, false, false);
-
-				movePuzzleCheck5 = false;
-				se5.Play(1);
-				se5.SetVolume(0.5f);
-				se5.SetLoopCount(1);
-			}
-		}
-	}
-
 	se5.Update();
 	playSE5.Update();
 
@@ -632,6 +614,27 @@ void Level5::Update()
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			if (movePuzzleCheck5)
+			{
+				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
+				{
+					puzzle7->pipe->Update();
+					puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
+					puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+
+					movePuzzleCheck5 = false;
+					se5.Play(1);
+					se5.SetVolume(0.5f);
+					se5.SetLoopCount(1);
+
+					if (!conecTcheck5_1 || !conecTcheck5_2 || !conecTcheck5_3)
+					{
+						std::cout << "fail" << std::endl;
+						STATE_MANAGER->ReloadState();
+					}
+				}
+			}
+
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -657,8 +660,7 @@ void Level5::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST5);
-
+			STATE_MANAGER->ReloadState();
 		}
 	}
 
