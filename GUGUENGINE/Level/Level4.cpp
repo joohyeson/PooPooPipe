@@ -41,7 +41,7 @@ void Level4::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground4 = TEXTURE->CreateTexture("assets\\background.png", 0);
+	textureBackground4 = TEXTURE->CreateTexture("assets\\background1.png", 0);
 
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();

@@ -38,7 +38,7 @@ void Level8::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground8 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -188,7 +188,7 @@ void Level8::Update()
 	{
 		rotrot2 = false;
 		STATE_MANAGER->ReloadState();
-
+		std::cout << "rotation limit!!!" << std::endl;
 	}
 	if (rotrot2)
 	{

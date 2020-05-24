@@ -40,7 +40,7 @@ void Level3::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground3 = TEXTURE->CreateTexture("assets\\background.png", 0);
+	textureBackground3 = TEXTURE->CreateTexture("assets\\background1.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
 		false, false, false, true, false, true);
