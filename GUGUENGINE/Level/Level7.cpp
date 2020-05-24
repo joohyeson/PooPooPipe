@@ -9,75 +9,75 @@
 #include "Level7.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check7 = 0;
-Vector2<float> cursor7;
-
-int coorcheck7 = 0;
-
-int connectMove7 = 0;
-
-float degree7 = 0;
-float degree7_2 = 0;
-float degree7_3 = 0;
-float degree7_4 = 0;
-float degree7_5 = 0;
-float degree7_6 = 0;
-float degree7_7 = 0;
-
-int rightCheck7 = 0;
-int rightCheck7_2 = 0;
-int rightCheck7_3 = 0;
-int rightCheck7_4 = 0;
-int rightCheck7_5 = 0;
-int rightCheck7_6 = 0;
-int rightCheck7_7 = 0;
-
-int chekNext7 = 0;
-
-GLuint textureBackground7;
-
-GLuint texureIdLine7;
-GLuint texureIdCurve7;
-GLuint texureIdThree7;
-GLuint texureIdV7;
-GLuint texureIdBlack7;
-
-GLuint texureIdStart7;
-GLuint texureIdEnd7;
-
-GLuint texureIdLine7_2;
-GLuint texureIdCurve7_2;
-GLuint texureIdV7_2;
-
-GLint texturePlayUI7;
-GLint textureQuitUI7;
-GLint textureOptionUI7;
-GLint textureRestartUI7;
-
-GLuint texureIdbutton7;
-GLuint texureIdclear7;
-GLuint texureSpace7;
-
-Sound se7;
-Sound playSE7;
-
-
-
-bool conecTcheck7_1 = false;
-bool conecTcheck7_2 = false;
-bool conecTcheck7_3 = false;
-bool conecTcheck7_4 = false;
-bool conecTcheck7_5 = false;
-bool conecTcheck7_6 = false;
-bool conecTcheck7_7 = false;
-bool conecTcheck7_8 = false;
-bool conecTcheck7_9 = false;
+//int check7 = 0;
+//Vector2<float> cursor7;
+//
+//int coorcheck7 = 0;
+//
+//int connectMove7 = 0;
+//
+//float degree7 = 0;
+//float degree7_2 = 0;
+//float degree7_3 = 0;
+//float degree7_4 = 0;
+//float degree7_5 = 0;
+//float degree7_6 = 0;
+//float degree7_7 = 0;
+//
+//int rightCheck7 = 0;
+//int rightCheck7_2 = 0;
+//int rightCheck7_3 = 0;
+//int rightCheck7_4 = 0;
+//int rightCheck7_5 = 0;
+//int rightCheck7_6 = 0;
+//int rightCheck7_7 = 0;
+//
+//int chekNext7 = 0;
+//
+//GLuint textureBackground7;
+//
+//GLuint texureIdLine7;
+//GLuint texureIdCurve7;
+//GLuint texureIdThree7;
+//GLuint texureIdV7;
+//GLuint texureIdBlack7;
+//
+//GLuint texureIdStart7;
+//GLuint texureIdEnd7;
+//
+//GLuint texureIdLine7_2;
+//GLuint texureIdCurve7_2;
+//GLuint texureIdV7_2;
+//
+//GLint texturePlayUI7;
+//GLint textureQuitUI7;
+//GLint textureOptionUI7;
+//GLint textureRestartUI7;
+//
+//GLuint texureIdbutton7;
+//GLuint texureIdclear7;
+//GLuint texureSpace7;
+//
+//Sound se7;
+//Sound playSE7;
+//
+//
+//
+//bool conecTcheck7_1 = false;
+//bool conecTcheck7_2 = false;
+//bool conecTcheck7_3 = false;
+//bool conecTcheck7_4 = false;
+//bool conecTcheck7_5 = false;
+//bool conecTcheck7_6 = false;
+//bool conecTcheck7_7 = false;
+//bool conecTcheck7_8 = false;
+//bool conecTcheck7_9 = false;
 
 
 
 void level7keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext7 == 1)
+	/*if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext7 == 1)
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST8);
 		chekNext7 = 0;
@@ -128,186 +128,186 @@ void level7keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		}
 
 		coorcheck7 += 1;
-	}
+	}*/
 }
 
 void level7cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor7 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+	//cursor7 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 }
 
 void  level7mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		connectMove7 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
+	//static float time = 0;
+	//if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+	//{
+	//	connectMove7 += 1;
+	//	std::cout << "RIGHT mouse button pressed" << std::endl;
+	//}
 
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck7 = 1;
-		rightCheck7_2 = 1;
-		rightCheck7_3 = 1;
-		rightCheck7_4 = 1;
-		rightCheck7_5 = 1;
-		rightCheck7_6 = 1;
-		rightCheck7_7 = 1;
+	//if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+	//{
+	//	rightCheck7 = 1;
+	//	rightCheck7_2 = 1;
+	//	rightCheck7_3 = 1;
+	//	rightCheck7_4 = 1;
+	//	rightCheck7_5 = 1;
+	//	rightCheck7_6 = 1;
+	//	rightCheck7_7 = 1;
 
-		std::cout << "rightCheck2: " << rightCheck7 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
+	//	std::cout << "rightCheck2: " << rightCheck7 << std::endl;
+	//	std::cout << "RIGHT mouse button pressed" << std::endl;
+	//}
 }
 
 void Level7::Init()
 {
-	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground7 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	//background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
+	//background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	//textureBackground7 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
-	playUI = OBJECT_FACTORY->CreateEmptyObject();
-	playUI->AddComponent(new Mesh());
-	playUI->Init();
+	//playUI = OBJECT_FACTORY->CreateEmptyObject();
+	//playUI->AddComponent(new Mesh());
+	//playUI->Init();
 
-	playUI->mesh->setTransform({ 800.f, 300.f });
-	playUI->mesh->SetMeshType(rectangle);
-	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	texturePlayUI7 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
-
-
-	quitUI = OBJECT_FACTORY->CreateEmptyObject();
-	quitUI->AddComponent(new Mesh());
-	quitUI->Init();
-
-	quitUI->mesh->setTransform({ 800.f, 150.f });
-	quitUI->mesh->SetMeshType(rectangle);
-	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureQuitUI7 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+	//playUI->mesh->setTransform({ 800.f, 300.f });
+	//playUI->mesh->SetMeshType(rectangle);
+	//playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	//texturePlayUI7 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
 
-	optionUI = OBJECT_FACTORY->CreateEmptyObject();
-	optionUI->AddComponent(new Mesh());
-	optionUI->Init();
-	optionUI->mesh->setTransform({ 800.f, 0.f });
-	optionUI->mesh->SetMeshType(rectangle);
-	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureOptionUI7 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+	//quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	//quitUI->AddComponent(new Mesh());
+	//quitUI->Init();
+
+	//quitUI->mesh->setTransform({ 800.f, 150.f });
+	//quitUI->mesh->SetMeshType(rectangle);
+	//quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	//textureQuitUI7 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
 
-	restartUI = OBJECT_FACTORY->CreateEmptyObject();
-	restartUI->AddComponent(new Mesh());
-	restartUI->Init();
-	restartUI->mesh->setTransform({ 800.f, -150.f });
-	restartUI->mesh->SetMeshType(rectangle);
-	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
-	textureRestartUI7 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+	//optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	//optionUI->AddComponent(new Mesh());
+	//optionUI->Init();
+	//optionUI->mesh->setTransform({ 800.f, 0.f });
+	//optionUI->mesh->SetMeshType(rectangle);
+	//optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	//textureOptionUI7 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
 
-	texureIdLine7 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureIdBlack7 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-	texureIdCurve7 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	texureIdThree7 = TEXTURE->CreateTexture("assets\\image3.png", 0);
-	texureIdV7 = TEXTURE->CreateTexture("assets\\image4.png", 0);
-
-	texureIdStart7 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
-	texureIdEnd7 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
-
-	texureIdLine7_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
-	texureIdCurve7_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV7_2 = TEXTURE->CreateTexture("assets\\pipe2.png", 0);
+	//restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	//restartUI->AddComponent(new Mesh());
+	//restartUI->Init();
+	//restartUI->mesh->setTransform({ 800.f, -150.f });
+	//restartUI->mesh->SetMeshType(rectangle);
+	//restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	//textureRestartUI7 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 
-	texureIdbutton7 = TEXTURE->CreateTexture("assets\\character.png", 0);
-	texureIdclear7 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace7 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+	//texureIdLine7 = TEXTURE->CreateTexture("assets\\image0.png", 0);
+	//texureIdBlack7 = TEXTURE->CreateTexture("assets\\image1.png", 0);
+	//texureIdCurve7 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+	//texureIdThree7 = TEXTURE->CreateTexture("assets\\image3.png", 0);
+	//texureIdV7 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
-	se7.Init();
-	se7.LoadSE("assets\\coin.mp3");
+	//texureIdStart7 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
+	//texureIdEnd7 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
 
-	playSE7.Init();
-	playSE7.LoadSE("assets\\flushing.wav");
+	//texureIdLine7_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
+	//texureIdCurve7_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+	//texureIdV7_2 = TEXTURE->CreateTexture("assets\\pipe2.png", 0);
 
-	mShader2.BuildTextureShader();
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, 280.f }, 0.f);
+	//texureIdbutton7 = TEXTURE->CreateTexture("assets\\character.png", 0);
+	//texureIdclear7 = TEXTURE->CreateTexture("assets\\clear.png", 0);
+	//texureSpace7 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f }, -0.f);
-	endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
+	//se7.Init();
+	//se7.LoadSE("assets\\coin.mp3");
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 280.f });
-	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
+	//playSE7.Init();
+	//playSE7.LoadSE("assets\\flushing.wav");
 
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f, 280.f });
-	puzzle2->pipe->SetDirection(false, false, false, false, true, true);
+	//mShader2.BuildTextureShader();
 
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f, 160.f }, 120.f);
-	puzzle3->pipe->SetDirection(false, true, false, true, false, false);
+	//startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f, 280.f }, 0.f);
 
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, 160.f });
-	puzzle4->pipe->SetDirection(false, false, false, true, false, true);
+	//endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, -200.f }, -0.f);
+	//endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
 
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 40.f });
+	//puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 280.f });
+	//puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 40.f });
-	puzzle6->pipe->SetDirection(true, false, false, true, false, false);
+	//puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f, 280.f });
+	//puzzle2->pipe->SetDirection(false, false, false, false, true, true);
 
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f });
-	puzzle7->pipe->SetDirection(false, false, true, true, false, false);
+	//puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f, 160.f }, 120.f);
+	//puzzle3->pipe->SetDirection(false, true, false, true, false, false);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, -80.f }, 120.f);
+	//puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, 160.f });
+	//puzzle4->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, -80.f });
-	puzzle9->pipe->SetDirection(false, false, false, true, false, true);
+	//puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, 40.f });
 
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, -80.f }, -60.f);
-	puzzle10->pipe->SetDirection(true, false, false, false, true, false);
+	//puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f, 40.f });
+	//puzzle6->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, -200.f }, 180.f);
+	//puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, 40.f });
+	//puzzle7->pipe->SetDirection(false, false, true, true, false, false);
 
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, -200.f }, 180.f);
-	puzzle12->pipe->SetDirection(false, true, true, false, false, false);
+	//puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f, -80.f }, 120.f);
 
-	puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 280.f });
-	puzzle13->pipe->SetDirection(false, false, false, false, true, true);
+	//puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, -80.f });
+	//puzzle9->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, 160.f }, -60);
-	puzzle14->pipe->SetDirection(false, false, false, true, true, false);
+	//puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f, -80.f }, -60.f);
+	//puzzle10->pipe->SetDirection(true, false, false, false, true, false);
 
-	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 40.f });
-	puzzle15->pipe->SetDirection(true, false, false, true, false, false);
+	//puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f, -200.f }, 180.f);
 
-	puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, -80.f }, -60.f);
-	puzzle16->pipe->SetDirection(true, false, false, false, true, false);
+	//puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f, -200.f }, 180.f);
+	//puzzle12->pipe->SetDirection(false, true, true, false, false, false);
 
-	puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, -200.f });
-	puzzle17->pipe->SetDirection(false, false, false, true, false, true);
+	//puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 280.f });
+	//puzzle13->pipe->SetDirection(false, false, false, false, true, true);
 
-	puzzle18 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, 160.f });
-	puzzle18->pipe->SetDirection(false, false, true, true, false, false);
+	//puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, 160.f }, -60);
+	//puzzle14->pipe->SetDirection(false, false, false, true, true, false);
 
-	puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, 160.f }, 60.f);
-	puzzle19->pipe->SetDirection(false, false, true, false, false, true);
+	//puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, 40.f });
+	//puzzle15->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, -80.0f });
-	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
+	//puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f, -80.f }, -60.f);
+	//puzzle16->pipe->SetDirection(true, false, false, false, true, false);
 
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
-	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
+	//puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f, -200.f });
+	//puzzle17->pipe->SetDirection(false, false, false, true, false, true);
 
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
+	//puzzle18 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, 160.f });
+	//puzzle18->pipe->SetDirection(false, false, true, true, false, false);
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level7keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level7cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level7mouseButtonCallback);
+	//puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f, 160.f }, 60.f);
+	//puzzle19->pipe->SetDirection(false, false, true, false, false, true);
+
+	//puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f, -80.0f });
+	//puzzle20->pipe->SetDirection(false, false, false, true, false, true);
+
+	//button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
+	//clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
+	//spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
+
+	//button->mesh->InitializeTextureMesh(80.f, 80.f);
+	//clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	//spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
+
+	//glfwSetKeyCallback(APPLICATION->getMyWindow(), level7keyCallback);
+	//glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level7cursorPositionCallback);
+	//glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level7mouseButtonCallback);
 }
 
 void Level7::Update()
 {
-	if (check7 < 1)
+	/*if (check7 < 1)
 	{
 		check7++;
 	}
@@ -626,15 +626,15 @@ void Level7::Update()
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
-	glfwPollEvents();
+	glfwPollEvents();*/
 
 }
 
 void Level7::Close()
 {
-	mShader.Delete();
-	mMesh.Delete();
-	//ENGINE->Quit();
+	//mShader.Delete();
+	//mMesh.Delete();
+	////ENGINE->Quit();
 
-	OBJECT_FACTORY->DestroyAllObjects();
+	//OBJECT_FACTORY->DestroyAllObjects();
 }

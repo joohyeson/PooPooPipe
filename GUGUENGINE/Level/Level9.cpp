@@ -9,156 +9,8 @@
 #include "Level9.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check9 = 0;
-Vector2<float> cursor9;
-
-int coorcheck9 = 0;
-
-int connectMove9 = 0;
-
-bool autoRot = true;
-
-float degree9 = 0;
-float degree9_2 = DegreeToRadian(60.f);
-float degree9_3 = DegreeToRadian(-60.f);
-float degree9_4 = DegreeToRadian(60.f);
-float degree9_5 = 0;
-float degree9_6 = DegreeToRadian(-180.f);
-float degree9_7 = DegreeToRadian(120.f);
-float degree9_rot = DegreeToRadian(-120.f);
-
-//int rightCheck9 = 0;
-//int rightCheck9_2 = 0;
-//int rightCheck9_3 = 0;
-//int rightCheck9_4 = 0;
-//int rightCheck9_5 = 0;
-//int rightCheck9_6 = 0;
-//int rightCheck9_7 = 0;
-
-int chekNext9 = 0;
-
-//int move9_1 = 0;
-//int move9_2 = 0;
-//int move9_3 = 0;
-
-GLuint textureBackground9;
-
-GLuint texureIdLine9;
-GLuint texureIdCurve9;
-GLuint texureIdThree9;
-GLuint texureIdV9;
-GLuint texureIdBlack9;
-
-GLuint texureIdStart9;
-GLuint texureIdEnd9;
-
-GLuint texureIdLine9_2;
-GLuint texureIdCurve9_2;
-GLuint texureIdV9_2;
-
-GLuint texureIdCurve9_3;
-
-
-GLuint texureIdbutton9;
-GLuint texureIdclear9;
-GLuint texureSpace9;
-
 Sound se9;
 Sound playSE9;
-
-GLint texturePlayUI9;
-GLint textureQuitUI9;
-GLint textureOptionUI9;
-GLint textureRestartUI9;
-;
-bool conecTcheck9_1 = false;
-bool conecTcheck9_2 = false;
-bool conecTcheck9_3 = false;
-
-//
-//
-//void level9keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-//{
-//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext9 == 1)
-//	{
-//		STATE_MANAGER->ChangeLevel(MAINMENU);
-//		chekNext9 = 0;
-//
-//		conecTcheck9_1 = false;
-//		conecTcheck9_2 = false;
-//		conecTcheck9_3 = false;
-//
-//		degree9 = 0;
-//		degree9_2 = DegreeToRadian(60.f);
-//		degree9_3 = DegreeToRadian(-60.f);
-//		degree9_4 = DegreeToRadian(60.f);
-//		degree9_5 = 0;
-//		degree9_6 = DegreeToRadian(-180.f);
-//		degree9_7 = DegreeToRadian(120.f);
-//		degree9_rot = DegreeToRadian(-120.f);
-//	}
-//
-//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-//	{
-//		degree9 = 0;
-//		degree9_2 = DegreeToRadian(60.f);
-//		degree9_3 = DegreeToRadian(-60.f);
-//		degree9_4 = DegreeToRadian(60.f);
-//		degree9_5 = 0;
-//		degree9_6 = DegreeToRadian(-180.f);
-//		degree9_7 = DegreeToRadian(120.f);
-//		degree9_rot = DegreeToRadian(-120.f);
-//
-//		STATE_MANAGER->ChangeLevel(MAINMENU);
-//	}
-//
-//	if (key == GLFW_KEY_ESCAPE)
-//	{
-//		glfwTerminate();
-//	}
-//
-//	if (key == GLFW_KEY_TAB)
-//	{
-//		if (coorcheck9 == 1)
-//		{
-//			coorcheck9 = 0;
-//		}
-//
-//		coorcheck9 += 1;
-//	}
-//}
-//
-//void level9cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-//{
-//	cursor9 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-//}
-//
-//void  level9mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-//{
-//	static float time = 0;
-//	move9_1 += 1;
-//	move9_2 += 1;
-//	move9_3 += 1;
-//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-//	{
-//		connectMove9 += 1;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//
-//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-//	{
-//		rightCheck9 = 1;
-//		rightCheck9_2 = 1;
-//		rightCheck9_3 = 1;
-//		rightCheck9_4 = 1;
-//		rightCheck9_5 = 1;
-//		rightCheck9_6 = 1;
-//		rightCheck9_7 = 1;
-//
-//		std::cout << "rightCheck2: " << rightCheck9 << std::endl;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//}
 
 void Level9::Init()
 {
@@ -335,10 +187,7 @@ void Level9::Init()
 void Level9::Update()
 {
 	cursor9 = mInput.Cursor;
-	if (check9 < 1)
-	{
-		check9++;
-	}
+
 	se9.Update();
 	playSE9.Update();
 
@@ -541,7 +390,7 @@ void Level9::Update()
 
 	if (playUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, playUI->mesh))
 	{
-		if (connectMove9 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			if (autoRot)
 			{
@@ -664,6 +513,7 @@ void Level9::Update()
 		degree9_6 = DegreeToRadian(-180.f);
 		degree9_7 = DegreeToRadian(120.f);
 		degree9_rot = DegreeToRadian(-120.f);
+
 		STATE_MANAGER->ChangeLevel(MAINMENU);
 
 	}

@@ -96,6 +96,51 @@ private:
 	LimitRotate rotTime;
 	Input mInput;
 	bool rot[6] = { false };
-	bool movable[3] = { false };
-	bool move[3] = { false };
+
+	Vector2<float> cursor6;
+
+	int coorcheck6 = 0;
+	int connectMove6 = 0;
+
+	float degree6 = DegreeToRadian(60.f);
+	float degree6_2 = DegreeToRadian(-60.f);
+	float degree6_3 = DegreeToRadian(120.f);
+	float degree6_4 = DegreeToRadian(180.f);
+	float degree6_5 = DegreeToRadian(-180.f);
+	float degree6_6 = DegreeToRadian(-120.f);
+
+	bool rotrot = true;
+
+	int chekNext6 = 0;
+
+	GLuint textureBackground6;
+
+	GLuint texureIdLine6;
+	GLuint texureIdCurve6;
+	GLuint texureIdThree6;
+	GLuint texureIdV6;
+	GLuint texureIdBlack6;
+
+	GLuint texureIdStart6;
+	GLuint texureIdEnd6;
+
+	GLuint texureIdLine6_1;
+	GLuint texureIdCurve6_2;
+	GLuint texureIdV6_2;
+
+
+	GLuint texureIdbutton6;
+	GLuint texureIdclear6;
+	GLuint texureSpace6;
+
+	GLint texturePlayUI6;
+	GLint textureQuitUI6;
+	GLint textureOptionUI6;
+	GLint textureRestartUI6;
+
+	bool conecTcheck6_1 = false;
+	bool conecTcheck6_2 = false;
+	bool conecTcheck6_3 = false;
+	bool conecTcheck6_4 = false;
+	bool conecTcheck6_5 = false;
 };

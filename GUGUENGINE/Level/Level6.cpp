@@ -9,147 +9,8 @@
 #include "Level6.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check6 = 0;
-Vector2<float> cursor6;
-
-int coorcheck6 = 0;
-int connectMove6 = 0;
-
-float degree6 = DegreeToRadian(60.f);
-float degree6_2 = DegreeToRadian(-60.f);
-float degree6_3 = DegreeToRadian(120.f);
-float degree6_4 = DegreeToRadian(180.f);
-float degree6_5 = DegreeToRadian(-180.f);
-float degree6_6 = DegreeToRadian(-120.f);
-
-//int rightCheck6 = 0;
-//int rightCheck6_2 = 0;
-//int rightCheck6_3 = 0;
-//int rightCheck6_4 = 0;
-//int rightCheck6_5 = 0;
-//int rightCheck6_6 = 0;
-
-//int move6_1 = 0;
-//int move6_2 = 0;
-//int move6_3 = 0;
-
-bool rotrot = true;
-
-int chekNext6 = 0;
-
-GLuint textureBackground6;
-
-GLuint texureIdLine6;
-GLuint texureIdCurve6;
-GLuint texureIdThree6;
-GLuint texureIdV6;
-GLuint texureIdBlack6;
-
-GLuint texureIdStart6;
-GLuint texureIdEnd6;
-
-GLuint texureIdLine6_1;
-GLuint texureIdCurve6_2;
-GLuint texureIdV6_2;
-
-
-GLuint texureIdbutton6;
-GLuint texureIdclear6;
-GLuint texureSpace6;
-
-GLint texturePlayUI6;
-GLint textureQuitUI6;
-GLint textureOptionUI6;
-GLint textureRestartUI6;
-
 Sound se6;
 Sound playSE6;
-
-bool conecTcheck6_1 = false;
-bool conecTcheck6_2 = false;
-bool conecTcheck6_3 = false;
-bool conecTcheck6_4 = false;
-bool conecTcheck6_5 = false;
-
-//
-//void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-//{
-//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
-//	{
-//		STATE_MANAGER->ChangeLevel(LV_TEST8);
-//		chekNext6 = 0;
-//
-//		conecTcheck6_1 = false;
-//		conecTcheck6_2 = false;
-//		conecTcheck6_3 = false;
-//		conecTcheck6_4 = false;
-//		conecTcheck6_5 = false;
-//	
-//		degree6 = DegreeToRadian(60.f);
-//		degree6_2 = DegreeToRadian(-60.f);
-//		degree6_3 = DegreeToRadian(120.f);
-//		degree6_4 = DegreeToRadian(180.f);
-//		degree6_5 = DegreeToRadian(-180.f);
-//		degree6_6 = DegreeToRadian(-120.f);
-//	}
-//
-//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-//	{
-//		degree6 = DegreeToRadian(60.f);
-//		degree6_2 = DegreeToRadian(-60.f);
-//		degree6_3 = DegreeToRadian(120.f);
-//		degree6_4 = DegreeToRadian(180.f);
-//		degree6_5 = DegreeToRadian(-180.f);
-//		degree6_6 = DegreeToRadian(-120.f);
-//
-//		STATE_MANAGER->ChangeLevel(LV_TEST8);
-//	}
-//
-//	if (key == GLFW_KEY_ESCAPE)
-//	{
-//		glfwTerminate();
-//	}
-//
-//	if (key == GLFW_KEY_TAB)
-//	{
-//		if (coorcheck6 == 1)
-//		{
-//			coorcheck6 = 0;
-//		}
-//
-//		coorcheck6 += 1;
-//	}
-//}
-//
-//void level6cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-//{
-//	cursor6 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-//}
-//void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-//{
-//	static float time = 0;
-//	move6_1 += 1;
-//	move6_2 += 1;
-//	move6_3 += 1;
-//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-//	{
-//		connectMove6 += 1;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//
-//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-//	{
-//		rightCheck6 = 1;
-//		rightCheck6_2 = 1;
-//		rightCheck6_3 = 1;
-//		rightCheck6_4 = 1;
-//		rightCheck6_5 = 1;
-//		rightCheck6_6 = 1;
-//
-//		std::cout << "rightCheck2: " << rightCheck6 << std::endl;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//}
 
 void Level6::Init()
 {
@@ -169,10 +30,10 @@ void Level6::Init()
 	degree6_6 = DegreeToRadian(-120.f);
 	
 	rotTime.setRotate(100);
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -183,7 +44,6 @@ void Level6::Init()
 	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
 	texturePlayUI6 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
-
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
 	quitUI->Init();
@@ -193,7 +53,6 @@ void Level6::Init()
 	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
 	textureQuitUI6 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
-
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
@@ -202,7 +61,6 @@ void Level6::Init()
 	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
 	textureOptionUI6 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
-
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
 	restartUI->AddComponent(new Mesh());
 	restartUI->Init();
@@ -210,8 +68,6 @@ void Level6::Init()
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
 	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
-
-
 
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack6 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -329,10 +185,6 @@ void Level6::Init()
 void Level6::Update()
 {
 	cursor6 = mInput.Cursor;
-	if (check6 < 1)
-	{
-		check6++;
-	}
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -693,6 +545,9 @@ void Level6::Update()
 		degree6_4 = DegreeToRadian(180.f);
 		degree6_5 = DegreeToRadian(-180.f);
 		degree6_6 = DegreeToRadian(-120.f);
+
+		rotTime.setRotate(100);
+
 		STATE_MANAGER->ChangeLevel(LV_TEST8);
 	}
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

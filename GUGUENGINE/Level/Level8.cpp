@@ -530,7 +530,6 @@ void Level8::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
 		chekNext8 = 0;
 
 		conecTcheck8_1 = false;
@@ -550,6 +549,10 @@ void Level8::Update()
 		degree8_5 = 0;
 		degree8_6 = 0;
 		degree8_7 = 0;
+
+		rotTime.setRotate(30);
+
+		STATE_MANAGER->ChangeLevel(LV_TEST5);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
