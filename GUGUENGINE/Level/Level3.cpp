@@ -310,12 +310,15 @@ void Level3::Init()
 
 void Level3::Update()
 {
+	se3.Update();
+	playSE3.Update();
+	
 	cursor3 = mInput.Cursor;
-	if (mInput.IsPressed(KEY::LEFT) == true)
+	
+	if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 	{
 		if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 		{
-
 			{
 				std::cout << "check" << std::endl;
 				mPooPoo.Clear();
@@ -331,8 +334,7 @@ void Level3::Update()
 		check3++;
 	}
 
-	se3.Update();
-	playSE3.Update();
+
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
@@ -621,7 +623,7 @@ void Level3::Update()
 
 	if (playUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
@@ -646,7 +648,7 @@ void Level3::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST3);
 
@@ -660,7 +662,7 @@ void Level3::Update()
 
 	if (optionUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
@@ -672,7 +674,7 @@ void Level3::Update()
 
 	if (quitUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			glfwTerminate();
 		}
