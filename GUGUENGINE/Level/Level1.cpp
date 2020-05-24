@@ -101,7 +101,6 @@ void Level1::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			movePuzzle->mesh->setTransform(cursor);
 			movable = true;
 		}
 	}
