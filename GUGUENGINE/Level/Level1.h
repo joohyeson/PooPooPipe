@@ -42,6 +42,7 @@ private:
 	Object* spacePress;
 	Input mInput;
 	bool movable = false;
+	Vector2<float> cursor;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

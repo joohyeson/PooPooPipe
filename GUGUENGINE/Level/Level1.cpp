@@ -15,12 +15,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-int check = 0;
-Vector2<float> cursor;
-
-int moveCheck = 0;
-int connectCheck1 = 0;
-
 GLuint texureIdLine1;
 GLuint texureIdCurve1;
 GLuint texureIdBlack1;
@@ -28,38 +22,6 @@ GLuint textureBackground1;
 GLuint textureSpace1;
 
 Sound se;
-////
-//void level1keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-//{
-//   if (connectCheck1 == 1)
-//   {
-//      if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
-//      {
-//         STATE_MANAGER->ChangeLevel(LV_TEST2);
-//         connectCheck1 = 0;
-//      }
-//   }
-//
-//   if (key == GLFW_KEY_ESCAPE)
-//   {
-//      glfwTerminate();
-//   }
-//}
-//
-//void level1cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-//{
-//   cursor = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-//}
-//
-//void  level1mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-//{
-//   static float time = 0;
-//   if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-//   {
-//      moveCheck += 1;
-//      std::cout << "RIGHT mouse button pressed" << std::endl;
-//   }
-//}
 
 void Level1::Init()
 {
