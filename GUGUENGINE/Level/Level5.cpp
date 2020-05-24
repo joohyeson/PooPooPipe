@@ -201,6 +201,28 @@ bool conecTcheck5_3 = false;
 
 void Level5::Init()
 {
+	chekNext5 = 0;
+
+	conecTcheck5_1 = false;
+	conecTcheck5_2 = false;
+	conecTcheck5_3 = false;
+
+	degree5 = 0;
+	degree5_2 = 0;
+	degree5_3 = 0;
+
+	blCheck5 = false;
+	blCheck5_2 = false;
+	blCheck5_3 = false;
+
+	blCheck6 = false;
+	blCheck6_2 = false;
+	blCheck6_3 = false;
+
+	blCheck7 = false;
+	blCheck7_2 = false;
+	blCheck7_3 = false;
+	
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background.png", 0);
@@ -353,7 +375,7 @@ void Level5::Update()
 	{
 		if (button->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, button->mesh))
 		{
-			if(mInput.IsPressed(KEY::LEFT)==true && !movable[0] && !movable[1] &&!movable[2])
+			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 			{
 				puzzle7->pipe->Update();
 				puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
@@ -409,7 +431,7 @@ void Level5::Update()
 	{
 		movable[0] = false;
 	}
-	
+
 	if (blCheck5)
 	{
 		if (blCheck6_2)
@@ -801,21 +823,20 @@ void Level5::Update()
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
-				if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
-				{
-					std::cout << "if 3" << std::endl;
-					clear->mesh->setTransform({ 280.f, -240.f });
-					chekNext5 = 1;
-					std::cout << "clear" << std::endl;
-					mPooPoo.SetIsSuccess(true);
-					connectMove5 = 0;
+				std::cout << "if 3" << std::endl;
+				clear->mesh->setTransform({ 280.f, -240.f });
+				chekNext5 = 1;
+				std::cout << "clear" << std::endl;
+				mPooPoo.SetIsSuccess(true);
+				connectMove5 = 0;
 
-					playSE5.Play(1);
-					playSE5.SetVolume(0.5f);
-					playSE5.SetLoopCount(1);
-				}
+				playSE5.Play(1);
+				playSE5.SetVolume(0.5f);
+				playSE5.SetLoopCount(1);
 			}
+
 		}
 	}
 	else
@@ -894,6 +915,34 @@ void Level5::Update()
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
+	{
+		degree5 = 0;
+		degree5_2 = 0;
+		degree5_3 = 0;
+
+		blCheck5 = false;
+		blCheck5_2 = false;
+		blCheck5_3 = false;
+
+
+		blCheck6 = false;
+		blCheck6_2 = false;
+		blCheck6_3 = false;
+
+
+		blCheck7 = false;
+		blCheck7_2 = false;
+		blCheck7_3 = false;
+
+
+		STATE_MANAGER->ChangeLevel(LV_TEST9);
+	}
+	
+	if (mInput.IsPressed(KEY::ESCAPE) == true) {
+		glfwTerminate();
+	}
+	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

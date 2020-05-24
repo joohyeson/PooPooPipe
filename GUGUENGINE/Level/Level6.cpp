@@ -22,16 +22,16 @@ float degree6_4 = DegreeToRadian(180.f);
 float degree6_5 = DegreeToRadian(-180.f);
 float degree6_6 = DegreeToRadian(-120.f);
 
-int rightCheck6 = 0;
-int rightCheck6_2 = 0;
-int rightCheck6_3 = 0;
-int rightCheck6_4 = 0;
-int rightCheck6_5 = 0;
-int rightCheck6_6 = 0;
+//int rightCheck6 = 0;
+//int rightCheck6_2 = 0;
+//int rightCheck6_3 = 0;
+//int rightCheck6_4 = 0;
+//int rightCheck6_5 = 0;
+//int rightCheck6_6 = 0;
 
-int move6_1 = 0;
-int move6_2 = 0;
-int move6_3 = 0;
+//int move6_1 = 0;
+//int move6_2 = 0;
+//int move6_3 = 0;
 
 bool rotrot = true;
 
@@ -71,88 +71,103 @@ bool conecTcheck6_3 = false;
 bool conecTcheck6_4 = false;
 bool conecTcheck6_5 = false;
 
-
-void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
-	{
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
-		chekNext6 = 0;
-
-		conecTcheck6_1 = false;
-		conecTcheck6_2 = false;
-		conecTcheck6_3 = false;
-		conecTcheck6_4 = false;
-		conecTcheck6_5 = false;
-	
-		degree6 = DegreeToRadian(60.f);
-		degree6_2 = DegreeToRadian(-60.f);
-		degree6_3 = DegreeToRadian(120.f);
-		degree6_4 = DegreeToRadian(180.f);
-		degree6_5 = DegreeToRadian(-180.f);
-		degree6_6 = DegreeToRadian(-120.f);
-	}
-
-	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-	{
-		degree6 = DegreeToRadian(60.f);
-		degree6_2 = DegreeToRadian(-60.f);
-		degree6_3 = DegreeToRadian(120.f);
-		degree6_4 = DegreeToRadian(180.f);
-		degree6_5 = DegreeToRadian(-180.f);
-		degree6_6 = DegreeToRadian(-120.f);
-
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-
-	if (key == GLFW_KEY_TAB)
-	{
-		if (coorcheck6 == 1)
-		{
-			coorcheck6 = 0;
-		}
-
-		coorcheck6 += 1;
-	}
-}
-
-void level6cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor6 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	move6_1 += 1;
-	move6_2 += 1;
-	move6_3 += 1;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		connectMove6 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck6 = 1;
-		rightCheck6_2 = 1;
-		rightCheck6_3 = 1;
-		rightCheck6_4 = 1;
-		rightCheck6_5 = 1;
-		rightCheck6_6 = 1;
-
-		std::cout << "rightCheck2: " << rightCheck6 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
+//
+//void level6keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
+//{
+//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext6 == 1)
+//	{
+//		STATE_MANAGER->ChangeLevel(LV_TEST8);
+//		chekNext6 = 0;
+//
+//		conecTcheck6_1 = false;
+//		conecTcheck6_2 = false;
+//		conecTcheck6_3 = false;
+//		conecTcheck6_4 = false;
+//		conecTcheck6_5 = false;
+//	
+//		degree6 = DegreeToRadian(60.f);
+//		degree6_2 = DegreeToRadian(-60.f);
+//		degree6_3 = DegreeToRadian(120.f);
+//		degree6_4 = DegreeToRadian(180.f);
+//		degree6_5 = DegreeToRadian(-180.f);
+//		degree6_6 = DegreeToRadian(-120.f);
+//	}
+//
+//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
+//	{
+//		degree6 = DegreeToRadian(60.f);
+//		degree6_2 = DegreeToRadian(-60.f);
+//		degree6_3 = DegreeToRadian(120.f);
+//		degree6_4 = DegreeToRadian(180.f);
+//		degree6_5 = DegreeToRadian(-180.f);
+//		degree6_6 = DegreeToRadian(-120.f);
+//
+//		STATE_MANAGER->ChangeLevel(LV_TEST8);
+//	}
+//
+//	if (key == GLFW_KEY_ESCAPE)
+//	{
+//		glfwTerminate();
+//	}
+//
+//	if (key == GLFW_KEY_TAB)
+//	{
+//		if (coorcheck6 == 1)
+//		{
+//			coorcheck6 = 0;
+//		}
+//
+//		coorcheck6 += 1;
+//	}
+//}
+//
+//void level6cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
+//{
+//	cursor6 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+//}
+//void  level6mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
+//{
+//	static float time = 0;
+//	move6_1 += 1;
+//	move6_2 += 1;
+//	move6_3 += 1;
+//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
+//	{
+//		connectMove6 += 1;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//
+//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
+//	{
+//		rightCheck6 = 1;
+//		rightCheck6_2 = 1;
+//		rightCheck6_3 = 1;
+//		rightCheck6_4 = 1;
+//		rightCheck6_5 = 1;
+//		rightCheck6_6 = 1;
+//
+//		std::cout << "rightCheck2: " << rightCheck6 << std::endl;
+//		std::cout << "RIGHT mouse button pressed" << std::endl;
+//	}
+//}
 
 void Level6::Init()
 {
+	chekNext6 = 0;
+
+	conecTcheck6_1 = false;
+	conecTcheck6_2 = false;
+	conecTcheck6_3 = false;
+	conecTcheck6_4 = false;
+	conecTcheck6_5 = false;
+
+	degree6 = DegreeToRadian(60.f);
+	degree6_2 = DegreeToRadian(-60.f);
+	degree6_3 = DegreeToRadian(120.f);
+	degree6_4 = DegreeToRadian(180.f);
+	degree6_5 = DegreeToRadian(-180.f);
+	degree6_6 = DegreeToRadian(-120.f);
+	
 	rotTime.setRotate(100);
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -308,15 +323,12 @@ void Level6::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
-
-
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level6keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level6cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level6mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level6::Update()
 {
+	cursor6 = mInput.Cursor;
 	if (check6 < 1)
 	{
 		check6++;
@@ -334,128 +346,149 @@ void Level6::Update()
 	{
 		if (puzzle14->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle14->mesh))
 		{
-			if (rightCheck6 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle14->pipe->Update();
-
-				degree6 += static_cast<float>(DegreeToRadian(60.f));
-				std::cout << "1" << std::endl;
-				puzzle14->mesh->setRotation(degree6);
-				rotTime.Update();
-				rightCheck6 = 0;
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[0] = true;
 			}
-		}
-		else
-		{
-			rightCheck6 = 0;
+			if (rot[0] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle14->pipe->Update();
+
+					degree6 += static_cast<float>(DegreeToRadian(60.f));
+					std::cout << "1" << std::endl;
+					puzzle14->mesh->setRotation(degree6);
+					rotTime.Update();
+					//rightCheck6 = 0;
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[0] = false;
+				}
+			}
 		}
 
 		if (blackPuzzle1->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle1->mesh))
 		{
-			if (rightCheck6_2 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				blackPuzzle1->pipe->Update();
-				degree6_2 += static_cast<float>(DegreeToRadian(60.f));
-				std::cout << "2" << std::endl;
-				blackPuzzle1->mesh->setRotation(degree6_2);
-				rightCheck6_2 = 0;
-				rotTime.Update();
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[1] = true;
 			}
-		}
-		else
-		{
-			rightCheck6_2 = 0;
+			if (rot[1] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					blackPuzzle1->pipe->Update();
+					degree6_2 += static_cast<float>(DegreeToRadian(60.f));
+					std::cout << "2" << std::endl;
+					blackPuzzle1->mesh->setRotation(degree6_2);
+					//rightCheck6_2 = 0;
+					rotTime.Update();
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[1] = false;
+				}
+			}
 		}
 
 
 		if (puzzle7->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle7->mesh))
 		{
-			if (rightCheck6_3 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle7->pipe->Update();
-				degree6_3 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle7->mesh->setRotation(degree6_3);
-				rightCheck6_3 = 0;
-				rotTime.Update();
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[2] = true;
 			}
-		}
-		else
-		{
-			rightCheck6_3 = 0;
+			if (rot[2] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle7->pipe->Update();
+					degree6_3 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle7->mesh->setRotation(degree6_3);
+					rotTime.Update();
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[2] = false;
+				}
+			}
 		}
 
 		if (blackPuzzle3->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, blackPuzzle3->mesh))
 		{
-			if (rightCheck6_4 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				blackPuzzle3->pipe->Update();
-				degree6_4 += static_cast<float>(DegreeToRadian(60.f));
-				blackPuzzle3->mesh->setRotation(degree6_4);
-				std::cout << "4" << std::endl;
-				rightCheck6_4 = 0;
-				rotTime.Update();
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[3] = true;
 			}
-		}
-		else
-		{
-			rightCheck6_4 = 0;
+			if (rot[3] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					blackPuzzle3->pipe->Update();
+					degree6_4 += static_cast<float>(DegreeToRadian(60.f));
+					blackPuzzle3->mesh->setRotation(degree6_4);
+					std::cout << "4" << std::endl;
+					rotTime.Update();
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[3] = false;
+				}
+			}
 		}
 
 		if (puzzle16->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle16->mesh))
 		{
-			if (rightCheck6_5 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle16->pipe->Update();
-				degree6_5 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle16->mesh->setRotation(degree6_5);
-				rotTime.Update();
-				rightCheck6_5 = 0;
-				std::cout << "5" << std::endl;
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[4] = true;
 			}
-		}
-		else
-		{
-			rightCheck6_5 = 0;
+			if (rot[4] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle16->pipe->Update();
+					degree6_5 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle16->mesh->setRotation(degree6_5);
+					rotTime.Update();
+					std::cout << "5" << std::endl;
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[4] = false;
+				}
+			}
 		}
 
 		if (puzzle12->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle12->mesh))
 		{
-			if (rightCheck6_6 != 0)
+			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				puzzle12->pipe->Update();
-				degree6_6 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle12->mesh->setRotation(degree6_6);
-				rightCheck6_6 = 0;
-				rotTime.Update();
-				std::cout << "6" << std::endl;
-				se6.Play(1);
-				se6.SetVolume(0.5f);
-				se6.SetLoopCount(1);
+				rot[5] = true;
 			}
-		}
-		else
-		{
-			rightCheck6_6 = 0;
+			if (rot[5] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle12->pipe->Update();
+					degree6_6 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle12->mesh->setRotation(degree6_6);
+
+					rotTime.Update();
+					std::cout << "6" << std::endl;
+					se6.Play(1);
+					se6.SetVolume(0.5f);
+					se6.SetLoopCount(1);
+					rot[5] = false;
+				}
+			}
 		}
 
 		if (button->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, button->mesh))
 		{
-			if (connectMove6 % 2 == 1)
+			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
 				if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3)
 				{
@@ -552,7 +585,7 @@ void Level6::Update()
 	}
 	if (playUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, playUI->mesh))
 	{
-		if (connectMove6 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3 && conecTcheck6_4 && conecTcheck6_5)
 			{
@@ -573,41 +606,32 @@ void Level6::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, restartUI->mesh))
 	{
-		if (move6_1 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST6);
 
 		}
 	}
-	else
-	{
-		move6_1 = 0;
-	}
+
 
 
 	if (optionUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, optionUI->mesh))
 	{
-		if (move6_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	else
-	{
-		move6_2 = 0;
-	}
+
 
 	if (quitUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, quitUI->mesh))
 	{
-		if (move6_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			glfwTerminate();
 		}
 	}
-	else
-	{
-		move6_2 = 0;
-	}
+
 
 	se6.Update();
 
@@ -653,7 +677,27 @@ void Level6::Update()
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext6 == 1) || mInput.IsPressed(KEY::A) == true)
+	{
+		chekNext6 = 0;
 
+		conecTcheck6_1 = false;
+		conecTcheck6_2 = false;
+		conecTcheck6_3 = false;
+		conecTcheck6_4 = false;
+		conecTcheck6_5 = false;
+
+		degree6 = DegreeToRadian(60.f);
+		degree6_2 = DegreeToRadian(-60.f);
+		degree6_3 = DegreeToRadian(120.f);
+		degree6_4 = DegreeToRadian(180.f);
+		degree6_5 = DegreeToRadian(-180.f);
+		degree6_6 = DegreeToRadian(-120.f);
+		STATE_MANAGER->ChangeLevel(LV_TEST8);
+	}
+	if (mInput.IsPressed(KEY::ESCAPE) == true) {
+		glfwTerminate();
+	}
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
