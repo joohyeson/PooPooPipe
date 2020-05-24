@@ -366,7 +366,10 @@ void Level3::Update()
 				rot[0] = false;
 			}
 		}
-
+	}
+	else
+	{
+		movable[0] = false;
 	}
 	//else
 	//{
@@ -440,7 +443,10 @@ void Level3::Update()
 		}
 
 	}
-
+	else
+	{
+		movable[1] = false;
+	}
 	//if (movable[1] == true)
 	//{
 	//	movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
@@ -459,7 +465,7 @@ void Level3::Update()
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle3->mesh) == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] )
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
 		{
 			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
 			movable[2] = true;
@@ -487,7 +493,10 @@ void Level3::Update()
 			}
 		}
 	}
-
+	else
+	{
+		movable[2] = false;
+	}
 
 	if (blCheck2)
 	{
