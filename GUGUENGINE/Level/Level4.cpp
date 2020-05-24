@@ -18,162 +18,8 @@
 #include "Level4.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check4 = 0;
-Vector2<float> cursor4;
-
-int movable4_1 = 0;
-int movable4_2 = 0;
-int movable4_3 = 0;
-
-int moveCheck4 = 0;
-int moveCheck4_2 = 0;
-int moveCheck4_3 = 0;
-int moveCheck4_4 = 0;
-int moveCheck4_5 = 0;
-int moveCheck4_6 = 0;
-
-int connectMove4 = 0;
-
-float degree4 = 0;
-float degree4_2 = 0;
-float degree4_3 = 0;
-
-
-int rightCheck4 = 0;
-int rightCheck4_2 = 0;
-int rightCheck4_3 = 0;
-
-int chekNext4 = 0;
-
-GLuint textureBackground4;
-
-GLuint texureIdLine4;
-GLuint texureIdCurve4;
-GLuint texureIdBlack4;
-
-GLuint texureIdStart4;
-GLuint texureIdEnd4;
-
-GLuint texureIdLine4_1;
-GLuint texureIdCurve4_2;
-
-GLuint texureIdbutton4;
-GLuint texureIdclear4;
-GLuint texureSpace4;
-
-GLint texturePlayUI4;
-GLint textureQuitUI4;
-GLint textureOptionUI4;
-GLint textureRestartUI4;
-
 Sound se4;
 Sound playSE4;
-
-bool conecTcheck4_1 = false;
-bool conecTcheck4_2 = false;
-bool conecTcheck4_3 = false;
-
-bool blCheck3 = false;
-bool blCheck3_2 = false;
-
-bool blCheck4 = false;
-bool blCheck4_2 = false;
-
-
-void level4keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext4 == 1)
-	{
-		STATE_MANAGER->ChangeLevel(LV_TEST6);
-		chekNext4 = 0;
-
-		conecTcheck4_1 = false;
-		conecTcheck4_2 = false;
-		conecTcheck4_3 = false;
-
-		degree4 = 0;
-		degree4_2 = 0;
-		degree4_3 = 0;
-
-		blCheck3 = false;
-		blCheck3_2 = false;
-
-		blCheck4 = false;
-		blCheck4_2 = false;
-	}
-
-
-	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-	{
-		chekNext4 = 0;
-
-		conecTcheck4_1 = false;
-		conecTcheck4_2 = false;
-		conecTcheck4_3 = false;
-
-		degree4 = 0;
-		degree4_2 = 0;
-		degree4_3 = 0;
-
-		blCheck3 = false;
-		blCheck3_2 = false;
-
-		blCheck4 = false;
-		blCheck4_2 = false;
-		STATE_MANAGER->ChangeLevel(LV_TEST6);
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-	}
-}
-
-void level4cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor4 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-
-void  level4mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck4 += 1;
-		moveCheck4_2 += 1;
-		moveCheck4_3 += 1;
-		connectMove4 += 1;
-		moveCheck4_4 += 1;
-		moveCheck4_5 += 1;
-		moveCheck4_6 += 1;
-
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-
-		if (movable4_1 == 1)
-		{
-			movable4_1 = 0;
-		}
-		if (movable4_2 == 1)
-		{
-			movable4_2 = 0;
-		}
-		if (movable4_3 == 1)
-		{
-			movable4_3 = 0;
-		}
-
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck4 = 1;
-		rightCheck4_2 = 1;
-		rightCheck4_3 = 1;
-
-		std::cout << "rightCheck2: " << rightCheck4 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
 
 void Level4::Init()
 {
@@ -226,11 +72,11 @@ void Level4::Init()
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -526.795, 330 });
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -353.59, 330 });
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -613.397, 180});
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -613.397, 180 });
 	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987, 180 });
 	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -526.795, 30 }, 60.f);
 	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -353.59, 30 }, 300.f);
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, {-180.385, 30}, 240.f);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -180.385, 30 }, 240.f);
 
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987, -120 }, 60.f);
 	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -93.782,-120 }, 60.f);
@@ -238,10 +84,10 @@ void Level4::Init()
 
 	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192, 180 });
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192, -120 });
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, {-180.385, -270 });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -180.385, -270 });
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, {- 700, 330 }, 120.f);
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, {-7.18, -270 }, 60.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -700, 330 }, 120.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -7.18, -270 }, 60.f);
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
@@ -294,66 +140,58 @@ void Level4::Init()
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level4keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level4cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level4mouseButtonCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level4::Update()
 {
-	if (check4 < 1)
-	{
-		check4++;
-	}
+	cursor4 = mInput.Cursor;
 
 	se4.Update();
 	playSE4.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle->mesh))
 	{
-		if (moveCheck4 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
 		{
-			if (movable4_1 == 0)
-			{
-				movable4_1 = 1;
-			}
-			/*movePuzzle->mesh->setTransform({ cursor4.x, cursor4.y });*/
+			movePuzzle->mesh->setTransform({ cursor4.x, cursor4.y });
+			movable[0] = true;
 		}
-		if (rightCheck4 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle->pipe->Update();
+			rot[0] = true;
+		}
+		if (rot[0] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				movePuzzle->pipe->Update();
 
-			degree4 += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degree4);
+				degree4 += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle->mesh->setRotation(degree4);
 
-			rightCheck4 = 0;
+				se4.Play(1);
+				se4.SetVolume(0.5f);
+				se4.SetLoopCount(1);
+				rot[0] = false;
 
-			se4.Play(1);
-			se4.SetVolume(0.5f);
-			se4.SetLoopCount(1);
+			}
 		}
 	}
 	else
 	{
-		moveCheck4 = 0;
-		rightCheck4 = 0;
-	}
-	if (movable4_1 == 1)
-	{
-		movePuzzle->mesh->setTransform({ cursor4.x, cursor4.y });
+		movable[0] = false;
 	}
 
 	if (blCheck3)
 	{
 		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
 		{
-			//std::cout << "pipe connect\n";
 			conecTcheck4_1 = true;
 		}
 		else
 		{
 			conecTcheck4_1 = false;
-			//std::cout << "Not connect\n";
 		}
 	}
 
@@ -362,100 +200,89 @@ void Level4::Update()
 		if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
 		{
 			conecTcheck4_1 = true;
-			//std::cout << "pipe connect\n";
 		}
 		else if ((movePuzzle->pipe->GetDirValue(E) == puzzle10->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(W) == endPuzzle->pipe->GetDirValue(E)))
 		{
 			conecTcheck4_1 = true;
-			//std::cout << "pipe connect\n";
 		}
 		else
 		{
 			conecTcheck4_1 = false;
-			//std::cout << "Not connect\n";
 		}
 	}
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle2->mesh))
 	{
-		if (moveCheck4_2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[2])
 		{
-			if (movable4_2 == 0)
-			{
-				movable4_2 = 1;
-			}
-			/*movePuzzle2->mesh->setTransform({ cursor4.x, cursor4.y });*/
+			movePuzzle2->mesh->setTransform({ cursor4.x, cursor4.y });
+			movable[1] = true;
 		}
-		if (rightCheck4_2 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle2->pipe->Update();
+			rot[1] = true;
+		}
+		if (rot[1] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				movePuzzle2->pipe->Update();
+				degree4_2 += static_cast<float>(DegreeToRadian(60.f));
+				movePuzzle2->mesh->setRotation(degree4_2);
 
-			degree4_2 += static_cast<float>(DegreeToRadian(60.f));
-
-
-			movePuzzle2->mesh->setRotation(degree4_2);
-
-			rightCheck4_2 = 0;
-
-			se4.Play(1);
-			se4.SetVolume(0.5f);
-			se4.SetLoopCount(1);
+				se4.Play(1);
+				se4.SetVolume(0.5f);
+				se4.SetLoopCount(1);
+				rot[1] = false;
+			}
 		}
 	}
 	else
 	{
-		moveCheck4_2 = 0;
-		rightCheck4_2 = 0;
-	}
-	if (movable4_2 == 1)
-	{
-		movePuzzle2->mesh->setTransform({ cursor4.x, cursor4.y });
+		movable[1] = false;
 	}
 
 	if ((movePuzzle2->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle2->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
 	{
 		conecTcheck4_2 = true;
-		//std::cout << "pipe connect\n";
 	}
 	else
 	{
 		conecTcheck4_2 = false;
-		//std::cout << "Not connect\n";
 	}
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle3->mesh))
 	{
-		if (moveCheck4_3 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
 		{
-			if (movable4_3 == 0)
-			{
-				movable4_3 = 1;
-			}
+			movePuzzle3->mesh->setTransform({ cursor4.x, cursor4.y });
+			movable[2] = true;
 		}
-		if (rightCheck4_3 != 0)
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle3->pipe->Update();
-			degree4_3 += static_cast<float>(DegreeToRadian(60.f));
+			rot[2] = true;
+		}
+		if (rot[2] == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
+			{
+				movePuzzle3->pipe->Update();
+				degree4_3 += static_cast<float>(DegreeToRadian(60.f));
 
-			movePuzzle3->mesh->setRotation(degree4_3);
+				movePuzzle3->mesh->setRotation(degree4_3);
 
-			rightCheck4_3 = 0;
+				se4.Play(1);
+				se4.SetVolume(0.5f);
+				se4.SetLoopCount(1);
+				rot[2] = false;
 
-			se4.Play(1);
-			se4.SetVolume(0.5f);
-			se4.SetLoopCount(1);
+			}
 		}
 	}
 	else
 	{
-		moveCheck4_3 = 0;
-		rightCheck4_3 = 0;
+		movable[2] = false;
 	}
-	if (movable4_3 == 1)
-	{
-		movePuzzle3->mesh->setTransform({ cursor4.x, cursor4.y });
-	}
-
 
 	if (blCheck4)
 	{
@@ -467,7 +294,6 @@ void Level4::Update()
 		else
 		{
 			conecTcheck4_3 = false;
-			//std::cout << "Not connect\n";
 		}
 	}
 	if (blCheck4_2)
@@ -475,22 +301,18 @@ void Level4::Update()
 		if ((movePuzzle3->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle3->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
 		{
 			conecTcheck4_3 = true;
-			//std::cout << "pipe connect\n";
 		}
 		else
 		{
 			conecTcheck4_3 = false;
-			//std::cout << "Not connect\n";
 		}
 	}
 
-	//
-	if (movable4_1 == 0)
+	if (movable[0] == true)
 	{
 		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
-
 		{
-			if (moveCheck4 % 2 == 0)
+			if (mInput.IsPressed(KEY::LEFT) == false)
 			{
 				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
@@ -515,14 +337,16 @@ void Level4::Update()
 			}
 		}
 		else
+		{
 			conecTcheck4_1 = false;
+		}
 	}
 
-	if (movable4_2 == 0)
+	if (movable[1] == true)
 	{
 		if ((movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh)))
 		{
-			if (moveCheck4_2 % 2 == 0)
+			if (mInput.IsPressed(KEY::LEFT) == false)
 			{
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
@@ -539,14 +363,16 @@ void Level4::Update()
 			}
 		}
 		else
+		{
 			conecTcheck4_2 = false;
+		}
 	}
 
-	if (movable4_3 == 0)
+	if (movable[2] == true)
 	{
 		if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
 		{
-			if (moveCheck4_3 % 2 == 0)
+			if (mInput.IsPressed(KEY::LEFT) == false)
 			{
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
@@ -569,12 +395,14 @@ void Level4::Update()
 			}
 		}
 		else
+		{
 			conecTcheck4_3 = false;
+		}
 	}
 
 	if (playUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 	{
-		if (connectMove4 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
@@ -586,9 +414,7 @@ void Level4::Update()
 				playSE4.Play(1);
 				playSE4.SetVolume(0.5f);
 				playSE4.SetLoopCount(1);
-
 			}
-			connectMove4 = 0;
 		}
 	}
 	else
@@ -598,40 +424,27 @@ void Level4::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
 	{
-		if (moveCheck4_4 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST4);
-
 		}
-	}
-	else
-	{
-		moveCheck4_4 = 0;
 	}
 
 
 	if (optionUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, optionUI->mesh))
 	{
-		if (moveCheck4_5 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	else
-	{
-		moveCheck4_5 = 0;
-	}
 
 	if (quitUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, quitUI->mesh))
 	{
-		if (moveCheck4_6 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			glfwTerminate();
 		}
-	}
-	else
-	{
-		moveCheck4_6 = 0;
 	}
 
 	se4.Update();
@@ -673,6 +486,26 @@ void Level4::Update()
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI4);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI4);
 
+
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
+	{
+		STATE_MANAGER->ChangeLevel(LV_TEST6);
+		chekNext4 = 0;
+
+		conecTcheck4_1 = false;
+		conecTcheck4_2 = false;
+		conecTcheck4_3 = false;
+
+		degree4 = 0;
+		degree4_2 = 0;
+		degree4_3 = 0;
+
+		blCheck3 = false;
+		blCheck3_2 = false;
+
+		blCheck4 = false;
+		blCheck4_2 = false;
+	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

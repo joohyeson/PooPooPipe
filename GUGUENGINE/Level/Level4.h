@@ -14,6 +14,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/MovePooPoo.h"
+#include  "../GUGUENGINE/glfwInput.h"
 
 class sound;
 
@@ -45,7 +46,7 @@ public:
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
 		spacePress = nullptr;
-		
+
 		playUI = nullptr;
 		quitUI = nullptr;
 		optionUI = nullptr;
@@ -62,7 +63,7 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, *spacePress;
+	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
 	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;
@@ -89,4 +90,50 @@ private:
 
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 
+	Input mInput;
+	bool rot[3] = { false };
+	bool movable[3] = { false };
+	bool move[3] = { false };
+
+	Vector2<float> cursor4;
+
+	int connectMove4 = 0;
+
+	float degree4 = 0;
+	float degree4_2 = 0;
+	float degree4_3 = 0;
+
+
+	int chekNext4 = 0;
+
+	GLuint textureBackground4;
+
+	GLuint texureIdLine4;
+	GLuint texureIdCurve4;
+	GLuint texureIdBlack4;
+
+	GLuint texureIdStart4;
+	GLuint texureIdEnd4;
+
+	GLuint texureIdLine4_1;
+	GLuint texureIdCurve4_2;
+
+	GLuint texureIdbutton4;
+	GLuint texureIdclear4;
+	GLuint texureSpace4;
+
+	GLint texturePlayUI4;
+	GLint textureQuitUI4;
+	GLint textureOptionUI4;
+	GLint textureRestartUI4;
+
+	bool conecTcheck4_1 = false;
+	bool conecTcheck4_2 = false;
+	bool conecTcheck4_3 = false;
+
+	bool blCheck3 = false;
+	bool blCheck3_2 = false;
+
+	bool blCheck4 = false;
+	bool blCheck4_2 = false;
 };
