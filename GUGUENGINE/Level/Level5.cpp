@@ -9,195 +9,8 @@
 #include "Level5.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check5 = 0;
-Vector2<float> cursor5;
-
-int coorcheck5 = 0;
-
-//int movable5_1 = 0;
-//int movable5_2 = 0;
-//int movable5_3 = 0;
-//
-//int moveCheck5 = 0;
-//int moveCheck5_2 = 0;
-//int moveCheck5_3 = 0;
-//int moveCheck5_4 = 0;
-//int moveCheck5_5 = 0;
-//int moveCheck5_6 = 0;
-
-int connectMove5 = 0;
-
-float degree5 = 0;
-float degree5_2 = 0;
-float degree5_3 = 0;
-
-//int rightCheck5 = 0;
-//int rightCheck5_2 = 0;
-//int rightCheck5_3 = 0;
-
-int chekNext5 = 0;
-
-bool movePuzzleCheck5 = true;
-
-GLuint textureBackground5;
-
-GLuint texureIdLine5;
-GLuint texureIdCurve5;
-GLuint texureIdThree5;
-
-GLuint textureIdMove5;
-
-GLuint texureIdV5;
-GLuint texureIdBlack5;
-
-GLuint texureIdStart5;
-GLuint texureIdEnd5;
-
-GLuint texureIdLine5_1;
-GLuint texureIdCurve5_2;
-
-GLuint texureIdbutton5;
-GLuint texureIdclear5;
-GLuint texureSpace5;
-
-GLint texturePlayUI5;
-GLint textureQuitUI5;
-GLint textureOptionUI5;
-GLint textureRestartUI5;
-
 Sound se5;
 Sound playSE5;
-
-bool blCheck5 = false;
-bool blCheck5_2 = false;
-bool blCheck5_3 = false;
-
-bool blCheck6 = false;
-bool blCheck6_2 = false;
-bool blCheck6_3 = false;
-
-bool blCheck7 = false;
-bool blCheck7_2 = false;
-bool blCheck7_3 = false;
-
-bool conecTcheck5_1 = false;
-bool conecTcheck5_2 = false;
-bool conecTcheck5_3 = false;
-//
-//void level5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-//{
-//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext5 == 1)
-//	{
-//		STATE_MANAGER->ChangeLevel(LV_TEST9);
-//		chekNext5 = 0;
-//
-//		conecTcheck5_1 = false;
-//		conecTcheck5_2 = false;
-//		conecTcheck5_3 = false;
-//
-//		degree5 = 0;
-//		degree5_2 = 0;
-//		degree5_3 = 0;
-//
-//		blCheck5 = false;
-//		blCheck5_2 = false;
-//		blCheck5_3 = false;
-//
-//		blCheck6 = false;
-//		blCheck6_2 = false;
-//		blCheck6_3 = false;
-//
-//		blCheck7 = false;
-//		blCheck7_2 = false;
-//		blCheck7_3 = false;
-//
-//	}
-//
-//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-//	{
-//		degree5 = 0;
-//		degree5_2 = 0;
-//		degree5_3 = 0;
-//
-//		blCheck5 = false;
-//		blCheck5_2 = false;
-//		blCheck5_3 = false;
-//
-//
-//		blCheck6 = false;
-//		blCheck6_2 = false;
-//		blCheck6_3 = false;
-//
-//
-//		blCheck7 = false;
-//		blCheck7_2 = false;
-//		blCheck7_3 = false;
-//
-//
-//		STATE_MANAGER->ChangeLevel(LV_TEST9);
-//	}
-//
-//	if (key == GLFW_KEY_ESCAPE)
-//	{
-//		glfwTerminate();
-//	}
-//
-//	if (key == GLFW_KEY_TAB)
-//	{
-//		if (coorcheck5 == 1)
-//		{
-//			coorcheck5 = 0;
-//		}
-//
-//		coorcheck5 += 1;
-//	}
-//}
-//
-//void level5cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-//{
-//	cursor5 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-//}
-//
-//void  level5mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-//{
-//	static float time = 0;
-//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-//	{
-//		moveCheck5 += 1;
-//		moveCheck5_2 += 1;
-//		moveCheck5_3 += 1;
-//		connectMove5 += 1;
-//		moveCheck5_4 += 1;
-//		moveCheck5_5 += 1;
-//		moveCheck5_6 += 1;
-//
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//
-//		if (movable5_1 == 1)
-//		{
-//			movable5_1 = 0;
-//		}
-//		if (movable5_2 == 1)
-//		{
-//			movable5_2 = 0;
-//		}
-//		if (movable5_3 == 1)
-//		{
-//			movable5_3 = 0;
-//		}
-//
-//	}
-//
-//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-//	{
-//		rightCheck5 = 1;
-//		rightCheck5_2 = 1;
-//		rightCheck5_3 = 1;
-//
-//		std::cout << "rightCheck2: " << rightCheck5 << std::endl;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//}
 
 void Level5::Init()
 {
@@ -392,12 +205,6 @@ void Level5::Update()
 		}
 	}
 
-
-	if (check5 < 1)
-	{
-		check5++;
-	}
-
 	se5.Update();
 	playSE5.Update();
 
@@ -421,7 +228,6 @@ void Level5::Update()
 				degree5 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree5);
 
-				//rightCheck5 = 0;
 
 				se5.Play(1);
 				se5.SetVolume(0.5f);
@@ -920,6 +726,12 @@ void Level5::Update()
 	}
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
+		chekNext5 = 0;
+
+		conecTcheck5_1 = false;
+		conecTcheck5_2 = false;
+		conecTcheck5_3 = false;
+
 		degree5 = 0;
 		degree5_2 = 0;
 		degree5_3 = 0;
@@ -928,16 +740,13 @@ void Level5::Update()
 		blCheck5_2 = false;
 		blCheck5_3 = false;
 
-
 		blCheck6 = false;
 		blCheck6_2 = false;
 		blCheck6_3 = false;
 
-
 		blCheck7 = false;
 		blCheck7_2 = false;
 		blCheck7_3 = false;
-
 
 		STATE_MANAGER->ChangeLevel(LV_TEST9);
 	}

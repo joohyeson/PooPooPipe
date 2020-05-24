@@ -88,4 +88,59 @@ private:
 	bool rot[3] = { false };
 	bool movable[3] = { false };
 	bool move[3] = { false };
+	Vector2<float> cursor5;
+
+	int coorcheck5 = 0;
+	int connectMove5 = 0;
+
+	float degree5 = 0;
+	float degree5_2 = 0;
+	float degree5_3 = 0;
+
+	int chekNext5 = 0;
+
+	bool movePuzzleCheck5 = true;
+
+	GLuint textureBackground5;
+
+	GLuint texureIdLine5;
+	GLuint texureIdCurve5;
+	GLuint texureIdThree5;
+
+	GLuint textureIdMove5;
+
+	GLuint texureIdV5;
+	GLuint texureIdBlack5;
+
+	GLuint texureIdStart5;
+	GLuint texureIdEnd5;
+
+	GLuint texureIdLine5_1;
+	GLuint texureIdCurve5_2;
+
+	GLuint texureIdbutton5;
+	GLuint texureIdclear5;
+	GLuint texureSpace5;
+
+	GLint texturePlayUI5;
+	GLint textureQuitUI5;
+	GLint textureOptionUI5;
+	GLint textureRestartUI5;
+
+	bool blCheck5 = false;
+	bool blCheck5_2 = false;
+	bool blCheck5_3 = false;
+
+	bool blCheck6 = false;
+	bool blCheck6_2 = false;
+	bool blCheck6_3 = false;
+
+	bool blCheck7 = false;
+	bool blCheck7_2 = false;
+	bool blCheck7_3 = false;
+
+	bool conecTcheck5_1 = false;
+	bool conecTcheck5_2 = false;
+	bool conecTcheck5_3 = false;
+
 };
