@@ -64,7 +64,7 @@ void StateManager::Update()
 {
 	switch (state) {
 	case State::START:
-		nextGameState = levels[0];
+		nextGameState = levels[current];
 		state = State::LOAD;
 		break;
 	case State::LOAD:
