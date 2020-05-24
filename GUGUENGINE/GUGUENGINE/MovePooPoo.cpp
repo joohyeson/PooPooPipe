@@ -21,6 +21,7 @@ MovePooPoo::MovePooPoo(Vector2<float> startDirection, Vector2<float> endDirectio
 };
 void MovePooPoo::Init()
 {
+
 	setDelta();
 	objectPP = OBJECT_FACTORY->CreateEmptyObject();
 	objectPP->AddComponent(new Mesh());
@@ -29,13 +30,17 @@ void MovePooPoo::Init()
 	objectPP->mesh->SetMeshType(rectangle);
 	objectPP->mesh->InitializeTextureMesh(80.f, 80.f);
 
-	texturePP = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
+	texturePP = TEXTURE->CreateTexture("assets\\character.png", 0);
+	
+	this->isFinish = false;
+	this->isSuccess = false;
 
+	myAngles.clear();
+	coor.clear();
 
 }
 void MovePooPoo::Update(int shaderHandler)
 {
-	objectPP->mesh->SplitAnimation();
 	if (startD == endD)
 	{
 		isSuccess = false;
@@ -131,7 +136,6 @@ void MovePooPoo::MoveInPuzzle(std::vector < Vector2<float>> exact)
 }
 void MovePooPoo::MoveInPuzzle(int shaderHandler)
 {
-	
 	if (myAngles.size() ==PuzzleID)
 	{
 		isFinish = true;
@@ -156,5 +160,4 @@ void MovePooPoo::MoveInPuzzle(int shaderHandler)
 
 	Update(shaderHandler);
 
-	
 }
