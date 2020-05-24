@@ -187,6 +187,8 @@ void Level8::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot2 = false;
+		STATE_MANAGER->ReloadState();
+
 	}
 	if (rotrot2)
 	{
