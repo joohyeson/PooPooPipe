@@ -17,174 +17,8 @@
 #include "Level3.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check3 = 0;
-Vector2<float> cursor3;
-
-int coorcheck = 0;
-
-int movable1 = 0;
-int movable2 = 0;
-int movable3 = 0;
-//
-//int moveCheck3 = 0;
-//int moveCheck3_2 = 0;
-//int moveCheck3_3 = 0;
-//int moveCheck3_4 = 0;
-//int moveCheck3_5 = 0;
-//int moveCheck3_6 = 0;
-//
-
-int connectMove = 0;
-//int LevelCheck = 0;
-
-float degree2 = 0;
-float degree2_2 = 0;
-float degree2_3 = 0;
-//
-//int rightCheck3 = 0;
-//int rightCheck3_2 = 0;
-//int rightCheck3_3 = 0;
-
-int chekNext = 0;
-
-GLuint textureBackground3;
-
-GLuint texureIdLine3;
-GLuint texureIdCurve3;
-GLuint texureIdBlack3;
-
-GLuint texureIdStart3;
-GLuint texureIdEnd3;
-
-GLuint texureIdLine3_1;
-GLuint texureIdCurve3_2;
-
-GLuint texureIdbutton3;
-GLuint texureIdclear3;
-GLuint texureSpace3;
-GLint LevelPage;
-
-GLint texturePlayUI3;
-GLint textureQuitUI3;
-GLint textureOptionUI3;
-GLint textureRestartUI3;
-
 Sound se3;
-
 Sound playSE3;
-
-bool blCheck1 = false;
-bool blCheck1_2 = false;
-
-bool blCheck2 = false;
-bool blCheck2_2 = false;
-
-bool conecTcheck1 = false;
-bool conecTcheck2 = false;
-bool conecTcheck3 = false;
-
-
-//void level3keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-//{
-//	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNext == 1)
-//	{
-//		STATE_MANAGER->ChangeLevel(LV_TEST4);
-//		chekNext = 0;
-//
-//		conecTcheck1 = false;
-//		conecTcheck2 = false;
-//		conecTcheck3 = false;
-//
-//		degree2 = 0;
-//		degree2_2 = 0;
-//		degree2_3 = 0;
-//
-//		blCheck1 = false;
-//		blCheck1_2 = false;
-//
-//		blCheck2 = false;
-//		blCheck2_2 = false;
-//
-//	}
-//
-//	if (key == GLFW_KEY_A && action == GLFW_PRESS)
-//	{
-//		degree2 = 0;
-//		degree2_2 = 0;
-//		degree2_3 = 0;
-//
-//		blCheck1 = false;
-//		blCheck1_2 = false;
-//
-//		blCheck2 = false;
-//		blCheck2_2 = false;
-//
-//		
-//		STATE_MANAGER->ChangeLevel(LV_TEST4);
-//	}
-//
-//	if (key == GLFW_KEY_ESCAPE)
-//	{
-//		glfwTerminate();
-//	}
-//
-//	if (key == GLFW_KEY_TAB)
-//	{
-//		if (coorcheck == 1)
-//		{
-//			coorcheck = 0;
-//		}
-//
-//		coorcheck += 1;
-//	}
-//}
-//
-//void level3cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-//{
-//	cursor3 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-//}
-//
-//void  level3mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-//{
-//	static float time = 0;
-//	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-//	{
-//		moveCheck3 += 1;
-//		moveCheck3_2 += 1;
-//		moveCheck3_3 += 1;
-//		moveCheck3_4 += 1;
-//		moveCheck3_5 += 1;
-//		moveCheck3_6 += 1;
-//
-//		LevelCheck += 1;
-//		connectMove += 1;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//
-//		if (movable1 == 1)
-//		{
-//			movable1 = 0;
-//		}
-//		if (movable2 == 1)
-//		{
-//			movable2 = 0;
-//		}
-//		if (movable3 == 1)
-//		{
-//			movable3 = 0;
-//		}
-//
-//	}
-//
-//	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-//	{
-//		rightCheck3 = 1;
-//		rightCheck3_2 = 1;
-//		rightCheck3_3 = 1;
-//
-//		std::cout << "rightCheck2: " << rightCheck3 << std::endl;
-//		std::cout << "RIGHT mouse button pressed" << std::endl;
-//	}
-//}
 
 void Level3::Init()
 {
@@ -320,6 +154,22 @@ void Level3::Update()
 		if (Levelsel->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 		{
 			{
+				chekNext = 0;
+
+				conecTcheck1 = false;
+				conecTcheck2 = false;
+				conecTcheck3 = false;
+
+				degree2 = 0;
+				degree2_2 = 0;
+				degree2_3 = 0;
+
+				blCheck1 = false;
+				blCheck1_2 = false;
+
+				blCheck2 = false;
+				blCheck2_2 = false;
+
 				std::cout << "check" << std::endl;
 				mPooPoo.Clear();
 				Close();
@@ -327,14 +177,6 @@ void Level3::Update()
 			}
 		}
 	}
-
-
-	if (check3 < 1)
-	{
-		check3++;
-	}
-
-
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
@@ -353,12 +195,8 @@ void Level3::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle->pipe->Update();
-
 				degree2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree2);
-				//rotTime.Update();
-				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-				//rightCheck3 = 0;
 
 				se3.Play(1);
 				se3.SetVolume(0.5f);
@@ -371,17 +209,6 @@ void Level3::Update()
 	{
 		movable[0] = false;
 	}
-	//else
-	//{
-		//movable[0] = false;
-		//moveCheck3 = 0;
-		//rightCheck3 = 0;
-//	}
-
-	//if (movable[0] == true)
-	//{
-	//	movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
-	//}
 
 	if (blCheck1)
 	{
@@ -416,7 +243,6 @@ void Level3::Update()
 		{
 			movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
 			movable[1] = true;
-			//movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
@@ -430,10 +256,6 @@ void Level3::Update()
 
 				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree2_2);
-				//rotTime.Update();
-				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-
-				//rightCheck3_2 = 0;
 
 				se3.Play(1);
 				se3.SetVolume(0.5f);
@@ -447,10 +269,6 @@ void Level3::Update()
 	{
 		movable[1] = false;
 	}
-	//if (movable[1] == true)
-	//{
-	//	movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
-	//}
 
 	if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
 	{
@@ -469,7 +287,6 @@ void Level3::Update()
 		{
 			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
 			movable[2] = true;
-			//movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
 		}
 		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
@@ -482,9 +299,6 @@ void Level3::Update()
 				movePuzzle3->pipe->Update();
 				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle3->mesh->setRotation(degree2_3);
-				//rotTime.Update();
-				//std::cout << "left rotTIme" << rotTime.getLimitTime() << " " << std::endl;
-				//rightCheck3_3 = 0;
 
 				se3.Play(1);
 				se3.SetVolume(0.5f);
@@ -663,10 +477,6 @@ void Level3::Update()
 
 		}
 	}
-	//else
-	//{
-	//	moveCheck3_4 = 0;
-	//}
 
 
 	if (optionUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
@@ -676,10 +486,7 @@ void Level3::Update()
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-	//else
-	//{
-	//	moveCheck3_5 = 0;
-	//}
+
 
 	if (quitUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
 	{
@@ -688,10 +495,7 @@ void Level3::Update()
 			glfwTerminate();
 		}
 	}
-	//else
-	//{
-	//	moveCheck3_6 = 0;
-	//}
+
 
 	se3.Update();
 
@@ -736,7 +540,7 @@ void Level3::Update()
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
 
-	if (mInput.IsPressed(KEY::SPACE) == true && chekNext == 1)
+	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST4);
 		chekNext = 0;
@@ -755,22 +559,6 @@ void Level3::Update()
 		blCheck2 = false;
 		blCheck2_2 = false;
 
-	}
-
-	if (mInput.IsPressed(KEY::A) == true)
-	{
-		degree2 = 0;
-		degree2_2 = 0;
-		degree2_3 = 0;
-
-		blCheck1 = false;
-		blCheck1_2 = false;
-
-		blCheck2 = false;
-		blCheck2_2 = false;
-
-
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

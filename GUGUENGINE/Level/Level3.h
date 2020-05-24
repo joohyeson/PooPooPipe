@@ -101,4 +101,52 @@ private:
 	bool movable[3] = { false };
 	bool move[3] = { false };
 
+	Vector2<float> cursor3;
+
+	int coorcheck = 0;
+
+	int movable1 = 0;
+	int movable2 = 0;
+	int movable3 = 0;
+	int connectMove = 0;
+
+	float degree2 = 0;
+	float degree2_2 = 0;
+	float degree2_3 = 0;
+
+	int chekNext = 0;
+
+	GLuint textureBackground3;
+
+	GLuint texureIdLine3;
+	GLuint texureIdCurve3;
+	GLuint texureIdBlack3;
+
+	GLuint texureIdStart3;
+	GLuint texureIdEnd3;
+
+	GLuint texureIdLine3_1;
+	GLuint texureIdCurve3_2;
+
+	GLuint texureIdbutton3;
+	GLuint texureIdclear3;
+	GLuint texureSpace3;
+	GLint LevelPage;
+
+	GLint texturePlayUI3;
+	GLint textureQuitUI3;
+	GLint textureOptionUI3;
+	GLint textureRestartUI3;
+
+	bool blCheck1 = false;
+	bool blCheck1_2 = false;
+
+	bool blCheck2 = false;
+	bool blCheck2_2 = false;
+
+	bool conecTcheck1 = false;
+	bool conecTcheck2 = false;
+	bool conecTcheck3 = false;
+
+
 };
