@@ -97,6 +97,8 @@ void Level9::Init()
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
 	textureRestartUI9 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f }, 120.f);
 
@@ -159,7 +161,8 @@ void Level9::Init()
 
 	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f });
 	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
-
+	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\06.png", 0);
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
@@ -167,7 +170,8 @@ void Level9::Init()
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
-
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
@@ -513,6 +517,10 @@ void Level9::Update()
 	{
 		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
 	}
+
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
