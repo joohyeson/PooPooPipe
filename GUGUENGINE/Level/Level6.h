@@ -53,6 +53,8 @@ public:
 
 		button = nullptr;
 		clear = nullptr;
+		levelImage = nullptr;
+		numberImage = nullptr;
 		key = 0;
 	}
 
@@ -70,7 +72,7 @@ private:
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;
-
+	Object* levelImage, * numberImage;
 	Object* button;
 	Object* clear;
 	MovePooPoo mPooPoo;
@@ -97,7 +99,8 @@ private:
 	Input mInput;
 	bool rot[6] = { false };
 	bool poopooCheck = false;
-
+	GLuint numberTexture;
+	GLuint levelTexture;
 	Vector2<float> cursor6;
 
 	int coorcheck6 = 0;
