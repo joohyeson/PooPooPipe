@@ -174,6 +174,35 @@ void Level8::Init()
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
+	mPooPoo.Init();
+	mPooPoo2.Init();
+
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle13->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, puzzle4->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, puzzle15->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle16->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle17->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::N_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::S_, DirAngle::NW_, puzzle10->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SE_, DirAngle::S_, puzzle7->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle9->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle20->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
+
+	mPooPoo2.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle13->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle4->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle19->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::NE_, DirAngle::N_, puzzle18->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::S_, DirAngle::SW_, puzzle2->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle1->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::N_, DirAngle::SE_, puzzle3->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::NW_, DirAngle::SE_, puzzle6->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle20->mesh->GetTransform());
+	mPooPoo2.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
+
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
@@ -476,6 +505,8 @@ void Level8::Update()
 				std::cout << "if 5" << std::endl;
 				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext8 = 1;
+				mPooPoo2.SetIsSuccess(true);
+
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 				playSE8.Play(1);
@@ -487,6 +518,8 @@ void Level8::Update()
 				std::cout << "if 5" << std::endl;
 				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext8 = 1;
+				mPooPoo.SetIsSuccess(true);
+
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 				playSE8.Play(1);
@@ -559,6 +592,17 @@ void Level8::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
+
+
+	if (mPooPoo.IsFinish() == false)
+	{
+		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
+
+	if (mPooPoo2.IsFinish() == false)
+	{
+		mPooPoo2.MoveInPuzzle(mShader2.GetShaderHandler());
+	}
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{

@@ -9,6 +9,7 @@
 #include "../GUGUENGINE//CollisionCheck.h"
 #include "../GUGUENGINE/limitedRotate.h"
 #include  "../GUGUENGINE/glfwInput.h"
+#include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
 
@@ -90,7 +91,8 @@ private:
 
 	Vector3<float> getOrigin6 = { 0, 0, 0 };
 
-
+	MovePooPoo mPooPoo;
+	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	LimitRotate rotTime;
 
