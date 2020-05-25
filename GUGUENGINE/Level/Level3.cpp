@@ -109,6 +109,9 @@ void Level3::Init()
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 
+	levelImage= OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage= OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+
 	texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -125,6 +128,9 @@ void Level3::Init()
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace3 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+
+	levelTexture= TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture= TEXTURE->CreateTexture("assets\\01.png", 0);
 	se3.Init();
 	se3.LoadSE("assets\\coin.mp3");
 
@@ -144,6 +150,8 @@ void Level3::Init()
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 
 	mPooPoo.Init();
 
@@ -162,9 +170,10 @@ void Level3::Init()
 
 void Level3::Update()
 {
-
+	
 	
 	cursor3 = mInput.Cursor;
+
 	
 	if (Levelsel->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 	{
@@ -558,6 +567,9 @@ void Level3::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3);
+
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	if (mPooPoo.IsFinish() == false)
 	{

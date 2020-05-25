@@ -60,6 +60,8 @@ public:
 
 		button = nullptr;
 		clear = nullptr;
+		levelImage = nullptr;
+		numberImage = nullptr;
 		key = 0;
 	}
 
@@ -70,6 +72,7 @@ public:
 private:
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, *spacePress;
+	Object* levelImage, * numberImage;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12;
@@ -142,6 +145,8 @@ private:
 	GLint textureQuitUI3;
 	GLint textureOptionUI3;
 	GLint textureRestartUI3;
+	GLuint numberTexture;
+	GLuint levelTexture;
 	
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;
