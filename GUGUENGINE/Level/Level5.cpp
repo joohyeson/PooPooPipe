@@ -166,7 +166,13 @@ void Level5::Init()
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
-
+	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\05.png", 0);
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, startPuzzle->mesh->GetTransform());
@@ -735,6 +741,9 @@ void Level5::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI5);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI5);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI5);
+
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	if (mPooPoo.IsFinish() == false)
 	{
