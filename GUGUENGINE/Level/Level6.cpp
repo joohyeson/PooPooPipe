@@ -39,9 +39,9 @@ void Level6::Init()
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
 
-	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->setTransform({ 713.5f, 300.f });
 	playUI->mesh->SetMeshType(rectangle);
-	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI6 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -50,15 +50,15 @@ void Level6::Init()
 
 	quitUI->mesh->setTransform({ 800.f, 150.f });
 	quitUI->mesh->SetMeshType(rectangle);
-	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI6 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
-	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->setTransform({ 713.5f, 0.f });
 	optionUI->mesh->SetMeshType(rectangle);
-	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI6 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -66,7 +66,7 @@ void Level6::Init()
 	restartUI->Init();
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
-	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);
