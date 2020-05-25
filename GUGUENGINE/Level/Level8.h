@@ -54,6 +54,8 @@ public:
 
 		button = nullptr;
 		clear = nullptr;
+		levelImage = nullptr;
+		numberImage = nullptr;
 		key = 0;
 	}
 
@@ -90,7 +92,7 @@ private:
 	Vector3<float> getOrigin5 = { 0, 0, 0 };
 
 	Vector3<float> getOrigin6 = { 0, 0, 0 };
-
+	Object* levelImage, * numberImage;
 	MovePooPoo mPooPoo;
 	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
@@ -144,6 +146,9 @@ private:
 	GLint textureQuitUI8;
 	GLint textureOptionUI8;
 	GLint textureRestartUI8;
+
+	GLuint numberTexture;
+	GLuint levelTexture;
 
 	bool conecTcheck8_1 = false;
 	bool conecTcheck8_2 = false;

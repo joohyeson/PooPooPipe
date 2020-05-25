@@ -95,6 +95,9 @@ void Level8::Init()
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+	
+	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\04.png", 0);
 
 	se8.Init();
 	se8.LoadSE("assets\\coin.mp3");
@@ -169,10 +172,15 @@ void Level8::Init()
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
+	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
+
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 
 	mPooPoo.Init();
 	mPooPoo2.Init();
@@ -592,6 +600,9 @@ void Level8::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
+
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 
 	if (mPooPoo.IsFinish() == false)
