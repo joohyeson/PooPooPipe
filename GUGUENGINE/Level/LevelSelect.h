@@ -37,14 +37,15 @@ public:
 		Level6_lock = nullptr;
 
 	}
-
+	int currentLevel;
 	void Init() override;
 	void Update() override;
 	void Close() override;
-	void KnowCurrent(int level);
+	void SetLevel();
+	
 private:
 	int getLevNum = 0;
-	int currentLevel = 0;
+
 	Object* backgroundLv;
 	Shader mShader, mShader2;
 	Object* Level1;

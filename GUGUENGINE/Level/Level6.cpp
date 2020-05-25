@@ -442,6 +442,20 @@ void Level6::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			poopooCheck = true;
+
+			
+
+		}
+	}
+	else
+	{
+		connectMove6 = 0;
+	}
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
 			if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3 && conecTcheck6_4 && conecTcheck6_5)
 			{
 				std::cout << "if 5" << std::endl;
@@ -450,15 +464,10 @@ void Level6::Update()
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 				connectMove6 = 0;
+				poopooCheck = false;
 			}
-
 		}
 	}
-	else
-	{
-		connectMove6 = 0;
-	}
-
 	if (restartUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)

@@ -635,19 +635,7 @@ void Level5::Update()
 				}
 			}
 
-			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
-			{
-				std::cout << "if 3" << std::endl;
-				clear->mesh->setTransform({ 280.f, -240.f });
-				chekNext5 = 1;
-				std::cout << "clear" << std::endl;
-				mPooPoo.SetIsSuccess(true);
-				connectMove5 = 0;
-
-				playSE5.Play(1);
-				playSE5.SetVolume(0.5f);
-				playSE5.SetLoopCount(1);
-			}
+		
 
 		}
 	}
@@ -656,6 +644,28 @@ void Level5::Update()
 		connectMove5 = 0;
 	}
 
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
+			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
+			{
+				poopooCheck = true;
+				std::cout << "if 3" << std::endl;
+				clear->mesh->setTransform({ 280.f, -240.f });
+				chekNext5 = 1;
+				std::cout << "clear" << std::endl;
+				mPooPoo.SetIsSuccess(true);
+				connectMove5 = 0;
+				
+				playSE5.Play(1);
+				playSE5.SetVolume(0.5f);
+				playSE5.SetLoopCount(1);
+				poopooCheck = false;
+
+			}
+		}
+	}
 	if (restartUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])

@@ -156,14 +156,13 @@ void Level3::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle6->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
-	current.KnowCurrent(1);
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level3::Update()
 {
-	se3.Update();
-	playSE3.Update();
+
 	
 	cursor3 = mInput.Cursor;
 	
@@ -464,6 +463,19 @@ void Level3::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			poopooCheck = true;
+		
+		}
+	}
+	else
+	{
+		connectMove = 0;
+	}
+
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -472,19 +484,14 @@ void Level3::Update()
 				std::cout << "clear" << std::endl;
 				connectMove = 0;
 				mPooPoo.SetIsSuccess(true);
-
 				playSE3.Play(1);
 				playSE3.SetVolume(0.5f);
 				playSE3.SetLoopCount(1);
-
+				poopooCheck = false;
 			}
 		}
 	}
-	else
-	{
-		connectMove = 0;
-	}
-
+	
 	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -514,7 +521,8 @@ void Level3::Update()
 
 
 	se3.Update();
-
+	playSE3.Update();
+	
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
@@ -581,6 +589,7 @@ void Level3::Update()
 		glfwTerminate();
 	}
 
+	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

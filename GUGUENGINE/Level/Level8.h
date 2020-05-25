@@ -98,6 +98,7 @@ private:
 	Input mInput;
 
 	bool rot[7] = { false };
+	bool poopooCheck = false;
 
 	bool rotrot2 = true;
 	int coorcheck8 = 0;

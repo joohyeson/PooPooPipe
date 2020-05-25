@@ -458,6 +458,19 @@ void Level8::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			poopooCheck = true;
+
+		}
+	}
+	else
+	{
+		connectMove8 = 0;
+	}
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
+
 			if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_6 && conecTcheck8_7)
 			{
 				std::cout << "if 5" << std::endl;
@@ -480,13 +493,9 @@ void Level8::Update()
 				playSE8.SetVolume(0.5f);
 				playSE8.SetLoopCount(1);
 			}
+			poopooCheck = false;
 		}
 	}
-	else
-	{
-		connectMove8 = 0;
-	}
-
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)

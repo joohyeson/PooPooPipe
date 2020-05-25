@@ -38,7 +38,7 @@ GLuint texureIdLv6_pressed;
 Sound seLv;
 
 void LevelSelect::Init()
-{
+{	
 	std::cout << "come in LevelSelect" << std::endl;
 	backgroundLv = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	backgroundLv->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -287,9 +287,4 @@ void LevelSelect::Close()
 		STATE_MANAGER->ChangeLevel(LV_TEST9);
 		break;
 	}
-}
-
-void LevelSelect::KnowCurrent(int level)
-{
-	currentLevel = level;
 }

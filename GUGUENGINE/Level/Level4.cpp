@@ -420,6 +420,18 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			poopooCheck = true;
+			
+		}
+	}
+	else
+	{
+		connectMove4 = 0;
+	}
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
 				clear->mesh->setTransform({ 280.f, -240.f });
@@ -430,14 +442,10 @@ void Level4::Update()
 				playSE4.Play(1);
 				playSE4.SetVolume(0.5f);
 				playSE4.SetLoopCount(1);
+				poopooCheck = false;
 			}
 		}
 	}
-	else
-	{
-		connectMove4 = 0;
-	}
-
 	if (restartUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])

@@ -103,6 +103,8 @@ private:
 	bool movable[3] = { false };
 	bool move[3] = { false };
 
+	bool poopooCheck = false;
+	
 	Vector2<float> cursor3;
 
 	int coorcheck = 0;
@@ -111,7 +113,7 @@ private:
 	int movable2 = 0;
 	int movable3 = 0;
 	int connectMove = 0;
-
+	
 	float degree2 = 0;
 	float degree2_2 = 0;
 	float degree2_3 = 0;

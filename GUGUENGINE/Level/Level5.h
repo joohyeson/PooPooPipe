@@ -88,6 +88,8 @@ private:
 	bool rot[3] = { false };
 	bool movable[3] = { false };
 	bool move[3] = { false };
+	bool poopooCheck = false;
+	
 	Vector2<float> cursor5;
 
 	int coorcheck5 = 0;

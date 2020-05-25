@@ -96,6 +96,7 @@ private:
 	LimitRotate rotTime;
 	Input mInput;
 	bool rot[6] = { false };
+	bool poopooCheck = false;
 
 	Vector2<float> cursor6;
 

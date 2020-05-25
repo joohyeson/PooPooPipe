@@ -89,6 +89,8 @@ private:
 	Input mInput;
 
 	bool rot[7] = { false };
+	bool poopooCheck = false;
+
 	Vector2<float> cursor9;
 
 	int coorcheck9 = 0;

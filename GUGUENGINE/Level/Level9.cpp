@@ -390,7 +390,20 @@ void Level9::Update()
 
 	if (playUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, playUI->mesh))
 	{
+		
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			poopooCheck = true;
+		}
+	}
+	else
+	{
+		connectMove9 = 0;
+	}
+	if(poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
 			if (autoRot)
 			{
@@ -427,12 +440,8 @@ void Level9::Update()
 
 			}
 		}
+		
 	}
-	else
-	{
-		connectMove9 = 0;
-	}
-
 	if (restartUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
