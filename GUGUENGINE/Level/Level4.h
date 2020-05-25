@@ -54,6 +54,8 @@ public:
 
 		button = nullptr;
 		clear = nullptr;
+		levelImage = nullptr;
+		numberImage = nullptr;
 		key = 0;
 	}
 
@@ -64,7 +66,8 @@ public:
 private:
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;
-
+	Object* levelImage, * numberImage;
+	
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
 	Object* puzzle6, * puzzle7, * puzzle8, * puzzle9, * puzzle10;
 
@@ -127,7 +130,10 @@ private:
 	GLint textureQuitUI4;
 	GLint textureOptionUI4;
 	GLint textureRestartUI4;
-
+	
+	GLuint numberTexture;
+	GLuint levelTexture;
+	
 	bool conecTcheck4_1 = false;
 	bool conecTcheck4_2 = false;
 	bool conecTcheck4_3 = false;

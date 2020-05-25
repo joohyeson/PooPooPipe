@@ -110,6 +110,9 @@ void Level4::Init()
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -80.0f, -450 });
 
+	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+	
 	texureIdLine4 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack4 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve4 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -123,6 +126,10 @@ void Level4::Init()
 	texureIdbutton4 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear4 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace4 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+
+	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\02.png", 0);
+	
 	se4.Init();
 	se4.LoadSE("assets\\coin.mp3");
 
@@ -140,7 +147,6 @@ void Level4::Init()
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
 	puzzle10->pipe->SetDirection(true, false, true, false, false, false);
 
-
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
@@ -155,7 +161,8 @@ void Level4::Init()
 	button->mesh->InitializeTextureMesh(80.f, 80.f);
 	clear->mesh->InitializeTextureMesh(80.f, 80.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
-
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
@@ -510,7 +517,9 @@ void Level4::Update()
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI4);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI4);
 
-
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+	
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
