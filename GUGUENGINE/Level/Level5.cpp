@@ -619,6 +619,20 @@ void Level5::Update()
 		{
 			poopooCheck = true;
 
+			
+
+			
+		}		
+	}
+	else
+	{
+		connectMove5 = 0;
+	}
+	
+	if (poopooCheck == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
 			if (movePuzzleCheck5)
 			{
 				puzzle7->pipe->Update();
@@ -637,19 +651,7 @@ void Level5::Update()
 					//STATE_MANAGER->ReloadState();
 				}
 			}
-
 			
-		}
-	}
-	else
-	{
-		connectMove5 = 0;
-	}
-
-	if(poopooCheck == true)
-	{
-		if (mInput.IsPressed(KEY::LEFT) == false)
-		{
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
 				std::cout << "if 3" << std::endl;
