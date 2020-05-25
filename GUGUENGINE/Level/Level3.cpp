@@ -51,9 +51,9 @@ void Level3::Init()
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
 
-	playUI->mesh->setTransform({ 800.f, 300.f });
+	playUI->mesh->setTransform({ 713.5f, 300.f });
 	playUI->mesh->SetMeshType(rectangle);
-	playUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -62,15 +62,15 @@ void Level3::Init()
 
 	quitUI->mesh->setTransform({ 800.f, 150.f });
 	quitUI->mesh->SetMeshType(rectangle);
-	quitUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
-	optionUI->mesh->setTransform({ 800.f, 0.f });
+	optionUI->mesh->setTransform({ 713.5f, 0.f });
 	optionUI->mesh->SetMeshType(rectangle);
-	optionUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -78,7 +78,7 @@ void Level3::Init()
 	restartUI->Init();
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
-	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
@@ -101,7 +101,7 @@ void Level3::Init()
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -240.f);
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
 
-	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 800.f, -300.f }, 180.f);
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 	
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
