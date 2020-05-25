@@ -14,6 +14,8 @@ Sound playSE9;
 
 void Level9::Init()
 {
+	autoRot = true;
+
 	chekNext9 = 0;
 
 	conecTcheck9_1 = false;

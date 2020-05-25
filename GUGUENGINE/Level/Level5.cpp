@@ -35,7 +35,9 @@ void Level5::Init()
 	blCheck7 = false;
 	blCheck7_2 = false;
 	blCheck7_3 = false;
-	
+
+	movePuzzleCheck5 = true;
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background.png", 0);
@@ -612,60 +614,62 @@ void Level5::Update()
 	if (playUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, playUI->mesh))
 	{
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
+
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-			if (movePuzzleCheck5)
-			{
-				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
-				{
-					puzzle7->pipe->Update();
-					puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
-					puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+			poopooCheck = true;
 
-					movePuzzleCheck5 = false;
-					se5.Play(1);
-					se5.SetVolume(0.5f);
-					se5.SetLoopCount(1);
+			
 
-					if (!conecTcheck5_1 || !conecTcheck5_2 || !conecTcheck5_3)
-					{
-						std::cout << "fail" << std::endl;
-						STATE_MANAGER->ReloadState();
-					}
-				}
-			}
-
-		
-
-		}
+			
+		}		
 	}
 	else
 	{
 		connectMove5 = 0;
 	}
-
-	if(poopooCheck == true)
+	
+	if (poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
+			if (movePuzzleCheck5)
+			{
+				puzzle7->pipe->Update();
+				puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
+				puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+
+				se5.Play(1);
+				se5.SetVolume(0.5f);
+				se5.SetLoopCount(1);
+
+				movePuzzleCheck5 = false;
+
+				if (!conecTcheck5_1 || !conecTcheck5_2 || !conecTcheck5_3)
+				{
+					std::cout << "fail" << std::endl;
+					//STATE_MANAGER->ReloadState();
+				}
+			}
+			
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
-				poopooCheck = true;
 				std::cout << "if 3" << std::endl;
 				clear->mesh->setTransform({ 280.f, -240.f });
 				chekNext5 = 1;
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 				connectMove5 = 0;
-				
+
 				playSE5.Play(1);
 				playSE5.SetVolume(0.5f);
 				playSE5.SetLoopCount(1);
-				poopooCheck = false;
 
+				poopooCheck = false;
 			}
 		}
 	}
+	
 	if (restartUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -762,11 +766,11 @@ void Level5::Update()
 
 		STATE_MANAGER->ChangeLevel(LV_TEST9);
 	}
-	
+
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
 		glfwTerminate();
 	}
-	
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
