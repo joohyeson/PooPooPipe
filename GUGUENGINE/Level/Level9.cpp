@@ -539,7 +539,7 @@ void Level9::Update()
 		degree9_7 = DegreeToRadian(120.f);
 		degree9_rot = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST10);
 
 	}
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
