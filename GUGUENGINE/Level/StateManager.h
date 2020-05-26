@@ -43,6 +43,8 @@ public:
 	void ReloadState();
 	//change level
 	void ChangeLevel(GameLevels changeLV);
+	void setCurrentLV(int i);
+	int GetCurrentLV();
 private:
 	enum class State {
 		START,
@@ -59,6 +61,6 @@ private:
 	State state;
 	LevelManager* currGameState;
 	LevelManager* nextGameState;
-
+	int currentLV;
 };
 extern StateManager* STATE_MANAGER;

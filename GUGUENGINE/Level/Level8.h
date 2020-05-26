@@ -50,7 +50,8 @@ public:
 		quitUI = nullptr;
 		optionUI = nullptr;
 		restartUI = nullptr;
-
+		Levelsel = nullptr;
+		Levelsel_pressed = nullptr;
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -72,6 +73,7 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;
 	Object* clear;
@@ -136,7 +138,8 @@ private:
 	GLuint texureIdLine8_2;
 	GLuint texureIdCurve8_2;
 	GLuint texureIdV8_2;
-
+	GLint LevelPage;
+	GLint LevelPage_pressed;
 	GLuint texureIdbutton8;
 	GLuint texureIdclear8;
 	GLuint texureSpace8;

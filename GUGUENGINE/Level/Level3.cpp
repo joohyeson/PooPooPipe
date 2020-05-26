@@ -22,6 +22,7 @@ Sound playSE3;
 
 void Level3::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
 	chekNext = 0;
 
 	conecTcheck1 = false;
@@ -171,7 +172,8 @@ void Level3::Init()
 void Level3::Update()
 {
 	
-	
+	STATE_MANAGER->setCurrentLV(1);
+
 	cursor3 = mInput.Cursor;
 
 	

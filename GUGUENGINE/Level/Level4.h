@@ -51,7 +51,10 @@ public:
 		quitUI = nullptr;
 		optionUI = nullptr;
 		restartUI = nullptr;
-
+		
+		Levelsel = nullptr;
+		Levelsel_pressed = nullptr;
+		
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -74,6 +77,7 @@ private:
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;
 	Object* clear;
@@ -125,7 +129,8 @@ private:
 	GLuint texureIdbutton4;
 	GLuint texureIdclear4;
 	GLuint texureSpace4;
-
+	GLint LevelPage;
+	GLint LevelPage_pressed;
 	GLint texturePlayUI4;
 	GLint textureQuitUI4;
 	GLint textureOptionUI4;

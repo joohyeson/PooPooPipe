@@ -14,6 +14,7 @@ Sound playSE8;
 
 void Level8::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
 	rotTime.setRotate(30);
 
 	chekNext8 = 0;
@@ -77,6 +78,8 @@ void Level8::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	texureIdLine8 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack8 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -90,6 +93,8 @@ void Level8::Init()
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
 
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
@@ -216,10 +221,48 @@ void Level8::Init()
 
 void Level8::Update()
 {
+	STATE_MANAGER->setCurrentLV(4);
+
 	se8.Update();
 	playSE8.Update();
 
 	cursor8 = mInput.Cursor;
+
+	if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			chekNext8 = 0;
+
+			conecTcheck8_1 = false;
+			conecTcheck8_2 = false;
+			conecTcheck8_3 = false;
+			conecTcheck8_4 = false;
+			conecTcheck8_5 = false;
+			conecTcheck8_6 = false;
+			conecTcheck8_7 = false;
+			conecTcheck8_8 = false;
+			conecTcheck8_9 = false;
+
+			degree8 = 0;
+			degree8_2 = 0;
+			degree8_3 = 0;
+			degree8_4 = 0;
+			degree8_5 = 0;
+			degree8_6 = 0;
+			degree8_7 = 0;
+			
+			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
+			Close();
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -591,7 +634,8 @@ void Level8::Update()
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart8);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd8);
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace8);

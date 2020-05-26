@@ -113,3 +113,13 @@ void StateManager::ChangeLevel(GameLevels changeLV)
 {
 	nextGameState = levels[changeLV];
 }
+
+void StateManager::setCurrentLV(int i)
+{
+	currentLV = i;
+}
+
+int StateManager::GetCurrentLV()
+{
+	return currentLV;
+}

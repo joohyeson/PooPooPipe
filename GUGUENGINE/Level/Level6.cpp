@@ -14,6 +14,8 @@ Sound playSE6;
 
 void Level6::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
+
 	chekNext6 = 0;
 
 	conecTcheck6_1 = false;
@@ -103,6 +105,8 @@ void Level6::Init()
 
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f }, -180.f);
 	endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -60.f);
 
@@ -157,6 +161,9 @@ void Level6::Init()
 	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f },180.f);
 	blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
 
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
+
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
@@ -190,6 +197,7 @@ void Level6::Init()
 void Level6::Update()
 {
 	cursor6 = mInput.Cursor;
+	STATE_MANAGER->setCurrentLV(3);
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -202,6 +210,38 @@ void Level6::Update()
 	se6.Update();
 	playSE6.Update();
 
+	if (Levelsel->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true )
+		{
+			chekNext6 = 0;
+
+			conecTcheck6_1 = false;
+			conecTcheck6_2 = false;
+			conecTcheck6_3 = false;
+			conecTcheck6_4 = false;
+			conecTcheck6_5 = false;
+
+			degree6 = DegreeToRadian(60.f);
+			degree6_2 = DegreeToRadian(-60.f);
+			degree6_3 = DegreeToRadian(120.f);
+			degree6_4 = DegreeToRadian(180.f);
+			degree6_5 = DegreeToRadian(-180.f);
+			degree6_6 = DegreeToRadian(-120.f);
+
+			rotTime.setRotate(100);
+
+			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
+			Close();
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
 	if (rotrot)
 	{
 		if (puzzle14->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, puzzle14->mesh))
@@ -536,7 +576,8 @@ void Level6::Update()
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear6);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace6);
 
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI6);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI6);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
