@@ -31,7 +31,7 @@ void Level6::Init()
 	degree6_5 = DegreeToRadian(-180.f);
 	degree6_6 = DegreeToRadian(-120.f);
 	
-	rotTime.setRotate(100);
+	rotTime.setRotate(30);
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -87,7 +87,25 @@ void Level6::Init()
 	texureIdbutton6 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear6 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace6 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
-	
+	textureLeft = TEXTURE->CreateTexture("assets\\left_turn.png", 0);
+
+	textureLeftNumber0 = TEXTURE->CreateTexture("assets\\00.png", 0);
+	textureLeftNumber1 = TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureLeftNumber2 = TEXTURE->CreateTexture("assets\\02.png", 0);
+	textureLeftNumber3 = TEXTURE->CreateTexture("assets\\03.png", 0);
+	textureLeftNumber4 = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeftNumber5 = TEXTURE->CreateTexture("assets\\05.png", 0);
+	textureLeftNumber6 = TEXTURE->CreateTexture("assets\\06.png", 0);
+	textureLeftNumber7 = TEXTURE->CreateTexture("assets\\07.png", 0);
+	textureLeftNumber8 = TEXTURE->CreateTexture("assets\\8.png", 0);
+	textureLeftNumber9 = TEXTURE->CreateTexture("assets\\9.png", 0);
+
+	textureLeftNumberTen0 = TEXTURE->CreateTexture("assets\\00.png", 0);
+	textureLeftNumberTen1 = TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureLeftNumberTen2 = TEXTURE->CreateTexture("assets\\02.png", 0);
+	textureLeftNumberTen3 = TEXTURE->CreateTexture("assets\\03.png", 0);
+	textureLeftNumberTen4 = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeftNumberTen5 = TEXTURE->CreateTexture("assets\\05.png", 0);
 
 	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
 	pooCharacter->AddComponent(new Mesh());
@@ -106,6 +124,15 @@ void Level6::Init()
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+
+	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 250, 450.f - 20.f });
+	leftCount->mesh->InitializeTextureMesh(200.f, 100.f);
+
+	leftnumber = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 430, 450.f - 20.f });
+	leftnumber->mesh->InitializeTextureMesh(80.f, 100.f);
+
+	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 380, 450.f - 20.f });
+	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
 	mShader2.BuildTextureShader();
 
@@ -183,6 +210,7 @@ void Level6::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
+
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
@@ -211,10 +239,11 @@ void Level6::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot = false;
-		STATE_MANAGER->ReloadState();
 		std::cout << "rotation limit!!!" << std::endl;
 
 	}
+
+
 
 	se6.Update();
 	playSE6.Update();
@@ -527,7 +556,7 @@ void Level6::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST6);
+			STATE_MANAGER->ReloadState();
 
 		}
 	}
@@ -598,6 +627,65 @@ void Level6::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 
+	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+	//leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
+	//leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
+
+	switch (rotTime.getLimitTime() / 10)
+	{
+	case 0:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen0);
+		break;
+	case 1:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen1);
+		break;
+	case 2:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen2);
+		break;
+	case 3:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
+		break;
+	case 4:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen4);
+		break;
+	case 5:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen5);
+		break;
+	}
+
+	switch (rotTime.getLimitTime() % 10)
+	{
+	case 0:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
+		break;
+	case 1:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber1);
+		break;
+	case 2:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber2);
+		break;
+	case 3:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber3);
+		break;
+	case 4:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber4);
+		break;
+	case 5:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber5);
+		break;
+	case 6:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber6);
+		break;
+	case 7:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber7);
+		break;
+	case 8:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber8);
+		break;
+	case 9:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
+		break;
+	}
 
 	if (mPooPoo.IsFinish() == false)
 	{

@@ -58,6 +58,11 @@ public:
 		levelImage = nullptr;
 		numberImage = nullptr;
 		pooCharacter = nullptr;
+
+		leftCount = nullptr;
+		leftnumberTen = nullptr;
+		leftnumber = nullptr;
+
 		key = 0;
 	}
 
@@ -83,19 +88,7 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-
-	Vector3<float> getOrigin1 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin3 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin4 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin5 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin6 = { 0, 0, 0 };
-	Object* levelImage, * numberImage;
+	Object* levelImage, * numberImage, * leftCount, * leftnumberTen, * leftnumber;
 	MovePooPoo mPooPoo;
 	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
@@ -152,6 +145,25 @@ private:
 	GLint textureQuitUI8;
 	GLint textureOptionUI8;
 	GLint textureRestartUI8;
+
+	GLint textureLeft;
+	GLint textureLeftNumberTen0;
+	GLint textureLeftNumberTen1;
+	GLint textureLeftNumberTen2;
+	GLint textureLeftNumberTen3;
+	GLint textureLeftNumberTen4;
+	GLint textureLeftNumberTen5;
+
+	GLint textureLeftNumber0;
+	GLint textureLeftNumber1;
+	GLint textureLeftNumber2;
+	GLint textureLeftNumber3;
+	GLint textureLeftNumber4;
+	GLint textureLeftNumber5;
+	GLint textureLeftNumber6;
+	GLint textureLeftNumber7;
+	GLint textureLeftNumber8;
+	GLint textureLeftNumber9;
 
 	GLuint numberTexture;
 	GLuint levelTexture;
