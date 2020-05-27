@@ -9,7 +9,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::SPACE] = true;
 		}
-		else if(key == GLFW_KEY_SPACE && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::SPACE] = false;
 		}
@@ -18,7 +18,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::A] = true;
 		}
-		else if (key == GLFW_KEY_A && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::A] = false;
 		}
@@ -27,7 +27,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::ESCAPE] = true;
 		}
-		else if (key == GLFW_KEY_ESCAPE && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::ESCAPE] = false;
 		}
@@ -36,7 +36,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::TAB] = true;
 		}
-		else if (key == GLFW_KEY_TAB && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::TAB] = false;
 		}
@@ -55,7 +55,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::LEFT] = true;
 		}
-		else if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::LEFT] = false;
 		}
@@ -64,7 +64,7 @@ Input* INPUT = nullptr;
 		{		
 			INPUT->Key[KEY::RIGHT] = true;
 		}
-		else if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_RELEASE)
+		else
 		{
 			INPUT->Key[KEY::RIGHT] = false;
 		}
