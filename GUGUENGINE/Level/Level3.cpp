@@ -582,7 +582,8 @@ void Level3::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
+		INPUT->setInput(KEY::SPACE);
+		
 		chekNext = 0;
 
 		conecTcheck1 = false;
@@ -598,6 +599,7 @@ void Level3::Update()
 
 		blCheck2 = false;
 		blCheck2_2 = false;
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

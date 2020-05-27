@@ -356,7 +356,7 @@ void LevelSelect::Close()
 	STATE_MANAGER->setCurrentLV(0);
 	mShader.Delete();
 	//ENGINE->Quit();
-	//OBJECT_FACTORY->DestroyAllObjects();
+	OBJECT_FACTORY->DestroyAllObjects();
 
 	
 }

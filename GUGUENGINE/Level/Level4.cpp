@@ -565,7 +565,8 @@ void Level4::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST6);
+		INPUT->setInput(KEY::SPACE);
+		
 		chekNext4 = 0;
 
 		conecTcheck4_1 = false;
@@ -581,6 +582,7 @@ void Level4::Update()
 
 		blCheck4 = false;
 		blCheck4_2 = false;
+		STATE_MANAGER->ChangeLevel(LV_TEST6);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

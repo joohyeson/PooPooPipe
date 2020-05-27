@@ -9,7 +9,7 @@ Input* INPUT = nullptr;
 		{
 			INPUT->Key[KEY::SPACE] = true;
 		}
-		else
+		else if (action != GLFW_PRESS)
 		{
 			INPUT->Key[KEY::SPACE] = false;
 		}
@@ -107,6 +107,11 @@ void Input::Update()
 bool Input::IsKeyDown(KEY k)
 {
 	return Key[k];
+}
+
+void Input::setInput(KEY k)
+{
+	Key[k] = false;
 }
 
 
