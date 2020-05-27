@@ -115,6 +115,7 @@ void Level3::Init()
 	
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 800.0f });
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 
@@ -140,6 +141,9 @@ void Level3::Init()
 
 	levelTexture= TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture= TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+
+
 	se3.Init();
 	se3.LoadSE("assets\\coin.mp3");
 
@@ -161,6 +165,7 @@ void Level3::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	fail->mesh->InitializeTextureMesh(500.f, 500.f);
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
@@ -502,14 +507,29 @@ void Level3::Update()
 				playSE3.SetLoopCount(1);
 				poopooCheck = false;
 			}
+			else {
+				fail->mesh->setTransform({ -400.f,250.f });
+				poopooCheck = false;
+			}
+		}
+
+	}
+
+	if (fail->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			fail->mesh->setTransform({ 800.f,880.f });
+			STATE_MANAGER->ReloadState();
+
 		}
 	}
-	
+
 	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST3);
+			STATE_MANAGER->ReloadState();
 
 		}
 	}
@@ -580,6 +600,7 @@ void Level3::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
 	{

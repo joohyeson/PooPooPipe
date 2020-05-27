@@ -63,6 +63,8 @@ public:
 		levelImage = nullptr;
 		numberImage = nullptr;
 		pooCharacter = nullptr;
+		fail = nullptr;
+
 		key = 0;
 	}
 
@@ -84,23 +86,13 @@ private:
 	Object* pooCharacter;
 	Object* button;
 	Object* clear;
+	Object* fail;
+
 	MovePooPoo mPooPoo;
 	Object* Levelsel, *Levelsel_pressed;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-
-	Vector3<float> getOrigin1_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin1_2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin2_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin2_2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin3_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin3_2 = { 0, 0, 0 };
-
-	Vector3<float> buttonClick_1 = { 0, 0, 0 };
-
 	LimitRotate rotTime;
 	Input mInput;
 	bool rot[3] = { false };
@@ -148,7 +140,8 @@ private:
 	GLint textureRestartUI3;
 	GLuint numberTexture;
 	GLuint levelTexture;
-	
+	GLint textureFail;
+
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;
 
