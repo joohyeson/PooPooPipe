@@ -43,7 +43,7 @@ void Level4::Init()
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -500,6 +500,8 @@ void Level4::Update()
 			else
 			{
 				fail->mesh->setTransform({ 0.f, 0.f});
+				poopooCheck = false;
+
 			}
 		}
 	}
