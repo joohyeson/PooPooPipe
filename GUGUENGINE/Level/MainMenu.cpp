@@ -256,6 +256,9 @@ void MainMenu::Update()
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
+	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), startPress);
+	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), tutorialPress);
+	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), optionPress);
 
 	//getDirectionPooPoo.Update(mShader.GetShaderHandler());
 
