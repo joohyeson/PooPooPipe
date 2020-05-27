@@ -28,7 +28,9 @@ GLuint textureId03; //tutorial
 GLuint textureId05;//test
 GLuint textureId04;	//option button
 GLuint textureId06;//man
-
+GLuint startPress;
+GLuint tutorialPress;
+GLuint optionPress;
 
 Sound bgm;
 
@@ -39,7 +41,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 		bgm.Stop();
 		std::cout << "Stop music" << std::endl;
 	}
-	
+
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
@@ -74,7 +76,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
-	cursor0 = { static_cast<float>(xpos) -APPLICATION->width/2 ,  -(static_cast<float>(ypos)-APPLICATION->height/2)};
+	cursor0 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
 
 }
 void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
@@ -107,13 +109,18 @@ void MainMenu::Init()
 	background->Init();
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(rectangle);
-	background->mesh->InitializeTextureMesh(1920,1080.f);
+	background->mesh->InitializeTextureMesh(1920, 1080.f);
 
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
-	
+
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton = OBJECT_FACTORY->CreateEmptyObject();
+
+	startButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+	tutorialButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+	optionButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+
 	test = OBJECT_FACTORY->CreateEmptyObject();
 	test2 = OBJECT_FACTORY->CreateEmptyObject();
 
@@ -122,31 +129,49 @@ void MainMenu::Init()
 	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
 	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
 	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
-	textureId06= TEXTURE->CreateTexture("assets\\man.png", 0);
+	textureId06 = TEXTURE->CreateTexture("assets\\man.png", 0);
+	startPress = TEXTURE->CreateTexture("assets\\start2.png", 0);
+	tutorialPress = TEXTURE->CreateTexture("assets\\tutorial2.png", 0);
+	optionPress = TEXTURE->CreateTexture("assets\\option2.png", 0);
 
 	mShader.BuildTextureShader();
 	//testNDCShader.BuildTextureShaderNDC();
 	startButton->AddComponent(new Mesh());
 	startButton->AddComponent(new CollisionCheck());
 	startButton->Init();
+	startButton_pressed->AddComponent(new Mesh());
+	startButton_pressed->AddComponent(new CollisionCheck());
+	startButton_pressed->Init();
 
 	startButton->mesh->setTransform({ 0.f,-20.f });
 	startButton->mesh->SetMeshType(rectangle);
 	startButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	startButton_pressed->mesh->setTransform({ 1000.f,-20.f });
+	startButton_pressed->mesh->SetMeshType(rectangle);
+	startButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	tutorialButton->AddComponent(new Mesh());
 	tutorialButton->Init();
+	tutorialButton_pressed->AddComponent(new Mesh());
+	tutorialButton_pressed->Init();
 
 	tutorialButton->mesh->setTransform({ 0.0f,-100.f });
 	tutorialButton->mesh->SetMeshType(rectangle);
 	tutorialButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	tutorialButton_pressed->mesh->setTransform({ 1000.0f,-100.f });
+	tutorialButton_pressed->mesh->SetMeshType(rectangle);
+	tutorialButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	optionButton->AddComponent(new Mesh());
 	optionButton->Init();
-	
+	optionButton_pressed->AddComponent(new Mesh());
+	optionButton_pressed->Init();
 	optionButton->mesh->setTransform({ 0.0f,-180.f });
 	optionButton->mesh->SetMeshType(rectangle);
 	optionButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	optionButton_pressed->mesh->setTransform({ 0.0f,-180.f });
+	optionButton_pressed->mesh->SetMeshType(rectangle);
+	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	/*test->AddComponent(new Mesh());
 	test->Init();
@@ -155,13 +180,13 @@ void MainMenu::Init()
 	test->mesh->SetMeshType(rectangle);
 	test->mesh->InitializeTextureMesh(160.f, 160.f);
 */
-	/*test2->AddComponent(new Mesh());
-	test2->Init();
-		  
-	test2->mesh->setTransform({ -0.7f, -0.7f });
-	test2->mesh->SetMeshType(rectangle);
-	test2->mesh->InitializeTextureMesh(2.f, 2.f);*/
-	
+/*test2->AddComponent(new Mesh());
+test2->Init();
+
+test2->mesh->setTransform({ -0.7f, -0.7f });
+test2->mesh->SetMeshType(rectangle);
+test2->mesh->InitializeTextureMesh(2.f, 2.f);*/
+
 	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
 	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
 	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), menuMouseButtonCallback);
@@ -171,14 +196,15 @@ void MainMenu::Update()
 {
 	bgm.Update();
 
-	if (moveCheck0 %2== 1)
+	if (moveCheck0 % 2 == 1)
 	{
-		std::cout << cursor0.x<<", "<<cursor0.y << std::endl;
+		std::cout << cursor0.x << ", " << cursor0.y << std::endl;
 		//getDirectionPooPoo.SetIsSuccess(true);
 	}
 
 	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
 	{
+		startButton_pressed->mesh->setTransform(startButton->mesh->GetTransform());
 		if (moveCheck0 % 2 == 1)
 		{
 			std::cout << "to test" << std::endl;
@@ -188,12 +214,14 @@ void MainMenu::Update()
 	}
 	else
 	{
+		startButton_pressed->mesh->setTransform({1000.f, 1000.f});
 		moveCheck0 = 0;
 	}
-	
+
 
 	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh))
 	{
+		tutorialButton_pressed->mesh->setTransform(tutorialButton->mesh->GetTransform());
 		if (moveCheck0_2 % 2 == 1)
 		{
 			std::cout << "to level1" << std::endl;
@@ -203,11 +231,14 @@ void MainMenu::Update()
 	}
 	else
 	{
+		tutorialButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 		moveCheck0_2 = 0;
 	}
 
 	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh))
 	{
+		optionButton_pressed->mesh->setTransform(optionButton->mesh->GetTransform());
+
 		if (moveCheck0_3 % 2 == 1)
 		{
 			STATE_MANAGER->ChangeLevel(OPTION);
@@ -217,6 +248,7 @@ void MainMenu::Update()
 	}
 	else
 	{
+		optionButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 		moveCheck0_3 = 0;
 	}
 
@@ -224,6 +256,9 @@ void MainMenu::Update()
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
+	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), startPress);
+	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), tutorialPress);
+	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), optionPress);
 
 	//getDirectionPooPoo.Update(mShader.GetShaderHandler());
 
