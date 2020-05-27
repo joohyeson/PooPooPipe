@@ -110,6 +110,7 @@ void Level8::Init()
 	
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeft = TEXTURE->CreateTexture("assets\\left_turn.png", 0);
 
 	textureLeftNumber0 = TEXTURE->CreateTexture("assets\\00.png", 0);
 	textureLeftNumber1 = TEXTURE->CreateTexture("assets\\01.png", 0);
