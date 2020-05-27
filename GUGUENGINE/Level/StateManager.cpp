@@ -40,7 +40,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = LV_TEST11;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
