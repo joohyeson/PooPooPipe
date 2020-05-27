@@ -603,7 +603,7 @@ void Level10::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST10);
+			STATE_MANAGER->ReloadState();
 
 		}
 	}
@@ -679,31 +679,8 @@ void Level10::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
-		chekNext8 = 0;
 
-		conecTcheck8_1 = false;
-		conecTcheck8_2 = false;
-		conecTcheck8_3 = false;
-		conecTcheck8_4 = false;
-		conecTcheck8_5 = false;
-		conecTcheck8_6 = false;
-		conecTcheck8_7 = false;
-		conecTcheck8_8 = false;
-		conecTcheck8_9 = false;
-
-		degree8 = 0;
-		degree8_2 = DegreeToRadian(60.f);
-		degree8_3 = DegreeToRadian(180.f);
-		degree8_4 = 0;
-		degree8_5 = 0;
-		degree8_6 = 0;;
-		degree8_7 = DegreeToRadian(-240.f);
-		degree8_8 = 0;
-		degree8_9 = DegreeToRadian(180.f);
-
-		rotTime.setRotate(30);
-
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
