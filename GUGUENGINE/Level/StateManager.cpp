@@ -22,6 +22,7 @@
 #include "Level8.h"
 #include "Level9.h"
 #include "Level10.h"
+#include "Level11.h"
 #include "LevelSelect.h"
 #include "MovingCheck.h"
 
@@ -55,6 +56,7 @@ void StateManager::Init()
 	levels.push_back(new Level8());
 	levels.push_back(new Level9());
 	levels.push_back(new Level10());
+	levels.push_back(new Level11());
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());

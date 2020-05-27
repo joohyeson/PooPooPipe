@@ -67,6 +67,9 @@
     <Filter Include="Source Files\Level\Stage\Level10">
       <UniqueIdentifier>{bd9a7726-da64-4ebc-9020-5c12ff2f4ad2}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Level\Stage\Level11">
+      <UniqueIdentifier>{2589b33d-c4b2-4867-b439-4ea40c3a5c18}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp">
@@ -123,6 +126,9 @@
     <ClCompile Include="Level10.cpp">
       <Filter>Source Files\Level\Stage\Level10</Filter>
     </ClCompile>
+    <ClCompile Include="Level11.cpp">
+      <Filter>Source Files\Level\Stage\Level11</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level1.h">
@@ -175,6 +181,9 @@
     </ClInclude>
     <ClInclude Include="Level10.h">
       <Filter>Source Files\Level\Stage\Level10</Filter>
+    </ClInclude>
+    <ClInclude Include="Level11.h">
+      <Filter>Source Files\Level\Stage\Level11</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
