@@ -36,6 +36,14 @@ public:
 		Level6_pressed = nullptr;
 		Level6_lock = nullptr;
 
+		Level7 = nullptr;
+		Level7_pressed = nullptr;
+		Level7_lock = nullptr;
+
+		Level8 = nullptr;
+		Level8_pressed = nullptr;
+		Level8_lock = nullptr;
+
 	}
 	int currentLevel;
 	void Init() override;
@@ -71,5 +79,13 @@ private:
 	Object* Level6_pressed;
 	Object* Level6_lock;
 
+	Object* Level7;
+	Object* Level7_pressed;
+	Object* Level7_lock;
+	
+	Object* Level8;
+	Object* Level8_pressed;
+	Object* Level8_lock;
+	
 	Input levelInput;
 };
