@@ -235,8 +235,6 @@ void Level9::Update()
 			degree9_rot = DegreeToRadian(-120.f);
 
 			std::cout << "check" << std::endl;
-			mPooPoo.Clear();
-			Close();
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}

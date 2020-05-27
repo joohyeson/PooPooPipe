@@ -205,8 +205,6 @@ void Level3::Update()
 				blCheck2_2 = false;
 
 				std::cout << "check" << std::endl;
-				mPooPoo.Clear();
-				Close();
 				STATE_MANAGER->ChangeLevel(LV_SELECT);
 			}
 	}
@@ -600,7 +598,6 @@ void Level3::Update()
 
 		blCheck2 = false;
 		blCheck2_2 = false;
-
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
