@@ -207,7 +207,7 @@ void LevelSelect::Update()
 		Level5_lock->mesh->setTransform(Level5->mesh->GetTransform());
 	}
 	
-	if (currentLevel >= 5)
+	if (currentLevel >=6)
 	{
 		if (Level6->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level6->mesh))
 		{
