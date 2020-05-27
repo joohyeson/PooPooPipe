@@ -126,9 +126,9 @@ void LevelSelect::Update()
 		Level1_pressed->mesh->setTransform(Level1->mesh->GetTransform());
 		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
+			
 			std::cout << "get mouse left" << std::endl;
 			getLevNum = 1;
-			Close();
 		}
 	}
 	else
@@ -145,7 +145,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 2;
-				Close();
 			}
 		}
 		else
@@ -167,7 +166,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 3;
-				Close();
 			}
 		}
 		else
@@ -189,7 +187,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 4;
-				Close();
 			}
 		}
 		else
@@ -211,7 +208,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 5;
-				Close();
 			}
 		}
 		else
@@ -233,7 +229,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 6;
-				Close();
 			}
 		}
 		else
@@ -255,7 +250,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 7;
-				Close();
 			}
 		}
 		else
@@ -277,7 +271,6 @@ void LevelSelect::Update()
 			{
 				std::cout << "get mouse left" << std::endl;
 				getLevNum = 8;
-				Close();
 			}
 		}
 		else
@@ -289,6 +282,39 @@ void LevelSelect::Update()
 	{
 		Level8_lock->mesh->setTransform(Level8->mesh->GetTransform());
 	}
+	if(getLevNum > 0)
+	{
+		INPUT->setInput(KEY::LEFT);
+		switch (getLevNum)
+		{		
+		case 1:
+			STATE_MANAGER->ChangeLevel(LV_TEST3);
+			break;
+		case 2:
+			STATE_MANAGER->ChangeLevel(LV_TEST4);
+			break;
+		case 3:
+			STATE_MANAGER->ChangeLevel(LV_TEST6);
+			break;
+		case 4:
+			STATE_MANAGER->ChangeLevel(LV_TEST8);
+			break;
+		case 5:
+			STATE_MANAGER->ChangeLevel(LV_TEST5);
+			break;
+		case 6:
+			STATE_MANAGER->ChangeLevel(LV_TEST9);
+			break;
+		case 7:
+			STATE_MANAGER->ChangeLevel(LV_TEST10);
+			break;
+		case 8:
+			STATE_MANAGER->ChangeLevel(LV_TEST11);
+			break;
+		}
+	}
+	
+	
 	backgroundLv->mesh->Update(mShader2.GetShaderHandler(), textureBackgroundLv);
 
 	Level1->mesh->Update(mShader2.GetShaderHandler(), texureIdLv1);
@@ -331,35 +357,10 @@ void LevelSelect::Update()
 
 void LevelSelect::Close()
 {
+	getLevNum = 0;
+	STATE_MANAGER->setCurrentLV(0);
 	mShader.Delete();
-	//ENGINE->Quit();
-	//OBJECT_FACTORY->DestroyAllObjects();
 
-	switch (getLevNum)
-	{
-	case 1:
-		STATE_MANAGER->ChangeLevel(LV_TEST3);
-		break;
-	case 2:
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
-		break;
-	case 3:
-		STATE_MANAGER->ChangeLevel(LV_TEST6);
-		break;
-	case 4:
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
-		break;
-	case 5:
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
-		break;
-	case 6:
-		STATE_MANAGER->ChangeLevel(LV_TEST9);
-		break;
-	case 7:
-		STATE_MANAGER->ChangeLevel(LV_TEST10);
-		break;
-	case 8:
-		STATE_MANAGER->ChangeLevel(LV_TEST11);
-		break;
-	}
+	//ENGINE->Quit();
+	OBJECT_FACTORY->DestroyAllObjects();
 }
