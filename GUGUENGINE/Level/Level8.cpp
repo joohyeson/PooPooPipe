@@ -240,6 +240,8 @@ void Level8::Update()
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			chekNext8 = 0;
 
 			conecTcheck8_1 = false;
@@ -679,6 +681,8 @@ void Level8::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
+		INPUT->setInput(KEY::SPACE);
+
 		chekNext8 = 0;
 
 		conecTcheck8_1 = false;

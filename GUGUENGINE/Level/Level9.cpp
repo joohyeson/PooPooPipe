@@ -219,6 +219,8 @@ void Level9::Update()
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			chekNext9 = 0;
 
 			conecTcheck9_1 = false;
@@ -571,6 +573,7 @@ void Level9::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
+		INPUT->setInput(KEY::SPACE);
 		chekNext9 = 0;
 		
 		conecTcheck9_1 = false;
