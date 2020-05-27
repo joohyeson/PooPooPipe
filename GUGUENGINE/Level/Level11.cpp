@@ -14,7 +14,7 @@ Sound playSE11;
 
 void Level11::Init()
 {
-	rotTime.setRotate(100);
+	rotTime.setRotate(35);
 
 	chekNext8 = 0;
 
@@ -100,6 +100,34 @@ void Level11::Init()
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeft = TEXTURE->CreateTexture("assets\\left_turn.png", 0);
+
+	textureLeftNumber0 = TEXTURE->CreateTexture("assets\\00.png", 0);
+	textureLeftNumber1 = TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureLeftNumber2 = TEXTURE->CreateTexture("assets\\02.png", 0);
+	textureLeftNumber3 = TEXTURE->CreateTexture("assets\\03.png", 0);
+	textureLeftNumber4 = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeftNumber5 = TEXTURE->CreateTexture("assets\\05.png", 0);
+	textureLeftNumber6 = TEXTURE->CreateTexture("assets\\06.png", 0);
+	textureLeftNumber7 = TEXTURE->CreateTexture("assets\\07.png", 0);
+	textureLeftNumber8 = TEXTURE->CreateTexture("assets\\8.png", 0);
+	textureLeftNumber9 = TEXTURE->CreateTexture("assets\\9.png", 0);
+
+	textureLeftNumberTen0 = TEXTURE->CreateTexture("assets\\00.png", 0);
+	textureLeftNumberTen1 = TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureLeftNumberTen2 = TEXTURE->CreateTexture("assets\\02.png", 0);
+	textureLeftNumberTen3 = TEXTURE->CreateTexture("assets\\03.png", 0);
+	textureLeftNumberTen4 = TEXTURE->CreateTexture("assets\\04.png", 0);
+	textureLeftNumberTen5 = TEXTURE->CreateTexture("assets\\05.png", 0);
+
+	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 250, 450.f - 20.f });
+	leftCount->mesh->InitializeTextureMesh(200.f, 100.f);
+
+	leftnumber = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 430, 450.f - 20.f });
+	leftnumber->mesh->InitializeTextureMesh(80.f, 100.f);
+
+	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 380, 450.f - 20.f });
+	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
 	se11.Init();
 	se11.LoadSE("assets\\coin.mp3");
@@ -636,10 +664,66 @@ void Level11::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
-
+	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
+
+	switch (rotTime.getLimitTime() / 10)
+	{
+	case 0:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen0);
+		break;
+	case 1:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen1);
+		break;
+	case 2:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen2);
+		break;
+	case 3:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
+		break;
+	case 4:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen4);
+		break;
+	case 5:
+		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen5);
+		break;
+	}
+
+	switch (rotTime.getLimitTime() % 10)
+	{
+	case 0:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
+		break;
+	case 1:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber1);
+		break;
+	case 2:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber2);
+		break;
+	case 3:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber3);
+		break;
+	case 4:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber4);
+		break;
+	case 5:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber5);
+		break;
+	case 6:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber6);
+		break;
+	case 7:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber7);
+		break;
+	case 8:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber8);
+		break;
+	case 9:
+		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
+		break;
+	}
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));

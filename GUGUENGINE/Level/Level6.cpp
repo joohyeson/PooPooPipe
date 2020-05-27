@@ -107,8 +107,6 @@ void Level6::Init()
 	textureLeftNumberTen4 = TEXTURE->CreateTexture("assets\\04.png", 0);
 	textureLeftNumberTen5 = TEXTURE->CreateTexture("assets\\05.png", 0);
 
-
-
 	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();

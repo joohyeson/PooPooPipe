@@ -135,6 +135,7 @@ private:
 	GLint textureQuitUI6;
 	GLint textureOptionUI6;
 	GLint textureRestartUI6;
+
 	GLint textureLeft;
 	GLint textureLeftNumberTen0;
 	GLint textureLeftNumberTen1;
