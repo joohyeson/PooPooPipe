@@ -53,6 +53,8 @@ public:
 		levelImage = nullptr;
 		numberImage = nullptr;
 		pooCharacter = nullptr;
+		fail = nullptr;
+
 		key = 0;
 	}
 
@@ -70,7 +72,7 @@ private:
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 	Object* pooCharacter;
-	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;
@@ -80,16 +82,6 @@ private:
 	Mesh mMesh;
 	Shader mShader, mShader2;
 	MovePooPoo mPooPoo;
-	Vector3<float> getOrigin1_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin1_2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin2_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin2_2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin3_1 = { 0, 0, 0 };
-	Vector3<float> getOrigin3_2 = { 0, 0, 0 };
-
-	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	Input mInput;
 	bool rot[3] = { false };
 	bool movable[3] = { false };
@@ -138,6 +130,8 @@ private:
 	GLuint levelTexture;
 	GLint LevelPage;
 	GLint LevelPage_pressed;
+	GLint textureFail;
+
 	bool blCheck5 = false;
 	bool blCheck5_2 = false;
 	bool blCheck5_3 = false;
