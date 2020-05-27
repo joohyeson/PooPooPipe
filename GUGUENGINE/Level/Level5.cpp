@@ -219,6 +219,7 @@ void Level5::Update()
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
 			chekNext5 = 0;
 
 			conecTcheck5_1 = false;
@@ -805,6 +806,7 @@ void Level5::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
+		INPUT->setInput(KEY::SPACE);
 		chekNext5 = 0;
 
 		conecTcheck5_1 = false;

@@ -26,7 +26,8 @@ public:
 	void Update();
 	bool IsPressed(KEY k);
 	bool IsKeyDown(KEY k);
-
+	void setInput(KEY k);
+	void clearInput();
 	Vector2<float> Cursor;
 	//int keySpace;
 	//int keyA;

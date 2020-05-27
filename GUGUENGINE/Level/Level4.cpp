@@ -189,6 +189,7 @@ void Level4::Update()
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
 			chekNext4 = 0;
 
 			conecTcheck4_1 = false;
@@ -565,6 +566,7 @@ void Level4::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
+		INPUT->setInput(KEY::SPACE);
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
 		chekNext4 = 0;
 
