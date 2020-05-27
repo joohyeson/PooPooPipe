@@ -115,7 +115,7 @@ void Level3::Init()
 	
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 800.0f });
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 
@@ -165,7 +165,8 @@ void Level3::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-	fail->mesh->InitializeTextureMesh(500.f, 500.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
@@ -508,7 +509,7 @@ void Level3::Update()
 				poopooCheck = false;
 			}
 			else {
-				fail->mesh->setTransform({ -400.f,250.f });
+				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
 			}
 		}
@@ -519,7 +520,7 @@ void Level3::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-			fail->mesh->setTransform({ 800.f,880.f });
+			fail->mesh->setTransform({ -2000.f,-2000.f });
 			STATE_MANAGER->ReloadState();
 
 		}

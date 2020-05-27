@@ -41,6 +41,10 @@ void Level4::Init()
 	blCheck4 = false;
 	blCheck4_2 = false;
 
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background1.png", 0);
@@ -493,6 +497,22 @@ void Level4::Update()
 				playSE4.SetLoopCount(1);
 				poopooCheck = false;
 			}
+			else
+			{
+				fail->mesh->setTransform({ 0.f, 0.f});
+				poopooCheck = false;
+
+			}
+		}
+	}
+
+	if (fail->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			fail->mesh->setTransform({ -2000.0f, -2000.0f });
+			STATE_MANAGER->ReloadState();
+
 		}
 	}
 	if (restartUI->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
@@ -563,6 +583,7 @@ void Level4::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{

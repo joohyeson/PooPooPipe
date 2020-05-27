@@ -22,6 +22,8 @@ public:
 		background = nullptr;
 		startButton = nullptr;
 		tutorialButton = nullptr;
+		startButton_pressed = nullptr;
+		tutorialButton_pressed = nullptr;
 	}
 
 	void Init() override;
@@ -33,6 +35,9 @@ private:
 	Object* startButton;
 	Object* tutorialButton;
 	Object* optionButton;
+	Object* startButton_pressed;
+	Object* tutorialButton_pressed;
+	Object* optionButton_pressed;
 	Object* test;
 	Object* test2;
 

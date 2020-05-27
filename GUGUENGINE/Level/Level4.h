@@ -60,6 +60,7 @@ public:
 		levelImage = nullptr;
 		numberImage = nullptr;
 		pooCharacter = nullptr;
+		fail = nullptr;
 		key = 0;
 	}
 
@@ -82,7 +83,8 @@ private:
 	Object* pooCharacter;
 	Object* button;
 	Object* clear;
-
+	Object* fail;
+	GLint textureFail;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
