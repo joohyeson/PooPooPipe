@@ -511,8 +511,6 @@ void Level11::Update()
 
 		if (puzzle2->pipe->GetDirValue(W) && (puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)))
 		{
-			std::cout << "check1" << std::endl;
-
 			conecTcheck8_1 = true;
 		}
 		else
@@ -522,8 +520,6 @@ void Level11::Update()
 
 		if ((puzzle13->pipe->GetDirValue(W) == 1) && (puzzle13->pipe->GetDirValue(SW) == puzzle4->pipe->GetDirValue(NE)))
 		{
-			std::cout << "check2" << std::endl;
-
 			conecTcheck8_2 = true;
 		}
 		else
@@ -533,8 +529,6 @@ void Level11::Update()
 
 		if ((puzzle13->pipe->GetDirValue(SW) == puzzle4->pipe->GetDirValue(NE)) && puzzle4->pipe->GetDirValue(E))
 		{
-			std::cout << "check3" << std::endl;
-
 			conecTcheck8_3 = true;
 		}
 		else
@@ -544,8 +538,6 @@ void Level11::Update()
 
 		if (puzzle6->pipe->GetDirValue(E) && (puzzle6->pipe->GetDirValue(NW) == puzzle3->pipe->GetDirValue(SE)))
 		{
-			std::cout << "check4" << std::endl;
-
 			conecTcheck8_4 = true;
 
 		}
@@ -557,8 +549,6 @@ void Level11::Update()
 
 		if ((puzzle10->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)) && (puzzle10->pipe->GetDirValue(W) == puzzle9->pipe->GetDirValue(E)))
 		{
-			std::cout << "check5" << std::endl;
-
 			conecTcheck8_5 = true;
 
 		}
@@ -571,7 +561,6 @@ void Level11::Update()
 
 		if ((puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)) && (puzzle18->pipe->GetDirValue(W) == puzzle3->pipe->GetDirValue(E)))
 		{
-			std::cout << "check6" << std::endl;
 			conecTcheck8_6 = true;
 
 		}
@@ -582,7 +571,6 @@ void Level11::Update()
 
 		if ((puzzle12->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)) && (puzzle10->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
 		{
-			std::cout << "check7" << std::endl;
 			conecTcheck8_7= true;
 
 		}
