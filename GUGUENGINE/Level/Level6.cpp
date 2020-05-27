@@ -242,8 +242,7 @@ void Level6::Update()
 			rotTime.setRotate(100);
 
 			std::cout << "check" << std::endl;
-			mPooPoo.Clear();
-			Close();
+
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}

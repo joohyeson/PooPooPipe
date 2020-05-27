@@ -261,8 +261,6 @@ void Level8::Update()
 			degree8_7 = 0;
 			
 			std::cout << "check" << std::endl;
-			mPooPoo.Clear();
-			Close();
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}

@@ -206,8 +206,6 @@ void Level4::Update()
 			blCheck4_2 = false;
 
 			std::cout << "check" << std::endl;
-			mPooPoo.Clear();
-			Close();
 			STATE_MANAGER->ChangeLevel(LV_SELECT);
 		}
 	}
