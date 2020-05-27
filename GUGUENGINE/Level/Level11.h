@@ -46,7 +46,8 @@ public:
 		puzzle19 = nullptr;
 		puzzle20 = nullptr;
 		spacePress = nullptr;
-
+		Levelsel = nullptr;
+		Levelsel_pressed = nullptr;
 		playUI = nullptr;
 		quitUI = nullptr;
 		optionUI = nullptr;
@@ -75,6 +76,7 @@ private:
 	Object* pooCharacter;
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
+	Object* Levelsel, * Levelsel_pressed;
 
 	Object* puzzle18, * puzzle19, * puzzle20;
 
@@ -133,7 +135,8 @@ private:
 	GLuint texureIdLine8_2;
 	GLuint texureIdCurve8_2;
 	GLuint texureIdV8_2;
-
+	GLint LevelPage;
+	GLint LevelPage_pressed;
 	GLuint texureIdbutton8;
 	GLuint texureIdclear8;
 	GLuint texureSpace8;

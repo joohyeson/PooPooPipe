@@ -14,6 +14,8 @@ Sound playSE10;
 
 void Level10::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
+
 	rotTime.setRotate(30);
 
 	chekNext8 = 0;
@@ -51,6 +53,9 @@ void Level10::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI8 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
+
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -94,6 +99,8 @@ void Level10::Init()
 	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
 
 
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
@@ -237,10 +244,27 @@ void Level10::Init()
 
 void Level10::Update()
 {
+	STATE_MANAGER->setCurrentLV(7);
+
 	se10.Update();
 	playSE10.Update();
 
 	cursor8 = mInput.Cursor;
+
+	if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			std::cout << "check" << std::endl;
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -682,7 +706,8 @@ void Level10::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace8);
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI8);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
@@ -757,7 +782,7 @@ void Level10::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
-
+		INPUT->setInput(KEY::SPACE);
 		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}
 
