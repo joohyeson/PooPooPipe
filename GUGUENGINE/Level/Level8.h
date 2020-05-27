@@ -1,5 +1,4 @@
 #pragma once
-#pragma once
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -51,11 +50,13 @@ public:
 		quitUI = nullptr;
 		optionUI = nullptr;
 		restartUI = nullptr;
-
+		Levelsel = nullptr;
+		Levelsel_pressed = nullptr;
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		pooCharacter = nullptr;
 		key = 0;
 	}
 
@@ -69,10 +70,11 @@ private:
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
-
+	Object* pooCharacter;
 	Object* puzzle18, * puzzle19, * puzzle20;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;
 	Object* clear;
@@ -137,7 +139,8 @@ private:
 	GLuint texureIdLine8_2;
 	GLuint texureIdCurve8_2;
 	GLuint texureIdV8_2;
-
+	GLint LevelPage;
+	GLint LevelPage_pressed;
 	GLuint texureIdbutton8;
 	GLuint texureIdclear8;
 	GLuint texureSpace8;

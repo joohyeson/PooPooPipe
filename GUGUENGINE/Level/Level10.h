@@ -1,5 +1,5 @@
 #pragma once
-#pragma once
+
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -7,15 +7,16 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE//CollisionCheck.h"
-#include "../GUGUENGINE/glfwInput.h"
+#include "../GUGUENGINE/limitedRotate.h"
+#include  "../GUGUENGINE/glfwInput.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 
 class sound;
 
-class Level9 : public LevelManager
+class Level10 : public LevelManager
 {
 public:
-	Level9()
+	Level10()
 	{
 		background = nullptr;
 
@@ -45,12 +46,17 @@ public:
 		puzzle19 = nullptr;
 		puzzle20 = nullptr;
 		spacePress = nullptr;
-		Levelsel = nullptr;
-		Levelsel_pressed = nullptr;
+
+		playUI = nullptr;
+		quitUI = nullptr;
+		optionUI = nullptr;
+		restartUI = nullptr;
+
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+
 		pooCharacter = nullptr;
 		key = 0;
 	}
@@ -65,18 +71,14 @@ private:
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
-	Object* levelImage, * numberImage;
+	Object* pooCharacter;
 	Object* puzzle18, * puzzle19, * puzzle20;
-	Object* Levelsel, * Levelsel_pressed;
+
+	Object* playUI, * quitUI, * optionUI, * restartUI;
 
 	Object* button;
 	Object* clear;
-	Object* playUI, * quitUI, * optionUI, * restartUI;
-	GLuint numberTexture;
-	GLuint levelTexture;
-	
-	MovePooPoo mPooPoo;
-	Object* pooCharacter;
+
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -92,62 +94,74 @@ private:
 	Vector3<float> getOrigin5 = { 0, 0, 0 };
 
 	Vector3<float> getOrigin6 = { 0, 0, 0 };
-
+	Object* levelImage, * numberImage;
+	MovePooPoo mPooPoo;
 
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
+	LimitRotate rotTime;
+
+	Vector2<float> cursor8;
 	Input mInput;
 
-	bool rot[7] = { false };
+	bool rot[10] = { false };
 	bool poopooCheck = false;
 
-	Vector2<float> cursor9;
+	bool rotrot2 = true;
+	int coorcheck8 = 0;
 
-	int coorcheck9 = 0;
+	int connectMove8 = 0;
 
-	int connectMove9 = 0;
+	float degree8 = 0;
+	float degree8_2 = DegreeToRadian(60.f);
+	float degree8_3 = DegreeToRadian(180.f);
+	float degree8_4 = 0;
+	float degree8_5 = 0;
+	float degree8_6 = 0;
+	float degree8_7 = DegreeToRadian(-240.f);
+	float degree8_8 = 0;
+	float degree8_9 = DegreeToRadian(180.f);
 
-	bool autoRot = true;
+	int chekNext8 = 0;
 
-	float degree9 = 0;
-	float degree9_2 = DegreeToRadian(60.f);
-	float degree9_3 = DegreeToRadian(-60.f);
-	float degree9_4 = DegreeToRadian(60.f);
-	float degree9_5 = 0;
-	float degree9_6 = DegreeToRadian(-180.f);
-	float degree9_7 = DegreeToRadian(120.f);
-	float degree9_rot = DegreeToRadian(-120.f);
+	int move8_1 = 0;
+	int move8_2 = 0;
+	int move8_3 = 0;
 
-	int chekNext9 = 0;
+	GLuint textureBackground8;
 
-	GLuint textureBackground9;
+	GLuint texureIdLine8;
+	GLuint texureIdCurve8;
+	GLuint texureIdThree8;
+	GLuint texureIdV8;
+	GLuint texureIdBlack8;
 
-	GLuint texureIdLine9;
-	GLuint texureIdCurve9;
-	GLuint texureIdThree9;
-	GLuint texureIdV9;
-	GLuint texureIdBlack9;
+	GLuint texureIdStart8;
+	GLuint texureIdEnd8;
 
-	GLuint texureIdStart9;
-	GLuint texureIdEnd9;
+	GLuint texureIdLine8_2;
+	GLuint texureIdCurve8_2;
+	GLuint texureIdV8_2;
 
-	GLuint texureIdLine9_2;
-	GLuint texureIdCurve9_2;
-	GLuint texureIdV9_2;
+	GLuint texureIdbutton8;
+	GLuint texureIdclear8;
+	GLuint texureSpace8;
 
-	GLuint texureIdCurve9_3;
+	GLint texturePlayUI8;
+	GLint textureQuitUI8;
+	GLint textureOptionUI8;
+	GLint textureRestartUI8;
 
-	GLuint texureIdbutton9;
-	GLuint texureIdclear9;
-	GLuint texureSpace9;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
+	GLuint numberTexture;
+	GLuint levelTexture;
 
-	GLint texturePlayUI9;
-	GLint textureQuitUI9;
-	GLint textureOptionUI9;
-	GLint textureRestartUI9;
+	bool conecTcheck8_1 = false;
+	bool conecTcheck8_2 = false;
+	bool conecTcheck8_3 = false;
+	bool conecTcheck8_4 = false;
+	bool conecTcheck8_5 = false;
+	bool conecTcheck8_6 = false;
+	bool conecTcheck8_7 = false;
+	bool conecTcheck8_8 = false;
+	bool conecTcheck8_9 = false;
 
-	bool conecTcheck9_1 = false;
-	bool conecTcheck9_2 = false;
-	bool conecTcheck9_3 = false;
 };

@@ -21,6 +21,8 @@
 #include "Level7.h"
 #include "Level8.h"
 #include "Level9.h"
+#include "Level10.h"
+#include "Level11.h"
 #include "LevelSelect.h"
 #include "MovingCheck.h"
 
@@ -38,7 +40,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = LV_TEST11;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
@@ -53,6 +55,8 @@ void StateManager::Init()
 	levels.push_back(new Level7());
 	levels.push_back(new Level8());
 	levels.push_back(new Level9());
+	levels.push_back(new Level10());
+	levels.push_back(new Level11());
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
@@ -110,4 +114,14 @@ void StateManager::ReloadState()
 void StateManager::ChangeLevel(GameLevels changeLV)
 {
 	nextGameState = levels[changeLV];
+}
+
+void StateManager::setCurrentLV(int i)
+{
+	currentLV = i;
+}
+
+int StateManager::GetCurrentLV()
+{
+	return currentLV;
 }

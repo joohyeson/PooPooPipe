@@ -27,6 +27,8 @@ enum GameLevels
 	LV_TEST7,
 	LV_TEST8,
 	LV_TEST9,
+	LV_TEST10,
+	LV_TEST11,
 	LV_SELECT,
 	MOVINGCHECK
 };
@@ -42,6 +44,8 @@ public:
 	void ReloadState();
 	//change level
 	void ChangeLevel(GameLevels changeLV);
+	void setCurrentLV(int i);
+	int GetCurrentLV();
 private:
 	enum class State {
 		START,
@@ -58,6 +62,6 @@ private:
 	State state;
 	LevelManager* currGameState;
 	LevelManager* nextGameState;
-
+	int currentLV;
 };
 extern StateManager* STATE_MANAGER;

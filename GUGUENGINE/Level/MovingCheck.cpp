@@ -290,10 +290,10 @@ void MovingCheck::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
-	if (mPooPoo.IsFinish() == false)
-	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
-	}
+	//if (mPooPoo.IsFinish() == false)
+	//{
+	//	mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	//}
 	//mPooPoo.Update(mShader2.GetShaderHandler());
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

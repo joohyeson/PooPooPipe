@@ -14,6 +14,8 @@ Sound playSE5;
 
 void Level5::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
+
 	chekNext5 = 0;
 
 	conecTcheck5_1 = false;
@@ -79,12 +81,23 @@ void Level5::Init()
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI5 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack5 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve5 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	texureIdThree5 = TEXTURE->CreateTexture("assets\\image3.png", 0);
+
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
 	textureIdMove5 = TEXTURE->CreateTexture("assets\\image5.png", 0);
 
@@ -182,8 +195,8 @@ void Level5::Init()
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle10->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle9->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, blackPuzzle3->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle11->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle11->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
 
@@ -193,11 +206,51 @@ void Level5::Init()
 
 void Level5::Update()
 {
+	STATE_MANAGER->setCurrentLV(5);
+
 	cursor5 = mInput.Cursor;
 
 	se5.Update();
 	playSE5.Update();
 
+
+	if (Levelsel->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
+		{
+			chekNext5 = 0;
+
+			conecTcheck5_1 = false;
+			conecTcheck5_2 = false;
+			conecTcheck5_3 = false;
+
+			degree5 = 0;
+			degree5_2 = 0;
+			degree5_3 = 0;
+
+			blCheck5 = false;
+			blCheck5_2 = false;
+			blCheck5_3 = false;
+
+			blCheck6 = false;
+			blCheck6_2 = false;
+			blCheck6_3 = false;
+
+			blCheck7 = false;
+			blCheck7_2 = false;
+			blCheck7_3 = false;
+
+			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
+			Close();
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
@@ -736,7 +789,8 @@ void Level5::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear5);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace5);
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI5);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI5);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI5);
@@ -744,11 +798,13 @@ void Level5::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
+
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		chekNext5 = 0;
@@ -793,6 +849,7 @@ void Level5::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

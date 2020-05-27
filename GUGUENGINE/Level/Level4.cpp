@@ -23,6 +23,8 @@ Sound playSE4;
 
 void Level4::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
+	
 	chekNext4 = 0;
 
 	conecTcheck4_1 = false;
@@ -42,8 +44,6 @@ void Level4::Init()
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background1.png", 0);
-
-
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -82,6 +82,12 @@ void Level4::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI4 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 60.f);
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
@@ -105,6 +111,8 @@ void Level4::Init()
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -700, 330 }, 120.f);
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -7.18, -270 }, 60.f);
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
@@ -130,7 +138,8 @@ void Level4::Init()
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\02.png", 0);
-	
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 	se4.Init();
 	se4.LoadSE("assets\\coin.mp3");
 
@@ -169,11 +178,44 @@ void Level4::Init()
 
 void Level4::Update()
 {
+	STATE_MANAGER->setCurrentLV(2);
+
 	cursor4 = mInput.Cursor;
 
 	se4.Update();
 	playSE4.Update();
+	if (Levelsel->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
+		{
+			chekNext4 = 0;
 
+			conecTcheck4_1 = false;
+			conecTcheck4_2 = false;
+			conecTcheck4_3 = false;
+
+			degree4 = 0;
+			degree4_2 = 0;
+			degree4_3 = 0;
+
+			blCheck3 = false;
+			blCheck3_2 = false;
+
+			blCheck4 = false;
+			blCheck4_2 = false;
+
+			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
+			Close();
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
+	
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, movePuzzle->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
@@ -500,7 +542,8 @@ void Level4::Update()
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart4);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd4);
-
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4_1);
 	movePuzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4_2);
 	movePuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4_1);
@@ -511,7 +554,7 @@ void Level4::Update()
 
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI4);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI4);
@@ -520,7 +563,8 @@ void Level4::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
-	
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
+
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
@@ -554,6 +598,7 @@ void Level4::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

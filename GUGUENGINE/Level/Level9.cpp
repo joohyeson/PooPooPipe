@@ -14,6 +14,8 @@ Sound playSE9;
 
 void Level9::Init()
 {
+	STATE_MANAGER->setCurrentLV(0);
+
 	autoRot = true;
 
 	chekNext9 = 0;
@@ -70,6 +72,12 @@ void Level9::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI9 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -95,7 +103,7 @@ void Level9::Init()
 	restartUI->Init();
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
-	restartUI->mesh->InitializeTextureMesh(150.f, 150.f);
+	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI9 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
@@ -144,6 +152,9 @@ void Level9::Init()
 	puzzle14 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 276.f - 376.f, 160.f + 22.f }, -60);
 	//puzzle14->pipe->SetDirection(false, false, false, true, true, false);
 
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
+
 	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 40.f - 5.f });
 	puzzle15->pipe->SetDirection(true, false, false, true, false, false);
 
@@ -172,6 +183,10 @@ void Level9::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
+
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
+
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
@@ -192,11 +207,43 @@ void Level9::Init()
 
 void Level9::Update()
 {
+	STATE_MANAGER->setCurrentLV(6);
+
 	cursor9 = mInput.Cursor;
 
 	se9.Update();
 	playSE9.Update();
 
+	if (Levelsel->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, Levelsel->mesh) == true)
+	{
+		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			chekNext9 = 0;
+
+			conecTcheck9_1 = false;
+			conecTcheck9_2 = false;
+			conecTcheck9_3 = false;
+
+			degree9 = 0;
+			degree9_2 = DegreeToRadian(60.f);
+			degree9_3 = DegreeToRadian(-60.f);
+			degree9_4 = DegreeToRadian(60.f);
+			degree9_5 = 0;
+			degree9_6 = DegreeToRadian(-180.f);
+			degree9_7 = DegreeToRadian(120.f);
+			degree9_rot = DegreeToRadian(-120.f);
+
+			std::cout << "check" << std::endl;
+			mPooPoo.Clear();
+			Close();
+			STATE_MANAGER->ChangeLevel(LV_SELECT);
+		}
+	}
+	else
+	{
+		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
+	}
 	if (puzzle1->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, puzzle1->mesh))
 	{
 		if (mInput.IsPressed(KEY::RIGHT) == true)
@@ -508,14 +555,16 @@ void Level9::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace9);
-
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
+	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI9);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI9);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
@@ -539,7 +588,7 @@ void Level9::Update()
 		degree9_7 = DegreeToRadian(120.f);
 		degree9_rot = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST10);
 
 	}
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
@@ -557,6 +606,7 @@ void Level9::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

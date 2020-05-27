@@ -34,11 +34,17 @@ GLuint texureIdLv5_pressed;
 GLuint texureIdLv6;
 GLuint texureIdLv6_pressed;
 
+GLuint texureIdLv7;
+GLuint texureIdLv7_pressed;
+
+GLuint texureIdLv8;
+GLuint texureIdLv8_pressed;
 
 Sound seLv;
 
 void LevelSelect::Init()
-{	
+{
+	currentLevel = STATE_MANAGER->GetCurrentLV();
 	std::cout << "come in LevelSelect" << std::endl;
 	backgroundLv = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	backgroundLv->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -50,7 +56,6 @@ void LevelSelect::Init()
 	Level1_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f });
 	texureIdLv1_pressed = TEXTURE->CreateTexture("assets\\levelButton1_2.png", 0);
 
-	
 	Level2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 160.f, 160.f }, 60 * 3);
 	texureIdLv2 = TEXTURE->CreateTexture("assets\\levelButton2.png", 0);
 
@@ -59,7 +64,7 @@ void LevelSelect::Init()
 
 	Level2_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	texureId_lock = TEXTURE->CreateTexture("assets\\locked.png", 0);
-	
+
 	Level3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 120.f, 160.f }, 60 * 3);
 	texureIdLv3 = TEXTURE->CreateTexture("assets\\levelButton3.png", 0);
 
@@ -86,8 +91,21 @@ void LevelSelect::Init()
 
 	Level6_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	texureIdLv6_pressed = TEXTURE->CreateTexture("assets\\levelButton6_2.png", 0);
-	Level6_lock= OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+	Level6_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
+	Level7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f, -140.f }, 60 * 3);
+	texureIdLv7 = TEXTURE->CreateTexture("assets\\levelButton7.png", 0);
+
+	Level7_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+	texureIdLv7_pressed = TEXTURE->CreateTexture("assets\\levelButton7_2.png", 0);
+	Level7_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+
+	Level8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f + 176.f, -140.f }, 60 * 3);
+	texureIdLv8 = TEXTURE->CreateTexture("assets\\levelButton8.png", 0);
+
+	Level8_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+	texureIdLv8_pressed = TEXTURE->CreateTexture("assets\\levelButton8_2.png", 0);
+	Level8_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	seLv.Init();
 	seLv.LoadMusic("assets\\coin.mp3");
 
@@ -98,11 +116,11 @@ void LevelSelect::Init()
 void LevelSelect::Update()
 {
 	cursorLv = levelInput.Cursor;
-	if(levelInput.IsPressed(KEY::ESCAPE)== true)
+	if (levelInput.IsPressed(KEY::ESCAPE) == true)
 	{
 		glfwTerminate();
 	}
-	
+
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))
 	{
 		Level1_pressed->mesh->setTransform(Level1->mesh->GetTransform());
@@ -118,7 +136,7 @@ void LevelSelect::Update()
 		Level1_pressed->mesh->setTransform({ 850.0f, 850.0f });
 	}
 
-	if(currentLevel >= 2)
+	if (currentLevel >= 2)
 	{
 		if (Level2->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level2->mesh))
 		{
@@ -139,7 +157,7 @@ void LevelSelect::Update()
 	{
 		Level2_lock->mesh->setTransform(Level2->mesh->GetTransform());
 	}
-	
+
 	if (currentLevel >= 3)
 	{
 		if (Level3->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level3->mesh))
@@ -161,8 +179,8 @@ void LevelSelect::Update()
 	{
 		Level3_lock->mesh->setTransform(Level3->mesh->GetTransform());
 	}
-	
-	if(currentLevel >= 4)
+
+	if (currentLevel >= 4)
 	{
 		if (Level4->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level4->mesh))
 		{
@@ -183,7 +201,7 @@ void LevelSelect::Update()
 	{
 		Level4_lock->mesh->setTransform(Level4->mesh->GetTransform());
 	}
-	
+
 	if (currentLevel >= 5)
 	{
 		if (Level5->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level5->mesh))
@@ -205,8 +223,8 @@ void LevelSelect::Update()
 	{
 		Level5_lock->mesh->setTransform(Level5->mesh->GetTransform());
 	}
-	
-	if (currentLevel >= 5)
+
+	if (currentLevel >= 6)
 	{
 		if (Level6->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level6->mesh))
 		{
@@ -227,7 +245,50 @@ void LevelSelect::Update()
 	{
 		Level6_lock->mesh->setTransform(Level6->mesh->GetTransform());
 	}
-	
+
+	if (currentLevel >= 7)
+	{
+		if (Level7->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level7->mesh))
+		{
+			Level7_pressed->mesh->setTransform(Level7->mesh->GetTransform());
+			if (levelInput.IsPressed(KEY::LEFT) == true)
+			{
+				std::cout << "get mouse left" << std::endl;
+				getLevNum = 7;
+				Close();
+			}
+		}
+		else
+		{
+			Level7_pressed->mesh->setTransform({ 850.0f, 850.0f });
+		}
+	}
+	else
+	{
+		Level7_lock->mesh->setTransform(Level7->mesh->GetTransform());
+	}
+
+	if (currentLevel >= 8)
+	{
+		if (Level8->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level8->mesh))
+		{
+			Level8_pressed->mesh->setTransform(Level8->mesh->GetTransform());
+			if (levelInput.IsPressed(KEY::LEFT) == true)
+			{
+				std::cout << "get mouse left" << std::endl;
+				getLevNum = 8;
+				Close();
+			}
+		}
+		else
+		{
+			Level8_pressed->mesh->setTransform({ 850.0f, 850.0f });
+		}
+	}
+	else
+	{
+		Level8_lock->mesh->setTransform(Level8->mesh->GetTransform());
+	}
 	backgroundLv->mesh->Update(mShader2.GetShaderHandler(), textureBackgroundLv);
 
 	Level1->mesh->Update(mShader2.GetShaderHandler(), texureIdLv1);
@@ -236,7 +297,7 @@ void LevelSelect::Update()
 	Level2->mesh->Update(mShader2.GetShaderHandler(), texureIdLv2);
 	Level2_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv2_pressed);
 	Level2_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
-	
+
 	Level3->mesh->Update(mShader2.GetShaderHandler(), texureIdLv3);
 	Level3_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv3_pressed);
 	Level3_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
@@ -252,6 +313,14 @@ void LevelSelect::Update()
 	Level6->mesh->Update(mShader2.GetShaderHandler(), texureIdLv6);
 	Level6_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv6_pressed);
 	Level6_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+
+	Level7->mesh->Update(mShader2.GetShaderHandler(), texureIdLv7);
+	Level7_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv7_pressed);
+	Level7_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+
+	Level8->mesh->Update(mShader2.GetShaderHandler(), texureIdLv8);
+	Level8_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv8_pressed);
+	Level8_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
@@ -285,6 +354,12 @@ void LevelSelect::Close()
 		break;
 	case 6:
 		STATE_MANAGER->ChangeLevel(LV_TEST9);
+		break;
+	case 7:
+		STATE_MANAGER->ChangeLevel(LV_TEST10);
+		break;
+	case 8:
+		STATE_MANAGER->ChangeLevel(LV_TEST11);
 		break;
 	}
 }
