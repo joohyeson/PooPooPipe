@@ -79,7 +79,13 @@ void Level5::Init()
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI5 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
-
+	
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack5 = TEXTURE->CreateTexture("assets\\image1.png", 0);
@@ -182,8 +188,8 @@ void Level5::Init()
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle10->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle9->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, blackPuzzle3->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle11->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle12->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle11->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
 
@@ -744,11 +750,13 @@ void Level5::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
+
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		chekNext5 = 0;
@@ -793,6 +801,7 @@ void Level5::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

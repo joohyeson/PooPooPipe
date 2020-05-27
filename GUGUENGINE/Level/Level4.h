@@ -59,6 +59,7 @@ public:
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		pooCharacter = nullptr;
 		key = 0;
 	}
 
@@ -78,7 +79,7 @@ private:
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;
 	Object* Levelsel, * Levelsel_pressed;
-
+	Object* pooCharacter;
 	Object* button;
 	Object* clear;
 

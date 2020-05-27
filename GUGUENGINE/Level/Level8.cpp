@@ -69,6 +69,13 @@ void Level8::Init()
 	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI8 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
+
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
 	restartUI->AddComponent(new Mesh());
@@ -648,16 +655,29 @@ void Level8::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
-	if (mPooPoo.IsFinish() == false)
+	if (mPooPoo.IsFinish() == false && mPooPoo2.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		if (mPooPoo.GetIsSuccess() == true)
+		{
+			pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+		}
+		else if(mPooPoo2.GetIsSuccess() == true)
+		{
+			pooCharacter->mesh->setTransform(mPooPoo2.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+		}
 	}
 
-	if (mPooPoo2.IsFinish() == false)
-	{
-		mPooPoo2.MoveInPuzzle(mShader2.GetShaderHandler());
-	}
+	//if (mPooPoo.IsFinish() == false)
+	//{
+	//	mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	//}
+
+	//if (mPooPoo2.IsFinish() == false)
+	//{
+	//	mPooPoo2.MoveInPuzzle(mShader2.GetShaderHandler());
+	//}
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
@@ -699,6 +719,8 @@ void Level8::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
+	mPooPoo2.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

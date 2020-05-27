@@ -9,7 +9,7 @@ public:
 	MovePooPoo(Vector2<float> startDirection, Vector2<float> endDirection, int Speed);
 
 	void Init();
-	void Update(int shaderHandler);
+	Vector2<float> Update();
 
 	void SetIsSuccess(bool success);
 	bool GetIsSuccess()
@@ -27,13 +27,10 @@ public:
 		return isFinish;
 	}
 	void Clear();
-
-	
 	Vector2<float> GetEndD();
 	Vector2<float> GetStartD();
 	void MoveInPuzzle(std::vector < Vector2<float>>);
-	void MoveInPuzzle(int shaderHandler);
-	Vector2<float> GetPooPooTransform();
+	Vector2<float> MoveInPuzzle(Vector2<float> nowPosition = {0.f,0.f});
 	void AddAngle(DirAngle startA, DirAngle endA, Vector2<float> origin)
 	{
 		myAngles.push_back(startA);
@@ -48,7 +45,6 @@ private:
 	void SetStartD(Vector2<float> startDirection);
 
 	GLuint texturePP;
-	Object* objectPP = nullptr;
 	bool isSuccess = false;
 	bool isHidden = true;
 	bool isFirst = true;

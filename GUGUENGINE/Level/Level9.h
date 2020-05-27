@@ -50,6 +50,7 @@ public:
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		pooCharacter = nullptr;
 		key = 0;
 	}
 
@@ -72,6 +73,7 @@ private:
 	GLuint numberTexture;
 	GLuint levelTexture;
 	MovePooPoo mPooPoo;
+	Object* pooCharacter;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

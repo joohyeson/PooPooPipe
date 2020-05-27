@@ -82,6 +82,14 @@ void Level3::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
+	mPooPoo.Init();
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
+
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
 	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);
@@ -153,8 +161,6 @@ void Level3::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-
-	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
@@ -467,9 +473,6 @@ void Level3::Update()
 		}
 	}
 
-
-
-
 	if (playUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -530,6 +533,10 @@ void Level3::Update()
 		}
 	}
 
+	if (mPooPoo.IsFinish() == false)
+	{
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+	}
 
 	se3.Update();
 	playSE3.Update();
@@ -573,10 +580,7 @@ void Level3::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
-	if (mPooPoo.IsFinish() == false)
-	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
-	}
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
 	{
@@ -617,6 +621,7 @@ void Level3::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

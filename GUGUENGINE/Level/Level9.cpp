@@ -70,6 +70,12 @@ void Level9::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI9 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -508,6 +514,7 @@ void Level9::Update()
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace9);
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI9);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
@@ -515,7 +522,7 @@ void Level9::Update()
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
@@ -557,6 +564,7 @@ void Level9::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

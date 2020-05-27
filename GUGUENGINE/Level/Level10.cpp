@@ -667,15 +667,15 @@ void Level10::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 
-	if (mPooPoo.IsFinish() == false)
-	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
-	}
+	//if (mPooPoo.IsFinish() == false)
+	//{
+	//	mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+	//}
 
-	if (mPooPoo2.IsFinish() == false)
-	{
-		mPooPoo2.MoveInPuzzle(mShader2.GetShaderHandler());
-	}
+	//if (mPooPoo2.IsFinish() == false)
+	//{
+	//	mPooPoo2.MoveInPuzzle(mShader2.GetShaderHandler());
+	//}
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{

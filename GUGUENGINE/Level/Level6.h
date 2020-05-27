@@ -58,6 +58,7 @@ public:
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		pooCharacter = nullptr;
 		key = 0;
 	}
 
@@ -74,7 +75,7 @@ private:
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 	Object* Levelsel, * Levelsel_pressed;
-
+	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI;
 	Object* levelImage, * numberImage;
 	Object* button;

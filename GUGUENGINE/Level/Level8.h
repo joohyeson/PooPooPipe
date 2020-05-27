@@ -56,6 +56,7 @@ public:
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		pooCharacter = nullptr;
 		key = 0;
 	}
 
@@ -69,7 +70,7 @@ private:
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
-
+	Object* pooCharacter;
 	Object* puzzle18, * puzzle19, * puzzle20;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI;

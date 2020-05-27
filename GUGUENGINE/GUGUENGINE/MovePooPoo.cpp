@@ -21,17 +21,12 @@ MovePooPoo::MovePooPoo(Vector2<float> startDirection, Vector2<float> endDirectio
 };
 void MovePooPoo::Init()
 {
-
+	SetStartD(-700.f, -700.f);
+	SetEndD(-700.f, -700.f);
+	direction = { -700.f, -700.f };
+	realEndD = { -700.f, -700.f };
 	setDelta();
-	objectPP = OBJECT_FACTORY->CreateEmptyObject();
-	objectPP->AddComponent(new Mesh());
-	objectPP->Init();
-	objectPP->mesh->setTransform({ -500, -500 });
-	objectPP->mesh->SetMeshType(rectangle);
-	objectPP->mesh->InitializeTextureMesh(80.f, 80.f);
 
-	texturePP = TEXTURE->CreateTexture("assets\\character.png", 0);
-	
 	this->isFinish = false;
 	this->isSuccess = false;
 
@@ -39,41 +34,7 @@ void MovePooPoo::Init()
 	coor.clear();
 
 }
-void MovePooPoo::Update(int shaderHandler)
-{
-	if (startD == endD)
-	{
-		isSuccess = false;
-	}
 
-	if (isSuccess == true)
-	{
-
-		if (isHidden == true)
-		{
-			objectPP->mesh->setTransform(startD);
-			isHidden = false;
-		}
-
-		objectPP->mesh->AddTransform({ direction.x * speed * elapse, direction.y * speed * elapse });
-
-		if (startD.magnitude({ objectPP->mesh->GetTransform().x - startD.x, objectPP->mesh->GetTransform().y - startD.y }) >= distance)
-		{
-			objectPP->mesh->setTransform(endD);
-			//isSuccess = false;
-			isFirst = PuzzleID%2;
-			PuzzleID += 1;
-
-			if (isFirst == true)
-			{
-				OriginID++;
-			}
-		}
-	}
-
-	objectPP->mesh->Update(shaderHandler, texturePP);
-
-}
 void MovePooPoo::SetSpeed(int Speed)
 {
 	speed = Speed;
@@ -102,10 +63,6 @@ Vector2<float> MovePooPoo::GetEndD()
 {
 	return endD;
 }
-Vector2<float> MovePooPoo::GetPooPooTransform()
-{
-	return objectPP->mesh->GetTransform();
-}
 Vector2<float> MovePooPoo::GetStartD()
 {
 	return startD;
@@ -118,6 +75,10 @@ void MovePooPoo::Clear()
 {
 	OriginID = 0;
 	PuzzleID = 0;
+	SetStartD(-700.f, -700.f);
+	SetEndD(-700.f, -700.f);
+	direction = { -700.f, -700.f };
+	realEndD = { -700.f, -700.f };
 }
 void MovePooPoo::setDelta()
 {
@@ -125,23 +86,16 @@ void MovePooPoo::setDelta()
 	direction = startD.normalize({ endD.x - startD.x, endD.y - startD.y });
 	betweenDelta = { endD.x - startD.x, endD.y - startD.y };
 }
-void MovePooPoo::MoveInPuzzle(std::vector < Vector2<float>> exact)
-{
-	int count = 0;
 
-	while (count <= exact.size())
-	{
-
-	}
-}
-void MovePooPoo::MoveInPuzzle(int shaderHandler)
+Vector2<float> MovePooPoo::MoveInPuzzle(Vector2<float> nowPosition)
 {
+	Vector2<float> returnValue = { -700.f, -700.f };
 	if (myAngles.size() ==PuzzleID)
 	{
 		isFinish = true;
 		OriginID = 0;
 		PuzzleID = 0;
-		return;
+		return { -700.f,-700.f };
 	}
 
 	origin = coor[OriginID];
@@ -158,6 +112,33 @@ void MovePooPoo::MoveInPuzzle(int shaderHandler)
 		SetStartD(origin);
 	}
 
-	Update(shaderHandler);
+
+	if (startD == endD)
+	{
+		isSuccess = false;
+	}
+
+	if (isSuccess == true)
+	{
+
+		if (isHidden == true)
+		{
+			isHidden = false;
+			returnValue = startD;
+		}
+		returnValue = { nowPosition.x+direction.x* speed* elapse, nowPosition.y+direction.y* speed* elapse};
+		if (startD.magnitude({ returnValue.x- startD.x,returnValue.y - startD.y }) >= distance)
+		{
+			isFirst = PuzzleID % 2;
+			PuzzleID += 1;
+
+			if (isFirst == true)
+			{
+				OriginID++;
+			}
+			returnValue = endD;
+		}
+	}
+	return returnValue;
 
 }

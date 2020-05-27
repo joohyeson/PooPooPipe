@@ -88,6 +88,15 @@ void Level6::Init()
 	texureIdclear6 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace6 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	
+
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
+
+
 	se6.Init();
 	se6.LoadSE("assets\\coin.mp3");
 
@@ -586,12 +595,14 @@ void Level6::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 
 
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
+
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext6 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		chekNext6 = 0;
@@ -629,6 +640,7 @@ void Level6::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();

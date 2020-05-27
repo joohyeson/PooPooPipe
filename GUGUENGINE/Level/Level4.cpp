@@ -82,6 +82,12 @@ void Level4::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI4 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 60.f);
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
@@ -548,7 +554,7 @@ void Level4::Update()
 
 	if (mPooPoo.IsFinish() == false)
 	{
-		mPooPoo.MoveInPuzzle(mShader2.GetShaderHandler());
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI4);
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI4);
@@ -557,7 +563,8 @@ void Level4::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
-	
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
+
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
@@ -591,6 +598,7 @@ void Level4::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	mPooPoo.Clear();
 	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();
