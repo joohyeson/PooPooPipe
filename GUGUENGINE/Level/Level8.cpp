@@ -50,6 +50,15 @@ void Level8::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI8 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
+	playUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	playUI_p->AddComponent(new Mesh());
+	playUI_p->Init();
+
+	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
+	playUI_p->mesh->SetMeshType(rectangle);
+	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
+
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -60,6 +69,15 @@ void Level8::Init()
 	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI8 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
+	quitUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI_p->AddComponent(new Mesh());
+	quitUI_p->Init();
+
+	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
+	quitUI_p->mesh->SetMeshType(rectangle);
+	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
+
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
@@ -68,6 +86,14 @@ void Level8::Init()
 	optionUI->mesh->SetMeshType(rectangle);
 	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI8 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+	optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI_p->AddComponent(new Mesh());
+	optionUI_p->Init();
+	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
+	optionUI_p->mesh->SetMeshType(rectangle);
+	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
 
 	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
 	pooCharacter->AddComponent(new Mesh());
@@ -84,6 +110,14 @@ void Level8::Init()
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+
+	restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI_p->AddComponent(new Mesh());
+	restartUI_p->Init();
+	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
+	restartUI_p->mesh->SetMeshType(rectangle);
+	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
 
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
@@ -575,6 +609,8 @@ void Level8::Update()
 	}
 	if (playUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, playUI->mesh))
 	{
+		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -585,6 +621,8 @@ void Level8::Update()
 	}
 	else
 	{
+		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
+
 		connectMove8 = 0;
 	}
 	if(poopooCheck == true)
@@ -640,6 +678,8 @@ void Level8::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
+		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -648,9 +688,14 @@ void Level8::Update()
 
 		}
 	}
-
+	else
+	{
+		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
+	}
 	if (optionUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
 	{
+		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -658,15 +703,25 @@ void Level8::Update()
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
+	else
+	{
+		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
+	}
 
 	if (quitUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
 	{
+		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+		
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
 
 			glfwTerminate();
 		}
+	}
+	else
+	{
+		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
 	se8.Update();
@@ -708,7 +763,12 @@ void Level8::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
-
+	
+	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
+	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
+	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
+	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+	
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
