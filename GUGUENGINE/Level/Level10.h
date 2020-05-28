@@ -63,6 +63,12 @@ public:
 		leftnumber = nullptr;
 		fail = nullptr;
 		pooCharacter = nullptr;
+
+		playUI_p = nullptr;
+		quitUI_p = nullptr;
+		optionUI_p = nullptr;
+		restartUI_p = nullptr;
+
 		key = 0;
 	}
 
@@ -121,6 +127,13 @@ private:
 	int move8_1 = 0;
 	int move8_2 = 0;
 	int move8_3 = 0;
+
+	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+
 
 	GLuint textureBackground8;
 

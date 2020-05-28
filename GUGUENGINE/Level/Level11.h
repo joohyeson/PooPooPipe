@@ -63,6 +63,12 @@ public:
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
 		fail = nullptr;
+
+		playUI_p = nullptr;
+		quitUI_p = nullptr;
+		optionUI_p = nullptr;
+		restartUI_p = nullptr;
+
 		key = 0;
 	}
 
@@ -77,6 +83,12 @@ private:
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 	Object* Levelsel, * Levelsel_pressed;
+	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+
 
 	Object* puzzle18, * puzzle19, * puzzle20;
 

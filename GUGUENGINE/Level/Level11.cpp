@@ -134,6 +134,42 @@ void Level11::Init()
 	textureLeftNumberTen4 = TEXTURE->CreateTexture("assets\\04.png", 0);
 	textureLeftNumberTen5 = TEXTURE->CreateTexture("assets\\05.png", 0);
 
+	playUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	playUI_p->AddComponent(new Mesh());
+	playUI_p->Init();
+	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
+	playUI_p->mesh->SetMeshType(rectangle);
+	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
+
+
+	quitUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI_p->AddComponent(new Mesh());
+	quitUI_p->Init();
+
+	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
+	quitUI_p->mesh->SetMeshType(rectangle);
+	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
+
+
+	optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI_p->AddComponent(new Mesh());
+	optionUI_p->Init();
+	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
+	optionUI_p->mesh->SetMeshType(rectangle);
+	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
+
+
+	restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI_p->AddComponent(new Mesh());
+	restartUI_p->Init();
+	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
+	restartUI_p->mesh->SetMeshType(rectangle);
+	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
+
 	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 250, 450.f - 20.f });
 	leftCount->mesh->InitializeTextureMesh(200.f, 100.f);
 
@@ -586,15 +622,19 @@ void Level11::Update()
 	}
 	if (playUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, playUI->mesh))
 	{
+		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
 			poopooCheck = true;
 
 		}
+		
 	}
 	else
 	{
+		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
 		connectMove8 = 0;
 	}
 	if (poopooCheck == true)
@@ -634,6 +674,8 @@ void Level11::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
+		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 
@@ -641,23 +683,40 @@ void Level11::Update()
 			INPUT->setInput(KEY::LEFT);
 		}
 	}
+	else
+	{
+		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
+	}
 
 	if (optionUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
 	{
+		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
+	else
+	{
+		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
+	}
+
 
 	if (quitUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
 	{
+		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
 			glfwTerminate();
 		}
+	}
+	else
+	{
+		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
 	se11.Update();
@@ -707,6 +766,10 @@ void Level11::Update()
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
+	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
+	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
+	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
+	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 
 	switch (rotTime.getLimitTime() / 10)
 	{
