@@ -62,7 +62,7 @@ public:
 		leftCount = nullptr;
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
-
+		fail = nullptr;
 		key = 0;
 	}
 
@@ -80,7 +80,7 @@ private:
 
 	Object* puzzle18, * puzzle19, * puzzle20;
 
-	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 
 	Object* button;
 	Object* clear;
@@ -167,6 +167,7 @@ private:
 
 	GLuint numberTexture;
 	GLuint levelTexture;
+	GLint textureFail;
 
 	bool conecTcheck8_1 = false;
 	bool conecTcheck8_2 = false;

@@ -91,6 +91,10 @@ void Level5::Init()
 	pooCharacter->mesh->SetMeshType(rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack5 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve5 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -675,11 +679,9 @@ void Level5::Update()
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-			poopooCheck = true;
+			INPUT->setInput(KEY::LEFT);
 
-			
-
-			
+			poopooCheck = true;		
 		}		
 	}
 	else
@@ -691,6 +693,8 @@ void Level5::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
+
+
 			if (movePuzzleCheck5)
 			{
 				puzzle7->pipe->Update();
@@ -702,12 +706,6 @@ void Level5::Update()
 				se5.SetLoopCount(1);
 
 				movePuzzleCheck5 = false;
-
-				if (!conecTcheck5_1 || !conecTcheck5_2 || !conecTcheck5_3)
-				{
-					std::cout << "fail" << std::endl;
-					//STATE_MANAGER->ReloadState();
-				}
 			}
 			
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
@@ -725,13 +723,30 @@ void Level5::Update()
 
 				poopooCheck = false;
 			}
+			//else {
+				//fail->mesh->setTransform({ 0,0 });
+				//poopooCheck = false;
+			//}
 		}
 	}
 	
+	if (fail->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			fail->mesh->setTransform({ -2000.f,-2000.f });
+			STATE_MANAGER->ReloadState();
+
+		}
+	}
+
 	if (restartUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ReloadState();
 		}
 	}
@@ -742,6 +757,8 @@ void Level5::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -751,6 +768,8 @@ void Level5::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			glfwTerminate();
 		}
 	}
@@ -798,6 +817,7 @@ void Level5::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if (mPooPoo.IsFinish() == false)
 	{
@@ -806,6 +826,7 @@ void Level5::Update()
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
+		INPUT->setInput(KEY::A);
 		INPUT->setInput(KEY::SPACE);
 		chekNext5 = 0;
 

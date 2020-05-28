@@ -62,6 +62,7 @@ public:
 		leftCount = nullptr;
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
+		fail = nullptr;
 
 		key = 0;
 	}
@@ -81,7 +82,7 @@ private:
 	Object* Levelsel, * Levelsel_pressed;
 	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI;
-	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber;
+	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;
 	MovePooPoo mPooPoo;
@@ -125,6 +126,7 @@ private:
 	GLuint texureIdLine6_1;
 	GLuint texureIdCurve6_2;
 	GLuint texureIdV6_2;
+	GLint textureFail;
 
 
 	GLuint texureIdbutton6;

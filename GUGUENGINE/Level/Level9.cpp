@@ -35,6 +35,10 @@ void Level9::Init()
 	
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(1920, 1920.f);
+
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 	textureBackground9 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine9 = TEXTURE->CreateTexture("assets\\image0.png", 0);
@@ -444,9 +448,9 @@ void Level9::Update()
 	if (playUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, playUI->mesh))
 	{
 		
-
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			poopooCheck = true;
 		}
 	}
@@ -473,8 +477,8 @@ void Level9::Update()
 
 				if (!conecTcheck9_1 || !conecTcheck9_2 || !conecTcheck9_3)
 				{
-					std::cout << "fail" << std::endl;
-					STATE_MANAGER->ReloadState();
+					fail->mesh->setTransform({ 0.f, 0.f });
+					poopooCheck = false;
 				}
 			}
 
@@ -495,10 +499,24 @@ void Level9::Update()
 		}
 		
 	}
+
+	if (fail->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+
+			fail->mesh->setTransform({ -2000.0f, -2000.0f });
+			STATE_MANAGER->ReloadState();
+
+		}
+	}
+
 	if (restartUI->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(LV_TEST9);
 
 		}
@@ -508,6 +526,7 @@ void Level9::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -517,6 +536,7 @@ void Level9::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			glfwTerminate();
 		}
 	}
@@ -551,6 +571,7 @@ void Level9::Update()
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart9);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd9);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
@@ -574,6 +595,7 @@ void Level9::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
 		chekNext9 = 0;
 		
 		conecTcheck9_1 = false;

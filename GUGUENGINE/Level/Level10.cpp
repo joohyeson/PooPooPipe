@@ -82,6 +82,9 @@ void Level10::Init()
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 
@@ -96,7 +99,7 @@ void Level10::Init()
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
+	texureIdV8_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 
 
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
@@ -269,7 +272,9 @@ void Level10::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot2 = false;
+		fail->mesh->setTransform({ 0,0 });
 		STATE_MANAGER->ReloadState();
+
 		std::cout << "rotation limit!!!" << std::endl;
 	}
 	if (rotrot2)
@@ -619,6 +624,7 @@ void Level10::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			poopooCheck = true;
 
 		}
@@ -643,17 +649,31 @@ void Level10::Update()
 				playSE10.Play(1);
 				playSE10.SetVolume(0.5f);
 				playSE10.SetLoopCount(1);
+				poopooCheck = false;
 			}
-
-			poopooCheck = false;
+			else {
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+			}
 		}
 	}
+
+	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			fail->mesh->setTransform({ -2000.f,-2000.f });
+			STATE_MANAGER->ReloadState();
+		}
+	}
+
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ReloadState();
-
+			INPUT->setInput(KEY::LEFT);
 		}
 	}
 
@@ -661,6 +681,7 @@ void Level10::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -716,6 +737,7 @@ void Level10::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
@@ -783,6 +805,7 @@ void Level10::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}
 

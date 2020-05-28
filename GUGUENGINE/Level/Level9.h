@@ -52,6 +52,7 @@ public:
 		levelImage = nullptr;
 		numberImage = nullptr;
 		pooCharacter = nullptr;
+		fail = nullptr;
 		key = 0;
 	}
 
@@ -71,7 +72,7 @@ private:
 
 	Object* button;
 	Object* clear;
-	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* playUI, * quitUI, * optionUI, * restartUI, * fail;
 	GLuint numberTexture;
 	GLuint levelTexture;
 	
@@ -80,21 +81,6 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-
-	Vector3<float> getOrigin1 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin2 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin3 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin4 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin5 = { 0, 0, 0 };
-
-	Vector3<float> getOrigin6 = { 0, 0, 0 };
-
-
-	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	Input mInput;
 
 	bool rot[7] = { false };
@@ -146,6 +132,7 @@ private:
 	GLint textureQuitUI9;
 	GLint textureOptionUI9;
 	GLint textureRestartUI9;
+	GLint textureFail;
 
 	bool conecTcheck9_1 = false;
 	bool conecTcheck9_2 = false;

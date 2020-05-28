@@ -517,6 +517,8 @@ void Level3::Update()
 		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			poopooCheck = true;
 		
 		}
@@ -531,6 +533,8 @@ void Level3::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -556,9 +560,10 @@ void Level3::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			fail->mesh->setTransform({ -2000.f,-2000.f });
 			STATE_MANAGER->ReloadState();
-
 		}
 	}
 
@@ -568,6 +573,8 @@ void Level3::Update()
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ReloadState();
 
 		}
@@ -583,6 +590,8 @@ void Level3::Update()
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -597,6 +606,8 @@ void Level3::Update()
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			glfwTerminate();
 		}
 	}
@@ -661,6 +672,8 @@ void Level3::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
+
 		STATE_MANAGER->ChangeLevel(LV_TEST4);
 		chekNext = 0;
 

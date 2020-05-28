@@ -88,6 +88,10 @@ void Level8::Init()
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+
 	texureIdLine8 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack8 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve8 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -99,7 +103,7 @@ void Level8::Init()
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV8_2 = TEXTURE->CreateTexture("assets\\pipe3.png", 0);
+	texureIdV8_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
@@ -302,7 +306,7 @@ void Level8::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot2 = false;
-		STATE_MANAGER->ReloadState();
+		fail->mesh->setTransform({ 0,0 });
 		std::cout << "rotation limit!!!" << std::endl;
 	}
 	if (rotrot2)
@@ -573,6 +577,8 @@ void Level8::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			poopooCheck = true;
 
 		}
@@ -611,14 +617,33 @@ void Level8::Update()
 				playSE8.Play(1);
 				playSE8.SetVolume(0.5f);
 				playSE8.SetLoopCount(1);
+				poopooCheck = false;
+
 			}
-			poopooCheck = false;
+			else {
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+			}
 		}
 	}
+
+	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+
+			fail->mesh->setTransform({ -2000.f,-2000.f });
+			STATE_MANAGER->ReloadState();
+		}
+	}
+
 	if (restartUI->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ReloadState();
 
 		}
@@ -628,6 +653,8 @@ void Level8::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -636,6 +663,8 @@ void Level8::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			glfwTerminate();
 		}
 	}
@@ -683,6 +712,7 @@ void Level8::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
@@ -756,6 +786,7 @@ void Level8::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
 
 		chekNext8 = 0;
 

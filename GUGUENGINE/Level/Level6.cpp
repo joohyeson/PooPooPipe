@@ -69,6 +69,11 @@ void Level6::Init()
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
+
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+
 	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	texureIdLine6 = TEXTURE->CreateTexture("assets\\image0.png", 0);
@@ -239,6 +244,7 @@ void Level6::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot = false;
+		fail->mesh->setTransform({ 0,0 });
 		std::cout << "rotation limit!!!" << std::endl;
 
 	}
@@ -526,10 +532,8 @@ void Level6::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			poopooCheck = true;
-
-			
-
 		}
 	}
 	else
@@ -550,12 +554,31 @@ void Level6::Update()
 				connectMove6 = 0;
 				poopooCheck = false;
 			}
+			else {
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+			}
 		}
 	}
+
+	if (fail->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, fail->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+
+			fail->mesh->setTransform({ -2000.f,-2000.f });
+			STATE_MANAGER->ReloadState();
+
+		}
+	}
+
 	if (restartUI->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, restartUI->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ReloadState();
 
 		}
@@ -567,6 +590,8 @@ void Level6::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -576,6 +601,8 @@ void Level6::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			glfwTerminate();
 		}
 	}
@@ -626,7 +653,7 @@ void Level6::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
-
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
 	//leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
 	//leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
@@ -695,6 +722,7 @@ void Level6::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext6 == 1) || mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
 
 		chekNext6 = 0;
 

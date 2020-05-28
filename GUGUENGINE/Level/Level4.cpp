@@ -485,6 +485,8 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
 				clear->mesh->setTransform({ 280.f, -240.f });
@@ -510,6 +512,8 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
 			STATE_MANAGER->ReloadState();
 
@@ -519,6 +523,8 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(LV_TEST4);
 		}
 	}
@@ -528,6 +534,8 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
@@ -536,6 +544,8 @@ void Level4::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			glfwTerminate();
 		}
 	}
@@ -588,6 +598,8 @@ void Level4::Update()
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
 	{
 		INPUT->setInput(KEY::SPACE);
+		INPUT->setInput(KEY::A);
+
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
 		chekNext4 = 0;
 

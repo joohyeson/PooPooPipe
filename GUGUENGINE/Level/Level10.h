@@ -61,7 +61,7 @@ public:
 		leftCount = nullptr;
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
-
+		fail = nullptr;
 		pooCharacter = nullptr;
 		key = 0;
 	}
@@ -80,7 +80,7 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 	Object* Levelsel, * Levelsel_pressed;
 
-	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* playUI, * quitUI, * optionUI, * restartUI, * fail;
 
 	Object* button;
 	Object* clear;
@@ -147,6 +147,7 @@ private:
 	GLint textureQuitUI8;
 	GLint textureOptionUI8;
 	GLint textureRestartUI8;
+	GLint textureFail;
 
 	GLint textureLeft;
 	GLint textureLeftNumberTen0;
