@@ -772,7 +772,6 @@ void Level8::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
@@ -842,6 +841,7 @@ void Level8::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
 	{

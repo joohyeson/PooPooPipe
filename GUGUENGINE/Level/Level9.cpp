@@ -629,7 +629,6 @@ void Level9::Update()
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart9);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd9);
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
@@ -646,6 +645,8 @@ void Level9::Update()
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if (mPooPoo.IsFinish() == false)
 	{

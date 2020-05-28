@@ -796,7 +796,6 @@ void Level10::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
@@ -861,6 +860,7 @@ void Level10::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if (mPooPoo.IsFinish() == false)
 	{

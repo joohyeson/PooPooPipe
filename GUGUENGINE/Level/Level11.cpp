@@ -729,7 +729,6 @@ void Level11::Update()
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
@@ -826,6 +825,9 @@ void Level11::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));

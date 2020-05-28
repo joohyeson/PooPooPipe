@@ -709,7 +709,6 @@ void Level6::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
 	//leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
 	//leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
@@ -769,6 +768,7 @@ void Level6::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if (mPooPoo.IsFinish() == false)
 	{
