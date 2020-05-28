@@ -713,5 +713,8 @@ void Level3::Close()
 	mPooPoo.Clear();
 	//ENGINE->Quit();
 
+	se3.Free();
+	playSE3.Free();
+
 	OBJECT_FACTORY->DestroyAllObjects();
 }

@@ -16,7 +16,7 @@
 #include "../GUGUENGINE/MovePooPoo.h"
 #include  "../GUGUENGINE/glfwInput.h"
 
-class sound;
+//class sound;
 
 class Level4 : public LevelManager
 {
@@ -96,6 +96,9 @@ private:
 	Mesh mMesh;
 	Shader mShader, mShader2;
 	MovePooPoo mPooPoo;
+
+	/*Sound se4;
+	Sound playSE4;*/
 
 	Input mInput;
 	bool rot[3] = { false };

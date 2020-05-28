@@ -17,7 +17,9 @@
 #include "../GUGUENGINE/limitedRotate.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 #include  "../GUGUENGINE/glfwInput.h"
-class sound;
+
+
+//class sound;
 
 class Level3 : public LevelManager
 {
@@ -94,6 +96,9 @@ private:
 	Object* button;
 	Object* clear;
 	Object* fail;
+
+	//Sound se3;
+	//Sound playSE3;
 
 	MovePooPoo mPooPoo;
 	Object* Levelsel, *Levelsel_pressed;
