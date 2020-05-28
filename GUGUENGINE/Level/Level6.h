@@ -50,6 +50,11 @@ public:
 		quitUI = nullptr;
 		optionUI = nullptr;
 		restartUI = nullptr;
+
+		playUI_p = nullptr;
+		quitUI_p = nullptr;
+		optionUI_p = nullptr;
+		restartUI_p = nullptr;
 		
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
@@ -82,6 +87,8 @@ private:
 	Object* Levelsel, * Levelsel_pressed;
 	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI;
+	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;
@@ -138,6 +145,11 @@ private:
 	GLint textureOptionUI6;
 	GLint textureRestartUI6;
 
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+	
 	GLint textureLeft;
 	GLint textureLeftNumberTen0;
 	GLint textureLeftNumberTen1;

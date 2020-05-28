@@ -54,6 +54,15 @@ void Level5::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI5 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
+	playUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	playUI_p->AddComponent(new Mesh());
+	playUI_p->Init();
+
+	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
+	playUI_p->mesh->SetMeshType(rectangle);
+	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
+
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
@@ -64,7 +73,16 @@ void Level5::Init()
 	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI5 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
+	quitUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI_p->AddComponent(new Mesh());
+	quitUI_p->Init();
 
+	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
+	quitUI_p->mesh->SetMeshType(rectangle);
+	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
+
+	
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
@@ -73,6 +91,13 @@ void Level5::Init()
 	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI5 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
+	optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI_p->AddComponent(new Mesh());
+	optionUI_p->Init();
+	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
+	optionUI_p->mesh->SetMeshType(rectangle);
+	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
 	restartUI->AddComponent(new Mesh());
@@ -80,6 +105,15 @@ void Level5::Init()
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
+
+	restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI_p->AddComponent(new Mesh());
+	restartUI_p->Init();
+	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
+	restartUI_p->mesh->SetMeshType(rectangle);
+	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
+
 	textureRestartUI5 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
@@ -676,6 +710,7 @@ void Level5::Update()
 	if (playUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, playUI->mesh))
 	{
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
+		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
@@ -686,6 +721,8 @@ void Level5::Update()
 	}
 	else
 	{
+		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
+
 		connectMove5 = 0;
 	}
 	
@@ -743,6 +780,8 @@ void Level5::Update()
 
 	if (restartUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
+		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -750,11 +789,16 @@ void Level5::Update()
 			STATE_MANAGER->ReloadState();
 		}
 	}
-
+	else
+	{
+		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
+	}
 
 
 	if (optionUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, optionUI->mesh))
 	{
+		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -762,10 +806,15 @@ void Level5::Update()
 			STATE_MANAGER->ChangeLevel(OPTION);
 		}
 	}
-
+	else
+	{
+		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
+	}
 
 	if (quitUI->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, quitUI->mesh))
 	{
+		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			INPUT->setInput(KEY::LEFT);
@@ -773,7 +822,10 @@ void Level5::Update()
 			glfwTerminate();
 		}
 	}
-
+	else
+	{
+		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
+	}
 
 	se5.Update();
 
@@ -813,7 +865,10 @@ void Level5::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI5);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI5);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI5);
-
+	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
+	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
+	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
+	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);

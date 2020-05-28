@@ -43,11 +43,17 @@ public:
 		spacePress = nullptr;
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
+		
 		playUI = nullptr;
 		quitUI = nullptr;
 		optionUI = nullptr;
 		restartUI = nullptr;
 
+		playUI_p = nullptr;
+		quitUI_p = nullptr;
+		optionUI_p = nullptr;
+		restartUI_p = nullptr;
+		
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -73,6 +79,8 @@ private:
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
+	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+	
 	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;
@@ -126,6 +134,12 @@ private:
 	GLint textureQuitUI5;
 	GLint textureOptionUI5;
 	GLint textureRestartUI5;
+
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+	
 	GLuint numberTexture;
 	GLuint levelTexture;
 	GLint LevelPage;
