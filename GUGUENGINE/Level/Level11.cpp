@@ -113,7 +113,7 @@ void Level11::Init()
 	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
-	numberTexture = TEXTURE->CreateTexture("assets\\04.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\8.png", 0);
 	textureLeft = TEXTURE->CreateTexture("assets\\left_turn.png", 0);
 
 	textureLeftNumber0 = TEXTURE->CreateTexture("assets\\00.png", 0);
