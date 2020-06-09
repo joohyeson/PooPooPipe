@@ -521,6 +521,34 @@
 //			}
 //		}
 //
+//		if (puzzle17->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle17->mesh))
+//		{
+//			if (mInput.IsPressed(KEY::RIGHT) == true)
+//			{
+//				rot[8] = true;
+//			}
+//			if (rot[8] == true)
+//			{
+//				if (mInput.IsPressed(KEY::RIGHT) == false)
+//				{
+//					puzzle17->pipe->Update();
+//					puzzle18->pipe->Update();
+//
+//					degree8_8 += static_cast<float>(DegreeToRadian(60.f));
+//					puzzle17->mesh->setRotation(degree8_8);
+//					puzzle18->mesh->setRotation(degree8_8);
+//
+//					rotTime.Update();
+//
+//					se11.Play(1);
+//					se11.SetVolume(0.5f);
+//					se11.SetLoopCount(1);
+//
+//					rot[8] = false;
+//				}
+//			}
+//		}
+//
 //		if (puzzle12->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle12->mesh))
 //		{
 //			if (mInput.IsPressed(KEY::RIGHT) == true)
