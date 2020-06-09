@@ -32,6 +32,8 @@ StateManager* STATE_MANAGER = nullptr;
 StateManager::StateManager()
 {
 	STATE_MANAGER = this;
+
+	sound = new Sound();
 }
 
 StateManager::~StateManager()
@@ -40,6 +42,9 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
+
+
+
 	current = MAINMENU;
 	
 	levels.push_back(new DigipenLogo());
@@ -55,17 +60,23 @@ void StateManager::Init()
 	levels.push_back(new Level7());
 	levels.push_back(new Level8());
 	levels.push_back(new Level9());
-	levels.push_back(new Level10());
-	levels.push_back(new Level11());
+	//levels.push_back(new Level10());
+	//levels.push_back(new Level11());
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
 
 	levels.at(current)->Init();
+	for (auto i: levels)
+	{
+		i->sound = sound;
+	}
 }
 
 void StateManager::Update()
 {
+	sound->Update();
+
 	switch (state) {
 	case State::START:
 		nextGameState = levels[current];
@@ -125,3 +136,5 @@ int StateManager::GetCurrentLV()
 {
 	return currentLV;
 }
+
+

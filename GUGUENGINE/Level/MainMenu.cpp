@@ -32,20 +32,21 @@ GLuint startPress;
 GLuint tutorialPress;
 GLuint optionPress;
 
-Sound bgm;
+bool isPlaying = false;
+//Sound bgm;
 
 void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 {
 	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
 	{
-		bgm.Stop();
+		//bgm.Stop();
 		std::cout << "Stop music" << std::endl;
 	}
 
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
-		bgm.Free();
+		//bgm.Free();
 	}
 
 	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
@@ -55,7 +56,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 		if (volume < 1.0f)
 		{
 			volume += 0.1f;
-			bgm.SetVolume(volume);
+			//bgm.SetVolume(volume);
 
 			std::cout << volume << std::endl;
 		}
@@ -68,7 +69,7 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 		if (volume > 0.0f)
 		{
 			volume -= 0.1f;
-			bgm.SetVolume(volume);
+			//bgm.SetVolume(volume);
 
 			std::cout << volume << std::endl;
 		}
@@ -94,14 +95,16 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 
 void MainMenu::Init()
 {
-	bgm.Stop();
-	bgm.Init();
-	bgm.LoadMusic("assets\\airplane.mp3");
+	//bgm.Stop();
+	//bgm.Init();
+	//bgm.LoadMusic("assets\\airplane.mp3");
 
-	if (!bgm.IsPlaying())
-	{
-		bgm.Play();
-	}
+	//if (!bgm.IsPlaying())
+	//{
+	//	bgm.Play();
+	//}
+
+
 
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
@@ -194,7 +197,14 @@ test2->mesh->InitializeTextureMesh(2.f, 2.f);*/
 
 void MainMenu::Update()
 {
-	bgm.Update();
+	//bgm.Update();
+
+	if (isPlaying == false)
+	{
+		this->sound->Play("assets\\BGM_airplane.mp3", 1);
+		isPlaying = true;
+	}
+
 
 	if (moveCheck0 % 2 == 1)
 	{

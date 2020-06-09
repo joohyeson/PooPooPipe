@@ -9,8 +9,8 @@
 #include "Level8.h"
 #include "../GUGUENGINE/Sound.h"
 
-Sound se8;
-Sound playSE8;
+//Sound se8;
+//Sound playSE8;
 
 void Level8::Init()
 {
@@ -177,11 +177,11 @@ void Level8::Init()
 	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 380, 450.f - 20.f });
 	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
-	se8.Init();
-	se8.LoadSE("assets\\coin.mp3");
+	//se8.Init();
+	//se8.LoadSE("assets\\coin.mp3");
 
-	playSE8.Init();
-	playSE8.LoadSE("assets\\flushing.wav");
+	//playSE8.Init();
+	//playSE8.LoadSE("assets\\flushing.wav");
 
 	mShader2.BuildTextureShader();
 
@@ -296,8 +296,8 @@ void Level8::Update()
 {
 	STATE_MANAGER->setCurrentLV(4);
 
-	se8.Update();
-	playSE8.Update();
+	/*se8.Update();
+	playSE8.Update();*/
 
 	cursor8 = mInput.Cursor;
 
@@ -361,9 +361,8 @@ void Level8::Update()
 					puzzle1->mesh->setRotation(degree8);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					//se8.Play("assets\\coin.mp3", 1);
+
 					rot[0] = false;
 				}
 			}
@@ -385,9 +384,11 @@ void Level8::Update()
 					puzzle18->mesh->setRotation(degree8_2);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 					rot[1] = false;
 				}
 			}
@@ -410,9 +411,11 @@ void Level8::Update()
 					puzzle4->mesh->setRotation(degree8_3);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 					rot[2] = false;
 				}
 			}
@@ -435,9 +438,11 @@ void Level8::Update()
 					puzzle7->mesh->setRotation(degree8_4);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 					rot[3] = false;
 				}
 			}
@@ -459,9 +464,11 @@ void Level8::Update()
 					puzzle20->mesh->setRotation(degree8_5);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 					rot[4] = false;
 				}
 			}
@@ -484,9 +491,11 @@ void Level8::Update()
 					puzzle9->mesh->setRotation(degree8_6);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 					rot[5] = false;
 				}
 			}
@@ -508,9 +517,10 @@ void Level8::Update()
 					puzzle17->mesh->setRotation(degree8_7);
 					rotTime.Update();
 
-					se8.Play(1);
-					se8.SetVolume(0.5f);
-					se8.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+					//se8.Play(1);
+					//se8.SetVolume(0.5f);
+					//se8.SetLoopCount(1);
 
 					rot[6] = false;
 				}
@@ -639,9 +649,12 @@ void Level8::Update()
 
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
-				playSE8.Play(1);
-				playSE8.SetVolume(0.5f);
-				playSE8.SetLoopCount(1);
+
+				this->sound->Play("assets\\coin.mp3", 1);
+
+				//playSE8.Play(1);
+				//playSE8.SetVolume(0.5f);
+				//playSE8.SetLoopCount(1);
 			}
 			else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9)
 			{
@@ -652,9 +665,12 @@ void Level8::Update()
 
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
-				playSE8.Play(1);
-				playSE8.SetVolume(0.5f);
-				playSE8.SetLoopCount(1);
+
+				this->sound->Play("assets\\coin.mp3", 1);
+				//playSE8.Play(1);
+				//playSE8.SetVolume(0.5f);
+				//playSE8.SetLoopCount(1);
+
 				poopooCheck = false;
 
 			}
@@ -724,7 +740,7 @@ void Level8::Update()
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	se8.Update();
+	//se8.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);

@@ -6,6 +6,8 @@
  *Sound.h
  *this is a header for sound
  */
+#include <string>
+#include <vector>
 #include "fmod.hpp"
 #include "System.h"
 
@@ -18,12 +20,14 @@ public:
 	Sound();
 	~Sound();
 
-	void Free();
+	//void Free();
 	void LoadMusic(const char* filePath);
-	void LoadSE(const char* filePath);
+	
+	void Load();
+
 	bool IsPlaying();
 	bool IsPaused();
-	void Play(int loop = -1);
+	void Play(std::string source, int loop = 1);
 	void Pause();
 	void Resume();
 	void Stop();
@@ -36,12 +40,26 @@ public:
 	void SetLoopCount(int loopCount);
 
 private:
+
+	struct SOUNDMANAGER
+	{
+		FMOD::Channel* channel = nullptr;
+		FMOD::Sound* sound = nullptr;
+		bool IsPlaying = false;
+
+		std::string source = "";
+	};
+
+	std::vector<SOUNDMANAGER*> m_sounds;
+
 	FMOD::System* system;
-	FMOD::Sound* sound;
-	FMOD::Channel* channel;
+
+	FMOD::ChannelGroup* soundEffects = nullptr;
+	FMOD::ChannelGroup* backgroundSounds = nullptr;
+	FMOD::ChannelGroup* masterChannel = nullptr;
+
 
 	float m_volume;
 
 	FMOD_RESULT result;
-	
 };

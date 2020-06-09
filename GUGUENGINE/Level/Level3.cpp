@@ -17,8 +17,8 @@
 #include "Level3.h"
 #include "../GUGUENGINE/Sound.h"
 
-Sound se3;
-Sound playSE3;
+//Sound se3;
+//Sound playSE3;
 
 void Level3::Init()
 {
@@ -178,11 +178,11 @@ void Level3::Init()
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 
-	se3.Init();
-	se3.LoadSE("assets\\coin.mp3");
+	//se3.Init();
+	//se3.LoadSE("assets\\coin.mp3");
 
-	playSE3.Init();
-	playSE3.LoadSE("assets\\flushing.wav");
+	//playSE3.Init();
+	//playSE3.LoadSE("assets\\flushing.wav");
 
 	mShader2.BuildTextureShader();
 
@@ -274,9 +274,10 @@ void Level3::Update()
 				degree2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree2);
 
-				se3.Play(1);
-				se3.SetVolume(0.5f);
-				se3.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se3.Play("assets\\coin.mp3", 1);
+				//se3.SetVolume(0.5f);
+				//se3.SetLoopCount(1);
 				rot[0] = false;
 			}
 		}
@@ -333,9 +334,11 @@ void Level3::Update()
 				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree2_2);
 
-				se3.Play(1);
-				se3.SetVolume(0.5f);
-				se3.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+
+				//se3.Play(1);
+				//se3.SetVolume(0.5f);
+				//se3.SetLoopCount(1);
 				rot[1] = false;
 			}
 		}
@@ -376,9 +379,10 @@ void Level3::Update()
 				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle3->mesh->setRotation(degree2_3);
 
-				se3.Play(1);
-				se3.SetVolume(0.5f);
-				se3.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se3.Play(1);
+				//se3.SetVolume(0.5f);
+				//se3.SetLoopCount(1);
 				rot[2] = false;
 			}
 		}
@@ -543,9 +547,12 @@ void Level3::Update()
 				std::cout << "clear" << std::endl;
 				connectMove = 0;
 				mPooPoo.SetIsSuccess(true);
-				playSE3.Play(1);
-				playSE3.SetVolume(0.5f);
-				playSE3.SetLoopCount(1);
+
+				this->sound->Play("assets\\coin.mp3", 1);
+
+				//playSE3.Play(1);
+				//playSE3.SetVolume(0.5f);
+				//playSE3.SetLoopCount(1);
 				poopooCheck = false;
 			}
 			else {
@@ -621,8 +628,8 @@ void Level3::Update()
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
-	se3.Update();
-	playSE3.Update();
+	/*se3.Update();
+	playSE3.Update();*/
 	
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
@@ -713,8 +720,8 @@ void Level3::Close()
 	mPooPoo.Clear();
 	//ENGINE->Quit();
 
-	se3.Free();
-	playSE3.Free();
+	/*se3.Free();
+	playSE3.Free();*/
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

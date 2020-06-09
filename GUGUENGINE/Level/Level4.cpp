@@ -18,8 +18,8 @@
 #include "Level4.h"
 #include "../GUGUENGINE/Sound.h"
 
-Sound se4;
-Sound playSE4;
+//Sound se4;
+//Sound playSE4;
 
 void Level4::Init()
 {
@@ -177,11 +177,12 @@ void Level4::Init()
 	numberTexture = TEXTURE->CreateTexture("assets\\02.png", 0);
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
-	se4.Init();
-	se4.LoadSE("assets\\coin.mp3");
+	
+	//se4.Init();
+	//se4.LoadSE("assets\\coin.mp3");
 
-	playSE4.Init();
-	playSE4.LoadSE("assets\\flushing.wav");
+	//playSE4.Init();
+	//playSE4.LoadSE("assets\\flushing.wav");
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
@@ -219,8 +220,9 @@ void Level4::Update()
 
 	cursor4 = mInput.Cursor;
 
-	se4.Update();
-	playSE4.Update();
+	//se4.Update();
+	//playSE4.Update();
+
 	if (Levelsel->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, Levelsel->mesh) == true)
 	{
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
@@ -272,9 +274,10 @@ void Level4::Update()
 				degree4 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree4);
 
-				se4.Play(1);
-				se4.SetVolume(0.5f);
-				se4.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se4.Play(1);
+				//se4.SetVolume(0.5f);
+				//se4.SetLoopCount(1);
 				rot[0] = false;
 
 			}
@@ -332,9 +335,11 @@ void Level4::Update()
 				degree4_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree4_2);
 
-				se4.Play(1);
-				se4.SetVolume(0.5f);
-				se4.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+
+				//se4.Play(1);
+				//se4.SetVolume(0.5f);
+				//se4.SetLoopCount(1);
 				rot[1] = false;
 			}
 		}
@@ -373,9 +378,12 @@ void Level4::Update()
 
 				movePuzzle3->mesh->setRotation(degree4_3);
 
-				se4.Play(1);
-				se4.SetVolume(0.5f);
-				se4.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				
+				//se4.Play(1);
+				//se4.SetVolume(0.5f);
+				//se4.SetLoopCount(1);
+
 				rot[2] = false;
 
 			}
@@ -531,9 +539,10 @@ void Level4::Update()
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 
-				playSE4.Play(1);
-				playSE4.SetVolume(0.5f);
-				playSE4.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//playSE4.Play(1);
+				//playSE4.SetVolume(0.5f);
+				//playSE4.SetLoopCount(1);
 				poopooCheck = false;
 			}
 			else
@@ -602,7 +611,7 @@ void Level4::Update()
 	{
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
-	se4.Update();
+	//se4.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground4);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve4);

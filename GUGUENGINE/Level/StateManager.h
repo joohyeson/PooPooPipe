@@ -10,6 +10,7 @@
 #include<vector>
 #include "../GUGUENGINE/System.h"
 #include "../GUGUENGINE/LevelManager.h"
+#include "../GUGUENGINE/Sound.h"
 
 //define enum for level
 enum GameLevels
@@ -46,6 +47,7 @@ public:
 	void ChangeLevel(GameLevels changeLV);
 	void setCurrentLV(int i);
 	int GetCurrentLV();
+
 private:
 	enum class State {
 		START,
@@ -62,6 +64,9 @@ private:
 	State state;
 	LevelManager* currGameState;
 	LevelManager* nextGameState;
+
+	Sound* sound;
+
 	int currentLV;
 };
 extern StateManager* STATE_MANAGER;

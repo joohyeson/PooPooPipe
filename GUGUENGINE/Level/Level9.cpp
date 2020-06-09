@@ -9,8 +9,8 @@
 #include "Level9.h"
 #include "../GUGUENGINE/Sound.h"
 
-Sound se9;
-Sound playSE9;
+//Sound se9;
+//Sound playSE9;
 
 void Level9::Init()
 {
@@ -59,11 +59,13 @@ void Level9::Init()
 	texureIdclear9 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace9 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
-	se9.Init();
-	se9.LoadSE("assets\\coin.mp3");
+	//se9.Init();
+	//se9.LoadSE("assets\\coin.mp3");
 
-	playSE9.Init();
-	playSE9.LoadSE("assets\\flushing.wav");
+	//playSE9.Init();
+	//playSE9.LoadSE("assets\\flushing.wav");
+
+
 	mShader2.BuildTextureShader();
 
 
@@ -253,8 +255,8 @@ void Level9::Update()
 
 	cursor9 = mInput.Cursor;
 
-	se9.Update();
-	playSE9.Update();
+	/*se9.Update();
+	playSE9.Update();*/
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, Levelsel->mesh) == true)
 	{
@@ -301,10 +303,10 @@ void Level9::Update()
 				degree9 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle1->mesh->setRotation(degree9);
 
-
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[0] = false;
 			}
 		}
@@ -326,9 +328,10 @@ void Level9::Update()
 				degree9_2 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle19->mesh->setRotation(degree9_2);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[1] = false;
 			}
 		}
@@ -350,9 +353,10 @@ void Level9::Update()
 				degree9_3 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle14->mesh->setRotation(degree9_3);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[2] = false;
 			}
 		}
@@ -373,9 +377,12 @@ void Level9::Update()
 				degree9_4 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle6->mesh->setRotation(degree9_4);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
+
 				rot[3] = false;
 
 			}
@@ -398,9 +405,10 @@ void Level9::Update()
 				degree9_5 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle20->mesh->setRotation(degree9_5);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[4] = false;
 			}
 		}
@@ -421,10 +429,10 @@ void Level9::Update()
 				degree9_6 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle16->mesh->setRotation(degree9_6);
 
-
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[5] = false;
 			}
 		}
@@ -445,9 +453,10 @@ void Level9::Update()
 				degree9_7 += static_cast<float>(DegreeToRadian(60.f));
 				puzzle12->mesh->setRotation(degree9_7);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 				rot[6] = false;
 			}
 
@@ -509,9 +518,10 @@ void Level9::Update()
 				degree9_rot += static_cast<float>(DegreeToRadian(-120.f));
 				puzzle4->mesh->setRotation(degree9_rot);
 
-				se9.Play(1);
-				se9.SetVolume(0.5f);
-				se9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se9.Play(1);
+				//se9.SetVolume(0.5f);
+				//se9.SetLoopCount(1);
 
 				autoRot = false;
 
@@ -531,9 +541,10 @@ void Level9::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 
-				playSE9.Play(1);
-				playSE9.SetVolume(0.5f);
-				playSE9.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//playSE9.Play(1);
+				//playSE9.SetVolume(0.5f);
+				//playSE9.SetLoopCount(1);
 
 			}
 		}
@@ -600,7 +611,7 @@ void Level9::Update()
 	}
 
 
-	se9.Update();
+	/*se9.Update();*/
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground9);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV9_2);

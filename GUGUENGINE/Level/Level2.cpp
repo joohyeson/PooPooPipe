@@ -188,9 +188,9 @@ void Level2::Update()
 				checkToPipe = 0;
 			}
 
-			se2.Play(1);
-			se2.SetVolume(0.5f);
-			se2.SetLoopCount(1);
+			//se2.Play(1);
+			//se2.SetVolume(0.5f);
+			//se2.SetLoopCount(1);
 
 		}
 	}

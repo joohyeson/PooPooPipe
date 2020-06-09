@@ -9,8 +9,8 @@
 #include "Level6.h"
 #include "../GUGUENGINE/Sound.h"
 
-Sound se6;
-Sound playSE6;
+//Sound se6;
+//Sound playSE6;
 
 void Level6::Init()
 {
@@ -154,11 +154,11 @@ void Level6::Init()
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 
-	se6.Init();
-	se6.LoadSE("assets\\coin.mp3");
+	//se6.Init();
+	//se6.LoadSE("assets\\coin.mp3");
 
-	playSE6.Init();
-	playSE6.LoadSE("assets\\flushing.wav");
+	//playSE6.Init();
+	//playSE6.LoadSE("assets\\flushing.wav");
 
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
@@ -285,8 +285,8 @@ void Level6::Update()
 
 
 
-	se6.Update();
-	playSE6.Update();
+	/*se6.Update();
+	playSE6.Update();*/
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, Levelsel->mesh) == true)
 	{
@@ -340,9 +340,12 @@ void Level6::Update()
 					puzzle14->mesh->setRotation(degree6);
 					rotTime.Update();
 					//rightCheck6 = 0;
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+					
+					this->sound->Play("assets\\coin.mp3", 1);
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
+
 					rot[0] = false;
 				}
 			}
@@ -364,9 +367,13 @@ void Level6::Update()
 					blackPuzzle1->mesh->setRotation(degree6_2);
 					//rightCheck6_2 = 0;
 					rotTime.Update();
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+					
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
+
 					rot[1] = false;
 				}
 			}
@@ -387,9 +394,13 @@ void Level6::Update()
 					degree6_3 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle7->mesh->setRotation(degree6_3);
 					rotTime.Update();
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+
+					this->sound->Play("assets\\coin.mp3", 1);
+					
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
+
 					rot[2] = false;
 				}
 			}
@@ -410,9 +421,12 @@ void Level6::Update()
 					blackPuzzle3->mesh->setRotation(degree6_4);
 					std::cout << "4" << std::endl;
 					rotTime.Update();
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+					
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
 					rot[3] = false;
 				}
 			}
@@ -433,9 +447,13 @@ void Level6::Update()
 					puzzle16->mesh->setRotation(degree6_5);
 					rotTime.Update();
 					std::cout << "5" << std::endl;
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+					
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
+
 					rot[4] = false;
 				}
 			}
@@ -457,9 +475,14 @@ void Level6::Update()
 
 					rotTime.Update();
 					std::cout << "6" << std::endl;
-					se6.Play(1);
-					se6.SetVolume(0.5f);
-					se6.SetLoopCount(1);
+					
+					this->sound->Play("assets\\coin.mp3", 1);
+					
+					//se6.Play(1);
+					//se6.SetVolume(0.5f);
+					//se6.SetLoopCount(1);
+
+
 					rot[5] = false;
 				}
 			}
@@ -478,9 +501,11 @@ void Level6::Update()
 					mPooPoo.SetIsSuccess(true);
 					connectMove6 = 0;
 
-					playSE6.Play(1);
-					playSE6.SetVolume(0.5f);
-					playSE6.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					//playSE6.Play(1);
+					//playSE6.SetVolume(0.5f);
+					//playSE6.SetLoopCount(1);
 				}
 
 			}
@@ -661,7 +686,7 @@ void Level6::Update()
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	se6.Update();
+	//se6.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground6);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine6);

@@ -8,9 +8,9 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level5.h"
 #include "../GUGUENGINE/Sound.h"
-
-Sound se5;
-Sound playSE5;
+//
+//Sound se5;
+//Sound playSE5;
 
 void Level5::Init()
 {
@@ -150,11 +150,14 @@ void Level5::Init()
 	texureIdbutton5 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear5 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 	texureSpace5 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
-	se5.Init();
-	se5.LoadSE("assets\\coin.mp3");
+	
+	/*se5.Init();
+	se5.LoadSE("assets\\coin.mp3");*/
 
+	/*
 	playSE5.Init();
 	playSE5.LoadSE("assets\\flushing.wav");
+	*/
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
@@ -248,8 +251,8 @@ void Level5::Update()
 
 	cursor5 = mInput.Cursor;
 
-	se5.Update();
-	playSE5.Update();
+	/*se5.Update();
+	playSE5.Update();*/
 
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, Levelsel->mesh) == true)
@@ -308,10 +311,11 @@ void Level5::Update()
 				degree5 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree5);
 
+				this->sound->Play("assets\\coin.mp3", 1);
 
-				se5.Play(1);
-				se5.SetVolume(0.5f);
-				se5.SetLoopCount(1);
+				//se5.Play(1);
+				//se5.SetVolume(0.5f);
+				//se5.SetLoopCount(1);
 				rot[0] = false;
 			}
 		}
@@ -413,9 +417,10 @@ void Level5::Update()
 				degree5_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree5_2);
 
-				se5.Play(1);
-				se5.SetVolume(0.5f);
-				se5.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se5.Play(1);
+				//se5.SetVolume(0.5f);
+				//se5.SetLoopCount(1);
 				rot[1] = false;
 			}
 		}
@@ -517,9 +522,10 @@ void Level5::Update()
 					degree5_3 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle3->mesh->setRotation(degree5_3);
 
-					se5.Play(1);
-					se5.SetVolume(0.5f);
-					se5.SetLoopCount(1);
+					this->sound->Play("assets\\coin.mp3", 1);
+					//se5.Play(1);
+					//se5.SetVolume(0.5f);
+					//se5.SetLoopCount(1);
 					rot[2] = false;
 				}
 			}
@@ -738,9 +744,10 @@ void Level5::Update()
 				puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
 				puzzle7->pipe->SetDirection(true, true, false, true, false, false);
 
-				se5.Play(1);
-				se5.SetVolume(0.5f);
-				se5.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//se5.Play(1);
+				//se5.SetVolume(0.5f);
+				//se5.SetLoopCount(1);
 
 				movePuzzleCheck5 = false;
 			}
@@ -754,9 +761,10 @@ void Level5::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove5 = 0;
 
-				playSE5.Play(1);
-				playSE5.SetVolume(0.5f);
-				playSE5.SetLoopCount(1);
+				this->sound->Play("assets\\coin.mp3", 1);
+				//playSE5.Play(1);
+				//playSE5.SetVolume(0.5f);
+				//playSE5.SetLoopCount(1);
 
 				poopooCheck = false;
 			}
@@ -827,7 +835,7 @@ void Level5::Update()
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	se5.Update();
+	//se5.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground5);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine5);

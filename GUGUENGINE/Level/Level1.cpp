@@ -21,7 +21,7 @@ GLuint texureIdBlack1;
 GLuint textureBackground1;
 GLuint textureSpace1;
 
-Sound se;
+//Sound se;
 
 void Level1::Init()
 {
@@ -46,8 +46,8 @@ void Level1::Init()
 	texureIdCurve1 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	textureSpace1 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
-	se.Init();
-	se.LoadMusic("assets\\coin.mp3");
+	//se.Init();
+	//se.LoadMusic("assets\\coin.mp3");
 
 	mShader2.BuildTextureShader();
 
@@ -86,7 +86,7 @@ void Level1::Update()
 {
 	cursor = mInput.Cursor;
 
-	se.Update();
+	//se.Update();
 
 	if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
 	{

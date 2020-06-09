@@ -7,6 +7,9 @@
  *LevelManager.cpp
  *for manage level
  */
+
+#include "../GUGUENGINE/Sound.h"
+
 class LevelManager
 {
 public:
@@ -15,4 +18,7 @@ public:
 	virtual void Update() = 0;
 	virtual void Close() = 0;
 	virtual ~LevelManager()	{}
+
+	Sound* sound;
+
 };
