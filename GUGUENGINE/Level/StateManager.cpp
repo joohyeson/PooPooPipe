@@ -60,8 +60,8 @@ void StateManager::Init()
 	levels.push_back(new Level7());
 	levels.push_back(new Level8());
 	levels.push_back(new Level9());
-	//levels.push_back(new Level10());
-	//levels.push_back(new Level11());
+	levels.push_back(new Level10());
+	levels.push_back(new Level11());
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
