@@ -39,7 +39,7 @@ void Level9::Init()
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	textureBackground9 = TEXTURE->CreateTexture("assets\\background.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine9 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack9 = TEXTURE->CreateTexture("assets\\image1.png", 0);

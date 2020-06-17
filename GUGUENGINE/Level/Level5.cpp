@@ -42,7 +42,7 @@ void Level5::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground5 = TEXTURE->CreateTexture("assets\\background.png", 0);
+	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();

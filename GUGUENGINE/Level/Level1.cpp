@@ -21,7 +21,6 @@ GLuint texureIdBlack1;
 GLuint textureBackground1;
 GLuint textureSpace1;
 
-int check = 0;
 
 //Sound se;
 
@@ -122,7 +121,6 @@ void Level1::Update()
 						movable = false;
 						levelCheck = true;
 						spaceCheck = true;
-						check++;
 					}
 				}
 			}

@@ -169,12 +169,12 @@ void Level11::Init()
 	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
 
 	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 250, 450.f - 20.f });
-	leftCount->mesh->InitializeTextureMesh(200.f, 100.f);
+	leftCount->mesh->InitializeTextureMesh(250.f, 80.f);
 
 	leftnumber = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 430, 450.f - 20.f });
 	leftnumber->mesh->InitializeTextureMesh(80.f, 100.f);
 
-	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 380, 450.f - 20.f });
+	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 400, 450.f - 20.f });
 	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
 
