@@ -21,10 +21,14 @@ GLuint texureIdBlack1;
 GLuint textureBackground1;
 GLuint textureSpace1;
 
+int check = 0;
+
 //Sound se;
 
 void Level1::Init()
 {
+	levelCheck = false;
+	spaceCheck = false;
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -116,16 +120,24 @@ void Level1::Update()
 					{
 						movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
 						movable = false;
-						
+						levelCheck = true;
+						spaceCheck = true;
+						check++;
 					}
 				}
 			}
 		}
 	}
-	if (mInput.IsPressed(KEY::SPACE) == true)
+
+	if(spaceCheck == true)
 	{
-		STATE_MANAGER->ChangeLevel(LV_TEST2);
+		if (mInput.IsPressed(KEY::SPACE) == true && levelCheck == true)
+		{
+			mInput.setInput(KEY::SPACE);
+			STATE_MANAGER->ChangeLevel(LV_TEST2);
+		}
 	}
+
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground1);
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack1);
