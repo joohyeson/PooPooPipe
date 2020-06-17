@@ -231,14 +231,14 @@ void Level11::Init()
 	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f });
 	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
 
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -637,7 +637,7 @@ void Level11::Update()
 
 			if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_6 && conecTcheck8_7)
 			{
-				clear->mesh->setTransform({ 280.f, -240.f });
+				clear->mesh->setTransform({ 350.f, -240.f });
 				chekNext8 = 1;
 				mPooPoo.SetIsSuccess(true);
 
