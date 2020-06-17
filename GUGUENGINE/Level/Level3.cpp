@@ -17,9 +17,6 @@
 #include "Level3.h"
 #include "../GUGUENGINE/Sound.h"
 
-//Sound se3;
-//Sound playSE3;
-
 void Level3::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
@@ -53,7 +50,6 @@ void Level3::Init()
 	playUI->Init();
 
 	playUI->mesh->setTransform({ 713.5f, 300.f });
-	playUI->mesh->SetMeshType(rectangle);
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 	
@@ -62,7 +58,6 @@ void Level3::Init()
 	playUI_p->Init();
 
 	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
-	playUI_p->mesh->SetMeshType(rectangle);
 	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
 	
@@ -71,7 +66,6 @@ void Level3::Init()
 	quitUI->Init();
 
 	quitUI->mesh->setTransform({ 800.f, 150.f });
-	quitUI->mesh->SetMeshType(rectangle);
 	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 	
@@ -80,7 +74,6 @@ void Level3::Init()
 	quitUI_p->Init();
 
 	quitUI_p->mesh->setTransform({	1800.f, 150.f });
-	quitUI_p->mesh->SetMeshType(rectangle);
 	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
 	
@@ -88,7 +81,6 @@ void Level3::Init()
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
 	optionUI->mesh->setTransform({ 713.5f, 0.f });
-	optionUI->mesh->SetMeshType(rectangle);
 	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 	
@@ -96,7 +88,6 @@ void Level3::Init()
 	optionUI_p->AddComponent(new Mesh());
 	optionUI_p->Init();
 	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
-	optionUI_p->mesh->SetMeshType(rectangle);
 	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
 	
@@ -104,7 +95,6 @@ void Level3::Init()
 	restartUI->AddComponent(new Mesh());
 	restartUI->Init();
 	restartUI->mesh->setTransform({ 800.f, -150.f });
-	restartUI->mesh->SetMeshType(rectangle);
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
@@ -112,7 +102,6 @@ void Level3::Init()
 	restartUI_p->AddComponent(new Mesh());
 	restartUI_p->Init();
 	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
-	restartUI_p->mesh->SetMeshType(rectangle);
 	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
 	
@@ -516,7 +505,7 @@ void Level3::Update()
 		}
 	}
 
-	if (playUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, playUI->mesh))
+	if (playUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
 		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -574,7 +563,7 @@ void Level3::Update()
 		}
 	}
 
-	if (restartUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
+	if (restartUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, restartUI->mesh))
 	{
 		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
 
@@ -591,7 +580,7 @@ void Level3::Update()
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
 	}
 
-	if (optionUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
+	if (optionUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
 	{
 		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
 
@@ -607,7 +596,7 @@ void Level3::Update()
 		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	if (quitUI->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
+	if (quitUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, quitUI->mesh))
 	{
 		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
 
