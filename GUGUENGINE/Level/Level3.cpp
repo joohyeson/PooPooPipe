@@ -139,6 +139,7 @@ void Level3::Init()
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 
@@ -165,6 +166,7 @@ void Level3::Init()
 	levelTexture= TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture= TEXTURE->CreateTexture("assets\\01.png", 0);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 
 
 	//se3.Init();
@@ -174,7 +176,8 @@ void Level3::Init()
 	//playSE3.LoadSE("assets\\flushing.wav");
 
 	mShader2.BuildTextureShader();
-
+	mShader.BuildTextureShader();
+	
 	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
@@ -189,7 +192,8 @@ void Level3::Init()
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
-
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
@@ -552,6 +556,8 @@ void Level3::Update()
 
 	}
 
+	
+	
 	if (fail->collision->Point2BoxCollision({ cursor3.x,cursor3.y }, fail->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
@@ -616,10 +622,18 @@ void Level3::Update()
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
+	
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if(pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
+	
 	/*se3.Update();
 	playSE3.Update();*/
-	
+
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground3);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine3);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve3);
@@ -663,6 +677,8 @@ void Level3::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
+	win->mesh->Update(mShader.GetShaderHandler(), textureWin);
+
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)

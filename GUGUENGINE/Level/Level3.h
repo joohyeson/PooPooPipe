@@ -71,6 +71,7 @@ public:
 		numberImage = nullptr;
 		pooCharacter = nullptr;
 		fail = nullptr;
+		win = nullptr;
 
 		key = 0;
 	}
@@ -96,6 +97,7 @@ private:
 	Object* button;
 	Object* clear;
 	Object* fail;
+	Object* win;
 
 	//Sound se3;
 	//Sound playSE3;
@@ -159,6 +161,7 @@ private:
 	GLuint numberTexture;
 	GLuint levelTexture;
 	GLint textureFail;
+	GLint textureWin;
 
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;

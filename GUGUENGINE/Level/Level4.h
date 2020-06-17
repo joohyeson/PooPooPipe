@@ -66,6 +66,8 @@ public:
 		numberImage = nullptr;
 		pooCharacter = nullptr;
 		fail = nullptr;
+		win = nullptr;
+		
 		key = 0;
 	}
 
@@ -91,7 +93,11 @@ private:
 	Object* button;
 	Object* clear;
 	Object* fail;
+	Object* win;
+
 	GLint textureFail;
+	GLint textureWin;
+	
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
