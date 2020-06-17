@@ -136,7 +136,7 @@ void Level3::Init()
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 	
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 
@@ -183,8 +183,8 @@ void Level3::Init()
 	puzzle7->pipe->SetDirection(false, true, false, false, false, true);
 
 	
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -531,7 +531,7 @@ void Level3::Update()
 			if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 			{
 				std::cout << "if 3" << std::endl;
-				clear->mesh->setTransform({ 280.f, -240.f });
+				clear->mesh->setTransform({ 350.f, -240.f });
 				chekNext = 1;
 				std::cout << "clear" << std::endl;
 				connectMove = 0;

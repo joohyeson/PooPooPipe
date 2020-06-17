@@ -151,7 +151,7 @@ void Level4::Init()
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -80.0f, -450 });
@@ -206,8 +206,8 @@ void Level4::Init()
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -534,7 +534,7 @@ void Level4::Update()
 
 			if (conecTcheck4_1 && conecTcheck4_2 && conecTcheck4_3)
 			{
-				clear->mesh->setTransform({ 280.f, -240.f });
+				clear->mesh->setTransform({ 350.f, -240.f });
 				chekNext4 = 1;
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);

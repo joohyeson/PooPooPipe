@@ -239,13 +239,13 @@ void Level6::Init()
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\03.png", 0);
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -495,7 +495,7 @@ void Level6::Update()
 				if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3)
 				{
 					std::cout << "if 5" << std::endl;
-					clear->mesh->setTransform({ 280.f, -240.f });
+					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext6 = 1;
 					std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);

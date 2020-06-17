@@ -211,11 +211,11 @@ void Level5::Init()
 
 	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -132.f - 482.f, -80.0f - 32.f });
 
-	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 280.f, -240.f });
-	button->mesh->InitializeTextureMesh(80.f, 80.f);
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
 
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	clear->mesh->InitializeTextureMesh(80.f, 80.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
@@ -755,7 +755,7 @@ void Level5::Update()
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
 				std::cout << "if 3" << std::endl;
-				clear->mesh->setTransform({ 280.f, -240.f });
+				clear->mesh->setTransform({ 350.f, -240.f });
 				chekNext5 = 1;
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
