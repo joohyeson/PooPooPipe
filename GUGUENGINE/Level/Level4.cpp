@@ -555,6 +555,24 @@ void Level4::Update()
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		chekNext4 = 0;
+
+		conecTcheck4_1 = false;
+		conecTcheck4_2 = false;
+		conecTcheck4_3 = false;
+
+		degree4 = 0;
+		degree4_2 = 0;
+		degree4_3 = 0;
+
+		blCheck3 = false;
+		blCheck3_2 = false;
+
+		blCheck4 = false;
+		blCheck4_2 = false;
+		
+		STATE_MANAGER->ChangeLevel(LV_TEST6);
+
 	}
 	if (fail->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, fail->mesh))
 	{

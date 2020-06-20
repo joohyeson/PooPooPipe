@@ -694,6 +694,25 @@ void Level6::Update()
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+
+		chekNext6 = 0;
+
+		conecTcheck6_1 = false;
+		conecTcheck6_2 = false;
+		conecTcheck6_3 = false;
+		conecTcheck6_4 = false;
+		conecTcheck6_5 = false;
+
+		degree6 = DegreeToRadian(60.f);
+		degree6_2 = DegreeToRadian(-60.f);
+		degree6_3 = DegreeToRadian(120.f);
+		degree6_4 = DegreeToRadian(180.f);
+		degree6_5 = DegreeToRadian(-180.f);
+		degree6_6 = DegreeToRadian(-120.f);
+
+		rotTime.setRotate(100);
+
+		STATE_MANAGER->ChangeLevel(LV_TEST8);
 	}
 	//se6.Update();
 

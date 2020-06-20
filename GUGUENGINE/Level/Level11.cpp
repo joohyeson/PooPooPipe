@@ -661,6 +661,31 @@ void Level11::Update()
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		chekNext8 = 0;
+
+		conecTcheck8_1 = false;
+		conecTcheck8_2 = false;
+		conecTcheck8_3 = false;
+		conecTcheck8_4 = false;
+		conecTcheck8_5 = false;
+		conecTcheck8_6 = false;
+		conecTcheck8_7 = false;
+		conecTcheck8_8 = false;
+		conecTcheck8_9 = false;
+
+		degree8 = DegreeToRadian(-60.f);
+		degree8_2 = DegreeToRadian(-60.f);
+		degree8_3 = 0;
+		degree8_4 = 0;
+		degree8_5 = 0;
+		degree8_6 = 0;
+		degree8_7 = 0;
+		degree8_8 = 0;
+		degree8_9 = 0;
+
+		rotTime.setRotate(30);
+
+		STATE_MANAGER->ChangeLevel(MAINMENU);
 	}
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
 	{

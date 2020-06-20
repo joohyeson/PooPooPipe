@@ -732,6 +732,7 @@ void Level10::Update()
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);

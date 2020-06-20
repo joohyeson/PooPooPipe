@@ -610,6 +610,22 @@ void Level9::Update()
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		chekNext9 = 0;
+
+		conecTcheck9_1 = false;
+		conecTcheck9_2 = false;
+		conecTcheck9_3 = false;
+
+		degree9 = 0;
+		degree9_2 = DegreeToRadian(60.f);
+		degree9_3 = DegreeToRadian(-60.f);
+		degree9_4 = DegreeToRadian(60.f);
+		degree9_5 = 0;
+		degree9_6 = DegreeToRadian(-180.f);
+		degree9_7 = DegreeToRadian(120.f);
+		degree9_rot = DegreeToRadian(-120.f);
+
+		STATE_MANAGER->ChangeLevel(LV_TEST10);
 	}
 
 	/*se9.Update();*/

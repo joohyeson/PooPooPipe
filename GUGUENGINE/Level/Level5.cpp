@@ -483,6 +483,7 @@ void Level5::Update()
 			}
 		}
 	}
+	
 	if (blCheck6_3)
 	{
 		if ((movePuzzle2->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
@@ -780,12 +781,36 @@ void Level5::Update()
 
 		}
 	}
+	
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
 	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		chekNext5 = 0;
+
+		conecTcheck5_1 = false;
+		conecTcheck5_2 = false;
+		conecTcheck5_3 = false;
+
+		degree5 = 0;
+		degree5_2 = 0;
+		degree5_3 = 0;
+
+		blCheck5 = false;
+		blCheck5_2 = false;
+		blCheck5_3 = false;
+
+		blCheck6 = false;
+		blCheck6_2 = false;
+		blCheck6_3 = false;
+
+		blCheck7 = false;
+		blCheck7_2 = false;
+		blCheck7_3 = false;
+
+		STATE_MANAGER->ChangeLevel(LV_TEST9);
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
@@ -801,6 +826,8 @@ void Level5::Update()
 	else
 	{
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
+
+
 	}
 
 
@@ -887,6 +914,7 @@ void Level5::Update()
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+		
 	}
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
