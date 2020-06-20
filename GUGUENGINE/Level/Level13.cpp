@@ -30,10 +30,13 @@ void Level13::Init()
 	conecTcheck8_9 = false;
 
 	degree8 = 0;
-	degree8_2 = DegreeToRadian(-60.f);
-	degree8_3 = DegreeToRadian(-180.f);
+	degree8_2 = 0;
+	degree8_3 = 0;
 	degree8_4 = 0;
-	degree8_5 = DegreeToRadian(-60.f);
+	degree8_5 = 0;
+	degree8_6 = 0;
+	degree8_7 = 0;
+	degree8_8 = static_cast<float>(DegreeToRadian(-120.f));
 
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 150.f });
 	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
@@ -101,14 +104,15 @@ void Level13::Init()
 	texureIdV8 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
 	texureIdStart8 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
-	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
+	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 	texureIdV8_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 
-	textureIdVAuto = TEXTURE->CreateTexture("assets\\image_auto2.png", 0);
 	textureIdCurveAuto = TEXTURE->CreateTexture("assets\\image_auto1.png", 0);
+	textureIdVAuto = TEXTURE->CreateTexture("assets\\image_auto2.png", 0);
+	textureIdLineAuto = TEXTURE->CreateTexture("assets\\image_auto3.png", 0);
 
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -177,61 +181,58 @@ void Level13::Init()
 	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 400, 450.f - 20.f });
 	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
-
-
 	mShader2.BuildTextureShader();
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 60.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 120.f);
 
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, -200.f - 62.f }, -240.f);
-	endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 208.f - 393.f, -200.f - 62.f }, -360.f);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f });
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
 
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, -120.f);
 
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle,  { 208.f - 393.f, 280.f + 50.f });
-	puzzle3->pipe->SetDirection(false, false, false, false, true, true);
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle,  { 208.f - 393.f, 280.f + 50.f },-60.f);
 
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, 160.f + 22.f });
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f });
+	puzzle4->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 40.f - 5.f }, -60.f);
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 40.f - 5.f },60.f);
 
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 40.f - 5.f });
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
 
 	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f });
-	puzzle7->pipe->SetDirection(false, false, false, true, false, true);
+	puzzle7->pipe->SetDirection(false, false, false, false, true, true);
 
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f }, 120.f);
 
 	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, -80.f - 32.f });
 
 	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, -80.f - 32.f });
-	puzzle10->pipe->SetDirection(true, false, false, true, false, false);
+	puzzle10->pipe->SetDirection(false, false, false, true, false, true);
 
-	puzzle11 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f - 465.f, -200.f - 62.f }, -120.f);
+	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, -120.f);
 
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, -200.f - 62.f }, -180.f);
-	puzzle12->pipe->SetDirection(false, true, true, false, false, false);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, -200.f - 62.f }, -120.f);
 
-	puzzle13 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -120.f);
+	puzzle13 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -180.f);
 
-	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, 160.f + 22.f });
-	puzzle14->pipe->SetDirection(true, false, true, false, false, false);
+	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, 160.f + 22.f }, -120.f);
+	puzzle14->pipe->SetDirection(true, true, false, false, false, false);
 
-	puzzle15 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 208.f - 393.f, 40.f - 5.f }, -120.f);
+	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 40.f - 5.f }, 60.f);
+	puzzle15->pipe->SetDirection(false, false, true, false, false, true);
 
-	puzzle16 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 276.f - 376.f, -80.f - 32.f });
+	puzzle16 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 276.f - 376.f, -80.f - 32.f },-60.f);
 
-	puzzle17 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, -200.f - 62.f }, -120.f);
+	puzzle17 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, -200.f - 62.f }, -180.f);
 
-	puzzle18 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, 160.f + 22.f });
+	puzzle18 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, 160.f + 22.f });
+	puzzle18->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, 160.f + 22.f });
-	puzzle19->pipe->SetDirection(true, false, false, false, true, false);
+	puzzle19 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, 160.f + 22.f },240.f);
+	puzzle19->pipe->SetDirection(false, true, false, false, false, true);
 
-	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f });
-	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
+	puzzle20 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, -80.0f - 32.f });
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
@@ -313,7 +314,7 @@ void Level13::Update()
 	}
 	if (rotrot2)
 	{
-		if (puzzle3->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle3->mesh))
+		if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh)) //18 7
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
@@ -323,10 +324,12 @@ void Level13::Update()
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle3->pipe->Update();
+					puzzle18->pipe->Update();
+					puzzle7->pipe->Update();
 
 					degree8 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle3->mesh->setRotation(degree8);
+					puzzle18->mesh->setRotation(degree8);
+					puzzle7->mesh->setRotation(degree8);
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
@@ -336,7 +339,7 @@ void Level13::Update()
 			}
 		}
 
-		if (puzzle19->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle19->mesh))
+		if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh)) // 18 7
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
@@ -346,10 +349,14 @@ void Level13::Update()
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle19->pipe->Update();
+					puzzle7->pipe->Update();
+					puzzle18->pipe->Update();
 
-					degree8_2 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle19->mesh->setRotation(degree8_2);
+					degree8 += static_cast<float>(DegreeToRadian(60.f));
+
+					puzzle7->mesh->setRotation(degree8);
+					puzzle18->mesh->setRotation(degree8);
+
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
@@ -360,7 +367,7 @@ void Level13::Update()
 		}
 
 
-		if (puzzle14->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle14->mesh)) //12 & 14
+		if (puzzle19->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle19->mesh)) //19 10
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
@@ -370,12 +377,12 @@ void Level13::Update()
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle14->pipe->Update();
-					puzzle12->pipe->Update();
+					puzzle19->pipe->Update();
+					puzzle10->pipe->Update();
 
-					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle14->mesh->setRotation(degree8_3);
-					puzzle12->mesh->setRotation(degree8_3);
+					degree8_2 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle19->mesh->setRotation(degree8_2 + static_cast<float>(DegreeToRadian(240.f)));
+					puzzle10->mesh->setRotation(degree8_2);
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
@@ -385,7 +392,7 @@ void Level13::Update()
 		}
 
 
-		if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh)) //20 7
+		if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh)) //19 10 
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
@@ -395,13 +402,13 @@ void Level13::Update()
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle7->pipe->Update();
-					puzzle20->pipe->Update();
+					puzzle19->pipe->Update();
+					puzzle10->pipe->Update();
 
-					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+					degree8_2 += static_cast<float>(DegreeToRadian(60.f));
 
-					puzzle7->mesh->setRotation(degree8_4);
-					puzzle20->mesh->setRotation(degree8_4);
+					puzzle19->mesh->setRotation(degree8_2 + static_cast<float>(DegreeToRadian(240.f)));
+					puzzle10->mesh->setRotation(degree8_2);
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
@@ -410,7 +417,7 @@ void Level13::Update()
 			}
 		}
 
-		if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh)) // 20 7
+		if (puzzle4->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle4->mesh)) // 4 15
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
@@ -420,13 +427,13 @@ void Level13::Update()
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle7->pipe->Update();
-					puzzle20->pipe->Update();
+					puzzle4->pipe->Update();
+					puzzle15->pipe->Update();
 
-					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
 
-					puzzle20->mesh->setRotation(degree8_4);
-					puzzle7->mesh->setRotation(degree8_4);
+					puzzle4->mesh->setRotation(degree8_3);
+					puzzle15->mesh->setRotation(degree8_3 + static_cast<float>(DegreeToRadian(60.f)));
 
 					rotTime.Update();
 
@@ -436,13 +443,65 @@ void Level13::Update()
 			}
 		}
 
-		if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh))
+		if (puzzle15->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle15->mesh)) // 4 15
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
 				rot[6] = true;
 			}
 			if (rot[6] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle15->pipe->Update();
+					puzzle4->pipe->Update();
+
+					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
+
+					puzzle4->mesh->setRotation(degree8_3);
+					puzzle15->mesh->setRotation(degree8_3 + static_cast<float>(DegreeToRadian(60.f)));
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					rot[6] = false;
+				}
+			}
+		}
+
+		if (puzzle1->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle1->mesh))
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[7] = true;
+			}
+			if (rot[7] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle1->pipe->Update();
+
+
+					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle1->mesh->setRotation(degree8_4);
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					rot[7] = false;
+				}
+			}
+		}
+
+		if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh))
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[8] = true;
+			}
+			if (rot[8] == true)
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
@@ -455,39 +514,84 @@ void Level13::Update()
 
 					this->sound->Play("assets\\coin.mp3", 1);
 
-					rot[6] = false;
+					rot[8] = false;
 				}
 			}
 		}
 
-		if (puzzle12->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle12->mesh)) //12 14
+		if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh))
 		{
 			if (mInput.IsPressed(KEY::RIGHT) == true)
 			{
-				rot[7] = true;
+				rot[9] = true;
 			}
-			if (rot[7] == true)
+			if (rot[9] == true)
 			{
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					puzzle12->pipe->Update();
-					puzzle14->pipe->Update();
+					puzzle20->pipe->Update();
 
-					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle12->mesh->setRotation(degree8_3);
-					puzzle14->mesh->setRotation(degree8_3);
+					degree8_6 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle20->mesh->setRotation(degree8_6);
 
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
 
-					rot[7] = false;
+					rot[9] = false;
 				}
 			}
 		}
 
+		if (puzzle9->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle9->mesh))
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[10] = true;
+			}
+			if (rot[10] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle9->pipe->Update();
 
-		if (puzzle3->pipe->GetDirValue(E) && (puzzle3->pipe->GetDirValue(SE)))
+					degree8_7 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle9->mesh->setRotation(degree8_7);
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					rot[10] = false;
+				}
+			}
+		}
+
+		if (puzzle14->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle14->mesh))
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[5] = true;
+			}
+			if (rot[5] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle14->pipe->Update();
+
+					degree8_8 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle14->mesh->setRotation(degree8_8);
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					rot[5] = false;
+				}
+			}
+		}
+
+		if (puzzle18->pipe->GetDirValue(W) && (puzzle18->pipe->GetDirValue(E) == puzzle19->pipe->GetDirValue(W)))
 		{
 			//std::cout << "check 1" << std::endl;
 			conecTcheck8_1 = true;
@@ -497,7 +601,7 @@ void Level13::Update()
 			conecTcheck8_1 = false;
 		}
 
-		if ((puzzle19->pipe->GetDirValue(W) == 1) && (puzzle19->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
+		if ((puzzle18->pipe->GetDirValue(E) == puzzle19->pipe->GetDirValue(W)) && (puzzle19->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
 		{
 			//std::cout << "check 2" << std::endl;
 
@@ -508,7 +612,7 @@ void Level13::Update()
 			conecTcheck8_2 = false;
 		}
 
-		if ((puzzle14->pipe->GetDirValue(NW) && puzzle14->pipe->GetDirValue(SW)))
+		if ((puzzle4->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)) && (puzzle19->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
 		{
 			//std::cout << "check 3" << std::endl;
 
@@ -519,7 +623,7 @@ void Level13::Update()
 			conecTcheck8_3 = false;
 		}
 
-		if (puzzle7->pipe->GetDirValue(NW) == puzzle19->pipe->GetDirValue(SE) && (puzzle7->pipe->GetDirValue(E)))
+		if ((puzzle4->pipe->GetDirValue(E) == puzzle14->pipe->GetDirValue(W)) && (puzzle14->pipe->GetDirValue(SW) == puzzle15->pipe->GetDirValue(NE)))
 		{
 			//std::cout << "check 4" << std::endl;
 
@@ -532,7 +636,7 @@ void Level13::Update()
 		}
 
 
-		if ((puzzle20->pipe->GetDirValue(NW)) && (puzzle20->pipe->GetDirValue(E)))
+		if ((puzzle14->pipe->GetDirValue(SW) == puzzle15->pipe->GetDirValue(NE)) && (puzzle15->pipe->GetDirValue(SW) == puzzle10->pipe->GetDirValue(NE)))
 		{
 			//std::cout << "check 5" << std::endl;
 
@@ -545,7 +649,7 @@ void Level13::Update()
 		}
 
 
-		if ((puzzle12->pipe->GetDirValue(NW)) && (puzzle12->pipe->GetDirValue(W)))
+		if ((puzzle15->pipe->GetDirValue(SW) == puzzle10->pipe->GetDirValue(NE)) && (puzzle10->pipe->GetDirValue(SE)))
 		{
 			//std::cout << "check 7" << std::endl;
 
@@ -717,13 +821,13 @@ void Level13::Update()
 
 	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
 	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
-	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);//
+	puzzle15->mesh->Update(mShader2.GetShaderHandler(), textureIdLineAuto);//
 	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
 	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 
-	puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);//
+	puzzle18->mesh->Update(mShader2.GetShaderHandler(), textureIdLineAuto);//
 	puzzle19->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
-	puzzle20->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
+	puzzle20->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 
 	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart8);
 	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd8);

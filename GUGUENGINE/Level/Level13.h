@@ -121,7 +121,7 @@ private:
 	Vector2<float> cursor8;
 	Input mInput;
 
-	bool rot[10] = { false };
+	bool rot[11] = { false };
 	bool poopooCheck = false;
 
 	bool rotrot2 = true;
@@ -130,10 +130,13 @@ private:
 	int connectMove8 = 0;
 
 	float degree8 = 0;
-	float degree8_2 = DegreeToRadian(-60.f);
-	float degree8_3 = DegreeToRadian(-180.f);
+	float degree8_2 = 0;
+	float degree8_3 = 0;
 	float degree8_4 = 0;
-	float degree8_5 = DegreeToRadian(-60.f);
+	float degree8_5 = 0;
+	float degree8_6 = 0;
+	float degree8_7 = 0;
+	float degree8_8 = static_cast<float>(DegreeToRadian(-120.f));
 
 	int chekNext8 = 0;
 
@@ -168,6 +171,7 @@ private:
 
 	GLuint textureIdVAuto;
 	GLuint textureIdCurveAuto;
+	GLuint textureIdLineAuto;
 
 
 	GLint textureLeft;
