@@ -91,6 +91,7 @@ void Sound::Load()
 	LoadMusic("assets\\coin.mp3");
 	LoadMusic("assets\\flushing.wav");
 	LoadMusic("assets\\yeah.wav");
+	LoadMusic("assets\\UI.wav");
 
 }
 
