@@ -14,7 +14,7 @@ void Level12::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 
-	rotTime.setRotate(35);
+	rotTime.setRotate(10);
 	rotrot2 = true;
 
 	chekNext8 = 0;
