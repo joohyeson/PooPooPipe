@@ -14,8 +14,9 @@ void Level11::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 
-	rotTime.setRotate(100);
+	//rotTime.setRotate(100);
 	rotTime.setRotate(35);
+	rotrot2 = true;
 
 	chekNext8 = 0;
 
@@ -42,7 +43,9 @@ void Level11::Init()
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -652,7 +655,13 @@ void Level11::Update()
 			}
 		}
 	}
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
@@ -752,6 +761,7 @@ void Level11::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 

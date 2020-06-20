@@ -68,6 +68,7 @@ public:
 		quitUI_p = nullptr;
 		optionUI_p = nullptr;
 		restartUI_p = nullptr;
+		win = nullptr;
 
 		key = 0;
 	}
@@ -93,6 +94,8 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
+	Object* win;
+	GLint textureWin;
 
 	Object* button;
 	Object* clear;

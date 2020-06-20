@@ -12,6 +12,7 @@
 //Sound se9;
 //Sound playSE9;
 
+bool SoundCheck = false;
 void Level9::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
@@ -40,7 +41,9 @@ void Level9::Init()
 	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	texureIdLine9 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack9 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve9 = TEXTURE->CreateTexture("assets\\image2.png", 0);
@@ -499,6 +502,7 @@ void Level9::Update()
 		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
 		connectMove9= 0;
 	}
+	
 	if(poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
@@ -533,14 +537,17 @@ void Level9::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 
-				this->sound->Play("assets\\flushing.wav", 1);
+				if(SoundCheck == false)
+				{
+					this->sound->Play("assets\\flushing.wav", 1);
+				}
+				SoundCheck = true;
 				//playSE9.Play(1);
 				//playSE9.SetVolume(0.5f);
 				//playSE9.SetLoopCount(1);
 
 			}
 		}
-		
 	}
 
 	if (fail->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, fail->mesh))
@@ -601,7 +608,13 @@ void Level9::Update()
 	{
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 
 	/*se9.Update();*/
 
@@ -650,6 +663,7 @@ void Level9::Update()
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	if (mPooPoo.IsFinish() == false)
 	{

@@ -77,6 +77,9 @@ void Level5::Init()
 	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
 	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -777,7 +780,13 @@ void Level5::Update()
 
 		}
 	}
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
 		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
@@ -873,6 +882,7 @@ void Level5::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	if (mPooPoo.IsFinish() == false)
 	{

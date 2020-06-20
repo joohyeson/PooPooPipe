@@ -53,7 +53,8 @@ public:
 		quitUI_p = nullptr;
 		optionUI_p = nullptr;
 		restartUI_p = nullptr;
-		
+		win = nullptr;
+
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -80,7 +81,9 @@ private:
 	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
-	
+	Object* win;
+	GLint textureWin;
+
 	Object* Levelsel, * Levelsel_pressed;
 
 	Object* button;

@@ -15,7 +15,7 @@ void Level10::Init()
 	STATE_MANAGER->setCurrentLV(0);
 
 	rotTime.setRotate(30);
-
+	rotrot2 = true;
 	chekNext8 = 0;
 
 	conecTcheck8_1 = false;
@@ -50,7 +50,9 @@ void Level10::Init()
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	texturePlayUI8 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
-
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
@@ -724,7 +726,13 @@ void Level10::Update()
 	{
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
@@ -773,6 +781,7 @@ void Level10::Update()
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
