@@ -1,222 +1,141 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
-    <Filter Include="Source Files">
-      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
-      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
-    </Filter>
-    <Filter Include="Header Files">
-      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
-      <Extensions>h;hh;hpp;hxx;hm;inl;inc;ipp;xsd</Extensions>
-    </Filter>
-    <Filter Include="Resource Files">
-      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
-      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
-    </Filter>
-    <Filter Include="Source Files\Level">
-      <UniqueIdentifier>{99c578ad-24f3-4669-900e-72b2ad7aab38}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Option">
-      <UniqueIdentifier>{1991c292-fb50-4213-841a-57ea3a1ff762}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\MovingCheck">
-      <UniqueIdentifier>{e9f7edf1-1f59-496f-822d-9697e93352df}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Logo">
-      <UniqueIdentifier>{6f6c69d5-4a03-4c89-a164-b7d6d5db5257}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Logo\Logo">
-      <UniqueIdentifier>{8f441883-d158-44c4-b9c4-d0c56a2abe5b}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage">
-      <UniqueIdentifier>{4ea518a6-44a4-4f7f-ac59-f73c1dbbbef4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level3">
-      <UniqueIdentifier>{a421774a-5a96-46a8-85e2-e921e8da35e2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level4">
-      <UniqueIdentifier>{57581872-9cb9-472d-a1c1-fec262dcdb0c}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Mainmenu">
-      <UniqueIdentifier>{f5bc77eb-ab3e-40e8-a8c0-a856d6ffec73}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level5">
-      <UniqueIdentifier>{82575af5-d030-4a22-8ebb-bbb9845f0304}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level6">
-      <UniqueIdentifier>{25762504-0859-4e30-8580-732cd20383da}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level8">
-      <UniqueIdentifier>{df749e1a-35f8-4d88-9329-edc13084ce80}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level7">
-      <UniqueIdentifier>{bc1ed690-7066-4402-b9aa-bdfeecf22af3}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\LevelSelect">
-      <UniqueIdentifier>{a89d3dce-fa9e-480e-ba09-a926cbad9414}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level9">
-      <UniqueIdentifier>{456a0683-9702-4e70-9b2a-3e398514559d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Tutorial1">
-      <UniqueIdentifier>{1d8b6a5d-a94b-4202-8411-2c0e3265e4d5}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Tutorial2">
-      <UniqueIdentifier>{07802b89-f7cb-449c-be65-1dfccd410534}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level10">
-      <UniqueIdentifier>{bd9a7726-da64-4ebc-9020-5c12ff2f4ad2}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level11">
-      <UniqueIdentifier>{2589b33d-c4b2-4867-b439-4ea40c3a5c18}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Level\Stage\Level12">
-      <UniqueIdentifier>{1d50879c-7538-494b-81a4-bd12b905de70}</UniqueIdentifier>
-    </Filter>
-<<<<<<< HEAD
-    <Filter Include="Source Files\story">
-      <UniqueIdentifier>{da954d0a-f236-446d-b40b-a91c1a519b3e}</UniqueIdentifier>
-=======
-    <Filter Include="Source Files\Level\Stage\Level13">
-      <UniqueIdentifier>{5e26d08d-cef5-40c6-afc0-8781a2a69fe4}</UniqueIdentifier>
->>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
-    </Filter>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="..\GUGUENGINE\main.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
+    <ClCompile Include="..\GUGUENGINE\main.cpp" />
+    <ClCompile Include="StateManager.cpp" />
     <ClCompile Include="Level1.cpp">
-      <Filter>Source Files\Level\Stage\Tutorial1</Filter>
-    </ClCompile>
-    <ClCompile Include="Level3.cpp">
-      <Filter>Source Files\Level\Stage\Level3</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level2.cpp">
-      <Filter>Source Files\Level\Stage\Tutorial2</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="MainMenu.cpp">
-      <Filter>Source Files\Level\Mainmenu</Filter>
+    <ClCompile Include="Level3.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level4.cpp">
-      <Filter>Source Files\Level\Stage\Level4</Filter>
-    </ClCompile>
-    <ClCompile Include="DigipenLogo.cpp">
-      <Filter>Source Files\Logo\Logo</Filter>
-    </ClCompile>
-    <ClCompile Include="FmodLogo.cpp">
-      <Filter>Source Files\Logo\Logo</Filter>
-    </ClCompile>
-    <ClCompile Include="Option.cpp">
-      <Filter>Source Files\Level\Option</Filter>
-    </ClCompile>
-    <ClCompile Include="MovingCheck.cpp">
-      <Filter>Source Files\Level\MovingCheck</Filter>
-    </ClCompile>
-    <ClCompile Include="StateManager.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level5.cpp">
-      <Filter>Source Files\Level\Stage\Level5</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level6.cpp">
-      <Filter>Source Files\Level\Stage\Level6</Filter>
-    </ClCompile>
-    <ClCompile Include="Level8.cpp">
-      <Filter>Source Files\Level\Stage\Level8</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level7.cpp">
-      <Filter>Source Files\Level\Stage\Level7</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
-    <ClCompile Include="LevelSelect.cpp">
-      <Filter>Source Files\Level\LevelSelect</Filter>
+    <ClCompile Include="Level8.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level9.cpp">
-      <Filter>Source Files\Level\Stage\Level9</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level10.cpp">
-      <Filter>Source Files\Level\Stage\Level10</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level11.cpp">
-      <Filter>Source Files\Level\Stage\Level11</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
     <ClCompile Include="Level12.cpp">
-      <Filter>Source Files\Level\Stage\Level12</Filter>
+      <Filter>Level</Filter>
     </ClCompile>
-<<<<<<< HEAD
-    <ClCompile Include="startCutscene.cpp">
-      <Filter>Source Files\story</Filter>
-=======
     <ClCompile Include="Level13.cpp">
-      <Filter>Source Files\Level\Stage\Level13</Filter>
->>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
+      <Filter>Level</Filter>
+    </ClCompile>
+    <ClCompile Include="DigipenLogo.cpp">
+      <Filter>Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="FmodLogo.cpp">
+      <Filter>Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="MovingCheck.cpp">
+      <Filter>Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="startCutscene.cpp">
+      <Filter>Transition</Filter>
+    </ClCompile>
+    <ClCompile Include="MainMenu.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="Option.cpp">
+      <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelSelect.cpp">
+      <Filter>Menu</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="StateManager.h" />
     <ClInclude Include="Level1.h">
-      <Filter>Source Files\Level\Stage\Tutorial1</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level2.h">
-      <Filter>Source Files\Level\Stage\Tutorial2</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level3.h">
-      <Filter>Source Files\Level\Stage\Level3</Filter>
-    </ClInclude>
-    <ClInclude Include="MainMenu.h">
-      <Filter>Source Files\Level\Mainmenu</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level4.h">
-      <Filter>Source Files\Level\Stage\Level4</Filter>
-    </ClInclude>
-    <ClInclude Include="DigipenLogo.h">
-      <Filter>Source Files\Logo\Logo</Filter>
-    </ClInclude>
-    <ClInclude Include="FmodLogo.h">
-      <Filter>Source Files\Logo\Logo</Filter>
-    </ClInclude>
-    <ClInclude Include="Option.h">
-      <Filter>Source Files\Level\Option</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingCheck.h">
-      <Filter>Source Files\Level\MovingCheck</Filter>
-    </ClInclude>
-    <ClInclude Include="StateManager.h">
-      <Filter>Source Files</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level5.h">
-      <Filter>Source Files\Level\Stage\Level5</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level6.h">
-      <Filter>Source Files\Level\Stage\Level6</Filter>
-    </ClInclude>
-    <ClInclude Include="Level8.h">
-      <Filter>Source Files\Level\Stage\Level8</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level7.h">
-      <Filter>Source Files\Level\Stage\Level7</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
-    <ClInclude Include="LevelSelect.h">
-      <Filter>Source Files\Level\LevelSelect</Filter>
+    <ClInclude Include="Level8.h">
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level9.h">
-      <Filter>Source Files\Level\Stage\Level9</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level10.h">
-      <Filter>Source Files\Level\Stage\Level10</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level11.h">
-      <Filter>Source Files\Level\Stage\Level11</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
     <ClInclude Include="Level12.h">
-      <Filter>Source Files\Level\Stage\Level12</Filter>
+      <Filter>Level</Filter>
     </ClInclude>
-<<<<<<< HEAD
-    <ClInclude Include="startCutscene.h">
-      <Filter>Source Files\story</Filter>
-=======
     <ClInclude Include="Level13.h">
-      <Filter>Source Files\Level\Stage\Level13</Filter>
->>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
+      <Filter>Level</Filter>
     </ClInclude>
+    <ClInclude Include="DigipenLogo.h">
+      <Filter>Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="FmodLogo.h">
+      <Filter>Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="MovingCheck.h">
+      <Filter>Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="startCutscene.h">
+      <Filter>Transition</Filter>
+    </ClInclude>
+    <ClInclude Include="Option.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="MainMenu.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="LevelSelect.h">
+      <Filter>Menu</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <Filter Include="Level">
+      <UniqueIdentifier>{0499f403-0280-474e-8f87-878334c008d6}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Transition">
+      <UniqueIdentifier>{68855285-4985-47eb-96e4-31970e64a341}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Menu">
+      <UniqueIdentifier>{ba56a9df-9a2b-4c9e-aa7a-274391db677d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
 </Project>

@@ -57,11 +57,9 @@ public:
 		clear = nullptr;
 		levelImage = nullptr;
 		numberImage = nullptr;
+		numberImage2 = nullptr;
 		pooCharacter = nullptr;
 
-		leftCount = nullptr;
-		leftnumberTen = nullptr;
-		leftnumber = nullptr;
 		fail = nullptr;
 		mini = nullptr;
 
@@ -112,11 +110,10 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-	Object* levelImage, * numberImage, * leftCount, * leftnumberTen, * leftnumber;
+	Object* levelImage, * numberImage, * numberImage2;
 	MovePooPoo mPooPoo;
 	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
-	LimitRotate rotTime;
 
 	Vector2<float> cursor8;
 	Input mInput;
@@ -124,7 +121,6 @@ private:
 	bool rot[11] = { false };
 	bool poopooCheck = false;
 
-	bool rotrot2 = true;
 	int coorcheck8 = 0;
 
 	int connectMove8 = 0;
@@ -173,27 +169,8 @@ private:
 	GLuint textureIdCurveAuto;
 	GLuint textureIdLineAuto;
 
-
-	GLint textureLeft;
-	GLint textureLeftNumberTen0;
-	GLint textureLeftNumberTen1;
-	GLint textureLeftNumberTen2;
-	GLint textureLeftNumberTen3;
-	GLint textureLeftNumberTen4;
-	GLint textureLeftNumberTen5;
-
-	GLint textureLeftNumber0;
-	GLint textureLeftNumber1;
-	GLint textureLeftNumber2;
-	GLint textureLeftNumber3;
-	GLint textureLeftNumber4;
-	GLint textureLeftNumber5;
-	GLint textureLeftNumber6;
-	GLint textureLeftNumber7;
-	GLint textureLeftNumber8;
-	GLint textureLeftNumber9;
-
 	GLuint numberTexture;
+	GLuint numberTexture2;
 	GLuint levelTexture;
 	GLint textureFail;
 

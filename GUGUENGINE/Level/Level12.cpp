@@ -620,7 +620,7 @@ void Level12::Update()
 		transition++;
 		if (transition > 500.f)
 		{
-			STATE_MANAGER->ChangeLevel(MAINMENU);
+			STATE_MANAGER->ChangeLevel(LV_TEST13);
 		}
 	}
 	
@@ -818,7 +818,7 @@ void Level12::Update()
 	{
 		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST13);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
