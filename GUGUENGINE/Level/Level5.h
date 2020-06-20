@@ -65,7 +65,6 @@ public:
 		
 		key = 0;
 	}
-	bool UI[5] = { false };
 
 	void Init() override;
 	void Update() override;
@@ -171,6 +170,7 @@ private:
 	bool conecTcheck5_1 = false;
 	bool conecTcheck5_2 = false;
 	bool conecTcheck5_3 = false;
+	
 	bool UI[5] = { false };
 
 };

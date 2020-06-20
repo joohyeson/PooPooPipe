@@ -679,6 +679,12 @@ void Level11::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		if (skip == false)
+		{
+			this->sound->Play("assets\\yeah.wav", 1);
+		}
+		skip = true;
+
 		win->mesh->setTransform({ 0,0 });
 		chekNext8 = 0;
 
@@ -703,8 +709,14 @@ void Level11::Update()
 		degree8_9 = 0;
 
 		rotTime.setRotate(30);
-
-		STATE_MANAGER->ChangeLevel(LV_TEST12);
+	}
+	if(skip== true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST12);
+		}
 	}
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
 	{
@@ -727,7 +739,6 @@ void Level11::Update()
 
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
-
 			STATE_MANAGER->ReloadState();
 			INPUT->setInput(KEY::LEFT);
 		}

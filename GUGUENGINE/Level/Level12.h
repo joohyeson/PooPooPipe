@@ -95,10 +95,16 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 
 	Object* playUI, * quitUI, * optionUI, * restartUI, * fail;
+	
 	Object* win;
 	GLint textureWin;
 	Object* mini;
 	GLuint texturemini;
+
+	float transition = 0.f;
+	bool skip = false;
+	
+	bool UI[5] = { false };
 
 	Object* button;
 	Object* clear;
