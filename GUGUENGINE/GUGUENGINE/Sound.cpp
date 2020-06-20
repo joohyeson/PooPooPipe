@@ -134,17 +134,20 @@ void Sound::Play(std::string source, int loop)
 
 	if (m_sounds[id]->source.find("BGM") == m_sounds[id]->IsPlaying == false)
 	{
+		std::cout << "BGM play" << std::endl;
 		m_sounds[id]->IsPlaying = true;
 		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 		result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
+		result = m_sounds[id]->channel->setVolume(0.1f);
 
 	}
 	else if (!m_sounds[id]->IsPlaying)
 	{
+		std::cout << "Play" << std::endl;
 		m_sounds[id]->IsPlaying = true;
 		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 		result = m_sounds[id]->channel->setChannelGroup(soundEffects);
-
+		result = m_sounds[id]->channel->setVolume(0.5f);
 	}
 
 }
@@ -172,7 +175,7 @@ void Sound::Rewind()
 void Sound::SetVolume(float volume)
 {
 	m_volume = volume;
-	//channel->setVolume(volume);
+
 }
 
 float Sound::GetVolume()

@@ -608,6 +608,9 @@ void Level6::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove6 = 0;
 				poopooCheck = false;
+
+
+				this->sound->Play("assets\\flushing.wav", 1);
 			}
 			else {
 				fail->mesh->setTransform({ 0,0 });

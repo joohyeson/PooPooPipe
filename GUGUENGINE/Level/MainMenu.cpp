@@ -95,14 +95,6 @@ void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, in
 
 void MainMenu::Init()
 {
-	//bgm.Stop();
-	//bgm.Init();
-	//bgm.LoadMusic("assets\\airplane.mp3");
-
-	//if (!bgm.IsPlaying())
-	//{
-	//	bgm.Play();
-	//}
 
 
 
@@ -201,7 +193,7 @@ void MainMenu::Update()
 
 	if (isPlaying == false)
 	{
-		this->sound->Play("assets\\BGM_airplane.mp3", 1);
+		this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		isPlaying = true;
 	}
 
