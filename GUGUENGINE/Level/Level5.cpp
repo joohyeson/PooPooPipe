@@ -258,6 +258,11 @@ void Level5::Update()
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, Levelsel->mesh) == true)
 	{
+		if (UI[4] == false)
+		{
+			UI[4] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
@@ -290,6 +295,7 @@ void Level5::Update()
 	}
 	else
 	{
+		UI[4] = false;
 		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 	}
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))

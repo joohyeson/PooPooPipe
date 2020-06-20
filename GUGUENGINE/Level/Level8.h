@@ -94,6 +94,7 @@ private:
 	Object* clear;
 	Object* win;
 	GLint textureWin;
+	bool UI[5] = { false };
 
 	int key;
 	Mesh mMesh;

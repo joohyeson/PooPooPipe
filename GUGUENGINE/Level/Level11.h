@@ -91,6 +91,7 @@ private:
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
 
+	bool UI[5] = { false };
 
 	Object* puzzle18, * puzzle19, * puzzle20;
 
