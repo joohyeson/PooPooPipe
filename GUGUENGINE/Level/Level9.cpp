@@ -533,7 +533,7 @@ void Level9::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\flushing.wav", 1);
 				//playSE9.Play(1);
 				//playSE9.SetVolume(0.5f);
 				//playSE9.SetLoopCount(1);

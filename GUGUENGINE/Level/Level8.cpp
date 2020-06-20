@@ -642,7 +642,7 @@ void Level8::Update()
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\flushing.wav", 1);
 
 				//playSE8.Play(1);
 				//playSE8.SetVolume(0.5f);
@@ -658,7 +658,7 @@ void Level8::Update()
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\flushing.wav", 1);
 				//playSE8.Play(1);
 				//playSE8.SetVolume(0.5f);
 				//playSE8.SetLoopCount(1);

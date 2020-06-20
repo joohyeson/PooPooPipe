@@ -535,7 +535,7 @@ void Level4::Update()
 				std::cout << "clear" << std::endl;
 				mPooPoo.SetIsSuccess(true);
 
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\flushing.wav", 1);
 				//playSE4.Play(1);
 				//playSE4.SetVolume(0.5f);
 				//playSE4.SetLoopCount(1);
