@@ -113,6 +113,8 @@ private:
 	Input mInput;
 
 	bool rot[10] = { false };
+	bool UI[5] = { false };
+
 	bool poopooCheck = false;
 
 	bool rotrot2 = true;

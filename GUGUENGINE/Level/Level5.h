@@ -65,6 +65,7 @@ public:
 		
 		key = 0;
 	}
+	bool UI[5] = { false };
 
 	void Init() override;
 	void Update() override;

@@ -107,6 +107,7 @@ private:
 	GLuint numberTexture;
 	GLuint levelTexture;
 	Vector2<float> cursor6;
+	bool UI[5] = { false };
 
 	int coorcheck6 = 0;
 	int connectMove6 = 0;
