@@ -162,6 +162,7 @@
     <ClCompile Include="Level10.cpp" />
     <ClCompile Include="Level11.cpp" />
     <ClCompile Include="Level12.cpp" />
+    <ClCompile Include="Level13.cpp" />
     <ClCompile Include="Level2.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
     </ClCompile>
@@ -196,6 +197,7 @@
     <ClInclude Include="Level10.h" />
     <ClInclude Include="Level11.h" />
     <ClInclude Include="Level12.h" />
+    <ClInclude Include="Level13.h" />
     <ClInclude Include="Level2.h" />
     <ClInclude Include="Level3.h" />
     <ClInclude Include="Level4.h" />
