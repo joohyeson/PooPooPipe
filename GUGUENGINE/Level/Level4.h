@@ -109,9 +109,11 @@ private:
 	float transition = 0.f;
 	
 	Input mInput;
+	
 	bool rot[3] = { false };
 	bool movable[3] = { false };
 	bool move[3] = { false };
+	
 	bool poopooCheck = false;
 	
 	Vector2<float> cursor4;
