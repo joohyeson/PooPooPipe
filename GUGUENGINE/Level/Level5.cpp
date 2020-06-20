@@ -186,8 +186,8 @@ void Level5::Init()
 
 	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
 
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 240);
-	puzzle7->pipe->SetDirection(false, true, true, false, true, false);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 0);//0
+	puzzle7->pipe->SetDirection(true, false, true, false, false, true);
 
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f });
 
@@ -765,10 +765,10 @@ void Level5::Update()
 
 				poopooCheck = false;
 			}
-			//else {
-				//fail->mesh->setTransform({ 0,0 });
-				//poopooCheck = false;
-			//}
+			else {
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+			}
 		}
 	}
 	
