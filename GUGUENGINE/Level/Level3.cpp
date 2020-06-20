@@ -630,6 +630,10 @@ void Level3::Update()
 
 	if(pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		if(skip == false)
+		{
+			this->sound->Play("assets\\yeah.wav", 1);
+		}
 		skip = true;
 		win->mesh->setTransform({ 0,0 });
 		
@@ -652,6 +656,7 @@ void Level3::Update()
 
 	if(skip == true)
 	{
+
 		transition++;
 		if (transition > 500.f)
 		{
