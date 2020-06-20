@@ -32,7 +32,7 @@ void Level6::Init()
 	degree6_6 = DegreeToRadian(-120.f);
 	
 	rotTime.setRotate(30);
-
+	rotrot = true;
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background1.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
