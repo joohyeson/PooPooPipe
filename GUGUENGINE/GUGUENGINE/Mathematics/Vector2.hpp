@@ -91,11 +91,14 @@ template <typename T>
 	Vector2<T> Vector2<T>::normalize(const Vector2<T> a) noexcept
 	{
 		Vector2<T> normVector;
-		assert(magnitude(a) != 0.0f);
-		{
-			normVector.x = a.x / magnitude(a);
-			normVector.y = a.y / magnitude(a);
-		}
+
+		normVector.x = a.x / magnitude(a);
+		normVector.y = a.y / magnitude(a);
+		//assert(magnitude(a) != 0.0f);
+		//{
+		//	normVector.x = a.x / magnitude(a);
+		//	normVector.y = a.y / magnitude(a);
+		//}
 
 		return normVector;
 	}
