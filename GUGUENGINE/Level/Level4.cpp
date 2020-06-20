@@ -682,7 +682,7 @@ void Level4::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI4);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI4);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI4);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
@@ -691,6 +691,8 @@ void Level4::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
+
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))

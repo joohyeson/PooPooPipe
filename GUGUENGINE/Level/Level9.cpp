@@ -689,18 +689,21 @@ void Level9::Update()
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+
+	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+	
 
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
-	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
-	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+	
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
 	{

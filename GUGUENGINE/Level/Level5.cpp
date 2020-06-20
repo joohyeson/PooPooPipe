@@ -926,9 +926,11 @@ void Level5::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+
 
 	if (mPooPoo.IsFinish() == false)
 	{
