@@ -768,7 +768,7 @@ void Level6::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI6);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI6);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
@@ -778,6 +778,13 @@ void Level6::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+
+	
+
+	if (mPooPoo.IsFinish() == false)
+	{
+		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+	}
 	//leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
 	//leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
 
@@ -836,12 +843,8 @@ void Level6::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
-
-	if (mPooPoo.IsFinish() == false)
-	{
-		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
-	}
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext6 == 1) || mInput.IsPressed(KEY::A) == true)
 	{

@@ -802,10 +802,12 @@ void Level10::Update()
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+
 	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
+
+	
 
 	switch (rotTime.getLimitTime() / 10)
 	{
@@ -862,6 +864,8 @@ void Level10::Update()
 		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
 		break;
 	}
+
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if (mPooPoo.IsFinish() == false)

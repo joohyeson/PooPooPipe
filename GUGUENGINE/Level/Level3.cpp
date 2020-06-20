@@ -737,8 +737,8 @@ void Level3::Update()
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
-	win->mesh->Update(mShader.GetShaderHandler(), textureWin);
 
+	win->mesh->Update(mShader.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)

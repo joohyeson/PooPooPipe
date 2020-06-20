@@ -223,6 +223,11 @@ void Level4::Update()
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, Levelsel->mesh) == true)
 	{
+		if (UI[4] == false)
+		{
+			UI[4] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
@@ -249,6 +254,7 @@ void Level4::Update()
 	}
 	else
 	{
+		UI[4] = false;
 		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 	}
 	
@@ -510,6 +516,11 @@ void Level4::Update()
 
 	if (playUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 	{
+		if (UI[0] == false)
+		{
+			UI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -520,6 +531,7 @@ void Level4::Update()
 	}
 	else
 	{
+		UI[0] = false;
 		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
 
 		connectMove4 = 0;
@@ -600,6 +612,11 @@ void Level4::Update()
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
 	{
+		if (UI[1] == false)
+		{
+			UI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -611,11 +628,18 @@ void Level4::Update()
 	}
 	else
 	{
+		UI[1] = false;
+
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
 	}
 
 	if (optionUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, optionUI->mesh))
 	{
+		if (UI[2] == false)
+		{
+			UI[2] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -627,10 +651,17 @@ void Level4::Update()
 	}
 	else
 	{
+		UI[2] = false;
+
 		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 	if (quitUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, quitUI->mesh))
 	{
+		if (UI[3] == false)
+		{
+			UI[3] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -642,6 +673,7 @@ void Level4::Update()
 	}
 	else
 	{
+		UI[3] = false;
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 	//se4.Update();
@@ -682,7 +714,7 @@ void Level4::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI4);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI4);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI4);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
@@ -691,6 +723,8 @@ void Level4::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
+
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))

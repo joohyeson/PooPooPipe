@@ -795,7 +795,7 @@ void Level11::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
@@ -803,6 +803,7 @@ void Level11::Update()
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
+	
 	switch (rotTime.getLimitTime() / 10)
 	{
 	case 0:
@@ -859,7 +860,9 @@ void Level11::Update()
 		break;
 	}
 
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+
 
 	if (mPooPoo.IsFinish() == false)
 	{

@@ -113,7 +113,8 @@ private:
 	bool rot[3] = { false };
 	bool movable[3] = { false };
 	bool move[3] = { false };
-	
+	bool UI[5] = { false };
+
 	bool poopooCheck = false;
 	
 	Vector2<float> cursor4;
