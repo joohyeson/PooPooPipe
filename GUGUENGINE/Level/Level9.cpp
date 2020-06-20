@@ -542,10 +542,6 @@ void Level9::Update()
 					this->sound->Play("assets\\flushing.wav", 1);
 				}
 				SoundCheck = true;
-				//playSE9.Play(1);
-				//playSE9.SetVolume(0.5f);
-				//playSE9.SetLoopCount(1);
-
 			}
 		}
 	}
@@ -672,7 +668,6 @@ void Level9::Update()
 
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
-
 
 	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
 	{

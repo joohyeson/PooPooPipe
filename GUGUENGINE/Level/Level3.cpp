@@ -15,7 +15,9 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level3.h"
+
 #include "../GUGUENGINE/Sound.h"
+
 
 void Level3::Init()
 {
@@ -215,7 +217,6 @@ void Level3::Update()
 
 	cursor3 = mInput.Cursor;
 
-	
 	if (Levelsel->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 	{
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
@@ -629,7 +630,25 @@ void Level3::Update()
 	if(pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
 		win->mesh->setTransform({ 0,0 });
+		chekNext = 0;
+
+		conecTcheck1 = false;
+		conecTcheck2 = false;
+		conecTcheck3 = false;
+
+		degree2 = 0;
+		degree2_2 = 0;
+		degree2_3 = 0;
+
+		blCheck1 = false;
+		blCheck1_2 = false;
+
+		blCheck2 = false;
+		blCheck2_2 = false;
+		
+		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
+	
 	
 	/*se3.Update();
 	playSE3.Update();*/
@@ -730,3 +749,5 @@ void Level3::Close()
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }
+
+
