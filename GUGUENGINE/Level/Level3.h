@@ -17,9 +17,10 @@
 #include "../GUGUENGINE/limitedRotate.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 #include  "../GUGUENGINE/glfwInput.h"
+#include <time.h>
 
 
-//class sound;
+ //class sound;
 
 class Level3 : public LevelManager
 {
@@ -51,10 +52,10 @@ public:
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
 		spacePress = nullptr;
-		
+
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
-		
+
 		playUI = nullptr;
 		quitUI = nullptr;
 		optionUI = nullptr;
@@ -79,10 +80,12 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
+	//void Wait(long waitTime);
 
 private:
+	bool skip = false;
 	Object* background;
-	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, *spacePress;
+	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;
 	Object* levelImage, * numberImage;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
@@ -90,7 +93,7 @@ private:
 
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 
-	Object* playUI, *quitUI, *optionUI, *restartUI;
+	Object* playUI, * quitUI, * optionUI, * restartUI;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
 
 	Object* pooCharacter;
@@ -103,7 +106,7 @@ private:
 	//Sound playSE3;
 
 	MovePooPoo mPooPoo;
-	Object* Levelsel, *Levelsel_pressed;
+	Object* Levelsel, * Levelsel_pressed;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -114,7 +117,7 @@ private:
 	bool move[3] = { false };
 
 	bool poopooCheck = false;
-	
+
 	Vector2<float> cursor3;
 
 	int coorcheck = 0;
@@ -123,7 +126,7 @@ private:
 	int movable2 = 0;
 	int movable3 = 0;
 	int connectMove = 0;
-	
+
 	float degree2 = 0;
 	float degree2_2 = 0;
 	float degree2_3 = 0;
@@ -157,7 +160,7 @@ private:
 	GLint textureQuitUI3p;
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
-	
+
 	GLuint numberTexture;
 	GLuint levelTexture;
 	GLint textureFail;
@@ -175,3 +178,5 @@ private:
 
 	LevelSelect current;
 };
+
+
