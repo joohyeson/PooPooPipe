@@ -138,7 +138,7 @@ void Sound::Play(std::string source, int loop)
 		m_sounds[id]->IsPlaying = true;
 		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 		result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
-		result = m_sounds[id]->channel->setVolume(0.1f);
+		result = m_sounds[id]->channel->setVolume(0.5f);
 
 	}
 	else if (!m_sounds[id]->IsPlaying)
