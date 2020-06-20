@@ -717,6 +717,11 @@ void Level5::Update()
 
 	if (playUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, playUI->mesh))
 	{
+		if (UI[0] == false)
+		{
+			UI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
@@ -729,6 +734,8 @@ void Level5::Update()
 	}
 	else
 	{
+		UI[0] = false;
+
 		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
 
 		connectMove5 = 0;
@@ -832,6 +839,11 @@ void Level5::Update()
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{
+		if (UI[1] == false)
+		{
+			UI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -843,6 +855,8 @@ void Level5::Update()
 	}
 	else
 	{
+		UI[1] = false;
+
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
 
 
@@ -851,6 +865,11 @@ void Level5::Update()
 
 	if (optionUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, optionUI->mesh))
 	{
+		if (UI[2] == false)
+		{
+			UI[2] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -862,11 +881,18 @@ void Level5::Update()
 	}
 	else
 	{
+		UI[2] = false;
+
 		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
 	if (quitUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, quitUI->mesh))
 	{
+		if (UI[3] == false)
+		{
+			UI[3] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
 
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -878,6 +904,8 @@ void Level5::Update()
 	}
 	else
 	{
+		UI[3] = false;
+
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
