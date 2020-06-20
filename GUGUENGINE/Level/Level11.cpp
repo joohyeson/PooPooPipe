@@ -790,12 +790,12 @@ void Level11::Update()
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
 
+	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
+
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-
-	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
