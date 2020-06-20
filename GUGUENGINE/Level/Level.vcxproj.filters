@@ -73,8 +73,13 @@
     <Filter Include="Source Files\Level\Stage\Level12">
       <UniqueIdentifier>{1d50879c-7538-494b-81a4-bd12b905de70}</UniqueIdentifier>
     </Filter>
+<<<<<<< HEAD
+    <Filter Include="Source Files\story">
+      <UniqueIdentifier>{da954d0a-f236-446d-b40b-a91c1a519b3e}</UniqueIdentifier>
+=======
     <Filter Include="Source Files\Level\Stage\Level13">
       <UniqueIdentifier>{5e26d08d-cef5-40c6-afc0-8781a2a69fe4}</UniqueIdentifier>
+>>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +143,13 @@
     <ClCompile Include="Level12.cpp">
       <Filter>Source Files\Level\Stage\Level12</Filter>
     </ClCompile>
+<<<<<<< HEAD
+    <ClCompile Include="startCutscene.cpp">
+      <Filter>Source Files\story</Filter>
+=======
     <ClCompile Include="Level13.cpp">
       <Filter>Source Files\Level\Stage\Level13</Filter>
+>>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -200,8 +210,13 @@
     <ClInclude Include="Level12.h">
       <Filter>Source Files\Level\Stage\Level12</Filter>
     </ClInclude>
+<<<<<<< HEAD
+    <ClInclude Include="startCutscene.h">
+      <Filter>Source Files\story</Filter>
+=======
     <ClInclude Include="Level13.h">
       <Filter>Source Files\Level\Stage\Level13</Filter>
+>>>>>>> 42cd85953b28e4d1ba3770f07cbd71a1fc8756a1
     </ClInclude>
   </ItemGroup>
 </Project>
