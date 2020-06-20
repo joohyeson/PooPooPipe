@@ -541,7 +541,7 @@ void Level3::Update()
 				connectMove = 0;
 				mPooPoo.SetIsSuccess(true);
 
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\flushing.wav", 1);
 
 				//playSE3.Play(1);
 				//playSE3.SetVolume(0.5f);
