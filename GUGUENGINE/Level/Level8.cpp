@@ -16,7 +16,8 @@ void Level8::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	rotTime.setRotate(30);
-
+	rotrot2 = true;
+	std::cout << rotTime.getLimitTime() << std::endl;
 	chekNext8 = 0;
 
 	conecTcheck8_1 = false;

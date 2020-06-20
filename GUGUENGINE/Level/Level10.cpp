@@ -15,7 +15,7 @@ void Level10::Init()
 	STATE_MANAGER->setCurrentLV(0);
 
 	rotTime.setRotate(30);
-
+	rotrot2 = true;
 	chekNext8 = 0;
 
 	conecTcheck8_1 = false;
