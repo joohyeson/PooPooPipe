@@ -123,15 +123,11 @@ private:
 
 	int connectMove8 = 0;
 
-	float degree8 = DegreeToRadian(-60.f);
+	float degree8 = 0;
 	float degree8_2 = DegreeToRadian(-60.f);
-	float degree8_3 = 0;
+	float degree8_3 = DegreeToRadian(-180.f);
 	float degree8_4 = 0;
-	float degree8_5 = 0;
-	float degree8_6 = 0;
-	float degree8_7 = 0;
-	float degree8_8 = 0;
-	float degree8_9 = DegreeToRadian(-120.f);
+	float degree8_5 = DegreeToRadian(-60.f);
 
 	int chekNext8 = 0;
 

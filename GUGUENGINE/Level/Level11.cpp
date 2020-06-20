@@ -692,7 +692,7 @@ void Level11::Update()
 
 		rotTime.setRotate(30);
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST12);
 	}
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
 	{
@@ -897,7 +897,7 @@ void Level11::Update()
 
 		rotTime.setRotate(30);
 
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(LV_TEST12);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
