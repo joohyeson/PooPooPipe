@@ -68,6 +68,7 @@ public:
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
 		fail = nullptr;
+		win = nullptr;
 
 		key = 0;
 	}
@@ -88,6 +89,8 @@ private:
 	Object* pooCharacter;
 	Object* playUI, * quitUI, * optionUI, * restartUI;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+	Object* win;
+	GLint textureWin;
 
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;

@@ -37,6 +37,10 @@ void Level6::Init()
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background1.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -615,7 +619,9 @@ void Level6::Update()
 			}
 		}
 	}
+	
 
+	
 	if (fail->collision->Point2BoxCollision({ cursor6.x,cursor6.y }, fail->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
@@ -677,7 +683,14 @@ void Level6::Update()
 	{
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 	}
+	
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 	//se6.Update();
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground6);
@@ -718,6 +731,7 @@ void Level6::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI6);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI6);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI6);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);

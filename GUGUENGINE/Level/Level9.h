@@ -53,6 +53,7 @@ public:
 		numberImage = nullptr;
 		pooCharacter = nullptr;
 		fail = nullptr;
+		win = nullptr;
 
 		playUI_p = nullptr;
 		quitUI_p = nullptr;
@@ -75,6 +76,7 @@ private:
 	Object* levelImage, * numberImage;
 	Object* puzzle18, * puzzle19, * puzzle20;
 	Object* Levelsel, * Levelsel_pressed;
+	Object* win;
 
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
 	GLint texturePlayUI3p;
@@ -82,6 +84,7 @@ private:
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
 
+	GLint textureWin;
 
 
 	Object* button;

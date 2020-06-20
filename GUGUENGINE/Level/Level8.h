@@ -68,6 +68,8 @@ public:
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
 		key = 0;
+		win = nullptr;
+
 	}
 
 	void Init() override;
@@ -90,6 +92,8 @@ private:
 
 	Object* button;
 	Object* clear;
+	Object* win;
+	GLint textureWin;
 
 	int key;
 	Mesh mMesh;

@@ -40,7 +40,9 @@ void Level8::Init()
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background1.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
-
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -683,7 +685,13 @@ void Level8::Update()
 			STATE_MANAGER->ReloadState();
 		}
 	}
+	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
+	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+	{
+		win->mesh->setTransform({ 0,0 });
+	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
 		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
@@ -771,7 +779,8 @@ void Level8::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
-	
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);

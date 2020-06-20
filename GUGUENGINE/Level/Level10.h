@@ -63,6 +63,7 @@ public:
 		leftnumber = nullptr;
 		fail = nullptr;
 		pooCharacter = nullptr;
+		win = nullptr;
 
 		playUI_p = nullptr;
 		quitUI_p = nullptr;
@@ -90,6 +91,8 @@ private:
 
 	Object* button;
 	Object* clear;
+	Object* win;
+	GLint textureWin;
 
 	int key;
 	Mesh mMesh;
