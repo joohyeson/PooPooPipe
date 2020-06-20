@@ -12,6 +12,7 @@
 //Sound se9;
 //Sound playSE9;
 
+bool SoundCheck = false;
 void Level9::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
@@ -501,6 +502,7 @@ void Level9::Update()
 		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
 		connectMove9= 0;
 	}
+	
 	if(poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
@@ -535,14 +537,17 @@ void Level9::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 
-				this->sound->Play("assets\\flushing.wav", 1);
+				if(SoundCheck == false)
+				{
+					this->sound->Play("assets\\flushing.wav", 1);
+				}
+				SoundCheck = true;
 				//playSE9.Play(1);
 				//playSE9.SetVolume(0.5f);
 				//playSE9.SetLoopCount(1);
 
 			}
 		}
-		
 	}
 
 	if (fail->collision->Point2BoxCollision({ cursor9.x,cursor9.y }, fail->mesh))

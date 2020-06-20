@@ -154,4 +154,6 @@ private:
 	bool conecTcheck9_1 = false;
 	bool conecTcheck9_2 = false;
 	bool conecTcheck9_3 = false;
+
+	bool SoundCheck = false;
 };

@@ -599,6 +599,7 @@ void Level6::Update()
 
 		connectMove6 = 0;
 	}
+	
 	if(poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
