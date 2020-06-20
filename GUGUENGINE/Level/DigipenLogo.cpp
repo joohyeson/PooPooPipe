@@ -14,17 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 
-void Wait(long waitTime)
-{
-	clock_t	wakeTime;
-
-	wakeTime = waitTime + clock();
-	while (wakeTime > clock())
-	{
-		/* Do nothing while waiting. */
-	}
-}
-
 void DigipenLogo::Init()
 {
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
@@ -38,7 +27,7 @@ void DigipenLogo::Update()
 {
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 
-	if(dt > 2000.f)
+	if(dt > 1500.f)
 	{
 		STATE_MANAGER->ChangeLevel(FMODLOGO);
 	}

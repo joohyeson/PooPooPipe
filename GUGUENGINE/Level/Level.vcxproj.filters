@@ -73,6 +73,9 @@
     <Filter Include="Source Files\Level\Stage\Level12">
       <UniqueIdentifier>{1d50879c-7538-494b-81a4-bd12b905de70}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\story">
+      <UniqueIdentifier>{da954d0a-f236-446d-b40b-a91c1a519b3e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp">
@@ -135,6 +138,9 @@
     <ClCompile Include="Level12.cpp">
       <Filter>Source Files\Level\Stage\Level12</Filter>
     </ClCompile>
+    <ClCompile Include="startCutscene.cpp">
+      <Filter>Source Files\story</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Level1.h">
@@ -193,6 +199,9 @@
     </ClInclude>
     <ClInclude Include="Level12.h">
       <Filter>Source Files\Level\Stage\Level12</Filter>
+    </ClInclude>
+    <ClInclude Include="startCutscene.h">
+      <Filter>Source Files\story</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

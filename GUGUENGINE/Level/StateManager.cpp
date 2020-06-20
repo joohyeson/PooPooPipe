@@ -9,6 +9,7 @@
  */
 #include "StateManager.h"
 #include "DigipenLogo.h"
+#include "startCutscene.h"
 #include "Option.h"
 #include "FmodLogo.h"
 #include "Level1.h"
@@ -43,10 +44,11 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = MAINMENU;
+	current = DIGIPENLOGO;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
+	levels.push_back(new startCut());
 	levels.push_back(new MainMenu());
 	levels.push_back(new LevelOption());
 	levels.push_back(new Level1());

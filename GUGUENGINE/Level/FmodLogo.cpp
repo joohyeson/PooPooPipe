@@ -43,9 +43,9 @@ void FmodLogo::Update()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwPollEvents();
 
-	if(dt > 2000.f)
+	if(dt > 1500.f)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(CUTSCENE);
 	}
 	dt++;
 }
