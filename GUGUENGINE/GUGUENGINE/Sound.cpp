@@ -90,6 +90,8 @@ void Sound::Load()
 	LoadMusic("assets\\BGM_airplane.mp3");
 	LoadMusic("assets\\coin.mp3");
 	LoadMusic("assets\\flushing.wav");
+	LoadMusic("assets\\yeah.wav");
+
 }
 
 bool Sound::IsPlaying()
