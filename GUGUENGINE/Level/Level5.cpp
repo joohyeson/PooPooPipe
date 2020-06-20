@@ -765,10 +765,10 @@ void Level5::Update()
 
 				poopooCheck = false;
 			}
-			//else {
-				//fail->mesh->setTransform({ 0,0 });
-				//poopooCheck = false;
-			//}
+			else {
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+			}
 		}
 	}
 	
