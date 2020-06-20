@@ -98,12 +98,14 @@ void Level11::Init()
 	texureIdV8 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
 	texureIdStart8 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
-	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
+	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageEndAuto1.png", 0);
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 	texureIdV8_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 
+	textureIdVAuto = TEXTURE->CreateTexture("assets\\image_auto2.png", 0);
+	textureIdCurveAuto = TEXTURE->CreateTexture("assets\\image_auto1.png", 0);
 
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
@@ -724,24 +726,24 @@ void Level11::Update()
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
-	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
+	puzzle4->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
 
 	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
+	puzzle9->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
+	puzzle12->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
 
 	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
 	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
 	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
+	puzzle17->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
 
-	puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
+	puzzle18->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
 	puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
 	puzzle20->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
 

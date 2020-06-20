@@ -161,6 +161,10 @@ private:
 	GLint textureOptionUI8;
 	GLint textureRestartUI8;
 
+	GLuint textureIdVAuto;
+	GLuint textureIdCurveAuto;
+
+
 	GLint textureLeft;
 	GLint textureLeftNumberTen0;
 	GLint textureLeftNumberTen1;

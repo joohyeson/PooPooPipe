@@ -97,6 +97,8 @@ void Level10::Init()
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
 	texureIdV8_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
 
+	textureIdAuto1 = TEXTURE->CreateTexture("assets\\image_auto1.png", 0);
+	textureIdAuto2 = TEXTURE->CreateTexture("assets\\image_auto2.png", 0);
 
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
@@ -738,7 +740,7 @@ void Level10::Update()
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
 	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
-	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
+	puzzle4->mesh->Update(mShader2.GetShaderHandler(), textureIdAuto1);
 	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
@@ -752,7 +754,7 @@ void Level10::Update()
 	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
 	puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
 	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
+	puzzle16->mesh->Update(mShader2.GetShaderHandler(), textureIdAuto2);
 	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
 
 	puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);

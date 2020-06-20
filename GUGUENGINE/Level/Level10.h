@@ -153,6 +153,9 @@ private:
 	GLuint texureIdCurve8_2;
 	GLuint texureIdV8_2;
 
+	GLuint textureIdAuto1;
+	GLuint textureIdAuto2;
+
 	GLuint texureIdbutton8;
 	GLuint texureIdclear8;
 	GLuint texureSpace8;
