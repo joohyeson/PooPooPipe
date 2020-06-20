@@ -40,6 +40,11 @@ void Level11::Init()
 	degree8_8 = DegreeToRadian(60.f);
 	degree8_9 = DegreeToRadian(-120.f);
 
+	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 150.f });
+	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	mini->mesh->InitializeTextureMesh(500.f, 500.f);
+
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
@@ -796,6 +801,7 @@ void Level11::Update()
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
 	switch (rotTime.getLimitTime() / 10)
 	{

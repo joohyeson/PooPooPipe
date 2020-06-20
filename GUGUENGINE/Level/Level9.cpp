@@ -35,7 +35,10 @@ void Level9::Init()
 	degree9_6 = DegreeToRadian(-180.f);
 	degree9_7 = DegreeToRadian(120.f);
 	degree9_rot = DegreeToRadian(-120.f);
-	
+	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
+	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	mini->mesh->InitializeTextureMesh(500.f, 500.f);
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(1920, 1920.f);
 
@@ -689,6 +692,7 @@ void Level9::Update()
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
 	if (mPooPoo.IsFinish() == false)
 	{

@@ -61,7 +61,8 @@ public:
 		numberImage = nullptr;
 		pooCharacter = nullptr;
 		fail = nullptr;
-
+		mini = nullptr;
+		
 		key = 0;
 	}
 
@@ -85,6 +86,8 @@ private:
 	GLint textureWin;
 
 	Object* Levelsel, * Levelsel_pressed;
+	Object* mini;
+	GLuint texturemini;
 
 	Object* button;
 	Object* clear;

@@ -63,6 +63,7 @@ public:
 		leftnumberTen = nullptr;
 		leftnumber = nullptr;
 		fail = nullptr;
+		mini = nullptr;
 
 		playUI_p = nullptr;
 		quitUI_p = nullptr;
@@ -96,6 +97,8 @@ private:
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 	Object* win;
 	GLint textureWin;
+	Object* mini;
+	GLuint texturemini;
 
 	Object* button;
 	Object* clear;

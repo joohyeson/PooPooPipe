@@ -46,6 +46,11 @@ void Level5::Init()
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 
+	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
+	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	mini->mesh->InitializeTextureMesh(500.f, 500.f);
+
+	
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -158,13 +163,13 @@ void Level5::Init()
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
-	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f });
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f - 250.f, 280.f });
 	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 
-	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
+	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f - 250.f, 120.f });
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 
-	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
+	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f - 250.f, 0.0f });
 	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 280.f + 50.f });
@@ -923,6 +928,7 @@ void Level5::Update()
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
 	if (mPooPoo.IsFinish() == false)
 	{

@@ -54,6 +54,7 @@ public:
 		pooCharacter = nullptr;
 		fail = nullptr;
 		win = nullptr;
+		mini = nullptr;
 
 		playUI_p = nullptr;
 		quitUI_p = nullptr;
@@ -77,7 +78,8 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* win;
-
+	Object* mini;
+	GLuint texturemini;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
 	GLint texturePlayUI3p;
 	GLint textureQuitUI3p;

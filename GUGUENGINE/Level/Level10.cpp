@@ -39,7 +39,10 @@ void Level10::Init()
 	degree8_7 = DegreeToRadian(-240.f);
 	degree8_8 = 0;
 	degree8_9 = DegreeToRadian(180.f);
-	
+	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 150.f });
+	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	mini->mesh->InitializeTextureMesh(500.f, 500.f);
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
@@ -739,6 +742,7 @@ void Level10::Update()
 		{
 			this->sound->Play("assets\\yeah.wav", 1);
 		}
+		
 		skip = true;
 		win->mesh->setTransform({ 0,0 });
 	}
@@ -799,6 +803,7 @@ void Level10::Update()
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 
