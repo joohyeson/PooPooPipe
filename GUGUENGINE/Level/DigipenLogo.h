@@ -18,7 +18,6 @@ public:
 	DigipenLogo()
 	{
 		digipenLogo = nullptr;
-
 	}
 
 	void Init() override;
@@ -28,7 +27,8 @@ public:
 private:
 	Object* digipenLogo;
 	Shader mShader;
-
+	GLuint textureDigipenLogo;
+	float dt = 0.f;
 };
 
 

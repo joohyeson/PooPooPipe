@@ -103,7 +103,8 @@ private:
 	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	LimitRotate rotTime;
-
+	bool skip = false;
+	float transition = 0.f;
 	Vector2<float> cursor8;
 	Input mInput;
 

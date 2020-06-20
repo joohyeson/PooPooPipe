@@ -104,7 +104,9 @@ private:
 	bool poopooCheck = false;
 
 	Vector2<float> cursor9;
-
+	bool skip = false;
+	float transition = 0.0f;
+	
 	int coorcheck9 = 0;
 
 	int connectMove9 = 0;

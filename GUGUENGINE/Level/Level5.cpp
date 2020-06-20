@@ -15,6 +15,8 @@
 void Level5::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
+	skip = false;
+	transition = 0.f;
 
 	chekNext5 = 0;
 
@@ -43,7 +45,6 @@ void Level5::Init()
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
-
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -787,6 +788,7 @@ void Level5::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
 		chekNext5 = 0;
 
@@ -809,8 +811,15 @@ void Level5::Update()
 		blCheck7 = false;
 		blCheck7_2 = false;
 		blCheck7_3 = false;
+	}
 
-		STATE_MANAGER->ChangeLevel(LV_TEST9);
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST9);
+		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
 	{

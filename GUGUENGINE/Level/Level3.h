@@ -131,6 +131,8 @@ private:
 	float degree2_2 = 0;
 	float degree2_3 = 0;
 
+	float dt = 0.f;
+	float transition = 0.f;
 	int chekNext = 0;
 
 	GLuint textureBackground3;

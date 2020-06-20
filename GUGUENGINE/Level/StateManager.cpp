@@ -45,7 +45,7 @@ void StateManager::Init()
 
 
 
-	current = MAINMENU;
+	current = DIGIPENLOGO;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());

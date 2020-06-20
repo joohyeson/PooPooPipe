@@ -36,15 +36,18 @@ void FmodLogo::Init()
 
 void FmodLogo::Update()
 {
+	
 	fmodLogo->mesh->Update(mShader.GetShaderHandler(), textureFmodLogo);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwPollEvents();
 
-	Sleep(3000);
-	STATE_MANAGER->ChangeLevel(MAINMENU);
-
+	if(dt > 2000.f)
+	{
+		STATE_MANAGER->ChangeLevel(MAINMENU);
+	}
+	dt++;
 }
 
 void FmodLogo::Close()

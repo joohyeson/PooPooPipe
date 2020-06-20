@@ -93,7 +93,10 @@ private:
 	Object* clear;
 	Object* win;
 	GLint textureWin;
-
+	
+	bool skip = false;
+	float transition = 0.0f;
+	
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;

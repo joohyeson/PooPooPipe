@@ -91,7 +91,8 @@ private:
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
 	Object* win;
 	GLint textureWin;
-
+	bool skip = false;
+	float transition = 0.f;
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;

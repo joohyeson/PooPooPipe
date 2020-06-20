@@ -15,6 +15,9 @@
 void Level8::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
+	skip = false;
+	transition = 0.f;
+
 	rotTime.setRotate(30);
 	rotrot2 = true;
 	std::cout << rotTime.getLimitTime() << std::endl;
@@ -691,6 +694,7 @@ void Level8::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
 		chekNext8 = 0;
 
@@ -713,8 +717,14 @@ void Level8::Update()
 		degree8_7 = 0;
 
 		rotTime.setRotate(30);
-
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
+	}
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST5);
+		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{

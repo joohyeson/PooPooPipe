@@ -105,7 +105,9 @@ private:
 
 	/*Sound se4;
 	Sound playSE4;*/
-
+	bool skip = false;
+	float transition = 0.f;
+	
 	Input mInput;
 	bool rot[3] = { false };
 	bool movable[3] = { false };

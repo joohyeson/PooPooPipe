@@ -14,43 +14,47 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 
-GLuint textureDigipenLogo;
+void Wait(long waitTime)
+{
+	clock_t	wakeTime;
+
+	wakeTime = waitTime + clock();
+	while (wakeTime > clock())
+	{
+		/* Do nothing while waiting. */
+	}
+}
 
 void DigipenLogo::Init()
 {
+	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
 	textureDigipenLogo = TEXTURE->CreateTexture("assets\\DigiPen_WHITE_1024px.png", 0);
-
-	digipenLogo = OBJECT_FACTORY->CreateEmptyObject();
-
+	digipenLogo->mesh->InitializeTextureMesh(APPLICATION->width/2, APPLICATION->height/3);
+	
 	mShader.BuildTextureShader();
-	digipenLogo->AddComponent(new Mesh);
-    digipenLogo->Init();
-
-	digipenLogo->mesh->setTransform({0,0});
-	digipenLogo->mesh->SetMeshType(rectangle);
-
-	digipenLogo->mesh->InitializeTextureMesh(100.f, 100.f);
-
 }
 
 void DigipenLogo::Update()
 {
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 
+	if(dt > 2000.f)
+	{
+		STATE_MANAGER->ChangeLevel(FMODLOGO);
+	}
+
+	dt++;
+	
     glfwSwapBuffers(APPLICATION->getMyWindow());
     glClear(GL_COLOR_BUFFER_BIT);
     glfwPollEvents();
-
-	Sleep(3000);
-
-
-	STATE_MANAGER->ChangeLevel(FMODLOGO);
-	
 }
 
 void DigipenLogo::Close()
 {
+
 	mShader.Delete();
 	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
+	
 }

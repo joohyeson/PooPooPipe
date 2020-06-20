@@ -23,7 +23,8 @@ void Level3::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	chekNext = 0;
-
+	skip = false;
+	transition = 0.f;
 	conecTcheck1 = false;
 	conecTcheck2 = false;
 	conecTcheck3 = false;
@@ -212,7 +213,7 @@ void Level3::Init()
 
 void Level3::Update()
 {
-	
+	dt++;
 	STATE_MANAGER->setCurrentLV(1);
 
 	cursor3 = mInput.Cursor;
@@ -629,7 +630,9 @@ void Level3::Update()
 
 	if(pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
+		
 		chekNext = 0;
 
 		conecTcheck1 = false;
@@ -645,11 +648,17 @@ void Level3::Update()
 
 		blCheck2 = false;
 		blCheck2_2 = false;
-		
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
 	}
-	
-	
+
+	if(skip == true)
+	{
+		transition++;
+		if (transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST4);
+		}
+	}
+
 	/*se3.Update();
 	playSE3.Update();*/
 

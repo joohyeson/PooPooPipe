@@ -24,7 +24,9 @@
 void Level4::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
-	
+	skip = false;
+	transition = 0.f;
+
 	chekNext4 = 0;
 
 	conecTcheck4_1 = false;
@@ -554,6 +556,7 @@ void Level4::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
 		chekNext4 = 0;
 
@@ -570,9 +573,15 @@ void Level4::Update()
 
 		blCheck4 = false;
 		blCheck4_2 = false;
-		
-		STATE_MANAGER->ChangeLevel(LV_TEST6);
-
+	}
+	
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST6);
+		}
 	}
 	if (fail->collision->Point2BoxCollision({ cursor4.x,cursor4.y }, fail->mesh))
 	{

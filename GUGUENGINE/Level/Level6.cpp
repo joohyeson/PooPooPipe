@@ -15,6 +15,8 @@
 void Level6::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
+	skip = false;
+	transition = 0.f;
 
 	chekNext6 = 0;
 
@@ -693,6 +695,7 @@ void Level6::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
 
 		chekNext6 = 0;
@@ -711,8 +714,15 @@ void Level6::Update()
 		degree6_6 = DegreeToRadian(-120.f);
 
 		rotTime.setRotate(100);
+	}
 
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST8);
+		}
 	}
 	//se6.Update();
 

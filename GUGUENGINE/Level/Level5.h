@@ -99,6 +99,9 @@ private:
 	bool move[3] = { false };
 	bool poopooCheck = false;
 	
+	bool skip = false;
+	float transition = 0.0f;
+	
 	Vector2<float> cursor5;
 
 	int coorcheck5 = 0;

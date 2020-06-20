@@ -16,6 +16,8 @@ bool SoundCheck = false;
 void Level9::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
+	skip = false;
+	transition = 0.f;
 
 	autoRot = true;
 
@@ -609,6 +611,7 @@ void Level9::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
 		chekNext9 = 0;
 
@@ -625,9 +628,15 @@ void Level9::Update()
 		degree9_7 = DegreeToRadian(120.f);
 		degree9_rot = DegreeToRadian(-120.f);
 
-		STATE_MANAGER->ChangeLevel(LV_TEST10);
 	}
-
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST10);
+		}
+	}
 	/*se9.Update();*/
 
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground9);

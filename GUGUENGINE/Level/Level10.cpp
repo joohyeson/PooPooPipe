@@ -13,6 +13,8 @@
 void Level10::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
+	skip = false;
+	transition = 0.f;
 
 	rotTime.setRotate(30);
 	rotrot2 = true;
@@ -733,10 +735,18 @@ void Level10::Update()
 
 	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
 	{
+		skip = true;
 		win->mesh->setTransform({ 0,0 });
-		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}
-
+	
+	if(skip == true)
+	{
+		transition++;
+		if(transition > 500.f)
+		{
+			STATE_MANAGER->ChangeLevel(LV_TEST11);
+		}
+	}
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
