@@ -121,7 +121,7 @@ void Level8::Init()
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	texureIdLine8 = TEXTURE->CreateTexture("assets\\image0.png", 0);

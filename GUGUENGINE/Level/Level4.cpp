@@ -45,7 +45,7 @@ void Level4::Init()
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);

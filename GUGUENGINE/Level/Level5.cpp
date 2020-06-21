@@ -127,7 +127,7 @@ void Level5::Init()
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);

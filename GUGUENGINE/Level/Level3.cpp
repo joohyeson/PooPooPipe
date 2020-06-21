@@ -194,7 +194,7 @@ void Level3::Init()
 	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	
 

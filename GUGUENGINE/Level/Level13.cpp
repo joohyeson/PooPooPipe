@@ -88,7 +88,7 @@ void Level13::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width - 100.f, APPLICATION->height - 100.f);
+	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height );
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
