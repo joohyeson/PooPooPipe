@@ -39,6 +39,8 @@ void Level11::Init()
 	degree8_7 = 0;
 	degree8_8 = DegreeToRadian(60.f);
 	degree8_9 = DegreeToRadian(-120.f);
+	degree8_10 = DegreeToRadian(-120.f);
+	degree8_11 = 0;
 
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 150.f });
 	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
@@ -519,9 +521,9 @@ void Level11::Update()
 					puzzle17->pipe->Update();
 					puzzle18->pipe->Update();
 
-					degree8_8 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle17->mesh->setRotation(degree8_8);
-					puzzle18->mesh->setRotation(degree8_8);
+					degree8_11 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle17->mesh->setRotation(degree8_11);
+					puzzle18->mesh->setRotation(degree8_11 + DegreeToRadian(-120.f));
 
 					rotTime.Update();
 
@@ -558,6 +560,31 @@ void Level11::Update()
 			}
 		}
 
+		if (puzzle18->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle18->mesh))
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[10] = true;
+			}
+			if (rot[10] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle17->pipe->Update();
+					puzzle18->pipe->Update();
+
+					degree8_11 += static_cast<float>(DegreeToRadian(60.f));
+					puzzle17->mesh->setRotation(degree8_11 );
+					puzzle18->mesh->setRotation(degree8_11 + DegreeToRadian(-120.f));
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+
+					rot[10] = false;
+				}
+			}
+		}
 
 		if (puzzle2->pipe->GetDirValue(W) && (puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)))
 		{

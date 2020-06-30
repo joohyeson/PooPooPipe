@@ -119,7 +119,7 @@ private:
 	Vector2<float> cursor8;
 	Input mInput;
 
-	bool rot[10] = { false };
+	bool rot[11] = { false };
 	bool poopooCheck = false;
 
 	bool rotrot2 = true;
@@ -136,6 +136,8 @@ private:
 	float degree8_7 = 0;
 	float degree8_8 = 0;
 	float degree8_9 = DegreeToRadian(-120.f);
+	float degree8_10 = DegreeToRadian(-120.f);
+	float degree8_11 = 0;
 
 	int chekNext8 = 0;
 
