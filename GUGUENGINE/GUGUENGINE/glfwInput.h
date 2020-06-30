@@ -2,7 +2,6 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-
 enum KEY
 {
 	IGNORE,

@@ -29,7 +29,7 @@ void startCut::Update()
 {
 	dt++;
 
-	if (dt < 1000.f)
+	if (dt < 500.f)
 	{
 		startCut1->mesh->setTransform({ 0.f, 0.f });
 	}
@@ -38,7 +38,7 @@ void startCut::Update()
 		startCut1->mesh->setTransform({ -2000.f, -2000.f });
 	}
 	
-	if(dt>= 1000.f && dt < 2000.f)
+	if(dt>= 500.f && dt < 1000.f)
 	{
 		startCut2->mesh->setTransform({ 0.f, 0.f });
 	}
@@ -47,7 +47,7 @@ void startCut::Update()
 		startCut2->mesh->setTransform({ -2000.f, -2000.f });
 	}
 
-	if(dt >= 2000.f && dt < 3000.f)
+	if(dt >= 1000.f && dt < 1500.f)
 	{
 		startCut3->mesh->setTransform({ 0.f, 0.f });
 	}
@@ -58,7 +58,7 @@ void startCut::Update()
 
 	
 
-	if (dt >= 3000.f)
+	if (dt >= 1500.f)
 	{
 		STATE_MANAGER->ChangeLevel(MAINMENU);
 	}

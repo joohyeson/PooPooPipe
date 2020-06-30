@@ -26,8 +26,7 @@ void DigipenLogo::Init()
 void DigipenLogo::Update()
 {
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-
-	if(dt > 1500.f)
+	if(dt > 500.f)
 	{
 		STATE_MANAGER->ChangeLevel(FMODLOGO);
 	}
@@ -41,7 +40,6 @@ void DigipenLogo::Update()
 
 void DigipenLogo::Close()
 {
-
 	mShader.Delete();
 	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
