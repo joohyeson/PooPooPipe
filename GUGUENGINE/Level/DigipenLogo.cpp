@@ -26,7 +26,7 @@ void DigipenLogo::Init()
 void DigipenLogo::Update()
 {
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	if(dt > 500.f)
+	if(dt > 200.f)
 	{
 		STATE_MANAGER->ChangeLevel(FMODLOGO);
 	}

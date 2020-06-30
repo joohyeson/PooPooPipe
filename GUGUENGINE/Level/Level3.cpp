@@ -685,7 +685,7 @@ void Level3::Update()
 	{
 
 		transition++;
-		if (transition > 500.f)
+		if (transition > 200.f)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST4);
 		}

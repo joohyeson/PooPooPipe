@@ -752,7 +752,7 @@ void Level6::Update()
 	if(skip == true)
 	{
 		transition++;
-		if(transition > 500.f)
+		if(transition > 200.f)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST8);
 		}
