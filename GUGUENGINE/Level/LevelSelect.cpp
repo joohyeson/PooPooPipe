@@ -116,6 +116,13 @@ void LevelSelect::Init()
 void LevelSelect::Update()
 {
 	cursorLv = levelInput.Cursor;
+
+	if (levelInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		levelInput.setInput(KEY::F);
+	}
+
 	if (levelInput.IsPressed(KEY::ESCAPE) == true)
 	{
 		glfwTerminate();

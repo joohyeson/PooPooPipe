@@ -121,7 +121,6 @@ Application::Application()
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
-    //framebufferSizeCallback(Mywindow, screenMode->width, screenMode->height);
 
 }
 
