@@ -74,6 +74,16 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 			std::cout << volume << std::endl;
 		}
 	}
+
+	if (key == GLFW_KEY_F&& action == GLFW_RELEASE)
+	{
+		std::cout << "F Key" << std::endl;
+
+		APPLICATION->SetFullScreen();
+
+	}
+
+
 }
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {

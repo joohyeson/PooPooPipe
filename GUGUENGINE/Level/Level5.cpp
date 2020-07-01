@@ -254,7 +254,11 @@ void Level5::Update()
 
 	/*se5.Update();
 	playSE5.Update();*/
-
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, Levelsel->mesh) == true)
 	{

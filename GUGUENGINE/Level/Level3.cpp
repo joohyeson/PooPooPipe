@@ -218,6 +218,12 @@ void Level3::Update()
 
 	cursor3 = mInput.Cursor;
 
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
+
 	if (Levelsel->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, Levelsel->mesh) == true)
 	{
 		if(UI[4] == false)

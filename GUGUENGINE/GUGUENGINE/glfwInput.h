@@ -13,6 +13,7 @@ enum KEY
 	LEFT,
 	RIGHT,
 	SIZE,
+	F
 };
 
 class Input

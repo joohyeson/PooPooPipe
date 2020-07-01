@@ -151,6 +151,7 @@ void Level2::Update()
 		check2++;
 		std::cout << "HELLO" << std::endl;
 	}
+
 	se2.Update();
 
 	getOrigin.x = movePuzzle->mesh->GetTransform().x;

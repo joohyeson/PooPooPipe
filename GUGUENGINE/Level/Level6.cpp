@@ -281,7 +281,11 @@ void Level6::Update()
 
 	}
 
-
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
 
 	/*se6.Update();
 	playSE6.Update();*/

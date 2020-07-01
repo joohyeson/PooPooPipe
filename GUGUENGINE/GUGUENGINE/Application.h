@@ -22,9 +22,10 @@ public:
 	
 	void Init() override;
 	void Update() override;
-
+	bool IsFullScreen() { return isFullScreen; }
+	void SetIsFullScreen(bool isFull) { isFullScreen = isFull; }
+	void SetFullScreen();
 	
-
 	void setMyWindow(GLFWwindow& m);
 	GLFWwindow* getMyWindow();
 
@@ -35,7 +36,7 @@ private:
 	bool isGameRunning = false;
 	int sizeX = 300;
 	int sizeY = 400;
-	
+	bool isFullScreen = false;
 	int mouse_X;
 	int mouse_Y;
 	Shader mShader;

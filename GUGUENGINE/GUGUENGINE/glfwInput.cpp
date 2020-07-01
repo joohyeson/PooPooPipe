@@ -41,6 +41,15 @@ Input* INPUT = nullptr;
 			INPUT->Key[KEY::TAB] = false;
 		}
 
+		if (key == GLFW_KEY_F && action == GLFW_RELEASE)
+		{
+			INPUT->Key[KEY::F] = true;
+		}
+		else
+		{
+			INPUT->Key[KEY::F] = false;
+		}
+
 	}
 
 	void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)

@@ -221,6 +221,12 @@ void Level4::Update()
 	//se4.Update();
 	//playSE4.Update();
 
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
+
 	if (Levelsel->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, Levelsel->mesh) == true)
 	{
 		if (UI[4] == false)

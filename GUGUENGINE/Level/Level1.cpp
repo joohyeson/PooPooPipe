@@ -90,6 +90,11 @@ void Level1::Update()
 	cursor = mInput.Cursor;
 
 	//se.Update();
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
 
 	if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
 	{

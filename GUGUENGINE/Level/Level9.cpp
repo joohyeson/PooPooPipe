@@ -254,7 +254,11 @@ void Level9::Update()
 	STATE_MANAGER->setCurrentLV(6);
 
 	cursor9 = mInput.Cursor;
-
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
 	/*se9.Update();
 	playSE9.Update();*/
 

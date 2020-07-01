@@ -135,6 +135,26 @@ Application::~Application()
     //std::exit(EXIT_SUCCESS);
 }
 
+void Application::SetFullScreen()
+{
+    if (!isFullScreen)
+    {
+        std::cout << "Fullscreen" << std::endl;
+        const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
+        GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+
+        glfwSetWindowMonitor(APPLICATION->getMyWindow(), screenMonitor, 0, 0, screenMode->width, screenMode->height, 0);
+        isFullScreen = true;
+        glViewport(0, 0, screenMode->width, screenMode->height);
+    }
+    else
+    {
+        glfwSetWindowMonitor(APPLICATION->getMyWindow(), nullptr, 300, 300, APPLICATION->width, APPLICATION->height, 0);
+        isFullScreen = false;
+        glViewport(0, 0, APPLICATION->width, APPLICATION->height);
+    }
+}
+
 void Application::setMyWindow(GLFWwindow& m)
 {
     Mywindow = &m;

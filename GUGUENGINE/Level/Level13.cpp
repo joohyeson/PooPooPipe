@@ -255,7 +255,11 @@ void Level13::Init()
 void Level13::Update()
 {
 	STATE_MANAGER->setCurrentLV(8);
-
+	if (mInput.IsPressed(KEY::F) == true)
+	{
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
+	}
 	cursor8 = mInput.Cursor;
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
