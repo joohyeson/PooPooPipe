@@ -18,7 +18,7 @@
 		constexpr float GetZoom() const noexcept { return zoom; }
 		Matrix3<float>         GetCameraToNDCTransform() const noexcept { return cameraToNDC; }
 
-		enum FrameOfReference
+		enum class FrameOfReference
 		{
 			RightHanded_OriginCenter,
 			RightHanded_OriginBottomLeft,
@@ -32,6 +32,6 @@
 		Vector2<float>          displaySize{};
 		Matrix3<float>          cameraToNDC =Matrix3<float>::Identiy();
 		float            zoom{1.0f};
-		FrameOfReference frameOfReference = RightHanded_OriginCenter;
+		FrameOfReference frameOfReference = FrameOfReference::RightHanded_OriginCenter;
 	};
 

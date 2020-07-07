@@ -30,6 +30,8 @@ public:
 		puzzleRight = nullptr;
 		spacePress = nullptr;
 		key = 0;
+		levelCheck = 0;
+		spaceCheck = 0;
 	}
 
 	void Init() override;

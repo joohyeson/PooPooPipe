@@ -21,7 +21,7 @@
   //Returns the total amount of points representing the mesh
 Transform* m;
 int splitCheck = 0;
-Mesh::Mesh() : Component(COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(hexagon)
+Mesh::Mesh() : Component(ComponentType::COMPONENTTYPE_MESH), mVertexArrayObject(0), mPositionVertexBufferObjectID(0), mColorVertexBufferObjectID(0), mTextureCoordinateBufferObjectID(0), meshType(MESHTYPE::hexagon)
 {
 	points.clear();
 	colors.clear();
@@ -59,7 +59,7 @@ void Mesh::InitializeTextureMesh(float width, float height)
     SetOriginVertex(meshType);
 	AddColor({ 1.0f, 1.0f, 0.f });
 	SetVertex(originVertex);
-	if (meshType == hexagon)
+	if (meshType == MESHTYPE::hexagon)
 	{
 		SetVertex(originVertex);
 	}
@@ -185,7 +185,7 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
 	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });
-	if (meshType == hexagon)
+	if (meshType == MESHTYPE::hexagon)
 	{
 		S = Matrix3<float>::Scale({ 100.f, 100.f, 1.f });
 	}
@@ -202,28 +202,28 @@ void Mesh::SetOriginVertex(MESHTYPE meshType)
 {
     switch (meshType)
     {
-    case hexagon:
+    case MESHTYPE::hexagon:
         originVertex = createHexagon();
         break;
-    case box:
+    case MESHTYPE::box:
         originVertex = create_box();
         break;
-    case wire_circle:
+    case MESHTYPE::wire_circle:
         originVertex = create_wire_circle();
         break;
-    case wire_rectangle:
+    case MESHTYPE::wire_rectangle:
         originVertex = create_wire_rectangle();
         break;
-    case rectangle:
+    case MESHTYPE::rectangle:
         originVertex = create_rectangle();
         break;
-    case triangle:
+    case MESHTYPE::triangle:
         originVertex = create_triangle();
         break;
-    case line:
+    case MESHTYPE::line:
         originVertex = create_line();
         break;
-    case ellipse:
+    case MESHTYPE::ellipse:
         originVertex = createEllipse();
         break;
     }

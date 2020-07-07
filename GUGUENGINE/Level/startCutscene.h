@@ -15,8 +15,16 @@ public:
 		startCut2 = nullptr;
 		startCut3 = nullptr;
 
+		texturestartCut1 = 0;
+		texturestartCut2 = 0;
+		texturestartCut2 = 0;
+		texturestartCut3 = 0;
+
 		next = nullptr;
 		skip = nullptr;
+		texturestartNext = 0;
+		texturestartSkip = 0;
+
 	}
 
 	void Init() override;

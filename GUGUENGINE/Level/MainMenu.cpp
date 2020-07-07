@@ -112,7 +112,7 @@ void MainMenu::Init()
 	background->AddComponent(new Mesh());
 	background->Init();
 	background->mesh->setTransform({ 0,0 });
-	background->mesh->SetMeshType(rectangle);
+	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(1920, 1080.f);
 
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
@@ -148,10 +148,10 @@ void MainMenu::Init()
 	startButton_pressed->Init();
 
 	startButton->mesh->setTransform({ 0.f,-20.f });
-	startButton->mesh->SetMeshType(rectangle);
+	startButton->mesh->SetMeshType(MESHTYPE::rectangle);
 	startButton->mesh->InitializeTextureMesh(280.f, 70.f);
 	startButton_pressed->mesh->setTransform({ 1000.f,-20.f });
-	startButton_pressed->mesh->SetMeshType(rectangle);
+	startButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	startButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	tutorialButton->AddComponent(new Mesh());
@@ -160,10 +160,10 @@ void MainMenu::Init()
 	tutorialButton_pressed->Init();
 
 	tutorialButton->mesh->setTransform({ 0.0f,-100.f });
-	tutorialButton->mesh->SetMeshType(rectangle);
+	tutorialButton->mesh->SetMeshType(MESHTYPE::rectangle);
 	tutorialButton->mesh->InitializeTextureMesh(280.f, 70.f);
 	tutorialButton_pressed->mesh->setTransform({ 1000.0f,-100.f });
-	tutorialButton_pressed->mesh->SetMeshType(rectangle);
+	tutorialButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	tutorialButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	optionButton->AddComponent(new Mesh());
@@ -171,10 +171,10 @@ void MainMenu::Init()
 	optionButton_pressed->AddComponent(new Mesh());
 	optionButton_pressed->Init();
 	optionButton->mesh->setTransform({ 0.0f,-180.f });
-	optionButton->mesh->SetMeshType(rectangle);
+	optionButton->mesh->SetMeshType(MESHTYPE::rectangle);
 	optionButton->mesh->InitializeTextureMesh(280.f, 70.f);
 	optionButton_pressed->mesh->setTransform({ 0.0f,-180.f });
-	optionButton_pressed->mesh->SetMeshType(rectangle);
+	optionButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	/*test->AddComponent(new Mesh());
@@ -225,7 +225,7 @@ void MainMenu::Update()
 		{
 			std::cout << "to test" << std::endl;
 			moveCheck0 = 0;
-			STATE_MANAGER->ChangeLevel(LV_TEST3);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 		}
 	}
 	else
@@ -242,7 +242,7 @@ void MainMenu::Update()
 		{
 			std::cout << "to level1" << std::endl;
 			moveCheck0_2 = 0;
-			STATE_MANAGER->ChangeLevel(LV_TEST1);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST1);
 		}
 	}
 	else
@@ -257,7 +257,7 @@ void MainMenu::Update()
 
 		if (moveCheck0_3 % 2 == 1)
 		{
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			std::cout << "to option" << std::endl;
 			moveCheck0_3 = 0;
 		}

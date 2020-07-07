@@ -6,8 +6,20 @@
 #include "GetDirection.h"
 #include <stack>
 
-GenerateMap::GenerateMap() :mapRow(6), mapColumn(5) {};
-GenerateMap::GenerateMap(int column, int row) :mapRow(column), mapColumn(row) {};
+GenerateMap::GenerateMap() :mapRow(6), mapColumn(5) 
+{
+	StartEdgeN = 0;
+	endEdgeN = 0;
+	endPuzzleN = 0;
+	startPuzzleN = 0;
+};
+GenerateMap::GenerateMap(int column, int row) :mapRow(column), mapColumn(row) 
+{
+	StartEdgeN = 0;
+	endEdgeN = 0;
+	endPuzzleN = 0;
+	startPuzzleN = 0;
+};
 
 void GenerateMap::GetNextCenterCoor(float radius)
 {
@@ -106,7 +118,8 @@ void GenerateMap::SaveObjectWays()
 }
 int GenerateMap::GetObjectSize()
 {
-	return objects.size();
+	int sizeObject = static_cast<int>(objects.size());
+	return sizeObject;
 }
 
 void GenerateMap::MapAlignment()
@@ -166,7 +179,7 @@ bool GenerateMap::IsValidLocation(int puzzleNumber, int EdgeNumber)
 	}
 }
 
-void GenerateMap::StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap)
+void GenerateMap::StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap2)
 {
 	std::stack<Vector2<int>> locStack;
 	//myWays = myWay;
@@ -201,7 +214,7 @@ void GenerateMap::StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, 
 		}
 		else
 		{
-			myMap->neighborSaver[myRow].myEdge[myColumn].isComeBack = true;
+			myMap2->neighborSaver[myRow].myEdge[myColumn].isComeBack = true;
 
 			for (int i = 0; i < 6; i++)
 			{
@@ -212,8 +225,8 @@ void GenerateMap::StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, 
 			}
 			if (IsValidLocation(myRow, myColumn))
 			{
-				locStack.push(Vector2<int>(myMap->neighborSaver[myRow].myEdge[myColumn].GetWhoIsNeighbor().x,
-					myMap->neighborSaver[myRow].myEdge[myColumn].GetWhoIsNeighbor().y));
+				locStack.push(Vector2<int>(myMap2->neighborSaver[myRow].myEdge[myColumn].GetWhoIsNeighbor().x,
+					myMap2->neighborSaver[myRow].myEdge[myColumn].GetWhoIsNeighbor().y));
 			}
 		}
 	}

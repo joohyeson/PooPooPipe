@@ -9,7 +9,7 @@
  */
 #include <string>
 
-enum ComponentType {
+enum class ComponentType {
 	COMPONENTTYPE_NULL=0, 
 	COMPONENTTYPE_MESH, 
 	COMPONENTTYPE_TRANSFORM,

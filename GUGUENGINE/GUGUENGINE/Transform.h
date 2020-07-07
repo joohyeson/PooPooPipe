@@ -9,11 +9,12 @@
 #include "Component.h"
 #include "Mathematics/Vector3.hpp"
 #include "Mathematics/Vector2.hpp"
+#include "ComponentType.h"
 
 class Transform : public Component
 {
 public:
-	Transform() :Component(COMPONENTTYPE_TRANSFORM) {
+	Transform() :Component(ComponentType::COMPONENTTYPE_TRANSFORM) {
 		rotation = 0.f;
 		translation = { 0.f, 0.f };
 		scale = { 1.0f,1.0f };

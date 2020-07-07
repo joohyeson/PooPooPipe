@@ -14,7 +14,7 @@
 class CollisionCheck :public Component{
 public:
 
-	CollisionCheck() :Component(COMPONENTTYPE_COLLISIONCHECK) {};
+	CollisionCheck() :Component(ComponentType::COMPONENTTYPE_COLLISIONCHECK) {};
 
 	bool Box2BoxCollision(Mesh* boxA, Mesh* boxB);
 	bool Point2BoxCollision(Vector2<float> point, Mesh* box);

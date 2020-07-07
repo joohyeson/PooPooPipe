@@ -34,7 +34,7 @@ void Level1::Init()
 	background->Init();
 
 	background->mesh->setTransform({ 0,0 });
-	background->mesh->SetMeshType(rectangle);
+	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
@@ -78,7 +78,7 @@ void Level1::Init()
 
 	spacePress->AddComponent(new Mesh());
 	spacePress->mesh->setTransform({ 0.0f, -200.f });
-	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->mesh->SetMeshType(MESHTYPE::rectangle);
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 
@@ -137,7 +137,7 @@ void Level1::Update()
 		if (mInput.IsPressed(KEY::SPACE) == true && levelCheck == true)
 		{
 			mInput.setInput(KEY::SPACE);
-			STATE_MANAGER->ChangeLevel(LV_TEST2);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST2);
 		}
 	}
 

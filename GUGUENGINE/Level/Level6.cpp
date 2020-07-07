@@ -148,7 +148,7 @@ void Level6::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 
@@ -320,7 +320,7 @@ void Level6::Update()
 
 			std::cout << "check" << std::endl;
 
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -694,7 +694,7 @@ void Level6::Update()
 		{
 			UI[2] = false;
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -758,7 +758,7 @@ void Level6::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST8);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 		}
 	}
 	//se6.Update();
@@ -882,7 +882,7 @@ void Level6::Update()
 	{
 		INPUT->setInput(KEY::A);
 
-		STATE_MANAGER->ChangeLevel(LV_TEST8);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 	}
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
 		glfwTerminate();

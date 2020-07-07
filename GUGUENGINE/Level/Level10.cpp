@@ -45,7 +45,7 @@ void Level10::Init()
 	mini->mesh->InitializeTextureMesh(500.f, 500.f);
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -58,7 +58,7 @@ void Level10::Init()
 
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
@@ -85,7 +85,7 @@ void Level10::Init()
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
@@ -249,7 +249,7 @@ void Level10::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 
@@ -298,7 +298,7 @@ void Level10::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -740,7 +740,7 @@ void Level10::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -787,7 +787,7 @@ void Level10::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST11);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 		}
 	}
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
@@ -910,7 +910,7 @@ void Level10::Update()
 	if (mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(LV_TEST11);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

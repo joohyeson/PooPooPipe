@@ -55,7 +55,7 @@ void LevelOption::Init()
 	background->Init();
 
 	background->mesh->setTransform({ 0,0 });
-	background->mesh->SetMeshType(rectangle);
+	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(1920, 1080);
 	textureBackgroundOption = TEXTURE->CreateTexture("assets\\background.png", 0);
 
@@ -66,7 +66,7 @@ void LevelOption::Init()
 	option->Init();
 	
 	option->mesh->setTransform({ 0.0f,350.f });
-	option->mesh->SetMeshType(rectangle);
+	option->mesh->SetMeshType(MESHTYPE::rectangle);
 	option->mesh->InitializeTextureMesh(400.f, 100.f);
 	textureOption = TEXTURE->CreateTexture("assets\\option.png", 0);
 
@@ -76,7 +76,7 @@ void LevelOption::Init()
 	goToMain->Init();
 
 	goToMain->mesh->setTransform({ -700.0f,350.f });
-	goToMain->mesh->SetMeshType(rectangle);
+	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
 
@@ -88,7 +88,7 @@ void LevelOption::Init()
 	music->Init();
 
 	music->mesh->setTransform({ -300.f,240.f });
-	music->mesh->SetMeshType(rectangle);
+	music->mesh->SetMeshType(MESHTYPE::rectangle);
 	music->mesh->InitializeTextureMesh(240.f, 80.f);
 	textureMusic = TEXTURE->CreateTexture("assets\\music.png", 0);
 
@@ -97,7 +97,7 @@ void LevelOption::Init()
 	arrowRight->AddComponent(new Mesh());
 	arrowRight->Init();
 	arrowRight->mesh->setTransform({ 350.f,240.f });
-	arrowRight->mesh->SetMeshType(rectangle);
+	arrowRight->mesh->SetMeshType(MESHTYPE::rectangle);
 	arrowRight->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowRight = TEXTURE->CreateTexture("assets\\arrow_right.png", 0);
 
@@ -105,7 +105,7 @@ void LevelOption::Init()
 	arrowLeft->AddComponent(new Mesh());
 	arrowLeft->Init();
 	arrowLeft->mesh->setTransform({ -160.f,240.f });
-	arrowLeft->mesh->SetMeshType(rectangle);
+	arrowLeft->mesh->SetMeshType(MESHTYPE::rectangle);
 	arrowLeft->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowLeft = TEXTURE->CreateTexture("assets\\arrow_left.png", 0);
 
@@ -113,7 +113,7 @@ void LevelOption::Init()
 	bar0->AddComponent(new Mesh());
 	bar0->Init();
 	bar0->mesh->setTransform({ 95.f, 240.f });
-	bar0->mesh->SetMeshType(rectangle);
+	bar0->mesh->SetMeshType(MESHTYPE::rectangle);
 	bar0->mesh->InitializeTextureMesh(400.f, 80.f);
 	textureBar0 = TEXTURE->CreateTexture("assets\\bar0.png", 0);
 	
@@ -133,7 +133,7 @@ void LevelOption::Update()
 		{
 			std::cout << "to main" << std::endl;
 			moveCheck00 = 0;
-			STATE_MANAGER->ChangeLevel(MAINMENU);
+			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		}
 	}
 	else

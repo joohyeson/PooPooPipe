@@ -14,7 +14,7 @@ MovePooPoo::MovePooPoo() :
 };
 
 MovePooPoo::MovePooPoo(Vector2<float> startDirection, Vector2<float> endDirection, int Speed) :
-	startD(startDirection), endD(endDirection), speed(Speed) {
+	startD(startDirection), endD(endDirection), speed(static_cast<float>(Speed)) {
 
 	Init();
 
@@ -37,7 +37,7 @@ void MovePooPoo::Init()
 
 void MovePooPoo::SetSpeed(int Speed)
 {
-	speed = Speed;
+	speed = static_cast<float>(Speed);
 }
 void MovePooPoo::SetStartD(float startX, float startY)
 {

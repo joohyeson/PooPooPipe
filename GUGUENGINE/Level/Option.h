@@ -22,6 +22,12 @@ public:
 	LevelOption()
 	{
 		background = nullptr;
+		option = nullptr;
+		music = nullptr;
+		arrowRight = nullptr;
+		arrowLeft = nullptr;
+		bar0 = nullptr;
+		goToMain = nullptr;
 		key = 0;
 	}
 

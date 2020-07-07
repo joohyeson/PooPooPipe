@@ -13,7 +13,7 @@
 #include "../GUGUENGINE/Sound.h"
 
 //define enum for level
-enum GameLevels
+enum class GameLevels
 {
 	DIGIPENLOGO,
 	FMODLOGO,
@@ -61,6 +61,7 @@ private:
 	};
 	//Store the current level.
 	GameLevels current;
+
 	//Store the levels.
 	std::vector<LevelManager*> levels;
 	State state;

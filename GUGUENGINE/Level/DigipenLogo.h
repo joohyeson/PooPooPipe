@@ -18,6 +18,9 @@ public:
 	DigipenLogo()
 	{
 		digipenLogo = nullptr;
+		textureDigipenLogo = 0;
+		lastTime = 0;
+		firstTime = 0;
 	}
 
 	void Init() override;

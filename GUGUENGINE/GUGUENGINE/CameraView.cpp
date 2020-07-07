@@ -42,19 +42,19 @@
 	{
 		switch (GetFrameOfReference())
 		{
-		case RightHanded_OriginCenter:
+		case FrameOfReference::RightHanded_OriginCenter:
 			cameraToNDC.Column[0] = { 2 / pixel_size.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / pixel_size.height, 0 };
 			cameraToNDC.Column[2] = { 0, 0, 1 };
 			break;
 
-		case RightHanded_OriginBottomLeft:
+		case FrameOfReference::RightHanded_OriginBottomLeft:
 			cameraToNDC.Column[0] = { 2 / pixel_size.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / pixel_size.height, 0 };
 			cameraToNDC.Column[2] = { -1, -1, 1 };
 			break;
 
-		case LeftHanded_OriginTopLeft:
+		case FrameOfReference::LeftHanded_OriginTopLeft:
 			cameraToNDC.Column[0] = { 2 / pixel_size.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, -2 / pixel_size.height, 0 };
 			cameraToNDC.Column[2] = { -1, 1, 1 };
@@ -73,19 +73,19 @@
 
 		switch (GetFrameOfReference())
 		{
-		case RightHanded_OriginCenter:
+		case FrameOfReference::RightHanded_OriginCenter:
 			cameraToNDC.Column[0] = { (2 / displaySize.width) * zoom, 0, 0 };
 			cameraToNDC.Column[1] = { 0, (2 / displaySize.height) * zoom, 0 };
 			cameraToNDC.Column[2] = { 0, 0, 1 };
 			break;
 
-		case RightHanded_OriginBottomLeft:
+		case FrameOfReference::RightHanded_OriginBottomLeft:
 			cameraToNDC.Column[0] = { (2 / displaySize.width) * zoom, 0, 0 };
 			cameraToNDC.Column[1] = { 0, (2 / displaySize.height) * zoom, 0 };
 			cameraToNDC.Column[2] = { -1, -1, 1 };
 			break;
 
-		case LeftHanded_OriginTopLeft:
+		case FrameOfReference::LeftHanded_OriginTopLeft:
 			cameraToNDC.Column[0] = { (2 / displaySize.width) * zoom, 0, 0 };
 			cameraToNDC.Column[1] = { 0, (-2 / displaySize.height) * zoom, 0 };
 			cameraToNDC.Column[2] = { -1, 1, 1 };
@@ -104,19 +104,19 @@
 
 		switch (GetFrameOfReference())
 		{
-		case RightHanded_OriginCenter:
+		case FrameOfReference::RightHanded_OriginCenter:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { 0, 0, 1 };
 			break;
 
-		case RightHanded_OriginBottomLeft:
+		case FrameOfReference::RightHanded_OriginBottomLeft:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { -1, -1, 1 };
 			break;
 
-		case LeftHanded_OriginTopLeft:
+		case FrameOfReference::LeftHanded_OriginTopLeft:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, -2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { -1, 1, 1 };
@@ -134,19 +134,19 @@
 		switch (GetFrameOfReference())
 		{
 
-		case RightHanded_OriginCenter:
+		case FrameOfReference::RightHanded_OriginCenter:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { 0, 0, 1 };
 			break;
 
-		case RightHanded_OriginBottomLeft:
+		case FrameOfReference::RightHanded_OriginBottomLeft:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, 2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { -1, -1, 1 };
 			break;
 
-		case LeftHanded_OriginTopLeft:
+		case FrameOfReference::LeftHanded_OriginTopLeft:
 			cameraToNDC.Column[0] = { 2 / displaySize.width, 0, 0 };
 			cameraToNDC.Column[1] = { 0, -2 / displaySize.height, 0 };
 			cameraToNDC.Column[2] = { -1, 1, 1 };

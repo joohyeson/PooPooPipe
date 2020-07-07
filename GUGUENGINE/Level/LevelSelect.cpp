@@ -295,28 +295,28 @@ void LevelSelect::Update()
 		switch (getLevNum)
 		{		
 		case 1:
-			STATE_MANAGER->ChangeLevel(LV_TEST3);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 			break;
 		case 2:
-			STATE_MANAGER->ChangeLevel(LV_TEST4);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST4);
 			break;
 		case 3:
-			STATE_MANAGER->ChangeLevel(LV_TEST6);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST6);
 			break;
 		case 4:
-			STATE_MANAGER->ChangeLevel(LV_TEST8);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 			break;
 		case 5:
-			STATE_MANAGER->ChangeLevel(LV_TEST5);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST5);
 			break;
 		case 6:
-			STATE_MANAGER->ChangeLevel(LV_TEST9);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 			break;
 		case 7:
-			STATE_MANAGER->ChangeLevel(LV_TEST10);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
 			break;
 		case 8:
-			STATE_MANAGER->ChangeLevel(LV_TEST11);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 			break;
 		}
 	}

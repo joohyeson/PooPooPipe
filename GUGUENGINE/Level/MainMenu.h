@@ -24,6 +24,11 @@ public:
 		tutorialButton = nullptr;
 		startButton_pressed = nullptr;
 		tutorialButton_pressed = nullptr;
+		optionButton = nullptr;
+		optionButton_pressed = nullptr;
+		test = nullptr;
+		test2 = nullptr;
+		key = 0;
 	}
 
 	void Init() override;
@@ -41,6 +46,7 @@ private:
 	Object* test;
 	Object* test2;
 
+	int key;
 	//MovePooPoo getDirectionPooPoo;
 
 	Mesh mMesh;
@@ -48,7 +54,6 @@ private:
 	Shader testNDCShader;//it will be deleted when NDC function is completed
 
 	
-	int key;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };

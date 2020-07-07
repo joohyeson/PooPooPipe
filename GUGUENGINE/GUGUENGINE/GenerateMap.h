@@ -31,7 +31,7 @@ public:
 	std::vector<SaveWay> saveObjectWays;
 	ZigZagMap myMap;
 	bool IsValidLocation(int puzzleNumber, int EdgeNumber);
-	void StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap);
+	void StartGetDirection(int startPuzzleNumber, int StartEdgeNumber, int endPuzzleNumber, int endEdgeNumber, ZigZagMap* myMap2);
 	bool GetHasWay() {
 		return hasWay;
 	}

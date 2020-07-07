@@ -19,6 +19,6 @@ public:
 	virtual void Close() = 0;
 	virtual ~LevelManager()	{}
 
-	Sound* sound;
+	Sound* sound = nullptr;
 
 };

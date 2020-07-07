@@ -11,24 +11,24 @@ void startCut::Init()
 
 	startCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
 	texturestartCut1 = TEXTURE->CreateTexture("assets\\imagest1.png", 0);
-	startCut1->mesh->InitializeTextureMesh(APPLICATION->width , APPLICATION->height-250.f );
+	startCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 
 	startCut2 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
 	texturestartCut2 = TEXTURE->CreateTexture("assets\\imagest2.png", 0);
-	startCut2->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height - 250.f);
+	startCut2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 	
 	startCut3 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
 	texturestartCut3 = TEXTURE->CreateTexture("assets\\imagest3.png", 0);
-	startCut3->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height - 250.f);
+	startCut3->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 
 	skip = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  450.f });
 	texturestartSkip = TEXTURE->CreateTexture("assets\\skip.png", 0);
-	skip->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	skip->mesh->InitializeTextureMesh(173.f, 200.f);
 
 	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  -400.f });
 	texturestartNext = TEXTURE->CreateTexture("assets\\nextd.png", 0);
-	next->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	next->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	next->mesh->InitializeTextureMesh(173.f, 200.f);
 
 
@@ -47,7 +47,7 @@ void startCut::Update()
 			if (input[0] == false)
 			{
 				input[0] = true;
-				STATE_MANAGER->ChangeLevel(MAINMENU);
+				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 			}
 		}
 		else
@@ -77,7 +77,7 @@ void startCut::Update()
 				}
 				else if(cut[0] == true && cut[1] == true)
 				{
-					STATE_MANAGER->ChangeLevel(MAINMENU);
+					STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 				}
 			}
 		}

@@ -28,7 +28,7 @@ void FmodLogo::Init()
     fmodLogo->Init();
 
 	fmodLogo->mesh->setTransform({ 0,0 });
-	fmodLogo->mesh->SetMeshType(rectangle);
+	fmodLogo->mesh->SetMeshType(MESHTYPE::rectangle);
 
 	fmodLogo->mesh->InitializeTextureMesh(560.0f, 240.f);
 
@@ -47,7 +47,7 @@ void FmodLogo::Update()
 
 	if(lastTime - firstTime > 2.f)
 	{
-		STATE_MANAGER->ChangeLevel(CUTSCENE);
+		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
 	}
 }
 

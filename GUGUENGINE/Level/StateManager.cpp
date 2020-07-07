@@ -36,6 +36,12 @@ StateManager::StateManager()
 	STATE_MANAGER = this;
 
 	sound = new Sound();
+
+	currGameState = nullptr;
+	nextGameState = nullptr;
+	currentLV = 0;
+	state = State::START;
+	current = GameLevels::DIGIPENLOGO;
 }
 
 StateManager::~StateManager()
@@ -44,7 +50,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = DIGIPENLOGO;
+	current = GameLevels::DIGIPENLOGO;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
@@ -66,8 +72,9 @@ void StateManager::Init()
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
+	
+	levels.at(static_cast<int>(current))->Init();
 
-	levels.at(current)->Init();
 	for (auto i: levels)
 	{
 		i->sound = sound;
@@ -80,7 +87,7 @@ void StateManager::Update()
 
 	switch (state) {
 	case State::START:
-		nextGameState = levels[current];
+		nextGameState = levels[static_cast<int>((current))];
 		state = State::LOAD;
 		break;
 	case State::LOAD:
@@ -125,7 +132,7 @@ void StateManager::ReloadState()
 
 void StateManager::ChangeLevel(GameLevels changeLV)
 {
-	nextGameState = levels[changeLV];
+	nextGameState = levels[static_cast<int>(changeLV)];
 }
 
 void StateManager::setCurrentLV(int i)

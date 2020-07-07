@@ -3,7 +3,7 @@
 #include "Mesh.h"
 #include "Mathematics/Vector2.hpp"
 
-enum DirAngle
+enum class DirAngle
 {
 	NE_,
 	N_,
@@ -16,7 +16,7 @@ enum DirAngle
 class [[nodiscard]] HexCoordinates : public Component
 {
 public:
-	HexCoordinates() : Component(COMPONENTTYPE_COORDINATES){}
+	HexCoordinates() : Component(ComponentType::COMPONENTTYPE_COORDINATES){}
 	~HexCoordinates() override{}
 
 	bool checking();

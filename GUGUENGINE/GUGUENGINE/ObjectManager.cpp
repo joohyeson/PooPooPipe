@@ -118,7 +118,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
 		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
-		obj->mesh->SetMeshType(hexagon);
+		obj->mesh->SetMeshType(MESHTYPE::hexagon);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));
@@ -151,7 +151,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	{
 		obj->AddComponent(new Mesh());
 		obj->mesh->setTransform({ transform.x, transform.y });
-		obj->mesh->SetMeshType(rectangle);
+		obj->mesh->SetMeshType(MESHTYPE::rectangle);
 		obj->Init();
 		break;
 	}

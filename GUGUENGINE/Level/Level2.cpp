@@ -39,7 +39,7 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && checkToPipe == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		checkToPipe = 0;
 	}
 
@@ -79,7 +79,7 @@ void Level2::Init()
 	background->Init();
 
 	background->mesh->setTransform({ 0,0 });
-	background->mesh->SetMeshType(rectangle);
+	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
@@ -104,13 +104,13 @@ void Level2::Init()
 	movePuzzle->AddComponent(new PuzzleComponent());
 	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
 	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle->mesh->SetMeshType(hexagon);
+	movePuzzle->mesh->SetMeshType(MESHTYPE::hexagon);
 	movePuzzle->Init();
 	movePuzzle->mesh->setTransform({ 160.0f, 280.0f });
 	movePuzzle->mesh->InitializeTextureMesh();
 
 	blackPuzzle->AddComponent(new Mesh());
-	blackPuzzle->mesh->SetMeshType(hexagon);
+	blackPuzzle->mesh->SetMeshType(MESHTYPE::hexagon);
 	blackPuzzle->Init();
 	blackPuzzle->mesh->setTransform({ 0.0f, 120.0f });
 	blackPuzzle->mesh->InitializeTextureMesh();
@@ -121,7 +121,7 @@ void Level2::Init()
 	puzzleUp->mesh->setTransform({ -72.f - 10.f, 238.8f + 40.f });
 	puzzleUp->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleUp->pipe->SetDirection(true, false, false, true, false, false);
-	puzzleUp->mesh->SetMeshType(hexagon);
+	puzzleUp->mesh->SetMeshType(MESHTYPE::hexagon);
 	puzzleUp->mesh->InitializeTextureMesh();
 
 	puzzleDown->AddComponent(new Mesh());
@@ -130,12 +130,12 @@ void Level2::Init()
 	puzzleDown->mesh->setTransform({ 72.f + 10.f, 4.f - 40.f });
 	puzzleDown->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
-	puzzleDown->mesh->SetMeshType(hexagon);
+	puzzleDown->mesh->SetMeshType(MESHTYPE::hexagon);
 	puzzleDown->mesh->InitializeTextureMesh();
 
 	spacePress->AddComponent(new Mesh());
 	spacePress->mesh->setTransform({ 0.0f, -160.f });
-	spacePress->mesh->SetMeshType(rectangle);
+	spacePress->mesh->SetMeshType(MESHTYPE::rectangle);
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 

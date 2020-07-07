@@ -18,6 +18,8 @@ public:
 	FmodLogo()
 	{
 		fmodLogo = nullptr;
+		lastTime = 0;
+		firstTime = 0;
 	}
 
 	void Init() override;

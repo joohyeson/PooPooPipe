@@ -44,12 +44,13 @@ public:
 		Level8_pressed = nullptr;
 		Level8_lock = nullptr;
 
+		currentLevel = 0;
+
 	}
 	int currentLevel;
 	void Init() override;
 	void Update() override;
 	void Close() override;
-	void SetLevel();
 	
 private:
 	int getLevNum = 0;

@@ -46,6 +46,21 @@ public:
 		//blackPuzzle3 = nullptr;
 		spacePress = nullptr;
 
+		textureBackground4 = 0;
+		texureIdLine4 = 0;
+		texureIdCurve4 = 0;
+		texureIdBlack4 = 0;
+
+		texureIdStart4 = 0;
+		texureIdEnd4 = 0;
+
+		texureIdLine4_1 = 0;
+		texureIdCurve4_2 = 0;
+
+		texureIdbutton4 = 0;
+		texureIdclear4 = 0;
+		texureSpace4 = 0;
+
 		button = nullptr;
 		clear = nullptr;
 		key = 0;

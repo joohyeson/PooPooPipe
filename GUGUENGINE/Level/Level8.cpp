@@ -100,7 +100,7 @@ void Level8::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 
@@ -337,7 +337,7 @@ void Level8::Update()
 			degree8_7 = 0;
 			
 			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -745,7 +745,7 @@ void Level8::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST5);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST5);
 		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
@@ -783,7 +783,7 @@ void Level8::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -940,7 +940,7 @@ void Level8::Update()
 	{
 		INPUT->setInput(KEY::A);
 
-		STATE_MANAGER->ChangeLevel(LV_TEST5);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST5);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

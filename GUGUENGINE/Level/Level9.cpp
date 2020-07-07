@@ -89,7 +89,7 @@ void Level9::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	playUI_p = OBJECT_FACTORY->CreateEmptyObject();
@@ -289,7 +289,7 @@ void Level9::Update()
 			degree9_rot = DegreeToRadian(-120.f);
 
 			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -593,7 +593,7 @@ void Level9::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(LV_TEST9);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 
 		}
 	}
@@ -615,7 +615,7 @@ void Level9::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -677,7 +677,7 @@ void Level9::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST10);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
 		}
 	}
 	/*se9.Update();*/
@@ -743,7 +743,7 @@ void Level9::Update()
 	if ( mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(LV_TEST10);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

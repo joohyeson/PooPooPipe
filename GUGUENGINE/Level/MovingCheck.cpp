@@ -58,7 +58,7 @@ void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int act
 {
 	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && chekNextTest == 1)
 	{
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		chekNextTest = 0;
 
 		conecTCheckTest_1 = false;
@@ -94,7 +94,7 @@ void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int act
 
 		blCheckTest = false;
 		blCheckTest_2 = false;
-		STATE_MANAGER->ChangeLevel(MAINMENU);
+		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 	}
 
 	if (key == GLFW_KEY_ESCAPE)

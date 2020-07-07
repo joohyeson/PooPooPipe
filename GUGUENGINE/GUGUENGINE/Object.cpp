@@ -53,19 +53,19 @@ bool Object::AddComponent(Component* component)
 	component->SetOwner(this);
 	switch (component->GetComponentType())
 	{
-	case COMPONENTTYPE_MESH:
+	case ComponentType::COMPONENTTYPE_MESH:
 		mesh = dynamic_cast<Mesh*>(component);
 		return true;
-	case COMPONENTTYPE_TRANSFORM:
+	case ComponentType::COMPONENTTYPE_TRANSFORM:
 		transform = dynamic_cast<Transform*>(component);
 		return true;
-	case COMPONENTTYPE_PIPE:
+	case ComponentType::COMPONENTTYPE_PIPE:
 		pipe = dynamic_cast<PuzzleComponent*>(component);
 		return true;
-	case COMPONENTTYPE_COORDINATES:
+	case ComponentType::COMPONENTTYPE_COORDINATES:
 		coor = dynamic_cast<HexCoordinates*>(component);
 		return true;
-	case COMPONENTTYPE_COLLISIONCHECK:
+	case ComponentType::COMPONENTTYPE_COLLISIONCHECK:
 		collision = dynamic_cast<CollisionCheck*>(component);
 		return true;
 

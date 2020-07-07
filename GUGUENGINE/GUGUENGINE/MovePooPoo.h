@@ -31,11 +31,11 @@ public:
 	Vector2<float> GetStartD();
 	void MoveInPuzzle(std::vector < Vector2<float>>);
 	Vector2<float> MoveInPuzzle(Vector2<float> nowPosition = {0.f,0.f});
-	void AddAngle(DirAngle startA, DirAngle endA, Vector2<float> origin)
+	void AddAngle(DirAngle startA, DirAngle endA, Vector2<float> mOrigin)
 	{
 		myAngles.push_back(startA);
 		myAngles.push_back(endA);
-		coor.push_back(origin);
+		coor.push_back(mOrigin);
 	}
 private:
 	void SetStartD(float startX, float startY);
@@ -49,7 +49,7 @@ private:
 	bool isHidden = true;
 	bool isFirst = true;
 	float speed = 100; 
-	float elapse = 0.1;
+	float elapse = 0.1f;
 	float distance=0;
 	Vector2<float> direction = { 0, 0 };
 	Vector2<float> betweenDelta = { 0.0f, 0.0f };

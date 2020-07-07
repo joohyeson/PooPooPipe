@@ -25,7 +25,7 @@ enum PuzzleDirection
 class [[nodiscard]] PuzzleComponent : public Component
 {
 public:
-	PuzzleComponent() : Component(COMPONENTTYPE_PIPE)
+	PuzzleComponent() : Component(ComponentType::COMPONENTTYPE_PIPE)
 	{
 		dirArray1[0] = false;  
 		dirArray1[1] = false;

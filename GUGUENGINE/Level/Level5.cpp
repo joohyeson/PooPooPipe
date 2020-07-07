@@ -124,7 +124,7 @@ void Level5::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
@@ -293,7 +293,7 @@ void Level5::Update()
 			blCheck7_3 = false;
 
 			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -844,7 +844,7 @@ void Level5::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST9);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, restartUI->mesh))
@@ -886,7 +886,7 @@ void Level5::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -978,7 +978,7 @@ void Level5::Update()
 	if ( mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(LV_TEST9);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

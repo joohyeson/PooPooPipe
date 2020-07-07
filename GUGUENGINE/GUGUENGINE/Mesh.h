@@ -17,7 +17,7 @@
 #include "Camera.h"
 #include "Shader.h"
 
-enum MESHTYPE
+enum class MESHTYPE
 {
 	hexagon,
 	wire_circle,
@@ -103,5 +103,3 @@ private:
 	Camera mCamera;
     Vector2<float> shapeSize = { 1.f, 1.f };
 };
-
-

@@ -113,7 +113,7 @@ void Level3::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
@@ -249,7 +249,7 @@ void Level3::Update()
 				blCheck2_2 = false;
 
 				std::cout << "check" << std::endl;
-				STATE_MANAGER->ChangeLevel(LV_SELECT);
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 			}
 	}
 	else
@@ -623,7 +623,7 @@ void Level3::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -692,7 +692,7 @@ void Level3::Update()
 	{
 		if (lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST4);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST4);
 		}
 	}
 
@@ -748,7 +748,7 @@ void Level3::Update()
 	if ( mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(LV_TEST4);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST4);
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

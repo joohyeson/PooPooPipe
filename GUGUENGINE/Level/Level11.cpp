@@ -49,11 +49,11 @@ void Level11::Init()
 
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -93,7 +93,7 @@ void Level11::Init()
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	textureRestartUI8 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
@@ -259,7 +259,7 @@ void Level11::Init()
 	pooCharacter->AddComponent(new Mesh());
 	pooCharacter->Init();
 	pooCharacter->mesh->setTransform({ -700.f, -700.f });
-	pooCharacter->mesh->SetMeshType(rectangle);
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	mPooPoo.Init();
@@ -310,7 +310,7 @@ void Level11::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(LV_SELECT);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 		}
 	}
 	else
@@ -745,7 +745,7 @@ void Level11::Update()
 	{
 		if(lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(LV_TEST12);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST12);
 		}
 	}
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
@@ -794,7 +794,7 @@ void Level11::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(OPTION);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
@@ -939,7 +939,7 @@ void Level11::Update()
 	if (mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(LV_TEST12);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST12);
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
