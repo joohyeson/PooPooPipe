@@ -34,6 +34,10 @@ void Engine::Init()
 	AddSystem(new Application());
 	AddSystem(new ObjectFactory());
 	AddSystem(new StateManager());
+
+	lastTick = std::chrono::system_clock::now();
+	fpsCalcTime = lastTick;
+
 	for (auto GUGU : Systems)
 	{
 		GUGU->Init();
@@ -44,9 +48,25 @@ void Engine::GameLoop()
 {
 	while (GAMERUN)
 	{
-		for (auto GUGU : Systems)
+		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
+		double dt = std::chrono::duration<double>(now - lastTick).count();
+
+		if (dt >= 1 / Engine::Target_FPS)
 		{
-			GUGU->Update();
+			lastTick = now;
+
+			if (++frameCount >= Engine::FPS_IntervalFrameCount)
+			{
+				double actualTime = std::chrono::duration<double>((now - fpsCalcTime)).count();
+				std::cout << "FPS:  " << frameCount / actualTime << std::endl;
+				frameCount = 0;
+				fpsCalcTime = now;
+			}
+
+			for (auto GUGU : Systems)
+			{
+				GUGU->Update();
+			}
 		}
 	}
 	INPUT->Update();
