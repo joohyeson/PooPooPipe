@@ -29,13 +29,7 @@ public:
 	void setInput(KEY k);
 	void clearInput();
 	Vector2<float> Cursor;
-	//int keySpace;
-	//int keyA;
-	//int keyEscape;
-	//int keyTap;
-	//int mouseLeft;
-	//int mouseRight;
-	//int MouseRightTriggered = 0;
+
 private:
 	bool Key[KEY::SIZE] ;
 	bool WasKey[KEY::SIZE] ;

@@ -18,6 +18,7 @@ GLuint textureFmodLogo;
 
 void FmodLogo::Init()
 {
+	firstTime = glfwGetTime();
 	textureFmodLogo = TEXTURE->CreateTexture("assets\\images2.png", 0);
 
 	fmodLogo = OBJECT_FACTORY->CreateEmptyObject();
@@ -36,18 +37,18 @@ void FmodLogo::Init()
 
 void FmodLogo::Update()
 {
-	
+	lastTime = glfwGetTime();
+
 	fmodLogo->mesh->Update(mShader.GetShaderHandler(), textureFmodLogo);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwPollEvents();
 
-	if(dt > 200.f)
+	if(lastTime - firstTime > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(CUTSCENE);
 	}
-	dt++;
 }
 
 void FmodLogo::Close()

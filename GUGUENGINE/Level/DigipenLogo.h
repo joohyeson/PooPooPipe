@@ -28,7 +28,7 @@ private:
 	Object* digipenLogo;
 	Shader mShader;
 	GLuint textureDigipenLogo;
-	float dt = 0.f;
+	double lastTime;
 	
 };
 

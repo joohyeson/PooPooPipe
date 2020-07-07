@@ -51,9 +51,6 @@
     <ClCompile Include="MovingCheck.cpp">
       <Filter>Transition</Filter>
     </ClCompile>
-    <ClCompile Include="startCutscene.cpp">
-      <Filter>Transition</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
@@ -62,6 +59,9 @@
     </ClCompile>
     <ClCompile Include="LevelSelect.cpp">
       <Filter>Menu</Filter>
+    </ClCompile>
+    <ClCompile Include="startCutscene.cpp">
+      <Filter>Level</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -114,9 +114,6 @@
     <ClInclude Include="MovingCheck.h">
       <Filter>Transition</Filter>
     </ClInclude>
-    <ClInclude Include="startCutscene.h">
-      <Filter>Transition</Filter>
-    </ClInclude>
     <ClInclude Include="Option.h">
       <Filter>Menu</Filter>
     </ClInclude>
@@ -125,6 +122,9 @@
     </ClInclude>
     <ClInclude Include="LevelSelect.h">
       <Filter>Menu</Filter>
+    </ClInclude>
+    <ClInclude Include="startCutscene.h">
+      <Filter>Level</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

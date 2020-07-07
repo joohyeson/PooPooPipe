@@ -25,13 +25,12 @@ void DigipenLogo::Init()
 
 void DigipenLogo::Update()
 {
+	 lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	if(dt > 200.f)
+	if(lastTime > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(FMODLOGO);
 	}
-
-	dt++;
 	
     glfwSwapBuffers(APPLICATION->getMyWindow());
     glClear(GL_COLOR_BUFFER_BIT);

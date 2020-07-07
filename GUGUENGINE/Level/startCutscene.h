@@ -1,8 +1,10 @@
 #pragma once
+
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 class startCut : public LevelManager
 {
@@ -12,6 +14,9 @@ public:
 		startCut1 = nullptr;
 		startCut2 = nullptr;
 		startCut3 = nullptr;
+
+		next = nullptr;
+		skip = nullptr;
 	}
 
 	void Init() override;
@@ -19,6 +24,7 @@ public:
 	void Close() override;
 
 private:
+	Input mInput;
 	Object* startCut1;
 	GLuint texturestartCut1;
 	Object* startCut2;
@@ -26,6 +32,12 @@ private:
 	Object* startCut3;
 	GLuint texturestartCut3;
 	Shader mShader;
-	
+	Object* next;
+	Object* skip;
+	GLuint texturestartNext;
+	GLuint texturestartSkip;
+	Vector2<float> cursor__;
+	bool input[2] = { false, false };
+	bool cut[2] = { false, false };
 	float dt = 0.f;
 };
