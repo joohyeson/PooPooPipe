@@ -88,7 +88,6 @@ void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int acti
 void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 {
 	cursor0 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-
 }
 void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 {
@@ -213,9 +212,14 @@ void MainMenu::Update()
 		std::cout << cursor0.x << ", " << cursor0.y << std::endl;
 		//getDirectionPooPoo.SetIsSuccess(true);
 	}
-
+	
+	std::cout << "mouse: " << cursor0.x << ", " << cursor0.y << std::endl;
+	std::cout << "buttom: " << startButton->mesh->GetTransform().x << ", " << startButton->mesh->GetTransform().y << std::endl;
+	
 	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
 	{
+
+
 		startButton_pressed->mesh->setTransform(startButton->mesh->GetTransform());
 		if (moveCheck0 % 2 == 1)
 		{

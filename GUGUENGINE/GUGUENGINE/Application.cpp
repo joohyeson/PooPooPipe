@@ -48,9 +48,9 @@ void Application::Update()
         numOfFrames = 0;
         lastTime = currentTime;
     }
-
+	
+    glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
     glfwPollEvents();
-
 }
 
 Application::Application()
