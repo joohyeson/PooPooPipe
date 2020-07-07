@@ -29,7 +29,6 @@ private:
 	Shader mShader;
 	float	 lastTime;
 	float firstTime;
-
 };
 
 

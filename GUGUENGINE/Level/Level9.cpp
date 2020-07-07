@@ -17,7 +17,8 @@ void Level9::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
+
 
 	autoRot = true;
 
@@ -45,7 +46,7 @@ void Level9::Init()
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -65,7 +66,6 @@ void Level9::Init()
 
 	texureIdbutton9 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear9 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace9 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	//se9.Init();
 	//se9.LoadSE("assets\\coin.mp3");
@@ -194,11 +194,9 @@ void Level9::Init()
 	numberTexture = TEXTURE->CreateTexture("assets\\06.png", 0);
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
 
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 
@@ -252,6 +250,7 @@ void Level9::Init()
 void Level9::Update()
 {
 	STATE_MANAGER->setCurrentLV(6);
+	lastTime = glfwGetTime();
 
 	cursor9 = mInput.Cursor;
 	if (mInput.IsPressed(KEY::F) == true)
@@ -575,8 +574,10 @@ void Level9::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
-			STATE_MANAGER->ReloadState();
-
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 
@@ -674,8 +675,7 @@ void Level9::Update()
 	}
 	if(skip == true)
 	{
-		transition++;
-		if(transition > 500.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST10);
 		}
@@ -712,7 +712,6 @@ void Level9::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace9);
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
@@ -741,28 +740,12 @@ void Level9::Update()
 
 	
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext9 == 1) || mInput.IsPressed(KEY::A) == true)
+	if ( mInput.IsPressed(KEY::A) == true)
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-		chekNext9 = 0;
-		
-		conecTcheck9_1 = false;
-		conecTcheck9_2 = false;
-		conecTcheck9_3 = false;
-		
-		degree9 = 0;
-		degree9_2 = DegreeToRadian(60.f);
-		degree9_3 = DegreeToRadian(-60.f);
-		degree9_4 = DegreeToRadian(60.f);
-		degree9_5 = 0;
-		degree9_6 = DegreeToRadian(-180.f);
-		degree9_7 = DegreeToRadian(120.f);
-		degree9_rot = DegreeToRadian(-120.f);
-
 		STATE_MANAGER->ChangeLevel(LV_TEST10);
-
 	}
+
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
 		glfwTerminate();
 	}

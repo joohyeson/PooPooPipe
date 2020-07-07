@@ -44,7 +44,6 @@ public:
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
-		spacePress = nullptr;
 
 		playUI = nullptr;
 		quitUI = nullptr;
@@ -79,7 +78,7 @@ public:
 
 private:
 	Object* background;
-	Object* startPuzzle, * endPuzzle, * spacePress;
+	Object* startPuzzle, * endPuzzle;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
@@ -92,7 +91,8 @@ private:
 	Object* win;
 	GLint textureWin;
 	bool skip = false;
-	float transition = 0.f;
+	double lastTime = 0;
+	double firstTime = 0;
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;
@@ -143,7 +143,6 @@ private:
 
 	GLuint texureIdbutton6;
 	GLuint texureIdclear6;
-	GLuint texureSpace6;
 
 	GLint texturePlayUI6;
 	GLint textureQuitUI6;

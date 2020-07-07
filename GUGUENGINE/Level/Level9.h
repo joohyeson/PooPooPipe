@@ -44,7 +44,6 @@ public:
 		puzzle17 = nullptr;
 		puzzle19 = nullptr;
 		puzzle20 = nullptr;
-		spacePress = nullptr;
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
 		button = nullptr;
@@ -70,7 +69,7 @@ public:
 
 private:
 	Object* background;
-	Object* startPuzzle, * endPuzzle, * spacePress;
+	Object* startPuzzle, * endPuzzle;
 	bool UI[5] = { false };
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
@@ -108,7 +107,8 @@ private:
 
 	Vector2<float> cursor9;
 	bool skip = false;
-	float transition = 0.0f;
+	double lastTime = 0;
+	double firstTime = 0;
 	
 	int coorcheck9 = 0;
 
@@ -146,7 +146,6 @@ private:
 
 	GLuint texureIdbutton9;
 	GLuint texureIdclear9;
-	GLuint texureSpace9;
 	GLint LevelPage;
 	GLint LevelPage_pressed;
 

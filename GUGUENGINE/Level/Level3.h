@@ -51,7 +51,6 @@ public:
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
-		spacePress = nullptr;
 
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
@@ -85,7 +84,7 @@ public:
 private:
 	bool skip = false;
 	Object* background;
-	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;
+	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 	Object* levelImage, * numberImage;
 
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
@@ -131,8 +130,8 @@ private:
 	float degree2_2 = 0;
 	float degree2_3 = 0;
 
-	float dt = 0.f;
-	float transition = 0.f;
+	double lastTime = 0;
+	double firstTime = 0;
 	int chekNext = 0;
 
 	GLuint textureBackground3;
@@ -149,7 +148,7 @@ private:
 
 	GLuint texureIdbutton3;
 	GLuint texureIdclear3;
-	GLuint texureSpace3;
+
 	GLint LevelPage;
 	GLint LevelPage_pressed;
 

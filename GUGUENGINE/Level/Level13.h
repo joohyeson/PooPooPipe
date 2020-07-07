@@ -45,7 +45,6 @@ public:
 		puzzle17 = nullptr;
 		puzzle19 = nullptr;
 		puzzle20 = nullptr;
-		spacePress = nullptr;
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
 		playUI = nullptr;
@@ -78,7 +77,7 @@ public:
 
 private:
 	Object* background;
-	Object* startPuzzle, * endPuzzle, * spacePress;
+	Object* startPuzzle, * endPuzzle;
 	Object* pooCharacter;
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
@@ -99,7 +98,8 @@ private:
 	Object* mini;
 	GLuint texturemini;
 
-	float transition = 0.f;
+	double lastTime = 0;
+	double firstTime = 0;
 	bool skip = false;
 
 	bool UI[5] = { false };
@@ -158,7 +158,6 @@ private:
 	GLint LevelPage_pressed;
 	GLuint texureIdbutton8;
 	GLuint texureIdclear8;
-	GLuint texureSpace8;
 
 	GLint texturePlayUI8;
 	GLint textureQuitUI8;

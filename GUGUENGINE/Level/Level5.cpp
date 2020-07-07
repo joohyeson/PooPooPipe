@@ -16,7 +16,8 @@ void Level5::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
+
 
 	chekNext5 = 0;
 
@@ -150,7 +151,6 @@ void Level5::Init()
 
 	texureIdbutton5 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear5 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace5 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	
 	/*se5.Init();
 	se5.LoadSE("assets\\coin.mp3");*/
@@ -218,8 +218,6 @@ void Level5::Init()
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
@@ -251,6 +249,7 @@ void Level5::Update()
 	STATE_MANAGER->setCurrentLV(5);
 
 	cursor5 = mInput.Cursor;
+	lastTime = glfwGetTime();
 
 	/*se5.Update();
 	playSE5.Update();*/
@@ -800,8 +799,10 @@ void Level5::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
-
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 	
@@ -841,8 +842,7 @@ void Level5::Update()
 
 	if(skip == true)
 	{
-		transition++;
-		if(transition > 200.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST9);
 		}
@@ -950,7 +950,6 @@ void Level5::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton5);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear5);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace5);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI5);
@@ -976,32 +975,9 @@ void Level5::Update()
 		
 	}
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext5 == 1) || mInput.IsPressed(KEY::A) == true)
+	if ( mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
-		INPUT->setInput(KEY::SPACE);
-		chekNext5 = 0;
-
-		conecTcheck5_1 = false;
-		conecTcheck5_2 = false;
-		conecTcheck5_3 = false;
-
-		degree5 = 0;
-		degree5_2 = 0;
-		degree5_3 = 0;
-
-		blCheck5 = false;
-		blCheck5_2 = false;
-		blCheck5_3 = false;
-
-		blCheck6 = false;
-		blCheck6_2 = false;
-		blCheck6_3 = false;
-
-		blCheck7 = false;
-		blCheck7_2 = false;
-		blCheck7_3 = false;
-
 		STATE_MANAGER->ChangeLevel(LV_TEST9);
 	}
 

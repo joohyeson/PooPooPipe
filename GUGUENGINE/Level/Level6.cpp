@@ -16,7 +16,8 @@ void Level6::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
+
 
 	chekNext6 = 0;
 
@@ -37,7 +38,7 @@ void Level6::Init()
 	rotrot = true;
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground6 = TEXTURE->CreateTexture("assets\\background1.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground6 = TEXTURE->CreateTexture("assets\\background1.png", 0);	
 
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
@@ -123,7 +124,6 @@ void Level6::Init()
 
 	texureIdbutton6 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear6 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace6 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	textureLeft = TEXTURE->CreateTexture("assets\\left_turn.png", 0);
 
 	textureLeftNumber0 = TEXTURE->CreateTexture("assets\\00.png", 0);
@@ -239,12 +239,10 @@ void Level6::Init()
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\03.png", 0);
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 
@@ -272,6 +270,7 @@ void Level6::Update()
 {
 	cursor6 = mInput.Cursor;
 	STATE_MANAGER->setCurrentLV(3);
+	lastTime = glfwGetTime();
 
 	if (rotTime.getLimitTime() == 0)
 	{
@@ -650,8 +649,10 @@ void Level6::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
-
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 
@@ -755,8 +756,7 @@ void Level6::Update()
 
 	if(skip == true)
 	{
-		transition++;
-		if(transition > 200.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST8);
 		}
@@ -793,7 +793,6 @@ void Level6::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton6);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear6);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace6);
 
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
@@ -879,27 +878,9 @@ void Level6::Update()
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext6 == 1) || mInput.IsPressed(KEY::A) == true)
+	if (mInput.IsPressed(KEY::A) == true)
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-
-		chekNext6 = 0;
-
-		conecTcheck6_1 = false;
-		conecTcheck6_2 = false;
-		conecTcheck6_3 = false;
-		conecTcheck6_4 = false;
-		conecTcheck6_5 = false;
-
-		degree6 = DegreeToRadian(60.f);
-		degree6_2 = DegreeToRadian(-60.f);
-		degree6_3 = DegreeToRadian(120.f);
-		degree6_4 = DegreeToRadian(180.f);
-		degree6_5 = DegreeToRadian(-180.f);
-		degree6_6 = DegreeToRadian(-120.f);
-
-		rotTime.setRotate(100);
 
 		STATE_MANAGER->ChangeLevel(LV_TEST8);
 	}

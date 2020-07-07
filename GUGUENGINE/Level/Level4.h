@@ -45,7 +45,6 @@ public:
 		blackPuzzle1 = nullptr;
 		blackPuzzle2 = nullptr;
 		blackPuzzle3 = nullptr;
-		spacePress = nullptr;
 
 		playUI = nullptr;
 		quitUI = nullptr;
@@ -77,7 +76,7 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle, * spacePress;
+	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 	Object* levelImage, * numberImage;
 	
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5;
@@ -106,7 +105,8 @@ private:
 	/*Sound se4;
 	Sound playSE4;*/
 	bool skip = false;
-	float transition = 0.f;
+	double lastTime = 0;
+	double firstTime = 0;
 	
 	Input mInput;
 	
@@ -142,7 +142,6 @@ private:
 
 	GLuint texureIdbutton4;
 	GLuint texureIdclear4;
-	GLuint texureSpace4;
 	GLint LevelPage;
 	GLint LevelPage_pressed;
 	GLint texturePlayUI4;

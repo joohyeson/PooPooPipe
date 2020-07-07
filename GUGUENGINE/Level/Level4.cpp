@@ -25,7 +25,7 @@ void Level4::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
 
 	chekNext4 = 0;
 
@@ -152,7 +152,6 @@ void Level4::Init()
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -80.0f, -450 });
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
@@ -169,7 +168,6 @@ void Level4::Init()
 
 	texureIdbutton4 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear4 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace4 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\02.png", 0);
@@ -206,7 +204,6 @@ void Level4::Init()
 
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	mInput.InitCallback(APPLICATION->getMyWindow());
@@ -217,6 +214,7 @@ void Level4::Update()
 	STATE_MANAGER->setCurrentLV(2);
 
 	cursor4 = mInput.Cursor;
+	lastTime = glfwGetTime();
 
 	//se4.Update();
 	//playSE4.Update();
@@ -599,8 +597,7 @@ void Level4::Update()
 	
 	if(skip == true)
 	{
-		transition++;
-		if(transition > 200.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST6);
 		}
@@ -612,8 +609,10 @@ void Level4::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
-			STATE_MANAGER->ReloadState();
-
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, restartUI->mesh))
@@ -710,7 +709,6 @@ void Level4::Update()
 	movePuzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdLine4_1);
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton4);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear4);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace4);
 
 	if (mPooPoo.IsFinish() == false)
 	{
@@ -733,27 +731,10 @@ void Level4::Update()
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext4 == 1) || (mInput.IsPressed(KEY::A) == true))
+	if (  (mInput.IsPressed(KEY::A) == true))
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-
 		STATE_MANAGER->ChangeLevel(LV_TEST6);
-		chekNext4 = 0;
-
-		conecTcheck4_1 = false;
-		conecTcheck4_2 = false;
-		conecTcheck4_3 = false;
-
-		degree4 = 0;
-		degree4_2 = 0;
-		degree4_3 = 0;
-
-		blCheck3 = false;
-		blCheck3_2 = false;
-
-		blCheck4 = false;
-		blCheck4_2 = false;
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

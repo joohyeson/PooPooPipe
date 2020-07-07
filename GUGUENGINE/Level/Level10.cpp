@@ -14,7 +14,8 @@ void Level10::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
+
 
 	rotTime.setRotate(30);
 	rotrot2 = true;
@@ -45,7 +46,7 @@ void Level10::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -109,7 +110,6 @@ void Level10::Init()
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\07.png", 0);
@@ -203,13 +203,11 @@ void Level10::Init()
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -279,6 +277,7 @@ void Level10::Init()
 void Level10::Update()
 {
 	STATE_MANAGER->setCurrentLV(7);
+	lastTime = glfwGetTime();
 
 	if (mInput.IsPressed(KEY::F) == true)
 	{
@@ -701,7 +700,10 @@ void Level10::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 
@@ -783,8 +785,7 @@ void Level10::Update()
 	
 	if(skip == true)
 	{
-		transition++;
-		if(transition > 500.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST11);
 		}
@@ -819,7 +820,6 @@ void Level10::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace8);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI8);
@@ -907,9 +907,8 @@ void Level10::Update()
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
+	if (mInput.IsPressed(KEY::A))
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(LV_TEST11);
 	}

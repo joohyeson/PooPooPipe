@@ -29,7 +29,7 @@ private:
 	Shader mShader;
 	GLuint textureDigipenLogo;
 	double lastTime;
-	
+	double firstTime;
 };
 
 

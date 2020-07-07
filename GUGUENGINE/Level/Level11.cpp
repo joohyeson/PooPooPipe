@@ -19,6 +19,7 @@ void Level11::Init()
 	rotrot2 = true;
 
 	chekNext8 = 0;
+	firstTime = glfwGetTime();
 
 	conecTcheck8_1 = false;
 	conecTcheck8_2 = false;
@@ -49,7 +50,7 @@ void Level11::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -116,7 +117,6 @@ void Level11::Init()
 
 	texureIdbutton8 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear8 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace8 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture = TEXTURE->CreateTexture("assets\\8.png", 0);
@@ -245,13 +245,11 @@ void Level11::Init()
 
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f, -340.f });
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -291,6 +289,8 @@ void Level11::Init()
 void Level11::Update()
 {
 	STATE_MANAGER->setCurrentLV(8);
+	lastTime = glfwGetTime();
+
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -743,8 +743,7 @@ void Level11::Update()
 	}
 	if(skip== true)
 	{
-		transition++;
-		if(transition > 500.f)
+		if(lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST12);
 		}
@@ -755,7 +754,10 @@ void Level11::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 
@@ -848,7 +850,6 @@ void Level11::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace8);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI8);
@@ -935,34 +936,9 @@ void Level11::Update()
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext8 == 1) || mInput.IsPressed(KEY::A))
+	if (mInput.IsPressed(KEY::A))
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-		chekNext8 = 0;
-
-		conecTcheck8_1 = false;
-		conecTcheck8_2 = false;
-		conecTcheck8_3 = false;
-		conecTcheck8_4 = false;
-		conecTcheck8_5 = false;
-		conecTcheck8_6 = false;
-		conecTcheck8_7 = false;
-		conecTcheck8_8 = false;
-		conecTcheck8_9 = false;
-
-		degree8 = DegreeToRadian(-60.f);
-		degree8_2 = DegreeToRadian(-60.f);
-		degree8_3 = 0;
-		degree8_4 = 0;
-		degree8_5 = 0;
-		degree8_6 = 0;
-		degree8_7 = 0;
-		degree8_8 = 0;
-		degree8_9 = 0;
-
-		rotTime.setRotate(30);
-
 		STATE_MANAGER->ChangeLevel(LV_TEST12);
 	}
 

@@ -16,6 +16,8 @@
 
 void DigipenLogo::Init()
 {
+	firstTime = glfwGetTime();
+
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
 	textureDigipenLogo = TEXTURE->CreateTexture("assets\\DigiPen_WHITE_1024px.png", 0);
 	digipenLogo->mesh->InitializeTextureMesh(APPLICATION->width/2, APPLICATION->height/3);
@@ -25,9 +27,9 @@ void DigipenLogo::Init()
 
 void DigipenLogo::Update()
 {
-	 lastTime = glfwGetTime();
+	lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	if(lastTime > 2.f)
+	if(lastTime - firstTime > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(FMODLOGO);
 	}

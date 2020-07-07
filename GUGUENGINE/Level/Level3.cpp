@@ -24,7 +24,7 @@ void Level3::Init()
 	STATE_MANAGER->setCurrentLV(0);
 	chekNext = 0;
 	skip = false;
-	transition = 0.f;
+	firstTime = glfwGetTime();
 	conecTcheck1 = false;
 	conecTcheck2 = false;
 	conecTcheck3 = false;
@@ -144,8 +144,6 @@ void Level3::Init()
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 
-	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -20.0f, -340.f - 20.f });
-
 	levelImage= OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage= OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
 
@@ -164,7 +162,6 @@ void Level3::Init()
 
 	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	texureSpace3 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 
 	levelTexture= TEXTURE->CreateTexture("assets\\level.png", 0);
 	numberTexture= TEXTURE->CreateTexture("assets\\01.png", 0);
@@ -191,7 +188,6 @@ void Level3::Init()
 	
 	button->mesh->InitializeTextureMesh(300.f, 300.f);
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
-	spacePress->mesh->InitializeTextureMesh(400.f, 80.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
@@ -213,7 +209,8 @@ void Level3::Init()
 
 void Level3::Update()
 {
-	dt++;
+	lastTime = glfwGetTime();
+
 	STATE_MANAGER->setCurrentLV(1);
 
 	cursor3 = mInput.Cursor;
@@ -566,7 +563,8 @@ void Level3::Update()
 				//playSE3.SetLoopCount(1);
 				poopooCheck = false;
 			}
-			else {
+			else 
+			{
 				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
 			}
@@ -583,7 +581,10 @@ void Level3::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
+			if (lastTime - firstTime > 3)
+			{
+				STATE_MANAGER->ReloadState();
+			}
 		}
 	}
 
@@ -689,9 +690,7 @@ void Level3::Update()
 
 	if(skip == true)
 	{
-
-		transition++;
-		if (transition > 200.f)
+		if (lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(LV_TEST4);
 		}
@@ -728,7 +727,6 @@ void Level3::Update()
 
 	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton3);
 	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear3);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), texureSpace3);
 	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
 	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
 	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3);
@@ -747,27 +745,10 @@ void Level3::Update()
 	win->mesh->Update(mShader.GetShaderHandler(), textureWin);
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 
-	if ((mInput.IsPressed(KEY::SPACE) == true && chekNext == 1) || mInput.IsPressed(KEY::A) == true)
+	if ( mInput.IsPressed(KEY::A) == true)
 	{
-		INPUT->setInput(KEY::SPACE);
 		INPUT->setInput(KEY::A);
-
 		STATE_MANAGER->ChangeLevel(LV_TEST4);
-		chekNext = 0;
-
-		conecTcheck1 = false;
-		conecTcheck2 = false;
-		conecTcheck3 = false;
-
-		degree2 = 0;
-		degree2_2 = 0;
-		degree2_3 = 0;
-
-		blCheck1 = false;
-		blCheck1_2 = false;
-
-		blCheck2 = false;
-		blCheck2_2 = false;
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {

@@ -26,7 +26,6 @@ enum GameLevels
 	LV_TEST4,
 	LV_TEST5,
 	LV_TEST6,
-	LV_TEST7,
 	LV_TEST8,
 	LV_TEST9,
 	LV_TEST10,
