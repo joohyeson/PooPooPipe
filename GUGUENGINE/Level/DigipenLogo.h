@@ -10,6 +10,7 @@
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 
 class DigipenLogo : public LevelManager
@@ -33,6 +34,8 @@ private:
 	GLuint textureDigipenLogo;
 	double lastTime;
 	double firstTime;
+	Vector2<float> cursor0;
+	Input mInput;
 };
 
 

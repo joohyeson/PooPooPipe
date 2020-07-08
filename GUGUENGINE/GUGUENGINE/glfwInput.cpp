@@ -1,4 +1,5 @@
 #include "glfwInput.h"
+#include "Engine.h"
 
 Input* INPUT = nullptr;
 
@@ -119,6 +120,12 @@ Input* INPUT = nullptr;
 		}
 	}
 
+	void window_close_callback(GLFWwindow* window)
+	{
+		glfwTerminate();
+		ENGINE->Quit();
+			
+	}
 Input::Input()
 {
 		for(int i = 0; i  < KEY::SIZE; i++)
@@ -134,6 +141,7 @@ void	Input::InitCallback(GLFWwindow* window)
 	glfwSetKeyCallback(window, key_callback);
 	glfwSetCursorPosCallback(window, cursorPositionCallback);
 	glfwSetMouseButtonCallback(window, mouseButtonCallback);
+	glfwSetWindowCloseCallback(window, window_close_callback);
 }
 
 bool Input::IsPressed(KEY k)

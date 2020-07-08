@@ -6,7 +6,6 @@
  *this is digipen logo
  */
 #include "DigipenLogo.h"
-#include <windows.h>
 #include "../GUGUENGINE/ObjectManager.h"
 #include "../GUGUENGINE/Texture.h"
 #include <glfw3.h>
@@ -23,15 +22,26 @@ void DigipenLogo::Init()
 	digipenLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width/2), static_cast<float>(APPLICATION->height/3));
 	
 	mShader.BuildTextureShader();
+
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void DigipenLogo::Update()
 {
+
+	cursor0 = mInput.Cursor;
+
 	lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 	if(lastTime - firstTime > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::FMODLOGO);
+	}
+
+	if (mInput.IsPressed(KEY::ESCAPE))
+	{
+		glfwTerminate();
+		ENGINE->Quit();
 	}
 	
     glfwSwapBuffers(APPLICATION->getMyWindow());
