@@ -14,7 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 
 int check0 = 0;
-Vector2<float> cursor0;
 int moveCheck0 = 0;
 int moveCheck0_2 = 0;
 int moveCheck0_3 = 0;
@@ -35,78 +34,9 @@ GLuint optionPress;
 bool isPlaying = false;
 //Sound bgm;
 
-void menuKeyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
-	{
-		//bgm.Stop();
-		std::cout << "Stop music" << std::endl;
-	}
-
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-		//bgm.Free();
-	}
-
-	if (key == GLFW_KEY_UP && action == GLFW_PRESS)
-	{
-		std::cout << "Up Key" << std::endl;
-
-		if (volume < 1.0f)
-		{
-			volume += 0.1f;
-			//bgm.SetVolume(volume);
-
-			std::cout << volume << std::endl;
-		}
-	}
-
-	if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
-	{
-		std::cout << "Down Key" << std::endl;
-
-		if (volume > 0.0f)
-		{
-			volume -= 0.1f;
-			//bgm.SetVolume(volume);
-
-			std::cout << volume << std::endl;
-		}
-	}
-
-	if (key == GLFW_KEY_F&& action == GLFW_RELEASE)
-	{
-		std::cout << "F Key" << std::endl;
-
-		APPLICATION->SetFullScreen();
-
-	}
-
-
-}
-void menuCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor0 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-void  menuMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck0 += 1;
-		moveCheck0_2 += 1;
-		moveCheck0_3 += 1;
-		std::cout << "LEFT mouse button pressed" << std::endl;
-
-	}
-}
 
 void MainMenu::Init()
 {
-
-
-
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -177,28 +107,59 @@ void MainMenu::Init()
 	optionButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
-	/*test->AddComponent(new Mesh());
-	test->Init();
+	menuInput.InitCallback(APPLICATION->getMyWindow());
 
-	test->mesh->setTransform({ 0.0f,56.f });
-	test->mesh->SetMeshType(rectangle);
-	test->mesh->InitializeTextureMesh(160.f, 160.f);
-*/
-/*test2->AddComponent(new Mesh());
-test2->Init();
-
-test2->mesh->setTransform({ -0.7f, -0.7f });
-test2->mesh->SetMeshType(rectangle);
-test2->mesh->InitializeTextureMesh(2.f, 2.f);*/
-
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), menuKeyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), menuCursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), menuMouseButtonCallback);
 }
 
 void MainMenu::Update()
 {
-	//bgm.Update();
+	cursor0 = menuInput.Cursor;
+
+	if (menuInput.IsPressed(KEY::ENTER))
+	{
+		//bgm.Stop();
+		std::cout << "Stop music" << std::endl;
+	}
+
+	if (menuInput.IsPressed(KEY::ESCAPE))
+	{
+		glfwTerminate();
+		//bgm.Free();
+	}
+
+	if (menuInput.IsPressed(KEY::UP))
+	{
+		std::cout << "Up Key" << std::endl;
+
+		if (volume < 1.0f)
+		{
+			volume += 0.1f;
+			//bgm.SetVolume(volume);
+
+			std::cout << volume << std::endl;
+		}
+	}
+
+	if (menuInput.IsPressed(KEY::DOWN))
+	{
+		std::cout << "Down Key" << std::endl;
+
+		if (volume > 0.0f)
+		{
+			volume -= 0.1f;
+			//bgm.SetVolume(volume);
+
+			std::cout << volume << std::endl;
+		}
+	}
+
+	if (menuInput.IsPressed(KEY::F))
+	{
+		std::cout << "F Key" << std::endl;
+
+		APPLICATION->SetFullScreen();
+
+	}
 
 	if (isPlaying == false)
 	{
@@ -206,66 +167,46 @@ void MainMenu::Update()
 		isPlaying = true;
 	}
 
-
-	if (moveCheck0 % 2 == 1)
-	{
-		std::cout << cursor0.x << ", " << cursor0.y << std::endl;
-		//getDirectionPooPoo.SetIsSuccess(true);
-	}
-	
-	std::cout << "mouse: " << cursor0.x << ", " << cursor0.y << std::endl;
-	std::cout << "buttom: " << startButton->mesh->GetTransform().x << ", " << startButton->mesh->GetTransform().y << std::endl;
-	
 	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
 	{
 
-
 		startButton_pressed->mesh->setTransform(startButton->mesh->GetTransform());
-		if (moveCheck0 % 2 == 1)
+		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
-			std::cout << "to test" << std::endl;
-			moveCheck0 = 0;
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 		}
 	}
 	else
 	{
 		startButton_pressed->mesh->setTransform({1000.f, 1000.f});
-		moveCheck0 = 0;
 	}
 
 
 	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh))
 	{
 		tutorialButton_pressed->mesh->setTransform(tutorialButton->mesh->GetTransform());
-		if (moveCheck0_2 % 2 == 1)
+		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
-			std::cout << "to level1" << std::endl;
-			moveCheck0_2 = 0;
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST1);
 		}
 	}
 	else
 	{
 		tutorialButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
-		moveCheck0_2 = 0;
 	}
 
 	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh))
 	{
 		optionButton_pressed->mesh->setTransform(optionButton->mesh->GetTransform());
 
-		if (moveCheck0_3 % 2 == 1)
+		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
 			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
-			std::cout << "to option" << std::endl;
-			moveCheck0_3 = 0;
 		}
 	}
 	else
 	{
 		optionButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
-		moveCheck0_3 = 0;
 	}
 
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
@@ -275,14 +216,6 @@ void MainMenu::Update()
 	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), startPress);
 	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), tutorialPress);
 	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), optionPress);
-
-	//getDirectionPooPoo.Update(mShader.GetShaderHandler());
-
-	//test->mesh->SplitAnimation();
-	//test->mesh->Update(mShader.GetShaderHandler(), textureId05);
-
-	/*test2->mesh->SplitAnimation();
-	test2->mesh->Update(mShader.GetShaderHandler(), textureId06);*/
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

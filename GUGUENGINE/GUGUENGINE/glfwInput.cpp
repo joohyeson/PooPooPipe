@@ -4,7 +4,6 @@ Input* INPUT = nullptr;
 
 	void key_callback(GLFWwindow* window, int key, int /*scancode*/, int action, int /*mods*/)
 	{
-		//Input* input = (Input*)glfwGetWindowUserPointer(window);
 		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		{
 			INPUT->Key[KEY::SPACE] = true;
@@ -50,6 +49,33 @@ Input* INPUT = nullptr;
 			INPUT->Key[KEY::F] = false;
 		}
 
+		if (key == GLFW_KEY_ENTER && action == GLFW_PRESS)
+		{
+			INPUT->Key[KEY::ENTER] = true;
+		}
+		else if (action != GLFW_PRESS)
+		{
+			INPUT->Key[KEY::ENTER] = false;
+		}
+
+		if (key == GLFW_KEY_UP && action == GLFW_PRESS)
+		{
+			INPUT->Key[KEY::UP] = true;
+		}
+		else if (action != GLFW_PRESS)
+		{
+			INPUT->Key[KEY::UP] = false;
+		}
+
+		if (key == GLFW_KEY_DOWN && action == GLFW_PRESS)
+		{
+			INPUT->Key[KEY::DOWN] = true;
+		}
+		else if (action != GLFW_PRESS)
+		{
+			INPUT->Key[KEY::DOWN] = false;
+		}
+
 	}
 
 	void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
@@ -69,8 +95,6 @@ Input* INPUT = nullptr;
 		}
 
 		INPUT->Cursor.x -= 960;
-		
-		std::cout << "cursor GLFW: "<< INPUT->Cursor.x << ", "  << INPUT->Cursor.y<<std::endl;
 	}
 
 	void  mouseButtonCallback(GLFWwindow* window, int button, int action, int /*mods*/)

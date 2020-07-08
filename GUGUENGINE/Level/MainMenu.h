@@ -12,6 +12,7 @@
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/Sound.h"
 #include "..//GUGUENGINE/MovePooPoo.h"
+#include "../GUGUENGINE/glfwInput.h"
 class Sound;
 
 class MainMenu : public LevelManager
@@ -53,7 +54,8 @@ private:
 	Shader mShader;
 	Shader testNDCShader;//it will be deleted when NDC function is completed
 
-	
+	Input menuInput;
+	Vector2<float> cursor0;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
