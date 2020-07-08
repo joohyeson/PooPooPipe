@@ -47,6 +47,8 @@ private:
 	Object* test;
 	Object* test2;
 
+	bool UI[3] = { false };
+	
 	GLuint textureId00;	//game title
 	GLuint textureId01; //game start
 	GLuint textureId02; //title
