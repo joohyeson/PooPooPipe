@@ -32,6 +32,8 @@ public:
 	void Resume();
 	void Stop();
 	void Rewind();
+
+
 	
 
 	void SetVolume(float volume = 0.3f);
