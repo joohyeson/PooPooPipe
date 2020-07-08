@@ -41,7 +41,7 @@ Input* INPUT = nullptr;
 			INPUT->Key[KEY::TAB] = false;
 		}
 
-		if (key == GLFW_KEY_F && action == GLFW_RELEASE)
+		if (key == GLFW_KEY_F && action == GLFW_PRESS)
 		{
 			INPUT->Key[KEY::F] = true;
 		}
@@ -87,7 +87,6 @@ Input* INPUT = nullptr;
 
 		if (INPUT->Cursor.y < 540)
 		{
-	
 			INPUT->Cursor.y += 540;
 		}
 		else

@@ -39,6 +39,11 @@ void startCut::Update()
 {
 	cursor__ = mInput.Cursor;
 
+	if (mInput.IsPressed(KEY::F))
+	{
+		APPLICATION->SetFullScreen();
+	}
+
 	if (skip->collision->Point2BoxCollision({ cursor__.x,cursor__.y }, skip->mesh) == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)

@@ -34,7 +34,7 @@ void MainMenu::Init()
 	background->Init();
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
-	background->mesh->InitializeTextureMesh(1920, 1080.f);
+	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
 
@@ -99,7 +99,6 @@ void MainMenu::Init()
 	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
-
 }
 
 void MainMenu::Update()
@@ -145,11 +144,13 @@ void MainMenu::Update()
 		}
 	}
 
-	if (menuInput.IsPressed(KEY::F))
+	if (menuInput.IsKeyDown(KEY::F)==true)
 	{
 		std::cout << "F Key" << std::endl;
+		menuInput.setInput(KEY::F);
 
 		APPLICATION->SetFullScreen();
+		
 
 	}
 

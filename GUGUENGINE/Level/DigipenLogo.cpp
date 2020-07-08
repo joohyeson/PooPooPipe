@@ -43,6 +43,12 @@ void DigipenLogo::Update()
 		glfwTerminate();
 		ENGINE->Quit();
 	}
+
+	//if (mInput.IsPressed(KEY::F))
+	//{
+	//	APPLICATION->SetFullScreen();
+	//	mInput.setInput(KEY::F);
+	//}
 	
     glfwSwapBuffers(APPLICATION->getMyWindow());
     glClear(GL_COLOR_BUFFER_BIT);
