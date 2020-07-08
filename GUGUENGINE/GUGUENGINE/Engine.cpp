@@ -75,6 +75,7 @@ void Engine::GameLoop()
 				{
 					GUGU->Update();
 				}
+				checkWindow = true;
 			}
 			else
 			{
