@@ -89,4 +89,34 @@ private:
 	Object* Level8_lock;
 	
 	Input levelInput;
+
+	GLuint textureBackgroundLv;
+
+	GLuint texureIdLv1;
+	GLuint texureIdLv1_pressed;
+
+	GLuint texureIdLv2;
+	GLuint texureIdLv2_pressed;
+	GLuint texureId_lock;
+
+	GLuint texureIdLv3;
+	GLuint texureIdLv3_pressed;
+
+
+	GLuint texureIdLv4;
+	GLuint texureIdLv4_pressed;
+
+
+	GLuint texureIdLv5;
+	GLuint texureIdLv5_pressed;
+
+
+	GLuint texureIdLv6;
+	GLuint texureIdLv6_pressed;
+
+	GLuint texureIdLv7;
+	GLuint texureIdLv7_pressed;
+
+	GLuint texureIdLv8;
+	GLuint texureIdLv8_pressed;
 };
