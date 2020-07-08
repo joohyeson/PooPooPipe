@@ -19,7 +19,8 @@ void Level9::Init()
 	skip = false;
 	firstTime = glfwGetTime();
 
-
+	failS = false;
+	
 	autoRot = true;
 
 	chekNext9 = 0;
@@ -544,11 +545,27 @@ void Level9::Update()
 
 				if (!conecTcheck9_1 || !conecTcheck9_2 || !conecTcheck9_3)
 				{
-					fail->mesh->setTransform({ 0.f, 0.f });
+					if (failS == false)
+					{
+						this->sound->Play("assets\\fart.mp3", 1);
+						failS = true;
+						first = glfwGetTime();
+					}
+					
+				}
+			}
+			
+			if(failS == true)
+			{
+				last = glfwGetTime();
+				if (last - first > 1.5f)
+				{
+					fail->mesh->setTransform({ 0,0 });
+					failS = false;
 					poopooCheck = false;
 				}
 			}
-
+			
 			if (conecTcheck9_1 && conecTcheck9_2 && conecTcheck9_3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -572,7 +589,7 @@ void Level9::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-
+			failS = false;
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
 			if (lastTime - firstTime > 3)
 			{
@@ -738,7 +755,6 @@ void Level9::Update()
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 	}
 
-	
 
 	if ( mInput.IsPressed(KEY::A) == true)
 	{

@@ -13,7 +13,8 @@
 void Level11::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
-
+	failS[0] = false;
+	failS[1] = false;
 	//rotTime.setRotate(100);
 	rotTime.setRotate(35);
 	rotrot2 = true;
@@ -322,9 +323,26 @@ void Level11::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot2 = false;
-		fail->mesh->setTransform({ 0,0 });
+		if (failS[0] == false)
+		{
+			last = 0;
+			this->sound->Play("assets\\fart.mp3", 1);
+			failS[0] = true;
+			first = glfwGetTime();
+		}
 		std::cout << "rotation limit!!!" << std::endl;
 	}
+	if (failS[0] == true)
+	{
+		last = glfwGetTime();
+		if (last - first > 1.5f)
+		{
+			fail->mesh->setTransform({ 0,0 });
+			poopooCheck = false;
+			STATE_MANAGER->ReloadState();
+		}
+	}
+	
 	if (rotrot2)
 	{
 		if (puzzle2->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle2->mesh))
@@ -700,11 +718,26 @@ void Level11::Update()
 				poopooCheck = false;
 			}
 			else {
-				fail->mesh->setTransform({ 0,0 });
-				poopooCheck = false;
+				if (failS[1] == false)
+				{
+					last = 0;
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS[1] = true;
+					first = glfwGetTime();
+				}
 			}
 		}
 	}
+	if (failS[1] == true)
+	{
+		last = glfwGetTime();
+		if (last - first > 1.5f)
+		{
+			fail->mesh->setTransform({ 0,0 });;
+			poopooCheck = false;
+		}
+	}
+	
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
 	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
