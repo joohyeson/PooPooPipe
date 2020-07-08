@@ -24,10 +24,10 @@ public:
 	void Quit();
 
 	void AddSystem(System* system);
-
+	bool GAMERUN;
 private:
 	std::vector<System*> Systems; 
-	bool GAMERUN;  
+	 
 
 	std::chrono::system_clock::time_point lastTick;
 	std::chrono::system_clock::time_point fpsCalcTime;

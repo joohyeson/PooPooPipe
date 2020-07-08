@@ -910,6 +910,7 @@ void Level5::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else
@@ -983,6 +984,7 @@ void Level5::Update()
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
 		glfwTerminate();
+		ENGINE->Quit();
 	}
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

@@ -20,16 +20,7 @@ int moveCheck0_3 = 0;
 
 float volume = 0.3f;
 
-GLuint textureId00;	//game title
-GLuint textureId01; //game start
-GLuint textureId02; //title
-GLuint textureId03; //tutorial
-GLuint textureId05;//test
-GLuint textureId04;	//option button
-GLuint textureId06;//man
-GLuint startPress;
-GLuint tutorialPress;
-GLuint optionPress;
+
 
 bool isPlaying = false;
 //Sound bgm;
@@ -124,6 +115,7 @@ void MainMenu::Update()
 	if (menuInput.IsPressed(KEY::ESCAPE))
 	{
 		glfwTerminate();
+		ENGINE->Quit();
 		//bgm.Free();
 	}
 

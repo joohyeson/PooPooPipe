@@ -674,6 +674,7 @@ void Level4::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else

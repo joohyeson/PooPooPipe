@@ -762,6 +762,8 @@ void Level10::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			glfwTerminate();
+			ENGINE->Quit();
+
 		}
 	}
 	else

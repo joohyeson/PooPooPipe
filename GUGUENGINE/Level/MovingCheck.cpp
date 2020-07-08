@@ -100,6 +100,7 @@ void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int act
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
+		ENGINE->Quit();
 	}
 }
 
