@@ -7,7 +7,7 @@ static int PuzzleID = 0;
 static int OriginID = 0;
 
 MovePooPoo::MovePooPoo() :
-	startD({ 0.f, 0.f }), endD({ 50.f, 0.f }), speed(70.f) {
+	startD({ 0.f, 0.f }), endD({ 50.f, 0.f }), speed(180.f) {
 
 	Init();
 

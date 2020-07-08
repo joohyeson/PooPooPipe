@@ -108,6 +108,7 @@ void MainMenu::Init()
 
 void MainMenu::Update()
 {
+	this->sound->Update();
 	cursor0 = menuInput.Cursor;
 
 	if (menuInput.IsPressed(KEY::ENTER))
@@ -130,8 +131,9 @@ void MainMenu::Update()
 		if (volume < 1.0f)
 		{
 			volume += 0.1f;
+			this->sound->SetVolume(volume);
 			//bgm.SetVolume(volume);
-
+			menuInput.setInput(KEY::UP);
 			std::cout << volume << std::endl;
 		}
 	}
@@ -143,6 +145,8 @@ void MainMenu::Update()
 		if (volume > 0.0f)
 		{
 			volume -= 0.1f;
+			this->sound->SetVolume(volume);
+			menuInput.setInput(KEY::DOWN);
 			//bgm.SetVolume(volume);
 
 			std::cout << volume << std::endl;
@@ -158,7 +162,15 @@ void MainMenu::Update()
 		
 
 	}
+	if (menuInput.IsPressed(KEY::A) == true)
+	{
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
+	}
 
+	if (menuInput.IsPressed(KEY::LEFT) == true)
+	{
+		std::cout << "CURSOR:"<<cursor0.x <<"," << cursor0.y << std::endl;
+	}
 	if (isPlaying == false)
 	{
 		this->sound->Play("assets\\BGM_airplane.mp3", -1);

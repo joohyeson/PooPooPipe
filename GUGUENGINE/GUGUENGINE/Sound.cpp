@@ -21,6 +21,13 @@ void Sound::Update()
 	
 	result = system->update();
 
+	masterChannel->setVolume(m_volume);
+
+	//for (int i = 0; i < m_sounds.size(); i++)
+	//{
+	//	m_sounds[i]->channel->setVolume(m_volume);
+	//}
+	
 	/*
 	if (result != FMOD_OK)
 	{
@@ -53,6 +60,8 @@ Sound::Sound()
 	masterChannel->addGroup(soundEffects);
 	masterChannel->addGroup(backgroundSounds);
 	system->getMasterChannelGroup(&masterChannel);
+
+	m_volume = 0.5f;
 
 	Load();
 }
@@ -177,6 +186,8 @@ void Sound::Rewind()
 
 void Sound::SetVolume(float volume)
 {
+
+
 	m_volume = volume;
 
 }
