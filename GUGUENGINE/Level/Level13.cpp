@@ -231,23 +231,14 @@ void Level13::Init()
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle2->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle18->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SE_, puzzle3->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, puzzle6->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::N_, puzzle5->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::S_, DirAngle::N_, puzzle19->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::S_, DirAngle::NE_, puzzle1->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle13->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle4->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle18->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle19->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::N_, puzzle7->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::S_, DirAngle::NE_, puzzle4->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle14->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle15->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle7->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle9->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle10->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle12->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, endPuzzle->mesh->GetTransform());
-
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::S_, puzzle15->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, puzzle10->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
