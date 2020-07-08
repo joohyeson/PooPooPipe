@@ -82,6 +82,9 @@ public:
 	//void Wait(long waitTime);
 
 private:
+	float first;
+	float last;
+	bool failS = false;
 	bool skip = false;
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;

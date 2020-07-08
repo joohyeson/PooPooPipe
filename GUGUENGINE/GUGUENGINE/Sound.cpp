@@ -92,7 +92,7 @@ void Sound::Load()
 	LoadMusic("assets\\flushing.wav");
 	LoadMusic("assets\\yeah.wav");
 	LoadMusic("assets\\UI.wav");
-
+	LoadMusic("assets\\fart.mp3");
 }
 
 bool Sound::IsPlaying()

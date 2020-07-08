@@ -16,6 +16,7 @@ void Level5::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
+	failS = false;
 	firstTime = glfwGetTime();
 
 
@@ -787,8 +788,19 @@ void Level5::Update()
 				poopooCheck = false;
 			}
 			else {
-				fail->mesh->setTransform({ 0,0 });
-				poopooCheck = false;
+				if (failS == false)
+				{
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS = true;
+					first = glfwGetTime();
+				}
+				last = glfwGetTime();
+				if (last - first > 1.5f)
+				{
+					fail->mesh->setTransform({ 0,0 });
+					failS = false;
+					poopooCheck = false;
+				}
 			}
 		}
 	}

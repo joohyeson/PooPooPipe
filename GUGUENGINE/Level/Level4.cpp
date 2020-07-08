@@ -28,7 +28,7 @@ void Level4::Init()
 	firstTime = glfwGetTime();
 
 	chekNext4 = 0;
-
+	failS = false;
 	conecTcheck4_1 = false;
 	conecTcheck4_2 = false;
 	conecTcheck4_3 = false;
@@ -561,9 +561,19 @@ void Level4::Update()
 			}
 			else
 			{
-				fail->mesh->setTransform({ 0.f, 0.f});
-				poopooCheck = false;
-
+				if (failS == false)
+				{
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS = true;
+					first = glfwGetTime();
+				}
+				last = glfwGetTime();
+				if (last - first > 1.5f)
+				{
+					fail->mesh->setTransform({ 0,0 });
+					failS = false;
+					poopooCheck = false;
+				}
 			}
 		}
 	}

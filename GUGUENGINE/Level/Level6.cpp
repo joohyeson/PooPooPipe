@@ -18,7 +18,7 @@ void Level6::Init()
 	skip = false;
 	firstTime = glfwGetTime();
 
-
+	failS = false;
 	chekNext6 = 0;
 
 	conecTcheck6_1 = false;
@@ -634,8 +634,19 @@ void Level6::Update()
 				this->sound->Play("assets\\flushing.wav", 1);
 			}
 			else {
-				fail->mesh->setTransform({ 0,0 });
-				poopooCheck = false;
+				if (failS == false)
+				{
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS = true;
+					first = glfwGetTime();
+				}
+				last = glfwGetTime();
+				if (last - first > 1.5f)
+				{
+					fail->mesh->setTransform({ 0,0 });
+					failS = false;
+					poopooCheck = false;
+				}
 			}
 		}
 	}

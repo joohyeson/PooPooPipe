@@ -17,7 +17,8 @@ void Level8::Init()
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	firstTime = glfwGetTime();
-
+	failS[0] = false;
+	failS[1] = false;
 
 	rotTime.setRotate(30);
 	rotrot2 = true;
@@ -349,7 +350,21 @@ void Level8::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot2 = false;
-		fail->mesh->setTransform({ 0,0 });
+
+		if (failS[1] == false)
+		{
+			last = 0;
+			this->sound->Play("assets\\fart.mp3", 1);
+			failS[1] = true;
+			first = glfwGetTime();
+		}
+		last = glfwGetTime();
+		if (last - first > 1.5f)
+		{
+			fail->mesh->setTransform({ 0,0 });;
+			poopooCheck = false;
+		}
+
 		std::cout << "rotation limit!!!" << std::endl;
 	}
 	if (rotrot2)
@@ -689,8 +704,19 @@ void Level8::Update()
 
 			}
 			else {
-				fail->mesh->setTransform({ 0,0 });
-				poopooCheck = false;
+				if (failS[0] == false)
+				{
+					last = 0;
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS[0] = true;
+					first = glfwGetTime();
+				}
+				last = glfwGetTime();
+				if (last - first > 1.5f)
+				{
+					fail->mesh->setTransform({ 0,0 });					
+					poopooCheck = false;
+				}
 			}
 		}
 	}
@@ -700,7 +726,8 @@ void Level8::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-
+			failS[1] = false;
+			failS[0] = false;
 			fail->mesh->setTransform({ -2000.f,-2000.f });
 			if (lastTime - firstTime > 3)
 			{
