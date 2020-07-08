@@ -27,7 +27,7 @@
 #include "Level13.h"
 #include "LevelSelect.h"
 #include "MovingCheck.h"
-
+#include "99.h"
 
 StateManager* STATE_MANAGER = nullptr;
 
@@ -54,6 +54,7 @@ void StateManager::Init()
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
+	levels.push_back(new GUGULOGO);
 	levels.push_back(new startCut());
 	levels.push_back(new MainMenu());
 	levels.push_back(new LevelOption());

@@ -17,6 +17,7 @@ enum class GameLevels
 {
 	DIGIPENLOGO,
 	FMODLOGO,
+	GUGULOGO,
 	CUTSCENE,
 	MAINMENU,
 	OPTION,

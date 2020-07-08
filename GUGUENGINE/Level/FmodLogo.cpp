@@ -45,7 +45,7 @@ void FmodLogo::Update()
 
 	if(lastTime - firstTime > 2.f)
 	{
-		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
+		STATE_MANAGER->ChangeLevel(GameLevels::GUGULOGO);
 	}
 }
 

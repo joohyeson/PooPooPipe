@@ -15,6 +15,7 @@
 
 void DigipenLogo::Init()
 {
+	check = false;
 	firstTime = glfwGetTime();
 
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
@@ -30,7 +31,11 @@ void DigipenLogo::Update()
 {
 
 	cursor0 = mInput.Cursor;
-
+	if(check == false)
+	{
+		this->sound->Play("assets\\logo.wav", 1);
+	}
+	
 	lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 	if(lastTime - firstTime > 2.f)

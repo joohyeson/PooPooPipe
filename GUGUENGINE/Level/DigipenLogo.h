@@ -12,7 +12,7 @@
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/glfwInput.h"
 
-
+class sound;
 class DigipenLogo : public LevelManager
 {
 public:
@@ -36,6 +36,7 @@ private:
 	double firstTime;
 	Vector2<float> cursor0;
 	Input mInput;
+	bool check = false;
 };
 
 
