@@ -78,8 +78,8 @@ Application::Application()
         std::exit(EXIT_FAILURE);
     }
 
-    Application::width = screenMode->width;
-    Application::height = screenMode->height;
+    Application::width = 1920;
+    Application::height = 1080;
 
     std::cout << screenMode->width << screenMode->height << std::endl;
     glfwMakeContextCurrent(Mywindow);
@@ -112,6 +112,7 @@ Application::Application()
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
+    
     glfwGetFramebufferSize(Mywindow, &framebufferWidth, &framebufferHeight);
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
 }

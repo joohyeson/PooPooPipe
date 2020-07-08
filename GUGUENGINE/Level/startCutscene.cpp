@@ -38,7 +38,15 @@ void startCut::Init()
 void startCut::Update()
 {
 	cursor__ = mInput.Cursor;
+	if (mInput.IsPressed(KEY::A) == true)
+	{
+		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+	}
 
+	if (mInput.IsPressed(KEY::LEFT) == true)
+	{
+		std::cout << "CURSOR:" << cursor__.x << "," << cursor__.y << std::endl;
+	}
 	if (mInput.IsPressed(KEY::F))
 	{
 		APPLICATION->SetFullScreen();

@@ -153,7 +153,15 @@ void MainMenu::Update()
 		
 
 	}
+	if (menuInput.IsPressed(KEY::A) == true)
+	{
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
+	}
 
+	if (menuInput.IsPressed(KEY::LEFT) == true)
+	{
+		std::cout << "CURSOR:"<<cursor0.x <<"," << cursor0.y << std::endl;
+	}
 	if (isPlaying == false)
 	{
 		this->sound->Play("assets\\BGM_airplane.mp3", -1);
