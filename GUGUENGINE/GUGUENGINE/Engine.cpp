@@ -7,14 +7,16 @@
  */
 #include<SDL.h>
 #include <glew.h>
-
 #include <vector>
+#include <iostream>
+
 #include "Engine.h"
 #include"Application.h"
-#include <iostream>
 #include "ObjectManager.h"
-#include "../Level/StateManager.h"
 #include "glfwInput.h"
+#include "Sound.h"
+#include "../Level/StateManager.h"
+
 
 Engine* ENGINE = nullptr;
 
@@ -46,10 +48,14 @@ void Engine::Init()
 
 void Engine::GameLoop()
 {
+	int width, height;
+
+
 	while (GAMERUN)
 	{
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
 		double dt = std::chrono::duration<double>(now - lastTick).count();
+		glfwGetWindowSize(APPLICATION->getMyWindow(), &width, &height);
 
 		if (dt >= 1 / Engine::Target_FPS)
 		{
@@ -63,11 +69,24 @@ void Engine::GameLoop()
 				fpsCalcTime = now;
 			}
 
-			for (auto GUGU : Systems)
+			if (width != 0 && height != 0)
 			{
-				GUGU->Update();
+				for (auto GUGU : Systems)
+				{
+					GUGU->Update();
+				}
+			}
+			else
+			{
+				APPLICATION->Update();
+				if (checkWindow)
+				{
+					std::cout << "window is minimized" << std::endl;
+					checkWindow = false;
+				}
 			}
 		}
+		
 	}
 	INPUT->Update();
 }
