@@ -82,19 +82,19 @@ Input* INPUT = nullptr;
 	void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 	{
 		INPUT->Cursor = { (static_cast<float>(xpos))/APPLICATION->framebufferWidth,  (static_cast<float>(-ypos)) / APPLICATION->framebufferHeight };
-		INPUT->Cursor.x *= 1920;
-		INPUT->Cursor.y *= 1080;
+		INPUT->Cursor.x *= APPLICATION->width;
+		INPUT->Cursor.y *= APPLICATION->height;
 
-		if (INPUT->Cursor.y < 540)
+		if (INPUT->Cursor.y < APPLICATION->height/2)
 		{
-			INPUT->Cursor.y += 540;
+			INPUT->Cursor.y += APPLICATION->height / 2;
 		}
 		else
 		{
-			INPUT->Cursor.y -= 540;
+			INPUT->Cursor.y -= APPLICATION->height / 2;
 		}
 
-		INPUT->Cursor.x -= 960;
+		INPUT->Cursor.x -= APPLICATION->width / 2;
 	}
 
 	void  mouseButtonCallback(GLFWwindow* window, int button, int action, int /*mods*/)

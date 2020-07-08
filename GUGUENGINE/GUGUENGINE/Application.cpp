@@ -80,6 +80,8 @@ Application::Application()
 
     Application::width = screenMode->width;
     Application::height = screenMode->height;
+
+    std::cout << screenMode->width << screenMode->height << std::endl;
     glfwMakeContextCurrent(Mywindow);
     GLFWimage icons[1];
 
