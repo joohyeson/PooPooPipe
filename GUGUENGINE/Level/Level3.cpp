@@ -229,9 +229,10 @@ void Level3::Update()
 			this->sound->Play("assets\\UI.wav", 1);
 		}
 		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+		
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
-				INPUT->setInput(KEY::LEFT);
+				//INPUT->setInput(KEY::LEFT);
 				chekNext = 0;
 
 				conecTcheck1 = false;

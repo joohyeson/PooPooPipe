@@ -31,8 +31,6 @@ void FmodLogo::Init()
 	fmodLogo->mesh->SetMeshType(MESHTYPE::rectangle);
 
 	fmodLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width / 3), static_cast<float>(APPLICATION->height / 3));
-
-
 }
 
 void FmodLogo::Update()

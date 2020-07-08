@@ -36,6 +36,11 @@ void MainMenu::Init()
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
+	for(int i = 0;  i < 3; i++)
+	{
+		UI[i] = false;
+	}
+	
 	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
 
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
@@ -170,21 +175,33 @@ void MainMenu::Update()
 
 	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
 	{
-
+		if(UI[0] == false)
+		{
+			UI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		startButton_pressed->mesh->setTransform(startButton->mesh->GetTransform());
+
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 		}
 	}
 	else
 	{
+		UI[0] = false;
 		startButton_pressed->mesh->setTransform({1000.f, 1000.f});
 	}
 
 
 	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh))
 	{
+		if (UI[1] == false)
+		{
+			UI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		tutorialButton_pressed->mesh->setTransform(tutorialButton->mesh->GetTransform());
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
@@ -193,20 +210,28 @@ void MainMenu::Update()
 	}
 	else
 	{
+		UI[1] = false;
 		tutorialButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
 	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh))
 	{
+		if (UI[2] == false)
+		{
+			UI[2] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		optionButton_pressed->mesh->setTransform(optionButton->mesh->GetTransform());
 
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
+			
 			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
 	else
 	{
+		UI[2] = false;
 		optionButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
