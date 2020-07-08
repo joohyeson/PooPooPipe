@@ -47,6 +47,7 @@ void startCut::Update()
 	{
 		std::cout << "CURSOR:" << cursor__.x << "," << cursor__.y << std::endl;
 	}
+
 	if (mInput.IsPressed(KEY::F))
 	{
 		APPLICATION->SetFullScreen();

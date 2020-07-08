@@ -12,11 +12,11 @@ enum KEY
 	TAB,
 	LEFT,
 	RIGHT,
-	SIZE,
 	F, 
 	ENTER, 
 	UP, 
-	DOWN
+	DOWN, 
+	SIZE
 };
 
 class Input
