@@ -12,12 +12,7 @@
 #include "Application.h"
 #include "external/stb/include/stb_image.h"
 
-int framebufferWidth, framebufferHeight;
 Application* APPLICATION = nullptr;
-
-#define WIDTH 1440
-#define HEIGHT 810
-
 Mesh mMesh;
 
 
@@ -25,8 +20,8 @@ void framebufferSizeCallback(GLFWwindow* /*window*/, int width, int height)
 {
     glViewport(0, 0, width, height);
 
-    framebufferWidth = width;
-    framebufferHeight = height;
+    APPLICATION->framebufferWidth = width;
+    APPLICATION->framebufferHeight = height;
 }
 
 void Application::Init()
@@ -49,7 +44,7 @@ void Application::Update()
         lastTime = currentTime;
     }
 	
-    glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
+    //glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
     glfwPollEvents();
 }
 
@@ -120,6 +115,8 @@ Application::Application()
     std::cout << "GLSL version: " << glGetString(GL_SHADING_LANGUAGE_VERSION) << std::endl;
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
+
+    glfwGetFramebufferSize(Mywindow, &framebufferWidth, &framebufferHeight);
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
 
 }

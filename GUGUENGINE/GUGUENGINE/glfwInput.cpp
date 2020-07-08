@@ -54,7 +54,23 @@ Input* INPUT = nullptr;
 
 	void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
 	{
-		INPUT->Cursor = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
+		INPUT->Cursor = { (static_cast<float>(xpos))/APPLICATION->framebufferWidth,  (static_cast<float>(-ypos)) / APPLICATION->framebufferHeight };
+		INPUT->Cursor.x *= 1920;
+		INPUT->Cursor.y *= 1080;
+
+		if (INPUT->Cursor.y < 540)
+		{
+	
+			INPUT->Cursor.y += 540;
+		}
+		else
+		{
+			INPUT->Cursor.y -= 540;
+		}
+
+		INPUT->Cursor.x -= 960;
+		
+		std::cout << "cursor GLFW: "<< INPUT->Cursor.x << ", "  << INPUT->Cursor.y<<std::endl;
 	}
 
 	void  mouseButtonCallback(GLFWwindow* window, int button, int action, int /*mods*/)

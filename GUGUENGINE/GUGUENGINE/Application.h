@@ -32,6 +32,10 @@ public:
 
 	int height = 1920;
 	int width = 1080;
+
+
+	int framebufferWidth, framebufferHeight;
+
 private:
 	bool isGameRunning = false;
 	int sizeX = 300;
