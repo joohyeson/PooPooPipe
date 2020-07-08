@@ -121,7 +121,7 @@ private:
 	Vector2<float> cursor8;
 	Input mInput;
 
-	bool rot[11] = { false };
+	bool rot[12] = { false };
 	bool poopooCheck = false;
 
 	bool rotrot2 = true;
