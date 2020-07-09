@@ -16,9 +16,6 @@
 
 void LevelOption::Init()
 {
-	soundBarSize = { 150.f, 30.f };
-	soundBarPosition = {15.f, 240.f };
-
 	background = OBJECT_FACTORY->CreateEmptyObject();
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -220,16 +217,16 @@ void LevelOption::Update()
 
 			if (volume < 1.f)
 			{
-				soundBar->mesh->setTransform({ soundBarPosition.x += 15.f, soundBarPosition.y });
-				soundBar->mesh->InitializeTextureMesh(soundBarSize.x += 30.f, soundBarSize.y);
+				soundBar->mesh->setTransform({ this->sound->soundBarPosition.x += 15.f, this->sound->soundBarPosition.y });
+				soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x += 30.f, this->sound->soundBarSize.y);
 			}
 			else if (volume >= 1.f)
 			{
-				soundBarSize = { 300.f, 30.f };
-				soundBarPosition = { 95.f, 240.f };
+				this->sound->soundBarSize = { 300.f, 30.f };
+				this->sound->soundBarPosition = { 95.f, 240.f };
 
-				soundBar->mesh->setTransform({ soundBarPosition.x, soundBarPosition .y });
-				soundBar->mesh->InitializeTextureMesh(soundBarSize.x, soundBarSize.y);
+				soundBar->mesh->setTransform({ this->sound->soundBarPosition.x, this->sound->soundBarPosition.y });
+				soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x, this->sound->soundBarSize.y);
 			}
 		}
 	}
@@ -255,11 +252,17 @@ void LevelOption::Update()
 
 				if (volume > 0)
 				{
-					soundBar->mesh->setTransform({ soundBarPosition.x -= 15.f, soundBarPosition.y });
-					soundBar->mesh->InitializeTextureMesh(soundBarSize.x -= 30.f, soundBarSize.y);
+					soundBar->mesh->setTransform({ this->sound->soundBarPosition.x -= 15.f,this->sound->soundBarPosition.y });
+					soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x -= 30.f, this->sound->soundBarSize.y);
 				}
 
 				std::cout << volume << std::endl;
+			}
+			else if (volume == 0)
+			{
+				this->sound->soundBarSize = { 0.f, 0.f };
+
+				soundBar->mesh->InitializeTextureMesh(0, 0);
 			}
 		}
 	}

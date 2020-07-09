@@ -61,8 +61,6 @@ public:
 		No_p = nullptr;
 		soundBar = nullptr;
 		textureSoundBar = 0;
-		soundBarSize = { 400.f, 70.f };
-		soundBarPosition = { 95.f, 240.f };
 	}
 
 	void Init() override;
@@ -116,7 +114,4 @@ private:
 	Vector2<float> cursor;
 
 	Input mInput;
-
-	Vector2<float> soundBarSize;
-	Vector2<float> soundBarPosition;
 };
