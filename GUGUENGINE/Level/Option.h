@@ -36,7 +36,6 @@ public:
 		quitButton = nullptr;
 		quitButton_pressed = nullptr;
 
-<<<<<<< HEAD
 		textureBackgroundOption = 0;
 		textureOption = 0;
 		textureMusic = 0;
@@ -52,12 +51,12 @@ public:
 		textureFullScreen = 0;
 		textureCheckTrue = 0;
 		textureCheckFalse;
-=======
+
 		QuitAskBack = nullptr;
 		QuitAsk = nullptr;
 		Yes = nullptr;
 		No = nullptr;
->>>>>>> 9006ece96f13965846307aa2d8995b884a72fc20
+
 	}
 
 	void Init() override;
