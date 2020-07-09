@@ -638,7 +638,6 @@ void Level3::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 		{
 			INPUT->setInput(KEY::LEFT);
-
 			STATE_MANAGER->ReloadState();
 		}
 	}

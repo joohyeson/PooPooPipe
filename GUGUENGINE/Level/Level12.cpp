@@ -9,7 +9,6 @@
 #include "Level12.h"
 #include "../GUGUENGINE/Sound.h"
 
-
 void Level12::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);

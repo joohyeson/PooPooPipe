@@ -244,7 +244,6 @@ void LevelOption::Update()
 				if (volume <= 0.f)
 				{
 					volume = 0.f;
-
 				}
 
 				this->sound->SetVolume(volume);

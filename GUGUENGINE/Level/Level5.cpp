@@ -298,7 +298,7 @@ void Level5::Update()
 	if(ylast - yfirst >= 3.f)
 	{
 		siren = false;
-		Yellow->mesh->setTransform({ -1000.f, -1000.f });
+		Yellow->mesh->setTransform({ -2000.f, -2000.f });
 	}
 	
 	cursor5 = mInput.Cursor;
