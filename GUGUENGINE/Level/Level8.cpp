@@ -19,6 +19,8 @@ void Level8::Init()
 	firstTime = glfwGetTime();
 	failS[0] = false;
 	failS[1] = false;
+	soundCheck = false;
+	soundCheck2 = false;
 
 	rotTime.setRotate(30);
 	rotrot2 = true;
@@ -681,11 +683,13 @@ void Level8::Update()
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 
-				this->sound->Play("assets\\flushing.wav", 1);
+				if (soundCheck == false)
+				{
+					this->sound->Play("assets\\flushing.wav", 1);
 
-				//playSE8.Play(1);
-				//playSE8.SetVolume(0.5f);
-				//playSE8.SetLoopCount(1);
+				}
+				soundCheck = true;
+
 			}
 			else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9) 
 			{
@@ -697,10 +701,12 @@ void Level8::Update()
 				std::cout << "clear" << std::endl;
 				connectMove8 = 0;
 
-				this->sound->Play("assets\\flushing.wav", 1);
-				//playSE8.Play(1);
-				//playSE8.SetVolume(0.5f);
-				//playSE8.SetLoopCount(1);
+				if (soundCheck2 == false)
+				{
+					this->sound->Play("assets\\flushing.wav", 1);
+
+				}
+				soundCheck2 = true;
 
 				poopooCheck = false;
 

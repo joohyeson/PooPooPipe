@@ -199,4 +199,6 @@ private:
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
 
+	bool soundCheck = false;
+	bool soundCheck2 = false;
 };
