@@ -29,9 +29,11 @@ public:
 		puzzleLeft = nullptr;
 		puzzleRight = nullptr;
 		spacePress = nullptr;
+		mouse = nullptr;
 		key = 0;
 		levelCheck = 0;
 		spaceCheck = 0;
+		win = nullptr;
 	}
 	GameLevels GetCurrLevel() override
 	{
@@ -43,7 +45,8 @@ public:
 
 private:
 	Object* background;
-	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight;
+	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight, *mouse;
+
 	Object* spacePress;
 	Input mInput;
 	bool movable = false;
@@ -55,7 +58,19 @@ private:
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
 
+	GLuint texureIdLine1;
+	GLuint texureIdCurve1;
+	GLuint texureIdBlack1;
+	GLuint textureBackground1;
+	GLuint textureSpace1;
+	GLuint textureMouse;
+	Object* win;
+	GLuint textureWin;
+
 	bool levelCheck;
 	bool spaceCheck;
+
+	double lastTime = 0;
+	double firstTime = 0;
 
 };

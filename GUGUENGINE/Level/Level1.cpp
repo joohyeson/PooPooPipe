@@ -15,20 +15,12 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-GLuint texureIdLine1;
-GLuint texureIdCurve1;
-GLuint texureIdBlack1;
-GLuint textureBackground1;
-GLuint textureSpace1;
-
-
-//Sound se;
-
 void Level1::Init()
 {
 	levelCheck = false;
 	spaceCheck = false;
 	background = OBJECT_FACTORY->CreateEmptyObject();
+	firstTime = glfwGetTime();
 
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -43,14 +35,15 @@ void Level1::Init()
 	puzzleLeft = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleRight = OBJECT_FACTORY->CreateEmptyObject();
 	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	mouse = OBJECT_FACTORY->CreateEmptyObject();
+	win = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine1 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack1 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve1 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	textureSpace1 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
-
-	//se.Init();
-	//se.LoadMusic("assets\\coin.mp3");
+	textureMouse = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 
 	mShader2.BuildTextureShader();
 
@@ -82,6 +75,18 @@ void Level1::Init()
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 
+	mouse->AddComponent(new Mesh());
+	mouse->mesh->setTransform({ 500.f, 200.f });
+	mouse->mesh->SetMeshType(MESHTYPE::rectangle);
+	mouse->Init();
+	mouse->mesh->InitializeTextureMesh(400.f, 400.f);
+
+	win->AddComponent(new Mesh());
+	win->mesh->setTransform({ -2000.0f, -2000.0f });
+	win->mesh->SetMeshType(MESHTYPE::rectangle);
+	win->Init();
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
@@ -89,7 +94,8 @@ void Level1::Update()
 {
 	cursor = mInput.Cursor;
 
-	//se.Update();
+	lastTime = glfwGetTime();
+
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -134,9 +140,10 @@ void Level1::Update()
 
 	if(spaceCheck == true)
 	{
-		if (mInput.IsPressed(KEY::SPACE) == true && levelCheck == true)
+		win->mesh->setTransform({ 0,0 });
+
+		if (lastTime - firstTime > 2)
 		{
-			mInput.setInput(KEY::SPACE);
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST2);
 		}
 	}
@@ -149,6 +156,8 @@ void Level1::Update()
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace1);
 
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
+	mouse->mesh->Update(mShader2.GetShaderHandler(), textureMouse);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

@@ -17,60 +17,7 @@
 #include "Level2.h"
 #include "../GUGUENGINE/Sound.h"
 
-int check2 = 0;
-Vector2<float> cursor2;
-
-int moveCheck2 = 0;
-int connectCheck2 = 0;
-float degree = 0;
-int rightCheck2 = 0;
-int checkToPipe = 0;
-
-GLuint texureIdLine2;
-GLuint texureIdCurve2;
-GLuint texureIdBlack2;
-GLuint textureBackground2;
-GLuint textureSpace2;
-
 Sound se2;
-
-
-void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
-{
-	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS && checkToPipe == 1)
-	{
-		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
-		checkToPipe = 0;
-	}
-
-	//if (key == GLFW_KEY_ESCAPE)
-	//{
-	//		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
-
-	//}
-}
-
-void level2cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor2 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-
-void  level2mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		moveCheck2 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-
-	if (button == GLFW_MOUSE_BUTTON_RIGHT && action == GLFW_PRESS)
-	{
-		rightCheck2 = 1;
-		std::cout << "rightCheck2: " << rightCheck2 << std::endl;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
 
 void Level2::Init()
 {
@@ -78,6 +25,13 @@ void Level2::Init()
 
 	background->AddComponent(new Mesh());
 	background->Init();
+
+	degree = 0;
+	checkToPipe = 0;
+	spaceCheck = false;
+	click = 0;
+
+	firstTime = glfwGetTime();
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
@@ -89,11 +43,17 @@ void Level2::Init()
 	puzzleUp = OBJECT_FACTORY->CreateEmptyObject();
 	puzzleDown = OBJECT_FACTORY->CreateEmptyObject();
 	spacePress = OBJECT_FACTORY->CreateEmptyObject();
+	mouse = OBJECT_FACTORY->CreateEmptyObject();
+	playbutton = OBJECT_FACTORY->CreateEmptyObject();
+	win = OBJECT_FACTORY->CreateEmptyObject();
 
 	texureIdLine2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack2 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	textureSpace2 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
+	textureMouse = TEXTURE->CreateTexture("assets\\mini.png", 0); //mouse picture
+	texturePlay = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
@@ -103,11 +63,11 @@ void Level2::Init()
 
 	movePuzzle->AddComponent(new Mesh());
 	movePuzzle->AddComponent(new PuzzleComponent());
-	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
-	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle->mesh->SetMeshType(MESHTYPE::hexagon);
 	movePuzzle->Init();
 	movePuzzle->mesh->setTransform({ 160.0f, 280.0f });
+	movePuzzle->mesh->setRotation(DegreeToRadian(60.f));
+	movePuzzle->pipe->SetDirection(false, false, true, false, false, true);
+	movePuzzle->mesh->SetMeshType(MESHTYPE::hexagon);
 	movePuzzle->mesh->InitializeTextureMesh();
 
 	blackPuzzle->AddComponent(new Mesh());
@@ -119,7 +79,7 @@ void Level2::Init()
 	puzzleUp->AddComponent(new Mesh());
 	puzzleUp->AddComponent(new PuzzleComponent());
 	puzzleUp->Init();
-	puzzleUp->mesh->setTransform({ -72.f - 10.f, 238.8f + 40.f });
+	puzzleUp->mesh->setTransform({ -85.f, 228.8f + 40.f });
 	puzzleUp->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleUp->pipe->SetDirection(true, false, false, true, false, false);
 	puzzleUp->mesh->SetMeshType(MESHTYPE::hexagon);
@@ -128,7 +88,7 @@ void Level2::Init()
 	puzzleDown->AddComponent(new Mesh());
 	puzzleDown->AddComponent(new PuzzleComponent());
 	puzzleDown->Init();
-	puzzleDown->mesh->setTransform({ 72.f + 10.f, 4.f - 40.f });
+	puzzleDown->mesh->setTransform({ 72.f + 10.f, 10.f - 40.f });
 	puzzleDown->mesh->setRotation(DegreeToRadian(180.f));
 	puzzleDown->pipe->SetDirection(true, false, true, false, false, false);
 	puzzleDown->mesh->SetMeshType(MESHTYPE::hexagon);
@@ -140,80 +100,120 @@ void Level2::Init()
 	spacePress->Init();
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 
-	glfwSetKeyCallback(APPLICATION->getMyWindow(), level2keyCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), level2cursorPositionCallback);
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), level2mouseButtonCallback);
+	mouse->AddComponent(new Mesh());
+	mouse->mesh->setTransform({ 500.f, 200.f });
+	mouse->mesh->SetMeshType(MESHTYPE::rectangle);
+	mouse->Init();
+	mouse->mesh->InitializeTextureMesh(400.f, 400.f);
+
+	playbutton->AddComponent(new Mesh());
+	playbutton->AddComponent(new PuzzleComponent());
+	playbutton->mesh->setTransform({ -2000, -2000.f });
+	playbutton->Init(); 
+	playbutton->mesh->SetMeshType(MESHTYPE::hexagon);
+	playbutton->mesh->InitializeTextureMesh(400.f,400.f);
+
+	win->AddComponent(new Mesh());
+	win->mesh->setTransform({ -2000.0f, -2000.0f });
+	win->mesh->SetMeshType(MESHTYPE::rectangle);
+	win->Init();
+	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level2::Update()
 {
-	if (check2 < 1)
+	cursor = mInput.Cursor;
+	lastTime = glfwGetTime();
+
+	
+	if (mInput.IsPressed(KEY::F) == true)
 	{
-		check2++;
-		std::cout << "HELLO" << std::endl;
+		APPLICATION->SetFullScreen();
+		mInput.setInput(KEY::F);
 	}
 
 	se2.Update();
 
-	getOrigin.x = movePuzzle->mesh->GetTransform().x;
-	getOrigin.y = movePuzzle->mesh->GetTransform().y;
 
-	getOrigin2.x = blackPuzzle->mesh->GetTransform().x;
-	getOrigin2.y = blackPuzzle->mesh->GetTransform().y;
-	float r = static_cast<float>(sqrt(5) / 10);
-
-	if (cursor2.x <= (getOrigin.x + (r / 2) * 400) &&
-		cursor2.x >= (getOrigin.x - (r / 2) * 400) &&
-		cursor2.y <= (getOrigin.y + r * 400) &&
-		cursor2.y >= (getOrigin.y - r * 400))
+	if (movePuzzle->collision->Point2HexagonCollision({ cursor.x,cursor.y }, movePuzzle->mesh) == true)
 	{
-		if (moveCheck2 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT) == true )
 		{
-			movePuzzle->mesh->setTransform({ cursor2.x, cursor2.y });
+			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
 		}
-		if (rightCheck2 != 0)
+
+		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
-			movePuzzle->pipe->Update();
-
-			degree += static_cast<float>(DegreeToRadian(60.f));
-			movePuzzle->mesh->setRotation(degree);
-			rightCheck2 = 0;
-
-			if ((movePuzzle->pipe->GetDirValue(SE) == puzzleDown->pipe->GetDirValue(NW)) && (movePuzzle->pipe->GetDirValue(NW) == puzzleUp->pipe->GetDirValue(SE)))
+			rot = true;
+		}
+		if (rot == true)
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
-				std::cout << "pipe connect\n";
-				checkToPipe = 1;
-			}
-			else
-			{
-				std::cout << "Not connect\n";
-				checkToPipe = 0;
-			}
+				movePuzzle->pipe->Update();
 
-			//se2.Play(1);
-			//se2.SetVolume(0.5f);
-			//se2.SetLoopCount(1);
+				degree += static_cast<float>(DegreeToRadian(60.f) );
+				movePuzzle->mesh->setRotation(degree + DegreeToRadian(60.f));
+				this->sound->Play("assets\\coin.mp3", 1);
 
+				rot = false;
+			}
 		}
 	}
-	else
+
+	if (mInput.IsPressed(KEY::LEFT) == false)
 	{
-		moveCheck2 = 0;
+		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+		{
+			{
+				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
+				{
+					movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
+				}
+			}
+		}
 	}
 
-	if (getOrigin.x <= (getOrigin2.x + (r / 2) * 400) &&
-		getOrigin.x >= (getOrigin2.x - (r / 2) * 400) &&
-		getOrigin.y <= (getOrigin2.y + r * 400) &&
-		getOrigin.y >= (getOrigin2.y - r * 400))
+	if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh) == true)
 	{
-		if (moveCheck2 % 2 == 0)
+		if (movePuzzle->pipe->GetDirValue(SE) && movePuzzle->pipe->GetDirValue(NW))
 		{
-			movePuzzle->mesh->setTransform({ getOrigin2.x,getOrigin2.y });
-			connectCheck2 = 1;
+			checkToPipe = 1;
 		}
 		else
 		{
-			connectCheck2 = 0;
+			checkToPipe = 0;
+		}
+	}
+
+	if (checkToPipe)
+	{
+		playbutton->mesh->setTransform({ 500.f,300.f });
+
+		if (playbutton->collision->Point2HexagonCollision({ cursor.x,cursor.y }, playbutton->mesh) == true)
+		{
+			if (mInput.IsPressed(KEY::LEFT) == true && !click)
+			{
+				mInput.setInput(KEY::LEFT);
+				spaceCheck = true;
+				click = true;
+			}
+			else
+			{
+				click = false;
+			}
+		}
+	}
+
+	if (spaceCheck)
+	{
+		win->mesh->setTransform({ 0,0 });
+
+		if (lastTime - firstTime > 2)
+		{
+			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		}
 	}
 
@@ -226,6 +226,10 @@ void Level2::Update()
 	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace2);
 
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
+	mouse->mesh->Update(mShader2.GetShaderHandler(), textureMouse);
+	playbutton->mesh->Update(mShader2.GetShaderHandler(), texturePlay);
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
