@@ -719,6 +719,7 @@ void Level13::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else

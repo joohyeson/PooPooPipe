@@ -46,6 +46,7 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 	if (key == GLFW_KEY_ESCAPE)
 	{
 		glfwTerminate();
+		ENGINE->Quit();
 	}
 }
 

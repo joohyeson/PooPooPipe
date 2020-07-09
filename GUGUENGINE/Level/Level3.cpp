@@ -659,6 +659,7 @@ void Level3::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else
@@ -766,6 +767,7 @@ void Level3::Update()
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
 		glfwTerminate();
+		ENGINE->Quit();
 	}
 
 	

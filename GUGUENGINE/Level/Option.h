@@ -13,6 +13,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/Sound.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 class Sound;
 
@@ -29,6 +30,11 @@ public:
 		bar0 = nullptr;
 		goToMain = nullptr;
 		key = 0;
+		fullScreen = nullptr;
+		fullScreenFalse = nullptr;
+		fullScreenTrue = nullptr;
+		quitButton = nullptr;
+		quitButton_pressed = nullptr;
 	}
 
 	void Init() override;
@@ -37,9 +43,26 @@ public:
 
 private:
 	Object* background, *option, *music, *arrowRight, *arrowLeft, *bar0;
-	Object* goToMain;
+	Object* goToMain, *fullScreen, *fullScreenFalse, *fullScreenTrue;
+	Object* quitButton, * quitButton_pressed;
 	int key;
 	Mesh mMesh;
 	Shader mShader;
+
+	GLuint textureBackgroundOption;
+	GLuint textureOption;
+	GLuint textureMusic;
+
+	GLuint textureArrowLeft;
+	GLuint textureArrowRight;
+
+	GLuint textureBar0;
+
+	GLuint textureGoToMain;
+	GLuint textureQuit, textureQuitPressed;
+	GLuint textureFullScreen, textureCheckTrue, textureCheckFalse;
+	Vector2<float> cursor;
+	Input mInput;
+
 
 };
