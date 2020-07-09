@@ -30,6 +30,8 @@ public:
 		test = nullptr;
 		test2 = nullptr;
 		key = 0;
+
+
 	}
 
 	void Init() override;
@@ -50,6 +52,8 @@ private:
 	Object* test;
 	Object* test2;
 
+
+	
 	bool UI[3] = { false };
 	
 	GLuint textureId00;	//game title
