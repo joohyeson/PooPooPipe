@@ -53,7 +53,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = GameLevels::LV_TEST5;
+	current = GameLevels::DIGIPENLOGO;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());

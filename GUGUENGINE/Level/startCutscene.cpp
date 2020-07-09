@@ -4,11 +4,15 @@
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
-
+#include "../GUGUENGINE/Sound.h"
 void startCut::Init()
 {
 	mShader.BuildTextureShader();
-
+	for(int i = 0; i < 3; i++)
+	{
+		sound_[i] = false;
+	}
+	
 	startCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
 	texturestartCut1 = TEXTURE->CreateTexture("assets\\imagest1.png", 0);
 	startCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
@@ -69,7 +73,13 @@ void startCut::Update()
 			input[0] = false;
 		}
 	}
-
+	
+	if(sound_[0] == false)
+	{
+		sound_[0] = true;
+		this->sound->Play("assets\\footprint.ogg", 1);
+	}
+	
 
 	if (next->collision->Point2BoxCollision({ cursor__.x,cursor__.y }, next->mesh) == true)
 	{
@@ -82,11 +92,22 @@ void startCut::Update()
 				if(cut[0] == false && cut[1] == false)
 				{
 					cut[0] = true;
+					if(sound_[1] == false)
+					{
+						sound_[1] = true;
+						this->sound->Play("assets\\flushing.wav", 1);
+					}
 					startCut2->mesh->setTransform({ 0.f, 0.f });
 				}
 				else if(cut[0] == true && cut[1] == false)
 				{
 					cut[1] = true;
+					if(sound_[2] == false)
+					{
+						sound_[2] = true;
+						this->sound->Play("assets\\heaven.wav", 1);
+
+					}
 					startCut3->mesh->setTransform({ 0.f, 0.f });
 				}
 				else if(cut[0] == true && cut[1] == true)

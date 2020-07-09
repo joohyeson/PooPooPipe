@@ -18,7 +18,7 @@ void Sound::Init()
 
 void Sound::Update()
 {
-	
+
 	result = system->update();
 
 	masterChannel->setVolume(m_volume);
@@ -27,7 +27,7 @@ void Sound::Update()
 	//{
 	//	m_sounds[i]->channel->setVolume(m_volume);
 	//}
-	
+
 	/*
 	if (result != FMOD_OK)
 	{
@@ -46,7 +46,7 @@ void Sound::Update()
 	*/
 }
 
-Sound::Sound() 
+Sound::Sound()
 {
 	result = System_Create(&system);
 	std::cout << "Initialized sound" << std::endl;
@@ -62,6 +62,9 @@ Sound::Sound()
 	system->getMasterChannelGroup(&masterChannel);
 
 	m_volume = 0.5f;
+
+	soundBarSize = { 150.f, 30.f };
+	soundBarPosition = { 15.f, 240.f };
 
 	Load();
 }
@@ -103,7 +106,10 @@ void Sound::Load()
 	LoadMusic("assets\\UI.wav");
 	LoadMusic("assets\\fart.mp3");
 	LoadMusic("assets\\logo.wav");
-	LoadMusic("assets\\footprint.wav");
+	LoadMusic("assets\\footprint.ogg");
+	LoadMusic("assets\\siren.wav");
+	LoadMusic("assets\\heaven.wav");
+
 }
 
 bool Sound::IsPlaying()
@@ -144,7 +150,7 @@ void Sound::Play(std::string source, int loop)
 		result = r_sound->setMode(FMOD_LOOP_NORMAL);
 		result = r_sound->setLoopCount(-1);
 	}
-	
+
 
 	if (m_sounds[id]->source.find("BGM") == m_sounds[id]->IsPlaying == false)
 	{
@@ -185,7 +191,7 @@ void Sound::Stop()
 
 void Sound::Rewind()
 {
-	
+
 }
 
 

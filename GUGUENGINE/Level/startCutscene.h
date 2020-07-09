@@ -5,7 +5,7 @@
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/glfwInput.h"
-
+class sound;
 class startCut : public LevelManager
 {
 public:
@@ -51,4 +51,5 @@ private:
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
 	float dt = 0.f;
+	bool sound_[3] = { false };
 };

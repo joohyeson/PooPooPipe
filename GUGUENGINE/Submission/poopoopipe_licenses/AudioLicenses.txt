@@ -1,0 +1,9 @@
+1) Background Music
+	a) Hawaiian Weekend - Igor Khainsk (Main theme of the game)
+	   Source ) https://www.youtube.com/watch?v=7O0WVaaB_x8 
+	   License ) Royalty free music for YouTube, Facebook and Instagram videos and etc, giving the appropriate credit. 
+
+2) Sound Effects
+	a) Coin ( Used for sound effect of rotating the puzzle)
+	   Source) https://www.pacdv.com/sounds/mechanical_sounds.html
+	   License) royalty free sounds for filmmakers, sound designers, music producers, film students, and multimedia developers

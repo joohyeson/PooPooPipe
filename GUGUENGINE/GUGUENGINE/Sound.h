@@ -10,6 +10,7 @@
 #include <vector>
 #include "fmod.hpp"
 #include "System.h"
+#include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
 class Sound : public System
 {
@@ -22,7 +23,7 @@ public:
 
 	//void Free();
 	void LoadMusic(const char* filePath);
-	
+
 	void Load();
 
 	bool IsPlaying();
@@ -34,12 +35,14 @@ public:
 	void Rewind();
 
 
-	
 
 	void SetVolume(float volume = 0.3f);
 	float GetVolume();
 
 	void SetLoopCount(int loopCount);
+
+	Vector2<float> soundBarSize;
+	Vector2<float> soundBarPosition;
 
 private:
 
@@ -62,6 +65,8 @@ private:
 
 	bool isPlaying = false;
 	float m_volume;
+
+
 
 	FMOD_RESULT result;
 };
