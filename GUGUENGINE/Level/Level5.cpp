@@ -47,7 +47,7 @@ void Level5::Init()
 
 	quitCheck = false;
 	realQuit = false;
-	
+
 	chekNext5 = 0;
 
 	conecTcheck5_1 = false;
@@ -71,12 +71,12 @@ void Level5::Init()
 	blCheck7_3 = false;
 
 	movePuzzleCheck5 = true;
-	
+
 	Yellow = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	Yellow->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureYellow = TEXTURE->CreateTexture("assets\\yellow.png", 0);
 	yellowS = false;
-	
+
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
@@ -85,7 +85,7 @@ void Level5::Init()
 	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
 	mini->mesh->InitializeTextureMesh(500.f, 500.f);
 
-	
+
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -122,7 +122,7 @@ void Level5::Init()
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
-	
+
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
 	optionUI->Init();
@@ -185,7 +185,7 @@ void Level5::Init()
 
 	texureIdbutton5 = TEXTURE->CreateTexture("assets\\character.png", 0);
 	texureIdclear5 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-	
+
 	/*se5.Init();
 	se5.LoadSE("assets\\coin.mp3");*/
 
@@ -197,7 +197,7 @@ void Level5::Init()
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 	yShader.BuildTextureShader();
-	
+
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f - 250.f, 280.f });
 	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 
@@ -260,7 +260,7 @@ void Level5::Init()
 	numberTexture = TEXTURE->CreateTexture("assets\\05.png", 0);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-	
+
 	mPooPoo.Init();
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, startPuzzle->mesh->GetTransform());
@@ -282,9 +282,9 @@ void Level5::Init()
 void Level5::Update()
 {
 	STATE_MANAGER->setCurrentLV(5);
-	if(yellowS == false)
+	if (yellowS == false)
 	{
-		if(siren == false)
+		if (siren == false)
 		{
 			siren = true;
 			this->sound->Play("assets\\siren.wav", 1);
@@ -295,12 +295,12 @@ void Level5::Update()
 	}
 	ylast = glfwGetTime();
 
-	if(ylast - yfirst >= 3.f)
+	if (ylast - yfirst >= 3.f)
 	{
 		siren = false;
-		Yellow->mesh->setTransform({ -2000.f, -2000.f });
+		Yellow->mesh->setTransform({ -1000.f, -1000.f });
 	}
-	
+
 	cursor5 = mInput.Cursor;
 	lastTime = glfwGetTime();
 
@@ -392,7 +392,7 @@ void Level5::Update()
 	{
 		if (blCheck6_2)
 		{
-			if ((movePuzzle->pipe->GetDirValue(NE) == 1 &&startPuzzle->pipe->GetDirValue(SW) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && movePuzzle2->pipe->GetDirValue(W) == 1))
+			if ((movePuzzle->pipe->GetDirValue(NE) == startPuzzle->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(E) == movePuzzle2->pipe->GetDirValue(W)))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -405,7 +405,7 @@ void Level5::Update()
 		}
 		else if (blCheck7_2)
 		{
-			if ((movePuzzle->pipe->GetDirValue(NE) == 1 && startPuzzle->pipe->GetDirValue(SW) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && movePuzzle3->pipe->GetDirValue(W) == 1))
+			if ((movePuzzle->pipe->GetDirValue(NE) == startPuzzle->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(E) == movePuzzle3->pipe->GetDirValue(W)))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -421,7 +421,7 @@ void Level5::Update()
 	{
 		if (blCheck6)
 		{
-			if ((movePuzzle->pipe->GetDirValue(W) == 1 && movePuzzle2->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
+			if ((movePuzzle->pipe->GetDirValue(W) == movePuzzle2->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -434,7 +434,7 @@ void Level5::Update()
 		}
 		else if (blCheck7)
 		{
-			if ((movePuzzle->pipe->GetDirValue(W) == 1 && movePuzzle3->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
+			if ((movePuzzle->pipe->GetDirValue(W) == movePuzzle3->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -448,7 +448,7 @@ void Level5::Update()
 	}
 	if (blCheck5_3)
 	{
-		if ((movePuzzle->pipe->GetDirValue(E) == 1 && puzzle9->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(SW) == 1 && puzzle12->pipe->GetDirValue(NE) == 1))
+		if ((movePuzzle->pipe->GetDirValue(E) && puzzle9->pipe->GetDirValue(W)) == (movePuzzle->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
 		{
 			conecTcheck5_1 = true;
 			//std::cout << "pipe connect\n";
@@ -551,7 +551,7 @@ void Level5::Update()
 			}
 		}
 	}
-	
+
 	if (blCheck6_3)
 	{
 		if ((movePuzzle2->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
@@ -791,8 +791,8 @@ void Level5::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 
-			poopooCheck = true;		
-		}		
+			poopooCheck = true;
+		}
 	}
 	else
 	{
@@ -802,13 +802,11 @@ void Level5::Update()
 
 		connectMove5 = 0;
 	}
-	
+
 	if (poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
-
-
 			if (movePuzzleCheck5)
 			{
 				puzzle7->pipe->Update();
@@ -822,7 +820,7 @@ void Level5::Update()
 
 				movePuzzleCheck5 = false;
 			}
-			
+
 			if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -856,7 +854,7 @@ void Level5::Update()
 			}
 		}
 	}
-	
+
 	if (fail->collision->Point2BoxCollision({ cursor5.x,cursor5.y }, fail->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
@@ -866,7 +864,7 @@ void Level5::Update()
 			STATE_MANAGER->ReloadState();
 		}
 	}
-	
+
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
 	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
@@ -901,9 +899,9 @@ void Level5::Update()
 		blCheck7_3 = false;
 	}
 
-	if(skip == true)
+	if (skip == true)
 	{
-		if(lastTime - firstTime > 2)
+		if (lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 		}
@@ -1026,7 +1024,7 @@ void Level5::Update()
 		ENGINE->Quit();
 	}
 	//se5.Update();
-	
+
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground5);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine5);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
@@ -1078,10 +1076,10 @@ void Level5::Update()
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
-		
+
 	}
 
-	if ( mInput.IsPressed(KEY::A) == true)
+	if (mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
@@ -1098,7 +1096,7 @@ void Level5::Update()
 	Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
 	No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
 
-	
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
