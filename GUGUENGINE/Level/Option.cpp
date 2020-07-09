@@ -16,6 +16,9 @@
 
 void LevelOption::Init()
 {
+	soundBarSize = { 150.f, 30.f };
+	soundBarPosition = {15.f, 240.f };
+
 	background = OBJECT_FACTORY->CreateEmptyObject();
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -28,7 +31,7 @@ void LevelOption::Init()
 	option = OBJECT_FACTORY->CreateEmptyObject();
 	option->AddComponent(new Mesh());
 	option->Init();
-	
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -52,10 +55,10 @@ void LevelOption::Init()
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
 	textureIdNo_p = TEXTURE->CreateTexture("assets\\no.png", 0);
 	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
-	
+
 	quitCheck = false;
 	realQuit = false;
-	
+
 	option->mesh->setTransform({ 0.0f,350.f });
 	option->mesh->SetMeshType(MESHTYPE::rectangle);
 	option->mesh->InitializeTextureMesh(400.f, 100.f);
@@ -71,7 +74,7 @@ void LevelOption::Init()
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	textureGoToMain = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
-	
+
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
 	music->Init();
@@ -90,7 +93,7 @@ void LevelOption::Init()
 	arrowRight->mesh->InitializeTextureMesh(80.f, 80.f);
 	textureArrowRight = TEXTURE->CreateTexture("assets\\arrow_right.png", 0);
 
-	arrowLeft= OBJECT_FACTORY->CreateEmptyObject();
+	arrowLeft = OBJECT_FACTORY->CreateEmptyObject();
 	arrowLeft->AddComponent(new Mesh());
 	arrowLeft->Init();
 	arrowLeft->mesh->setTransform({ -160.f,240.f });
@@ -105,6 +108,14 @@ void LevelOption::Init()
 	bar0->mesh->SetMeshType(MESHTYPE::rectangle);
 	bar0->mesh->InitializeTextureMesh(400.f, 80.f);
 	textureBar0 = TEXTURE->CreateTexture("assets\\bar0.png", 0);
+
+	soundBar = OBJECT_FACTORY->CreateEmptyObject();
+	soundBar->AddComponent(new Mesh());
+	soundBar->Init();
+	soundBar->mesh->setTransform({ 15.f, 240.f });
+	soundBar->mesh->SetMeshType(MESHTYPE::rectangle);
+	soundBar->mesh->InitializeTextureMesh(150.f, 30.f);
+	textureSoundBar = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 
 	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreen->AddComponent(new Mesh());
@@ -142,10 +153,10 @@ void LevelOption::Init()
 	quitButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	quitButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
-	textureCheckTrue= TEXTURE->CreateTexture("assets\\checkO.png", 0);
+	textureCheckTrue = TEXTURE->CreateTexture("assets\\checkO.png", 0);
 	textureCheckFalse = TEXTURE->CreateTexture("assets\\checkX.png", 0);
 	textureFullScreen = TEXTURE->CreateTexture("assets\\fullscreen.png", 0);
-	
+
 	textureQuit = TEXTURE->CreateTexture("assets\\quit.png", 0);
 	textureQuitPressed = TEXTURE->CreateTexture("assets\\quit2.png", 0);
 
@@ -179,7 +190,7 @@ void LevelOption::Update()
 			{
 				fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
 			}
-			
+
 			APPLICATION->SetFullScreen();
 		}
 	}
@@ -197,12 +208,28 @@ void LevelOption::Update()
 		{
 			std::cout << "Up Key" << std::endl;
 			float volume = this->sound->GetVolume();
+
 			if (volume < 1.0f)
 			{
 				volume += 0.1f;
 				this->sound->SetVolume(volume);
+
 				mInput.setInput(KEY::UP);
 				std::cout << volume << std::endl;
+			}
+
+			if (volume < 1.f)
+			{
+				soundBar->mesh->setTransform({ soundBarPosition.x += 15.f, soundBarPosition.y });
+				soundBar->mesh->InitializeTextureMesh(soundBarSize.x += 30.f, soundBarSize.y);
+			}
+			else if (volume >= 1.f)
+			{
+				soundBarSize = { 300.f, 30.f };
+				soundBarPosition = { 95.f, 240.f };
+
+				soundBar->mesh->setTransform({ soundBarPosition.x, soundBarPosition .y });
+				soundBar->mesh->InitializeTextureMesh(soundBarSize.x, soundBarSize.y);
 			}
 		}
 	}
@@ -213,15 +240,24 @@ void LevelOption::Update()
 		{
 			std::cout << "Down Key" << std::endl;
 			float volume = this->sound->GetVolume();
+
 			if (volume > 0.0f)
 			{
 				volume -= 0.1f;
 				if (volume <= 0.f)
 				{
 					volume = 0.f;
+
 				}
+
 				this->sound->SetVolume(volume);
 				mInput.setInput(KEY::DOWN);
+
+				if (volume > 0)
+				{
+					soundBar->mesh->setTransform({ soundBarPosition.x -= 15.f, soundBarPosition.y });
+					soundBar->mesh->InitializeTextureMesh(soundBarSize.x -= 30.f, soundBarSize.y);
+				}
 
 				std::cout << volume << std::endl;
 			}
@@ -234,7 +270,7 @@ void LevelOption::Update()
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			mInput.setInput(KEY::LEFT);
-			if(quitCheck == false)
+			if (quitCheck == false)
 			{
 				//SOUND->Pause();
 				quitCheck = true;
@@ -261,9 +297,9 @@ void LevelOption::Update()
 	}
 	else
 	{
-		Yes_p->mesh->setTransform({-1000.f, -1000.f});
+		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
-	
+
 	if (No->collision->Point2BoxCollision(cursor, No->mesh))
 	{
 		No_p->mesh->setTransform(No->mesh->GetTransform());
@@ -278,8 +314,8 @@ void LevelOption::Update()
 	{
 		No_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
-	
-	if(quitCheck == true && realQuit == true)
+
+	if (quitCheck == true && realQuit == true)
 	{
 		glfwTerminate();
 		ENGINE->Quit();
@@ -295,12 +331,12 @@ void LevelOption::Update()
 	arrowLeft->mesh->Update(mShader.GetShaderHandler(), textureArrowLeft);
 
 	bar0->mesh->Update(mShader.GetShaderHandler(), textureBar0);
+	soundBar->mesh->Update(mShader.GetShaderHandler(), textureSoundBar);
 
 	fullScreen->mesh->Update(mShader.GetShaderHandler(), textureFullScreen);
-	
+
 	fullScreenFalse->mesh->Update(mShader.GetShaderHandler(), textureCheckFalse);
 	fullScreenTrue->mesh->Update(mShader.GetShaderHandler(), textureCheckTrue);
-
 
 	quitButton->mesh->Update(mShader.GetShaderHandler(), textureQuit);
 	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), textureQuitPressed);
@@ -311,11 +347,12 @@ void LevelOption::Update()
 	No->mesh->Update(mShader.GetShaderHandler(), textureIdNo);
 	Yes_p->mesh->Update(mShader.GetShaderHandler(), textureIdYes_p);
 	No_p->mesh->Update(mShader.GetShaderHandler(), textureIdNo_p);
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
-	
+
 	glfwPollEvents();
 }
 

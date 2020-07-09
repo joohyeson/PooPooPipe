@@ -59,6 +59,10 @@ public:
 
 		Yes_p = nullptr;
 		No_p = nullptr;
+		soundBar = nullptr;
+		textureSoundBar = 0;
+		soundBarSize = { 400.f, 70.f };
+		soundBarPosition = { 95.f, 240.f };
 	}
 
 	void Init() override;
@@ -70,30 +74,31 @@ public:
 		return GameLevels::OPTION;
 	}
 private:
-	Object* background, *option, *music, *arrowRight, *arrowLeft, *bar0;
-	Object* goToMain, *fullScreen, *fullScreenFalse, *fullScreenTrue;
+	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
+	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue;
 	Object* quitButton, * quitButton_pressed;
 	int key;
 	Mesh mMesh;
 	Shader mShader;
-	
+
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;
 	Object* No;
 	Object* Yes_p;
 	Object* No_p;
-	
+	Object* soundBar;
+
 	GLuint textureIdQuitAskBack;
 	GLuint textureIdQuitAsk;
 	GLuint textureIdYes;
 	GLuint textureIdNo;
 	GLuint textureIdYes_p;
 	GLuint textureIdNo_p;
-	
+
 	bool quitCheck = false;
 	bool realQuit = false;
-	
+
 	GLuint textureBackgroundOption;
 	GLuint textureOption;
 	GLuint textureMusic;
@@ -105,11 +110,12 @@ private:
 
 	GLuint textureGoToMain;
 	GLuint textureQuit, textureQuitPressed;
-	GLuint textureFullScreen, textureCheckTrue, textureCheckFalse;
+	GLuint textureFullScreen, textureCheckTrue, textureCheckFalse, textureSoundBar;
 
 	Vector2<float> cursor;
 
 	Input mInput;
 
-
+	Vector2<float> soundBarSize;
+	Vector2<float> soundBarPosition;
 };
