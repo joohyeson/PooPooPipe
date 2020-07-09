@@ -60,8 +60,9 @@ private:
 	FMOD::ChannelGroup* backgroundSounds = nullptr;
 	FMOD::ChannelGroup* masterChannel = nullptr;
 
-
+	bool isPlaying = false;
 	float m_volume;
 
 	FMOD_RESULT result;
 };
+extern Sound* SOUND;
