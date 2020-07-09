@@ -42,11 +42,11 @@ void LevelOption::Init()
 	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
-	textureIdNo = TEXTURE->CreateTexture("assets\\no.png", 0);
+	textureIdNo = TEXTURE->CreateTexture("assets\\no_p.png", 0);
 	No->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
-	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes.png", 0);
+	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
 	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });

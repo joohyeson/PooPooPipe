@@ -65,6 +65,14 @@ public:
 		optionUI_p = nullptr;
 		restartUI_p = nullptr;
 
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
+
+		Yes_p = nullptr;
+		No_p = nullptr;
+		
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -74,6 +82,7 @@ public:
 		win = nullptr;
 
 		key = 0;
+		
 	}
 
 	void Init() override;
@@ -108,8 +117,22 @@ private:
 	Object* fail;
 	Object* win;
 
-	//Sound se3;
-	//Sound playSE3;
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
 
 	MovePooPoo mPooPoo;
 	Object* Levelsel, * Levelsel_pressed;
