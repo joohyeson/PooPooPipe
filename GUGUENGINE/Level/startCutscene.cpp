@@ -26,7 +26,7 @@ void startCut::Init()
 	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	skip->mesh->InitializeTextureMesh(173.f, 200.f);
 
-	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  -400.f });
+	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  -500.f });
 	texturestartNext = TEXTURE->CreateTexture("assets\\nextd.png", 0);
 	next->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	next->mesh->InitializeTextureMesh(173.f, 200.f);

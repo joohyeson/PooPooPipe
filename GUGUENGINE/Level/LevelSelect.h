@@ -90,6 +90,14 @@ private:
 	Object* Level8;
 	Object* Level8_pressed;
 	Object* Level8_lock;
+
+	Object* Level9;
+	Object* Level9_pressed;
+	Object* Level9_lock;
+
+	Object* Level10;
+	Object* Level10_pressed;
+	Object* Level10_lock;
 	
 	Input levelInput;
 
@@ -122,4 +130,10 @@ private:
 
 	GLuint texureIdLv8;
 	GLuint texureIdLv8_pressed;
+
+	GLuint texureIdLv9;
+	GLuint texureIdLv9_pressed;
+
+	GLuint texureIdLv10;
+	GLuint texureIdLv10_pressed;
 };
