@@ -32,7 +32,13 @@ public:
 		playbutton = nullptr;
 		key = 0;
 		win = nullptr;
-
+		pressPlay1 = nullptr;
+		pressPlay2 = nullptr;
+		playPressButton = nullptr;
+		texturePlayUIp = 0;
+		textureWin = 0;
+		texturePress1 = 0;
+		texturePress2 = 0;
 	}
 
 	void Init() override;
@@ -44,7 +50,7 @@ public:
 	}
 private:
 	Object* background;
-	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress, *mouse, * playbutton;
+	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress, *mouse, * playbutton, *pressPlay1, *pressPlay2, * playPressButton;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -61,6 +67,9 @@ private:
 
 	Object* win;
 	GLuint textureWin;
+	GLuint texturePress1;
+	GLuint texturePress2;
+	GLuint texturePlayUIp;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
