@@ -27,7 +27,7 @@ void Level1::Init()
 
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
@@ -85,7 +85,7 @@ void Level1::Init()
 	win->mesh->setTransform({ -2000.0f, -2000.0f });
 	win->mesh->SetMeshType(MESHTYPE::rectangle);
 	win->Init();
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }

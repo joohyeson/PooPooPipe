@@ -39,6 +39,7 @@ StateManager::StateManager()
 
 	currGameState = nullptr;
 	nextGameState = nullptr;
+	before = nullptr;
 	currentLV = 0;
 	state = State::START;
 	current = GameLevels::DIGIPENLOGO;

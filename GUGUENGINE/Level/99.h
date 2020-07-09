@@ -25,7 +25,7 @@ public:
 private:
 	Object* gugulogo;
 	Shader mShader;
-	float	 lastTime;
-	float firstTime;
+	double	 lastTime;
+	double firstTime;
 	bool check[2] = { false };
 };

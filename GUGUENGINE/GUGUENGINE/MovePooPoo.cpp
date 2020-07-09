@@ -3,7 +3,7 @@
 #include "Texture.h"
 #include "HexagonElements.h"
 
-static int PuzzleID = 0;
+static unsigned int PuzzleID = 0;
 static int OriginID = 0;
 
 MovePooPoo::MovePooPoo() :

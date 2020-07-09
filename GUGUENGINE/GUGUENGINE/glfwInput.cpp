@@ -3,7 +3,7 @@
 
 Input* INPUT = nullptr;
 
-	void key_callback(GLFWwindow* window, int key, int /*scancode*/, int action, int /*mods*/)
+	void key_callback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/)
 	{
 		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
 		{
@@ -79,7 +79,7 @@ Input* INPUT = nullptr;
 
 	}
 
-	void cursorPositionCallback(GLFWwindow* window, double xpos, double ypos)
+	void cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
 	{
 		INPUT->Cursor = { (static_cast<float>(xpos))/APPLICATION->framebufferWidth,  (static_cast<float>(-ypos)) / APPLICATION->framebufferHeight };
 		INPUT->Cursor.x *= APPLICATION->width;
@@ -97,7 +97,7 @@ Input* INPUT = nullptr;
 		INPUT->Cursor.x -= APPLICATION->width / 2;
 	}
 
-	void  mouseButtonCallback(GLFWwindow* window, int button, int action, int /*mods*/)
+	void  mouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
 	{
 		//Input* input = (Input*)glfwGetWindowUserPointer(window);
 		if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
@@ -119,7 +119,7 @@ Input* INPUT = nullptr;
 		}
 	}
 
-	void window_close_callback(GLFWwindow* window)
+	void window_close_callback(GLFWwindow* /*window*/)
 	{
 		glfwTerminate();
 		ENGINE->Quit();

@@ -45,7 +45,7 @@ void Level5::Init()
 	movePuzzleCheck5 = true;
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
@@ -87,7 +87,7 @@ void Level5::Init()
 	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -129,7 +129,7 @@ void Level5::Init()
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	texureIdLine5 = TEXTURE->CreateTexture("assets\\image0.png", 0);

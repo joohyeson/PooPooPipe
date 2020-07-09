@@ -37,12 +37,12 @@ void Level6::Init()
 	rotTime.setRotate(30);
 	rotrot = true;
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground6 = TEXTURE->CreateTexture("assets\\background1.png", 0);	
 
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -104,7 +104,7 @@ void Level6::Init()
 	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height );
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 
 	textureRestartUI6 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);

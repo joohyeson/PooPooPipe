@@ -73,8 +73,8 @@ public:
 		return GameLevels::LV_TEST5;
 	}
 private:
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS = false;
 	
 	Object* background;

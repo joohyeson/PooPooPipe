@@ -104,8 +104,8 @@ private:
 	double lastTime = 0;
 	double firstTime = 0;
 	bool skip = false;
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS[2] = { false };
 	bool UI[5] = { false };
 

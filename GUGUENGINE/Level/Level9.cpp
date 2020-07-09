@@ -45,12 +45,12 @@ void Level9::Init()
 	background->mesh->InitializeTextureMesh(1920, 1920.f);
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
 	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	texureIdLine9 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack9 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve9 = TEXTURE->CreateTexture("assets\\image2.png", 0);

@@ -17,7 +17,7 @@
 class Object;
 using ObjectID = unsigned;
 
-enum Type
+enum class Type
 {
 	Puzzle,
 	MovePuzzle,

@@ -47,7 +47,7 @@ private:
 	{
 		FMOD::Channel* channel = nullptr;
 		FMOD::Sound* sound = nullptr;
-		bool IsPlaying = false;
+		unsigned int IsPlaying = 0;
 
 		std::string source = "";
 	};

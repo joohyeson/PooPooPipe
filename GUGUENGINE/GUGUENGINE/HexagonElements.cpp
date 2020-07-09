@@ -102,8 +102,10 @@ void HexagonCoordinates::SetEveryEdgeCenterCoordinates()
 {
 	for (int i = 0; i < 6; i++)
 	{
-		DirAngle myAngle = static_cast<DirAngle>(i % 6);
-		DirAngle myNextAngle = static_cast<DirAngle>(i % 6);
+		DirAngle myAngle = static_cast<DirAngle>(0);
+		myAngle = static_cast<DirAngle>(i % 6);
+		DirAngle myNextAngle = static_cast<DirAngle>(0);
+		myNextAngle = static_cast<DirAngle>(i % 6);
 		Vector2<float> myEdgeCenter = { (GetEdgeCoordinates(myAngle).start.x + GetEdgeCoordinates(myAngle).end.x) / 2.f,
 		(GetEdgeCoordinates(myAngle).start.y + GetEdgeCoordinates(myAngle).end.y) / 2.f };
 		hexagonEdgeCenterCoordinates.push_back(myEdgeCenter);

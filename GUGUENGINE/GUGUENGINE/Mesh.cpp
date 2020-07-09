@@ -198,9 +198,9 @@ void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 		vertex.at(i) = { mA.x, mA.y, 1 };
 	}
 }
-void Mesh::SetOriginVertex(MESHTYPE meshType)
+void Mesh::SetOriginVertex(MESHTYPE meshType2)
 {
-    switch (meshType)
+    switch (meshType2)
     {
     case MESHTYPE::hexagon:
         originVertex = createHexagon();

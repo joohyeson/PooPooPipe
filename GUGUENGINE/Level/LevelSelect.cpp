@@ -18,7 +18,7 @@ void LevelSelect::Init()
 	currentLevel = STATE_MANAGER->GetCurrentLV();
 	std::cout << "come in LevelSelect" << std::endl;
 	backgroundLv = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	backgroundLv->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	backgroundLv->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackgroundLv = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	Level1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 200.f, 160.f });

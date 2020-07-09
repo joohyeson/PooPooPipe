@@ -34,6 +34,13 @@ public:
 		levelCheck = 0;
 		spaceCheck = 0;
 		win = nullptr;
+		texureIdLine1 = 0;
+		texureIdCurve1 = 0;
+		texureIdBlack1 = 0;
+		textureBackground1 = 0;
+		textureSpace1 = 0;
+		textureMouse = 0;
+		textureWin = 0;
 	}
 	GameLevels GetCurrLevel() override
 	{

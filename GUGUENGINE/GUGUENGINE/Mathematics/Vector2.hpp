@@ -105,8 +105,8 @@ template <typename T>
 	//=============================================Constructor============================================
 	template <typename T>
 	Vector2<T>::Vector2() {
-		x = 0.0f;
-		y = 0.0f;
+		x = 0;
+		y = 0;
 	}
 	template <typename T>
 	Vector2<T>::Vector2(const T& p_XValue, const T& p_YValue) {
