@@ -273,7 +273,7 @@ void Level5::Init()
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle12->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle11->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
-
+	siren = false;
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
 
@@ -284,6 +284,11 @@ void Level5::Update()
 	STATE_MANAGER->setCurrentLV(5);
 	if(yellowS == false)
 	{
+		if(siren == false)
+		{
+			siren = true;
+			this->sound->Play("assets\\siren.wav", 1);
+		}
 		yellowS = true;
 		Yellow->mesh->setTransform({ 0.f, 0.f });
 		yfirst = glfwGetTime();
@@ -292,6 +297,7 @@ void Level5::Update()
 
 	if(ylast - yfirst >= 2.f)
 	{
+		siren = false;
 		Yellow->mesh->setTransform({ -1000.f, -1000.f });
 	}
 	

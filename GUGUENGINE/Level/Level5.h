@@ -85,7 +85,7 @@ private:
 	double first;
 	double last;
 	bool failS = false;
-	
+	bool siren = false;
 	Object* Yellow;
 	GLuint textureYellow;
 	double yfirst;

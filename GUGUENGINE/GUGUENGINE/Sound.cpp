@@ -104,6 +104,7 @@ void Sound::Load()
 	LoadMusic("assets\\fart.mp3");
 	LoadMusic("assets\\logo.wav");
 	LoadMusic("assets\\footprint.wav");
+	LoadMusic("assets\\siren.wav");
 }
 
 bool Sound::IsPlaying()
