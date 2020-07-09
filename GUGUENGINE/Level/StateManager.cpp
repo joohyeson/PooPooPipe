@@ -11,6 +11,8 @@
 #include "DigipenLogo.h"
 #include "startCutscene.h"
 #include "Option.h"
+#include "Credits.h"
+
 #include "FmodLogo.h"
 #include "Level1.h"
 #include "Level2.h"
@@ -74,6 +76,8 @@ void StateManager::Init()
 	levels.push_back(new LevelSelect());
 
 	levels.push_back(new MovingCheck());
+
+	levels.push_back(new LevelCredits());
 	
 	levels.at(static_cast<int>(current))->Init();
 

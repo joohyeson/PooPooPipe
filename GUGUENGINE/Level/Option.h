@@ -69,6 +69,7 @@ public:
 	{
 		return GameLevels::OPTION;
 	}
+
 private:
 	Object* background, *option, *music, *arrowRight, *arrowLeft, *bar0;
 	Object* goToMain, *fullScreen, *fullScreenFalse, *fullScreenTrue;

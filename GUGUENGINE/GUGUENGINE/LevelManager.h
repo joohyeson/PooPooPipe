@@ -31,7 +31,8 @@ enum class GameLevels
 	LV_TEST12,
 	LV_TEST13,
 	LV_SELECT,
-	MOVINGCHECK
+	MOVINGCHECK,
+	CREDITS,
 };
 
 class LevelManager
