@@ -40,6 +40,8 @@ public:
 		QuitAsk = nullptr;
 		Yes = nullptr;
 		No = nullptr;
+		Yes_p = nullptr;
+		No_p = nullptr;
 	}
 
 	void Init() override;
@@ -62,12 +64,19 @@ private:
 	Object* QuitAsk;
 	Object* Yes;
 	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+	
 	GLuint textureIdQuitAskBack;
 	GLuint textureIdQuitAsk;
 	GLuint textureIdYes;
 	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+	
 	bool quitCheck = false;
 	bool realQuit = false;
+	
 	GLuint textureBackgroundOption;
 	GLuint textureOption;
 	GLuint textureMusic;

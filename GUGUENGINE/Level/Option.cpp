@@ -44,6 +44,14 @@ void LevelOption::Init()
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
 	textureIdNo = TEXTURE->CreateTexture("assets\\no.png", 0);
 	No->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
+	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes.png", 0);
+	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
+	textureIdNo_p = TEXTURE->CreateTexture("assets\\no.png", 0);
+	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
 	
 	quitCheck = false;
 	realQuit = false;
@@ -228,7 +236,7 @@ void LevelOption::Update()
 			mInput.setInput(KEY::LEFT);
 			if(quitCheck == false)
 			{
-				SOUND->Pause();
+				//SOUND->Pause();
 				quitCheck = true;
 				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
 				QuitAsk->mesh->setTransform({ 0.f, 0.f });
@@ -244,33 +252,39 @@ void LevelOption::Update()
 
 	if (Yes->collision->Point2BoxCollision(cursor, Yes->mesh))
 	{
+		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			mInput.setInput(KEY::LEFT);
 			realQuit = true;
 		}
 	}
+	else
+	{
+		Yes_p->mesh->setTransform({-1000.f, -1000.f});
+	}
+	
 	if (No->collision->Point2BoxCollision(cursor, No->mesh))
 	{
+		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			mInput.setInput(KEY::LEFT);
-			//if(this->sound->IsPaused() == true)
-			//{
-			//	this->sound->Resume();
-			//}
 			realQuit = false;
 			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		}
 	}
-
+	else
+	{
+		No_p->mesh->setTransform({ -1000.f, -1000.f });
+	}
+	
 	if(quitCheck == true && realQuit == true)
 	{
 		glfwTerminate();
 		ENGINE->Quit();
 	}
 
-	
 	background->mesh->Update(mShader.GetShaderHandler(), textureBackgroundOption);
 	option->mesh->Update(mShader.GetShaderHandler(), textureOption);
 	music->mesh->Update(mShader.GetShaderHandler(), textureMusic);
@@ -295,7 +309,8 @@ void LevelOption::Update()
 	QuitAsk->mesh->Update(mShader.GetShaderHandler(), textureIdQuitAsk);
 	Yes->mesh->Update(mShader.GetShaderHandler(), textureIdYes);
 	No->mesh->Update(mShader.GetShaderHandler(), textureIdNo);
-
+	Yes_p->mesh->Update(mShader.GetShaderHandler(), textureIdYes_p);
+	No_p->mesh->Update(mShader.GetShaderHandler(), textureIdNo_p);
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
