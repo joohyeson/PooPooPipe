@@ -275,7 +275,7 @@ void Level12::Init()
 
 void Level12::Update()
 {
-	STATE_MANAGER->setCurrentLV(8); 
+	STATE_MANAGER->setCurrentLV(9); 
 	lastTime = glfwGetTime();
 	if (mInput.IsPressed(KEY::F) == true)
 	{
