@@ -43,11 +43,11 @@ void level2keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int ac
 		checkToPipe = 0;
 	}
 
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-		ENGINE->Quit();
-	}
+	//if (key == GLFW_KEY_ESCAPE)
+	//{
+	//		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+
+	//}
 }
 
 void level2cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)

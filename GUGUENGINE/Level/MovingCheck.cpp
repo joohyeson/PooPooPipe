@@ -97,11 +97,11 @@ void Test5keyCallback(GLFWwindow* /*window*/, int key, int /*scancode*/, int act
 		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 	}
 
-	if (key == GLFW_KEY_ESCAPE)
-	{
-		glfwTerminate();
-		ENGINE->Quit();
-	}
+	//if (key == GLFW_KEY_ESCAPE)
+	//{
+
+	//	STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+	//}
 }
 
 void TestcursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)

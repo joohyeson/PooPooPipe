@@ -897,8 +897,8 @@ void Level6::Update()
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 	}
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
-		glfwTerminate();
-		ENGINE->Quit();
+		INPUT->setInput(KEY::ESCAPE);
+		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
