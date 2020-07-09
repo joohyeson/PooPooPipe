@@ -719,6 +719,7 @@ void Level3::Update()
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
+			quitCheck = false;
 			realQuit = false;
 			//STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 			QuitAsk->mesh->setTransform({ -1000.f, -1000.f });

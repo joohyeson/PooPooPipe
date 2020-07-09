@@ -57,7 +57,13 @@ public:
 		
 		Levelsel = nullptr;
 		Levelsel_pressed = nullptr;
-		
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
+
+		Yes_p = nullptr;
+		No_p = nullptr;
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -89,6 +95,22 @@ private:
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* pooCharacter;

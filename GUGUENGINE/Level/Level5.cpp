@@ -43,7 +43,12 @@ void Level5::Init()
 	blCheck7_3 = false;
 
 	movePuzzleCheck5 = true;
-
+	
+	Yellow = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
+	Yellow->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+	textureYellow = TEXTURE->CreateTexture("assets\\yellow.png", 0);
+	yellowS = false;
+	
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground5 = TEXTURE->CreateTexture("assets\\background2.png", 0);
@@ -163,7 +168,8 @@ void Level5::Init()
 
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
-
+	yShader.BuildTextureShader();
+	
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f - 250.f, 280.f });
 	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 
@@ -248,7 +254,19 @@ void Level5::Init()
 void Level5::Update()
 {
 	STATE_MANAGER->setCurrentLV(5);
+	if(yellowS == false)
+	{
+		yellowS = true;
+		//¼Ò¸®
+		yfirst = glfwGetTime();
+	}
+	ylast = glfwGetTime();
 
+	if(ylast - yfirst == 2.f)
+	{
+		Yellow->mesh->setTransform({ -1000.f, -1000.f });
+	}
+	
 	cursor5 = mInput.Cursor;
 	lastTime = glfwGetTime();
 
@@ -930,7 +948,7 @@ void Level5::Update()
 	}
 
 	//se5.Update();
-
+	Yellow->mesh->Update(mShader2.GetShaderHandler(), textureYellow);
 	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground5);
 	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine5);
 	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve5);
@@ -977,7 +995,7 @@ void Level5::Update()
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-
+	
 
 	if (mPooPoo.IsFinish() == false)
 	{
