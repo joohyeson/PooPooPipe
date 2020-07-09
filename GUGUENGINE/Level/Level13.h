@@ -69,6 +69,13 @@ public:
 		win = nullptr;
 
 		key = 0;
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
+
+		Yes_p = nullptr;
+		No_p = nullptr;
 	}
 
 	void Init() override;
@@ -91,6 +98,22 @@ private:
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
 
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
 
 	Object* puzzle18, * puzzle19, * puzzle20;
 

@@ -1,4 +1,3 @@
-
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include <iostream>
@@ -15,6 +14,36 @@ void Level11::Init()
 	STATE_MANAGER->setCurrentLV(0);
 	failS[0] = false;
 	failS[1] = false;
+
+	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
+	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+
+	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+
+	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdYes = TEXTURE->CreateTexture("assets\\yes.png", 0);
+	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	mInput.setInput(KEY::LEFT);
+
+	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdNo = TEXTURE->CreateTexture("assets\\no.png", 0);
+	No->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
+	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdNo_p = TEXTURE->CreateTexture("assets\\no_p.png", 0);
+	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	quitCheck = false;
+	realQuit = false;
+	
 	//rotTime.setRotate(100);
 	rotTime.setRotate(35);
 	rotrot2 = true;
@@ -867,13 +896,59 @@ void Level11::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			glfwTerminate();
-			ENGINE->Quit();
+			if (quitCheck == false)
+			{
+				//SOUND->Pause();
+				quitCheck = true;
+				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+				QuitAsk->mesh->setTransform({ 0.f, 0.f });
+				Yes->mesh->setTransform({ -100.f, -50.f });
+				No->mesh->setTransform({ 100.f, -50.f });
+			}
 		}
 	}
 	else
 	{
 		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
+	}
+	if (Yes->collision->Point2BoxCollision(cursor8, Yes->mesh))
+	{
+		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+			realQuit = true;
+		}
+	}
+	else
+	{
+		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
+	}
+
+	if (No->collision->Point2BoxCollision(cursor8, No->mesh))
+	{
+		No_p->mesh->setTransform(No->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+			quitCheck = false;
+			realQuit = false;
+
+			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
+			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
+			Yes->mesh->setTransform({ -2000.f, -2000.f });
+			No->mesh->setTransform({ -2000.f, -2000.f });
+		}
+	}
+	else
+	{
+		No_p->mesh->setTransform({ -1000.f, -1000.f });
+	}
+
+	if (quitCheck == true && realQuit == true)
+	{
+		glfwTerminate();
+		ENGINE->Quit();
 	}
 
 
@@ -998,7 +1073,14 @@ void Level11::Update()
 		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST12);
 	}
+	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
+	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
+	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
+	No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
+	Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
+	No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
 
+	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);

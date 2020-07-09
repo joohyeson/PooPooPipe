@@ -61,6 +61,14 @@ public:
 		restartUI_p = nullptr;
 
 		key = 0;
+
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
+
+		Yes_p = nullptr;
+		No_p = nullptr;
 	}
 
 	void Init() override;
@@ -78,6 +86,24 @@ private:
 	double first;
 	double last;
 	bool failS = false;
+
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
+	
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 	Object* levelImage, * numberImage;
