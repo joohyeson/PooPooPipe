@@ -848,14 +848,14 @@ void Level12::Update()
 	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
 	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
 	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
 	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
-
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	switch (rotTime.getLimitTime() / 10)
 	{
 	case 0:
