@@ -27,5 +27,5 @@ private:
 	Shader mShader;
 	float	 lastTime;
 	float firstTime;
-	bool check = false;
+	bool check[2] = { false };
 };
