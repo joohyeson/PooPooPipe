@@ -748,7 +748,7 @@ void Level4::Update()
 			INPUT->setInput(KEY::LEFT);
 			quitCheck = false;
 			realQuit = false;
-			//STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
+			
 			QuitAsk->mesh->setTransform({ -1000.f, -1000.f });
 			QuitAskBack->mesh->setTransform({ -1000.f, -1000.f });
 			Yes->mesh->setTransform({ -1000.f, -1000.f });
