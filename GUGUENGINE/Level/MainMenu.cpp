@@ -113,6 +113,7 @@ void MainMenu::Update()
 
 	if (menuInput.IsPressed(KEY::ESCAPE))
 	{
+		INPUT->setInput(KEY::ESCAPE);
 		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
 

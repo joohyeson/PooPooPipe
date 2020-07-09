@@ -96,8 +96,8 @@ void LevelSelect::Update()
 
 	if (levelInput.IsPressed(KEY::ESCAPE) == true)
 	{
-		glfwTerminate();
-		ENGINE->Quit();
+		INPUT->setInput(KEY::ESCAPE);
+		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
 
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))

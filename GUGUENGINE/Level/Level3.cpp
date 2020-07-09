@@ -766,8 +766,8 @@ void Level3::Update()
 	}
 
 	if (mInput.IsPressed(KEY::ESCAPE) == true) {
-		glfwTerminate();
-		ENGINE->Quit();
+		INPUT->setInput(KEY::ESCAPE);
+		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
 
 	
