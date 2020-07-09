@@ -94,8 +94,8 @@ private:
 	GLint textureQuitUI3p;
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS[2] = { false };
 
 	Object* puzzle18, * puzzle19, * puzzle20;

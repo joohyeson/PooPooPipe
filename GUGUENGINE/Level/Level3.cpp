@@ -41,7 +41,7 @@ void Level3::Init()
 	blCheck2_2 = false;
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground3 = TEXTURE->CreateTexture("assets\\background1.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
@@ -191,8 +191,8 @@ void Level3::Init()
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	
 
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());

@@ -45,14 +45,14 @@ void Level4::Init()
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	fail->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	win->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground4 = TEXTURE->CreateTexture("assets\\background1.png", 0);
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -128,24 +128,24 @@ void Level4::Init()
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -526.795, 330 });
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -353.59, 330 });
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -613.397, 180 });
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987, 180 });
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -526.795, 30 }, 60.f);
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -353.59, 30 }, 300.f);
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -180.385, 30 }, 240.f);
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -526.795f, 330.f });
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -353.59f, 330.f });
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -613.397f, 180.f });
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987f, 180.f });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -526.795f, 30.f }, 60.f);
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -353.59f, 30.f }, 300.f);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -180.385f, 30.f }, 240.f);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987, -120 }, 60.f);
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -93.782,-120 }, 60.f);
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -353.59,-270 }, 180.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -266.987f, -120.f }, 60.f);
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -93.782f,-120.f }, 60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -353.59f,-270.f }, 180.f);
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192, 180 });
-	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192, -120 });
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -180.385, -270 });
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192f, 180.f });
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -440.192f, -120.f });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -180.385f, -270.f });
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -700, 330 }, 120.f);
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -7.18, -270 }, 60.f);
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -700.f, 330.f }, 120.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -7.18f, -270.f }, 60.f);
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
@@ -154,7 +154,7 @@ void Level4::Init()
 
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
-	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830.f, 450.f - 20.f });
 	
 	texureIdLine4 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack4 = TEXTURE->CreateTexture("assets\\image1.png", 0);

@@ -79,8 +79,8 @@ public:
 	}
 
 private:
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS = false;
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;

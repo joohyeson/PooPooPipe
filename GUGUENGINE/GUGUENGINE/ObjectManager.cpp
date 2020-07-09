@@ -102,7 +102,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 
 	switch (archetype)
 	{
-	case Puzzle:
+	case Type::Puzzle:
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
@@ -113,7 +113,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}
-	case MovePuzzle: //have to write down 'SetDirection' in every level
+	case Type::MovePuzzle: //have to write down 'SetDirection' in every level
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
@@ -125,7 +125,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->mesh->InitializeColorMesh();
 		break;
 	}
-	case DirPuzzle: //have to write down 'SetDirection' in every level
+	case Type::DirPuzzle: //have to write down 'SetDirection' in every level
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
@@ -136,7 +136,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}
-	case BlackPuzzle:
+	case Type::BlackPuzzle:
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
@@ -147,7 +147,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 		obj->mesh->InitializeTextureMesh();
 		break;
 	}
-	case shape_rec:
+	case Type::shape_rec:
 	{
 		obj->AddComponent(new Mesh());
 		obj->mesh->setTransform({ transform.x, transform.y });

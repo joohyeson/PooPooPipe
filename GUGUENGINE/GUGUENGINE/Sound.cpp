@@ -123,7 +123,7 @@ void Sound::Play(std::string source, int loop)
 
 	auto id = 0;
 
-	for (int i = 0; i < m_sounds.size(); i++)
+	for (unsigned int i = 0; i < m_sounds.size(); i++)
 	{
 		if (m_sounds[i]->source == source)
 		{
@@ -202,7 +202,7 @@ float Sound::GetVolume()
 	return m_volume;
 }
 
-void Sound::SetLoopCount(int loopCount)
+void Sound::SetLoopCount(int /*loopCount*/)
 {
 	//channel->setLoopCount(loopCount);
 }

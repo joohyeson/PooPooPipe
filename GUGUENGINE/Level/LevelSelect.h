@@ -44,7 +44,51 @@ public:
 		Level8_pressed = nullptr;
 		Level8_lock = nullptr;
 
+		Level9 = nullptr;
+		Level9_pressed = nullptr;
+		Level9_lock = nullptr;
+
+		Level10 = nullptr;
+		Level10_pressed = nullptr;
+		Level10_lock = nullptr;
+
 		currentLevel = 0;
+
+		textureBackgroundLv = 0;
+
+		texureIdLv1 = 0;
+		texureIdLv1_pressed = 0;
+
+		texureIdLv2 = 0;
+		texureIdLv2_pressed = 0;
+		texureId_lock = 0;
+
+		texureIdLv3 = 0;
+		texureIdLv3_pressed = 0;
+
+
+		texureIdLv4 = 0;
+		texureIdLv4_pressed = 0;
+
+
+		texureIdLv5 = 0;
+		texureIdLv5_pressed = 0;
+
+
+		texureIdLv6 = 0;
+		texureIdLv6_pressed = 0;
+
+		texureIdLv7 = 0;
+		texureIdLv7_pressed = 0;
+
+		texureIdLv8 = 0;
+		texureIdLv8_pressed = 0;
+
+		texureIdLv9 = 0;
+		texureIdLv9_pressed = 0;
+
+		texureIdLv10 = 0;
+		texureIdLv10_pressed = 0;
 
 	}
 	int currentLevel;

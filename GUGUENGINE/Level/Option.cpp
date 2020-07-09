@@ -31,7 +31,7 @@ void LevelOption::Init()
 	
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
-	QuitAskBack->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -1000.f, -1000.f });
 	textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);

@@ -110,7 +110,7 @@ void GenerateMap::SaveObject(Object* objectName)
 }
 void GenerateMap::SaveObjectWays()
 {
-	for (int i = 0; i < objects.size(); i++)
+	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		saveObjectWays.push_back(objects[i]->pipe->GetAllDirections());
 	}
@@ -124,7 +124,7 @@ int GenerateMap::GetObjectSize()
 
 void GenerateMap::MapAlignment()
 {
-	for (int i = 0; i < objects.size(); i++)
+	for (unsigned int i = 0; i < objects.size(); i++)
 	{
 		objects[i]->mesh->setTransform(coorSaver[i]);
 	}

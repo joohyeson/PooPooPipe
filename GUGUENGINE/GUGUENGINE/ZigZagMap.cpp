@@ -1,7 +1,7 @@
 #include "ZigZagMap.h"
 
 
-void ZigZagMap::SetFirstLine(int i, int k)
+void ZigZagMap::SetFirstLine(int /*i*/, int k)
 {
 	HexagonEdges currentHexa;
 	if (k == 0)
@@ -31,7 +31,7 @@ void ZigZagMap::SetFirstLine(int i, int k)
 		neighborSaver.push_back(currentHexa);
 	}
 }
-void ZigZagMap::SetLastLine(int i, int k, bool isOdd)
+void ZigZagMap::SetLastLine(int /*i*/, int k, bool isOdd)
 {
 	HexagonEdges currentHexa;
 

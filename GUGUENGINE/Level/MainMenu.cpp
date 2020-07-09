@@ -34,7 +34,7 @@ void MainMenu::Init()
 	background->Init();
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
-	background->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	for(int i = 0;  i < 3; i++)
 	{

@@ -36,10 +36,27 @@ public:
 		quitButton = nullptr;
 		quitButton_pressed = nullptr;
 
+		textureBackgroundOption = 0;
+		textureOption = 0;
+		textureMusic = 0;
+
+		textureArrowLeft = 0;
+		textureArrowRight = 0;
+
+		textureBar0 = 0;
+
+		textureGoToMain = 0;
+		textureQuit = 0;
+		textureQuitPressed = 0;
+		textureFullScreen = 0;
+		textureCheckTrue = 0;
+		textureCheckFalse;
+
 		QuitAskBack = nullptr;
 		QuitAsk = nullptr;
 		Yes = nullptr;
 		No = nullptr;
+
 		Yes_p = nullptr;
 		No_p = nullptr;
 	}
@@ -89,7 +106,9 @@ private:
 	GLuint textureGoToMain;
 	GLuint textureQuit, textureQuitPressed;
 	GLuint textureFullScreen, textureCheckTrue, textureCheckFalse;
+
 	Vector2<float> cursor;
+
 	Input mInput;
 
 

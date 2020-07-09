@@ -32,8 +32,8 @@ public:
 private:
 	Object* fmodLogo;
 	Shader mShader;
-	float	 lastTime;
-	float firstTime;
+	double	 lastTime;
+	double firstTime;
 };
 
 

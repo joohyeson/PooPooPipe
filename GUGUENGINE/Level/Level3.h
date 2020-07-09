@@ -86,8 +86,8 @@ public:
 	//void Wait(long waitTime);
 
 private:
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS = false;
 	bool skip = false;
 	Object* background;

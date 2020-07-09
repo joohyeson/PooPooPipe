@@ -82,8 +82,8 @@ public:
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
-	float first;
-	float last;
+	double first;
+	double last;
 	bool failS[2] = { false };
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
@@ -199,4 +199,6 @@ private:
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
 
+	bool soundCheck = false;
+	bool soundCheck2 = false;
 };

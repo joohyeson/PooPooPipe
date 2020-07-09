@@ -64,7 +64,8 @@ Application::Application()
     glfwWindowHint(GLFW_SAMPLES, 4);
 
     const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+    GLFWmonitor* screenMonitor = nullptr;
+    screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
 
     Mywindow = glfwCreateWindow(
         500,
