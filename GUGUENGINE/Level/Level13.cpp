@@ -858,17 +858,17 @@ void Level13::Update()
 	numberImage2->mesh->Update(mShader2.GetShaderHandler(), numberTexture2);
 
 	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
-
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+	
 
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
 	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
-	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+	
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
-
+	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 	if (mPooPoo.IsFinish() == false)
 	{
 		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
