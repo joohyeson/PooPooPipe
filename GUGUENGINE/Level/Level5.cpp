@@ -295,7 +295,7 @@ void Level5::Update()
 	}
 	ylast = glfwGetTime();
 
-	if(ylast - yfirst >= 2.f)
+	if(ylast - yfirst >= 3.f)
 	{
 		siren = false;
 		Yellow->mesh->setTransform({ -1000.f, -1000.f });
