@@ -98,7 +98,7 @@ void Level10::Init()
 	texureIdV8 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
 	texureIdStart8 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
-	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageStart2.png", 0);
+	texureIdEnd8 = TEXTURE->CreateTexture("assets\\imageEnd2.png", 0);
 
 	texureIdLine8_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
 	texureIdCurve8_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
