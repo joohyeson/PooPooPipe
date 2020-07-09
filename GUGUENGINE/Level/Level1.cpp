@@ -42,7 +42,7 @@ void Level1::Init()
 	texureIdBlack1 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve1 = TEXTURE->CreateTexture("assets\\image2.png", 0);
 	textureSpace1 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
-	textureMouse = TEXTURE->CreateTexture("assets\\mini.png", 0);
+	textureMouse = TEXTURE->CreateTexture("assets\\click_left.png", 0);
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 
 	mShader2.BuildTextureShader();
@@ -76,10 +76,10 @@ void Level1::Init()
 	spacePress->mesh->InitializeTextureMesh(560.f, 80.f);
 
 	mouse->AddComponent(new Mesh());
-	mouse->mesh->setTransform({ 500.f, 200.f });
+	mouse->mesh->setTransform({ 650.f, 200.f });
 	mouse->mesh->SetMeshType(MESHTYPE::rectangle);
 	mouse->Init();
-	mouse->mesh->InitializeTextureMesh(400.f, 400.f);
+	mouse->mesh->InitializeTextureMesh(550.f, 300.f);
 
 	win->AddComponent(new Mesh());
 	win->mesh->setTransform({ -2000.0f, -2000.0f });
