@@ -822,12 +822,12 @@ void Level4::Update()
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST6);
 	}
 	
-	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), textureIdQuitAskBack);
-	QuitAsk->mesh->Update(mShader.GetShaderHandler(), textureIdQuitAsk);
-	Yes->mesh->Update(mShader.GetShaderHandler(), textureIdYes);
-	No->mesh->Update(mShader.GetShaderHandler(), textureIdNo);
-	Yes_p->mesh->Update(mShader.GetShaderHandler(), textureIdYes_p);
-	No_p->mesh->Update(mShader.GetShaderHandler(), textureIdNo_p);
+	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
+	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
+	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
+	No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
+	Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
+	No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
 	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
