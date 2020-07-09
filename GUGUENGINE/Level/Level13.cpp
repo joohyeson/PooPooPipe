@@ -16,7 +16,8 @@ void Level13::Init()
 
 	chekNext8 = 0;
 	firstTime = glfwGetTime();
-
+	failS[0] = false;
+	failS[1] = false;
 	conecTcheck8_1 = false;
 	conecTcheck8_2 = false;
 	conecTcheck8_3 = false;
@@ -622,9 +623,23 @@ void Level13::Update()
 				poopooCheck = false;
 			}
 			else {
-				fail->mesh->setTransform({ 0,0 });
-				poopooCheck = false;
+				if (failS[1] == false)
+				{
+					last = 0;
+					this->sound->Play("assets\\fart.mp3", 1);
+					failS[1] = true;
+					first = glfwGetTime();
+				}
 			}
+		}
+	}
+	if (failS[1] == true)
+	{
+		last = glfwGetTime();
+		if (last - first > 1.5f)
+		{
+			fail->mesh->setTransform({ 0,0 });;
+			poopooCheck = false;
 		}
 	}
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
