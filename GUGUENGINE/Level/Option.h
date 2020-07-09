@@ -35,6 +35,11 @@ public:
 		fullScreenTrue = nullptr;
 		quitButton = nullptr;
 		quitButton_pressed = nullptr;
+
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
 	}
 
 	void Init() override;
@@ -52,7 +57,17 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader;
-
+	
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	bool quitCheck = false;
+	bool realQuit = false;
 	GLuint textureBackgroundOption;
 	GLuint textureOption;
 	GLuint textureMusic;
