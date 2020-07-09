@@ -111,17 +111,17 @@ void MainMenu::Update()
 	this->sound->Update();
 	cursor0 = menuInput.Cursor;
 
-	if (menuInput.IsPressed(KEY::ENTER))
-	{
-		//bgm.Stop();
-		std::cout << "Stop music" << std::endl;
-	}
-
 	if (menuInput.IsPressed(KEY::ESCAPE))
 	{
-		glfwTerminate();
-		ENGINE->Quit();
-		//bgm.Free();
+		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+	}
+
+	if (menuInput.IsKeyDown(KEY::F) == true)
+	{
+		std::cout << "F Key" << std::endl;
+		menuInput.setInput(KEY::F);
+
+		APPLICATION->SetFullScreen();
 	}
 
 	if (menuInput.IsPressed(KEY::UP))
@@ -137,7 +137,6 @@ void MainMenu::Update()
 			std::cout << volume << std::endl;
 		}
 	}
-
 	if (menuInput.IsPressed(KEY::DOWN))
 	{
 		std::cout << "Down Key" << std::endl;
@@ -153,15 +152,7 @@ void MainMenu::Update()
 		}
 	}
 
-	if (menuInput.IsKeyDown(KEY::F)==true)
-	{
-		std::cout << "F Key" << std::endl;
-		menuInput.setInput(KEY::F);
 
-		APPLICATION->SetFullScreen();
-		
-
-	}
 	if (menuInput.IsPressed(KEY::A) == true)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);

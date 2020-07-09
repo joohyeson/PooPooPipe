@@ -25,7 +25,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::FMODLOGO;
+	}
 private:
 	Object* fmodLogo;
 	Shader mShader;

@@ -33,7 +33,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::LV_TEST2;
+	}
 private:
 	Object* background;
 	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress;

@@ -79,6 +79,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::LV_TEST3;
+	}
 	//void Wait(long waitTime);
 
 private:

@@ -33,7 +33,10 @@ public:
 		levelCheck = 0;
 		spaceCheck = 0;
 	}
-
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::LV_TEST1;
+	}
 	void Init() override;
 	void Update() override;
 	void Close() override;

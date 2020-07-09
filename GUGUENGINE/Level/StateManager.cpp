@@ -98,9 +98,17 @@ void StateManager::Update()
 		break;
 	case State::RUNNING:
 		if (currGameState != nextGameState) {
+			if (nextGameState->GetCurrLevel() == GameLevels::OPTION)
+			{
+				before = currGameState;
+			}
 			state = State::UNLOAD;
 		}
 		else {
+			if (currGameState->GetCurrLevel() == GameLevels::OPTION)
+			{
+				currGameState->SetNextLevel(before->GetCurrLevel());
+			}
 			currGameState->Update();
 		}
 		break;

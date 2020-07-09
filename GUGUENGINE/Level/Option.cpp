@@ -136,12 +136,14 @@ void LevelOption::Update()
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			std::cout << "to main" << std::endl;
-			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			STATE_MANAGER->ChangeLevel(nextLevel);
 		}
 	}
 
 	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh))
 	{
+	
+
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			if (APPLICATION->IsFullScreen() == true)
@@ -154,6 +156,13 @@ void LevelOption::Update()
 			}
 			
 			APPLICATION->SetFullScreen();
+		}
+	}
+	else
+	{
+		if (APPLICATION->IsFullScreen() == true)
+		{
+			fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
 		}
 	}
 
