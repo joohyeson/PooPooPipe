@@ -77,6 +77,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::LV_TEST12;
+	}
 
 private:
 	Object* background;

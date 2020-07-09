@@ -35,7 +35,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-	
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::MAINMENU;
+	}
 private:
 	Object* background;
 	Object* startButton;

@@ -76,7 +76,10 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-
+	GameLevels GetCurrLevel() override
+	{
+		return GameLevels::LV_TEST10;
+	}
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;

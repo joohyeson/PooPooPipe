@@ -608,6 +608,32 @@ void Level11::Update()
 			}
 		}
 
+		if (puzzle9->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle9->mesh)) //with puzzle 4
+		{
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot[11] = true;
+			}
+			if (rot[11] == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
+				{
+					puzzle4->pipe->Update();
+					puzzle9->pipe->Update();
+
+					degree8_5 += static_cast<float>(DegreeToRadian(60.f));
+
+					puzzle4->mesh->setRotation(degree8_5);
+					puzzle9->mesh->setRotation(degree8_5);
+
+					rotTime.Update();
+
+					this->sound->Play("assets\\coin.mp3", 1);
+					rot[11] = false;
+				}
+			}
+		}
+
 		if (puzzle2->pipe->GetDirValue(W) && (puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)))
 		{
 			conecTcheck8_1 = true;
@@ -845,6 +871,7 @@ void Level11::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else

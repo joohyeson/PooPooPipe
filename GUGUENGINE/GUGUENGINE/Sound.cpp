@@ -8,7 +8,7 @@
 #include "Sound.h"
 #include <iostream>
 
-Sound* soundPtr = nullptr;
+Sound* SOUND = nullptr;
 
 void Sound::Init()
 {
@@ -53,7 +53,7 @@ Sound::Sound()
 	result = system->init(32, FMOD_INIT_NORMAL, nullptr);
 
 	std::cout << "Sound constructor called" << std::endl;
-	soundPtr = this;
+	SOUND = this;
 
 	system->createChannelGroup("soundEffects", &soundEffects);
 	system->createChannelGroup("backgroundSounds", &backgroundSounds);
@@ -113,7 +113,7 @@ bool Sound::IsPlaying()
 
 bool Sound::IsPaused()
 {
-	return false;
+	return isPlaying;
 }
 
 void Sound::Play(std::string source, int loop)
@@ -168,11 +168,14 @@ void Sound::Play(std::string source, int loop)
 
 void Sound::Pause()
 {
-	
+	isPlaying = false;
+	masterChannel->setPaused(true);
 }
 
 void Sound::Resume()
 {
+	isPlaying = true;
+	masterChannel->setPaused(false);
 }
 
 void Sound::Stop()

@@ -446,28 +446,6 @@ void Level13::Update()
 		}
 	}
 
-	if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh))
-	{
-		if (mInput.IsPressed(KEY::RIGHT) == true)
-		{
-			rot[8] = true;
-		}
-		if (rot[8] == true)
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == false)
-			{
-				puzzle10->pipe->Update();
-
-				degree8_5 += static_cast<float>(DegreeToRadian(60.f));
-				puzzle10->mesh->setRotation(degree8_5);
-
-				this->sound->Play("assets\\coin.mp3", 1);
-
-				rot[8] = false;
-			}
-		}
-	}
-
 	if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh))
 	{
 		if (mInput.IsPressed(KEY::RIGHT) == true)
@@ -741,6 +719,7 @@ void Level13::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			glfwTerminate();
+			ENGINE->Quit();
 		}
 	}
 	else

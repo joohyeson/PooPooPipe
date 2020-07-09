@@ -9,6 +9,7 @@
  */
 #include<vector>
 #include <chrono>
+#include "Sound.h"
 
 class System;
 class Engine
@@ -37,5 +38,7 @@ private:
 	static constexpr int FPS_IntervalSec = 5;
 	static constexpr int FPS_IntervalFrameCount = static_cast<int>(FPS_IntervalSec * Target_FPS);
 	bool checkWindow = true;
+	Sound* sound = nullptr;
+
 };
 extern Engine* ENGINE;

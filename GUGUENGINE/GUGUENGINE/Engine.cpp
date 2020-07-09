@@ -71,6 +71,10 @@ void Engine::GameLoop()
 
 			if (width != 0 && height != 0)
 			{
+				if (SOUND->IsPaused() == false)
+				{
+					SOUND->Resume();
+				}
 				for (auto GUGU : Systems)
 				{
 					GUGU->Update();
@@ -80,6 +84,7 @@ void Engine::GameLoop()
 			else
 			{
 				APPLICATION->Update();
+				SOUND->Pause();
 				if (checkWindow)
 				{
 					std::cout << "window is minimized" << std::endl;

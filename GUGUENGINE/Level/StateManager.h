@@ -13,29 +13,7 @@
 #include "../GUGUENGINE/Sound.h"
 
 //define enum for level
-enum class GameLevels
-{
-	DIGIPENLOGO,
-	FMODLOGO,
-	GUGULOGO,
-	CUTSCENE,
-	MAINMENU,
-	OPTION,
-	LV_TEST1,
-	LV_TEST2,
-	LV_TEST3,
-	LV_TEST4,
-	LV_TEST5,
-	LV_TEST6,
-	LV_TEST8,
-	LV_TEST9,
-	LV_TEST10,
-	LV_TEST11,
-	LV_TEST12,
-	LV_TEST13,
-	LV_SELECT,
-	MOVINGCHECK
-};
+
 
 class StateManager : public System
 {
@@ -68,7 +46,7 @@ private:
 	State state;
 	LevelManager* currGameState;
 	LevelManager* nextGameState;
-
+	LevelManager* before;
 	Sound* sound;
 
 	int currentLV;

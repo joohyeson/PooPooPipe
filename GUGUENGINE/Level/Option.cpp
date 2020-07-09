@@ -14,40 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-
-Vector2<float> cursor00;
-
-int moveCheck00 = 0;
-int bar0 = 0;
-
-
-GLuint textureBackgroundOption;
-GLuint textureOption;
-GLuint textureMusic;
-
-GLuint textureArrowLeft;
-GLuint textureArrowRight;
-
-GLuint textureBar0;
-
-GLuint textureGoToMain;
-
-void optionCursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos)
-{
-	cursor00 = { static_cast<float>(xpos) - APPLICATION->width / 2 ,  -(static_cast<float>(ypos) - APPLICATION->height / 2) };
-}
-void optionMouseButtonCallback(GLFWwindow* /*window*/, int button, int action, int /*mods*/)
-{
-	static float time = 0;
-	if (button == GLFW_MOUSE_BUTTON_LEFT && action == GLFW_PRESS)
-	{
-		bar0 += 1;
-
-		moveCheck00 += 1;
-		std::cout << "RIGHT mouse button pressed" << std::endl;
-	}
-}
-
 void LevelOption::Init()
 {
 	background = OBJECT_FACTORY->CreateEmptyObject();
@@ -58,8 +24,6 @@ void LevelOption::Init()
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(1920, 1080);
 	textureBackgroundOption = TEXTURE->CreateTexture("assets\\background.png", 0);
-
-
 
 	option = OBJECT_FACTORY->CreateEmptyObject();
 	option->AddComponent(new Mesh());
@@ -79,9 +43,7 @@ void LevelOption::Init()
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
-
 	textureGoToMain = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
-	
 	
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
@@ -116,29 +78,143 @@ void LevelOption::Init()
 	bar0->mesh->SetMeshType(MESHTYPE::rectangle);
 	bar0->mesh->InitializeTextureMesh(400.f, 80.f);
 	textureBar0 = TEXTURE->CreateTexture("assets\\bar0.png", 0);
+
+	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
+	fullScreen->AddComponent(new Mesh());
+	fullScreen->Init();
+	fullScreen->mesh->setTransform({ -260.f,130.f });
+	fullScreen->mesh->SetMeshType(MESHTYPE::rectangle);
+	fullScreen->mesh->InitializeTextureMesh(240.f, 80.f);
+
+	fullScreenFalse = OBJECT_FACTORY->CreateEmptyObject();
+	fullScreenFalse->AddComponent(new Mesh());
+	fullScreenFalse->Init();
+	fullScreenFalse->mesh->setTransform({ 350.f,130.f });
+	fullScreenFalse->mesh->SetMeshType(MESHTYPE::rectangle);
+	fullScreenFalse->mesh->InitializeTextureMesh(80.f, 80.f);
+
+	fullScreenTrue = OBJECT_FACTORY->CreateEmptyObject();
+	fullScreenTrue->AddComponent(new Mesh());
+	fullScreenTrue->Init();
+	fullScreenTrue->mesh->setTransform({ -3500.f,130.f });
+	fullScreenTrue->mesh->SetMeshType(MESHTYPE::rectangle);
+	fullScreenTrue->mesh->InitializeTextureMesh(80.f, 80.f);
+
+	quitButton = OBJECT_FACTORY->CreateEmptyObject();
+	quitButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+
+	quitButton->AddComponent(new Mesh());
+	quitButton->Init();
+	quitButton_pressed->AddComponent(new Mesh());
+	quitButton_pressed->Init();
+
+	quitButton->mesh->setTransform({ 0.0f,20.f });
+	quitButton->mesh->SetMeshType(MESHTYPE::rectangle);
+	quitButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	quitButton_pressed->mesh->setTransform({ 3500.0f,-100.f });
+	quitButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
+	quitButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
+
+	textureCheckTrue= TEXTURE->CreateTexture("assets\\checkO.png", 0);
+	textureCheckFalse = TEXTURE->CreateTexture("assets\\checkX.png", 0);
+	textureFullScreen = TEXTURE->CreateTexture("assets\\fullscreen.png", 0);
 	
-	mShader.BuildColorShader();
+	textureQuit = TEXTURE->CreateTexture("assets\\quit.png", 0);
+	textureQuitPressed = TEXTURE->CreateTexture("assets\\quit2.png", 0);
+
 	mShader.BuildTextureShader();
 
-	glfwSetMouseButtonCallback(APPLICATION->getMyWindow(), optionMouseButtonCallback);
-	glfwSetCursorPosCallback(APPLICATION->getMyWindow(), optionCursorPositionCallback);
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void LevelOption::Update()
 {
+	cursor = mInput.Cursor;
 
-	if (goToMain->collision->Point2BoxCollision(cursor00, goToMain->mesh))
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
 	{
-		if (moveCheck00 % 2 == 1)
+		if (mInput.IsPressed(KEY::LEFT))
 		{
 			std::cout << "to main" << std::endl;
-			moveCheck00 = 0;
-			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			STATE_MANAGER->ChangeLevel(nextLevel);
+		}
+	}
+
+	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh))
+	{
+	
+
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			if (APPLICATION->IsFullScreen() == true)
+			{
+				fullScreenTrue->mesh->setTransform(Vector2<float>(-3500.f, 0));
+			}
+			else
+			{
+				fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
+			}
+			
+			APPLICATION->SetFullScreen();
 		}
 	}
 	else
 	{
-		moveCheck00 = 0;
+		if (APPLICATION->IsFullScreen() == true)
+		{
+			fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
+		}
+	}
+
+	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			std::cout << "Up Key" << std::endl;
+			float volume = this->sound->GetVolume();
+			if (volume < 1.0f)
+			{
+				volume += 0.1f;
+				this->sound->SetVolume(volume);
+				mInput.setInput(KEY::UP);
+				std::cout << volume << std::endl;
+			}
+		}
+	}
+
+	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh))
+	{
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			std::cout << "Down Key" << std::endl;
+			float volume = this->sound->GetVolume();
+			if (volume > 0.0f)
+			{
+				volume -= 0.1f;
+				if (volume <= 0.f)
+				{
+					volume = 0.f;
+				}
+				this->sound->SetVolume(volume);
+				mInput.setInput(KEY::DOWN);
+
+				std::cout << volume << std::endl;
+			}
+		}
+	}
+
+	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh))
+	{
+		quitButton_pressed->mesh->setTransform(quitButton->mesh->GetTransform());
+		if (mInput.IsPressed(KEY::LEFT))
+		{
+			glfwTerminate();
+			ENGINE->Quit();
+		}
+	}
+	else
+	{
+		quitButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
 	background->mesh->Update(mShader.GetShaderHandler(), textureBackgroundOption);
@@ -152,6 +228,15 @@ void LevelOption::Update()
 
 	bar0->mesh->Update(mShader.GetShaderHandler(), textureBar0);
 
+	fullScreen->mesh->Update(mShader.GetShaderHandler(), textureFullScreen);
+	
+	fullScreenFalse->mesh->Update(mShader.GetShaderHandler(), textureCheckFalse);
+	fullScreenTrue->mesh->Update(mShader.GetShaderHandler(), textureCheckTrue);
+
+
+	quitButton->mesh->Update(mShader.GetShaderHandler(), textureQuit);
+	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), textureQuitPressed);
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.4f, 0.3f, 0.3f, 1);
@@ -164,7 +249,6 @@ void LevelOption::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	
-	//ENGINE->Quit();
+
 	OBJECT_FACTORY->DestroyAllObjects();
 }
