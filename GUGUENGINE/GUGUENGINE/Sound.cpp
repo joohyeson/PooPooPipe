@@ -103,6 +103,7 @@ void Sound::Load()
 	LoadMusic("assets\\UI.wav");
 	LoadMusic("assets\\fart.mp3");
 	LoadMusic("assets\\logo.wav");
+	LoadMusic("assets\\footprint.wav");
 }
 
 bool Sound::IsPlaying()

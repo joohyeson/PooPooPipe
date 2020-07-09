@@ -10,7 +10,9 @@
 GLuint textureGuguLogo;
 void GUGULOGO::Init()
 {
-	check = false;
+	check[0] = false;
+	check[1] = false;
+	
 	firstTime = glfwGetTime();
 
 	gugulogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
@@ -22,16 +24,23 @@ void GUGULOGO::Init()
 
 void GUGULOGO::Update()
 {
-	if(check == false)
+	if(check[0] == false)
 	{
-		check = true;
+		check[0] = true;
 		this->sound->Play("assets\\fart.mp3", 1);
+	}
+	if(check[1] == false)
+	{
+		check[1] = true;
+		//this->sound->Play("assets\\footprint.wav", 1);
 	}
 	lastTime = glfwGetTime();
 	gugulogo->mesh->Update(mShader.GetShaderHandler(), textureGuguLogo);
 	if (lastTime - firstTime > 2.f)
 	{
+		this->sound->Pause();
 		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
+		
 	}
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
