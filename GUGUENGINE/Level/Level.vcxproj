@@ -155,6 +155,7 @@
   <ItemGroup>
     <ClCompile Include="..\GUGUENGINE\main.cpp" />
     <ClCompile Include="99.cpp" />
+    <ClCompile Include="Credits.cpp" />
     <ClCompile Include="DigipenLogo.cpp" />
     <ClCompile Include="FmodLogo.cpp" />
     <ClCompile Include="Level1.cpp">
@@ -191,6 +192,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="99.h" />
+    <ClInclude Include="Credits.h" />
     <ClInclude Include="DigipenLogo.h" />
     <ClInclude Include="FmodLogo.h" />
     <ClInclude Include="Level1.h">

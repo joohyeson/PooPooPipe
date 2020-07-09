@@ -36,7 +36,7 @@ void MainMenu::Init()
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
-	for(int i = 0;  i < 3; i++)
+	for(int i = 0;  i < 4; i++)
 	{
 		UI[i] = false;
 	}
@@ -46,10 +46,12 @@ void MainMenu::Init()
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton = OBJECT_FACTORY->CreateEmptyObject();
+	creditsButton = OBJECT_FACTORY->CreateEmptyObject();
 
 	startButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+	creditsButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
 
 	test = OBJECT_FACTORY->CreateEmptyObject();
 	test2 = OBJECT_FACTORY->CreateEmptyObject();
@@ -60,9 +62,12 @@ void MainMenu::Init()
 	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
 	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
 	textureId06 = TEXTURE->CreateTexture("assets\\man.png", 0);
+	textureId07 = TEXTURE->CreateTexture("assets\\credits.png", 0);
+
 	startPress = TEXTURE->CreateTexture("assets\\start2.png", 0);
 	tutorialPress = TEXTURE->CreateTexture("assets\\tutorial2.png", 0);
 	optionPress = TEXTURE->CreateTexture("assets\\option2.png", 0);
+	creditsPress = TEXTURE->CreateTexture("assets\\credits2.png",0);
 
 	mShader.BuildTextureShader();
 	//testNDCShader.BuildTextureShaderNDC();
@@ -102,6 +107,18 @@ void MainMenu::Init()
 	optionButton_pressed->mesh->setTransform({ 0.0f,-180.f });
 	optionButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
+
+
+	creditsButton->AddComponent(new Mesh());
+	creditsButton->Init();
+	creditsButton_pressed->AddComponent(new Mesh());
+	creditsButton_pressed->Init();
+	creditsButton->mesh->setTransform({ 0.0f,-260.f });
+	creditsButton->mesh->SetMeshType(MESHTYPE::rectangle);
+	creditsButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	creditsButton_pressed->mesh->setTransform({ 0.0f,-260.f });
+	creditsButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
+	creditsButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
 }
@@ -231,13 +248,36 @@ void MainMenu::Update()
 		optionButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
+	if (creditsButton->collision->Point2BoxCollision(cursor0, creditsButton->mesh))
+	{
+		if (UI[3] == false)
+		{
+			UI[3] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
+		creditsButton_pressed->mesh->setTransform(creditsButton->mesh->GetTransform());
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			STATE_MANAGER->ChangeLevel(GameLevels::CREDITS);
+		}
+	}
+	else
+	{
+		UI[3] = false;
+		creditsButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
+	}
+
+
 	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
 	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
 	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
+	creditsButton->mesh->Update(mShader.GetShaderHandler(), textureId07);
+
 	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), startPress);
 	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), tutorialPress);
 	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), optionPress);
+	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), creditsPress);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

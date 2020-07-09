@@ -46,15 +46,19 @@ private:
 	Object* startButton;
 	Object* tutorialButton;
 	Object* optionButton;
+	Object* creditsButton;
+
 	Object* startButton_pressed;
 	Object* tutorialButton_pressed;
 	Object* optionButton_pressed;
+	Object* creditsButton_pressed;
+
 	Object* test;
 	Object* test2;
 
 
 	
-	bool UI[3] = { false };
+	bool UI[4] = { false };
 	
 	GLuint textureId00;	//game title
 	GLuint textureId01; //game start
@@ -63,9 +67,12 @@ private:
 	GLuint textureId05;//test
 	GLuint textureId04;	//option button
 	GLuint textureId06;//man
+	GLuint textureId07; //credits
+
 	GLuint startPress;
 	GLuint tutorialPress;
 	GLuint optionPress;
+	GLuint creditsPress;
 
 	int key;
 	//MovePooPoo getDirectionPooPoo;
