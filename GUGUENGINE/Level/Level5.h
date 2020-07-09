@@ -61,6 +61,7 @@ public:
 		pooCharacter = nullptr;
 		fail = nullptr;
 		mini = nullptr;
+		Yellow = nullptr;
 		
 		key = 0;
 	}
@@ -76,6 +77,12 @@ private:
 	double first;
 	double last;
 	bool failS = false;
+	
+	Object* Yellow;
+	GLuint textureYellow;
+	double yfirst;
+	double ylast;
+	bool yellowS = false;
 	
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
@@ -101,6 +108,7 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
+	Shader yShader;
 	MovePooPoo mPooPoo;
 	Input mInput;
 	bool rot[3] = { false };
