@@ -51,6 +51,14 @@ public:
 		optionUI = nullptr;
 		restartUI = nullptr;
 		
+		QuitAskBack = nullptr;
+		QuitAsk = nullptr;
+		Yes = nullptr;
+		No = nullptr;
+
+		Yes_p = nullptr;
+		No_p = nullptr;
+
 		playUI_p = nullptr;
 		quitUI_p = nullptr;
 		optionUI_p = nullptr;
@@ -82,6 +90,25 @@ private:
 	double first;
 	double last;
 	bool failS = false;
+
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
+
+	
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 	Object* levelImage, * numberImage;
