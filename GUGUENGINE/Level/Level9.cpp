@@ -473,7 +473,7 @@ void Level9::Update()
 		}
 	}
 
-	if ((puzzle15->pipe->GetDirValue(SE) == puzzle16->pipe->GetDirValue(NW)))
+	if ((puzzle15->pipe->GetDirValue(SE) == 1 && puzzle16->pipe->GetDirValue(NW) == 1))
 	{
 		conecTcheck9_1 = true;
 	}
@@ -482,7 +482,7 @@ void Level9::Update()
 		conecTcheck9_1 = false;
 	}
 
-	if ((puzzle12->pipe->GetDirValue(E) == puzzle17->pipe->GetDirValue(W)) && (puzzle12->pipe->GetDirValue(NW) == puzzle9->pipe->GetDirValue(SE)))
+	if ((puzzle12->pipe->GetDirValue(E) == 1 && puzzle17->pipe->GetDirValue(W) == 1) && (puzzle12->pipe->GetDirValue(NW) == 1 && puzzle9->pipe->GetDirValue(SE) == 1))
 	{
 
 		conecTcheck9_2 = true;
@@ -492,7 +492,7 @@ void Level9::Update()
 		conecTcheck9_2 = false;
 	}
 
-	if ((puzzle20->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+	if ((puzzle20->pipe->GetDirValue(E) == 1 && puzzle9->pipe->GetDirValue(W) == 1) && (puzzle20->pipe->GetDirValue(SW) == 1 && endPuzzle->pipe->GetDirValue(NE) == 1))
 	{
 
 		conecTcheck9_3 = true;
@@ -591,10 +591,7 @@ void Level9::Update()
 			INPUT->setInput(KEY::LEFT);
 			failS = false;
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 

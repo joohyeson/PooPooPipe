@@ -634,7 +634,7 @@ void Level11::Update()
 			}
 		}
 
-		if (puzzle2->pipe->GetDirValue(W) && (puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)))
+		if (puzzle2->pipe->GetDirValue(W) == 1 && (puzzle2->pipe->GetDirValue(SW) && puzzle18->pipe->GetDirValue(NE)))
 		{
 			conecTcheck8_1 = true;
 		}
@@ -643,7 +643,7 @@ void Level11::Update()
 			conecTcheck8_1 = false;
 		}
 
-		if ((puzzle13->pipe->GetDirValue(W) == 1) && (puzzle13->pipe->GetDirValue(SW) == puzzle4->pipe->GetDirValue(NE)))
+		if ((puzzle13->pipe->GetDirValue(W) == 1) && (puzzle13->pipe->GetDirValue(SW) && puzzle4->pipe->GetDirValue(NE)))
 		{
 			conecTcheck8_2 = true;
 		}
@@ -652,7 +652,7 @@ void Level11::Update()
 			conecTcheck8_2 = false;
 		}
 
-		if ((puzzle13->pipe->GetDirValue(SW) == puzzle4->pipe->GetDirValue(NE)) && puzzle4->pipe->GetDirValue(E))
+		if ((puzzle13->pipe->GetDirValue(SW) == 1 && puzzle4->pipe->GetDirValue(NE) == 1) && puzzle4->pipe->GetDirValue(E) == 1)
 		{
 			conecTcheck8_3 = true;
 		}
@@ -661,7 +661,7 @@ void Level11::Update()
 			conecTcheck8_3 = false;
 		}
 
-		if (puzzle6->pipe->GetDirValue(E) && (puzzle6->pipe->GetDirValue(NW) == puzzle3->pipe->GetDirValue(SE)))
+		if (puzzle6->pipe->GetDirValue(E) == 1 && (puzzle6->pipe->GetDirValue(NW) == 1 && puzzle3->pipe->GetDirValue(SE) == 1))
 		{
 			conecTcheck8_4 = true;
 
@@ -672,7 +672,7 @@ void Level11::Update()
 		}
 
 
-		if ((puzzle10->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)) && (puzzle10->pipe->GetDirValue(W) == puzzle9->pipe->GetDirValue(E)))
+		if ((puzzle10->pipe->GetDirValue(SW) == 1 && puzzle12->pipe->GetDirValue(NE) == 1) && (puzzle10->pipe->GetDirValue(W) == 1 && puzzle9->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck8_5 = true;
 
@@ -684,7 +684,7 @@ void Level11::Update()
 		
 
 
-		if ((puzzle2->pipe->GetDirValue(SW) == puzzle18->pipe->GetDirValue(NE)) && (puzzle18->pipe->GetDirValue(W) == puzzle3->pipe->GetDirValue(E)))
+		if ((puzzle2->pipe->GetDirValue(SW) == 1 && puzzle18->pipe->GetDirValue(NE) == 1) && (puzzle18->pipe->GetDirValue(W)&& puzzle3->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck8_6 = true;
 
@@ -694,7 +694,7 @@ void Level11::Update()
 			conecTcheck8_6 = false;
 		}
 
-		if ((puzzle12->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)) && (puzzle10->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
+		if ((puzzle12->pipe->GetDirValue(E) == 1 && endPuzzle->pipe->GetDirValue(W) == 1) && (puzzle10->pipe->GetDirValue(SW) == 1 && puzzle12->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck8_7= true;
 
@@ -813,10 +813,7 @@ void Level11::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 

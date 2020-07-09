@@ -522,7 +522,7 @@ void Level6::Update()
 			connectMove6 = 0;
 		}
 
-		if ((puzzle14->pipe->GetDirValue(NW) == puzzle13->pipe->GetDirValue(SE)) && (puzzle14->pipe->GetDirValue(W) == puzzle4->pipe->GetDirValue(E)))
+		if ((puzzle14->pipe->GetDirValue(NW) == 1 && puzzle13->pipe->GetDirValue(SE) == 1) && (puzzle14->pipe->GetDirValue(W) == 1 && puzzle4->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck6_1 = true;
 		}
@@ -531,7 +531,7 @@ void Level6::Update()
 			conecTcheck6_1 = false;
 		}
 
-		if ((puzzle7->pipe->GetDirValue(NE) == puzzle4->pipe->GetDirValue(SW)) && (puzzle7->pipe->GetDirValue(E) == puzzle15->pipe->GetDirValue(W)))
+		if ((puzzle7->pipe->GetDirValue(NE) == 1 && puzzle4->pipe->GetDirValue(SW) == 1) && (puzzle7->pipe->GetDirValue(E) == 1 && puzzle15->pipe->GetDirValue(W) == 1))
 		{
 			conecTcheck6_2 = true;
 		}
@@ -540,7 +540,7 @@ void Level6::Update()
 			conecTcheck6_2 = false;
 		}
 
-		if ((puzzle16->pipe->GetDirValue(NW) == puzzle15->pipe->GetDirValue(SE)) && (puzzle16->pipe->GetDirValue(SW) == puzzle17->pipe->GetDirValue(NE)))
+		if ((puzzle16->pipe->GetDirValue(NW) == 1 && puzzle15->pipe->GetDirValue(SE) == 1) && (puzzle16->pipe->GetDirValue(SW) == 1 && puzzle17->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck6_3 = true;
 		}
@@ -549,7 +549,7 @@ void Level6::Update()
 			conecTcheck6_3 = false;
 		}
 
-		if ((puzzle12->pipe->GetDirValue(E) == puzzle17->pipe->GetDirValue(W)) && (puzzle12->pipe->GetDirValue(NW) == puzzle9->pipe->GetDirValue(SE)))
+		if ((puzzle12->pipe->GetDirValue(E) == 1&& puzzle17->pipe->GetDirValue(W) == 1) && (puzzle12->pipe->GetDirValue(NW) == 1 && puzzle9->pipe->GetDirValue(SE) == 1))
 		{
 			conecTcheck6_4 = true;
 
@@ -559,7 +559,7 @@ void Level6::Update()
 			conecTcheck6_4 = false;
 		}
 
-		if ((blackPuzzle3->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (blackPuzzle3->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		if ((blackPuzzle3->pipe->GetDirValue(E) == 1 && puzzle9->pipe->GetDirValue(W) == 1) && (blackPuzzle3->pipe->GetDirValue(SW) == 1 && endPuzzle->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck6_5 = true;
 
@@ -660,10 +660,7 @@ void Level6::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 

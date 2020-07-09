@@ -295,7 +295,7 @@ void Level3::Update()
 
 	if (blCheck1)
 	{
-		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle2->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle7->pipe->GetDirValue(NE)))
+		if ((movePuzzle->pipe->GetDirValue(NW) == 1 && puzzle2->pipe->GetDirValue(SE) == 1) && (movePuzzle->pipe->GetDirValue(SW) == 1 && puzzle7->pipe->GetDirValue(NE) == 1))
 		{
 			//std::cout << "pipe connect\n";
 			conecTcheck1 = true;
@@ -308,7 +308,7 @@ void Level3::Update()
 	}
 	if (blCheck1_2)
 	{
-		if ((movePuzzle->pipe->GetDirValue(NE) == puzzle6->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(SE) == endPuzzle->pipe->GetDirValue(NW)))
+		if ((movePuzzle->pipe->GetDirValue(NE) == 1 && puzzle6->pipe->GetDirValue(SW) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && endPuzzle->pipe->GetDirValue(NW) == 1))
 		{
 			conecTcheck1 = true;
 			//std::cout << "pipe connect\n";
@@ -594,10 +594,7 @@ void Level3::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 

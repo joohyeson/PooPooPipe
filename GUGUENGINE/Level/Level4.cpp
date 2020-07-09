@@ -298,7 +298,7 @@ void Level4::Update()
 
 	if (blCheck3)
 	{
-		if ((movePuzzle->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
+		if ((movePuzzle->pipe->GetDirValue(NW) == 1 && puzzle1->pipe->GetDirValue(SE) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle6->pipe->GetDirValue(NW) == 1))
 		{
 			conecTcheck4_1 = true;
 		}
@@ -310,11 +310,11 @@ void Level4::Update()
 
 	if (blCheck3_2)
 	{
-		if ((movePuzzle->pipe->GetDirValue(W) == puzzle10->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(E) == endPuzzle->pipe->GetDirValue(W)))
+		if ((movePuzzle->pipe->GetDirValue(W) == 1 && puzzle10->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && endPuzzle->pipe->GetDirValue(W) == 1))
 		{
 			conecTcheck4_1 = true;
 		}
-		else if ((movePuzzle->pipe->GetDirValue(E) == puzzle10->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(W) == endPuzzle->pipe->GetDirValue(E)))
+		else if ((movePuzzle->pipe->GetDirValue(E) == 1 && puzzle10->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(W) == 1 && endPuzzle->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck4_1 = true;
 		}
@@ -619,10 +619,7 @@ void Level4::Update()
 			INPUT->setInput(KEY::LEFT);
 
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 	if (restartUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, restartUI->mesh))

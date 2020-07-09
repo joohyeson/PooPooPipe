@@ -340,7 +340,7 @@ void Level5::Update()
 	{
 		if (blCheck6_2)
 		{
-			if ((movePuzzle->pipe->GetDirValue(NE) == startPuzzle->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(E) == movePuzzle2->pipe->GetDirValue(W)))
+			if ((movePuzzle->pipe->GetDirValue(NE) == 1 &&startPuzzle->pipe->GetDirValue(SW) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && movePuzzle2->pipe->GetDirValue(W) == 1))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -353,7 +353,7 @@ void Level5::Update()
 		}
 		else if (blCheck7_2)
 		{
-			if ((movePuzzle->pipe->GetDirValue(NE) == startPuzzle->pipe->GetDirValue(SW)) && (movePuzzle->pipe->GetDirValue(E) == movePuzzle3->pipe->GetDirValue(W)))
+			if ((movePuzzle->pipe->GetDirValue(NE) == 1 && startPuzzle->pipe->GetDirValue(SW) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && movePuzzle3->pipe->GetDirValue(W) == 1))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -369,7 +369,7 @@ void Level5::Update()
 	{
 		if (blCheck6)
 		{
-			if ((movePuzzle->pipe->GetDirValue(W) == movePuzzle2->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
+			if ((movePuzzle->pipe->GetDirValue(W) == 1 && movePuzzle2->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -382,7 +382,7 @@ void Level5::Update()
 		}
 		else if (blCheck7)
 		{
-			if ((movePuzzle->pipe->GetDirValue(W) == movePuzzle3->pipe->GetDirValue(E)) && (movePuzzle->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
+			if ((movePuzzle->pipe->GetDirValue(W) == 1 && movePuzzle3->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
 			{
 				//std::cout << "pipe connect\n";
 				conecTcheck5_1 = true;
@@ -396,7 +396,7 @@ void Level5::Update()
 	}
 	if (blCheck5_3)
 	{
-		if ((movePuzzle->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
+		if ((movePuzzle->pipe->GetDirValue(E) == 1 && puzzle9->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(SW) == 1 && puzzle12->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck5_1 = true;
 			//std::cout << "pipe connect\n";
@@ -811,10 +811,7 @@ void Level5::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 	

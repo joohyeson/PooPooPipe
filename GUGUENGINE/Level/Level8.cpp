@@ -385,6 +385,8 @@ void Level8::Update()
 					puzzle1->mesh->setRotation(degree8);
 					rotTime.Update();
 
+					this->sound->Play("assets\\coin.mp3", 1);
+
 					//se8.Play("assets\\coin.mp3", 1);
 
 					rot[0] = false;
@@ -552,7 +554,7 @@ void Level8::Update()
 		}
 
 
-		if ((puzzle1->pipe->GetDirValue(E) == puzzle2->pipe->GetDirValue(W)) && (puzzle1->pipe->GetDirValue(SW) == puzzle3->pipe->GetDirValue(NE)))
+		if ((puzzle1->pipe->GetDirValue(E) == 1 && puzzle2->pipe->GetDirValue(W) == 1) && (puzzle1->pipe->GetDirValue(SW) == 1 && puzzle3->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck8_1 = true;
 		}
@@ -561,7 +563,7 @@ void Level8::Update()
 			conecTcheck8_1 = false;
 		}
 
-		if ((puzzle18->pipe->GetDirValue(NE) == puzzle2->pipe->GetDirValue(SW)) && (puzzle18->pipe->GetDirValue(E) == puzzle19->pipe->GetDirValue(W)))
+		if ((puzzle18->pipe->GetDirValue(NE) == 1 && puzzle2->pipe->GetDirValue(SW) == 1) && (puzzle18->pipe->GetDirValue(E) == 1 && puzzle19->pipe->GetDirValue(W) == 1))
 		{
 
 			conecTcheck8_2 = true;
@@ -571,7 +573,7 @@ void Level8::Update()
 			conecTcheck8_2 = false;
 		}
 
-		if ((puzzle7->pipe->GetDirValue(SW) == puzzle9->pipe->GetDirValue(NE)) && (puzzle7->pipe->GetDirValue(SE) == puzzle10->pipe->GetDirValue(NW)))
+		if ((puzzle7->pipe->GetDirValue(SW) == 1 && puzzle9->pipe->GetDirValue(NE) == 1) && (puzzle7->pipe->GetDirValue(SE) == 1 && puzzle10->pipe->GetDirValue(NW) == 1))
 		{
 
 			conecTcheck8_3 = true;
@@ -581,7 +583,7 @@ void Level8::Update()
 			conecTcheck8_3 = false;
 		}
 
-		if ((puzzle9->pipe->GetDirValue(NE) == puzzle7->pipe->GetDirValue(SW)) && (puzzle9->pipe->GetDirValue(W) == puzzle20->pipe->GetDirValue(E)))
+		if ((puzzle9->pipe->GetDirValue(NE) == 1 && puzzle7->pipe->GetDirValue(SW) == 1) && (puzzle9->pipe->GetDirValue(W) == 1 && puzzle20->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck8_4 = true;
 
@@ -591,7 +593,7 @@ void Level8::Update()
 			conecTcheck8_4 = false;
 		}
 
-		if ((puzzle17->pipe->GetDirValue(NE) == puzzle16->pipe->GetDirValue(SW)) && (puzzle17->pipe->GetDirValue(W) == puzzle12->pipe->GetDirValue(E)))
+		if ((puzzle17->pipe->GetDirValue(NE) == 1 && puzzle16->pipe->GetDirValue(SW) == 1) && (puzzle17->pipe->GetDirValue(W) == 1 && puzzle12->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck8_9 = true;
 
@@ -602,7 +604,7 @@ void Level8::Update()
 		}
 
 
-		if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(SE) == puzzle15->pipe->GetDirValue(NW)))
+		if ((puzzle4->pipe->GetDirValue(NE) == 1 && puzzle13->pipe->GetDirValue(SW) == 1) && (puzzle4->pipe->GetDirValue(SE) == 1 && puzzle15->pipe->GetDirValue(NW) == 1))
 		{
 			conecTcheck8_5 = true;
 		}
@@ -611,7 +613,7 @@ void Level8::Update()
 			conecTcheck8_5 = false;
 		}
 
-		if ((puzzle4->pipe->GetDirValue(NE) == puzzle13->pipe->GetDirValue(SW)) && (puzzle4->pipe->GetDirValue(W) == puzzle19->pipe->GetDirValue(E)))
+		if ((puzzle4->pipe->GetDirValue(NE) == 1 && puzzle13->pipe->GetDirValue(SW) == 1) && (puzzle4->pipe->GetDirValue(W) == 1 && puzzle19->pipe->GetDirValue(E) == 1))
 		{
 			conecTcheck8_6 = true;
 
@@ -621,7 +623,7 @@ void Level8::Update()
 			conecTcheck8_6 = false;
 		}
 
-		if ((puzzle20->pipe->GetDirValue(NW) == puzzle6->pipe->GetDirValue(SE)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		if ((puzzle20->pipe->GetDirValue(NW) == 1 && puzzle6->pipe->GetDirValue(SE) == 1) && (puzzle20->pipe->GetDirValue(SW) == 1 && endPuzzle->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck8_7 = true;
 
@@ -631,7 +633,7 @@ void Level8::Update()
 			conecTcheck8_7 = false;
 		}
 
-		if ((puzzle20->pipe->GetDirValue(E) == puzzle9->pipe->GetDirValue(W)) && (puzzle20->pipe->GetDirValue(SW) == endPuzzle->pipe->GetDirValue(NE)))
+		if ((puzzle20->pipe->GetDirValue(E) == 1 && puzzle9->pipe->GetDirValue(W) == 1) && (puzzle20->pipe->GetDirValue(SW) == 1 && endPuzzle->pipe->GetDirValue(NE) == 1))
 		{
 			conecTcheck8_8 = true;
 
@@ -685,7 +687,7 @@ void Level8::Update()
 				//playSE8.SetVolume(0.5f);
 				//playSE8.SetLoopCount(1);
 			}
-			else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9)
+			else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9) 
 			{
 				std::cout << "if 5" << std::endl;
 				clear->mesh->setTransform({ 350.f, -240.f });
@@ -729,10 +731,7 @@ void Level8::Update()
 			failS[1] = false;
 			failS[0] = false;
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();

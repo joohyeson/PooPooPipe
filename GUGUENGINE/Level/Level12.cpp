@@ -504,7 +504,7 @@ void Level12::Update()
 		}
 
 
-		if (puzzle3->pipe->GetDirValue(E) && (puzzle3->pipe->GetDirValue(SE)))
+		if (puzzle3->pipe->GetDirValue(E) == 1 && (puzzle3->pipe->GetDirValue(SE) == 1))
 		{
 			//std::cout << "check 1" << std::endl;
 			conecTcheck8_1 = true;
@@ -514,7 +514,7 @@ void Level12::Update()
 			conecTcheck8_1 = false;
 		}
 
-		if ((puzzle19->pipe->GetDirValue(W) == 1) && (puzzle19->pipe->GetDirValue(SE) == puzzle7->pipe->GetDirValue(NW)))
+		if ((puzzle19->pipe->GetDirValue(W) == 1) && (puzzle19->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
 		{
 			//std::cout << "check 2" << std::endl;
 
@@ -525,7 +525,7 @@ void Level12::Update()
 			conecTcheck8_2 = false;
 		}
 
-		if ((puzzle14->pipe->GetDirValue(NW) && puzzle14->pipe->GetDirValue(SW)))
+		if ((puzzle14->pipe->GetDirValue(NW) == 1 && puzzle14->pipe->GetDirValue(SW) == 1))
 		{
 			//std::cout << "check 3" << std::endl;
 
@@ -536,7 +536,7 @@ void Level12::Update()
 			conecTcheck8_3 = false;
 		}
 
-		if (puzzle7->pipe->GetDirValue(NW) == puzzle19->pipe->GetDirValue(SE) && (puzzle7->pipe->GetDirValue(E)))
+		if (puzzle7->pipe->GetDirValue(NW) == 1 && puzzle19->pipe->GetDirValue(SE) == 1 && (puzzle7->pipe->GetDirValue(E) == 1))
 		{
 			//std::cout << "check 4" << std::endl;
 
@@ -549,7 +549,7 @@ void Level12::Update()
 		}
 
 
-		if ((puzzle20->pipe->GetDirValue(NW)) && (puzzle20->pipe->GetDirValue(E)))
+		if ((puzzle20->pipe->GetDirValue(NW) == 1) && (puzzle20->pipe->GetDirValue(E) == 1))
 		{
 			//std::cout << "check 5" << std::endl;
 
@@ -562,7 +562,7 @@ void Level12::Update()
 		}
 
 
-		if ((puzzle12->pipe->GetDirValue(NW)) && (puzzle12->pipe->GetDirValue(W)))
+		if ((puzzle12->pipe->GetDirValue(NW) == 1) && (puzzle12->pipe->GetDirValue(W) == 1))
 		{
 			//std::cout << "check 7" << std::endl;
 
@@ -662,10 +662,7 @@ void Level12::Update()
 			failS[1] = false;
 			failS[0] = false;
 			fail->mesh->setTransform({ -2000.f,-2000.f });
-			if (lastTime - firstTime > 3)
-			{
-				STATE_MANAGER->ReloadState();
-			}
+			STATE_MANAGER->ReloadState();
 		}
 	}
 
