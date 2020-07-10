@@ -109,6 +109,7 @@ void Sound::Load()
 	LoadMusic("assets\\footprint.ogg");
 	LoadMusic("assets\\siren.wav");
 	LoadMusic("assets\\heaven.wav");
+	LoadMusic("assets\\rain.wav");
 
 }
 

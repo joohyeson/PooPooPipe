@@ -76,7 +76,7 @@ void endingCut::Update()
 	if (sound_[0] == false)
 	{
 		sound_[0] = true;
-		this->sound->Play("assets\\footprint.ogg", 1);
+		this->sound->Play("assets\\rain.wav", 1);
 	}
 
 
@@ -94,7 +94,7 @@ void endingCut::Update()
 					if (sound_[1] == false)
 					{
 						sound_[1] = true;
-						this->sound->Play("assets\\flushing.wav", 1);
+						//this->sound->Play("assets\\flushing.wav", 1);
 					}
 					endCut2->mesh->setTransform({ 0.f, 0.f });
 				}
