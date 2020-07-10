@@ -16,6 +16,7 @@ enum class GameLevels
 	FMODLOGO,
 	GUGULOGO,
 	CUTSCENE,
+	ENDINGCUTS,
 	MAINMENU,
 	OPTION,
 	LV_TEST1,
@@ -33,6 +34,7 @@ enum class GameLevels
 	LV_SELECT,
 	MOVINGCHECK,
 	CREDITS,
+
 };
 
 class LevelManager

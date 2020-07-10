@@ -10,6 +10,7 @@
 #include "StateManager.h"
 #include "DigipenLogo.h"
 #include "startCutscene.h"
+#include "endingcut.h"
 #include "Option.h"
 #include "Credits.h"
 
@@ -30,6 +31,7 @@
 #include "LevelSelect.h"
 #include "MovingCheck.h"
 #include "99.h"
+
 
 StateManager* STATE_MANAGER = nullptr;
 
@@ -59,6 +61,7 @@ void StateManager::Init()
 	levels.push_back(new FmodLogo());
 	levels.push_back(new GUGULOGO);
 	levels.push_back(new startCut());
+	levels.push_back(new endingCut());
 	levels.push_back(new MainMenu());
 	levels.push_back(new LevelOption());
 	levels.push_back(new Level1());
@@ -74,7 +77,7 @@ void StateManager::Init()
 	levels.push_back(new Level12());
 	levels.push_back(new Level13());
 	levels.push_back(new LevelSelect());
-
+	
 	levels.push_back(new MovingCheck());
 
 	levels.push_back(new LevelCredits());
