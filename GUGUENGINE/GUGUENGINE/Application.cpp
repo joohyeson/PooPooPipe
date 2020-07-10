@@ -68,8 +68,8 @@ Application::Application()
     screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
 
     Mywindow = glfwCreateWindow(
-        500,
-        500,
+        1200,
+        900,
         "PooPooPipe",
         NULL, NULL);
 
