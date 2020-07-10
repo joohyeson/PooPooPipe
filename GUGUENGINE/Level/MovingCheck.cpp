@@ -298,7 +298,7 @@ void MovingCheck::Update()
 	//mPooPoo.Update(mShader2.GetShaderHandler());
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
-	glClearColor(0.4f, 0.3f, 0.3f, 1);
+	glClearColor(0.f, 0.f, 0.f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glfwPollEvents();

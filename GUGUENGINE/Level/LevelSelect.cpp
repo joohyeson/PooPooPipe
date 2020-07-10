@@ -401,7 +401,7 @@ void LevelSelect::Update()
 	Level10_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv10_pressed);
 	Level10_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
 	glfwSwapBuffers(APPLICATION->getMyWindow());
-	glClearColor(0.4f, 0.3f, 0.3f, 1);
+	glClearColor(0.f, 0.f, 0.f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
 
 	glfwPollEvents();
