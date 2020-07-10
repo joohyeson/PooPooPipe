@@ -46,6 +46,7 @@ void Application::Update()
     }
 	
     //glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
+    glfwSetWindowAspectRatio(APPLICATION->getMyWindow(), 16, 9);
     glfwPollEvents();
 }
 
@@ -148,7 +149,9 @@ void Application::SetFullScreen()
     {
         glfwSetWindowMonitor(APPLICATION->getMyWindow(), nullptr, tx, ty, APPLICATION->tempx, APPLICATION->tempy, 0);
         isFullScreen = false;
+
         glViewport(0, 0, APPLICATION->tempx, APPLICATION->tempy);
+        
     }
 }
 

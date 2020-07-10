@@ -18,7 +18,6 @@ public:
 	~Application();
 	
 	bool IsGameRunning() const { return isGameRunning; }
-	void ValidCheck();
 	
 	void Init() override;
 	void Update() override;
