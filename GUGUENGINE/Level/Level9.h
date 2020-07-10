@@ -86,7 +86,7 @@ private:
 	double first;
 	double last;
 	bool failS = false;
-
+	bool Nos[2] = { false };
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

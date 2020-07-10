@@ -21,6 +21,9 @@ void Level9::Init()
 
 	failS = false;
 
+	Nos[0] = false;
+	Nos[1] = false;
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -49,7 +52,7 @@ void Level9::Init()
 
 	quitCheck = false;
 	realQuit = false;
-	
+
 	autoRot = true;
 
 	chekNext9 = 0;
@@ -76,7 +79,7 @@ void Level9::Init()
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
+	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -293,33 +296,36 @@ void Level9::Update()
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, Levelsel->mesh) == true)
 	{
-		if (UI[4] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[4] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
+			if (UI[4] == false)
+			{
+				UI[4] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
 
-			chekNext9 = 0;
+				chekNext9 = 0;
 
-			conecTcheck9_1 = false;
-			conecTcheck9_2 = false;
-			conecTcheck9_3 = false;
+				conecTcheck9_1 = false;
+				conecTcheck9_2 = false;
+				conecTcheck9_3 = false;
 
-			degree9 = 0;
-			degree9_2 = DegreeToRadian(60.f);
-			degree9_3 = DegreeToRadian(-60.f);
-			degree9_4 = DegreeToRadian(60.f);
-			degree9_5 = 0;
-			degree9_6 = DegreeToRadian(-180.f);
-			degree9_7 = DegreeToRadian(120.f);
-			degree9_rot = DegreeToRadian(-120.f);
+				degree9 = 0;
+				degree9_2 = DegreeToRadian(60.f);
+				degree9_3 = DegreeToRadian(-60.f);
+				degree9_4 = DegreeToRadian(60.f);
+				degree9_5 = 0;
+				degree9_6 = DegreeToRadian(-180.f);
+				degree9_7 = DegreeToRadian(120.f);
+				degree9_rot = DegreeToRadian(-120.f);
 
-			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
+				std::cout << "check" << std::endl;
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
+			}
 		}
 	}
 	else
@@ -533,17 +539,20 @@ void Level9::Update()
 
 	if (playUI->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, playUI->mesh))
 	{
-		if (UI[0] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[0] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+			if (UI[0] == false)
+			{
+				UI[0] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			poopooCheck = true;
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				poopooCheck = true;
+			}
 		}
 	}
 	else
@@ -551,10 +560,10 @@ void Level9::Update()
 		UI[0] = false;
 
 		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
-		connectMove9= 0;
+		connectMove9 = 0;
 	}
-	
-	if(poopooCheck == true)
+
+	if (poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
@@ -580,21 +589,22 @@ void Level9::Update()
 						failS = true;
 						first = glfwGetTime();
 					}
-					
+
 				}
 			}
-			
-			if(failS == true)
+
+			if (failS == true)
 			{
 				last = glfwGetTime();
 				if (last - first > 1.5f)
 				{
+					Nos[0] = true;
 					fail->mesh->setTransform({ 0,0 });
 					failS = false;
 					poopooCheck = false;
 				}
 			}
-			
+
 			if (conecTcheck9_1 && conecTcheck9_2 && conecTcheck9_3)
 			{
 				std::cout << "if 3" << std::endl;
@@ -604,7 +614,7 @@ void Level9::Update()
 				mPooPoo.SetIsSuccess(true);
 				connectMove9 = 0;
 
-				if(SoundCheck == false)
+				if (SoundCheck == false)
 				{
 					this->sound->Play("assets\\flushing.wav", 1);
 				}
@@ -619,6 +629,7 @@ void Level9::Update()
 		{
 			INPUT->setInput(KEY::LEFT);
 			failS = false;
+			Nos[0] = false;
 			fail->mesh->setTransform({ -2000.0f, -2000.0f });
 			STATE_MANAGER->ReloadState();
 		}
@@ -626,18 +637,21 @@ void Level9::Update()
 
 	if (restartUI->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, restartUI->mesh))
 	{
-		if (UI[1] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[1] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+			if (UI[1] == false)
+			{
+				UI[1] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 
+			}
 		}
 	}
 	else
@@ -648,17 +662,20 @@ void Level9::Update()
 
 	if (optionUI->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, optionUI->mesh))
 	{
-		if (UI[2] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[2] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+			if (UI[2] == false)
+			{
+				UI[2] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			}
 		}
 	}
 	else
@@ -670,24 +687,28 @@ void Level9::Update()
 
 	if (quitUI->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, quitUI->mesh))
 	{
-		if (UI[3] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[3] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
-
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			if (quitCheck == false)
+			if (UI[3] == false)
 			{
-				//SOUND->Pause();
-				quitCheck = true;
-				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
-				QuitAsk->mesh->setTransform({ 0.f, 0.f });
-				Yes->mesh->setTransform({ -100.f, -50.f });
-				No->mesh->setTransform({ 100.f, -50.f });
+				UI[3] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				if (quitCheck == false)
+				{
+					//SOUND->Pause(0;
+					Nos[1] = true;
+					quitCheck = true;
+					QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+					QuitAsk->mesh->setTransform({ 0.f, 0.f });
+					Yes->mesh->setTransform({ -100.f, -50.f });
+					No->mesh->setTransform({ 100.f, -50.f });
+				}
 			}
 		}
 	}
@@ -718,7 +739,7 @@ void Level9::Update()
 			INPUT->setInput(KEY::LEFT);
 			quitCheck = false;
 			realQuit = false;
-
+			Nos[1] = false;
 			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
 			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
 			Yes->mesh->setTransform({ -2000.f, -2000.f });
@@ -736,7 +757,7 @@ void Level9::Update()
 		ENGINE->Quit();
 	}
 
-	
+
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
 	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
@@ -764,9 +785,9 @@ void Level9::Update()
 		degree9_rot = DegreeToRadian(-120.f);
 
 	}
-	if(skip == true)
+	if (skip == true)
 	{
-		if(lastTime - firstTime > 2)
+		if (lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
 		}
@@ -810,7 +831,7 @@ void Level9::Update()
 	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
 	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI9);
 	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
-	
+
 	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
 	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
 	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
@@ -822,7 +843,7 @@ void Level9::Update()
 
 	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
 	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-	
+
 
 	if (mPooPoo.IsFinish() == false)
 	{
@@ -830,7 +851,7 @@ void Level9::Update()
 	}
 
 
-	if ( mInput.IsPressed(KEY::A) == true)
+	if (mInput.IsPressed(KEY::A) == true)
 	{
 		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
@@ -840,14 +861,14 @@ void Level9::Update()
 		INPUT->setInput(KEY::ESCAPE);
 		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
-	
+
 	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
 	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
 	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
 	No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
 	Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
 	No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
-	
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
 	glClearColor(0.f, 0.f, 0.f, 1);

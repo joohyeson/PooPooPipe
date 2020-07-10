@@ -17,6 +17,9 @@ void Level10::Init()
 	failS[0] = false;
 	failS[1] = false;
 
+	Nos[0] = false;
+	Nos[1] = false;
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -45,7 +48,7 @@ void Level10::Init()
 
 	quitCheck = false;
 	realQuit = false;
-	
+
 	rotTime.setRotate(30);
 	rotrot2 = true;
 	chekNext8 = 0;
@@ -75,7 +78,7 @@ void Level10::Init()
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);	
+	textureBackground8 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
@@ -179,14 +182,14 @@ void Level10::Init()
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, -200.f - 62.f }, -120.f);
 	endPuzzle->pipe->SetDirection(true, false, false, true, false, false);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle,  { 72.f - 430.f, 280.f + 50.f });
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
 	puzzle1->pipe->SetDirection(true, false, false, true, false, false);
 
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
 
 	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, -60.f);
 
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f },180.f);
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f }, 180.f);
 	puzzle4->pipe->SetDirection(true, false, true, false, false, false);
 
 	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -64.f - 465.f, 40.f - 5.f });
@@ -317,17 +320,20 @@ void Level10::Update()
 
 	if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
 	{
-		if (UI[4] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[4] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			std::cout << "check" << std::endl;
-			STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
+			if (UI[4] == false)
+			{
+				UI[4] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				std::cout << "check" << std::endl;
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
+			}
 		}
 	}
 	else
@@ -350,18 +356,19 @@ void Level10::Update()
 
 		std::cout << "rotation limit!!!" << std::endl;
 	}
-	
-	if(failS[0] == true)
+
+	if (failS[0] == true)
 	{
 		last = glfwGetTime();
 		if (last - first > 1.5f)
 		{
+			Nos[0] = true;
 			fail->mesh->setTransform({ 0,0 });
 			poopooCheck = false;
 			STATE_MANAGER->ReloadState();
 		}
 	}
-	
+
 	if (rotrot2)
 	{
 		if (puzzle1->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle1->mesh))
@@ -381,7 +388,7 @@ void Level10::Update()
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					
+
 					rot[0] = false;
 				}
 			}
@@ -404,7 +411,7 @@ void Level10::Update()
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					
+
 					rot[1] = false;
 				}
 			}
@@ -430,7 +437,7 @@ void Level10::Update()
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					
+
 					rot[2] = false;
 				}
 			}
@@ -454,7 +461,7 @@ void Level10::Update()
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					
+
 					rot[3] = false;
 				}
 			}
@@ -695,18 +702,21 @@ void Level10::Update()
 	}
 	if (playUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, playUI->mesh))
 	{
-		if (UI[0] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[0] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+			if (UI[0] == false)
+			{
+				UI[0] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			poopooCheck = true;
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				poopooCheck = true;
 
+			}
 		}
 	}
 	else
@@ -731,7 +741,7 @@ void Level10::Update()
 
 				this->sound->Play("assets\\flushing.wav", 1);
 
-				
+
 				poopooCheck = false;
 			}
 			else {
@@ -741,20 +751,21 @@ void Level10::Update()
 					this->sound->Play("assets\\fart.mp3", 1);
 					failS[1] = true;
 					first = glfwGetTime();
-				}			
+				}
 			}
 		}
 	}
-	if(failS[1] == true)
+	if (failS[1] == true)
 	{
 		last = glfwGetTime();
 		if (last - first > 1.5f)
 		{
+			Nos[0] = true;
 			fail->mesh->setTransform({ 0,0 });;
 			poopooCheck = false;
 		}
 	}
-	
+
 	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT) == true)
@@ -762,6 +773,7 @@ void Level10::Update()
 			INPUT->setInput(KEY::LEFT);
 			failS[1] = false;
 			failS[0] = false;
+			Nos[0] = false;
 			fail->mesh->setTransform({ -2000.f,-2000.f });
 			STATE_MANAGER->ReloadState();
 		}
@@ -769,17 +781,20 @@ void Level10::Update()
 
 	if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
 	{
-		if (UI[1] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[1] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+			if (UI[1] == false)
+			{
+				UI[1] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			STATE_MANAGER->ReloadState();
-			INPUT->setInput(KEY::LEFT);
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				STATE_MANAGER->ReloadState();
+				INPUT->setInput(KEY::LEFT);
+			}
 		}
 	}
 	else
@@ -790,17 +805,20 @@ void Level10::Update()
 
 	if (optionUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
 	{
-		if (UI[2] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[2] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+			if (UI[2] == false)
+			{
+				UI[2] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
 
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			}
 		}
 	}
 	else
@@ -812,24 +830,28 @@ void Level10::Update()
 
 	if (quitUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
 	{
-		if (UI[3] == false)
+		if (Nos[0] == false && Nos[1] == false)
 		{
-			UI[3] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
-
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			if (quitCheck == false)
+			if (UI[3] == false)
 			{
-				//SOUND->Pause();
-				quitCheck = true;
-				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
-				QuitAsk->mesh->setTransform({ 0.f, 0.f });
-				Yes->mesh->setTransform({ -100.f, -50.f });
-				No->mesh->setTransform({ 100.f, -50.f });
+				UI[3] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				if (quitCheck == false)
+				{
+					//SOUND->Pause();
+					Nos[1] = true;
+					quitCheck = true;
+					QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+					QuitAsk->mesh->setTransform({ 0.f, 0.f });
+					Yes->mesh->setTransform({ -100.f, -50.f });
+					No->mesh->setTransform({ 100.f, -50.f });
+				}
 			}
 		}
 	}
@@ -861,7 +883,7 @@ void Level10::Update()
 			INPUT->setInput(KEY::LEFT);
 			quitCheck = false;
 			realQuit = false;
-
+			Nos[1] = false;
 			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
 			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
 			Yes->mesh->setTransform({ -2000.f, -2000.f });
@@ -878,7 +900,7 @@ void Level10::Update()
 		glfwTerminate();
 		ENGINE->Quit();
 	}
-	
+
 	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
 	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
@@ -888,14 +910,14 @@ void Level10::Update()
 		{
 			this->sound->Play("assets\\yeah.wav", 1);
 		}
-		
+
 		skip = true;
 		win->mesh->setTransform({ 0,0 });
 	}
-	
-	if(skip == true)
+
+	if (skip == true)
 	{
-		if(lastTime - firstTime > 2)
+		if (lastTime - firstTime > 2)
 		{
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 		}
@@ -1020,7 +1042,7 @@ void Level10::Update()
 		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 	}
-	
+
 	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
 	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
 	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
