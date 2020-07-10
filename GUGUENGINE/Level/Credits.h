@@ -23,6 +23,7 @@ public:
 	LevelCredits()
 	{
 		background = nullptr;
+		goToMain = nullptr;
 		textureBackgroundCredits = 0;
 	}
 
@@ -36,9 +37,12 @@ public:
 	void Close() override;
 
 private:
-	Object* background;
+	Object* background, * goToMain;
 
 	GLuint textureBackgroundCredits;
-
+	GLuint textureGoToMain;
 	Shader mShader;
+
+	Input mInput;
+	Vector2<float> cursor;
 };
