@@ -157,6 +157,7 @@
     <ClCompile Include="99.cpp" />
     <ClCompile Include="Credits.cpp" />
     <ClCompile Include="DigipenLogo.cpp" />
+    <ClCompile Include="endingcut.cpp" />
     <ClCompile Include="FmodLogo.cpp" />
     <ClCompile Include="Level1.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>
@@ -194,6 +195,7 @@
     <ClInclude Include="99.h" />
     <ClInclude Include="Credits.h" />
     <ClInclude Include="DigipenLogo.h" />
+    <ClInclude Include="endingcut.h" />
     <ClInclude Include="FmodLogo.h" />
     <ClInclude Include="Level1.h">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">false</ExcludedFromBuild>

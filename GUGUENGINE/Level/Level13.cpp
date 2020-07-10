@@ -689,7 +689,7 @@ void Level13::Update()
 	{
 		if (lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			STATE_MANAGER->ChangeLevel(GameLevels::ENDINGCUTS);
 		}
 	}
 
@@ -877,7 +877,7 @@ void Level13::Update()
 	if (mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+		STATE_MANAGER->ChangeLevel(GameLevels::ENDINGCUTS);
 	}
 	
 	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
