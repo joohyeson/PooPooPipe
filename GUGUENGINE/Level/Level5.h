@@ -91,7 +91,7 @@ private:
 	double yfirst;
 	double ylast;
 	bool yellowS = false;
-
+	bool Nos[2] = { false };
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

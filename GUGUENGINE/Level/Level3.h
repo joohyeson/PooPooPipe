@@ -99,6 +99,9 @@ private:
 	double last;
 	bool failS = false;
 	bool skip = false;
+
+	bool Nos[2] = { false };
+	
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;
 	Object* levelImage, * numberImage;
