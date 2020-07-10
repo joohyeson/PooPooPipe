@@ -112,6 +112,7 @@ void startCut::Update()
 				}
 				else if(cut[0] == true && cut[1] == true)
 				{
+					
 					STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 				}
 			}
@@ -140,6 +141,7 @@ void startCut::Close()
 {
 
 	mShader.Delete();
+	sound->StopEffectSound();
 	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 

@@ -40,7 +40,8 @@ public:
 	float GetVolume();
 
 	void SetLoopCount(int loopCount);
-
+	void StopEffectSound();
+	void StopSound(std::string mString);
 	Vector2<float> soundBarSize;
 	Vector2<float> soundBarPosition;
 

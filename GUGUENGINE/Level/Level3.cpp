@@ -882,10 +882,7 @@ void Level3::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
-
-	/*se3.Free();
-	playSE3.Free();*/
+	sound->StopEffectSound();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

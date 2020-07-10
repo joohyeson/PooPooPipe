@@ -20,14 +20,9 @@ int moveCheck0_3 = 0;
 
 float volume = 0.3f;
 
-
-
-bool isPlaying = false;
-//Sound bgm;
-
-
 void MainMenu::Init()
 {
+	isPlaying = false;
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -121,6 +116,7 @@ void MainMenu::Init()
 	creditsButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
+	//this->sound->Play("assets\\BGM_airplane.mp3", -1);
 }
 
 void MainMenu::Update()

@@ -198,10 +198,7 @@ void Sound::Rewind()
 
 void Sound::SetVolume(float volume)
 {
-
-
 	m_volume = volume;
-
 }
 
 float Sound::GetVolume()
@@ -213,6 +210,30 @@ void Sound::SetLoopCount(int /*loopCount*/)
 {
 	//channel->setLoopCount(loopCount);
 }
+
+void Sound::StopEffectSound()
+{
+	for (auto s : m_sounds)
+	{
+		if (s->source.find("BGM") == -1)
+		{
+			s->channel->stop();
+		}
+	}
+}
+
+void Sound::StopSound(std::string mString)
+{
+	for (auto s : m_sounds)
+	{
+		if (s->source.find(mString) != -1)
+		{
+			s->channel->stop();
+			break;
+		}
+	}
+}
+	
 
 
 

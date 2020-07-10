@@ -36,6 +36,8 @@ void endingCut::Init()
 	next->mesh->InitializeTextureMesh(173.f, 200.f);
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	SOUND->StopSound("BGM");
 }
 
 void endingCut::Update()
@@ -137,8 +139,8 @@ void endingCut::Update()
 
 void endingCut::Close()
 {
-
 	mShader.Delete();
+	SOUND->StopEffectSound();
 	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 
