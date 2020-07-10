@@ -46,8 +46,8 @@ private:
 	Shader mShader;
 	GLFWwindow* Mywindow;
 
-	int tempx, tempy;
-	int tx, ty;
+	int tempx=1200, tempy=900;
+	int tx=50, ty=50;
 
 };
 extern Application* APPLICATION;

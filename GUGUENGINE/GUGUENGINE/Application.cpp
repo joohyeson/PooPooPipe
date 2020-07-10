@@ -66,12 +66,14 @@ Application::Application()
     const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
     GLFWmonitor* screenMonitor = nullptr;
     screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
-
+    
     Mywindow = glfwCreateWindow(
         1200,
         900,
         "PooPooPipe",
-        NULL, NULL);
+        glfwGetPrimaryMonitor(), NULL);
+
+    isFullScreen = true;
 
     if (!Mywindow) {
 
@@ -116,6 +118,7 @@ Application::Application()
     
     glfwGetFramebufferSize(Mywindow, &framebufferWidth, &framebufferHeight);
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
+
 }
 
 Application::~Application()
