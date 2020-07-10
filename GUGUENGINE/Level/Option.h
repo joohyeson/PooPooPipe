@@ -79,7 +79,8 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader;
-
+	bool fullcheck = false;
+	bool quitC = false;
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

@@ -20,6 +20,8 @@ void LevelOption::Init()
 	background->AddComponent(new Mesh());
 	background->Init();
 
+	quitC = false;
+	
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(1920, 1080);
@@ -128,6 +130,8 @@ void LevelOption::Init()
 	fullScreenFalse->mesh->SetMeshType(MESHTYPE::rectangle);
 	fullScreenFalse->mesh->InitializeTextureMesh(80.f, 80.f);
 
+	fullcheck = false;
+	
 	fullScreenTrue = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreenTrue->AddComponent(new Mesh());
 	fullScreenTrue->Init();
@@ -170,6 +174,7 @@ void LevelOption::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT))
 		{
+			INPUT->setInput(KEY::LEFT);
 			std::cout << "to main" << std::endl;
 			STATE_MANAGER->ChangeLevel(nextLevel);
 		}
@@ -179,15 +184,20 @@ void LevelOption::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT))
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			if (APPLICATION->IsFullScreen() == true)
 			{
-				fullScreenTrue->mesh->setTransform(Vector2<float>(-3500.f, 0));
+				if(fullcheck == false)
+				{
+					fullcheck = true;
+					fullScreenTrue->mesh->setTransform(Vector2<float>(-3500.f, 0));
+				}
 			}
 			else
 			{
 				fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
 			}
-
 			APPLICATION->SetFullScreen();
 		}
 	}
@@ -199,10 +209,17 @@ void LevelOption::Update()
 		}
 	}
 
+	if(fullcheck == true && APPLICATION->IsFullScreen() == false)
+	{
+		fullcheck = false;
+	}
+	
 	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh))
 	{
 		if (mInput.IsPressed(KEY::LEFT))
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			std::cout << "Up Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
@@ -235,6 +252,8 @@ void LevelOption::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT))
 		{
+			INPUT->setInput(KEY::LEFT);
+
 			std::cout << "Down Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
@@ -269,9 +288,11 @@ void LevelOption::Update()
 	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh))
 	{
 		quitButton_pressed->mesh->setTransform(quitButton->mesh->GetTransform());
+
+
 		if (mInput.IsPressed(KEY::LEFT))
 		{
-			mInput.setInput(KEY::LEFT);
+			INPUT->setInput(KEY::LEFT);
 			if (quitCheck == false)
 			{
 				//SOUND->Pause();
@@ -285,6 +306,7 @@ void LevelOption::Update()
 	}
 	else
 	{
+		quitC = false;
 		quitButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
@@ -307,7 +329,7 @@ void LevelOption::Update()
 		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
-			mInput.setInput(KEY::LEFT);
+			INPUT->setInput(KEY::LEFT);
 			realQuit = false;
 			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		}
