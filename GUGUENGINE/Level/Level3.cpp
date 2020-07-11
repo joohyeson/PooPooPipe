@@ -29,6 +29,10 @@ void Level3::Init()
 	Cur[0] = false;
 	Cur[1] = false;
 	Cur[2] = false;
+	SUI[0] = false;
+	SUI[1] = false;
+	SUI[2] = false;
+	checking = false;
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
@@ -253,6 +257,22 @@ void Level3::Update()
 
 	cursor3 = mInput.Cursor;
 
+	if (mInput.IsPressed(KEY::LEFT))
+	{
+		if(checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}		
+	}
+	else
+	{
+		if(checking == true)
+		{
+			checking = false;
+		}
+	}
+
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -302,6 +322,12 @@ void Level3::Update()
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
+		if (SUI[0] == false)
+		{
+			SUI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
+
 		if (Cur[0] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
 		{
 			Cur[0] = true;
@@ -329,6 +355,7 @@ void Level3::Update()
 	}
 	else
 	{
+		SUI[0] = false;
 		movable[0] = false;
 	}
 
@@ -367,6 +394,11 @@ void Level3::Update()
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle2->mesh) == true)
 	{
+		if (SUI[1] == false)
+		{
+			SUI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		if (Cur[1] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[2])
 		{
 			Cur[1] = true;
@@ -397,6 +429,7 @@ void Level3::Update()
 	}
 	else
 	{
+		SUI[1] = false;
 		movable[1] = false;
 	}
 	if (Cur[1] == true)
@@ -417,6 +450,11 @@ void Level3::Update()
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle3->mesh) == true)
 	{
+		if (SUI[2] == false)
+		{
+			SUI[2] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		if (Cur[2] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
 		{
 			Cur[2] = true;
@@ -444,8 +482,10 @@ void Level3::Update()
 	}
 	else
 	{
+		SUI[2] = false;
 		movable[2] = false;
 	}
+
 	if (Cur[2] == true)
 	{
 		movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
@@ -483,10 +523,12 @@ void Level3::Update()
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
 			Cur[0] = false;
+
 			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
 			{
 				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					movable[0] = false;
 					blCheck1 = true;
@@ -494,6 +536,7 @@ void Level3::Update()
 				}
 				else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					movable[0] = false;
 					blCheck1_2 = false;
@@ -501,6 +544,7 @@ void Level3::Update()
 				}
 				else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					movable[0] = false;
 					blCheck1_2 = true;
@@ -522,16 +566,19 @@ void Level3::Update()
 			{
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle2->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					movable[1] = false;
 				}
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle2->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					movable[1] = false;
 				}
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle2->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					movable[1] = false;
 				}
@@ -551,6 +598,7 @@ void Level3::Update()
 				if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
 					if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
 					{
+						this->sound->Play("assets\\fit.flac", 1);
 						movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 						movable[2] = false;
 						blCheck2 = true;
@@ -558,6 +606,7 @@ void Level3::Update()
 					}
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle3->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					movable[2] = false;
 
@@ -566,6 +615,7 @@ void Level3::Update()
 				}
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
+					this->sound->Play("assets\\fit.flac", 1);
 					movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					movable[2] = false;
 					blCheck2 = false;

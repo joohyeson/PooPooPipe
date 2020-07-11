@@ -103,6 +103,7 @@ void MainMenu::Init()
 	optionButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	optionButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
+	checking = false;
 
 	creditsButton->AddComponent(new Mesh());
 	creditsButton->Init();
@@ -124,6 +125,22 @@ void MainMenu::Update()
 	this->sound->Update();
 	cursor0 = menuInput.Cursor;
 
+	if(menuInput.IsPressed(KEY::LEFT))
+	{
+		if(checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if(checking == true)
+		{
+			checking = false;
+		}
+	}
+	
 	if (menuInput.IsPressed(KEY::ESCAPE))
 	{
 		INPUT->setInput(KEY::ESCAPE);

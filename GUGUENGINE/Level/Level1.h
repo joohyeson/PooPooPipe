@@ -76,7 +76,6 @@ private:
 
 	bool levelCheck;
 	bool spaceCheck;
-
 	double lastTime = 0;
 	double firstTime = 0;
 

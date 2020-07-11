@@ -47,7 +47,7 @@ private:
 	Object* tutorialButton;
 	Object* optionButton;
 	Object* creditsButton;
-
+	bool checking = false;
 	Object* startButton_pressed;
 	Object* tutorialButton_pressed;
 	Object* optionButton_pressed;
