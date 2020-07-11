@@ -719,7 +719,7 @@ void Level13::Update()
 	{
 		if (lastTime - firstTime > 2)
 		{
-			STATE_MANAGER->ChangeLevel(GameLevels::ENDINGCUTS);
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST14);
 		}
 	}
 

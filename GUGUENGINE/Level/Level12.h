@@ -80,6 +80,54 @@ public:
 
 		Yes_p = nullptr;
 		No_p = nullptr;
+
+		texureIdLine8 = 0;
+		texureIdCurve8 = 0;
+		texureIdThree8 = 0;
+		texureIdV8 = 0;
+		texureIdBlack8 = 0;
+
+		texureIdStart8 = 0;
+		texureIdEnd8 = 0;
+
+		texureIdLine8_2 = 0;
+		texureIdCurve8_2 = 0;
+		texureIdV8_2 = 0;
+		LevelPage = 0;
+		LevelPage_pressed = 0;
+		texureIdbutton8 = 0;
+		texureIdclear8 = 0;
+
+		texturePlayUI8 = 0;
+		textureQuitUI8 = 0;
+		textureOptionUI8 = 0;
+		textureRestartUI8 = 0;
+
+		textureIdVAuto = 0;
+		textureIdCurveAuto = 0;
+
+		textureLeft = 0;
+		textureLeftNumberTen0 = 0;
+		textureLeftNumberTen1 = 0;
+		textureLeftNumberTen2 = 0;
+		textureLeftNumberTen3 = 0;
+		textureLeftNumberTen4 = 0;
+		textureLeftNumberTen5 = 0;
+
+		textureLeftNumber0 = 0;
+		textureLeftNumber1 = 0;
+		textureLeftNumber2 = 0;
+		textureLeftNumber3 = 0;
+		textureLeftNumber4 = 0;
+		textureLeftNumber5 = 0;
+		textureLeftNumber6 = 0;
+		textureLeftNumber7 = 0;
+		textureLeftNumber8 = 0;
+		textureLeftNumber9 = 0;
+
+		numberTexture = 0;
+		levelTexture = 0;
+		textureFail = 0;
 	}
 
 	void Init() override;
