@@ -93,7 +93,10 @@ private:
 	bool yellowS = false;
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
-
+	bool checking = false;
+	bool SUI[5] = { false };
+	bool PUT[3] = { false };
+	
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

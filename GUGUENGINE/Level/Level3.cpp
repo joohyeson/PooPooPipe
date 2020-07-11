@@ -324,7 +324,7 @@ void Level3::Update()
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
-		if (SUI[0] == false)
+		if (SUI[0] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
 		{
 			SUI[0] = true;
 			this->sound->Play("assets\\UI.wav", 1);
@@ -396,7 +396,7 @@ void Level3::Update()
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle2->mesh) == true)
 	{
-		if (SUI[1] == false)
+		if (SUI[1] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
 		{
 			SUI[1] = true;
 			this->sound->Play("assets\\UI.wav", 1);
@@ -452,7 +452,7 @@ void Level3::Update()
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle3->mesh) == true)
 	{
-		if (SUI[2] == false)
+		if (SUI[2] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
 		{
 			SUI[2] = true;
 			this->sound->Play("assets\\UI.wav", 1);

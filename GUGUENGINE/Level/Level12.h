@@ -106,7 +106,9 @@ private:
 	double last;
 	bool failS[2] = { false };
 	bool Nos[2] = { false };
-	
+	bool Cur[3] = { false };
+	bool checking = false;
+	bool SUI[2] = { false };
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

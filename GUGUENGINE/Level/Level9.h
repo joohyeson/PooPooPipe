@@ -93,7 +93,9 @@ private:
 	Object* No;
 	Object* Yes_p;
 	Object* No_p;
-
+	bool Cur[3] = { false };
+	bool checking = false;
+	bool SUI[2] = { false };
 	GLuint textureIdQuitAskBack;
 	GLuint textureIdQuitAsk;
 	GLuint textureIdYes;

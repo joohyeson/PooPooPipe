@@ -24,7 +24,16 @@ void Level5::Init()
 	Cur[0] = false;
 	Cur[1] = false;
 	Cur[2] = false;
-
+	SUI[0] = false;
+	SUI[1] = false;
+	SUI[2] = false;
+	SUI[3] = false;
+	SUI[4] = false;
+	PUT[0] = false;
+	PUT[1] = false;
+	PUT[2] = false;
+	checking = false;
+	
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -288,6 +297,23 @@ void Level5::Init()
 void Level5::Update()
 {
 	STATE_MANAGER->setCurrentLV(5);
+	
+	if (mInput.IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
+	
 	if (yellowS == false)
 	{
 		if (siren == false)
@@ -365,10 +391,14 @@ void Level5::Update()
 	}
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))
 	{
+		if (SUI[0] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
+		{
+			SUI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		if (Cur[0] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
 		{
 			Cur[0] = true;
-			
 		}
 		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
@@ -394,6 +424,8 @@ void Level5::Update()
 	}
 	else
 	{
+		SUI[0] = false;
+
 		movable[0] = false;
 	}
 	
@@ -477,6 +509,11 @@ void Level5::Update()
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle2->mesh))
 	{
+		if (SUI[1] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
+		{
+			SUI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		if (Cur[1] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[2])
 		{
 			Cur[1] = true;
@@ -505,6 +542,8 @@ void Level5::Update()
 	}
 	else
 	{
+		SUI[1] = false;
+
 		movable[1] = false;
 	}
 	
@@ -588,6 +627,11 @@ void Level5::Update()
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle3->mesh))
 	{
+		if (SUI[2] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
+		{
+			SUI[2] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		if (Cur[2] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
 		{
 			Cur[2] = true;
@@ -617,6 +661,8 @@ void Level5::Update()
 	}
 	else
 	{
+		SUI[2] = false;
+
 		movable[2] = false;
 	}
 	if(Cur[2] == true)
@@ -708,6 +754,11 @@ void Level5::Update()
 				{
 					if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
 					{
+						if (PUT[0] == false)
+						{
+							this->sound->Play("assets\\fit.flac", 1);
+							PUT[0] = true;
+						}
 						movePuzzle->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 						movable[0] = false;
 						blCheck5 = true;
@@ -716,6 +767,11 @@ void Level5::Update()
 					}
 					else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh))
 					{
+						if (PUT[0] == false)
+						{
+							this->sound->Play("assets\\fit.flac", 1);
+							PUT[0] = true;
+						}
 						movePuzzle->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 						movable[0] = false;
 						blCheck5 = false;
@@ -724,6 +780,11 @@ void Level5::Update()
 					}
 					else if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh))
 					{
+						if (PUT[0] == false)
+						{
+							this->sound->Play("assets\\fit.flac", 1);
+							PUT[0] = true;
+						}
 						movePuzzle->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 						movable[0] = false;
 						blCheck5 = false;
@@ -732,6 +793,10 @@ void Level5::Update()
 					}
 				}
 			}
+		}
+		else
+		{
+			PUT[0] = false;
 		}
 	}
 
@@ -746,6 +811,11 @@ void Level5::Update()
 			{
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					if (PUT[1] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[1] = true;
+					}
 					movePuzzle2->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					movable[1] = false;
 					blCheck6 = true;
@@ -754,6 +824,11 @@ void Level5::Update()
 				}
 				else if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					if (PUT[1] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[1] = true;
+					}
 					movePuzzle2->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					movable[1] = false;
 					blCheck6 = false;
@@ -762,6 +837,11 @@ void Level5::Update()
 				}
 				else if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
+					if (PUT[1] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[1] = true;
+					}
 					movePuzzle2->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					movable[1] = false;
 					blCheck6 = false;
@@ -769,6 +849,10 @@ void Level5::Update()
 					blCheck6_3 = true;
 				}
 			}
+		}
+		else
+		{
+			PUT[1] = false;
 		}
 	}
 
@@ -781,6 +865,11 @@ void Level5::Update()
 			{
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
+					if (PUT[2] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[2] = true;
+					}
 					movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 					movable[2] = false;
 					blCheck7 = true;
@@ -789,6 +878,11 @@ void Level5::Update()
 				}
 				else if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
+					if (PUT[2] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[2] = true;
+					}
 					movePuzzle3->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
 					movable[2] = false;
 					blCheck7 = false;
@@ -797,6 +891,11 @@ void Level5::Update()
 				}
 				else if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
+					if (PUT[2] == false)
+					{
+						this->sound->Play("assets\\fit.flac", 1);
+						PUT[2] = true;
+					}
 					movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 					movable[2] = false;
 					blCheck7 = false;
@@ -804,6 +903,10 @@ void Level5::Update()
 					blCheck7_3 = true;
 				}
 			}
+		}
+		else
+		{
+			PUT[2] = false;
 		}
 	}
 
@@ -1029,6 +1132,11 @@ void Level5::Update()
 	}
 	if (Yes->collision->Point2BoxCollision(cursor5, Yes->mesh))
 	{
+		if (SUI[3] == false)
+		{
+			SUI[3] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -1038,11 +1146,18 @@ void Level5::Update()
 	}
 	else
 	{
+		SUI[3] = false;
+
 		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 
 	if (No->collision->Point2BoxCollision(cursor5, No->mesh))
 	{
+		if (SUI[4] == false)
+		{
+			SUI[4] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -1058,6 +1173,8 @@ void Level5::Update()
 	}
 	else
 	{
+		SUI[4] = false;
+
 		No_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 

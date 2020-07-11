@@ -111,9 +111,7 @@ void Sound::Load()
 	LoadMusic("assets\\heaven.wav");
 	LoadMusic("assets\\rain.wav");
 	LoadMusic("assets\\click.wav");
-	LoadMusic("assets\\click1.wav");
 	LoadMusic("assets\\fit.flac");
-
 }
 
 bool Sound::IsPlaying()

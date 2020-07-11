@@ -18,6 +18,11 @@ void Level11::Init()
 	Nos[0] = false;
 	Nos[1] = false;
 	
+	Cur[0] = false;
+	Cur[1] = false;
+	Cur[2] = false;
+	checking = false;
+	
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -323,7 +328,21 @@ void Level11::Update()
 {
 	STATE_MANAGER->setCurrentLV(8);
 	lastTime = glfwGetTime();
-
+	if (mInput.IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -936,6 +955,11 @@ void Level11::Update()
 	}
 	if (Yes->collision->Point2BoxCollision(cursor8, Yes->mesh))
 	{
+		if (SUI[0] == false)
+		{
+			SUI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -945,11 +969,18 @@ void Level11::Update()
 	}
 	else
 	{
+		SUI[0] = false;
+
 		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 
 	if (No->collision->Point2BoxCollision(cursor8, No->mesh))
 	{
+		if (SUI[1] == false)
+		{
+			SUI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -965,6 +996,8 @@ void Level11::Update()
 	}
 	else
 	{
+		SUI[1] = false;
+
 		No_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 
