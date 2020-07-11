@@ -91,7 +91,7 @@ private:
 	Object* startPuzzle, * endPuzzle;
 	double first;
 	double last;
-	bool failS = false;
+	bool failS[2] = { false };
 	bool Nos[2] = { false };
 	Object* puzzle1, * puzzle2, * puzzle3, * puzzle4, * puzzle5, * puzzle6, * puzzle7;
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;

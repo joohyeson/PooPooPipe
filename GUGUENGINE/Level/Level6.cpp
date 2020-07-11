@@ -20,7 +20,9 @@ void Level6::Init()
 	Nos[0] = false;
 	Nos[1] = false;
 
-	failS = false;
+	failS[0] = false;
+	failS[1] = false;
+	
 	chekNext6 = 0;
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
@@ -305,10 +307,20 @@ void Level6::Update()
 	if (rotTime.getLimitTime() == 0)
 	{
 		rotrot = false;
-		Nos[0] = true;
-		fail->mesh->setTransform({ 0,0 });
-		std::cout << "rotation limit!!!" << std::endl;
-
+		if (failS[0] == false)
+		{
+			last = 0;
+			this->sound->Play("assets\\fart.mp3", 1);
+			failS[0] = true;
+			first = glfwGetTime();
+		}
+		last = glfwGetTime();
+		if (last - first > 1.5f)
+		{
+			Nos[0] = true;
+			fail->mesh->setTransform({ 0,0 });
+			poopooCheck = false;
+		}
 	}
 
 	if (mInput.IsPressed(KEY::F) == true)
@@ -671,10 +683,10 @@ void Level6::Update()
 				this->sound->Play("assets\\flushing.wav", 1);
 			}
 			else {
-				if (failS == false)
+				if (failS[1] == false)
 				{
 					this->sound->Play("assets\\fart.mp3", 1);
-					failS = true;
+					failS[1] = true;
 					first = glfwGetTime();
 				}
 				last = glfwGetTime();
@@ -682,7 +694,8 @@ void Level6::Update()
 				{
 					Nos[0] = true;
 					fail->mesh->setTransform({ 0,0 });
-					failS = false;
+					failS[1] = false;
+					failS[0] = false;
 					poopooCheck = false;
 				}
 			}
