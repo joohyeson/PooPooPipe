@@ -92,7 +92,8 @@ private:
 	bool failS = false;
 
 	bool Nos[2] = { false };
-	
+	bool Cur[3] = { false };
+
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;
