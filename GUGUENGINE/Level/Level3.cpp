@@ -32,6 +32,8 @@ void Level3::Init()
 	SUI[0] = false;
 	SUI[1] = false;
 	SUI[2] = false;
+	SUI[3] = false;
+	SUI[4] = false;
 	checking = false;
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
@@ -791,6 +793,11 @@ void Level3::Update()
 
 	if (Yes->collision->Point2BoxCollision(cursor3, Yes->mesh))
 	{
+		if (SUI[3] == false)
+		{
+			SUI[3] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -800,11 +807,17 @@ void Level3::Update()
 	}
 	else
 	{
+		SUI[3] = false;
 		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 
 	if (No->collision->Point2BoxCollision(cursor3, No->mesh))
 	{
+		if (SUI[4] == false)
+		{
+			SUI[4] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput.IsPressed(KEY::LEFT))
 		{
@@ -821,6 +834,7 @@ void Level3::Update()
 	}
 	else
 	{
+		SUI[4] = false;
 		No_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 

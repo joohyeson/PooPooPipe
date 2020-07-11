@@ -138,7 +138,7 @@ private:
 	bool quitCheck = false;
 	bool realQuit = false;
 	bool checking = false;
-	bool SUI[3] = { false };
+	bool SUI[5] = { false };
 	MovePooPoo mPooPoo;
 	Object* Levelsel, * Levelsel_pressed;
 	int key;
