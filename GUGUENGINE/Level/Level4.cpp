@@ -25,7 +25,6 @@ void Level4::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	firstTime = glfwGetTime();
 	Nos[0] = false;
 	Nos[1] = false;
 	Cur[0] = false;
@@ -250,6 +249,7 @@ void Level4::Init()
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	mInput.InitCallback(APPLICATION->getMyWindow());
+	firstTime = glfwGetTime();
 }
 
 void Level4::Update()
@@ -257,7 +257,6 @@ void Level4::Update()
 	STATE_MANAGER->setCurrentLV(2);
 
 	cursor4 = mInput.Cursor;
-	lastTime = glfwGetTime();
 
 	//se4.Update();
 	//playSE4.Update();
@@ -759,6 +758,8 @@ void Level4::Update()
 		blCheck4 = false;
 		blCheck4_2 = false;
 	}
+
+	lastTime = glfwGetTime();
 
 	if (skip == true)
 	{

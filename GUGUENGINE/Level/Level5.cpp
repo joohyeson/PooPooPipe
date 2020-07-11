@@ -17,7 +17,6 @@ void Level5::Init()
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS = false;
-	firstTime = glfwGetTime();
 	Nos[0] = false;
 	Nos[1] = false;
 	
@@ -291,7 +290,7 @@ void Level5::Init()
 	siren = false;
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
+	firstTime = glfwGetTime();
 }
 
 void Level5::Update()
@@ -334,7 +333,6 @@ void Level5::Update()
 	}
 
 	cursor5 = mInput.Cursor;
-	lastTime = glfwGetTime();
 
 	/*se5.Update();
 	playSE5.Update();*/
@@ -1037,6 +1035,8 @@ void Level5::Update()
 		blCheck7_2 = false;
 		blCheck7_3 = false;
 	}
+
+	lastTime = glfwGetTime();
 
 	if (skip == true)
 	{

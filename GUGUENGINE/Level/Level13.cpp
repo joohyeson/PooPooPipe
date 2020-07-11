@@ -16,7 +16,6 @@ void Level13::Init()
 	Nos[0] = false;
 	Nos[1] = false;
 	chekNext8 = 0;
-	firstTime = glfwGetTime();
 	failS[0] = false;
 	failS[1] = false;
 	
@@ -278,12 +277,14 @@ void Level13::Init()
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	firstTime = glfwGetTime();
+
 }
 
 void Level13::Update()
 {
 	STATE_MANAGER->setCurrentLV(10);
-	lastTime = glfwGetTime();
 
 	if (mInput.IsPressed(KEY::F) == true)
 	{
@@ -711,6 +712,8 @@ void Level13::Update()
 		win->mesh->setTransform({ 0,0 });
 
 	}
+
+	lastTime = glfwGetTime();
 
 	if (skip == true)
 	{

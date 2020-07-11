@@ -57,7 +57,6 @@ void Level11::Init()
 	rotrot2 = true;
 
 	chekNext8 = 0;
-	firstTime = glfwGetTime();
 
 	conecTcheck8_1 = false;
 	conecTcheck8_2 = false;
@@ -322,12 +321,14 @@ void Level11::Init()
 
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	firstTime = glfwGetTime();
+
 }
 
 void Level11::Update()
 {
 	STATE_MANAGER->setCurrentLV(8);
-	lastTime = glfwGetTime();
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -861,6 +862,9 @@ void Level11::Update()
 
 		rotTime.setRotate(30);
 	}
+
+	lastTime = glfwGetTime();
+
 	if(skip== true)
 	{
 		if(lastTime - firstTime > 2)

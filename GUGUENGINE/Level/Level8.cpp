@@ -16,7 +16,6 @@ void Level8::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	firstTime = glfwGetTime();
 	failS[0] = false;
 	failS[1] = false;
 	soundCheck = false;
@@ -324,12 +323,14 @@ void Level8::Init()
 
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	firstTime = glfwGetTime();
+
 }
 
 void Level8::Update()
 {
 	STATE_MANAGER->setCurrentLV(4);
-	lastTime = glfwGetTime();
 
 	/*se8.Update();
 	playSE8.Update();*/
@@ -830,6 +831,8 @@ void Level8::Update()
 
 		rotTime.setRotate(30);
 	}
+	lastTime = glfwGetTime();
+
 	if (skip == true)
 	{
 		if (lastTime - firstTime > 2)

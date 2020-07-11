@@ -17,7 +17,6 @@ void Level9::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 	skip = false;
-	firstTime = glfwGetTime();
 
 	failS = false;
 
@@ -282,13 +281,13 @@ void Level9::Init()
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, endPuzzle->mesh->GetTransform());
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+	firstTime = glfwGetTime();
 
 }
 
 void Level9::Update()
 {
 	STATE_MANAGER->setCurrentLV(6);
-	lastTime = glfwGetTime();
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -819,6 +818,8 @@ void Level9::Update()
 		degree9_rot = DegreeToRadian(-120.f);
 
 	}
+	lastTime = glfwGetTime();
+
 	if (skip == true)
 	{
 		if (lastTime - firstTime > 2)

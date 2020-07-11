@@ -69,6 +69,9 @@
     <ClCompile Include="endingcut.cpp">
       <Filter>Level</Filter>
     </ClCompile>
+    <ClCompile Include="Level14.cpp">
+      <Filter>Level</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.h" />
@@ -136,6 +139,9 @@
       <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="endingcut.h">
+      <Filter>Level</Filter>
+    </ClInclude>
+    <ClInclude Include="Level14.h">
       <Filter>Level</Filter>
     </ClInclude>
   </ItemGroup>

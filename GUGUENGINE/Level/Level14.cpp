@@ -6,10 +6,10 @@
 #include "../GUGUENGINE/Texture.h"
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
-#include "Level12.h"
+#include "Level14.h"
 #include "../GUGUENGINE/Sound.h"
 
-void Level12::Init()
+void Level14::Init()
 {
 	STATE_MANAGER->setCurrentLV(0);
 
@@ -19,9 +19,10 @@ void Level12::Init()
 	Cur[1] = false;
 	Cur[2] = false;
 	checking = false;
-	
+
 	rotTime.setRotate(10);
 	rotrot2 = true;
+	firstTime = glfwGetTime();
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
@@ -306,14 +307,12 @@ void Level12::Init()
 
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
-void Level12::Update()
+void Level14::Update()
 {
 	STATE_MANAGER->setCurrentLV(9);
+	lastTime = glfwGetTime();
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -704,8 +703,6 @@ void Level12::Update()
 
 	}
 
-	lastTime = glfwGetTime();
-
 	if (skip == true)
 	{
 		if (lastTime - firstTime > 2)
@@ -782,28 +779,28 @@ void Level12::Update()
 		if (Nos[0] == false && Nos[1] == false)
 		{
 			if (UI[3] == false)
-		{
-			UI[3] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
-
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			if (quitCheck == false)
 			{
-				//SOUND->Pause();
-				Nos[1] = true;
-				quitCheck = true;
-				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
-				QuitAsk->mesh->setTransform({ 0.f, 0.f });
-				Yes->mesh->setTransform({ -100.f, -50.f });
-				No->mesh->setTransform({ 100.f, -50.f });
+				UI[3] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				if (quitCheck == false)
+				{
+					//SOUND->Pause();
+					Nos[1] = true;
+					quitCheck = true;
+					QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+					QuitAsk->mesh->setTransform({ 0.f, 0.f });
+					Yes->mesh->setTransform({ -100.f, -50.f });
+					No->mesh->setTransform({ 100.f, -50.f });
+				}
 			}
 		}
-		}
-		
+
 	}
 	else
 	{
@@ -999,7 +996,7 @@ void Level12::Update()
 
 }
 
-void Level12::Close()
+void Level14::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();

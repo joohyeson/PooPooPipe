@@ -53,7 +53,6 @@ void Level2::Init()
 	texureIdLine2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
 	texureIdBlack2 = TEXTURE->CreateTexture("assets\\image1.png", 0);
 	texureIdCurve2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	textureSpace2 = TEXTURE->CreateTexture("assets\\pressSpace.png", 0);
 	textureMouse = TEXTURE->CreateTexture("assets\\click_right.png", 0); 
 	texturePlay = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
@@ -150,7 +149,6 @@ void Level2::Init()
 void Level2::Update()
 {
 	cursor = mInput.Cursor;
-	lastTime = glfwGetTime();
 
 	
 	if (mInput.IsPressed(KEY::F) == true)
@@ -242,6 +240,7 @@ void Level2::Update()
 		}
 	}
 
+	lastTime = glfwGetTime();
 	if (spaceCheck)
 	{
 		win->mesh->setTransform({ 0,0 });
@@ -258,7 +257,6 @@ void Level2::Update()
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
 	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
-	spacePress->mesh->Update(mShader2.GetShaderHandler(), textureSpace2);
 
 	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
 	mouse->mesh->Update(mShader2.GetShaderHandler(), textureMouse);

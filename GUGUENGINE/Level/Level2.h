@@ -61,7 +61,6 @@ private:
 	GLuint texureIdCurve2;
 	GLuint texureIdBlack2;
 	GLuint textureBackground2;
-	GLuint textureSpace2;
 	GLuint textureMouse;
 	GLuint texturePlay;
 

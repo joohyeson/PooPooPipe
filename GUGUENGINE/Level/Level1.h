@@ -38,7 +38,6 @@ public:
 		texureIdCurve1 = 0;
 		texureIdBlack1 = 0;
 		textureBackground1 = 0;
-		textureSpace1 = 0;
 		textureMouse = 0;
 		textureWin = 0;
 	}
@@ -69,7 +68,6 @@ private:
 	GLuint texureIdCurve1;
 	GLuint texureIdBlack1;
 	GLuint textureBackground1;
-	GLuint textureSpace1;
 	GLuint textureMouse;
 	Object* win;
 	GLuint textureWin;

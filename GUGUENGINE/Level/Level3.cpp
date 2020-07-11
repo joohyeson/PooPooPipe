@@ -68,7 +68,6 @@ void Level3::Init()
 	chekNext = 0;
 	skip = false;
 	failS = false;
-	firstTime = glfwGetTime();
 	conecTcheck1 = false;
 	conecTcheck2 = false;
 	conecTcheck3 = false;
@@ -249,11 +248,12 @@ void Level3::Init()
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	firstTime = glfwGetTime();
 }
 
 void Level3::Update()
 {
-	lastTime = glfwGetTime();
 
 	STATE_MANAGER->setCurrentLV(1);
 
@@ -877,6 +877,8 @@ void Level3::Update()
 		blCheck2 = false;
 		blCheck2_2 = false;
 	}
+
+	lastTime = glfwGetTime();
 
 	if (skip == true)
 	{
