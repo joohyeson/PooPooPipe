@@ -101,6 +101,7 @@ private:
 	bool skip = false;
 
 	bool Nos[2] = { false };
+	bool Cur[3] = { false };
 	
 	Object* background;
 	Object* movePuzzle, * movePuzzle2, * movePuzzle3, * startPuzzle, * endPuzzle;

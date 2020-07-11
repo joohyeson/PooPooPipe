@@ -26,6 +26,10 @@ void Level3::Init()
 	Nos[0] = false;
 	Nos[1] = false;
 
+	Cur[0] = false;
+	Cur[1] = false;
+	Cur[2] = false;
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -298,10 +302,9 @@ void Level3::Update()
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle->mesh) == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
+		if (Cur[0] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[1] && !movable[2])
 		{
-			movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
-			movable[0] = true;
+			Cur[0] = true;
 		}
 
 		if (mInput.IsPressed(KEY::RIGHT) == true)
@@ -327,6 +330,12 @@ void Level3::Update()
 	else
 	{
 		movable[0] = false;
+	}
+
+	if (Cur[0] == true)
+	{
+		movePuzzle->mesh->setTransform({ cursor3.x, cursor3.y });
+		movable[0] = true;
 	}
 
 	if (blCheck1)
@@ -358,10 +367,10 @@ void Level3::Update()
 
 	if (movePuzzle2->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle2->mesh) == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[2])
+		if (Cur[1] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[2])
 		{
-			movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
-			movable[1] = true;
+			Cur[1] = true;
+
 		}
 		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
@@ -390,7 +399,11 @@ void Level3::Update()
 	{
 		movable[1] = false;
 	}
-
+	if (Cur[1] == true)
+	{
+		movePuzzle2->mesh->setTransform({ cursor3.x, cursor3.y });
+		movable[1] = true;
+	}
 	if ((movePuzzle2->pipe->GetDirValue(E) == puzzle7->pipe->GetDirValue(W)) && (movePuzzle2->pipe->GetDirValue(W) == puzzle6->pipe->GetDirValue(E)))
 	{
 		conecTcheck2 = true;
@@ -404,10 +417,10 @@ void Level3::Update()
 
 	if (movePuzzle3->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, movePuzzle3->mesh) == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
+		if (Cur[2] == false && mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1])
 		{
-			movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
-			movable[2] = true;
+			Cur[2] = true;
+
 		}
 		if (mInput.IsPressed(KEY::RIGHT) == true)
 		{
@@ -432,6 +445,11 @@ void Level3::Update()
 	else
 	{
 		movable[2] = false;
+	}
+	if (Cur[2] == true)
+	{
+		movePuzzle3->mesh->setTransform({ cursor3.x, cursor3.y });
+		movable[2] = true;
 	}
 
 	if (blCheck2)
@@ -464,6 +482,7 @@ void Level3::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
+			Cur[0] = false;
 			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle->mesh)) || (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle->mesh)))
 			{
 				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle->mesh))
@@ -496,9 +515,10 @@ void Level3::Update()
 	}
 	if (movable[1] == true)
 	{
-		if ((movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh)))
+		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
-			if (mInput.IsPressed(KEY::LEFT) == false)
+			Cur[1] = false;
+			if ((movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle2->mesh)) || (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle2->mesh)))
 			{
 				if (movePuzzle2->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle2->mesh))
 				{
@@ -524,17 +544,18 @@ void Level3::Update()
 	}
 	if (movable[2] == true)
 	{
-		if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
+		if (mInput.IsPressed(KEY::LEFT) == false)
 		{
-			if (mInput.IsPressed(KEY::LEFT) == false)
+			Cur[2] = false;
 			{
-				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
-				{
-					movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
-					movable[2] = false;
-					blCheck2 = true;
-					blCheck2_2 = false;
-				}
+				if ((movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh)) || (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y }, movePuzzle3->mesh)))
+					if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y }, movePuzzle3->mesh))
+					{
+						movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
+						movable[2] = false;
+						blCheck2 = true;
+						blCheck2_2 = false;
+					}
 				if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 				{
 					movePuzzle3->mesh->setTransform({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y });
