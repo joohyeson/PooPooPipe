@@ -585,6 +585,7 @@ void Level9::Update()
 				{
 					if (failS == false)
 					{
+						last = 0;
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS = true;
 						first = glfwGetTime();
@@ -600,7 +601,7 @@ void Level9::Update()
 				{
 					Nos[0] = true;
 					fail->mesh->setTransform({ 0,0 });
-					failS = false;
+					
 					poopooCheck = false;
 				}
 			}
