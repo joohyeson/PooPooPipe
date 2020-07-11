@@ -304,7 +304,7 @@ void Level5::Update()
 	if (ylast - yfirst >= 3.f)
 	{
 		siren = false;
-		Yellow->mesh->setTransform({ -1000.f, -1000.f });
+		Yellow->mesh->setTransform({ -2000.f, -2000.f });
 	}
 
 	cursor5 = mInput.Cursor;
@@ -964,10 +964,7 @@ void Level5::Update()
 	else
 	{
 		UI[1] = false;
-
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
-
-
 	}
 
 
@@ -1135,6 +1132,7 @@ void Level5::Update()
 		INPUT->setInput(KEY::ESCAPE);
 		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
+	
 	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
 	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
 	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
