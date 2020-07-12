@@ -82,7 +82,6 @@ public:
 		win = nullptr;
 
 		key = 0;
-
 	}
 
 	void Init() override;
@@ -109,7 +108,6 @@ public:
 	bool di1[6] = { false, false, false, true, false, true };
 	bool di2[6] = { true, false, false, true, false, false };
 	bool di3[6] = { false, false, false, true, false, true };
-
 
 private:
 
@@ -232,6 +230,7 @@ private:
 	bool conecTcheck3 = false;
 
 	LevelSelect current;
+
 };
 
 

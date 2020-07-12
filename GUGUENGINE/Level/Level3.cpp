@@ -77,10 +77,6 @@ void Level3::Init()
 	conecTcheck2 = false;
 	conecTcheck3 = false;
 
-	degree2 = d1;
-	degree2_2 = d2;
-	degree2_3 = d3;
-
 	blCheck1 = false;
 	blCheck1_2 = false;
 
@@ -224,9 +220,27 @@ void Level3::Init()
 	mShader2.BuildTextureShader();
 	mShader.BuildTextureShader();
 
-	movePuzzle->pipe->SetDirection(di1[0], di1[1],di1[2],di1[3],di1[4],di1[5]);
-	movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
-	movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+	if (getOption == true)
+	{
+		movePuzzle->pipe->SetDirection(di1[0], di1[1],di1[2],di1[3],di1[4],di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+
+		degree2 = d1;
+		degree2_2 = d2;
+		degree2_3 = d3;
+	}
+	else
+	{
+		movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
+		movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
+		movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
+
+		degree2 = 0;
+		degree2_2 = 0;
+		degree2_3 = 0;
+	}
+
 
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
 	puzzle2->pipe->SetDirection(false, false, false, true, false, true);
@@ -264,6 +278,7 @@ void Level3::Update()
 	if(getOption == true)
 	{
 		getOption = false;
+
 		movePuzzle->mesh->setTransform(Pos1);
 		movePuzzle2->mesh->setTransform(Pos2);
 		movePuzzle3->mesh->setTransform(Pos3);
@@ -276,6 +291,7 @@ void Level3::Update()
 		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
 		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
 	}
+
 	cursor3 = mInput.Cursor;
 
 	if (mInput.IsPressed(KEY::LEFT))
