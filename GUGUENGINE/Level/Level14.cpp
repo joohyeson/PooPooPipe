@@ -305,18 +305,15 @@ void Level14::Init()
 
 	mPooPoo.Init();
 
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, startPuzzle->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, puzzle14->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle15->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::NW_, puzzle7->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SE_, DirAngle::SW_, puzzle19->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle18->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SE_, puzzle3->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SE_, puzzle6->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, puzzle20->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle9->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle12->mesh->GetTransform());
-	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle11->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::S_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle4->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::NW_, puzzle19->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SE_, DirAngle::SW_, puzzle2->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle13->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::NE_, puzzle3->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::S_, puzzle18->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, puzzle6->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::SW_, puzzle20->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, endPuzzle->mesh->GetTransform());
 
 
