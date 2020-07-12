@@ -52,6 +52,10 @@ public:
 		Level10_pressed = nullptr;
 		Level10_lock = nullptr;
 
+		Level11 = nullptr;
+		Level11_pressed = nullptr;
+		Level11_lock = nullptr;
+		
 		currentLevel = 0;
 
 		textureBackgroundLv = 0;
@@ -90,6 +94,8 @@ public:
 		texureIdLv10 = 0;
 		texureIdLv10_pressed = 0;
 
+		texureIdLv11 = 0;
+		texureIdLv11_pressed = 0;
 	}
 	int currentLevel;
 	void Init() override;
@@ -142,6 +148,10 @@ private:
 	Object* Level10;
 	Object* Level10_pressed;
 	Object* Level10_lock;
+
+	Object* Level11;
+	Object* Level11_pressed;
+	Object* Level11_lock;
 	
 	Input levelInput;
 
@@ -180,4 +190,7 @@ private:
 
 	GLuint texureIdLv10;
 	GLuint texureIdLv10_pressed;
+
+	GLuint texureIdLv11;
+	GLuint texureIdLv11_pressed;
 };

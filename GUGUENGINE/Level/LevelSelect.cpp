@@ -85,12 +85,19 @@ void LevelSelect::Init()
 	texureIdLv9_pressed = TEXTURE->CreateTexture("assets\\levelButton9_2.png", 0);
 	Level9_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
-	Level10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f + 176.f + 87.f * 4, -140.f }, 60 * 3);
+	Level10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f+87.f +45.f, -140.f-150.f }, 60 * 3);
 	texureIdLv10 = TEXTURE->CreateTexture("assets\\levelButton10.png", 0);
 
 	Level10_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	texureIdLv10_pressed = TEXTURE->CreateTexture("assets\\levelButton10_2.png", 0);
 	Level10_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+
+	Level11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f + 87.f + 45.f + 87.f+87.f, -140.f - 150.f }, 60 * 3);
+	texureIdLv11 = TEXTURE->CreateTexture("assets\\levelButton11.png", 0);
+
+	Level11_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
+	texureIdLv11_pressed = TEXTURE->CreateTexture("assets\\levelButton11_2.png", 0);
+	Level11_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	
 	seLv.Init();
 	seLv.LoadMusic("assets\\coin.mp3");
@@ -319,6 +326,27 @@ void LevelSelect::Update()
 		Level10_lock->mesh->setTransform(Level10->mesh->GetTransform());
 	}
 	
+	if (currentLevel >= 11)
+	{
+		if (Level11->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level11->mesh))
+		{
+			Level11_pressed->mesh->setTransform(Level11->mesh->GetTransform());
+			if (levelInput.IsPressed(KEY::LEFT) == true)
+			{
+				std::cout << "get mouse left" << std::endl;
+				getLevNum = 10;
+			}
+		}
+		else
+		{
+			Level11_pressed->mesh->setTransform({ 850.0f, 850.0f });
+		}
+	}
+	else
+	{
+		Level11_lock->mesh->setTransform(Level11->mesh->GetTransform());
+	}
+	
 	if(getLevNum > 0)
 	{
 		INPUT->setInput(KEY::LEFT);
@@ -353,6 +381,9 @@ void LevelSelect::Update()
 			break;
 		case 10:
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST13);
+			break;
+		case 11:
+			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST14);
 			break;
 			default:
 				break;
@@ -400,6 +431,11 @@ void LevelSelect::Update()
 	Level10->mesh->Update(mShader2.GetShaderHandler(), texureIdLv10);
 	Level10_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv10_pressed);
 	Level10_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+
+	Level11->mesh->Update(mShader2.GetShaderHandler(), texureIdLv11);
+	Level11_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv11_pressed);
+	Level11_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClearColor(0.f, 0.f, 0.f, 1);
 	glClear(GL_COLOR_BUFFER_BIT);
