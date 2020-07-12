@@ -112,14 +112,14 @@ void StateManager::Update()
 			{
 				before = currGameState;
 			}
-			state = State::UNLOAD;
+				state = State::UNLOAD;
 		}
 		else {
 			if (currGameState->GetCurrLevel() == GameLevels::OPTION)
 			{
 				currGameState->SetNextLevel(before->GetCurrLevel());
 			}
-			currGameState->Update();
+				currGameState->Update();
 		}
 		break;
 	case State::UNLOAD:

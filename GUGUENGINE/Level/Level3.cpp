@@ -19,6 +19,19 @@
 #include "../GUGUENGINE/Sound.h"
 
 extern int MaxLevel;
+extern bool getOption;
+
+Vector2<float> Pos1;
+Vector2<float> Pos2;
+Vector2<float> Pos3;
+
+float d1;
+float d2;
+float d3;
+
+float con1;
+float con2;
+float con3;
 
 void Level3::Init()
 {
@@ -259,7 +272,17 @@ void Level3::Init()
 void Level3::Update()
 {
 	//STATE_MANAGER->setCurrentLV(1);
-
+	if(getOption == true)
+	{
+		getOption = false;
+		movePuzzle->mesh->setTransform(Pos1);
+		movePuzzle2->mesh->setTransform(Pos2);
+		movePuzzle3->mesh->setTransform(Pos3);
+		
+		movePuzzle->mesh->setRotation(d1);
+		movePuzzle2->mesh->setRotation(d2);
+		movePuzzle3->mesh->setRotation(d3);
+	}
 	cursor3 = mInput.Cursor;
 
 	if (mInput.IsPressed(KEY::LEFT))
@@ -349,6 +372,7 @@ void Level3::Update()
 				movePuzzle->pipe->Update();
 				degree2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree2);
+				d1 = degree2;
 				this->sound->Play("assets\\coin.mp3", 1);
 				//se3.Play("assets\\coin.mp3", 1);
 				//se3.SetVolume(0.5f);
@@ -419,6 +443,7 @@ void Level3::Update()
 				movePuzzle2->pipe->Update();
 
 				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
+				d2 = degree2_2;
 				movePuzzle2->mesh->setRotation(degree2_2);
 				this->sound->Play("assets\\coin.mp3", 1);
 
@@ -473,6 +498,7 @@ void Level3::Update()
 			{
 				movePuzzle3->pipe->Update();
 				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
+				d3 = degree2_3;
 				movePuzzle3->mesh->setRotation(degree2_3);
 				this->sound->Play("assets\\coin.mp3", 1);
 				//se3.Play(1);
@@ -750,7 +776,12 @@ void Level3::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 			{
 				INPUT->setInput(KEY::LEFT);
-
+				getOption = true;
+				
+				Pos1 = movePuzzle->mesh->GetTransform();
+				Pos2 = movePuzzle2->mesh->GetTransform();
+				Pos3 = movePuzzle3->mesh->GetTransform();
+				
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}
 		}

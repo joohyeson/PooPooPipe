@@ -91,7 +91,6 @@ void Engine::GameLoop()
 				}
 			}
 		}
-		
 	}
 	INPUT->Update();
 }
