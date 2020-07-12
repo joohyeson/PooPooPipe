@@ -12,6 +12,7 @@
 //Sound se5;
 //Sound playSE5;
 extern int MaxLevel;
+extern bool getOption;
 
 void Level5::Init()
 {
@@ -68,14 +69,6 @@ void Level5::Init()
 	realQuit = false;
 
 	chekNext5 = 0;
-
-	conecTcheck5_1 = false;
-	conecTcheck5_2 = false;
-	conecTcheck5_3 = false;
-
-	degree5 = 0;
-	degree5_2 = 0;
-	degree5_3 = 0;
 
 	blCheck5 = false;
 	blCheck5_2 = false;
@@ -218,13 +211,10 @@ void Level5::Init()
 	yShader.BuildTextureShader();
 
 	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f - 250.f, 280.f });
-	movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
 
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f - 250.f, 120.f });
-	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f - 250.f, 0.0f });
-	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
 
 	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 280.f + 50.f });
 	startPuzzle->pipe->SetDirection(true, false, false, true, false, false);
@@ -272,6 +262,34 @@ void Level5::Init()
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 	clear->mesh->InitializeTextureMesh(380.f, 150.f);
 
+	if (getOption == true)
+	{
+		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+
+		degree5 = d1;
+		degree5_2 = d2;
+		degree5_3 = d3;
+
+		conecTcheck5_1 = susu1;
+		conecTcheck5_2 = susu2;
+		conecTcheck5_3 = susu3;
+	}
+	else
+	{
+		movePuzzle->pipe->SetDirection(false, false, false, true, false, true);
+		movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
+		movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
+
+		degree5 = 0;
+		degree5_2 = 0;
+		degree5_3 = 0;
+
+		conecTcheck5_1 = false;
+		conecTcheck5_2 = false;
+		conecTcheck5_3 = false;
+	}
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
@@ -302,6 +320,27 @@ void Level5::Update()
 {
 	//STATE_MANAGER->setCurrentLV(5);
 	
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;		
+		movePuzzle->mesh->setTransform(Pos1);
+		movePuzzle2->mesh->setTransform(Pos2);
+		movePuzzle3->mesh->setTransform(Pos3);
+
+		movePuzzle->mesh->setRotation(d1);
+		movePuzzle2->mesh->setRotation(d2);
+		movePuzzle3->mesh->setRotation(d3);
+
+		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+	
+		conecTcheck5_1 = susu1;
+		conecTcheck5_2 = susu2;
+		conecTcheck5_3 = susu3;
+	}
+
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -413,7 +452,15 @@ void Level5::Update()
 			{
 				movePuzzle->pipe->Update();
 
+				di1[0] = movePuzzle->pipe->GetDirection()[0];
+				di1[1] = movePuzzle->pipe->GetDirection()[1];
+				di1[2] = movePuzzle->pipe->GetDirection()[2];
+				di1[3] = movePuzzle->pipe->GetDirection()[3];
+				di1[4] = movePuzzle->pipe->GetDirection()[4];
+				di1[5] = movePuzzle->pipe->GetDirection()[5];
+
 				degree5 += static_cast<float>(DegreeToRadian(60.f));
+				d1 = degree5;
 				movePuzzle->mesh->setRotation(degree5);
 
 				this->sound->Play("assets\\coin.mp3", 1);
@@ -532,7 +579,15 @@ void Level5::Update()
 			{
 				movePuzzle2->pipe->Update();
 
+				di2[0] = movePuzzle2->pipe->GetDirection()[0];
+				di2[1] = movePuzzle2->pipe->GetDirection()[1];
+				di2[2] = movePuzzle2->pipe->GetDirection()[2];
+				di2[3] = movePuzzle2->pipe->GetDirection()[3];
+				di2[4] = movePuzzle2->pipe->GetDirection()[4];
+				di2[5] = movePuzzle2->pipe->GetDirection()[5];
+
 				degree5_2 += static_cast<float>(DegreeToRadian(60.f));
+				d2 = degree5_2;
 				movePuzzle2->mesh->setRotation(degree5_2);
 
 				this->sound->Play("assets\\coin.mp3", 1);
@@ -650,7 +705,16 @@ void Level5::Update()
 			{
 				{
 					movePuzzle3->pipe->Update();
+
+					di3[0] = movePuzzle3->pipe->GetDirection()[0];
+					di3[1] = movePuzzle3->pipe->GetDirection()[1];
+					di3[2] = movePuzzle3->pipe->GetDirection()[2];
+					di3[3] = movePuzzle3->pipe->GetDirection()[3];
+					di3[4] = movePuzzle3->pipe->GetDirection()[4];
+					di3[5] = movePuzzle3->pipe->GetDirection()[5];
+
 					degree5_3 += static_cast<float>(DegreeToRadian(60.f));
+					d3 = degree5_3;
 					movePuzzle3->mesh->setRotation(degree5_3);
 
 					this->sound->Play("assets\\coin.mp3", 1);
@@ -913,6 +977,9 @@ void Level5::Update()
 		}
 	}
 
+	susu1 = conecTcheck5_1;
+	susu2 = conecTcheck5_2;
+	susu3 = conecTcheck5_3;
 
 	if (playUI->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, playUI->mesh))
 	{
@@ -1090,6 +1157,11 @@ void Level5::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
+
+				Pos1 = movePuzzle->mesh->GetTransform();
+				Pos2 = movePuzzle2->mesh->GetTransform();
+				Pos3 = movePuzzle3->mesh->GetTransform();
 
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}

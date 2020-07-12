@@ -8,8 +8,9 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level13.h"
 #include "../GUGUENGINE/Sound.h"
-extern int MaxLevel;
 
+extern int MaxLevel;
+extern bool getOption;
 
 void Level13::Init()
 {
@@ -288,6 +289,12 @@ void Level13::Init()
 
 void Level13::Update()
 {
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+	}
+
 	//STATE_MANAGER->setCurrentLV(10);
 
 	if (mInput.IsPressed(KEY::F) == true)
@@ -778,6 +785,8 @@ void Level13::Update()
 		if (mInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
+			getOption = true;
+
 			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 		}

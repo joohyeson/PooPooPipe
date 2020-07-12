@@ -93,21 +93,21 @@ public:
 	}
 	//void Wait(long waitTime);
 
-	Vector2<float> Pos1;
+	Vector2<float> Pos1; //pipe position
 	Vector2<float> Pos2;
 	Vector2<float> Pos3;
 
-	float d1 = 0;
+	float d1 = 0; //pipe degree
 	float d2 = 0;
 	float d3 = 0;
 
-	float con1;
-	float con2;
-	float con3;
-
-	bool di1[6] = { false, false, false, true, false, true };
+	bool di1[6] = { false, false, false, true, false, true }; //pipe direction
 	bool di2[6] = { true, false, false, true, false, false };
 	bool di3[6] = { false, false, false, true, false, true };
+
+	bool susu1 = false; // pipe connect check
+	bool susu2 = false;
+	bool susu3 = false;
 
 private:
 

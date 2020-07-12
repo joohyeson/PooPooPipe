@@ -21,6 +21,7 @@
  //Sound se4;
  //Sound playSE4;
 extern int MaxLevel;
+extern bool getOption;
 
 void Level4::Init()
 {
@@ -76,13 +77,6 @@ void Level4::Init()
 
 	chekNext4 = 0;
 	failS = false;
-	conecTcheck4_1 = false;
-	conecTcheck4_2 = false;
-	conecTcheck4_3 = false;
-
-	degree4 = 0;
-	degree4_2 = 0;
-	degree4_3 = 0;
 
 	blCheck3 = false;
 	blCheck3_2 = false;
@@ -230,9 +224,36 @@ void Level4::Init()
 	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
-	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
-	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
+	if (getOption == true)
+	{
+		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+
+		degree4 = d1;
+		degree4_2 = d2;
+		degree4_3 = d3;
+
+		conecTcheck4_1 = susu1;
+		conecTcheck4_2 = susu2;
+		conecTcheck4_3 = susu3;
+	}
+	else
+	{
+		movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
+		movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
+		movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
+
+		degree4 = 0;
+		degree4_2 = 0;
+		degree4_3 = 0;
+
+		conecTcheck4_1 = false;
+		conecTcheck4_2 = false;
+		conecTcheck4_3 = false;
+	}
+
+
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
 	puzzle1->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle6->pipe->SetDirection(true, false, false, false, true, false);
@@ -262,6 +283,29 @@ void Level4::Update()
 	//STATE_MANAGER->setCurrentLV(2);
 
 	cursor4 = mInput.Cursor;
+
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+
+		movePuzzle->mesh->setTransform(Pos1);
+		movePuzzle2->mesh->setTransform(Pos2);
+		movePuzzle3->mesh->setTransform(Pos3);
+
+		movePuzzle->mesh->setRotation(d1);
+		movePuzzle2->mesh->setRotation(d2);
+		movePuzzle3->mesh->setRotation(d3);
+
+		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+	
+		conecTcheck4_1 = susu1;
+		conecTcheck4_2 = susu2;
+		conecTcheck4_3 = susu3;
+	}
+
 
 	//se4.Update();
 	//playSE4.Update();
@@ -350,7 +394,16 @@ void Level4::Update()
 			{
 				movePuzzle->pipe->Update();
 
+				di1[0] = movePuzzle->pipe->GetDirection()[0];
+				di1[1] = movePuzzle->pipe->GetDirection()[1];
+				di1[2] = movePuzzle->pipe->GetDirection()[2];
+				di1[3] = movePuzzle->pipe->GetDirection()[3];
+				di1[4] = movePuzzle->pipe->GetDirection()[4];
+				di1[5] = movePuzzle->pipe->GetDirection()[5];
+
 				degree4 += static_cast<float>(DegreeToRadian(60.f));
+				d1 = degree4;
+
 				movePuzzle->mesh->setRotation(degree4);
 
 				this->sound->Play("assets\\coin.mp3", 1);
@@ -423,8 +476,17 @@ void Level4::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle2->pipe->Update();
+
+				di2[0] = movePuzzle2->pipe->GetDirection()[0];
+				di2[1] = movePuzzle2->pipe->GetDirection()[1];
+				di2[2] = movePuzzle2->pipe->GetDirection()[2];
+				di2[3] = movePuzzle2->pipe->GetDirection()[3];
+				di2[4] = movePuzzle2->pipe->GetDirection()[4];
+				di2[5] = movePuzzle2->pipe->GetDirection()[5];
+
 				degree4_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree4_2);
+				d2 = degree4_2;
 
 				this->sound->Play("assets\\coin.mp3", 1);
 
@@ -478,9 +540,18 @@ void Level4::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle3->pipe->Update();
+
+				di3[0] = movePuzzle3->pipe->GetDirection()[0];
+				di3[1] = movePuzzle3->pipe->GetDirection()[1];
+				di3[2] = movePuzzle3->pipe->GetDirection()[2];
+				di3[3] = movePuzzle3->pipe->GetDirection()[3];
+				di3[4] = movePuzzle3->pipe->GetDirection()[4];
+				di3[5] = movePuzzle3->pipe->GetDirection()[5];
+
 				degree4_3 += static_cast<float>(DegreeToRadian(60.f));
 
 				movePuzzle3->mesh->setRotation(degree4_3);
+				d3 = degree4_3;
 
 				this->sound->Play("assets\\coin.mp3", 1);
 
@@ -674,6 +745,10 @@ void Level4::Update()
 		}
 	}
 
+	susu1 = conecTcheck4_1;
+	susu2 = conecTcheck4_2;
+	susu3 = conecTcheck4_3;
+
 	if (playUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 	{
 		if (Nos[0] == false && Nos[1] == false)
@@ -824,6 +899,11 @@ void Level4::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
+
+				Pos1 = movePuzzle->mesh->GetTransform();
+				Pos2 = movePuzzle2->mesh->GetTransform();
+				Pos3 = movePuzzle3->mesh->GetTransform();
 
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}

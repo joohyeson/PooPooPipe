@@ -12,6 +12,7 @@
 //Sound se9;
 //Sound playSE9;
 extern int MaxLevel;
+extern bool getOption;
 
 bool SoundCheck = false;
 void Level9::Init()
@@ -292,6 +293,12 @@ void Level9::Init()
 
 void Level9::Update()
 {
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+	}
+
 	//STATE_MANAGER->setCurrentLV(6);
 	if (mInput.IsPressed(KEY::LEFT))
 	{
@@ -698,6 +705,8 @@ void Level9::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
+
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}
 		}

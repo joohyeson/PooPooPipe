@@ -73,9 +73,6 @@ void Level3::Init()
 	chekNext = 0;
 	skip = false;
 	failS = false;
-	conecTcheck1 = false;
-	conecTcheck2 = false;
-	conecTcheck3 = false;
 
 	blCheck1 = false;
 	blCheck1_2 = false;
@@ -229,6 +226,10 @@ void Level3::Init()
 		degree2 = d1;
 		degree2_2 = d2;
 		degree2_3 = d3;
+
+		conecTcheck1 = susu1;
+		conecTcheck2 = susu2;
+		conecTcheck3 = susu3;
 	}
 	else
 	{
@@ -239,6 +240,10 @@ void Level3::Init()
 		degree2 = 0;
 		degree2_2 = 0;
 		degree2_3 = 0;
+
+		conecTcheck1 = false;
+		conecTcheck2 = false;
+		conecTcheck3 = false;
 	}
 
 
@@ -290,6 +295,10 @@ void Level3::Update()
 		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
 		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
 		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+
+		conecTcheck1 = susu1;
+		conecTcheck2 = susu2;
+		conecTcheck3 = susu3;
 	}
 
 	cursor3 = mInput.Cursor;
@@ -335,6 +344,7 @@ void Level3::Update()
 				conecTcheck1 = false;
 				conecTcheck2 = false;
 				conecTcheck3 = false;
+
 
 				degree2 = 0;
 				degree2_2 = 0;
@@ -687,6 +697,10 @@ void Level3::Update()
 		}
 	}
 
+	susu1 = conecTcheck1;
+	susu2 = conecTcheck2;
+	susu3 = conecTcheck3;
+
 	if (playUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, playUI->mesh))
 	{
 		if (Nos[0] == false && Nos[1] == false)
@@ -712,6 +726,7 @@ void Level3::Update()
 		connectMove = 0;
 	}
 
+
 	if (poopooCheck == true)
 	{
 		if (mInput.IsPressed(KEY::LEFT) == false)
@@ -729,9 +744,6 @@ void Level3::Update()
 
 				this->sound->Play("assets\\flushing.wav", 1);
 
-				//playSE3.Play(1);
-				//playSE3.SetVolume(0.5f);
-				//playSE3.SetLoopCount(1);
 				poopooCheck = false;
 
 			}
@@ -750,7 +762,6 @@ void Level3::Update()
 					fail->mesh->setTransform({ 0,0 });
 					failS = false;
 					poopooCheck = false;
-
 				}
 			}
 		}
@@ -791,6 +802,7 @@ void Level3::Update()
 		UI[1] = false;
 		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
 	}
+
 
 	if (optionUI->collision->Point2HexagonCollision({ cursor3.x,cursor3.y }, optionUI->mesh))
 	{

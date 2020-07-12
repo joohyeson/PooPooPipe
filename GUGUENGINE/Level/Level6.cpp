@@ -12,6 +12,7 @@
 //Sound se6;
 //Sound playSE6;
 extern int MaxLevel;
+extern bool getOption;
 
 void Level6::Init()
 {
@@ -61,20 +62,6 @@ void Level6::Init()
 	quitCheck = false;
 	realQuit = false;
 
-	conecTcheck6_1 = false;
-	conecTcheck6_2 = false;
-	conecTcheck6_3 = false;
-	conecTcheck6_4 = false;
-	conecTcheck6_5 = false;
-
-	degree6 = DegreeToRadian(60.f);
-	degree6_2 = DegreeToRadian(-60.f);
-	degree6_3 = DegreeToRadian(120.f);
-	degree6_4 = DegreeToRadian(180.f);
-	degree6_5 = DegreeToRadian(-180.f);
-	degree6_6 = DegreeToRadian(-120.f);
-
-	rotTime.setRotate(30);
 	rotrot = true;
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -191,14 +178,6 @@ void Level6::Init()
 	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
 	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
 
-
-	//se6.Init();
-	//se6.LoadSE("assets\\coin.mp3");
-
-	//playSE6.Init();
-	//playSE6.LoadSE("assets\\flushing.wav");
-
-
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
 
@@ -218,61 +197,92 @@ void Level6::Init()
 
 	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f }, -180.f);
 	endPuzzle->pipe->SetDirection(false, true, false, false, true, false);
+
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
 
 	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -60.f);
-
 	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 280.f + 50.f }, 60.f);
-
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);
-	puzzle3->pipe->SetDirection(false, false, false, true, false, true);
-
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f }, 60.f);
-	puzzle4->pipe->SetDirection(false, false, true, false, true, false);
-
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);//
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f }, 60.f);//
 	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 40.f - 5.f }, -60.f);
-
 	puzzle6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 40.f - 5.f }, -120.f);
-
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 120.f);
-	puzzle7->pipe->SetDirection(false, false, true, true, false, false);
-
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 120.f);//
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f }, 120.f);
-
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, -80.f - 32.f });
-	puzzle9->pipe->SetDirection(false, false, false, true, false, true);
-
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 4.0f - 448.f, -80.f - 32.f });//
 	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, -80.f - 32.f }, 60.f);
-
 	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, 180.f);
-
-	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, -200.f - 62.f }, -120.f);
-	puzzle12->pipe->SetDirection(false, true, false, false, false, true);
-
-	puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 280.f + 50.f });
-	puzzle13->pipe->SetDirection(false, false, false, true, false, true);
-
-	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, 160.f + 22.f }, 60.f);
-	puzzle14->pipe->SetDirection(false, false, false, true, true, false);
-
-	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 40.f - 5.f });
-	puzzle15->pipe->SetDirection(false, false, false, true, false, true);
-
-	puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, -80.f - 32.f }, -180.f);
-	puzzle16->pipe->SetDirection(true, false, true, false, false, false);
-
-	puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, -200.f - 62.f }, -120.f);
-	puzzle17->pipe->SetDirection(false, true, false, false, false, true);
-
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, 160.f + 22.f }, -60.f);
-	blackPuzzle1->pipe->SetDirection(true, false, false, false, false, true);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, -200.f - 62.f }, -120.f);//
+	puzzle13 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 280.f + 50.f });//
+	puzzle14 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, 160.f + 22.f }, 60.f);//
+	puzzle15 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, 40.f - 5.f });//
+	puzzle16 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 276.f - 376.f, -80.f - 32.f }, -180.f);//
+	puzzle17 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 208.f - 393.f, -200.f - 62.f }, -120.f);//
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, 160.f + 22.f }, -60.f);//
 	blackPuzzle1->mesh->InitializeTextureMesh();
-
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, 160.f + 22.f });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f }, 180.f);//
 
-	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f }, 180.f);
-	blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
+	if (getOption == true)
+	{
+		rotTime.setRotate(rotTime.getLimitTime());
+
+		puzzle3->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		puzzle4->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		puzzle7->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+		puzzle9->pipe->SetDirection(di4[0], di4[1], di4[2], di4[3], di4[4], di4[5]);
+		puzzle12->pipe->SetDirection(di5[0], di5[1], di5[2], di5[3], di5[4], di5[5]);
+		puzzle13->pipe->SetDirection(di6[0], di6[1], di6[2], di6[3], di6[4], di6[5]);
+		puzzle14->pipe->SetDirection(di7[0], di7[1], di7[2], di7[3], di7[4], di7[5]);
+		puzzle15->pipe->SetDirection(di8[0], di8[1], di8[2], di8[3], di8[4], di8[5]);
+		puzzle16->pipe->SetDirection(di9[0], di9[1], di9[2], di9[3], di9[4], di9[5]);
+		puzzle17->pipe->SetDirection(di10[0], di10[1], di10[2], di10[3], di10[4], di10[5]);
+		blackPuzzle1->pipe->SetDirection(di11[0], di11[1], di11[2], di11[3], di11[4], di11[5]);
+		blackPuzzle3->pipe->SetDirection(di12[0], di12[1], di12[2], di12[3], di12[4], di12[5]);
+
+		conecTcheck6_1 = susu1;
+		conecTcheck6_2 = susu2;
+		conecTcheck6_3 = susu3;
+		conecTcheck6_4 = susu4;
+		conecTcheck6_5 = susu5;
+
+		degree6 = d1;
+		degree6_2 = d2;
+		degree6_3 = d3;
+		degree6_4 = d4;
+		degree6_5 = d5;
+		degree6_6 = d6;
+	}
+	else
+	{
+		rotTime.setRotate(50);
+
+		puzzle3->pipe->SetDirection(false, false, false, true, false, true);
+		puzzle4->pipe->SetDirection(false, false, true, false, true, false);
+		puzzle7->pipe->SetDirection(false, false, true, true, false, false);
+		puzzle9->pipe->SetDirection(false, false, false, true, false, true);
+		puzzle12->pipe->SetDirection(false, true, false, false, false, true);
+		puzzle13->pipe->SetDirection(false, false, false, true, false, true);
+		puzzle14->pipe->SetDirection(false, false, false, true, true, false);
+		puzzle15->pipe->SetDirection(false, false, false, true, false, true);
+		puzzle16->pipe->SetDirection(true, false, true, false, false, false);
+		puzzle17->pipe->SetDirection(false, true, false, false, false, true);
+		blackPuzzle1->pipe->SetDirection(true, false, false, false, false, true);
+		blackPuzzle3->pipe->SetDirection(true, false, true, false, false, false);
+
+		conecTcheck6_1 = false;
+		conecTcheck6_2 = false;
+		conecTcheck6_3 = false;
+		conecTcheck6_4 = false;
+		conecTcheck6_5 = false;
+
+		degree6 = DegreeToRadian(60.f);
+		degree6_2 = DegreeToRadian(-60.f);
+		degree6_3 = DegreeToRadian(120.f);
+		degree6_4 = DegreeToRadian(180.f);
+		degree6_5 = DegreeToRadian(-180.f);
+		degree6_6 = DegreeToRadian(-120.f);
+	}
 
 	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
 	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
@@ -311,6 +321,39 @@ void Level6::Init()
 void Level6::Update()
 {
 	cursor6 = mInput.Cursor;
+
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+
+		puzzle3->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		puzzle4->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		puzzle7->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+		puzzle9->pipe->SetDirection(di4[0], di4[1], di4[2], di4[3], di4[4], di4[5]);
+		puzzle12->pipe->SetDirection(di5[0], di5[1], di5[2], di5[3], di5[4], di5[5]);
+		puzzle13->pipe->SetDirection(di6[0], di6[1], di6[2], di6[3], di6[4], di6[5]);
+		puzzle14->pipe->SetDirection(di7[0], di7[1], di7[2], di7[3], di7[4], di7[5]);
+		puzzle15->pipe->SetDirection(di8[0], di8[1], di8[2], di8[3], di8[4], di8[5]);
+		puzzle16->pipe->SetDirection(di9[0], di9[1], di9[2], di9[3], di9[4], di9[5]);
+		puzzle17->pipe->SetDirection(di10[0], di10[1], di10[2], di10[3], di10[4], di10[5]);
+		blackPuzzle1->pipe->SetDirection(di11[0], di11[1], di11[2], di11[3], di11[4], di11[5]);
+		blackPuzzle3->pipe->SetDirection(di12[0], di12[1], di12[2], di12[3], di12[4], di12[5]);
+
+		puzzle14->mesh->setRotation(d1);
+		blackPuzzle1->mesh->setRotation(d2);
+		puzzle7->mesh->setRotation(d3);
+		blackPuzzle3->mesh->setRotation(d4);
+		puzzle16->mesh->setRotation(d5);
+		puzzle12->mesh->setRotation(d6);
+
+		conecTcheck6_1 = susu1;
+		conecTcheck6_2 = susu2;
+		conecTcheck6_3 = susu3;
+		conecTcheck6_4 = susu4;
+		conecTcheck6_5 = susu5;
+	}
+
 	//STATE_MANAGER->setCurrentLV(3);
 	if (mInput.IsPressed(KEY::LEFT))
 	{
@@ -411,17 +454,22 @@ void Level6::Update()
 				{
 					puzzle14->pipe->Update();
 
+					di7[0] = puzzle14->pipe->GetDirection()[0];
+					di7[1] = puzzle14->pipe->GetDirection()[1];
+					di7[2] = puzzle14->pipe->GetDirection()[2];
+					di7[3] = puzzle14->pipe->GetDirection()[3];
+					di7[4] = puzzle14->pipe->GetDirection()[4];
+					di7[5] = puzzle14->pipe->GetDirection()[5];
+
 					degree6 += static_cast<float>(DegreeToRadian(60.f));
 					std::cout << "1" << std::endl;
 					puzzle14->mesh->setRotation(degree6);
+					d1 = degree6;
+
 					rotTime.Update();
-					//rightCheck6 = 0;
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
-
+	
 					rot[0] = false;
 				}
 			}
@@ -438,17 +486,22 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
 					blackPuzzle1->pipe->Update();
+
+					di11[0] =blackPuzzle1->pipe->GetDirection()[0];
+					di11[1] =blackPuzzle1->pipe->GetDirection()[1];
+					di11[2] =blackPuzzle1->pipe->GetDirection()[2];
+					di11[3] =blackPuzzle1->pipe->GetDirection()[3];
+					di11[4] =blackPuzzle1->pipe->GetDirection()[4];
+					di11[5] =blackPuzzle1->pipe->GetDirection()[5];
+
 					degree6_2 += static_cast<float>(DegreeToRadian(60.f));
 					std::cout << "2" << std::endl;
 					blackPuzzle1->mesh->setRotation(degree6_2);
-					//rightCheck6_2 = 0;
+					d2 = degree6_2;
+
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
 
 					rot[1] = false;
 				}
@@ -467,15 +520,20 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
 					puzzle7->pipe->Update();
+
+					di3[0] = puzzle7->pipe->GetDirection()[0];
+					di3[1] = puzzle7->pipe->GetDirection()[1];
+					di3[2] = puzzle7->pipe->GetDirection()[2];
+					di3[3] = puzzle7->pipe->GetDirection()[3];
+					di3[4] = puzzle7->pipe->GetDirection()[4];
+					di3[5] = puzzle7->pipe->GetDirection()[5];
+
 					degree6_3 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle7->mesh->setRotation(degree6_3);
+					d3 = degree6_3;
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
 
 					rot[2] = false;
 				}
@@ -493,16 +551,19 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
 					blackPuzzle3->pipe->Update();
+					di12[0] = blackPuzzle3->pipe->GetDirection()[0];
+					di12[1] = blackPuzzle3->pipe->GetDirection()[1];
+					di12[2] = blackPuzzle3->pipe->GetDirection()[2];
+					di12[3] = blackPuzzle3->pipe->GetDirection()[3];
+					di12[4] = blackPuzzle3->pipe->GetDirection()[4];
+					di12[5] = blackPuzzle3->pipe->GetDirection()[5];
 					degree6_4 += static_cast<float>(DegreeToRadian(60.f));
 					blackPuzzle3->mesh->setRotation(degree6_4);
+					d4 = degree6_4;
 					std::cout << "4" << std::endl;
 					rotTime.Update();
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
 					rot[3] = false;
 				}
 			}
@@ -519,17 +580,20 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
 					puzzle16->pipe->Update();
+					di9[0] = puzzle16->pipe->GetDirection()[0];
+					di9[1] = puzzle16->pipe->GetDirection()[1];
+					di9[2] = puzzle16->pipe->GetDirection()[2];
+					di9[3] = puzzle16->pipe->GetDirection()[3];
+					di9[4] = puzzle16->pipe->GetDirection()[4];
+					di9[5] = puzzle16->pipe->GetDirection()[5];
 					degree6_5 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle16->mesh->setRotation(degree6_5);
+					d5 = degree6_5;
+
 					rotTime.Update();
 					std::cout << "5" << std::endl;
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
-
 					rot[4] = false;
 				}
 			}
@@ -546,19 +610,19 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
 					puzzle12->pipe->Update();
+					di5[0] = puzzle12->pipe->GetDirection()[0];
+					di5[1] = puzzle12->pipe->GetDirection()[1];
+					di5[2] = puzzle12->pipe->GetDirection()[2];
+					di5[3] = puzzle12->pipe->GetDirection()[3];
+					di5[4] = puzzle12->pipe->GetDirection()[4];
+					di5[5] = puzzle12->pipe->GetDirection()[5];
 					degree6_6 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle12->mesh->setRotation(degree6_6);
-
+					d6 = degree6_6;
 					rotTime.Update();
 					std::cout << "6" << std::endl;
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se6.Play(1);
-					//se6.SetVolume(0.5f);
-					//se6.SetLoopCount(1);
-
-
 					rot[5] = false;
 				}
 			}
@@ -578,10 +642,6 @@ void Level6::Update()
 					connectMove6 = 0;
 
 					this->sound->Play("assets\\flushing.wav", 1);
-
-					//playSE6.Play(1);
-					//playSE6.SetVolume(0.5f);
-					//playSE6.SetLoopCount(1);
 				}
 
 			}
@@ -663,6 +723,13 @@ void Level6::Update()
 		std::cout << "5" << std::endl;
 
 	}
+
+	susu1 = conecTcheck6_1;
+	susu2 = conecTcheck6_2;
+	susu3 = conecTcheck6_3;
+	susu4 = conecTcheck6_4;
+	susu5 = conecTcheck6_5;
+
 	if (playUI->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, playUI->mesh))
 	{
 		if (Nos[0] == false && Nos[1] == false)
@@ -780,6 +847,7 @@ void Level6::Update()
 			{
 				UI[2] = false;
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}
 
@@ -925,7 +993,7 @@ void Level6::Update()
 	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 	puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
 
-	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV6_2);
+	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV6);
 	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);
 	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdLine6);
 	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve6);

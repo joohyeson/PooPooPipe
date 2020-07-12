@@ -86,6 +86,32 @@ public:
 		return GameLevels::LV_TEST6;
 	}
 
+	float d1 = DegreeToRadian(60.f); //pipe degree
+	float d2 = DegreeToRadian(-60.f);
+	float d3 = DegreeToRadian(120.f);
+	float d4 = DegreeToRadian(180.f);
+	float d5 = DegreeToRadian(-180.f);
+	float d6 = DegreeToRadian(-120.f);
+
+	bool di1[6] = { false, false, false, true, false, true }; //pipe direction 3
+	bool di2[6] = { false, false, true, false, true, false }; //4
+	bool di3[6] = { false, false, true, true, false, false };//7
+	bool di4[6] = { false, false, false, true, false, true };//9
+	bool di5[6] = { false, true, false, false, false, true };//12
+	bool di6[6] = { false, false, false, true, false, true };//13
+	bool di7[6] = { false, false, false, true, true, false };//14
+	bool di8[6] = { false, false, false, true, false, true };//15
+	bool di9[6] = { true, false, true, false, false, false };//16
+	bool di10[6] = { false, true, false, false, false, true };//17
+	bool di11[6] = { true, false, false, false, false, true };//b1
+	bool di12[6] = { true, false, true, false, false, false };//b3
+
+	bool susu1 = false; // pipe connect check
+	bool susu2 = false;
+	bool susu3 = false;
+	bool susu4 = false;
+	bool susu5 = false;
+
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;

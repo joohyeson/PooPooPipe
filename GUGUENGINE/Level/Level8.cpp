@@ -12,6 +12,7 @@
 //Sound se8;
 //Sound playSE8;
 extern int MaxLevel;
+extern bool getOption;
 
 void Level8::Init()
 {
@@ -340,6 +341,12 @@ void Level8::Update()
 	/*se8.Update();
 	playSE8.Update();*/
 
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+
+	}
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -884,6 +891,7 @@ void Level8::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
 
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}

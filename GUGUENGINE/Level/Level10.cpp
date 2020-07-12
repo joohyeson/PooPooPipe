@@ -8,6 +8,7 @@
 #include "Level10.h"
 #include "../GUGUENGINE/Sound.h"
 extern int MaxLevel;
+extern bool getOption;
 
 
 void Level10::Init()
@@ -322,6 +323,12 @@ void Level10::Update()
 {
 	//STATE_MANAGER->setCurrentLV(7);
 	
+	//update new state to original state
+	if (getOption == true)
+	{
+		getOption = false;
+	}
+
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -844,6 +851,8 @@ void Level10::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
+
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}
 		}

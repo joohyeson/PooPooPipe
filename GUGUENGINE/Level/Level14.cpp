@@ -7,7 +7,9 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level14.h"
 #include "../GUGUENGINE/Sound.h"
+
 extern int MaxLevel;
+extern bool getOption;
 
 void Level14::Init()
 {
@@ -799,6 +801,8 @@ void Level14::Update()
 			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
 				INPUT->setInput(KEY::LEFT);
+				getOption = true;
+
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 			}
 		}
