@@ -32,7 +32,7 @@ void Level2::Init()
 	click = 0;
 
 	firstTime = glfwGetTime();
-
+	
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));

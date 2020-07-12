@@ -8,11 +8,15 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level13.h"
 #include "../GUGUENGINE/Sound.h"
+extern int MaxLevel;
 
 
 void Level13::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 10)
+	{
+		MaxLevel = 10;
+	}
 	Nos[0] = false;
 	Nos[1] = false;
 	chekNext8 = 0;
@@ -284,7 +288,7 @@ void Level13::Init()
 
 void Level13::Update()
 {
-	STATE_MANAGER->setCurrentLV(10);
+	//STATE_MANAGER->setCurrentLV(10);
 
 	if (mInput.IsPressed(KEY::F) == true)
 	{
@@ -935,7 +939,7 @@ void Level13::Update()
 	if (mInput.IsPressed(KEY::A))
 	{
 		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(GameLevels::ENDINGCUTS);
+		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST14);
 	}
 	
 	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);

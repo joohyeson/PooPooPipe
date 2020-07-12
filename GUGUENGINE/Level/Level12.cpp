@@ -8,10 +8,15 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level12.h"
 #include "../GUGUENGINE/Sound.h"
+extern int MaxLevel;
 
 void Level12::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 9)
+	{
+		MaxLevel = 9;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 
 	Nos[0] = false;
 	Nos[1] = false;
@@ -313,7 +318,7 @@ void Level12::Init()
 
 void Level12::Update()
 {
-	STATE_MANAGER->setCurrentLV(9);
+	//STATE_MANAGER->setCurrentLV(9);
 	if (mInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();

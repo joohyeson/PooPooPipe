@@ -7,10 +7,14 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level14.h"
 #include "../GUGUENGINE/Sound.h"
+extern int MaxLevel;
 
 void Level14::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 11)
+	{
+		MaxLevel = 11;
+	}
 
 	Nos[0] = false;
 	Nos[1] = false;
@@ -321,7 +325,8 @@ void Level14::Init()
 
 void Level14::Update()
 {
-	STATE_MANAGER->setCurrentLV(11);
+	//STATE_MANAGER->setCurrentLV(11);
+	
 	lastTime = glfwGetTime();
 	if (mInput.IsPressed(KEY::F) == true)
 	{

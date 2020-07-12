@@ -18,11 +18,15 @@
 
 #include "../GUGUENGINE/Sound.h"
 
+extern int MaxLevel;
 
 void Level3::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
-
+	//STATE_MANAGER->setCurrentLV(0);
+	if(MaxLevel <= 1)
+	{
+		MaxLevel = 1;
+	}
 	Nos[0] = false;
 	Nos[1] = false;
 
@@ -255,7 +259,7 @@ void Level3::Init()
 void Level3::Update()
 {
 
-	STATE_MANAGER->setCurrentLV(1);
+	//STATE_MANAGER->setCurrentLV(1);
 
 	cursor3 = mInput.Cursor;
 

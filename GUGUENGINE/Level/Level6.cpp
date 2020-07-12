@@ -11,10 +11,15 @@
 
 //Sound se6;
 //Sound playSE6;
+extern int MaxLevel;
 
 void Level6::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 3)
+	{
+		MaxLevel = 3;
+	}
+	
 	skip = false;
 	Nos[0] = false;
 	Nos[1] = false;
@@ -306,7 +311,7 @@ void Level6::Init()
 void Level6::Update()
 {
 	cursor6 = mInput.Cursor;
-	STATE_MANAGER->setCurrentLV(3);
+	//STATE_MANAGER->setCurrentLV(3);
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)

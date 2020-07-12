@@ -7,11 +7,16 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level10.h"
 #include "../GUGUENGINE/Sound.h"
+extern int MaxLevel;
 
 
 void Level10::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 7)
+	{
+		MaxLevel = 7;
+	}
+//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS[0] = false;
 	failS[1] = false;
@@ -315,7 +320,7 @@ void Level10::Init()
 
 void Level10::Update()
 {
-	STATE_MANAGER->setCurrentLV(7);
+	//STATE_MANAGER->setCurrentLV(7);
 	
 	if (mInput.IsPressed(KEY::LEFT))
 	{

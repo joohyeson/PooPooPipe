@@ -13,6 +13,8 @@ Vector2<float> cursorLv;
 
 Sound seLv;
 
+extern  int MaxLevel = 0;
+
 void LevelSelect::Init()
 {
 	currentLevel = STATE_MANAGER->GetCurrentLV();
@@ -109,7 +111,7 @@ void LevelSelect::Init()
 void LevelSelect::Update()
 {
 	cursorLv = levelInput.Cursor;
-
+	
 	if (levelInput.IsPressed(KEY::F) == true)
 	{
 		APPLICATION->SetFullScreen();
@@ -137,7 +139,7 @@ void LevelSelect::Update()
 		Level1_pressed->mesh->setTransform({ 850.0f, 850.0f });
 	}
 
-	if (currentLevel >= 2)
+	if (MaxLevel >= 2)
 	{
 		if (Level2->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level2->mesh))
 		{
@@ -158,7 +160,7 @@ void LevelSelect::Update()
 		Level2_lock->mesh->setTransform(Level2->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 3)
+	if (MaxLevel >= 3)
 	{
 		if (Level3->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level3->mesh))
 		{
@@ -179,7 +181,7 @@ void LevelSelect::Update()
 		Level3_lock->mesh->setTransform(Level3->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 4)
+	if (MaxLevel >= 4)
 	{
 		if (Level4->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level4->mesh))
 		{
@@ -200,7 +202,7 @@ void LevelSelect::Update()
 		Level4_lock->mesh->setTransform(Level4->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 5)
+	if (MaxLevel >= 5)
 	{
 		if (Level5->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level5->mesh))
 		{
@@ -221,7 +223,7 @@ void LevelSelect::Update()
 		Level5_lock->mesh->setTransform(Level5->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 6)
+	if (MaxLevel >= 6)
 	{
 		if (Level6->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level6->mesh))
 		{
@@ -242,7 +244,7 @@ void LevelSelect::Update()
 		Level6_lock->mesh->setTransform(Level6->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 7)
+	if (MaxLevel >= 7)
 	{
 		if (Level7->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level7->mesh))
 		{
@@ -263,7 +265,7 @@ void LevelSelect::Update()
 		Level7_lock->mesh->setTransform(Level7->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 8)
+	if (MaxLevel >= 8)
 	{
 		if (Level8->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level8->mesh))
 		{
@@ -284,7 +286,7 @@ void LevelSelect::Update()
 		Level8_lock->mesh->setTransform(Level8->mesh->GetTransform());
 	}
 	
-	if (currentLevel >= 9)
+	if (MaxLevel >= 9)
 	{
 		if (Level9->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level9->mesh))
 		{
@@ -305,7 +307,7 @@ void LevelSelect::Update()
 		Level9_lock->mesh->setTransform(Level9->mesh->GetTransform());
 	}
 
-	if (currentLevel >= 10)
+	if (MaxLevel >= 10)
 	{
 		if (Level10->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level10->mesh))
 		{
@@ -326,7 +328,7 @@ void LevelSelect::Update()
 		Level10_lock->mesh->setTransform(Level10->mesh->GetTransform());
 	}
 	
-	if (currentLevel >= 11)
+	if (MaxLevel >= 11)
 	{
 		if (Level11->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level11->mesh))
 		{
@@ -334,7 +336,7 @@ void LevelSelect::Update()
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
 				std::cout << "get mouse left" << std::endl;
-				getLevNum = 10;
+				getLevNum = 11;
 			}
 		}
 		else

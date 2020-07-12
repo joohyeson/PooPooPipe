@@ -11,10 +11,15 @@
 
 //Sound se8;
 //Sound playSE8;
+extern int MaxLevel;
 
 void Level8::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 4)
+	{
+		MaxLevel = 4;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS[0] = false;
 	failS[1] = false;
@@ -330,7 +335,7 @@ void Level8::Init()
 
 void Level8::Update()
 {
-	STATE_MANAGER->setCurrentLV(4);
+	//STATE_MANAGER->setCurrentLV(4);
 
 	/*se8.Update();
 	playSE8.Update();*/

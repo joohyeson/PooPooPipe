@@ -11,10 +11,15 @@
 //
 //Sound se5;
 //Sound playSE5;
+extern int MaxLevel;
 
 void Level5::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 5)
+	{
+		MaxLevel = 5;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS = false;
 	Nos[0] = false;
@@ -295,7 +300,7 @@ void Level5::Init()
 
 void Level5::Update()
 {
-	STATE_MANAGER->setCurrentLV(5);
+	//STATE_MANAGER->setCurrentLV(5);
 	
 	if (mInput.IsPressed(KEY::LEFT))
 	{

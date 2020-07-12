@@ -11,11 +11,16 @@
 
 //Sound se9;
 //Sound playSE9;
+extern int MaxLevel;
 
 bool SoundCheck = false;
 void Level9::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 6)
+	{
+		MaxLevel = 6;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 
 	failS = false;
@@ -287,7 +292,7 @@ void Level9::Init()
 
 void Level9::Update()
 {
-	STATE_MANAGER->setCurrentLV(6);
+	//STATE_MANAGER->setCurrentLV(6);
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)

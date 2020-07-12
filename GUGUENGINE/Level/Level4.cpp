@@ -20,10 +20,15 @@
 
  //Sound se4;
  //Sound playSE4;
+extern int MaxLevel;
 
 void Level4::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 2)
+	{
+		MaxLevel = 2;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	Nos[0] = false;
 	Nos[1] = false;
@@ -254,7 +259,7 @@ void Level4::Init()
 
 void Level4::Update()
 {
-	STATE_MANAGER->setCurrentLV(2);
+	//STATE_MANAGER->setCurrentLV(2);
 
 	cursor4 = mInput.Cursor;
 

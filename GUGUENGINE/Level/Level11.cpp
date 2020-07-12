@@ -8,10 +8,15 @@
 #include "Level11.h"
 #include "../GUGUENGINE/Sound.h"
 
+extern int MaxLevel;
 
 void Level11::Init()
 {
-	STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 8)
+	{
+		MaxLevel = 8;
+	}
+	//STATE_MANAGER->setCurrentLV(0);
 	failS[0] = false;
 	failS[1] = false;
 
@@ -328,7 +333,7 @@ void Level11::Init()
 
 void Level11::Update()
 {
-	STATE_MANAGER->setCurrentLV(8);
+	//STATE_MANAGER->setCurrentLV(8);
 	if (mInput.IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
