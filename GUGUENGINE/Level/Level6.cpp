@@ -255,7 +255,7 @@ void Level6::Init()
 	}
 	else
 	{
-		rotTime.setRotate(50);
+		rotTime.setRotate(30);
 
 		puzzle3->pipe->SetDirection(false, false, false, true, false, true);
 		puzzle4->pipe->SetDirection(false, false, true, false, true, false);
