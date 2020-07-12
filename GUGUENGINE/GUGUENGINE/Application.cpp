@@ -46,6 +46,7 @@ void Application::Update()
     }
 	
     //glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
+
     glfwSetWindowAspectRatio(APPLICATION->getMyWindow(), 16, 9);
     glfwPollEvents();
 }
@@ -72,9 +73,9 @@ Application::Application()
         900,
         900,
         "PooPooPipe",
-		NULL, NULL);
+        glfwGetPrimaryMonitor(), NULL);
 
-    isFullScreen = false;
+    isFullScreen = true;
 
     if (!Mywindow) {
 
@@ -116,9 +117,10 @@ Application::Application()
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
-    
-    glfwGetFramebufferSize(Mywindow, &framebufferWidth, &framebufferHeight);
+    glfwSetWindowAspectRatio(Mywindow, 16, 9);
+
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
+    glfwGetFramebufferSize(Mywindow, &framebufferWidth, &framebufferHeight);
 
 }
 
