@@ -65,16 +65,16 @@ Application::Application()
     glfwWindowHint(GLFW_SAMPLES, 4);
 
     const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    GLFWmonitor* screenMonitor = nullptr;
-    screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
-    
+    //GLFWmonitor* screenMonitor = nullptr;
+    //screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+    //
     Mywindow = glfwCreateWindow(
-        1200,
+        900,
         900,
         "PooPooPipe",
-        glfwGetPrimaryMonitor(), NULL);
+		NULL, NULL);
 
-    isFullScreen = true;
+    isFullScreen = false;
 
     if (!Mywindow) {
 
