@@ -19,251 +19,245 @@
 #include "../GUGUENGINE/Sound.h"
 
 extern int MaxLevel;
-extern bool GetOption;
 
 void Level3::Init()
 {
-	if (GetOption == false)
+	//STATE_MANAGER->setCurrentLV(0);
+	if (MaxLevel <= 1)
 	{
-		//STATE_MANAGER->setCurrentLV(0);
-		if (MaxLevel <= 1)
-		{
-			MaxLevel = 1;
-		}
-		Nos[0] = false;
-		Nos[1] = false;
-
-		Cur[0] = false;
-		Cur[1] = false;
-		Cur[2] = false;
-		SUI[0] = false;
-		SUI[1] = false;
-		SUI[2] = false;
-		SUI[3] = false;
-		SUI[4] = false;
-		checking = false;
-
-		QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
-		QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-
-		QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);
-		QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
-
-		Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdYes = TEXTURE->CreateTexture("assets\\yes.png", 0);
-		Yes->mesh->InitializeTextureMesh(130.f, 110.f);
-
-		mInput.setInput(KEY::LEFT);
-
-		No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdNo = TEXTURE->CreateTexture("assets\\no_p.png", 0);
-		No->mesh->InitializeTextureMesh(130.f, 110.f);
-
-		Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
-		Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
-
-		No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		textureIdNo_p = TEXTURE->CreateTexture("assets\\no.png", 0);
-		No_p->mesh->InitializeTextureMesh(130.f, 110.f);
-
-		quitCheck = false;
-		realQuit = false;
-
-		chekNext = 0;
-		skip = false;
-		failS = false;
-		conecTcheck1 = false;
-		conecTcheck2 = false;
-		conecTcheck3 = false;
-
-		degree2 = 0;
-		degree2_2 = 0;
-		degree2_3 = 0;
-
-		blCheck1 = false;
-		blCheck1_2 = false;
-
-		blCheck2 = false;
-		blCheck2_2 = false;
-
-		background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
-		background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-		textureBackground3 = TEXTURE->CreateTexture("assets\\background1.png", 0);
-
-		movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
-			false, false, false, true, false, true);
-		movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
-		movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
-
-		playUI = OBJECT_FACTORY->CreateEmptyObject();
-		playUI->AddComponent(new Mesh());
-		playUI->Init();
-
-		playUI->mesh->setTransform({ 713.5f, 300.f });
-		playUI->mesh->InitializeTextureMesh(173.f, 200.f);
-		texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
-
-		playUI_p = OBJECT_FACTORY->CreateEmptyObject();
-		playUI_p->AddComponent(new Mesh());
-		playUI_p->Init();
-
-		playUI_p->mesh->setTransform({ 1713.5f, 300.f });
-		playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-		texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
-
-		quitUI = OBJECT_FACTORY->CreateEmptyObject();
-		quitUI->AddComponent(new Mesh());
-		quitUI->Init();
-
-		quitUI->mesh->setTransform({ 800.f, 150.f });
-		quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
-
-		quitUI_p = OBJECT_FACTORY->CreateEmptyObject();
-		quitUI_p->AddComponent(new Mesh());
-		quitUI_p->Init();
-
-		quitUI_p->mesh->setTransform({ 1800.f, 150.f });
-		quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
-
-		optionUI = OBJECT_FACTORY->CreateEmptyObject();
-		optionUI->AddComponent(new Mesh());
-		optionUI->Init();
-		optionUI->mesh->setTransform({ 713.5f, 0.f });
-		optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
-
-		optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
-		optionUI_p->AddComponent(new Mesh());
-		optionUI_p->Init();
-		optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
-		optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
-
-		restartUI = OBJECT_FACTORY->CreateEmptyObject();
-		restartUI->AddComponent(new Mesh());
-		restartUI->Init();
-		restartUI->mesh->setTransform({ 800.f, -150.f });
-		restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
-
-		restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
-		restartUI_p->AddComponent(new Mesh());
-		restartUI_p->Init();
-		restartUI_p->mesh->setTransform({ 1800.f, -150.f });
-		restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-		textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
-
-		mPooPoo.Init();
-		pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
-		pooCharacter->AddComponent(new Mesh());
-		pooCharacter->Init();
-		pooCharacter->mesh->setTransform({ -700.f, -700.f });
-		pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
-		pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
-
-		puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
-		puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
-		puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);
-		puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, 160.f + 22.f });
-		puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, 160.f + 22.f }, 120.f);
-		puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
-		puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 240.f);
-		puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, -80.0f - 32.f });
-		puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, -80.f - 32.f }, 60.f);
-		puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, -80.f - 32.f }, 60.f);
-		puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, 60.f);
-		puzzle12 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, -200.f - 62.f });
-
-		blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 140.f - 415.f, 160.f + 22.f });
-		blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -64.f - 465.f, 40.f - 5.f });
-		blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -268.f - 519.f, -80.f - 32.f });
-
-		startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -240.f);
-		endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
-
-		Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
-		Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
-
-		button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
-		clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
-		fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-		win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-
-		levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
-		numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
-
-		texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-		texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-		texureIdCurve3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-
-		texureIdStart3 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
-		texureIdEnd3 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
-
-		texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
-		texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-
-		LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
-		LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
-
-		texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
-		texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
-
-		levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
-		numberTexture = TEXTURE->CreateTexture("assets\\01.png", 0);
-		textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-		textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-
-
-		//se3.Init();
-		//se3.LoadSE("assets\\coin.mp3");
-
-		//playSE3.Init();
-		//playSE3.LoadSE("assets\\flushing.wav");
-
-		mShader2.BuildTextureShader();
-		mShader.BuildTextureShader();
-
-		movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
-		movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
-		endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
-		puzzle2->pipe->SetDirection(false, false, false, true, false, true);
-		puzzle6->pipe->SetDirection(false, false, true, false, true, false);
-		puzzle7->pipe->SetDirection(false, true, false, false, false, true);
-
-
-		button->mesh->InitializeTextureMesh(300.f, 300.f);
-		clear->mesh->InitializeTextureMesh(380.f, 150.f);
-		levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
-		numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
-		fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-		win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-
-
-		mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle2->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, blackPuzzle1->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle7->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, blackPuzzle2->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle6->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
-		mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
-
-		mInput.InitCallback(APPLICATION->getMyWindow());
-
-		firstTime = glfwGetTime();
+		MaxLevel = 1;
 	}
+	Nos[0] = false;
+	Nos[1] = false;
+
+	Cur[0] = false;
+	Cur[1] = false;
+	Cur[2] = false;
+	SUI[0] = false;
+	SUI[1] = false;
+	SUI[2] = false;
+	SUI[3] = false;
+	SUI[4] = false;
+	checking = false;
+
+	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
+	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+
+	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+
+	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdYes = TEXTURE->CreateTexture("assets\\yes.png", 0);
+	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	mInput.setInput(KEY::LEFT);
+
+	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdNo = TEXTURE->CreateTexture("assets\\no_p.png", 0);
+	No->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
+	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	textureIdNo_p = TEXTURE->CreateTexture("assets\\no.png", 0);
+	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	quitCheck = false;
+	realQuit = false;
+
+	chekNext = 0;
+	skip = false;
+	failS = false;
+	conecTcheck1 = false;
+	conecTcheck2 = false;
+	conecTcheck3 = false;
+
+	degree2 = 0;
+	degree2_2 = 0;
+	degree2_3 = 0;
+
+	blCheck1 = false;
+	blCheck1_2 = false;
+
+	blCheck2 = false;
+	blCheck2_2 = false;
+
+	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
+	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+	textureBackground3 = TEXTURE->CreateTexture("assets\\background1.png", 0);
+
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
+		false, false, false, true, false, true);
+	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
+	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
+
+	playUI = OBJECT_FACTORY->CreateEmptyObject();
+	playUI->AddComponent(new Mesh());
+	playUI->Init();
+
+	playUI->mesh->setTransform({ 713.5f, 300.f });
+	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
+	texturePlayUI3 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
+
+	playUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	playUI_p->AddComponent(new Mesh());
+	playUI_p->Init();
+
+	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
+	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
+
+	quitUI = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI->AddComponent(new Mesh());
+	quitUI->Init();
+
+	quitUI->mesh->setTransform({ 800.f, 150.f });
+	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureQuitUI3 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
+
+	quitUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	quitUI_p->AddComponent(new Mesh());
+	quitUI_p->Init();
+
+	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
+	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
+
+	optionUI = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI->AddComponent(new Mesh());
+	optionUI->Init();
+	optionUI->mesh->setTransform({ 713.5f, 0.f });
+	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureOptionUI3 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
+
+	optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	optionUI_p->AddComponent(new Mesh());
+	optionUI_p->Init();
+	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
+	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
+
+	restartUI = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI->AddComponent(new Mesh());
+	restartUI->Init();
+	restartUI->mesh->setTransform({ 800.f, -150.f });
+	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureRestartUI3 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
+
+	restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
+	restartUI_p->AddComponent(new Mesh());
+	restartUI_p->Init();
+	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
+	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
+
+	mPooPoo.Init();
+	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
+	pooCharacter->AddComponent(new Mesh());
+	pooCharacter->Init();
+	pooCharacter->mesh->setTransform({ -700.f, -700.f });
+	pooCharacter->mesh->SetMeshType(MESHTYPE::rectangle);
+	pooCharacter->mesh->InitializeTextureMesh(80.f, 80.f);
+
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, 280.f + 50.f }, 60.f);
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 280.f + 50.f });
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 180.f);
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, 160.f + 22.f });
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, 160.f + 22.f }, 120.f);
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, 40.f - 5.f }, 60.f);
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 72.f - 430.f, 40.f - 5.f }, 240.f);
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 482.f, -80.0f - 32.f });
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 448.f, -80.f - 32.f }, 60.f);
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 415.f, -80.f - 32.f }, 60.f);
+	puzzle11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 465.f, -200.f - 62.f }, 60.f);
+	puzzle12 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, -200.f - 62.f });
+
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 140.f - 415.f, 160.f + 22.f });
+	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -64.f - 465.f, 40.f - 5.f });
+	blackPuzzle3 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { -268.f - 519.f, -80.f - 32.f });
+
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 500.f, 280.f + 50.f }, -240.f);
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -200.f - 500.f, -200.f - 62.f });
+
+	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
+	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
+
+	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
+	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
+	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+
+	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+
+	texureIdLine3 = TEXTURE->CreateTexture("assets\\image0.png", 0);
+	texureIdBlack3 = TEXTURE->CreateTexture("assets\\image1.png", 0);
+	texureIdCurve3 = TEXTURE->CreateTexture("assets\\image2.png", 0);
+
+	texureIdStart3 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
+	texureIdEnd3 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
+
+	texureIdLine3_1 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
+	texureIdCurve3_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
+
+	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
+	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
+
+	texureIdbutton3 = TEXTURE->CreateTexture("assets\\character.png", 0);
+	texureIdclear3 = TEXTURE->CreateTexture("assets\\clear.png", 0);
+
+	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
+	numberTexture = TEXTURE->CreateTexture("assets\\01.png", 0);
+	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
+	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
+
+	//se3.Init();
+	//se3.LoadSE("assets\\coin.mp3");
+
+	//playSE3.Init();
+	//playSE3.LoadSE("assets\\flushing.wav");
+
+	mShader2.BuildTextureShader();
+	mShader.BuildTextureShader();
+
+	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
+	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
+	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
+	puzzle2->pipe->SetDirection(false, false, false, true, false, true);
+	puzzle6->pipe->SetDirection(false, false, true, false, true, false);
+	puzzle7->pipe->SetDirection(false, true, false, false, false, true);
+
+
+	button->mesh->InitializeTextureMesh(300.f, 300.f);
+	clear->mesh->InitializeTextureMesh(380.f, 150.f);
+	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
+	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+
+
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::NE_, startPuzzle->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::NE_, puzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::SW_, DirAngle::SE_, puzzle2->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, blackPuzzle1->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SW_, puzzle7->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, blackPuzzle2->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle6->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
+	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
+
+	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	firstTime = glfwGetTime();
 
 }
 
 void Level3::Update()
 {
-
 	//STATE_MANAGER->setCurrentLV(1);
 
 	cursor3 = mInput.Cursor;
@@ -355,7 +349,6 @@ void Level3::Update()
 				movePuzzle->pipe->Update();
 				degree2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree2);
-
 				this->sound->Play("assets\\coin.mp3", 1);
 				//se3.Play("assets\\coin.mp3", 1);
 				//se3.SetVolume(0.5f);
@@ -427,7 +420,6 @@ void Level3::Update()
 
 				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle2->mesh->setRotation(degree2_2);
-
 				this->sound->Play("assets\\coin.mp3", 1);
 
 				//se3.Play(1);
@@ -482,7 +474,6 @@ void Level3::Update()
 				movePuzzle3->pipe->Update();
 				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle3->mesh->setRotation(degree2_3);
-
 				this->sound->Play("assets\\coin.mp3", 1);
 				//se3.Play(1);
 				//se3.SetVolume(0.5f);
@@ -654,6 +645,7 @@ void Level3::Update()
 			{
 				INPUT->setInput(KEY::LEFT);
 				poopooCheck = true;
+
 			}
 		}
 	}
@@ -685,6 +677,7 @@ void Level3::Update()
 				//playSE3.SetVolume(0.5f);
 				//playSE3.SetLoopCount(1);
 				poopooCheck = false;
+
 			}
 			else
 			{
@@ -701,6 +694,7 @@ void Level3::Update()
 					fail->mesh->setTransform({ 0,0 });
 					failS = false;
 					poopooCheck = false;
+
 				}
 			}
 		}
@@ -755,7 +749,6 @@ void Level3::Update()
 
 			if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 			{
-				GetOption = true;
 				INPUT->setInput(KEY::LEFT);
 
 				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
@@ -976,15 +969,12 @@ void Level3::Update()
 
 void Level3::Close()
 {
-	if (GetOption == false)
-	{
 		mShader.Delete();
 		mMesh.Delete();
 		mPooPoo.Clear();
 		sound->StopEffectSound();
 
 		OBJECT_FACTORY->DestroyAllObjects();
-	}
 }
 
 

@@ -95,6 +95,9 @@ public:
 	//void Wait(long waitTime);
 
 private:
+	
+
+
 	double first;
 	double last;
 	bool failS = false;

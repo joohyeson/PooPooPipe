@@ -14,8 +14,6 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-extern  bool GetOption = false;
-
 void LevelOption::Init()
 {
 	background = OBJECT_FACTORY->CreateEmptyObject();
