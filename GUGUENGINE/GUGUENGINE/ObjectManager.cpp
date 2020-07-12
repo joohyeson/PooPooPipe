@@ -94,8 +94,7 @@ Object* ObjectFactory::FindObjectwithID(ObjectID id) const
 	return nullptr;
 }
 
-Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, float degree,
-	float dir1, float dir2, float dir3, float dir4, float dir5, float dir6)//does not have ''SetDirection" and "SetAngle"
+Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, float degree)//does not have ''SetDirection" and "SetAngle"
 {
 	Object* obj;
 	obj = OBJECT_FACTORY->CreateEmptyObject();
@@ -106,7 +105,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
-		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
+		//obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));
@@ -117,7 +116,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
-		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
+		//obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->mesh->SetMeshType(MESHTYPE::hexagon);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
@@ -129,7 +128,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
-		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
+		//obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));
@@ -140,7 +139,7 @@ Object* ObjectFactory::CreateObject(Type archetype, Vector2<float> transform, fl
 	{
 		obj->AddComponent(new Mesh());
 		obj->AddComponent(new PuzzleComponent());
-		obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
+		//obj->pipe->SetDirection(dir1, dir2, dir3, dir4, dir5, dir6);
 		obj->Init();
 		obj->mesh->setTransform({ transform.x, transform.y });
 		obj->mesh->setRotation(DegreeToRadian(degree));

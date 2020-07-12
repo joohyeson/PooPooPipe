@@ -21,18 +21,6 @@
 extern int MaxLevel;
 extern bool getOption;
 
-Vector2<float> Pos1;
-Vector2<float> Pos2;
-Vector2<float> Pos3;
-
-float d1;
-float d2;
-float d3;
-
-float con1;
-float con2;
-float con3;
-
 void Level3::Init()
 {
 	//STATE_MANAGER->setCurrentLV(0);
@@ -89,9 +77,9 @@ void Level3::Init()
 	conecTcheck2 = false;
 	conecTcheck3 = false;
 
-	degree2 = 0;
-	degree2_2 = 0;
-	degree2_3 = 0;
+	degree2 = d1;
+	degree2_2 = d2;
+	degree2_3 = d3;
 
 	blCheck1 = false;
 	blCheck1_2 = false;
@@ -103,8 +91,7 @@ void Level3::Init()
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	textureBackground3 = TEXTURE->CreateTexture("assets\\background1.png", 0);
 
-	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f }, 0,
-		false, false, false, true, false, true);
+	movePuzzle = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 320.f, 280.f });
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f });
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f });
 
@@ -237,8 +224,10 @@ void Level3::Init()
 	mShader2.BuildTextureShader();
 	mShader.BuildTextureShader();
 
-	movePuzzle2->pipe->SetDirection(true, false, false, true, false, false);
-	movePuzzle3->pipe->SetDirection(false, false, false, true, false, true);
+	movePuzzle->pipe->SetDirection(di1[0], di1[1],di1[2],di1[3],di1[4],di1[5]);
+	movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+	movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
+
 	endPuzzle->pipe->SetDirection(true, false, false, false, false, false);
 	puzzle2->pipe->SetDirection(false, false, false, true, false, true);
 	puzzle6->pipe->SetDirection(false, false, true, false, true, false);
@@ -282,6 +271,10 @@ void Level3::Update()
 		movePuzzle->mesh->setRotation(d1);
 		movePuzzle2->mesh->setRotation(d2);
 		movePuzzle3->mesh->setRotation(d3);
+
+		movePuzzle->pipe->SetDirection(di1[0], di1[1], di1[2], di1[3], di1[4], di1[5]);
+		movePuzzle2->pipe->SetDirection(di2[0], di2[1], di2[2], di2[3], di2[4], di2[5]);
+		movePuzzle3->pipe->SetDirection(di3[0], di3[1], di3[2], di3[3], di3[4], di3[5]);
 	}
 	cursor3 = mInput.Cursor;
 
@@ -370,6 +363,14 @@ void Level3::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle->pipe->Update();
+
+				di1[0] = movePuzzle->pipe->GetDirection()[0];
+				di1[1] = movePuzzle->pipe->GetDirection()[1];
+				di1[2] = movePuzzle->pipe->GetDirection()[2];
+				di1[3] = movePuzzle->pipe->GetDirection()[3];
+				di1[4] = movePuzzle->pipe->GetDirection()[4];
+				di1[5] = movePuzzle->pipe->GetDirection()[5];
+
 				degree2 += static_cast<float>(DegreeToRadian(60.f));
 				movePuzzle->mesh->setRotation(degree2);
 				d1 = degree2;
@@ -441,7 +442,12 @@ void Level3::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle2->pipe->Update();
-
+				di2[0] = movePuzzle2->pipe->GetDirection()[0];
+				di2[1] = movePuzzle2->pipe->GetDirection()[1];
+				di2[2] = movePuzzle2->pipe->GetDirection()[2];
+				di2[3] = movePuzzle2->pipe->GetDirection()[3];
+				di2[4] = movePuzzle2->pipe->GetDirection()[4];
+				di2[5] = movePuzzle2->pipe->GetDirection()[5];
 				degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 				d2 = degree2_2;
 				movePuzzle2->mesh->setRotation(degree2_2);
@@ -497,6 +503,14 @@ void Level3::Update()
 			if (mInput.IsPressed(KEY::RIGHT) == false)
 			{
 				movePuzzle3->pipe->Update();
+
+				di3[0] = movePuzzle3->pipe->GetDirection()[0];
+				di3[1] = movePuzzle3->pipe->GetDirection()[1];
+				di3[2] = movePuzzle3->pipe->GetDirection()[2];
+				di3[3] = movePuzzle3->pipe->GetDirection()[3];
+				di3[4] = movePuzzle3->pipe->GetDirection()[4];
+				di3[5] = movePuzzle3->pipe->GetDirection()[5];
+				
 				degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 				d3 = degree2_3;
 				movePuzzle3->mesh->setRotation(degree2_3);

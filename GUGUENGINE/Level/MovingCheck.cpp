@@ -166,23 +166,50 @@ void MovingCheck::Init()
 	movePuzzle2 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 360.f, 120.f }, 60.f);
 	movePuzzle3 = OBJECT_FACTORY->CreateObject(Type::MovePuzzle, { 400.0f, 0.0f }, 60.f);
 
-	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
-	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f,false, true, false, false, true, false);//14
-	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
-	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, false, true, false);//14
-	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, -60.f, false, false, false, true, false, true);//35
-	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
-	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, true, false, true, false);//24
+	puzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f);//24
+	puzzle1->pipe->SetDirection(false, false, true, false, true, false);
 
-	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f },60.f, false, true, false, false, true, false);//14
-	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
-	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f, false, true, false, true, false, false);//13
 
-	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f, true, false, true, false, false, false);//02
+	puzzle2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f);//14
+	puzzle2->pipe->SetDirection(false, true, false, false, true, false);
+
+	puzzle3 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f );//24
+	puzzle3->pipe->SetDirection(false, false, true, false, true, false);
+
+	puzzle4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f );//14
+	puzzle4->pipe->SetDirection(false, true, false, false, true, false);
+
+	puzzle5 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, -60.f );//35
+	puzzle5->pipe->SetDirection(false, false, false, true, false, true);
+
+	puzzle6 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f );//24
+	puzzle6->pipe->SetDirection(false, false, true, false, true, false);
+
+	puzzle7 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f );//24
+	puzzle7->pipe->SetDirection(false, false, true, false, true, false);
+
+
+	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f },60.f);//14
+	puzzle8->pipe->SetDirection(false, true, false, false, true, false);
+
+	puzzle9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f );//13
+	puzzle9->pipe->SetDirection(false, true, false, true, false, false);
+
+	puzzle10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 0.f, 0.f }, 60.f );//13
+	puzzle10->pipe->SetDirection(false, true, false, true, false, false);
+
+
+	blackPuzzle1 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 120.f );//02
+	blackPuzzle1->pipe->SetDirection(true, false, true, false, false, false);
+
 	blackPuzzle2 = OBJECT_FACTORY->CreateObject(Type::BlackPuzzle, { 0.f, 0.f }, 0.f);
 
-	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, true, false, true, false, false);//13
-	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f, false, false, false, true, false, true);//35
+	startPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f );//13
+	startPuzzle->pipe->SetDirection(false, true, false, true, false, false);
+
+	endPuzzle = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 0.f, 0.f }, 0.f );//35
+	endPuzzle->pipe->SetDirection(false, false, false, true, false, true);
+
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -0.7f * 400, -0.6f * 400 });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -10.0f * 400, 10.0f * 400 });
 	spacePress = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.0f * 400, -0.85f * 400 });

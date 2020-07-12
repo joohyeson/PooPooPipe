@@ -72,7 +72,7 @@ public:
 
 		Yes_p = nullptr;
 		No_p = nullptr;
-		
+
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -82,7 +82,7 @@ public:
 		win = nullptr;
 
 		key = 0;
-		
+
 	}
 
 	void Init() override;
@@ -94,9 +94,24 @@ public:
 	}
 	//void Wait(long waitTime);
 
-private:
-	
+	Vector2<float> Pos1;
+	Vector2<float> Pos2;
+	Vector2<float> Pos3;
 
+	float d1 = 0;
+	float d2 = 0;
+	float d3 = 0;
+
+	float con1;
+	float con2;
+	float con3;
+
+	bool di1[6] = { false, false, false, true, false, true };
+	bool di2[6] = { true, false, false, true, false, false };
+	bool di3[6] = { false, false, false, true, false, true };
+
+
+private:
 
 	double first;
 	double last;
