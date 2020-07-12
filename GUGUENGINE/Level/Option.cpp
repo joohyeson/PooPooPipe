@@ -14,6 +14,8 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
+extern  bool GetOption = false;
+
 void LevelOption::Init()
 {
 	background = OBJECT_FACTORY->CreateEmptyObject();
@@ -174,6 +176,7 @@ void LevelOption::Update()
 	{
 		if (mInput.IsPressed(KEY::LEFT))
 		{
+
 			INPUT->setInput(KEY::LEFT);
 			std::cout << "to main" << std::endl;
 			STATE_MANAGER->ChangeLevel(nextLevel);

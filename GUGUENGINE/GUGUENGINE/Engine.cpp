@@ -49,8 +49,7 @@ void Engine::Init()
 void Engine::GameLoop()
 {
 	int width, height;
-
-
+	
 	while (GAMERUN)
 	{
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
