@@ -166,6 +166,8 @@ void LevelOption::Init()
 	mShader.BuildTextureShader();
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
+
+	SOUND->StopSound("BGM");
 }
 
 void LevelOption::Update()
