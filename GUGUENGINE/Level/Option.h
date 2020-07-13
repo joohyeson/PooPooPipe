@@ -66,7 +66,8 @@ public:
 	void Init() override;
 	void Update() override;
 	void Close() override;
-
+	void getInput(Input* m, Sound* ms);
+	
 	GameLevels GetCurrLevel() override
 	{
 		return GameLevels::OPTION;
@@ -76,11 +77,15 @@ private:
 	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
 	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue;
 	Object* quitButton, * quitButton_pressed;
+	
 	int key;
+	
 	Mesh mMesh;
 	Shader mShader;
+	
 	bool fullcheck = false;
 	bool quitC = false;
+	
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;
@@ -113,6 +118,9 @@ private:
 	GLuint textureFullScreen, textureCheckTrue, textureCheckFalse, textureSoundBar;
 
 	Vector2<float> cursor;
-
-	Input mInput;
+	GameLevels goback;
+	
+	Input* mInput;
+	//Sound* soundm;
+	int prevLev = 0;
 };

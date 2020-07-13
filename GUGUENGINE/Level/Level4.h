@@ -15,6 +15,7 @@
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/MovePooPoo.h"
 #include  "../GUGUENGINE/glfwInput.h"
+#include "Option.h"
 
 //class sound;
 
@@ -86,22 +87,6 @@ public:
 		return GameLevels::LV_TEST4;
 	}
 
-	Vector2<float> Pos1;
-	Vector2<float> Pos2;
-	Vector2<float> Pos3;
-
-	float d1 = 0;
-	float d2 = 0;
-	float d3 = 0;
-
-	bool di1[6] = { true, false, false, true, false, false };
-	bool di2[6] = { false, false, false, true, false, true };
-	bool di3[6] = { true, false, false, true, false, false };
-
-	bool susu1 = false; // pipe connect check
-	bool susu2 = false;
-	bool susu3 = false;
-
 private:
 	double first;
 	double last;
@@ -112,12 +97,20 @@ private:
 	bool checking = false;
 	bool SUI[5] = { false };
 	bool PUT[3] = { false };
+	
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;
 	Object* No;
 	Object* Yes_p;
 	Object* No_p;
+
+	GLuint textureIdQuitAskBack;
+	GLuint textureIdQuitAsk;
+	GLuint textureIdYes;
+	GLuint textureIdNo;
+	GLuint textureIdYes_p;
+	GLuint textureIdNo_p;
 
 	bool quitCheck = false;
 	bool realQuit = false;
@@ -142,6 +135,8 @@ private:
 	Object* fail;
 	Object* win;
 
+	GLint textureFail;
+	GLint textureWin;
 	
 	int key;
 	Mesh mMesh;
@@ -174,7 +169,34 @@ private:
 
 	int chekNext4 = 0;
 
+	GLuint textureBackground4;
 
+	GLuint texureIdLine4;
+	GLuint texureIdCurve4;
+	GLuint texureIdBlack4;
+
+	GLuint texureIdStart4;
+	GLuint texureIdEnd4;
+
+	GLuint texureIdLine4_1;
+	GLuint texureIdCurve4_2;
+
+	GLuint texureIdbutton4;
+	GLuint texureIdclear4;
+	GLint LevelPage;
+	GLint LevelPage_pressed;
+	GLint texturePlayUI4;
+	GLint textureQuitUI4;
+	GLint textureOptionUI4;
+	GLint textureRestartUI4;
+	
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+	
+	GLuint numberTexture;
+	GLuint levelTexture;
 	
 	bool conecTcheck4_1 = false;
 	bool conecTcheck4_2 = false;
@@ -185,4 +207,6 @@ private:
 
 	bool blCheck4 = false;
 	bool blCheck4_2 = false;
+
+	LevelOption opt;
 };

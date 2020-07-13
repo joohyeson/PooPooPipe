@@ -65,7 +65,7 @@ Sound::Sound()
 
 	soundBarSize = { 150.f, 30.f };
 	soundBarPosition = { 15.f, 240.f };
-
+	isMute = false;
 	Load();
 }
 
@@ -139,6 +139,7 @@ void Sound::Play(std::string source, int loop)
 			break;
 		}
 	}
+	m_sounds[id]->channel->isPlaying(&m_sounds[id]->IsPlaying);
 
 	FMOD::Sound*& r_sound = m_sounds[id]->sound;
 
@@ -153,15 +154,12 @@ void Sound::Play(std::string source, int loop)
 		result = r_sound->setLoopCount(-1);
 	}
 
-
-	if (m_sounds[id]->source.find("BGM") == m_sounds[id]->IsPlaying == false)
-	{
+	if (m_sounds[id]->source.find("BGM") != std::string::npos && m_sounds[id]->IsPlaying == false) {
 		std::cout << "BGM play" << std::endl;
 		m_sounds[id]->IsPlaying = true;
 		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 		result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
 		result = m_sounds[id]->channel->setVolume(0.5f);
-
 	}
 	else if (!m_sounds[id]->IsPlaying)
 	{
@@ -171,19 +169,22 @@ void Sound::Play(std::string source, int loop)
 		result = m_sounds[id]->channel->setChannelGroup(soundEffects);
 		result = m_sounds[id]->channel->setVolume(0.5f);
 	}
-
 }
 
 void Sound::Pause()
 {
 	isPlaying = false;
 	masterChannel->setPaused(true);
+	for (int i = 0; i < m_sounds.size(); i++)
+		m_sounds[i]->channel->setPaused(true);
 }
 
 void Sound::Resume()
 {
 	isPlaying = true;
 	masterChannel->setPaused(false);
+	for (int i = 0; i < m_sounds.size(); i++)
+		m_sounds[i]->channel->setPaused(false);
 }
 
 void Sound::Stop()
@@ -205,6 +206,12 @@ void Sound::SetVolume(float volume)
 float Sound::GetVolume()
 {
 	return m_volume;
+}
+
+void Sound::ToggleMute()
+{
+		isMute = !isMute;
+		masterChannel->setMute(isMute);
 }
 
 void Sound::SetLoopCount(int /*loopCount*/)
@@ -233,6 +240,11 @@ void Sound::StopSound(std::string mString)
 			break;
 		}
 	}
+}
+
+bool Sound::IsMute_()
+{
+	return isMute;
 }
 	
 

@@ -34,14 +34,15 @@ public:
 	void Stop();
 	void Rewind();
 
-
-
 	void SetVolume(float volume = 0.3f);
 	float GetVolume();
-
+	void ToggleMute();
 	void SetLoopCount(int loopCount);
 	void StopEffectSound();
 	void StopSound(std::string mString);
+
+	bool IsMute_();
+	
 	Vector2<float> soundBarSize;
 	Vector2<float> soundBarPosition;
 
@@ -51,7 +52,7 @@ private:
 	{
 		FMOD::Channel* channel = nullptr;
 		FMOD::Sound* sound = nullptr;
-		unsigned int IsPlaying = 0;
+		bool IsPlaying = false;
 
 		std::string source = "";
 	};
@@ -65,6 +66,8 @@ private:
 	FMOD::ChannelGroup* masterChannel = nullptr;
 
 	bool isPlaying = false;
+	bool isMute = false;
+	
 	float m_volume;
 
 

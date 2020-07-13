@@ -1,5 +1,6 @@
 #pragma once
 #pragma once
+#include "Option.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -194,4 +195,6 @@ private:
 	bool conecTcheck9_3 = false;
 
 	bool SoundCheck = false;
+	LevelOption opt;
+
 };

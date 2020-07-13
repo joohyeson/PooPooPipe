@@ -1,4 +1,5 @@
 #pragma once
+#include "Option.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -81,23 +82,6 @@ public:
 	{
 		return GameLevels::LV_TEST5;
 	}
-
-	Vector2<float> Pos1;
-	Vector2<float> Pos2;
-	Vector2<float> Pos3;
-
-	float d1 = 0;
-	float d2 = 0;
-	float d3 = 0;
-
-	bool di1[6] = { false, false, false, true, false, true };
-	bool di2[6] = { false, false, false, true, false, true };
-	bool di3[6] = { false, false, false, true, false, true };
-
-	bool susu1 = false;
-	bool susu2 = false;
-	bool susu3 = false;
-
 private:
 	double first;
 	double last;
@@ -233,5 +217,6 @@ private:
 	bool conecTcheck5_3 = false;
 	
 	bool UI[5] = { false };
+	LevelOption opt;
 
 };

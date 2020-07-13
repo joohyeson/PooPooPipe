@@ -14,10 +14,12 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
-extern bool getOption = false;
+extern bool  getOpt = false;
+extern bool mainMenu = false;
 
 void LevelOption::Init()
 {
+	prevLev = 0;
 	background = OBJECT_FACTORY->CreateEmptyObject();
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -164,30 +166,45 @@ void LevelOption::Init()
 	textureQuitPressed = TEXTURE->CreateTexture("assets\\quit2.png", 0);
 
 	mShader.BuildTextureShader();
+	mInput = new Input();
+	
+	mInput->InitCallback(APPLICATION->getMyWindow());
 
-	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	SOUND->StopSound("BGM");
+	
+	//SOUND->StopSound("BGM");
 }
 
 void LevelOption::Update()
 {
-	cursor = mInput.Cursor;
-
+	cursor = mInput->Cursor;
+	
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
-
+			getOpt = false;
 			INPUT->setInput(KEY::LEFT);
 			std::cout << "to main" << std::endl;
-			STATE_MANAGER->ChangeLevel(nextLevel);
+
+			if(this->sound->IsMute_() == true)
+			{
+				this->sound->ToggleMute();
+			}
+			
+			if(mainMenu == true)
+			{
+				mainMenu = false;
+				//this->sound->Resume();
+				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+				
+			}
+
 		}
 	}
 
 	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
 
@@ -221,7 +238,7 @@ void LevelOption::Update()
 	
 	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
 
@@ -232,8 +249,8 @@ void LevelOption::Update()
 			{
 				volume += 0.1f;
 				this->sound->SetVolume(volume);
-
-				mInput.setInput(KEY::UP);
+				//사운드 넘겨주기
+				mInput->setInput(KEY::UP);
 				std::cout << volume << std::endl;
 			}
 
@@ -255,7 +272,7 @@ void LevelOption::Update()
 
 	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh))
 	{
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
 
@@ -271,7 +288,7 @@ void LevelOption::Update()
 				}
 
 				this->sound->SetVolume(volume);
-				mInput.setInput(KEY::DOWN);
+				mInput->setInput(KEY::DOWN);
 
 				if (volume > 0)
 				{
@@ -294,8 +311,7 @@ void LevelOption::Update()
 	{
 		quitButton_pressed->mesh->setTransform(quitButton->mesh->GetTransform());
 
-
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
 			if (quitCheck == false)
@@ -318,9 +334,9 @@ void LevelOption::Update()
 	if (Yes->collision->Point2BoxCollision(cursor, Yes->mesh))
 	{
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
-			mInput.setInput(KEY::LEFT);
+			mInput->setInput(KEY::LEFT);
 			realQuit = true;
 		}
 	}
@@ -332,7 +348,7 @@ void LevelOption::Update()
 	if (No->collision->Point2BoxCollision(cursor, No->mesh))
 	{
 		No_p->mesh->setTransform(No->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT))
+		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
 			realQuit = false;
@@ -392,3 +408,10 @@ void LevelOption::Close()
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }
+
+void LevelOption::getInput(Input* m, Sound* ms)
+{
+	mInput = m;
+	this->sound = ms;
+}
+

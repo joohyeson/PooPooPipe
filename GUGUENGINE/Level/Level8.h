@@ -1,4 +1,5 @@
 #pragma once
+#include "Option.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -78,32 +79,6 @@ public:
 	{
 		return GameLevels::LV_TEST8;
 	}
-
-	float d1 = 0; //1
-	float d2 = 0; //4
-	float d3 = 0; //7
-	float d4 = 0; //9
-	float d5 = 0; //17
-	float d6 = 0; //18
-	float d7 = 0; //20
-
-	bool di1[6] = { false, false, false, true, false, true };// 1
-	bool di2[6] = { false, false, false, true, false, true };// 4
-	bool di3[6] = { false, false, false, false, true, true };// 7
-	bool di4[6] = { false, false, false, true, false, true };// 9
-	bool di5[6] = { false, false, false, true, false, true };// 17
-	bool di6[6] = { false, false, false, false, true, true };// 18
-	bool di7[6] = { false, false, false, true, false, true };// 20
-
-	bool susu1 = false; // pipe connect check
-	bool susu2 = false;
-	bool susu3 = false;
-	bool susu4 = false;
-	bool susu5 = false;
-	bool susu6 = false;
-	bool susu7 = false;
-	bool susu8 = false;
-	bool susu9 = false;
 
 private:
 	Object* background;
@@ -249,4 +224,6 @@ private:
 
 	bool soundCheck = false;
 	bool soundCheck2 = false;
+
+	LevelOption opt;
 };

@@ -8,12 +8,13 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level12.h"
 #include "../GUGUENGINE/Sound.h"
-
 extern int MaxLevel;
-extern bool getOption;
+extern bool getOpt;
 
 void Level12::Init()
 {
+	getOpt = false;
+
 	if (MaxLevel <= 9)
 	{
 		MaxLevel = 9;
@@ -26,7 +27,7 @@ void Level12::Init()
 	Cur[1] = false;
 	Cur[2] = false;
 	checking = false;
-	
+
 	rotTime.setRotate(10);
 	rotrot2 = true;
 
@@ -311,6 +312,8 @@ void Level12::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, puzzle11->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::SW_, endPuzzle->mesh->GetTransform());
 
+	opt.Init();
+	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
 
@@ -320,697 +323,710 @@ void Level12::Init()
 
 void Level12::Update()
 {
-	//update new state to original state
-	if (getOption == true)
+	if (getOpt == true)
 	{
-		getOption = false;
-	}
-
-	//STATE_MANAGER->setCurrentLV(9);
-	if (mInput.IsPressed(KEY::F) == true)
-	{
-		APPLICATION->SetFullScreen();
-		mInput.setInput(KEY::F);
-	}
-	cursor8 = mInput.Cursor;
-	if (mInput.IsPressed(KEY::LEFT))
-	{
-		if (checking == false)
-		{
-			this->sound->Play("assets\\click.wav", 1);
-			checking = true;
-		}
+		opt.Update();
 	}
 	else
 	{
-		if (checking == true)
+		//STATE_MANAGER->setCurrentLV(9);
+		if (mInput.IsPressed(KEY::F) == true)
 		{
-			checking = false;
+			APPLICATION->SetFullScreen();
+			mInput.setInput(KEY::F);
 		}
-	}
-	if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
-	{
-		if (Nos[0] == false && Nos[1] == false)
+		cursor8 = mInput.Cursor;
+		if (mInput.IsPressed(KEY::LEFT))
 		{
-			if (UI[4] == false)
+			if (checking == false)
 			{
-				UI[4] = true;
-				this->sound->Play("assets\\UI.wav", 1);
+				this->sound->Play("assets\\click.wav", 1);
+				checking = true;
 			}
-			Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
-			if (mInput.IsPressed(KEY::LEFT) == true)
-			{
-				INPUT->setInput(KEY::LEFT);
-				std::cout << "check" << std::endl;
-				STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
-			}
-		}
-
-	}
-	else
-	{
-		UI[4] = false;
-		Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
-	}
-
-	if (rotTime.getLimitTime() == 0)
-	{
-		rotrot2 = false;
-		if (failS[0] == false)
-		{
-			last = 0;
-			this->sound->Play("assets\\fart.mp3", 1);
-			failS[0] = true;
-			first = glfwGetTime();
-		}
-		std::cout << "rotation limit!!!" << std::endl;
-	}
-	if (failS[0] == true)
-	{
-		last = glfwGetTime();
-		if (last - first > 1.5f)
-		{
-			Nos[0] = true;
-			fail->mesh->setTransform({ 0,0 });
-			poopooCheck = false;
-			STATE_MANAGER->ReloadState();
-		}
-	}
-
-	if (rotrot2)
-	{
-		if (puzzle3->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle3->mesh))
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[0] = true;
-			}
-			if (rot[0] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle3->pipe->Update();
-
-					degree8 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle3->mesh->setRotation(degree8);
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-
-					rot[0] = false;
-				}
-			}
-		}
-
-		if (puzzle19->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle19->mesh))
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[1] = true;
-			}
-			if (rot[1] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle19->pipe->Update();
-
-					degree8_2 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle19->mesh->setRotation(degree8_2);
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-
-					rot[1] = false;
-				}
-			}
-		}
-
-
-		if (puzzle14->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle14->mesh)) //12 & 14
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[2] = true;
-			}
-			if (rot[2] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle14->pipe->Update();
-					puzzle12->pipe->Update();
-
-					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle14->mesh->setRotation(degree8_3);
-					puzzle12->mesh->setRotation(degree8_3);
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-					rot[2] = false;
-				}
-			}
-		}
-
-
-		if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh)) //20 7
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[3] = true;
-			}
-			if (rot[3] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle7->pipe->Update();
-					puzzle20->pipe->Update();
-
-					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
-
-					puzzle7->mesh->setRotation(degree8_4);
-					puzzle20->mesh->setRotation(degree8_4);
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-					rot[3] = false;
-				}
-			}
-		}
-
-		if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh)) // 20 7
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[4] = true;
-			}
-			if (rot[4] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle7->pipe->Update();
-					puzzle20->pipe->Update();
-
-					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
-
-					puzzle20->mesh->setRotation(degree8_4);
-					puzzle7->mesh->setRotation(degree8_4);
-
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-					rot[4] = false;
-				}
-			}
-		}
-
-		if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh))
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[6] = true;
-			}
-			if (rot[6] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle10->pipe->Update();
-
-					degree8_5 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle10->mesh->setRotation(degree8_5);
-
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-
-					rot[6] = false;
-				}
-			}
-		}
-
-		if (puzzle12->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle12->mesh)) //12 14
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == true)
-			{
-				rot[7] = true;
-			}
-			if (rot[7] == true)
-			{
-				if (mInput.IsPressed(KEY::RIGHT) == false)
-				{
-					puzzle12->pipe->Update();
-					puzzle14->pipe->Update();
-
-					degree8_3 += static_cast<float>(DegreeToRadian(60.f));
-					puzzle12->mesh->setRotation(degree8_3);
-					puzzle14->mesh->setRotation(degree8_3);
-
-					rotTime.Update();
-
-					this->sound->Play("assets\\coin.mp3", 1);
-
-					rot[7] = false;
-				}
-			}
-		}
-
-
-		if (puzzle3->pipe->GetDirValue(E) == 1 && (puzzle3->pipe->GetDirValue(SE) == 1))
-		{
-			//std::cout << "check 1" << std::endl;
-			conecTcheck8_1 = true;
 		}
 		else
 		{
-			conecTcheck8_1 = false;
+			if (checking == true)
+			{
+				checking = false;
+			}
 		}
-
-		if ((puzzle19->pipe->GetDirValue(W) == 1) && (puzzle19->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
+		if (Levelsel->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, Levelsel->mesh) == true)
 		{
-			//std::cout << "check 2" << std::endl;
-
-			conecTcheck8_2 = true;
-		}
-		else
-		{
-			conecTcheck8_2 = false;
-		}
-
-		if ((puzzle14->pipe->GetDirValue(NW) == 1 && puzzle14->pipe->GetDirValue(SW) == 1))
-		{
-			//std::cout << "check 3" << std::endl;
-
-			conecTcheck8_3 = true;
-		}
-		else
-		{
-			conecTcheck8_3 = false;
-		}
-
-		if (puzzle7->pipe->GetDirValue(NW) == 1 && puzzle19->pipe->GetDirValue(SE) == 1 && (puzzle7->pipe->GetDirValue(E) == 1))
-		{
-			//std::cout << "check 4" << std::endl;
-
-			conecTcheck8_4 = true;
+			if (Nos[0] == false && Nos[1] == false)
+			{
+				if (UI[4] == false)
+				{
+					UI[4] = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
+				Levelsel_pressed->mesh->setTransform(Levelsel->mesh->GetTransform());
+				if (mInput.IsPressed(KEY::LEFT) == true)
+				{
+					INPUT->setInput(KEY::LEFT);
+					std::cout << "check" << std::endl;
+					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
+				}
+			}
 
 		}
 		else
 		{
-			conecTcheck8_4 = false;
+			UI[4] = false;
+			Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 		}
 
-
-		if ((puzzle20->pipe->GetDirValue(NW) == 1) && (puzzle20->pipe->GetDirValue(E) == 1))
+		if (rotTime.getLimitTime() == 0)
 		{
-			//std::cout << "check 5" << std::endl;
+			rotrot2 = false;
+			if (failS[0] == false)
+			{
+				last = 0;
+				this->sound->Play("assets\\fart.mp3", 1);
+				failS[0] = true;
+				first = glfwGetTime();
+			}
+			std::cout << "rotation limit!!!" << std::endl;
+		}
+		if (failS[0] == true)
+		{
+			last = glfwGetTime();
+			if (last - first > 1.5f)
+			{
+				Nos[0] = true;
+				fail->mesh->setTransform({ 0,0 });
+				poopooCheck = false;
+				STATE_MANAGER->ReloadState();
+			}
+		}
 
-			conecTcheck8_5 = true;
+		if (rotrot2)
+		{
+			if (puzzle3->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle3->mesh))
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[0] = true;
+				}
+				if (rot[0] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle3->pipe->Update();
 
+						degree8 += static_cast<float>(DegreeToRadian(60.f));
+						puzzle3->mesh->setRotation(degree8);
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+
+						rot[0] = false;
+					}
+				}
+			}
+
+			if (puzzle19->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle19->mesh))
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[1] = true;
+				}
+				if (rot[1] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle19->pipe->Update();
+
+						degree8_2 += static_cast<float>(DegreeToRadian(60.f));
+						puzzle19->mesh->setRotation(degree8_2);
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+
+						rot[1] = false;
+					}
+				}
+			}
+
+
+			if (puzzle14->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle14->mesh)) //12 & 14
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[2] = true;
+				}
+				if (rot[2] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle14->pipe->Update();
+						puzzle12->pipe->Update();
+
+						degree8_3 += static_cast<float>(DegreeToRadian(60.f));
+						puzzle14->mesh->setRotation(degree8_3);
+						puzzle12->mesh->setRotation(degree8_3);
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+						rot[2] = false;
+					}
+				}
+			}
+
+
+			if (puzzle7->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle7->mesh)) //20 7
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[3] = true;
+				}
+				if (rot[3] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle7->pipe->Update();
+						puzzle20->pipe->Update();
+
+						degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+
+						puzzle7->mesh->setRotation(degree8_4);
+						puzzle20->mesh->setRotation(degree8_4);
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+						rot[3] = false;
+					}
+				}
+			}
+
+			if (puzzle20->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle20->mesh)) // 20 7
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[4] = true;
+				}
+				if (rot[4] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle7->pipe->Update();
+						puzzle20->pipe->Update();
+
+						degree8_4 += static_cast<float>(DegreeToRadian(60.f));
+
+						puzzle20->mesh->setRotation(degree8_4);
+						puzzle7->mesh->setRotation(degree8_4);
+
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+						rot[4] = false;
+					}
+				}
+			}
+
+			if (puzzle10->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle10->mesh))
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[6] = true;
+				}
+				if (rot[6] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle10->pipe->Update();
+
+						degree8_5 += static_cast<float>(DegreeToRadian(60.f));
+						puzzle10->mesh->setRotation(degree8_5);
+
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+
+						rot[6] = false;
+					}
+				}
+			}
+
+			if (puzzle12->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, puzzle12->mesh)) //12 14
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == true)
+				{
+					rot[7] = true;
+				}
+				if (rot[7] == true)
+				{
+					if (mInput.IsPressed(KEY::RIGHT) == false)
+					{
+						puzzle12->pipe->Update();
+						puzzle14->pipe->Update();
+
+						degree8_3 += static_cast<float>(DegreeToRadian(60.f));
+						puzzle12->mesh->setRotation(degree8_3);
+						puzzle14->mesh->setRotation(degree8_3);
+
+						rotTime.Update();
+
+						this->sound->Play("assets\\coin.mp3", 1);
+
+						rot[7] = false;
+					}
+				}
+			}
+
+
+			if (puzzle3->pipe->GetDirValue(E) == 1 && (puzzle3->pipe->GetDirValue(SE) == 1))
+			{
+				//std::cout << "check 1" << std::endl;
+				conecTcheck8_1 = true;
+			}
+			else
+			{
+				conecTcheck8_1 = false;
+			}
+
+			if ((puzzle19->pipe->GetDirValue(W) == 1) && (puzzle19->pipe->GetDirValue(SE) == 1 && puzzle7->pipe->GetDirValue(NW) == 1))
+			{
+				//std::cout << "check 2" << std::endl;
+
+				conecTcheck8_2 = true;
+			}
+			else
+			{
+				conecTcheck8_2 = false;
+			}
+
+			if ((puzzle14->pipe->GetDirValue(NW) == 1 && puzzle14->pipe->GetDirValue(SW) == 1))
+			{
+				//std::cout << "check 3" << std::endl;
+
+				conecTcheck8_3 = true;
+			}
+			else
+			{
+				conecTcheck8_3 = false;
+			}
+
+			if (puzzle7->pipe->GetDirValue(NW) == 1 && puzzle19->pipe->GetDirValue(SE) == 1 && (puzzle7->pipe->GetDirValue(E) == 1))
+			{
+				//std::cout << "check 4" << std::endl;
+
+				conecTcheck8_4 = true;
+
+			}
+			else
+			{
+				conecTcheck8_4 = false;
+			}
+
+
+			if ((puzzle20->pipe->GetDirValue(NW) == 1) && (puzzle20->pipe->GetDirValue(E) == 1))
+			{
+				//std::cout << "check 5" << std::endl;
+
+				conecTcheck8_5 = true;
+
+			}
+			else
+			{
+				conecTcheck8_5 = false;
+			}
+
+
+			if ((puzzle12->pipe->GetDirValue(NW) == 1) && (puzzle12->pipe->GetDirValue(W) == 1))
+			{
+				//std::cout << "check 7" << std::endl;
+
+				conecTcheck8_6 = true;
+
+			}
+			else
+			{
+				conecTcheck8_6 = false;
+			}
+		}
+		if (playUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, playUI->mesh))
+		{
+			if (Nos[0] == false && Nos[1] == false)
+			{
+				if (UI[0] == false)
+				{
+					UI[0] = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
+				playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+
+				if (mInput.IsPressed(KEY::LEFT) == true)
+				{
+					INPUT->setInput(KEY::LEFT);
+					poopooCheck = true;
+				}
+			}
 		}
 		else
 		{
-			conecTcheck8_5 = false;
+			UI[0] = false;
+			playUI_p->mesh->setTransform({ 1000.f, 1000.f });
+			connectMove8 = 0;
 		}
-
-
-		if ((puzzle12->pipe->GetDirValue(NW) == 1) && (puzzle12->pipe->GetDirValue(W) == 1))
+		if (poopooCheck == true)
 		{
-			//std::cout << "check 7" << std::endl;
-
-			conecTcheck8_6 = true;
-
-		}
-		else
-		{
-			conecTcheck8_6 = false;
-		}
-	}
-	if (playUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, playUI->mesh))
-	{
-		if (Nos[0] == false && Nos[1] == false)
-		{
-			if (UI[0] == false)
+			if (mInput.IsPressed(KEY::LEFT) == false)
 			{
-				UI[0] = true;
-				this->sound->Play("assets\\UI.wav", 1);
-			}
-			playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
+				if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_6)
+				{
+					clear->mesh->setTransform({ 350.f, -240.f });
+					chekNext8 = 1;
+					mPooPoo.SetIsSuccess(true);
 
-			if (mInput.IsPressed(KEY::LEFT) == true)
-			{
-				INPUT->setInput(KEY::LEFT);
-				poopooCheck = true;
+					std::cout << "clear" << std::endl;
+					connectMove8 = 0;
+					this->sound->Play("assets\\flushing.wav", 1);
+					poopooCheck = false;
+				}
+				else {
+					if (failS[1] == false)
+					{
+						last = 0;
+						this->sound->Play("assets\\fart.mp3", 1);
+						failS[1] = true;
+						first = glfwGetTime();
+					}
+				}
 			}
 		}
-	}
-	else
-	{
-		UI[0] = false;
-		playUI_p->mesh->setTransform({ 1000.f, 1000.f });
-		connectMove8 = 0;
-	}
-	if (poopooCheck == true)
-	{
-		if (mInput.IsPressed(KEY::LEFT) == false)
+		if (failS[1] == true)
 		{
-			if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_6)
+			last = glfwGetTime();
+			if (last - first > 1.5f)
 			{
-				clear->mesh->setTransform({ 350.f, -240.f });
-				chekNext8 = 1;
-				mPooPoo.SetIsSuccess(true);
-
-				std::cout << "clear" << std::endl;
-				connectMove8 = 0;
-				this->sound->Play("assets\\flushing.wav", 1);
+				Nos[0] = true;
+				fail->mesh->setTransform({ 0,0 });;
 				poopooCheck = false;
 			}
-			else {
-				if (failS[1] == false)
+		}
+		Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
+		Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
+
+		if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
+		{
+			if (skip == false)
+			{
+				this->sound->Play("assets\\yeah.wav", 1);
+			}
+			skip = true;
+			win->mesh->setTransform({ 0,0 });
+
+		}
+
+		lastTime = glfwGetTime();
+
+		if (skip == true)
+		{
+			if (lastTime - firstTime > 2)
+			{
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST13);
+			}
+		}
+
+		if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
+		{
+			if (mInput.IsPressed(KEY::LEFT) == true)
+			{
+				INPUT->setInput(KEY::LEFT);
+				failS[1] = false;
+				failS[0] = false;
+				Nos[0] = false;
+				fail->mesh->setTransform({ -2000.f,-2000.f });
+				STATE_MANAGER->ReloadState();
+			}
+		}
+
+		if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
+		{
+			if (Nos[0] == false && Nos[1] == false)
+			{
+				if (UI[1] == false)
 				{
-					last = 0;
-					this->sound->Play("assets\\fart.mp3", 1);
-					failS[1] = true;
-					first = glfwGetTime();
+					UI[1] = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
+				restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
+
+				if (mInput.IsPressed(KEY::LEFT) == true)
+				{
+
+					STATE_MANAGER->ReloadState();
+					INPUT->setInput(KEY::LEFT);
+				}
+			}
+
+		}
+		else
+		{
+			UI[1] = false;
+			restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
+		}
+
+		if (optionUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
+		{
+			if (Nos[0] == false && Nos[1] == false)
+			{
+				if (UI[2] == false)
+				{
+					UI[2] = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
+				optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
+
+				if (mInput.IsPressed(KEY::LEFT) == true)
+				{
+					INPUT->setInput(KEY::LEFT);
+					getOpt = true;
+					if (this->sound->IsMute_() == false)
+					{
+						this->sound->ToggleMute();
+					}
 				}
 			}
 		}
-	}
-	if (failS[1] == true)
-	{
-		last = glfwGetTime();
-		if (last - first > 1.5f)
+		else
 		{
-			Nos[0] = true;
-			fail->mesh->setTransform({ 0,0 });;
-			poopooCheck = false;
+			UI[2] = false;
+			optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
 		}
-	}
-	Vector2<float> pooCoor = pooCharacter->mesh->GetTransform();
-	Vector2<float> endCoor = endPuzzle->mesh->GetTransform();
 
-	if (pooCoor.x == endCoor.x && pooCoor.y == endCoor.y)
-	{
-		if (skip == false)
+		if (quitUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
 		{
-			this->sound->Play("assets\\yeah.wav", 1);
+			if (Nos[0] == false && Nos[1] == false)
+			{
+				if (UI[3] == false)
+				{
+					UI[3] = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
+				quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
+
+				if (mInput.IsPressed(KEY::LEFT) == true)
+				{
+					INPUT->setInput(KEY::LEFT);
+					if (quitCheck == false)
+					{
+						//SOUND->Pause();
+						Nos[1] = true;
+						quitCheck = true;
+						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+						QuitAsk->mesh->setTransform({ 0.f, 0.f });
+						Yes->mesh->setTransform({ -100.f, -50.f });
+						No->mesh->setTransform({ 100.f, -50.f });
+					}
+				}
+			}
+
 		}
-		skip = true;
-		win->mesh->setTransform({ 0,0 });
-
-	}
-
-	lastTime = glfwGetTime();
-
-	if (skip == true)
-	{
-		if (lastTime - firstTime > 2)
+		else
 		{
+			UI[3] = false;
+			quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
+		}
+
+		if (Yes->collision->Point2BoxCollision(cursor8, Yes->mesh))
+		{
+			if (SUI[0] == false)
+			{
+				SUI[0] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
+			if (mInput.IsPressed(KEY::LEFT))
+			{
+				INPUT->setInput(KEY::LEFT);
+				realQuit = true;
+			}
+		}
+		else
+		{
+			SUI[0] = false;
+			Yes_p->mesh->setTransform({ -1000.f, -1000.f });
+		}
+
+		if (No->collision->Point2BoxCollision(cursor8, No->mesh))
+		{
+			if (SUI[1] == false)
+			{
+				SUI[1] = true;
+				this->sound->Play("assets\\UI.wav", 1);
+			}
+			No_p->mesh->setTransform(No->mesh->GetTransform());
+			if (mInput.IsPressed(KEY::LEFT))
+			{
+				INPUT->setInput(KEY::LEFT);
+				quitCheck = false;
+				realQuit = false;
+				Nos[1] = false;
+				QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
+				QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
+				Yes->mesh->setTransform({ -2000.f, -2000.f });
+				No->mesh->setTransform({ -2000.f, -2000.f });
+			}
+		}
+		else
+		{
+			SUI[1] = false;
+
+			No_p->mesh->setTransform({ -1000.f, -1000.f });
+		}
+
+		if (quitCheck == true && realQuit == true)
+		{
+			glfwTerminate();
+			ENGINE->Quit();
+		}
+		background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
+		puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
+		puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle7->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
+
+		puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
+		puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
+		puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle12->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
+
+		puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
+		puzzle14->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
+		puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
+		puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
+		puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
+
+		puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
+		puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
+		puzzle20->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
+
+		startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart8);
+		endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd8);
+
+		button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
+		clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
+		Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
+		Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
+		playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI8);
+		quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
+		optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
+		restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
+
+		pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
+
+		levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
+		numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+		leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
+
+
+		restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
+		playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
+		quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
+		optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
+		mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+		win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+		switch (rotTime.getLimitTime() / 10)
+		{
+		case 0:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen0);
+			break;
+		case 1:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen1);
+			break;
+		case 2:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen2);
+			break;
+		case 3:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
+			break;
+		case 4:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen4);
+			break;
+		case 5:
+			leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen5);
+			break;
+		}
+
+		switch (rotTime.getLimitTime() % 10)
+		{
+		case 0:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
+			break;
+		case 1:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber1);
+			break;
+		case 2:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber2);
+			break;
+		case 3:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber3);
+			break;
+		case 4:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber4);
+			break;
+		case 5:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber5);
+			break;
+		case 6:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber6);
+			break;
+		case 7:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber7);
+			break;
+		case 8:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber8);
+			break;
+		case 9:
+			leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
+			break;
+		}
+
+		fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+
+		if (mPooPoo.IsFinish() == false)
+		{
+			pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
+		}
+
+		if (mInput.IsPressed(KEY::A))
+		{
+			INPUT->setInput(KEY::A);
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST13);
 		}
-	}
-
-	if (fail->collision->Point2BoxCollision({ cursor8.x,cursor8.y }, fail->mesh))
-	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			failS[1] = false;
-			failS[0] = false;
-			Nos[0] = false;
-			fail->mesh->setTransform({ -2000.f,-2000.f });
-			STATE_MANAGER->ReloadState();
-		}
-	}
-
-	if (restartUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, restartUI->mesh))
-	{
-		if (Nos[0] == false && Nos[1] == false)
-		{
-			if (UI[1] == false)
+		if (mInput.IsPressed(KEY::ESCAPE) == true) {
+			INPUT->setInput(KEY::ESCAPE);
+			getOpt = true;
+			if (this->sound->IsMute_() == false)
 			{
-				UI[1] = true;
-				this->sound->Play("assets\\UI.wav", 1);
+				this->sound->ToggleMute();
 			}
-			restartUI_p->mesh->setTransform(restartUI->mesh->GetTransform());
-
-			if (mInput.IsPressed(KEY::LEFT) == true)
-			{
-
-				STATE_MANAGER->ReloadState();
-				INPUT->setInput(KEY::LEFT);
-			}
+			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
+		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
+		QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
+		Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
+		No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
+		Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
+		No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
+
+
+		glfwSwapBuffers(APPLICATION->getMyWindow());
+
+		glClearColor(0.f, 0.f, 0.f, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwPollEvents();
+
 	}
-	else
-	{
-		UI[1] = false;
-		restartUI_p->mesh->setTransform({ 1700.f, 1000.f });
-	}
-
-	if (optionUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, optionUI->mesh))
-	{
-		if (Nos[0] == false && Nos[1] == false)
-		{
-			if (UI[2] == false)
-			{
-				UI[2] = true;
-				this->sound->Play("assets\\UI.wav", 1);
-			}
-			optionUI_p->mesh->setTransform(optionUI->mesh->GetTransform());
-
-			if (mInput.IsPressed(KEY::LEFT) == true)
-			{
-				INPUT->setInput(KEY::LEFT);
-				getOption = true;
-				STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
-			}
-		}
-	}
-	else
-	{
-		UI[2] = false;
-		optionUI_p->mesh->setTransform({ 1000.f, 1000.f });
-	}
-
-	if (quitUI->collision->Point2HexagonCollision({ cursor8.x,cursor8.y }, quitUI->mesh))
-	{
-		if (Nos[0] == false && Nos[1] == false)
-		{
-			if (UI[3] == false)
-		{
-			UI[3] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		quitUI_p->mesh->setTransform(quitUI->mesh->GetTransform());
-
-		if (mInput.IsPressed(KEY::LEFT) == true)
-		{
-			INPUT->setInput(KEY::LEFT);
-			if (quitCheck == false)
-			{
-				//SOUND->Pause();
-				Nos[1] = true;
-				quitCheck = true;
-				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
-				QuitAsk->mesh->setTransform({ 0.f, 0.f });
-				Yes->mesh->setTransform({ -100.f, -50.f });
-				No->mesh->setTransform({ 100.f, -50.f });
-			}
-		}
-		}
-		
-	}
-	else
-	{
-		UI[3] = false;
-		quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
-	}
-
-	if (Yes->collision->Point2BoxCollision(cursor8, Yes->mesh))
-	{
-		if (SUI[0] == false)
-		{
-			SUI[0] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT))
-		{
-			INPUT->setInput(KEY::LEFT);
-			realQuit = true;
-		}
-	}
-	else
-	{
-		SUI[0] = false;
-		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
-	}
-
-	if (No->collision->Point2BoxCollision(cursor8, No->mesh))
-	{
-		if (SUI[1] == false)
-		{
-			SUI[1] = true;
-			this->sound->Play("assets\\UI.wav", 1);
-		}
-		No_p->mesh->setTransform(No->mesh->GetTransform());
-		if (mInput.IsPressed(KEY::LEFT))
-		{
-			INPUT->setInput(KEY::LEFT);
-			quitCheck = false;
-			realQuit = false;
-			Nos[1] = false;
-			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
-			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
-			Yes->mesh->setTransform({ -2000.f, -2000.f });
-			No->mesh->setTransform({ -2000.f, -2000.f });
-		}
-	}
-	else
-	{
-		SUI[1] = false;
-
-		No_p->mesh->setTransform({ -1000.f, -1000.f });
-	}
-
-	if (quitCheck == true && realQuit == true)
-	{
-		glfwTerminate();
-		ENGINE->Quit();
-	}
-	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground8);
-	puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV8_2);
-	puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle7->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
-
-	puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
-	puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8_2);
-	puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle12->mesh->Update(mShader2.GetShaderHandler(), textureIdVAuto);
-
-	puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	puzzle14->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
-	puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-	puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV8);
-	puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8);
-
-	puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdLine8);
-	puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve8_2);
-	puzzle20->mesh->Update(mShader2.GetShaderHandler(), textureIdCurveAuto);
-
-	startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart8);
-	endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd8);
-
-	button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
-	clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear8);
-	Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
-	Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
-	playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI8);
-	quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI8);
-	optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI8);
-	restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI8);
-
-	pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton8);
-
-	levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
-	numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
-	leftCount->mesh->Update(mShader2.GetShaderHandler(), textureLeft);
-
-
-	restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
-	playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
-	quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
-	optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
-	mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-	switch (rotTime.getLimitTime() / 10)
-	{
-	case 0:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen0);
-		break;
-	case 1:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen1);
-		break;
-	case 2:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen2);
-		break;
-	case 3:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
-		break;
-	case 4:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen4);
-		break;
-	case 5:
-		leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen5);
-		break;
-	}
-
-	switch (rotTime.getLimitTime() % 10)
-	{
-	case 0:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
-		break;
-	case 1:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber1);
-		break;
-	case 2:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber2);
-		break;
-	case 3:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber3);
-		break;
-	case 4:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber4);
-		break;
-	case 5:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber5);
-		break;
-	case 6:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber6);
-		break;
-	case 7:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber7);
-		break;
-	case 8:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber8);
-		break;
-	case 9:
-		leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber9);
-		break;
-	}
-
-	fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
-
-	if (mPooPoo.IsFinish() == false)
-	{
-		pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
-	}
-
-	if (mInput.IsPressed(KEY::A))
-	{
-		INPUT->setInput(KEY::A);
-		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST13);
-	}
-
-	QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
-	QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
-	Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
-	No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
-	Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
-	No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
-
-
-	glfwSwapBuffers(APPLICATION->getMyWindow());
-
-	glClearColor(0.f, 0.f, 0.f, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glfwPollEvents();
-
 }
 
 void Level12::Close()
@@ -1019,6 +1035,8 @@ void Level12::Close()
 	mMesh.Delete();
 	mPooPoo.Clear();
 	//ENGINE->Quit();
+	getOpt = false;
+	opt.Close();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

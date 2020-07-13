@@ -19,8 +19,10 @@
 #include  "../GUGUENGINE/glfwInput.h"
 #include <time.h>
 
+#include "Option.h"
 
- //class sound;
+
+//class sound;
 
 class Level3 : public LevelManager
 {
@@ -72,7 +74,7 @@ public:
 
 		Yes_p = nullptr;
 		No_p = nullptr;
-
+		
 		button = nullptr;
 		clear = nullptr;
 		levelImage = nullptr;
@@ -82,6 +84,7 @@ public:
 		win = nullptr;
 
 		key = 0;
+		
 	}
 
 	void Init() override;
@@ -93,23 +96,9 @@ public:
 	}
 	//void Wait(long waitTime);
 
-	Vector2<float> Pos1; //pipe position
-	Vector2<float> Pos2;
-	Vector2<float> Pos3;
-
-	float d1 = 0; //pipe degree
-	float d2 = 0;
-	float d3 = 0;
-
-	bool di1[6] = { false, false, false, true, false, true }; //pipe direction
-	bool di2[6] = { true, false, false, true, false, false };
-	bool di3[6] = { false, false, false, true, false, true };
-
-	bool susu1 = false; // pipe connect check
-	bool susu2 = false;
-	bool susu3 = false;
-
 private:
+	
+
 
 	double first;
 	double last;
@@ -186,6 +175,39 @@ private:
 	double firstTime = 0;
 	int chekNext = 0;
 
+	GLuint textureBackground3;
+
+	GLuint texureIdLine3;
+	GLuint texureIdCurve3;
+	GLuint texureIdBlack3;
+
+	GLuint texureIdStart3;
+	GLuint texureIdEnd3;
+
+	GLuint texureIdLine3_1;
+	GLuint texureIdCurve3_2;
+
+	GLuint texureIdbutton3;
+	GLuint texureIdclear3;
+
+	GLint LevelPage;
+	GLint LevelPage_pressed;
+
+	GLint texturePlayUI3;
+	GLint textureQuitUI3;
+	GLint textureOptionUI3;
+	GLint textureRestartUI3;
+
+	GLint texturePlayUI3p;
+	GLint textureQuitUI3p;
+	GLint textureOptionUI3p;
+	GLint textureRestartUI3p;
+
+	GLuint numberTexture;
+	GLuint levelTexture;
+	GLint textureFail;
+	GLint textureWin;
+
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;
 
@@ -196,8 +218,9 @@ private:
 	bool conecTcheck2 = false;
 	bool conecTcheck3 = false;
 
-	LevelSelect current;
-
+	//LevelSelect current;
+	LevelOption opt;
+	//bool initopt;
 };
 
 

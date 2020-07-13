@@ -20,9 +20,14 @@ int moveCheck0_3 = 0;
 
 float volume = 0.3f;
 
+extern bool mainMenu;
+
 void MainMenu::Init()
 {
+	mainMenu = false;
+	
 	isPlaying = false;
+	
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -117,6 +122,7 @@ void MainMenu::Init()
 	creditsButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
+	
 	//this->sound->Play("assets\\BGM_airplane.mp3", -1);
 }
 
@@ -183,7 +189,6 @@ void MainMenu::Update()
 		}
 	}
 
-
 	if (menuInput.IsPressed(KEY::A) == true)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
@@ -193,6 +198,7 @@ void MainMenu::Update()
 	{
 		std::cout << "CURSOR:"<<cursor0.x <<"," << cursor0.y << std::endl;
 	}
+	
 	if (isPlaying == false)
 	{
 		this->sound->Play("assets\\BGM_airplane.mp3", -1);
@@ -251,7 +257,11 @@ void MainMenu::Update()
 
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
-			
+			mainMenu = true;
+			if(this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
 			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 	}
