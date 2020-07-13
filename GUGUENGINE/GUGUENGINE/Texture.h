@@ -23,13 +23,10 @@ enum class Textures
 	,yellow, background2,mini, threePuzzle, vPuzzle, movePuzzle, 
 	num0, num3,num4, num5, num6, num7, num8, num9, VPuzzle2, leftTurn , lineEnd, lineStart, autoLine, autoV, autoCurve, qutoEnd, yellowPuzzle, clickLeft, clickRight, clickPlayButton, clickPlayButton2,
 	level1, leve1p, level2, level2p, level3,level3p,level4,level4p,level5,level5p,level6,level6p,level7,level7p,level8,level8p,level9,level9p,level10,level10p,level11,level11p, levelLock,
-<<<<<<< HEAD
 	fullCheck, fullCheck2, volumeL, volumeR, quitL, quitLp, optionL, musicL, bar0, fullScrenL,
 	resume,resume2, backtomain, backtomain2,
-=======
-	fullCheck, fullCheck2, volumeL, volumeR, quitL, quitLp, optionL, musicL, bar0, fullScrenL, background3,
+	background3,
 	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title 
->>>>>>> 572c59e3e49f12653c5d1f1bb36aa5227497f8f1
 };
 
 class Texture

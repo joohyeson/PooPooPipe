@@ -187,12 +187,10 @@ void Texture::Load()
     CreateTexture("assets\\music.png", Textures::musicL);
     CreateTexture("assets\\bar0.png", Textures::bar0);
     CreateTexture("assets\\fullscreen.png", Textures::fullScrenL);
-<<<<<<< HEAD
 	CreateTexture("assets\\resume.png", Textures::resume);
 	CreateTexture("assets\\resume2.png", Textures::resume2);
 	CreateTexture("assets\\backtomain.png", Textures::backtomain);
 	CreateTexture("assets\\backtomain2.png", Textures::backtomain2);
-=======
     CreateTexture("assets\\background3.png", Textures::background3);
     CreateTexture("assets\\credits.png", Textures::credit);
     CreateTexture("assets\\credits2.png", Textures::creatP);
@@ -202,7 +200,6 @@ void Texture::Load()
     CreateTexture("assets\\tutorial.png", Textures::tutorial);
     CreateTexture("assets\\tutorial2.png", Textures::tutorialP);
     CreateTexture("assets\\title.png", Textures::title);
->>>>>>> 572c59e3e49f12653c5d1f1bb36aa5227497f8f1
 }
 void Texture::DeleteTexture() noexcept
 {
