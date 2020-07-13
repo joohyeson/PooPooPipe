@@ -44,6 +44,8 @@ public:
 		Yes_p = nullptr;
 		No_p = nullptr;
 		soundBar = nullptr;
+		goToMainP = nullptr;
+		mInput = nullptr
 	}
 
 	void Init() override;
@@ -58,7 +60,7 @@ public:
 
 private:
 	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
-	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue;
+	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue, *goToMainP;
 	Object* quitButton, * quitButton_pressed;
 	
 	int key;

@@ -31,8 +31,6 @@ public:
 		test = nullptr;
 		test2 = nullptr;
 		key = 0;
-
-
 	}
 
 	void Init() override;
@@ -56,24 +54,9 @@ private:
 
 	Object* test;
 	Object* test2;
-
-
 	
 	bool UI[4] = { false };
 	
-	GLuint textureId00;	//game title
-	GLuint textureId01; //game start
-	GLuint textureId02; //title
-	GLuint textureId03; //tutorial
-	GLuint textureId05;//test
-	GLuint textureId04;	//option button
-	GLuint textureId06;//man
-	GLuint textureId07; //credits
-
-	GLuint startPress;
-	GLuint tutorialPress;
-	GLuint optionPress;
-	GLuint creditsPress;
 
 	int key;
 	//MovePooPoo getDirectionPooPoo;

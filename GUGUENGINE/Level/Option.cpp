@@ -68,6 +68,14 @@ void LevelOption::Init()
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
+	goToMainP = OBJECT_FACTORY->CreateEmptyObject();
+	goToMainP->AddComponent(new Mesh());
+	goToMainP->AddComponent(new CollisionCheck());
+	goToMainP->Init();
+
+	goToMainP->mesh->setTransform({ -2000.f,-2000.f });
+	goToMainP->mesh->SetMeshType(MESHTYPE::rectangle);
+	goToMainP->mesh->InitializeTextureMesh(80.f, 80.f);
 
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
@@ -159,6 +167,8 @@ void LevelOption::Update()
 	
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
 	{
+		goToMainP->mesh->setTransform({ -700.0f,350.f });
+
 		if (mInput->IsPressed(KEY::LEFT))
 		{
 			getOpt = false;
@@ -173,12 +183,14 @@ void LevelOption::Update()
 			if(mainMenu == true)
 			{
 				mainMenu = false;
-				//this->sound->Resume();
-				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
-				
+				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);				
 			}
 
 		}
+	}
+	else
+	{
+		goToMainP->mesh->setTransform({ -2000.0f,-2000.f });
 	}
 
 	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh))
@@ -373,6 +385,7 @@ void LevelOption::Update()
 	No->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::no));
 	Yes_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
 	No_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
+	goToMainP->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI_2));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
