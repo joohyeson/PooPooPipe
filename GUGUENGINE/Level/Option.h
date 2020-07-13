@@ -45,10 +45,7 @@ public:
 		Yes_p = nullptr;
 		No_p = nullptr;
 		soundBar = nullptr;
-<<<<<<< HEAD
-		goToMainP = nullptr;
-=======
->>>>>>> 421f349427d65a4182c3d71612b26320819efde4
+		//goToMainP = nullptr;
 		mInput = nullptr;
 	}
 
@@ -91,6 +88,5 @@ private:
 	GameLevels goback;
 	
 	Input* mInput;
-	//Sound* soundm;
 	int prevLev = 0;
 };
