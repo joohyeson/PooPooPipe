@@ -76,10 +76,10 @@ void MainMenu::Init()
 
 	tutorialButton->mesh->setTransform({ 0.0f,-100.f });
 	tutorialButton->mesh->SetMeshType(MESHTYPE::rectangle);
-	tutorialButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	tutorialButton->mesh->InitializeTextureMesh(350.f, 70.f);
 	tutorialButton_pressed->mesh->setTransform({ 1000.0f,-100.f });
 	tutorialButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
-	tutorialButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
+	tutorialButton_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
 
 	optionButton->AddComponent(new Mesh());
 	optionButton->Init();
@@ -100,10 +100,10 @@ void MainMenu::Init()
 	creditsButton_pressed->Init();
 	creditsButton->mesh->setTransform({ 0.0f,-260.f });
 	creditsButton->mesh->SetMeshType(MESHTYPE::rectangle);
-	creditsButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	creditsButton->mesh->InitializeTextureMesh(350.f, 70.f);
 	creditsButton_pressed->mesh->setTransform({ 0.0f,-260.f });
 	creditsButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
-	creditsButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
+	creditsButton_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
 	

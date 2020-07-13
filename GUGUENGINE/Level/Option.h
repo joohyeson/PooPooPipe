@@ -29,6 +29,7 @@ public:
 		arrowLeft = nullptr;
 		bar0 = nullptr;
 		goToMain = nullptr;
+		goToMain_pressed = nullptr;
 		key = 0;
 		fullScreen = nullptr;
 		fullScreenFalse = nullptr;
@@ -44,7 +45,10 @@ public:
 		Yes_p = nullptr;
 		No_p = nullptr;
 		soundBar = nullptr;
+<<<<<<< HEAD
 		goToMainP = nullptr;
+=======
+>>>>>>> 421f349427d65a4182c3d71612b26320819efde4
 		mInput = nullptr;
 	}
 
@@ -60,8 +64,9 @@ public:
 
 private:
 	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
-	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue, *goToMainP;
-	Object* quitButton, * quitButton_pressed;
+	Object* goToMain, *goToMain_pressed, * fullScreen, * fullScreenFalse, * fullScreenTrue;
+	Object* quitButton, * quitButton_pressed, * backtomain, * backtomain_pressed;
+	
 	
 	int key;
 	
