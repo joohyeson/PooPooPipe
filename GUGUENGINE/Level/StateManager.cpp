@@ -33,7 +33,6 @@
 #include "MovingCheck.h"
 #include "99.h"
 
-
 StateManager* STATE_MANAGER = nullptr;
 
 StateManager::StateManager()
@@ -56,7 +55,7 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = GameLevels::DIGIPENLOGO;
+	current = GameLevels::MAINMENU;
 	
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
@@ -112,14 +111,14 @@ void StateManager::Update()
 			{
 				before = currGameState;
 			}
-				state = State::UNLOAD;
+			state = State::UNLOAD;
 		}
 		else {
 			if (currGameState->GetCurrLevel() == GameLevels::OPTION)
 			{
 				currGameState->SetNextLevel(before->GetCurrLevel());
 			}
-				currGameState->Update();
+			currGameState->Update();
 		}
 		break;
 	case State::UNLOAD:
