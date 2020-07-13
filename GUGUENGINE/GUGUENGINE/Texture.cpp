@@ -88,6 +88,7 @@ GLuint Texture::CreateTexture(char const* filename, int i)
 void Texture::Load()
 {
     TextureStore.clear();
+
     CreateTexture("assets\\DigiPen_WHITE_1024px.png", Textures::DIGIPENLOGO);
     CreateTexture("assets\\images2.png", Textures::FMODLOGO);
     CreateTexture("assets\\imagest1.png", Textures::STARTCUT1);
@@ -122,8 +123,6 @@ void Texture::Load()
     CreateTexture("assets\\character.png", Textures::character);
     CreateTexture("assets\\clear.png", Textures::clear);
     CreateTexture("assets\\level.png", Textures::level);
-    CreateTexture("assets\\01.png", Textures::num1);
-    CreateTexture("assets\\02.png", Textures::num2);
     CreateTexture("assets\\failScreen.png", Textures::failScreen);
     CreateTexture("assets\\next.png", Textures::next);
     CreateTexture("assets\\yellow.png", Textures::yellow);
@@ -133,6 +132,18 @@ void Texture::Load()
     CreateTexture("assets\\image3.png", Textures::threePuzzle);
     CreateTexture("assets\\image4.png", Textures::vPuzzle);
     CreateTexture("assets\\image5.png", Textures::movePuzzle);
+    CreateTexture("assets\\00.png", Textures::num0);
+    CreateTexture("assets\\01.png", Textures::num1);
+    CreateTexture("assets\\02.png", Textures::num2);
+    CreateTexture("assets\\03.png", Textures::num3);
+    CreateTexture("assets\\04.png", Textures::num4);
+    CreateTexture("assets\\05.png", Textures::num5);
+    CreateTexture("assets\\06.png", Textures::num6);
+    CreateTexture("assets\\07.png", Textures::num7);
+    CreateTexture("assets\\8.png", Textures::num8);
+    CreateTexture("assets\\9.png", Textures::num9);
+    CreateTexture("assets\\image4_11.png", Textures::VPuzzle2);
+    CreateTexture("assets\\left_turn.png", Textures::leftTurn);
 }
 void Texture::DeleteTexture() noexcept
 {
