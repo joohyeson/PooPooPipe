@@ -1,4 +1,11 @@
 #pragma once
+/*
+ *hakyung.kim
+ *3.20.2020
+ *digipen.hagyeong@gmail.com
+ *Level6.cpp
+ *this is level6 header
+ */
 #include "Option.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"

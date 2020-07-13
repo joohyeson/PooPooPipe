@@ -45,7 +45,6 @@ public:
 		Yes_p = nullptr;
 		No_p = nullptr;
 		soundBar = nullptr;
-		//goToMainP = nullptr;
 		mInput = nullptr;
 	}
 

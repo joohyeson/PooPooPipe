@@ -1,4 +1,10 @@
 #pragma once
+/*
+ *uijin.lee
+ *4.13.2020
+ *digipen.uijin.lee@gmail.com
+ *this is team logo transition header
+ */
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"

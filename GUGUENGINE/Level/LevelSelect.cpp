@@ -1,3 +1,9 @@
+/*
+ *uijin.lee
+ *3.13.2020
+ *digipen.uijin.lee@gmail.com
+ *this is level select
+ */
 #include "LevelSelect.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"

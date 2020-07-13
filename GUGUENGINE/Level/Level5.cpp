@@ -1,4 +1,10 @@
-
+/*
+ *hakyung.kim
+ *1.10.2020
+ *digipen.hagyeong@gmail.com
+ *Level5.cpp
+ *this is level5
+ */
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include <iostream>
@@ -8,9 +14,7 @@
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 #include "Level5.h"
 #include "../GUGUENGINE/Sound.h"
-//
-//Sound se5;
-//Sound playSE5;
+
 extern int MaxLevel;
 extern bool getOpt;
 
@@ -22,7 +26,7 @@ void Level5::Init()
 	{
 		MaxLevel = 5;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
+
 	skip = false;
 	failS = false;
 	Nos[0] = false;

@@ -1,4 +1,10 @@
-
+/*
+ *hakyung.kim
+ *3.20.2020
+ *digipen.hagyeong@gmail.com
+ *Level6.cpp
+ *this is level6
+ */
 #include "StateManager.h"
 #include "../GUGUENGINE/ObjectManager.h"
 #include <iostream>
