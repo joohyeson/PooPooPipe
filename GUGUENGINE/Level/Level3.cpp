@@ -26,7 +26,7 @@ void Level3::Init()
 
 	getOpt = false;
 	//initopt = false;
-	
+
 	//STATE_MANAGER->setCurrentLV(0);
 	if (MaxLevel <= 1)
 	{
@@ -254,10 +254,10 @@ void Level3::Init()
 	mPooPoo.AddAngle(DirAngle::NE_, DirAngle::S_, puzzle6->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::N_, DirAngle::SE_, blackPuzzle3->mesh->GetTransform());
 	mPooPoo.AddAngle(DirAngle::NW_, DirAngle::S_, endPuzzle->mesh->GetTransform());
-	
+
 	opt.Init();
 	opt.getInput(&mInput, (this->sound));
-	
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 
 	firstTime = glfwGetTime();
@@ -766,7 +766,7 @@ void Level3::Update()
 				{
 					INPUT->setInput(KEY::LEFT);
 					getOpt = true;
-					if(this->sound->IsMute_() == false)
+					if (this->sound->IsMute_() == false)
 					{
 						this->sound->ToggleMute();
 					}
@@ -998,7 +998,7 @@ void Level3::Close()
 	sound->StopEffectSound();
 	getOpt = false;
 	opt.Close();
-	
+
 	OBJECT_FACTORY->DestroyAllObjects();
 }
 

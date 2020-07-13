@@ -40,7 +40,6 @@ public:
 	void Update();
 	void SetDirection(bool a, bool b, bool c, bool d, bool e, bool f);
 	bool GetDirValue(PuzzleDirection index);
-	bool* GetDirection() { return dirArray1; }
 	SaveWay GetAllDirections() {
 		SaveWay mWay;
 		for (int i = 0; i < 6; i++)
