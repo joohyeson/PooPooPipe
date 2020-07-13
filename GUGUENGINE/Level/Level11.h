@@ -98,10 +98,6 @@ private:
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
 	
 	double first;
 	double last;
@@ -118,13 +114,6 @@ private:
 	Object* Yes_p;
 	Object* No_p;
 
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
-
 	bool quitCheck = false;
 	bool realQuit = false;
 	
@@ -133,9 +122,7 @@ private:
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 
 	Object* win;
-	GLint textureWin;
 	Object* mini;
-	GLuint texturemini;
 	
 	double lastTime = 0;
 	double firstTime = 0;
@@ -179,58 +166,7 @@ private:
 
 	int move8_1 = 0;
 	int move8_2 = 0;
-	int move8_3 = 0;
-
-	GLuint textureBackground8;
-
-	GLuint texureIdLine8;
-	GLuint texureIdCurve8;
-	GLuint texureIdThree8;
-	GLuint texureIdV8;
-	GLuint texureIdBlack8;
-
-	GLuint texureIdStart8;
-	GLuint texureIdEnd8;
-
-	GLuint texureIdLine8_2;
-	GLuint texureIdCurve8_2;
-	GLuint texureIdV8_2;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-	GLuint texureIdbutton8;
-	GLuint texureIdclear8;
-
-	GLint texturePlayUI8;
-	GLint textureQuitUI8;
-	GLint textureOptionUI8;
-	GLint textureRestartUI8;
-
-	GLuint textureIdVAuto;
-	GLuint textureIdCurveAuto;
-
-
-	GLint textureLeft;
-	GLint textureLeftNumberTen0;
-	GLint textureLeftNumberTen1;
-	GLint textureLeftNumberTen2;
-	GLint textureLeftNumberTen3;
-	GLint textureLeftNumberTen4;
-	GLint textureLeftNumberTen5;
-
-	GLint textureLeftNumber0;
-	GLint textureLeftNumber1;
-	GLint textureLeftNumber2;
-	GLint textureLeftNumber3;
-	GLint textureLeftNumber4;
-	GLint textureLeftNumber5;
-	GLint textureLeftNumber6;
-	GLint textureLeftNumber7;
-	GLint textureLeftNumber8;
-	GLint textureLeftNumber9;
-
-	GLuint numberTexture;
-	GLuint levelTexture;
-	GLint textureFail;
+	int move8_3 = 0;	
 
 	bool conecTcheck8_1 = false;
 	bool conecTcheck8_2 = false;

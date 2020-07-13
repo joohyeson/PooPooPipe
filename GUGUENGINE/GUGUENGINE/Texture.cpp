@@ -114,10 +114,10 @@ void Texture::Load()
     CreateTexture("assets\\image0.png", Textures::linePuzzle);
     CreateTexture("assets\\image1.png", Textures::blackPuzzle);
     CreateTexture("assets\\image2.png", Textures::curvePuzzle);
-    CreateTexture("assets\\imageStart.png", Textures::imageStart);
-    CreateTexture("assets\\imageEnd.png", Textures::imageEnd);
-    CreateTexture("assets\\image0-1.png", Textures::image01);
-    CreateTexture("assets\\image2-1.png", Textures::curve2Puzzle);
+    CreateTexture("assets\\imageStart.png", Textures::imageStart);//curve start
+    CreateTexture("assets\\imageEnd.png", Textures::imageEnd); //curve end
+    CreateTexture("assets\\image0-1.png", Textures::image01); //rotation Line
+    CreateTexture("assets\\image2-1.png", Textures::curve2Puzzle); //rotation Curve
     CreateTexture("assets\\levelButton.png", Textures::levelButton);
     CreateTexture("assets\\levelButton_2.png", Textures::levelButton_2);
     CreateTexture("assets\\character.png", Textures::character);
@@ -128,7 +128,6 @@ void Texture::Load()
     CreateTexture("assets\\yellow.png", Textures::yellow);
     CreateTexture("assets\\background2.png", Textures::background2);
     CreateTexture("assets\\mini.png", Textures::mini);
-    CreateTexture("assets\\05.png", Textures::num5);
     CreateTexture("assets\\image3.png", Textures::threePuzzle);
     CreateTexture("assets\\image4.png", Textures::vPuzzle);
     CreateTexture("assets\\image5.png", Textures::movePuzzle);
@@ -142,8 +141,15 @@ void Texture::Load()
     CreateTexture("assets\\07.png", Textures::num7);
     CreateTexture("assets\\8.png", Textures::num8);
     CreateTexture("assets\\9.png", Textures::num9);
-    CreateTexture("assets\\image4_11.png", Textures::VPuzzle2);
+    CreateTexture("assets\\image4_11.png", Textures::VPuzzle2); //rotation V
     CreateTexture("assets\\left_turn.png", Textures::leftTurn);
+    CreateTexture("assets\\imageEnd2.png", Textures::lineEnd);
+    CreateTexture("assets\\imageStart2.png", Textures::lineStart);
+    CreateTexture("assets\\image_auto3.png", Textures::autoLine);
+    CreateTexture("assets\\image_auto2.png", Textures::autoV);
+    CreateTexture("assets\\image_auto1.png", Textures::autoCurve);
+    CreateTexture("assets\\imageEndAuto1.png", Textures::qutoEnd);
+    CreateTexture("assets\\55.png", Textures::yellowPuzzle);
 }
 void Texture::DeleteTexture() noexcept
 {

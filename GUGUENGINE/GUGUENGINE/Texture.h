@@ -21,7 +21,7 @@ enum class Textures
 	imageStart, imageEnd, image01, curve2Puzzle, levelButton, levelButton_2,
 	character, clear, level, num1,num2, failScreen, next
 	,yellow, background2,mini, threePuzzle, vPuzzle, movePuzzle, 
-	num0, num3,num4, num5, num6, num7, num8, num9, VPuzzle2, leftTurn
+	num0, num3,num4, num5, num6, num7, num8, num9, VPuzzle2, leftTurn , lineEnd, lineStart, autoLine, autoV, autoCurve, qutoEnd, yellowPuzzle,
 };
 
 class Texture

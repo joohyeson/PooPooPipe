@@ -363,12 +363,8 @@ void Level6::Update()
 						std::cout << "1" << std::endl;
 						puzzle14->mesh->setRotation(degree6);
 						rotTime.Update();
-						//rightCheck6 = 0;
 
 						this->sound->Play("assets\\coin.mp3", 1);
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
 
 						rot[0] = false;
 					}
@@ -389,14 +385,9 @@ void Level6::Update()
 						degree6_2 += static_cast<float>(DegreeToRadian(60.f));
 						std::cout << "2" << std::endl;
 						blackPuzzle1->mesh->setRotation(degree6_2);
-						//rightCheck6_2 = 0;
 						rotTime.Update();
 
 						this->sound->Play("assets\\coin.mp3", 1);
-
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
 
 						rot[1] = false;
 					}
@@ -420,10 +411,6 @@ void Level6::Update()
 						rotTime.Update();
 
 						this->sound->Play("assets\\coin.mp3", 1);
-
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
 
 						rot[2] = false;
 					}
@@ -474,10 +461,6 @@ void Level6::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
-
 						rot[4] = false;
 					}
 				}
@@ -501,12 +484,6 @@ void Level6::Update()
 						std::cout << "6" << std::endl;
 
 						this->sound->Play("assets\\coin.mp3", 1);
-
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
-
-
 						rot[5] = false;
 					}
 				}
@@ -526,10 +503,6 @@ void Level6::Update()
 						connectMove6 = 0;
 
 						this->sound->Play("assets\\flushing.wav", 1);
-
-						//playSE6.Play(1);
-						//playSE6.SetVolume(0.5f);
-						//playSE6.SetLoopCount(1);
 					}
 
 				}
@@ -897,7 +870,6 @@ void Level6::Update()
 		button->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::character));
 		clear->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clear));
 
-
 		Levelsel->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelButton));
 		Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelButton_2));
 		playUI->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI));
@@ -913,14 +885,10 @@ void Level6::Update()
 		pooCharacter->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::character));
 		leftCount->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::leftTurn));
 
-
-
 		if (mPooPoo.IsFinish() == false)
 		{
 			pooCharacter->mesh->setTransform(mPooPoo.MoveInPuzzle(pooCharacter->mesh->GetTransform()));
 		}
-		//leftnumberTen->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumberTen3);
-		//leftnumber->mesh->Update(mShader2.GetShaderHandler(), textureLeftNumber0);
 
 		switch (rotTime.getLimitTime() / 10)
 		{
@@ -977,8 +945,9 @@ void Level6::Update()
 			leftnumber->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::num9));
 			break;
 		}
-		win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
-		fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
+
+		win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
+		fail->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::failScreen));
 
 		if (mInput.IsPressed(KEY::A) == true)
 		{

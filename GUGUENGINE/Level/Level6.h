@@ -156,55 +156,6 @@ private:
 
 	int chekNext6 = 0;
 
-	GLuint textureBackground6;
-
-	GLuint texureIdLine6;
-	GLuint texureIdCurve6;
-	GLuint texureIdThree6;
-	GLuint texureIdV6;
-	GLuint texureIdBlack6;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-	GLuint texureIdStart6;
-	GLuint texureIdEnd6;
-
-	GLuint texureIdLine6_1;
-	GLuint texureIdCurve6_2;
-	GLuint texureIdV6_2;
-	GLint textureFail;
-
-
-	GLuint texureIdbutton6;
-	GLuint texureIdclear6;
-
-	GLint texturePlayUI6;
-	GLint textureQuitUI6;
-	GLint textureOptionUI6;
-	GLint textureRestartUI6;
-
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-	
-	GLint textureLeft;
-	GLint textureLeftNumberTen0;
-	GLint textureLeftNumberTen1;
-	GLint textureLeftNumberTen2;
-	GLint textureLeftNumberTen3;
-	GLint textureLeftNumberTen4;
-	GLint textureLeftNumberTen5;
-
-	GLint textureLeftNumber0;
-	GLint textureLeftNumber1;
-	GLint textureLeftNumber2;
-	GLint textureLeftNumber3;
-	GLint textureLeftNumber4;
-	GLint textureLeftNumber5;
-	GLint textureLeftNumber6;
-	GLint textureLeftNumber7;
-	GLint textureLeftNumber8;
-	GLint textureLeftNumber9;
 
 	bool conecTcheck6_1 = false;
 	bool conecTcheck6_2 = false;

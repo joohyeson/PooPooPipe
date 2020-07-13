@@ -927,6 +927,7 @@ void Level3::Update()
 		No->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::no));
 		Yes_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
 		No_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
+
 		if (mInput.IsPressed(KEY::A) == true)
 		{
 			INPUT->setInput(KEY::A);

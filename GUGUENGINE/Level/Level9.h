@@ -97,12 +97,6 @@ private:
 	bool Cur[3] = { false };
 	bool checking = false;
 	bool SUI[2] = { false };
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
 
 	bool quitCheck = false;
 	bool realQuit = false;
@@ -114,21 +108,12 @@ private:
 	Object* Levelsel, * Levelsel_pressed;
 	Object* win;
 	Object* mini;
-	GLuint texturemini;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-
-	GLint textureWin;
-
 
 	Object* button;
 	Object* clear;
 	Object* playUI, * quitUI, * optionUI, * restartUI, * fail;
-	GLuint numberTexture;
-	GLuint levelTexture;
+
 	
 	MovePooPoo mPooPoo;
 	Object* pooCharacter;
@@ -161,34 +146,6 @@ private:
 	float degree9_rot = DegreeToRadian(-120.f);
 
 	int chekNext9 = 0;
-
-	GLuint textureBackground9;
-
-	GLuint texureIdLine9;
-	GLuint texureIdCurve9;
-	GLuint texureIdThree9;
-	GLuint texureIdV9;
-	GLuint texureIdBlack9;
-
-	GLuint texureIdStart9;
-	GLuint texureIdEnd9;
-
-	GLuint texureIdLine9_2;
-	GLuint texureIdCurve9_2;
-	GLuint texureIdV9_2;
-
-	GLuint texureIdCurve9_3;
-
-	GLuint texureIdbutton9;
-	GLuint texureIdclear9;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-
-	GLint texturePlayUI9;
-	GLint textureQuitUI9;
-	GLint textureOptionUI9;
-	GLint textureRestartUI9;
-	GLint textureFail;
 
 	bool conecTcheck9_1 = false;
 	bool conecTcheck9_2 = false;

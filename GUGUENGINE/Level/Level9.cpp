@@ -37,29 +37,23 @@ void Level9::Init()
 	checking = false;
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);
 	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
 
 	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdYes = TEXTURE->CreateTexture("assets\\yes.png", 0);
 	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	mInput.setInput(KEY::LEFT);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdNo = TEXTURE->CreateTexture("assets\\no.png", 0);
 	No->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
 	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdNo_p = TEXTURE->CreateTexture("assets\\no_p.png", 0);
 	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	quitCheck = false;
@@ -82,7 +76,6 @@ void Level9::Init()
 	degree9_7 = DegreeToRadian(120.f);
 	degree9_rot = DegreeToRadian(-120.f);
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
-	texturemini = TEXTURE->CreateTexture("assets\\mini.png", 0);
 	mini->mesh->InitializeTextureMesh(500.f, 500.f);
 
 	background = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
@@ -90,27 +83,11 @@ void Level9::Init()
 
 	fail = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureFail = TEXTURE->CreateTexture("assets\\failScreen.png", 0);
-	textureBackground9 = TEXTURE->CreateTexture("assets\\background2.png", 0);
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
-	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	texureIdLine9 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureIdBlack9 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-	texureIdCurve9 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	texureIdThree9 = TEXTURE->CreateTexture("assets\\image3.png", 0);
-	texureIdV9 = TEXTURE->CreateTexture("assets\\image4.png", 0);
 
-	texureIdStart9 = TEXTURE->CreateTexture("assets\\imageStart.png", 0);
-	texureIdEnd9 = TEXTURE->CreateTexture("assets\\imageEnd.png", 0);
 
-	texureIdLine9_2 = TEXTURE->CreateTexture("assets\\image0-1.png", 0);
-	texureIdCurve9_2 = TEXTURE->CreateTexture("assets\\image2-1.png", 0);
-	texureIdV9_2 = TEXTURE->CreateTexture("assets\\image4_11.png", 0);
-	texureIdCurve9_3 = TEXTURE->CreateTexture("assets\\55.png", 0);
 
-	texureIdbutton9 = TEXTURE->CreateTexture("assets\\character.png", 0);
-	texureIdclear9 = TEXTURE->CreateTexture("assets\\clear.png", 0);
 
 	//se9.Init();
 	//se9.LoadSE("assets\\coin.mp3");
@@ -128,7 +105,6 @@ void Level9::Init()
 
 	playUI->mesh->setTransform({ 713.5f, 300.f });
 	playUI->mesh->InitializeTextureMesh(173.f, 200.f);
-	texturePlayUI9 = TEXTURE->CreateTexture("assets\\playUI.png", 0);
 
 	pooCharacter = OBJECT_FACTORY->CreateEmptyObject();
 	pooCharacter->AddComponent(new Mesh());
@@ -142,7 +118,6 @@ void Level9::Init()
 	playUI_p->Init();
 	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
 	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-	texturePlayUI3p = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
 
 
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -151,7 +126,6 @@ void Level9::Init()
 
 	quitUI->mesh->setTransform({ 800.f, 150.f });
 	quitUI->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureQuitUI9 = TEXTURE->CreateTexture("assets\\quitUI.png", 0);
 
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -159,7 +133,6 @@ void Level9::Init()
 	optionUI->Init();
 	optionUI->mesh->setTransform({ 713.5f, 0.f });
 	optionUI->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureOptionUI9 = TEXTURE->CreateTexture("assets\\optionUI.png", 0);
 
 
 	restartUI = OBJECT_FACTORY->CreateEmptyObject();
@@ -167,7 +140,6 @@ void Level9::Init()
 	restartUI->Init();
 	restartUI->mesh->setTransform({ 800.f, -150.f });
 	restartUI->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureRestartUI9 = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
 
@@ -235,8 +207,7 @@ void Level9::Init()
 
 	puzzle20 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { -132.f - 482.f, -80.0f - 32.f });
 	puzzle20->pipe->SetDirection(false, false, false, true, false, true);
-	levelTexture = TEXTURE->CreateTexture("assets\\level.png", 0);
-	numberTexture = TEXTURE->CreateTexture("assets\\06.png", 0);
+
 	button = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 350.f, -240.f });
 	clear = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.0f, 850.0f });
 
@@ -252,7 +223,6 @@ void Level9::Init()
 
 	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
 	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureQuitUI3p = TEXTURE->CreateTexture("assets\\quitUI_2.png", 0);
 
 
 	optionUI_p = OBJECT_FACTORY->CreateEmptyObject();
@@ -260,7 +230,6 @@ void Level9::Init()
 	optionUI_p->Init();
 	optionUI_p->mesh->setTransform({ 1713.5f, 0.f });
 	optionUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureOptionUI3p = TEXTURE->CreateTexture("assets\\optionUI_2.png", 0);
 
 
 	restartUI_p = OBJECT_FACTORY->CreateEmptyObject();
@@ -268,11 +237,6 @@ void Level9::Init()
 	restartUI_p->Init();
 	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
 	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
-	textureRestartUI3p = TEXTURE->CreateTexture("assets\\restartUI_2.png", 0);
-
-
-	LevelPage = TEXTURE->CreateTexture("assets\\levelButton.png", 0);
-	LevelPage_pressed = TEXTURE->CreateTexture("assets\\levelButton_2.png", 0);
 
 	mPooPoo.Init();
 
@@ -298,7 +262,6 @@ void Level9::Init()
 
 void Level9::Update()
 {
-	//STATE_MANAGER->setCurrentLV(6);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -328,8 +291,7 @@ void Level9::Update()
 			APPLICATION->SetFullScreen();
 			mInput.setInput(KEY::F);
 		}
-		/*se9.Update();
-		playSE9.Update();*/
+
 
 		if (Levelsel->collision->Point2HexagonCollision({ cursor9.x,cursor9.y }, Levelsel->mesh) == true)
 		{
@@ -386,9 +348,7 @@ void Level9::Update()
 					puzzle1->mesh->setRotation(degree9);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[0] = false;
 				}
 			}
@@ -411,9 +371,7 @@ void Level9::Update()
 					puzzle19->mesh->setRotation(degree9_2);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[1] = false;
 				}
 			}
@@ -436,9 +394,7 @@ void Level9::Update()
 					puzzle14->mesh->setRotation(degree9_3);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[2] = false;
 				}
 			}
@@ -461,9 +417,6 @@ void Level9::Update()
 
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
 
 					rot[3] = false;
 
@@ -488,9 +441,7 @@ void Level9::Update()
 					puzzle20->mesh->setRotation(degree9_5);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[4] = false;
 				}
 			}
@@ -512,9 +463,7 @@ void Level9::Update()
 					puzzle16->mesh->setRotation(degree9_6);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[5] = false;
 				}
 			}
@@ -536,9 +485,7 @@ void Level9::Update()
 					puzzle12->mesh->setRotation(degree9_7);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
+
 					rot[6] = false;
 				}
 
@@ -612,9 +559,6 @@ void Level9::Update()
 					puzzle4->mesh->setRotation(degree9_rot);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se9.Play(1);
-					//se9.SetVolume(0.5f);
-					//se9.SetLoopCount(1);
 
 					autoRot = false;
 
@@ -743,7 +687,6 @@ void Level9::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause(0;
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -852,55 +795,54 @@ void Level9::Update()
 		}
 		/*se9.Update();*/
 
-		background->mesh->Update(mShader2.GetShaderHandler(), textureBackground9);
-		puzzle1->mesh->Update(mShader2.GetShaderHandler(), texureIdV9_2);
-		puzzle2->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
-		puzzle3->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-		puzzle4->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_3);
-		puzzle5->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
-		puzzle6->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9_2);
-		puzzle7->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
+		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::VPuzzle2));
+		puzzle2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
+		puzzle3->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
+		puzzle4->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::yellowPuzzle));
+		puzzle5->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzle6->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::image01));
+		puzzle7->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
 
-		puzzle8->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
-		puzzle9->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
-		puzzle10->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-		puzzle11->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9);
-		puzzle12->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
+		puzzle8->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzle9->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
+		puzzle10->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
+		puzzle11->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
+		puzzle12->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curve2Puzzle));
 
-		puzzle13->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-		puzzle14->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
-		puzzle15->mesh->Update(mShader2.GetShaderHandler(), texureIdLine9);
-		puzzle16->mesh->Update(mShader2.GetShaderHandler(), texureIdV9_2);
-		puzzle17->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
+		puzzle13->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
+		puzzle14->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curve2Puzzle));
+		puzzle15->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzle16->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::VPuzzle2));
+		puzzle17->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
 
-		puzzle18->mesh->Update(mShader2.GetShaderHandler(), texureIdV9);
-		puzzle19->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
-		puzzle20->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve9_2);
+		puzzle18->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
+		puzzle19->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curve2Puzzle));
+		puzzle20->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curve2Puzzle));
 
-		startPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdStart9);
-		endPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdEnd9);
+		startPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::imageStart));
+		endPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::imageEnd));
 
-		button->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
-		clear->mesh->Update(mShader2.GetShaderHandler(), texureIdclear9);
-		pooCharacter->mesh->Update(mShader2.GetShaderHandler(), texureIdbutton9);
-		Levelsel->mesh->Update(mShader2.GetShaderHandler(), LevelPage);
-		Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), LevelPage_pressed);
-		playUI->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI9);
-		quitUI->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI9);
-		optionUI->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI9);
-		restartUI->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI9);
+		button->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::character));
+		clear->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clear));
 
-		restartUI_p->mesh->Update(mShader2.GetShaderHandler(), textureRestartUI3p);
-		playUI_p->mesh->Update(mShader2.GetShaderHandler(), texturePlayUI3p);
-		quitUI_p->mesh->Update(mShader2.GetShaderHandler(), textureQuitUI3p);
-		optionUI_p->mesh->Update(mShader2.GetShaderHandler(), textureOptionUI3p);
-		mini->mesh->Update(mShader2.GetShaderHandler(), texturemini);
+		Levelsel->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelButton));
+		Levelsel_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelButton_2));
+		playUI->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI));
+		quitUI->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitUI));
+		optionUI->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionUI));
+		restartUI->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI));
+		restartUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI_2));
+		playUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI_2));
+		quitUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitUI_2));
+		optionUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionUI_2));
+		levelImage->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level));
+		numberImage->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::num3));
+		pooCharacter->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::character));
 
-		levelImage->mesh->Update(mShader2.GetShaderHandler(), levelTexture);
-		numberImage->mesh->Update(mShader2.GetShaderHandler(), numberTexture);
+		win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
+		fail->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::failScreen));
 
-		fail->mesh->Update(mShader2.GetShaderHandler(), textureFail);
-		win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
 
 
 		if (mPooPoo.IsFinish() == false)
@@ -924,12 +866,12 @@ void Level9::Update()
 			}
 		}
 
-		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAskBack);
-		QuitAsk->mesh->Update(mShader2.GetShaderHandler(), textureIdQuitAsk);
-		Yes->mesh->Update(mShader2.GetShaderHandler(), textureIdYes);
-		No->mesh->Update(mShader2.GetShaderHandler(), textureIdNo);
-		Yes_p->mesh->Update(mShader2.GetShaderHandler(), textureIdYes_p);
-		No_p->mesh->Update(mShader2.GetShaderHandler(), textureIdNo_p);
+		QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
+		QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));
+		Yes->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES));
+		No->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::no));
+		Yes_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
+		No_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
 
 		glfwSwapBuffers(APPLICATION->getMyWindow());
 

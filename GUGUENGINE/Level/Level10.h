@@ -99,19 +99,13 @@ private:
 	bool Cur[3] = { false };
 	bool checking = false;
 	bool SUI[2] = { false };
+
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;
 	Object* No;
 	Object* Yes_p;
 	Object* No_p;
-
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
 
 	bool quitCheck = false;
 	bool realQuit = false;
@@ -122,13 +116,11 @@ private:
 	Object* puzzle18, * puzzle19, * puzzle20;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* mini;
-	GLuint texturemini;
 	Object* playUI, * quitUI, * optionUI, * restartUI, * fail;
 
 	Object* button;
 	Object* clear;
 	Object* win;
-	GLint textureWin;
 	
 	bool skip = false;
 	double lastTime = 0;
@@ -174,62 +166,6 @@ private:
 	int move8_3 = 0;
 
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-
-
-	GLuint textureBackground8;
-
-	GLuint texureIdLine8;
-	GLuint texureIdCurve8;
-	GLuint texureIdThree8;
-	GLuint texureIdV8;
-	GLuint texureIdBlack8;
-
-	GLuint texureIdStart8;
-	GLuint texureIdEnd8;
-
-	GLuint texureIdLine8_2;
-	GLuint texureIdCurve8_2;
-	GLuint texureIdV8_2;
-
-	GLuint textureIdAuto1;
-	GLuint textureIdAuto2;
-
-	GLuint texureIdbutton8;
-	GLuint texureIdclear8;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-
-	GLint texturePlayUI8;
-	GLint textureQuitUI8;
-	GLint textureOptionUI8;
-	GLint textureRestartUI8;
-	GLint textureFail;
-
-	GLint textureLeft;
-	GLint textureLeftNumberTen0;
-	GLint textureLeftNumberTen1;
-	GLint textureLeftNumberTen2;
-	GLint textureLeftNumberTen3;
-	GLint textureLeftNumberTen4;
-	GLint textureLeftNumberTen5;
-
-	GLint textureLeftNumber0;
-	GLint textureLeftNumber1;
-	GLint textureLeftNumber2;
-	GLint textureLeftNumber3;
-	GLint textureLeftNumber4;
-	GLint textureLeftNumber5;
-	GLint textureLeftNumber6;
-	GLint textureLeftNumber7;
-	GLint textureLeftNumber8;
-	GLint textureLeftNumber9;
-
-	GLuint numberTexture;
-	GLuint levelTexture;
 
 	bool conecTcheck8_1 = false;
 	bool conecTcheck8_2 = false;
