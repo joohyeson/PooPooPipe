@@ -119,13 +119,6 @@ private:
 	Object* Yes_p;
 	Object* No_p;
 
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
-
 	bool quitCheck = false;
 	bool realQuit = false;
 
@@ -149,8 +142,6 @@ private:
 	Object* fail;
 	Object* win;
 
-	GLint textureFail;
-	GLint textureWin;
 	
 	int key;
 	Mesh mMesh;
@@ -183,34 +174,7 @@ private:
 
 	int chekNext4 = 0;
 
-	GLuint textureBackground4;
 
-	GLuint texureIdLine4;
-	GLuint texureIdCurve4;
-	GLuint texureIdBlack4;
-
-	GLuint texureIdStart4;
-	GLuint texureIdEnd4;
-
-	GLuint texureIdLine4_1;
-	GLuint texureIdCurve4_2;
-
-	GLuint texureIdbutton4;
-	GLuint texureIdclear4;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-	GLint texturePlayUI4;
-	GLint textureQuitUI4;
-	GLint textureOptionUI4;
-	GLint textureRestartUI4;
-	
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-	
-	GLuint numberTexture;
-	GLuint levelTexture;
 	
 	bool conecTcheck4_1 = false;
 	bool conecTcheck4_2 = false;
