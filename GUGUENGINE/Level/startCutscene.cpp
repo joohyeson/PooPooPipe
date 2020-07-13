@@ -14,24 +14,24 @@ void startCut::Init()
 	}
 	
 	startCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
-	texturestartCut1 = TEXTURE->CreateTexture("assets\\imagest1.png", 0);
+
 	startCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 
 	startCut2 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
-	texturestartCut2 = TEXTURE->CreateTexture("assets\\imagest2.png", 0);
+
 	startCut2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 	
 	startCut3 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
-	texturestartCut3 = TEXTURE->CreateTexture("assets\\imagest3.png", 0);
+
 	startCut3->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 
 	skip = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  450.f });
-	texturestartSkip = TEXTURE->CreateTexture("assets\\skip.png", 0);
+
 	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	skip->mesh->InitializeTextureMesh(173.f, 200.f);
 
 	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  -500.f });
-	texturestartNext = TEXTURE->CreateTexture("assets\\nextd.png", 0);
+
 	next->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	next->mesh->InitializeTextureMesh(173.f, 200.f);
 
@@ -126,11 +126,11 @@ void startCut::Update()
 	{
 		input[1] = false;
 	}
-	skip->mesh->Update(mShader.GetShaderHandler(), texturestartSkip);
-	next->mesh->Update(mShader.GetShaderHandler(), texturestartNext);
-	startCut1->mesh->Update(mShader.GetShaderHandler(), texturestartCut1);
-	startCut2->mesh->Update(mShader.GetShaderHandler(), texturestartCut2);
-	startCut3->mesh->Update(mShader.GetShaderHandler(), texturestartCut3);
+	skip->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::SKIP));
+	next->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::nextd));
+	startCut1->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::STARTCUT1));
+	startCut2->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::STARTCUT2));
+	startCut3->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::STARTCUT3));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);

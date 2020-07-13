@@ -7,21 +7,33 @@
  */
 #include "glew.h"
 #include "filesystem"
+#include <map>
 class Image;
 class Color4ub;
 
-class [[nodiscard]] Texture
+enum class Textures
+{
+	DIGIPENLOGO, 
+	FMODLOGO, 
+	STARTCUT1, STARTCUT2, STARTCUT3,SKIP, nextd,
+	BAR1, QUITCHECK, YES, NO_P, YES_P, no, background1,playUI, 
+	playUI_2, quitUI, quitUI_2, optionUI, optionUI_2, restartUI, restartUI_2, image0, image1,image2,
+	imageStart, imageEnd, image01, image21, levelButton, levelButton_2,
+	character, clear, level, num1, failScreen, next
+};
+
+class Texture
 {
 public:
 	Texture();
 
-	bool LoadFromPNG(const std::filesystem::path& file_path) noexcept;
-	bool LoadFromImage(const Image& image) noexcept;
-	bool LoadFromMemory(int image_width, int image_height, const Color4ub* colors) noexcept;
-
-	static void SelectTextureForSlot(const Texture& texture, unsigned int slot = 0) noexcept;
-	GLuint CreateTexture(char const* filename, int i);
+	void CreateTexture(char const* filename,Textures typeOfTexture);
 	void DeleteTexture() noexcept;
+	GLuint CreateTexture(char const* filename, int i);
+	GLuint GetTexture(Textures typeOfTexture) {
+		return TextureStore[typeOfTexture];
+	}
+	void Load();
 
 	unsigned int GetTextureHandle() const noexcept { return textureHandle; }
 	int          GetWidth() const noexcept { return width; }
@@ -39,6 +51,6 @@ private:
 	unsigned int textureHandle = 0;
 	int          width = 0;
 	int          height = 0;
-
+	std::map<Textures,GLuint> TextureStore;
 };
 extern Texture* TEXTURE;

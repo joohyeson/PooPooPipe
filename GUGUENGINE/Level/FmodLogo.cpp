@@ -19,7 +19,6 @@ GLuint textureFmodLogo;
 void FmodLogo::Init()
 {
 	firstTime = glfwGetTime();
-	textureFmodLogo = TEXTURE->CreateTexture("assets\\images2.png", 0);
 
 	fmodLogo = OBJECT_FACTORY->CreateEmptyObject();
 
@@ -37,7 +36,7 @@ void FmodLogo::Update()
 {
 	lastTime = glfwGetTime();
 
-	fmodLogo->mesh->Update(mShader.GetShaderHandler(), textureFmodLogo);
+	fmodLogo->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::FMODLOGO));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);

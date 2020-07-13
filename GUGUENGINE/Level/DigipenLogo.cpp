@@ -19,7 +19,6 @@ void DigipenLogo::Init()
 	firstTime = glfwGetTime();
 
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
-	textureDigipenLogo = TEXTURE->CreateTexture("assets\\DigiPen_WHITE_1024px.png", 0);
 	digipenLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width/2), static_cast<float>(APPLICATION->height/3));
 	
 	mShader.BuildTextureShader();
@@ -37,7 +36,7 @@ void DigipenLogo::Update()
 	}
 	
 	lastTime = glfwGetTime();
-	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
+	digipenLogo->mesh->Update(mShader.GetShaderHandler(),TEXTURE->GetTexture(Textures::DIGIPENLOGO));
 	if(lastTime - firstTime > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::FMODLOGO);
@@ -49,12 +48,6 @@ void DigipenLogo::Update()
 		ENGINE->Quit();
 	}
 
-	//if (mInput.IsPressed(KEY::F))
-	//{
-	//	APPLICATION->SetFullScreen();
-	//	mInput.setInput(KEY::F);
-	//}
-	
     glfwSwapBuffers(APPLICATION->getMyWindow());
     glClear(GL_COLOR_BUFFER_BIT);
     glfwPollEvents();

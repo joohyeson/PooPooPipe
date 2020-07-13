@@ -14,108 +14,143 @@
 #include <iostream>
 #include "Mesh.h"
 #include "external/stb/include/stb_image.h"
+
 Texture* TEXTURE = nullptr;
 Texture::Texture()
 {
-	TEXTURE = this;
+    TEXTURE = this;
+    Load();
 }
-bool Texture::LoadFromPNG(const std::filesystem::path& file_path) noexcept
-	{
-		Image imageLoad;
-		imageLoad.LoadFromPNG(file_path);
-		return LoadFromImage(imageLoad);
-	}
 
-	bool Texture::LoadFromImage(const Image& image) noexcept
-	{
-		return LoadFromMemory(image.GetWidth(), image.GetHeight(), image.GetPixelsPointer());
-	}
+Texture::Texture(Texture&& other) noexcept
+    : textureHandle{ other.textureHandle }, width{ other.width }, height{ other.height }
+{
+    other.textureHandle = 0;
+    other.width = 0;
+    other.height = 0;
+}
 
-	bool Texture::LoadFromMemory(int image_width, int image_height, const Color4ub* colors) noexcept
-	{
-		assert(image_height > 0 && image_width > 0);
+void Texture::CreateTexture(char const* filename, Textures typeOfTexture)
+{
+    GLuint texture;
 
-		width = image_width;
-		height = image_height;
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		DeleteTexture();
-		glCheck(glGenTextures(1, &textureHandle));
-		glCheck(glBindTexture(GL_TEXTURE_2D, textureHandle));
-		glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST));
-		glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_NEAREST));
-		glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT));
-		glCheck(glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT));
-		glCheck(glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, colors));
-		glCheck(glBindTexture(GL_TEXTURE_2D, textureHandle));
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
-		return textureHandle != NULL;
-	}
+    int mwidth, mheight, mnrChannels;
+    unsigned char* data = stbi_load(filename, &mwidth, &mheight, &mnrChannels, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mwidth, mheight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
-	void Texture::SelectTextureForSlot(const Texture& texture, unsigned slot) noexcept
-	{
-		glCheck(glBindTexture(GL_TEXTURE_2D, texture.textureHandle));
-		glCheck(glActiveTexture(GL_TEXTURE0 + slot));
-	}
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	void Texture::DeleteTexture() noexcept
-	{
-		glCheck(glDeleteTextures(1, &textureHandle));
-	}
 
-	Texture::~Texture() noexcept
-	{
-		DeleteTexture();
+    glBindTexture(GL_TEXTURE_2D, TextureStore.size());
 
-	}
+    stbi_image_free(data);
 
-	Texture::Texture(Texture&& other) noexcept
-		: textureHandle{ other.textureHandle }, width{ other.width }, height{ other.height }
-	{
-		other.textureHandle = 0;
-		other.width = 0;
-		other.height = 0;
-	}
+    TextureStore[typeOfTexture] = texture;
+}
 
-	Texture& Texture::operator=(Texture&& other) noexcept
-	{
-		if (this == &other)
-			return *this;
-		DeleteTexture();
-		textureHandle = other.textureHandle;
-		width = other.width;
-		height = other.height;
-		other.textureHandle = 0;
-		other.width = 0;
-		other.height = 0;
-		return *this;
-	}
+GLuint Texture::CreateTexture(char const* filename, int i)
+{
+    GLuint texture;
 
-	GLuint Texture::CreateTexture(char const* filename, int i)
-	{
+    glEnable(GL_BLEND);
+    glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
-		unsigned int texture;
+    glGenTextures(1, &texture);
+    glBindTexture(GL_TEXTURE_2D, texture);
 
-		glEnable(GL_BLEND);
-		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	
-		glGenTextures(1, &texture);
-		glBindTexture(GL_TEXTURE_2D, texture);
-	
-		int mwidth, mheight, mnrChannels;
-		unsigned char* data = stbi_load(filename, &mwidth, &mheight, &mnrChannels, 0);
-		glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mwidth, mheight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
-	
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    int mwidth, mheight, mnrChannels;
+    unsigned char* data = stbi_load(filename, &mwidth, &mheight, &mnrChannels, 0);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, mwidth, mheight, 0, GL_RGBA, GL_UNSIGNED_BYTE, data);
 
-	
-		glBindTexture(GL_TEXTURE_2D, i);
-	
-		stbi_image_free(data);
-		return texture;
-		
-	}
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
+
+    glBindTexture(GL_TEXTURE_2D, i);
+
+    stbi_image_free(data);
+
+    return texture;
+    //TextureStore.push_back(texture);
+}
+
+void Texture::Load()
+{
+    TextureStore.clear();
+    CreateTexture("assets\\DigiPen_WHITE_1024px.png",Textures::DIGIPENLOGO);
+    CreateTexture("assets\\images2.png", Textures::FMODLOGO);
+   CreateTexture("assets\\imagest1.png", Textures::STARTCUT1);
+   CreateTexture("assets\\imagest2.png", Textures::STARTCUT2);
+   CreateTexture("assets\\imagest3.png", Textures::STARTCUT3);
+   CreateTexture("assets\\skip.png", Textures::SKIP);
+   CreateTexture("assets\\nextd.png", Textures::nextd);
+   CreateTexture("assets\\bar1.png", Textures::BAR1);
+   CreateTexture("assets\\quitcheck.png", Textures::QUITCHECK);
+   CreateTexture("assets\\yes.png", Textures::YES);
+   CreateTexture("assets\\no_p.png", Textures::NO_P);
+   CreateTexture("assets\\yes_p.png", Textures::YES_P);
+   CreateTexture("assets\\no.png", Textures::no);
+   CreateTexture("assets\\background1.png", Textures::background1);
+   CreateTexture("assets\\playUI.png", Textures::playUI);
+   CreateTexture("assets\\playUI_2.png", Textures::playUI_2);
+   CreateTexture("assets\\quitUI.png", Textures::quitUI);
+   CreateTexture("assets\\quitUI_2.png", Textures::quitUI_2);
+   CreateTexture("assets\\optionUI.png", Textures::optionUI);
+   CreateTexture("assets\\optionUI_2.png", Textures::optionUI_2);
+   CreateTexture("assets\\restartUI.png", Textures::restartUI);
+   CreateTexture("assets\\restartUI_2.png", Textures::restartUI_2);
+   CreateTexture("assets\\image0.png", Textures::image0);
+   CreateTexture("assets\\image1.png", Textures::image1);
+   CreateTexture("assets\\image2.png", Textures::image2);
+   CreateTexture("assets\\imageStart.png", Textures::imageStart);
+   CreateTexture("assets\\imageEnd.png", Textures::imageEnd);
+   CreateTexture("assets\\image0-1.png", Textures::image01);
+   CreateTexture("assets\\image2-1.png", Textures::image21);
+   CreateTexture("assets\\levelButton.png", Textures::levelButton);
+   CreateTexture("assets\\levelButton_2.png", Textures::levelButton_2);
+   CreateTexture("assets\\character.png", Textures::character);
+   CreateTexture("assets\\clear.png", Textures::clear);
+   CreateTexture("assets\\level.png", Textures::level);
+  CreateTexture("assets\\01.png", Textures::num1);
+   CreateTexture("assets\\failScreen.png", Textures::failScreen);
+   CreateTexture("assets\\next.png", Textures::next);
+
+}
+void Texture::DeleteTexture() noexcept
+{
+    glCheck(glDeleteTextures(1, &textureHandle));
+}
+
+
+
+Texture::~Texture() noexcept
+{
+    DeleteTexture();
+
+}
+
+Texture& Texture::operator=(Texture&& other) noexcept
+{
+    if (this == &other)
+        return *this;
+    DeleteTexture();
+    textureHandle = other.textureHandle;
+    width = other.width;
+    height = other.height;
+    other.textureHandle = 0;
+    other.width = 0;
+    other.height = 0;
+    return *this;
+}
 
