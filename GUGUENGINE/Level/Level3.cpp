@@ -23,11 +23,8 @@ extern bool getOpt;
 
 void Level3::Init()
 {
-
 	getOpt = false;
-	//initopt = false;
 
-	//STATE_MANAGER->setCurrentLV(0);
 	if (MaxLevel <= 1)
 	{
 		MaxLevel = 1;
@@ -69,8 +66,10 @@ void Level3::Init()
 	realQuit = false;
 
 	chekNext = 0;
+
 	skip = false;
 	failS = false;
+
 	conecTcheck1 = false;
 	conecTcheck2 = false;
 	conecTcheck3 = false;
@@ -223,14 +222,10 @@ void Level3::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level3::Update()
 {
-	//STATE_MANAGER->setCurrentLV(1);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -238,7 +233,6 @@ void Level3::Update()
 
 	else
 	{
-		//initopt = false;
 		cursor3 = mInput.Cursor;
 
 		if (mInput.IsPressed(KEY::LEFT))
@@ -276,23 +270,6 @@ void Level3::Update()
 
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
-					//INPUT->setInput(KEY::LEFT);
-					chekNext = 0;
-
-					conecTcheck1 = false;
-					conecTcheck2 = false;
-					conecTcheck3 = false;
-
-					degree2 = 0;
-					degree2_2 = 0;
-					degree2_3 = 0;
-
-					blCheck1 = false;
-					blCheck1_2 = false;
-
-					blCheck2 = false;
-					blCheck2_2 = false;
-
 					std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
@@ -329,9 +306,6 @@ void Level3::Update()
 					degree2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle->mesh->setRotation(degree2);
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se3.Play("assets\\coin.mp3", 1);
-					//se3.SetVolume(0.5f);
-					//se3.SetLoopCount(1);
 					rot[0] = false;
 				}
 			}
@@ -400,10 +374,6 @@ void Level3::Update()
 					degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle2->mesh->setRotation(degree2_2);
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se3.Play(1);
-					//se3.SetVolume(0.5f);
-					//se3.SetLoopCount(1);
 					rot[1] = false;
 				}
 			}
@@ -454,9 +424,6 @@ void Level3::Update()
 					degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle3->mesh->setRotation(degree2_3);
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se3.Play(1);
-					//se3.SetVolume(0.5f);
-					//se3.SetLoopCount(1);
 					rot[2] = false;
 				}
 			}
@@ -651,10 +618,6 @@ void Level3::Update()
 					mPooPoo.SetIsSuccess(true);
 
 					this->sound->Play("assets\\flushing.wav", 1);
-
-					//playSE3.Play(1);
-					//playSE3.SetVolume(0.5f);
-					//playSE3.SetLoopCount(1);
 					poopooCheck = false;
 
 				}
@@ -734,7 +697,6 @@ void Level3::Update()
 					{
 						this->sound->ToggleMute();
 					}
-					//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 				}
 			}
 		}
@@ -761,7 +723,6 @@ void Level3::Update()
 					if (quitCheck == false)
 					{
 						Nos[1] = true;
-						//SOUND->Pause();
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
 						QuitAsk->mesh->setTransform({ 0.f, 0.f });
@@ -811,7 +772,6 @@ void Level3::Update()
 				quitCheck = false;
 				realQuit = false;
 				Nos[1] = false;
-				//STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 				QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
 				QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
 				Yes->mesh->setTransform({ -2000.f, -2000.f });
@@ -846,22 +806,7 @@ void Level3::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-
-			chekNext = 0;
-
-			conecTcheck1 = false;
-			conecTcheck2 = false;
-			conecTcheck3 = false;
-
-			degree2 = 0;
-			degree2_2 = 0;
-			degree2_3 = 0;
-
-			blCheck1 = false;
-			blCheck1_2 = false;
-
-			blCheck2 = false;
-			blCheck2_2 = false;
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();

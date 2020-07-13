@@ -18,7 +18,6 @@ void Level10::Init()
 	{
 		MaxLevel = 7;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS[0] = false;
 	failS[1] = false;
@@ -254,14 +253,10 @@ void Level10::Init()
 	opt.Init();
 	opt.getInput(&mInput, (this->sound));
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level10::Update()
 {
-	//STATE_MANAGER->setCurrentLV(7);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -821,7 +816,6 @@ void Level10::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -904,6 +898,7 @@ void Level10::Update()
 
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
+			firstTime = glfwGetTime();
 		}
 		lastTime = glfwGetTime();
 
@@ -1039,7 +1034,6 @@ void Level10::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
@@ -1065,7 +1059,6 @@ void Level10::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 	OBJECT_FACTORY->DestroyAllObjects();

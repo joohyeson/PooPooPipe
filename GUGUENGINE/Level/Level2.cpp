@@ -31,8 +31,6 @@ void Level2::Init()
 	spaceCheck = false;
 	click = 0;
 
-	firstTime = glfwGetTime();
-	
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -52,7 +50,6 @@ void Level2::Init()
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
 
-	//mShader.BuildTextureShaderNDC();
 	mShader2.BuildTextureShader();
 
 	movePuzzle->AddComponent(new Mesh());
@@ -219,6 +216,7 @@ void Level2::Update()
 					mInput.setInput(KEY::LEFT);
 					spaceCheck = true;
 					click = true;
+					firstTime = glfwGetTime();
 				}
 				else
 				{
@@ -273,7 +271,6 @@ void Level2::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	//ENGINE->Quit();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

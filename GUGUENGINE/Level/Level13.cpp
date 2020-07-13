@@ -237,14 +237,10 @@ void Level13::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level13::Update()
 {
-	//STATE_MANAGER->setCurrentLV(10);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -676,7 +672,7 @@ void Level13::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();
@@ -909,7 +905,6 @@ void Level13::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
@@ -935,7 +930,6 @@ void Level13::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 

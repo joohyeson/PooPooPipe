@@ -19,7 +19,6 @@ void Level12::Init()
 	{
 		MaxLevel = 9;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
 
 	Nos[0] = false;
 	Nos[1] = false;
@@ -250,9 +249,6 @@ void Level12::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level12::Update()
@@ -263,7 +259,6 @@ void Level12::Update()
 	}
 	else
 	{
-		//STATE_MANAGER->setCurrentLV(9);
 		if (mInput.IsPressed(KEY::F) == true)
 		{
 			APPLICATION->SetFullScreen();
@@ -651,7 +646,7 @@ void Level12::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();
@@ -747,7 +742,6 @@ void Level12::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -940,7 +934,6 @@ void Level12::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
@@ -966,7 +959,6 @@ void Level12::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 

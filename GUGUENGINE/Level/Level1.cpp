@@ -20,7 +20,6 @@ void Level1::Init()
 	levelCheck = false;
 	spaceCheck = false;
 	background = OBJECT_FACTORY->CreateEmptyObject();
-	firstTime = glfwGetTime();
 
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -123,6 +122,7 @@ void Level1::Update()
 						movable = false;
 						levelCheck = true;
 						spaceCheck = true;
+						firstTime = glfwGetTime();
 					}
 				}
 			}
@@ -139,7 +139,6 @@ void Level1::Update()
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST2);
 		}
 	}
-
 
 	background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
 	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));

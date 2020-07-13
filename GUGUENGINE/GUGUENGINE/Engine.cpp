@@ -36,7 +36,9 @@ void Engine::Init()
 	AddSystem(new Application());
 	AddSystem(new ObjectFactory());
 	AddSystem(new StateManager());
+
 	TEXTURE = new Texture();
+
 	lastTick = std::chrono::system_clock::now();
 	fpsCalcTime = lastTick;
 

@@ -45,7 +45,7 @@ public:
 		No_p = nullptr;
 		soundBar = nullptr;
 		goToMainP = nullptr;
-		mInput = nullptr
+		mInput = nullptr;
 	}
 
 	void Init() override;

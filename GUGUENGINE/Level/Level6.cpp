@@ -9,8 +9,7 @@
 #include "Level6.h"
 #include "../GUGUENGINE/Sound.h"
 
-//Sound se6;
-//Sound playSE6;
+
 extern int MaxLevel;
 extern bool getOpt;
 
@@ -246,8 +245,6 @@ void Level6::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-	firstTime = glfwGetTime();
-
 }
 
 void Level6::Update()
@@ -259,7 +256,6 @@ void Level6::Update()
 	else
 	{
 		cursor6 = mInput.Cursor;
-		//STATE_MANAGER->setCurrentLV(3);
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			if (checking == false)
@@ -300,8 +296,7 @@ void Level6::Update()
 			mInput.setInput(KEY::F);
 		}
 
-		/*se6.Update();
-		playSE6.Update();*/
+
 
 		if (Levelsel->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, Levelsel->mesh) == true)
 		{
@@ -316,26 +311,6 @@ void Level6::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true)
 				{
 					INPUT->setInput(KEY::LEFT);
-
-					chekNext6 = 0;
-
-					conecTcheck6_1 = false;
-					conecTcheck6_2 = false;
-					conecTcheck6_3 = false;
-					conecTcheck6_4 = false;
-					conecTcheck6_5 = false;
-
-					degree6 = DegreeToRadian(60.f);
-					degree6_2 = DegreeToRadian(-60.f);
-					degree6_3 = DegreeToRadian(120.f);
-					degree6_4 = DegreeToRadian(180.f);
-					degree6_5 = DegreeToRadian(-180.f);
-					degree6_6 = DegreeToRadian(-120.f);
-
-					rotTime.setRotate(100);
-
-					std::cout << "check" << std::endl;
-
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -435,9 +410,6 @@ void Level6::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se6.Play(1);
-						//se6.SetVolume(0.5f);
-						//se6.SetLoopCount(1);
 						rot[3] = false;
 					}
 				}
@@ -731,7 +703,6 @@ void Level6::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -782,7 +753,6 @@ void Level6::Update()
 				quitCheck = false;
 				realQuit = false;
 				Nos[1] = false;
-				//STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
 				QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
 				QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
 				Yes->mesh->setTransform({ -2000.f, -2000.f });
@@ -811,23 +781,8 @@ void Level6::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
+			firstTime = glfwGetTime();
 
-			chekNext6 = 0;
-
-			conecTcheck6_1 = false;
-			conecTcheck6_2 = false;
-			conecTcheck6_3 = false;
-			conecTcheck6_4 = false;
-			conecTcheck6_5 = false;
-
-			degree6 = DegreeToRadian(60.f);
-			degree6_2 = DegreeToRadian(-60.f);
-			degree6_3 = DegreeToRadian(120.f);
-			degree6_4 = DegreeToRadian(180.f);
-			degree6_5 = DegreeToRadian(-180.f);
-			degree6_6 = DegreeToRadian(-120.f);
-
-			rotTime.setRotate(100);
 		}
 
 		lastTime = glfwGetTime();
@@ -839,6 +794,7 @@ void Level6::Update()
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 			}
 		}
+
 		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
 		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
 		puzzle2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
@@ -980,7 +936,6 @@ void Level6::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 	

@@ -9,8 +9,7 @@
 #include "Level9.h"
 #include "../GUGUENGINE/Sound.h"
 
-//Sound se9;
-//Sound playSE9;
+
 extern int MaxLevel;
 extern bool getOpt;
 
@@ -23,7 +22,6 @@ void Level9::Init()
 	{
 		MaxLevel = 6;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 
 	failS = false;
@@ -75,6 +73,7 @@ void Level9::Init()
 	degree9_6 = DegreeToRadian(-180.f);
 	degree9_7 = DegreeToRadian(120.f);
 	degree9_rot = DegreeToRadian(-120.f);
+
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
 	mini->mesh->InitializeTextureMesh(500.f, 500.f);
 
@@ -85,15 +84,6 @@ void Level9::Init()
 	fail->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.0f, -2000.0f });
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-
-
-
-
-	//se9.Init();
-	//se9.LoadSE("assets\\coin.mp3");
-
-	//playSE9.Init();
-	//playSE9.LoadSE("assets\\flushing.wav");
 
 
 	mShader2.BuildTextureShader();
@@ -155,7 +145,6 @@ void Level9::Init()
 	puzzle2->pipe->SetDirection(false, false, false, true, false, true);
 
 	puzzle3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, 160.f + 22.f }, 120.f);
-	//puzzle3->pipe->SetDirection(false, true, false, true, false, false);
 
 	puzzle4 = OBJECT_FACTORY->CreateObject(Type::DirPuzzle, { 140.f - 415.f, 160.f + 22.f }, -120.f);
 	puzzle4->pipe->SetDirection(false, true, false, true, false, true);
@@ -166,7 +155,6 @@ void Level9::Init()
 	puzzle6->pipe->SetDirection(true, false, false, true, false, false);
 
 	puzzle7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f - 430.f, 40.f - 5.f }, 60.f);
-	//puzzle7->pipe->SetDirection(false, false, true, true, false, false);
 
 	puzzle8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -268.f - 519.f, -80.f - 32.f }, 180.f);
 
@@ -185,7 +173,6 @@ void Level9::Init()
 	puzzle13->pipe->SetDirection(false, true, true, false, false, false);
 
 	puzzle14 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 276.f - 376.f, 160.f + 22.f }, -60);
-	//puzzle14->pipe->SetDirection(false, false, false, true, true, false);
 
 	Levelsel = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 713.5f, -300.f }, 180.f);
 	Levelsel_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 1800.f, -300.f }, 180.f);
@@ -256,8 +243,6 @@ void Level9::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-	firstTime = glfwGetTime();
-
 }
 
 void Level9::Update()
@@ -306,23 +291,6 @@ void Level9::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true)
 				{
 					INPUT->setInput(KEY::LEFT);
-
-					chekNext9 = 0;
-
-					conecTcheck9_1 = false;
-					conecTcheck9_2 = false;
-					conecTcheck9_3 = false;
-
-					degree9 = 0;
-					degree9_2 = DegreeToRadian(60.f);
-					degree9_3 = DegreeToRadian(-60.f);
-					degree9_4 = DegreeToRadian(60.f);
-					degree9_5 = 0;
-					degree9_6 = DegreeToRadian(-180.f);
-					degree9_7 = DegreeToRadian(120.f);
-					degree9_rot = DegreeToRadian(-120.f);
-
-					std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -768,21 +736,8 @@ void Level9::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			chekNext9 = 0;
 
-			conecTcheck9_1 = false;
-			conecTcheck9_2 = false;
-			conecTcheck9_3 = false;
-
-			degree9 = 0;
-			degree9_2 = DegreeToRadian(60.f);
-			degree9_3 = DegreeToRadian(-60.f);
-			degree9_4 = DegreeToRadian(60.f);
-			degree9_5 = 0;
-			degree9_6 = DegreeToRadian(-180.f);
-			degree9_7 = DegreeToRadian(120.f);
-			degree9_rot = DegreeToRadian(-120.f);
-
+			firstTime = glfwGetTime();
 		}
 		lastTime = glfwGetTime();
 
@@ -793,7 +748,6 @@ void Level9::Update()
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST10);
 			}
 		}
-		/*se9.Update();*/
 
 		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background2));
 		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::VPuzzle2));

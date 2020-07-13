@@ -9,8 +9,7 @@
 #include "Level8.h"
 #include "../GUGUENGINE/Sound.h"
 
-//Sound se8;
-//Sound playSE8;
+
 extern int MaxLevel;
 extern bool getOpt;
 
@@ -22,7 +21,6 @@ void Level8::Init()
 	{
 		MaxLevel = 4;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
 	skip = false;
 	failS[0] = false;
 	failS[1] = false;
@@ -163,11 +161,6 @@ void Level8::Init()
 	leftnumberTen = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 400, 450.f - 20.f });
 	leftnumberTen->mesh->InitializeTextureMesh(80.f, 100.f);
 
-	//se8.Init();
-	//se8.LoadSE("assets\\coin.mp3");
-
-	//playSE8.Init();
-	//playSE8.LoadSE("assets\\flushing.wav");
 
 	mShader2.BuildTextureShader();
 
@@ -276,17 +269,11 @@ void Level8::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level8::Update()
 {
-	//STATE_MANAGER->setCurrentLV(4);
 
-	/*se8.Update();
-	playSE8.Update();*/
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -328,28 +315,6 @@ void Level8::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true)
 				{
 					INPUT->setInput(KEY::LEFT);
-
-					chekNext8 = 0;
-
-					conecTcheck8_1 = false;
-					conecTcheck8_2 = false;
-					conecTcheck8_3 = false;
-					conecTcheck8_4 = false;
-					conecTcheck8_5 = false;
-					conecTcheck8_6 = false;
-					conecTcheck8_7 = false;
-					conecTcheck8_8 = false;
-					conecTcheck8_9 = false;
-
-					degree8 = 0;
-					degree8_2 = 0;
-					degree8_3 = 0;
-					degree8_4 = 0;
-					degree8_5 = 0;
-					degree8_6 = 0;
-					degree8_7 = 0;
-
-					std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -401,8 +366,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play("assets\\coin.mp3", 1);
-
 						rot[0] = false;
 					}
 				}
@@ -426,9 +389,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
 						rot[1] = false;
 					}
 				}
@@ -453,9 +413,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
 						rot[2] = false;
 					}
 				}
@@ -480,9 +437,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
 						rot[3] = false;
 					}
 				}
@@ -506,9 +460,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
 						rot[4] = false;
 					}
 				}
@@ -533,9 +484,6 @@ void Level8::Update()
 
 						this->sound->Play("assets\\coin.mp3", 1);
 
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
 						rot[5] = false;
 					}
 				}
@@ -558,9 +506,7 @@ void Level8::Update()
 						rotTime.Update();
 
 						this->sound->Play("assets\\coin.mp3", 1);
-						//se8.Play(1);
-						//se8.SetVolume(0.5f);
-						//se8.SetLoopCount(1);
+
 
 						rot[6] = false;
 					}
@@ -767,28 +713,9 @@ void Level8::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			chekNext8 = 0;
-
-			conecTcheck8_1 = false;
-			conecTcheck8_2 = false;
-			conecTcheck8_3 = false;
-			conecTcheck8_4 = false;
-			conecTcheck8_5 = false;
-			conecTcheck8_6 = false;
-			conecTcheck8_7 = false;
-			conecTcheck8_8 = false;
-			conecTcheck8_9 = false;
-
-			degree8 = 0;
-			degree8_2 = 0;
-			degree8_3 = 0;
-			degree8_4 = 0;
-			degree8_5 = 0;
-			degree8_6 = 0;
-			degree8_7 = 0;
-
-			rotTime.setRotate(30);
+			firstTime = glfwGetTime();
 		}
+
 		lastTime = glfwGetTime();
 
 		if (skip == true)
@@ -867,7 +794,6 @@ void Level8::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -938,7 +864,6 @@ void Level8::Update()
 			ENGINE->Quit();
 		}
 
-		//se8.Update();
 
 		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
 		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curve2Puzzle));
@@ -1073,7 +998,6 @@ void Level8::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));

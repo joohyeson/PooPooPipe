@@ -98,7 +98,6 @@ void Level5::Init()
 	mini = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 330.f, 200.f });
 	mini->mesh->InitializeTextureMesh(500.f, 500.f);
 
-
 	playUI = OBJECT_FACTORY->CreateEmptyObject();
 	playUI->AddComponent(new Mesh());
 	playUI->Init();
@@ -250,12 +249,10 @@ void Level5::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-	firstTime = glfwGetTime();
 }
 
 void Level5::Update()
 {
-	//STATE_MANAGER->setCurrentLV(5);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -299,8 +296,6 @@ void Level5::Update()
 
 		cursor5 = mInput.Cursor;
 
-		/*se5.Update();
-		playSE5.Update();*/
 		if (mInput.IsPressed(KEY::F) == true)
 		{
 			APPLICATION->SetFullScreen();
@@ -320,28 +315,6 @@ void Level5::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
 					INPUT->setInput(KEY::LEFT);
-					chekNext5 = 0;
-
-					conecTcheck5_1 = false;
-					conecTcheck5_2 = false;
-					conecTcheck5_3 = false;
-
-					degree5 = 0;
-					degree5_2 = 0;
-					degree5_3 = 0;
-
-					blCheck5 = false;
-					blCheck5_2 = false;
-					blCheck5_3 = false;
-
-					blCheck6 = false;
-					blCheck6_2 = false;
-					blCheck6_3 = false;
-
-					blCheck7 = false;
-					blCheck7_2 = false;
-					blCheck7_3 = false;
-
 					std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
@@ -377,10 +350,6 @@ void Level5::Update()
 					movePuzzle->mesh->setRotation(degree5);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se5.Play(1);
-					//se5.SetVolume(0.5f);
-					//se5.SetLoopCount(1);
 					rot[0] = false;
 				}
 			}
@@ -496,9 +465,7 @@ void Level5::Update()
 					movePuzzle2->mesh->setRotation(degree5_2);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se5.Play(1);
-					//se5.SetVolume(0.5f);
-					//se5.SetLoopCount(1);
+
 					rot[1] = false;
 				}
 			}
@@ -614,9 +581,7 @@ void Level5::Update()
 						movePuzzle3->mesh->setRotation(degree5_3);
 
 						this->sound->Play("assets\\coin.mp3", 1);
-						//se5.Play(1);
-						//se5.SetVolume(0.5f);
-						//se5.SetLoopCount(1);
+
 						rot[2] = false;
 					}
 				}
@@ -914,9 +879,6 @@ void Level5::Update()
 					puzzle7->pipe->SetDirection(true, true, false, true, false, false);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se5.Play(1);
-					//se5.SetVolume(0.5f);
-					//se5.SetLoopCount(1);
 
 					movePuzzleCheck5 = false;
 				}
@@ -931,9 +893,6 @@ void Level5::Update()
 					connectMove5 = 0;
 
 					this->sound->Play("assets\\flushing.wav", 1);
-					//playSE5.Play(1);
-					//playSE5.SetVolume(0.5f);
-					//playSE5.SetLoopCount(1);
 
 					poopooCheck = false;
 				}
@@ -978,27 +937,7 @@ void Level5::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			chekNext5 = 0;
-
-			conecTcheck5_1 = false;
-			conecTcheck5_2 = false;
-			conecTcheck5_3 = false;
-
-			degree5 = 0;
-			degree5_2 = 0;
-			degree5_3 = 0;
-
-			blCheck5 = false;
-			blCheck5_2 = false;
-			blCheck5_3 = false;
-
-			blCheck6 = false;
-			blCheck6_2 = false;
-			blCheck6_3 = false;
-
-			blCheck7 = false;
-			blCheck7_2 = false;
-			blCheck7_3 = false;
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();
@@ -1081,7 +1020,6 @@ void Level5::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
-						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -1151,7 +1089,6 @@ void Level5::Update()
 			glfwTerminate();
 			ENGINE->Quit();
 		}
-		//se5.Update();
 
 		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background2));
 		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
@@ -1248,7 +1185,6 @@ void Level5::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 	OBJECT_FACTORY->DestroyAllObjects();

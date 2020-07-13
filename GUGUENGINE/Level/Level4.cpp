@@ -219,12 +219,10 @@ void Level4::Init()
 	opt.getInput(&mInput, (this->sound));
 	
 	mInput.InitCallback(APPLICATION->getMyWindow());
-	firstTime = glfwGetTime();
 }
 
 void Level4::Update()
 {
-	//STATE_MANAGER->setCurrentLV(2);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -234,8 +232,6 @@ void Level4::Update()
 
 		cursor4 = mInput.Cursor;
 
-		//se4.Update();
-		//playSE4.Update();
 		if (mInput.IsPressed(KEY::LEFT))
 		{
 			if (checking == false)
@@ -271,22 +267,6 @@ void Level4::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
 					INPUT->setInput(KEY::LEFT);
-					chekNext4 = 0;
-
-					conecTcheck4_1 = false;
-					conecTcheck4_2 = false;
-					conecTcheck4_3 = false;
-
-					degree4 = 0;
-					degree4_2 = 0;
-					degree4_3 = 0;
-
-					blCheck3 = false;
-					blCheck3_2 = false;
-
-					blCheck4 = false;
-					blCheck4_2 = false;
-
 					std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
@@ -325,9 +305,6 @@ void Level4::Update()
 					movePuzzle->mesh->setRotation(degree4);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-					//se4.Play(1);
-					//se4.SetVolume(0.5f);
-					//se4.SetLoopCount(1);
 					rot[0] = false;
 
 				}
@@ -399,9 +376,6 @@ void Level4::Update()
 
 					this->sound->Play("assets\\coin.mp3", 1);
 
-					//se4.Play(1);
-					//se4.SetVolume(0.5f);
-					//se4.SetLoopCount(1);
 					rot[1] = false;
 				}
 			}
@@ -454,10 +428,6 @@ void Level4::Update()
 					movePuzzle3->mesh->setRotation(degree4_3);
 
 					this->sound->Play("assets\\coin.mp3", 1);
-
-					//se4.Play(1);
-					//se4.SetVolume(0.5f);
-					//se4.SetLoopCount(1);
 
 					rot[2] = false;
 
@@ -683,9 +653,7 @@ void Level4::Update()
 					mPooPoo.SetIsSuccess(true);
 
 					this->sound->Play("assets\\flushing.wav", 1);
-					//playSE4.Play(1);
-					//playSE4.SetVolume(0.5f);
-					//playSE4.SetLoopCount(1);
+
 					poopooCheck = false;
 				}
 				else
@@ -718,21 +686,7 @@ void Level4::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			chekNext4 = 0;
-
-			conecTcheck4_1 = false;
-			conecTcheck4_2 = false;
-			conecTcheck4_3 = false;
-
-			degree4 = 0;
-			degree4_2 = 0;
-			degree4_3 = 0;
-
-			blCheck3 = false;
-			blCheck3_2 = false;
-
-			blCheck4 = false;
-			blCheck4_2 = false;
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();
@@ -825,7 +779,7 @@ void Level4::Update()
 					if (quitCheck == false)
 					{
 						Nos[1] = true;
-						//SOUND->Pause();
+
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
 						QuitAsk->mesh->setTransform({ 0.f, 0.f });
@@ -973,7 +927,6 @@ void Level4::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 

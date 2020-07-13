@@ -19,7 +19,6 @@ void Level11::Init()
 	{
 		MaxLevel = 8;
 	}
-	//STATE_MANAGER->setCurrentLV(0);
 	failS[0] = false;
 	failS[1] = false;
 
@@ -54,7 +53,6 @@ void Level11::Init()
 	quitCheck = false;
 	realQuit = false;
 
-	//rotTime.setRotate(100);
 	rotTime.setRotate(35);
 	rotrot2 = true;
 
@@ -268,9 +266,6 @@ void Level11::Init()
 	opt.getInput(&mInput, (this->sound));
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
-
-	firstTime = glfwGetTime();
-
 }
 
 void Level11::Update()
@@ -790,29 +785,8 @@ void Level11::Update()
 			skip = true;
 
 			win->mesh->setTransform({ 0,0 });
-			chekNext8 = 0;
-
-			conecTcheck8_1 = false;
-			conecTcheck8_2 = false;
-			conecTcheck8_3 = false;
-			conecTcheck8_4 = false;
-			conecTcheck8_5 = false;
-			conecTcheck8_6 = false;
-			conecTcheck8_7 = false;
-			conecTcheck8_8 = false;
-			conecTcheck8_9 = false;
-
-			degree8 = DegreeToRadian(-60.f);
-			degree8_2 = DegreeToRadian(-60.f);
-			degree8_3 = 0;
-			degree8_4 = 0;
-			degree8_5 = 0;
-			degree8_6 = 0;
-			degree8_7 = 0;
-			degree8_8 = 0;
-			degree8_9 = 0;
-
-			rotTime.setRotate(30);
+	
+			firstTime = glfwGetTime();
 		}
 
 		lastTime = glfwGetTime();
@@ -899,7 +873,6 @@ void Level11::Update()
 				INPUT->setInput(KEY::LEFT);
 				if (quitCheck == false)
 				{
-					//SOUND->Pause();
 					Nos[1] = true;
 					quitCheck = true;
 					QuitAskBack->mesh->setTransform({ 0.f, 0.f });
@@ -1094,7 +1067,6 @@ void Level11::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 		
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
@@ -1113,7 +1085,6 @@ void Level11::Update()
 		glfwPollEvents();
 
 	}
-	//STATE_MANAGER->setCurrentLV(8);
 }
 
 void Level11::Close()
@@ -1121,7 +1092,6 @@ void Level11::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 	OBJECT_FACTORY->DestroyAllObjects();

@@ -28,7 +28,6 @@ void Level14::Init()
 
 	rotTime.setRotate(10);
 	rotrot2 = true;
-	firstTime = glfwGetTime();
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -264,7 +263,6 @@ void Level14::Init()
 
 void Level14::Update()
 {
-	//STATE_MANAGER->setCurrentLV(11);
 	if (getOpt == true)
 	{
 		opt.Update();
@@ -684,7 +682,7 @@ void Level14::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-
+			firstTime = glfwGetTime();
 		}
 
 		if (skip == true)
@@ -973,7 +971,6 @@ void Level14::Update()
 			{
 				this->sound->ToggleMute();
 			}
-			//STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 		}
 
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
@@ -999,7 +996,6 @@ void Level14::Close()
 	mShader.Delete();
 	mMesh.Delete();
 	mPooPoo.Clear();
-	//ENGINE->Quit();
 	getOpt = false;
 	opt.Close();
 	OBJECT_FACTORY->DestroyAllObjects();
