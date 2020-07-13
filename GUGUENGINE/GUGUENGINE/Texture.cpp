@@ -187,6 +187,10 @@ void Texture::Load()
     CreateTexture("assets\\music.png", Textures::musicL);
     CreateTexture("assets\\bar0.png", Textures::bar0);
     CreateTexture("assets\\fullscreen.png", Textures::fullScrenL);
+	CreateTexture("assets\\resume.png", Textures::resume);
+	CreateTexture("assets\\resume2.png", Textures::resume2);
+	CreateTexture("assets\\backtomain.png", Textures::backtomain);
+	CreateTexture("assets\\backtomain2.png", Textures::backtomain2);
 }
 void Texture::DeleteTexture() noexcept
 {

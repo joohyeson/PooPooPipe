@@ -29,6 +29,7 @@ public:
 		arrowLeft = nullptr;
 		bar0 = nullptr;
 		goToMain = nullptr;
+		goToMain_pressed = nullptr;
 		key = 0;
 		fullScreen = nullptr;
 		fullScreenFalse = nullptr;
@@ -58,8 +59,9 @@ public:
 
 private:
 	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
-	Object* goToMain, * fullScreen, * fullScreenFalse, * fullScreenTrue;
-	Object* quitButton, * quitButton_pressed;
+	Object* goToMain, *goToMain_pressed, * fullScreen, * fullScreenFalse, * fullScreenTrue;
+	Object* quitButton, * quitButton_pressed, * backtomain, * backtomain_pressed;
+	
 	
 	int key;
 	

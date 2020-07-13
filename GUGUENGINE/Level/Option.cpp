@@ -55,7 +55,7 @@ void LevelOption::Init()
 	quitCheck = false;
 	realQuit = false;
 
-	option->mesh->setTransform({ 0.0f,350.f });
+	option->mesh->setTransform({ 0.0f,400.f });
 	option->mesh->SetMeshType(MESHTYPE::rectangle);
 	option->mesh->InitializeTextureMesh(400.f, 100.f);
 
@@ -63,11 +63,31 @@ void LevelOption::Init()
 	goToMain->AddComponent(new Mesh());
 	goToMain->AddComponent(new CollisionCheck());
 	goToMain->Init();
-
-	goToMain->mesh->setTransform({ -700.0f,350.f });
+	goToMain->mesh->setTransform({ 0.f,-90.f });
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
-	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
+	goToMain->mesh->InitializeTextureMesh(350.f, 70.f);
 
+	goToMain_pressed = OBJECT_FACTORY->CreateEmptyObject();
+	goToMain_pressed->AddComponent(new Mesh());
+	goToMain_pressed->Init();
+	goToMain_pressed->mesh->setTransform({ 3500.0f,-100.f });
+	goToMain_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
+	goToMain_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
+
+	backtomain = OBJECT_FACTORY->CreateEmptyObject();
+	backtomain->AddComponent(new Mesh());
+	backtomain->AddComponent(new CollisionCheck());
+	backtomain->Init();
+	backtomain->mesh->setTransform({ 0.f,-180.f });
+	backtomain->mesh->SetMeshType(MESHTYPE::rectangle);
+	backtomain->mesh->InitializeTextureMesh(560.f, 70.f);
+
+	backtomain_pressed = OBJECT_FACTORY->CreateEmptyObject();
+	backtomain_pressed->AddComponent(new Mesh());
+	backtomain_pressed->Init();
+	backtomain_pressed->mesh->setTransform({ 3500.0f,-100.f });
+	backtomain_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
+	backtomain_pressed->mesh->InitializeTextureMesh(560.f, 70.f);
 
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
@@ -109,9 +129,9 @@ void LevelOption::Init()
 	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreen->AddComponent(new Mesh());
 	fullScreen->Init();
-	fullScreen->mesh->setTransform({ -260.f,130.f });
+	fullScreen->mesh->setTransform({ -230.f,130.f });
 	fullScreen->mesh->SetMeshType(MESHTYPE::rectangle);
-	fullScreen->mesh->InitializeTextureMesh(240.f, 80.f);
+	fullScreen->mesh->InitializeTextureMesh(480.f, 80.f);
 
 	fullScreenFalse = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreenFalse->AddComponent(new Mesh());
@@ -137,7 +157,7 @@ void LevelOption::Init()
 	quitButton_pressed->AddComponent(new Mesh());
 	quitButton_pressed->Init();
 
-	quitButton->mesh->setTransform({ 0.0f,20.f });
+	quitButton->mesh->setTransform({ 0.0f,0.f });
 	quitButton->mesh->SetMeshType(MESHTYPE::rectangle);
 	quitButton->mesh->InitializeTextureMesh(280.f, 70.f);
 	quitButton_pressed->mesh->setTransform({ 3500.0f,-100.f });
@@ -150,7 +170,6 @@ void LevelOption::Init()
 	mInput->InitCallback(APPLICATION->getMyWindow());
 
 	
-	//SOUND->StopSound("BGM");
 }
 
 void LevelOption::Update()
@@ -309,6 +328,38 @@ void LevelOption::Update()
 		quitButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
+	{
+		goToMain_pressed->mesh->setTransform(goToMain->mesh->GetTransform());
+
+		if (mInput->IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+		}
+	}
+	else
+	{
+		goToMain_pressed->mesh->setTransform({ 2000.f, 2000.f });
+	}
+
+
+	//if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh))
+	//{
+	//	backtomain_pressed->mesh->setTransform(backtomain->mesh->GetTransform());
+
+	//	if (mInput->IsPressed(KEY::LEFT))
+	//	{
+	//		INPUT->setInput(KEY::LEFT);
+	//		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+	//	}
+	//}
+	//else
+	//{
+	//	backtomain_pressed->mesh->setTransform({ 2000.f, 2000.f });
+	//}
+
+
+
 	if (Yes->collision->Point2BoxCollision(cursor, Yes->mesh))
 	{
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
@@ -351,7 +402,9 @@ void LevelOption::Update()
 	option->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionL));
 	music->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::musicL));
 
-	goToMain->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI));
+	goToMain->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::resume));
+	goToMain_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::resume2));
+
 
 	arrowRight->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::volumeR));
 	arrowLeft->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::volumeL));
@@ -366,6 +419,9 @@ void LevelOption::Update()
 
 	quitButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitL));
 	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitLp));
+
+	backtomain->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::backtomain));
+	backtomain_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::backtomain2));
 
 	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
 	QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));
