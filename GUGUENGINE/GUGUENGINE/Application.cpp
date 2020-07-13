@@ -73,7 +73,7 @@ Application::Application()
         screenMode->width,
         screenMode->height,
         "PooPooPipe",
-        glfwGetPrimaryMonitor(), NULL);
+        NULL, NULL);
 
     isFullScreen = true;
 
