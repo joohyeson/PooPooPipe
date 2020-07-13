@@ -329,8 +329,11 @@ void LevelOption::Update()
 		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
-			realQuit = false;
-			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			realQuit = false; quitCheck = false;
+			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
+			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
+			Yes->mesh->setTransform({ -2000.f, -2000.f });
+			No->mesh->setTransform({ -2000.f, -2000.f });
 		}
 	}
 	else
