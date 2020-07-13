@@ -19,7 +19,7 @@ enum class Textures
 	BAR1, QUITCHECK, YES, NO_P, YES_P, no, background1,playUI, 
 	playUI_2, quitUI, quitUI_2, optionUI, optionUI_2, restartUI, restartUI_2, image0, image1,image2,
 	imageStart, imageEnd, image01, image21, levelButton, levelButton_2,
-	character, clear, level, num1, failScreen, next
+	character, clear, level, num1,num2, failScreen, next
 };
 
 class Texture

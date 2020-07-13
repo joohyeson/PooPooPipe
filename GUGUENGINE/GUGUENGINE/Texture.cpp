@@ -123,6 +123,7 @@ void Texture::Load()
    CreateTexture("assets\\clear.png", Textures::clear);
    CreateTexture("assets\\level.png", Textures::level);
   CreateTexture("assets\\01.png", Textures::num1);
+  CreateTexture("assets\\02.png", Textures::num2);
    CreateTexture("assets\\failScreen.png", Textures::failScreen);
    CreateTexture("assets\\next.png", Textures::next);
 
