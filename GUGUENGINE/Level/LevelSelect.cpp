@@ -21,84 +21,60 @@ void LevelSelect::Init()
 	std::cout << "come in LevelSelect" << std::endl;
 	backgroundLv = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	backgroundLv->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureBackgroundLv = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	Level1 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -132.f - 200.f, 160.f });
-	texureIdLv1 = TEXTURE->CreateTexture("assets\\levelButton1.png", 0);
 
 	Level1_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f });
-	texureIdLv1_pressed = TEXTURE->CreateTexture("assets\\levelButton1_2.png", 0);
 
 	Level2 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 4.0f - 160.f, 160.f }, 60 * 3);
-	texureIdLv2 = TEXTURE->CreateTexture("assets\\levelButton2.png", 0);
 
 	Level2_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv2_pressed = TEXTURE->CreateTexture("assets\\levelButton2_2.png", 0);
 
 	Level2_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureId_lock = TEXTURE->CreateTexture("assets\\locked.png", 0);
 
 	Level3 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 140.f - 120.f, 160.f }, 60 * 3);
-	texureIdLv3 = TEXTURE->CreateTexture("assets\\levelButton3.png", 0);
 
 	Level3_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv3_pressed = TEXTURE->CreateTexture("assets\\levelButton3_2.png", 0);
 	Level3_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level4 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f, 40.f - 30.f }, 60 * 3);
-	texureIdLv4 = TEXTURE->CreateTexture("assets\\levelButton4.png", 0);
 
 	Level4_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv4_pressed = TEXTURE->CreateTexture("assets\\levelButton4_2.png", 0);
 	Level4_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level5 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -64.f - 5.f  , 40.f - 30.f }, 60 * 3);
-	texureIdLv5 = TEXTURE->CreateTexture("assets\\levelButton5.png", 0);
 
 	Level5_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv5_pressed = TEXTURE->CreateTexture("assets\\levelButton5_2.png", 0);
 	Level5_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level6 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 72.f + 30.f, 40.f - 30.f }, 60 * 3);
-	texureIdLv6 = TEXTURE->CreateTexture("assets\\levelButton6.png", 0);
 
 	Level6_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv6_pressed = TEXTURE->CreateTexture("assets\\levelButton6_2.png", 0);
 	Level6_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level7 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f, -140.f }, 60 * 3);
-	texureIdLv7 = TEXTURE->CreateTexture("assets\\levelButton7.png", 0);
 
 	Level7_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv7_pressed = TEXTURE->CreateTexture("assets\\levelButton7_2.png", 0);
 	Level7_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level8 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f + 176.f, -140.f }, 60 * 3);
-	texureIdLv8 = TEXTURE->CreateTexture("assets\\levelButton8.png", 0);
 
 	Level8_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv8_pressed = TEXTURE->CreateTexture("assets\\levelButton8_2.png", 0);
 	Level8_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level9 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f - 45.f + 87.f + 176.f + 87.f*2, -140.f }, 60 * 3);
-	texureIdLv9 = TEXTURE->CreateTexture("assets\\levelButton9.png", 0);
 
 	Level9_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv9_pressed = TEXTURE->CreateTexture("assets\\levelButton9_2.png", 0);
 	Level9_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level10 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f+87.f +45.f, -140.f-150.f }, 60 * 3);
-	texureIdLv10 = TEXTURE->CreateTexture("assets\\levelButton10.png", 0);
 
 	Level10_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv10_pressed = TEXTURE->CreateTexture("assets\\levelButton10_2.png", 0);
 	Level10_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 
 	Level11 = OBJECT_FACTORY->CreateObject(Type::Puzzle, { -200.f + 87.f + 45.f + 87.f+87.f, -140.f - 150.f }, 60 * 3);
-	texureIdLv11 = TEXTURE->CreateTexture("assets\\levelButton11.png", 0);
 
 	Level11_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	texureIdLv11_pressed = TEXTURE->CreateTexture("assets\\levelButton11_2.png", 0);
 	Level11_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	
 	seLv.Init();
@@ -393,50 +369,50 @@ void LevelSelect::Update()
 	}
 	
 	
-	backgroundLv->mesh->Update(mShader2.GetShaderHandler(), textureBackgroundLv);
+	backgroundLv->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
 
-	Level1->mesh->Update(mShader2.GetShaderHandler(), texureIdLv1);
-	Level1_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv1_pressed);
+	Level1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level1));
+	Level1_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::leve1p));
 
-	Level2->mesh->Update(mShader2.GetShaderHandler(), texureIdLv2);
-	Level2_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv2_pressed);
-	Level2_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level2));
+	Level2_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level2p));
+	Level2_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level3->mesh->Update(mShader2.GetShaderHandler(), texureIdLv3);
-	Level3_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv3_pressed);
-	Level3_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level3->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level3));
+	Level3_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level3p));
+	Level3_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level4->mesh->Update(mShader2.GetShaderHandler(), texureIdLv4);
-	Level4_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv4_pressed);
-	Level4_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level4->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level4));
+	Level4_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level4p));
+	Level4_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level5->mesh->Update(mShader2.GetShaderHandler(), texureIdLv5);
-	Level5_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv5_pressed);
-	Level5_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level5->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level5));
+	Level5_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level5p));
+	Level5_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level6->mesh->Update(mShader2.GetShaderHandler(), texureIdLv6);
-	Level6_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv6_pressed);
-	Level6_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level6->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level6));
+	Level6_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level6p));
+	Level6_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level7->mesh->Update(mShader2.GetShaderHandler(), texureIdLv7);
-	Level7_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv7_pressed);
-	Level7_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level7->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level7));
+	Level7_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level7p));
+	Level7_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level8->mesh->Update(mShader2.GetShaderHandler(), texureIdLv8);
-	Level8_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv8_pressed);
-	Level8_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level8->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level8));
+	Level8_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level8p));
+	Level8_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level9->mesh->Update(mShader2.GetShaderHandler(), texureIdLv9);
-	Level9_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv9_pressed);
-	Level9_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level9->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level9));
+	Level9_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level9p));
+	Level9_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level10->mesh->Update(mShader2.GetShaderHandler(), texureIdLv10);
-	Level10_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv10_pressed);
-	Level10_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level10->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level10));
+	Level10_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level10p));
+	Level10_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 
-	Level11->mesh->Update(mShader2.GetShaderHandler(), texureIdLv11);
-	Level11_pressed->mesh->Update(mShader2.GetShaderHandler(), texureIdLv11_pressed);
-	Level11_lock->mesh->Update(mShader2.GetShaderHandler(), texureId_lock);
+	Level11->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level11));
+	Level11_pressed->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level11p));
+	Level11_lock->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::levelLock));
 	
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClearColor(0.f, 0.f, 0.f, 1);

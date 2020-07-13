@@ -29,34 +29,27 @@ void LevelOption::Init()
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(1920, 1080);
-	textureBackgroundOption = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	option = OBJECT_FACTORY->CreateEmptyObject();
 	option->AddComponent(new Mesh());
 	option->Init();
 
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdQuitAskBack = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdQuitAsk = TEXTURE->CreateTexture("assets\\quitcheck.png", 0);
 	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
 
 	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdYes = TEXTURE->CreateTexture("assets\\yes.png", 0);
 	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdNo = TEXTURE->CreateTexture("assets\\no_p.png", 0);
 	No->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdYes_p = TEXTURE->CreateTexture("assets\\yes_p.png", 0);
 	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	textureIdNo_p = TEXTURE->CreateTexture("assets\\no.png", 0);
 	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
 
 	quitCheck = false;
@@ -65,7 +58,6 @@ void LevelOption::Init()
 	option->mesh->setTransform({ 0.0f,350.f });
 	option->mesh->SetMeshType(MESHTYPE::rectangle);
 	option->mesh->InitializeTextureMesh(400.f, 100.f);
-	textureOption = TEXTURE->CreateTexture("assets\\option.png", 0);
 
 	goToMain = OBJECT_FACTORY->CreateEmptyObject();
 	goToMain->AddComponent(new Mesh());
@@ -76,7 +68,6 @@ void LevelOption::Init()
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
-	textureGoToMain = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 
 	music = OBJECT_FACTORY->CreateEmptyObject();
 	music->AddComponent(new Mesh());
@@ -85,7 +76,6 @@ void LevelOption::Init()
 	music->mesh->setTransform({ -300.f,240.f });
 	music->mesh->SetMeshType(MESHTYPE::rectangle);
 	music->mesh->InitializeTextureMesh(240.f, 80.f);
-	textureMusic = TEXTURE->CreateTexture("assets\\music.png", 0);
 
 
 	arrowRight = OBJECT_FACTORY->CreateEmptyObject();
@@ -94,7 +84,6 @@ void LevelOption::Init()
 	arrowRight->mesh->setTransform({ 350.f,240.f });
 	arrowRight->mesh->SetMeshType(MESHTYPE::rectangle);
 	arrowRight->mesh->InitializeTextureMesh(80.f, 80.f);
-	textureArrowRight = TEXTURE->CreateTexture("assets\\arrow_right.png", 0);
 
 	arrowLeft = OBJECT_FACTORY->CreateEmptyObject();
 	arrowLeft->AddComponent(new Mesh());
@@ -102,7 +91,6 @@ void LevelOption::Init()
 	arrowLeft->mesh->setTransform({ -160.f,240.f });
 	arrowLeft->mesh->SetMeshType(MESHTYPE::rectangle);
 	arrowLeft->mesh->InitializeTextureMesh(80.f, 80.f);
-	textureArrowLeft = TEXTURE->CreateTexture("assets\\arrow_left.png", 0);
 
 	bar0 = OBJECT_FACTORY->CreateEmptyObject();
 	bar0->AddComponent(new Mesh());
@@ -110,7 +98,6 @@ void LevelOption::Init()
 	bar0->mesh->setTransform({ 95.f, 240.f });
 	bar0->mesh->SetMeshType(MESHTYPE::rectangle);
 	bar0->mesh->InitializeTextureMesh(400.f, 80.f);
-	textureBar0 = TEXTURE->CreateTexture("assets\\bar0.png", 0);
 
 	soundBar = OBJECT_FACTORY->CreateEmptyObject();
 	soundBar->AddComponent(new Mesh());
@@ -118,7 +105,6 @@ void LevelOption::Init()
 	soundBar->mesh->setTransform({ 15.f, 240.f });
 	soundBar->mesh->SetMeshType(MESHTYPE::rectangle);
 	soundBar->mesh->InitializeTextureMesh(150.f, 30.f);
-	textureSoundBar = TEXTURE->CreateTexture("assets\\bar1.png", 0);
 
 	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreen->AddComponent(new Mesh());
@@ -157,13 +143,6 @@ void LevelOption::Init()
 	quitButton_pressed->mesh->setTransform({ 3500.0f,-100.f });
 	quitButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	quitButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
-
-	textureCheckTrue = TEXTURE->CreateTexture("assets\\checkO.png", 0);
-	textureCheckFalse = TEXTURE->CreateTexture("assets\\checkX.png", 0);
-	textureFullScreen = TEXTURE->CreateTexture("assets\\fullscreen.png", 0);
-
-	textureQuit = TEXTURE->CreateTexture("assets\\quit.png", 0);
-	textureQuitPressed = TEXTURE->CreateTexture("assets\\quit2.png", 0);
 
 	mShader.BuildTextureShader();
 	mInput = new Input();
@@ -316,7 +295,6 @@ void LevelOption::Update()
 			INPUT->setInput(KEY::LEFT);
 			if (quitCheck == false)
 			{
-				//SOUND->Pause();
 				quitCheck = true;
 				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
 				QuitAsk->mesh->setTransform({ 0.f, 0.f });
@@ -366,32 +344,32 @@ void LevelOption::Update()
 		ENGINE->Quit();
 	}
 
-	background->mesh->Update(mShader.GetShaderHandler(), textureBackgroundOption);
-	option->mesh->Update(mShader.GetShaderHandler(), textureOption);
-	music->mesh->Update(mShader.GetShaderHandler(), textureMusic);
+	background->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+	option->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionL));
+	music->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::musicL));
 
-	goToMain->mesh->Update(mShader.GetShaderHandler(), textureGoToMain);
+	goToMain->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI));
 
-	arrowRight->mesh->Update(mShader.GetShaderHandler(), textureArrowRight);
-	arrowLeft->mesh->Update(mShader.GetShaderHandler(), textureArrowLeft);
+	arrowRight->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::volumeR));
+	arrowLeft->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::volumeL));
 
-	bar0->mesh->Update(mShader.GetShaderHandler(), textureBar0);
-	soundBar->mesh->Update(mShader.GetShaderHandler(), textureSoundBar);
+	bar0->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::bar0));
+	soundBar->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
 
-	fullScreen->mesh->Update(mShader.GetShaderHandler(), textureFullScreen);
+	fullScreen->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::fullScrenL));
 
-	fullScreenFalse->mesh->Update(mShader.GetShaderHandler(), textureCheckFalse);
-	fullScreenTrue->mesh->Update(mShader.GetShaderHandler(), textureCheckTrue);
+	fullScreenFalse->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::fullCheck));
+	fullScreenTrue->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::fullCheck2));
 
-	quitButton->mesh->Update(mShader.GetShaderHandler(), textureQuit);
-	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), textureQuitPressed);
+	quitButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitL));
+	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitLp));
 
-	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), textureIdQuitAskBack);
-	QuitAsk->mesh->Update(mShader.GetShaderHandler(), textureIdQuitAsk);
-	Yes->mesh->Update(mShader.GetShaderHandler(), textureIdYes);
-	No->mesh->Update(mShader.GetShaderHandler(), textureIdNo);
-	Yes_p->mesh->Update(mShader.GetShaderHandler(), textureIdYes_p);
-	No_p->mesh->Update(mShader.GetShaderHandler(), textureIdNo_p);
+	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
+	QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));
+	Yes->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES));
+	No->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::no));
+	Yes_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
+	No_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 

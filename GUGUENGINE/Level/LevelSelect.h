@@ -57,45 +57,6 @@ public:
 		Level11_lock = nullptr;
 		
 		currentLevel = 0;
-
-		textureBackgroundLv = 0;
-
-		texureIdLv1 = 0;
-		texureIdLv1_pressed = 0;
-
-		texureIdLv2 = 0;
-		texureIdLv2_pressed = 0;
-		texureId_lock = 0;
-
-		texureIdLv3 = 0;
-		texureIdLv3_pressed = 0;
-
-
-		texureIdLv4 = 0;
-		texureIdLv4_pressed = 0;
-
-
-		texureIdLv5 = 0;
-		texureIdLv5_pressed = 0;
-
-
-		texureIdLv6 = 0;
-		texureIdLv6_pressed = 0;
-
-		texureIdLv7 = 0;
-		texureIdLv7_pressed = 0;
-
-		texureIdLv8 = 0;
-		texureIdLv8_pressed = 0;
-
-		texureIdLv9 = 0;
-		texureIdLv9_pressed = 0;
-
-		texureIdLv10 = 0;
-		texureIdLv10_pressed = 0;
-
-		texureIdLv11 = 0;
-		texureIdLv11_pressed = 0;
 	}
 	int currentLevel;
 	void Init() override;
@@ -154,43 +115,4 @@ private:
 	Object* Level11_lock;
 	
 	Input levelInput;
-
-	GLuint textureBackgroundLv;
-
-	GLuint texureIdLv1;
-	GLuint texureIdLv1_pressed;
-
-	GLuint texureIdLv2;
-	GLuint texureIdLv2_pressed;
-	GLuint texureId_lock;
-
-	GLuint texureIdLv3;
-	GLuint texureIdLv3_pressed;
-
-
-	GLuint texureIdLv4;
-	GLuint texureIdLv4_pressed;
-
-
-	GLuint texureIdLv5;
-	GLuint texureIdLv5_pressed;
-
-
-	GLuint texureIdLv6;
-	GLuint texureIdLv6_pressed;
-
-	GLuint texureIdLv7;
-	GLuint texureIdLv7_pressed;
-
-	GLuint texureIdLv8;
-	GLuint texureIdLv8_pressed;
-
-	GLuint texureIdLv9;
-	GLuint texureIdLv9_pressed;
-
-	GLuint texureIdLv10;
-	GLuint texureIdLv10_pressed;
-
-	GLuint texureIdLv11;
-	GLuint texureIdLv11_pressed;
 };

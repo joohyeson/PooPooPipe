@@ -150,6 +150,43 @@ void Texture::Load()
     CreateTexture("assets\\image_auto1.png", Textures::autoCurve);
     CreateTexture("assets\\imageEndAuto1.png", Textures::qutoEnd);
     CreateTexture("assets\\55.png", Textures::yellowPuzzle);
+    CreateTexture("assets\\click_left.png", Textures::clickLeft);
+    CreateTexture("assets\\click_right.png", Textures::clickRight);
+    CreateTexture("assets\\finish_solving.png", Textures::clickPlayButton);
+    CreateTexture("assets\\then_click.png", Textures::clickPlayButton2);
+    CreateTexture("assets\\levelButton1.png", Textures::level1);
+    CreateTexture("assets\\levelButton1_2.png", Textures::leve1p);
+    CreateTexture("assets\\levelButton2.png", Textures::level2);
+    CreateTexture("assets\\levelButton2_2.png", Textures::level2p);
+    CreateTexture("assets\\levelButton3.png", Textures::level3);
+    CreateTexture("assets\\levelButton3_2.png", Textures::level3p);
+    CreateTexture("assets\\levelButton4.png", Textures::level4);
+    CreateTexture("assets\\levelButton4_2.png", Textures::level4p);
+    CreateTexture("assets\\levelButton5.png", Textures::level5);
+    CreateTexture("assets\\levelButton5_2.png", Textures::level5p);
+    CreateTexture("assets\\levelButton6.png", Textures::level6);
+    CreateTexture("assets\\levelButton6_2.png", Textures::level6p);
+    CreateTexture("assets\\levelButton7.png", Textures::level7);
+    CreateTexture("assets\\levelButton7_2.png", Textures::level7p);
+    CreateTexture("assets\\levelButton8.png", Textures::level8);
+    CreateTexture("assets\\levelButton8_2.png", Textures::level8p);
+    CreateTexture("assets\\levelButton9.png", Textures::level9);
+    CreateTexture("assets\\levelButton9_2.png", Textures::level9p);
+    CreateTexture("assets\\levelButton10.png", Textures::level10);
+    CreateTexture("assets\\levelButton10_2.png", Textures::level10p);
+    CreateTexture("assets\\levelButton11.png", Textures::level11);
+    CreateTexture("assets\\levelButton11_2.png", Textures::level11p);
+    CreateTexture("assets\\locked.png", Textures::levelLock);
+    CreateTexture("assets\\checkX.png", Textures::fullCheck);
+    CreateTexture("assets\\checkO.png", Textures::fullCheck2);
+    CreateTexture("assets\\arrow_left.png", Textures::volumeL);
+    CreateTexture("assets\\arrow_right.png", Textures::volumeR);
+    CreateTexture("assets\\quit.png", Textures::quitL);
+    CreateTexture("assets\\quit2.png", Textures::quitLp);
+    CreateTexture("assets\\option.png", Textures::optionL);
+    CreateTexture("assets\\music.png", Textures::musicL);
+    CreateTexture("assets\\bar0.png", Textures::bar0);
+    CreateTexture("assets\\fullscreen.png", Textures::fullScrenL);
 }
 void Texture::DeleteTexture() noexcept
 {

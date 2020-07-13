@@ -36,7 +36,6 @@ void Level2::Init()
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureBackground2 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
@@ -49,16 +48,6 @@ void Level2::Init()
 	pressPlay2 = OBJECT_FACTORY->CreateEmptyObject();
 	playPressButton = OBJECT_FACTORY->CreateEmptyObject();
 	win = OBJECT_FACTORY->CreateEmptyObject();
-
-	texureIdLine2 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureIdBlack2 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-	texureIdCurve2 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	textureMouse = TEXTURE->CreateTexture("assets\\click_right.png", 0); 
-	texturePlay = TEXTURE->CreateTexture("assets\\playUI.png", 0);
-	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
-	texturePress1 = TEXTURE->CreateTexture("assets\\finish_solving.png", 0);
-	texturePress2 = TEXTURE->CreateTexture("assets\\then_click.png", 0);
-	texturePlayUIp = TEXTURE->CreateTexture("assets\\playUI_2.png", 0);
 
 	se2.Init();
 	se2.LoadMusic("assets\\coin.mp3");
@@ -135,7 +124,7 @@ void Level2::Init()
 	pressPlay2->mesh->setTransform({ -2000.f, -2000.f });
 	pressPlay2->mesh->SetMeshType(MESHTYPE::rectangle);
 	pressPlay2->Init();
-	pressPlay2->mesh->InitializeTextureMesh(500.f, 250.f);
+	pressPlay2->mesh->InitializeTextureMesh(500.f,350.f);
 
 	win->AddComponent(new Mesh());
 	win->mesh->setTransform({ -2000.0f, -2000.0f });
@@ -219,12 +208,11 @@ void Level2::Update()
 
 		if (lastTime - firstTime > 2)
 		{
-			pressPlay2->mesh->setTransform({ 550.f,-100.f });
+			pressPlay2->mesh->setTransform({ 550.f,-150.f });
 
 			if (playbutton->collision->Point2HexagonCollision({ cursor.x,cursor.y }, playbutton->mesh) == true)
 			{
 				playPressButton->mesh->setTransform({ 500.f,300.f });
-
 
 				if (mInput.IsPressed(KEY::LEFT) == true && !click)
 				{
@@ -236,6 +224,10 @@ void Level2::Update()
 				{
 					click = false;
 				}
+			}
+			else
+			{
+				playPressButton->mesh->setTransform({ -2000.f,-200.f });
 			}
 		}
 	}
@@ -253,20 +245,19 @@ void Level2::Update()
 
 	se2.Update();
 
-	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground2);
-	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack2);
-	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
-	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve2);
+	background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
+	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
 
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine2);
-	mouse->mesh->Update(mShader2.GetShaderHandler(), textureMouse);
-	playbutton->mesh->Update(mShader2.GetShaderHandler(), texturePlay);
-	playbutton->mesh->Update(mShader2.GetShaderHandler(), texturePlay);
-	pressPlay1->mesh->Update(mShader2.GetShaderHandler(), texturePress1);
-	pressPlay2->mesh->Update(mShader2.GetShaderHandler(), texturePress2);
-	playPressButton->mesh->Update(mShader2.GetShaderHandler(), texturePlayUIp);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+	mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickRight));
+	playbutton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI));
+	pressPlay1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton));
+	pressPlay2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton2));
+	playPressButton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI_2));
 
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
 
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());

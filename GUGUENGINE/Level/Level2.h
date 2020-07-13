@@ -35,10 +35,6 @@ public:
 		pressPlay1 = nullptr;
 		pressPlay2 = nullptr;
 		playPressButton = nullptr;
-		texturePlayUIp = 0;
-		textureWin = 0;
-		texturePress1 = 0;
-		texturePress2 = 0;
 	}
 
 	void Init() override;
@@ -57,18 +53,7 @@ private:
 	Input mInput;
 	Vector2<float> cursor;
 
-	GLuint texureIdLine2;
-	GLuint texureIdCurve2;
-	GLuint texureIdBlack2;
-	GLuint textureBackground2;
-	GLuint textureMouse;
-	GLuint texturePlay;
-
 	Object* win;
-	GLuint textureWin;
-	GLuint texturePress1;
-	GLuint texturePress2;
-	GLuint texturePlayUIp;
 
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };

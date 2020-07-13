@@ -34,12 +34,6 @@ public:
 		levelCheck = 0;
 		spaceCheck = 0;
 		win = nullptr;
-		texureIdLine1 = 0;
-		texureIdCurve1 = 0;
-		texureIdBlack1 = 0;
-		textureBackground1 = 0;
-		textureMouse = 0;
-		textureWin = 0;
 	}
 	GameLevels GetCurrLevel() override
 	{
@@ -64,13 +58,8 @@ private:
 	Vector3<float> getOrigin = { 0, 0, 0 };
 	Vector3<float> getOrigin2 = { 0, 0, 0 };
 
-	GLuint texureIdLine1;
-	GLuint texureIdCurve1;
-	GLuint texureIdBlack1;
-	GLuint textureBackground1;
-	GLuint textureMouse;
 	Object* win;
-	GLuint textureWin;
+
 
 	bool levelCheck;
 	bool spaceCheck;

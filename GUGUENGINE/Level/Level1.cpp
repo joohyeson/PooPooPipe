@@ -28,7 +28,6 @@ void Level1::Init()
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureBackground1 = TEXTURE->CreateTexture("assets\\background.png", 0);
 
 	movePuzzle = OBJECT_FACTORY->CreateEmptyObject();
 	blackPuzzle = OBJECT_FACTORY->CreateEmptyObject();
@@ -37,12 +36,6 @@ void Level1::Init()
 	spacePress = OBJECT_FACTORY->CreateEmptyObject();
 	mouse = OBJECT_FACTORY->CreateEmptyObject();
 	win = OBJECT_FACTORY->CreateEmptyObject();
-
-	texureIdLine1 = TEXTURE->CreateTexture("assets\\image0.png", 0);
-	texureIdBlack1 = TEXTURE->CreateTexture("assets\\image1.png", 0);
-	texureIdCurve1 = TEXTURE->CreateTexture("assets\\image2.png", 0);
-	textureMouse = TEXTURE->CreateTexture("assets\\click_left.png", 0);
-	textureWin = TEXTURE->CreateTexture("assets\\next.png", 0);
 
 	mShader2.BuildTextureShader();
 
@@ -148,14 +141,14 @@ void Level1::Update()
 	}
 
 
-	background->mesh->Update(mShader2.GetShaderHandler(), textureBackground1);
-	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdBlack1);
-	puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
-	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), texureIdCurve1);
+	background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
+	puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
 
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), texureIdLine1);
-	mouse->mesh->Update(mShader2.GetShaderHandler(), textureMouse);
-	win->mesh->Update(mShader2.GetShaderHandler(), textureWin);
+	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+	mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickLeft));
+	win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
