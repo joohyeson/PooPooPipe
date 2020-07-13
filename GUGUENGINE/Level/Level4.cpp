@@ -912,6 +912,10 @@ void Level4::Update()
 		Yes_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
 		No_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
 
+		if (mInput.IsPressed(KEY::ESCAPE) == true) {
+			INPUT->setInput(KEY::ESCAPE);
+			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+		}
 
 		glfwSwapBuffers(APPLICATION->getMyWindow());
 
