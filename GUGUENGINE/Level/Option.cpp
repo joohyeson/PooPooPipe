@@ -349,20 +349,32 @@ void LevelOption::Update()
 	}
 
 
-	//if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh))
-	//{
-	//	backtomain_pressed->mesh->setTransform(backtomain->mesh->GetTransform());
+	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh))
+	{
+		backtomain_pressed->mesh->setTransform(backtomain->mesh->GetTransform());
 
-	//	if (mInput->IsPressed(KEY::LEFT))
-	//	{
-	//		INPUT->setInput(KEY::LEFT);
-	//		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
-	//	}
-	//}
-	//else
-	//{
-	//	backtomain_pressed->mesh->setTransform({ 2000.f, 2000.f });
-	//}
+		if (mInput->IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			
+			if (this->sound->IsMute_() == true)
+			{
+				this->sound->ToggleMute();
+			}
+
+			if (mainMenu == true)
+			{
+				mainMenu = false;
+				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			}
+
+		}
+	}
+	else
+	{
+		backtomain_pressed->mesh->setTransform({ 2000.f, 2000.f });
+	}
 
 
 
