@@ -113,7 +113,6 @@ void Level5::Init()
 	playUI_p->mesh->setTransform({ 1713.5f, 300.f });
 	playUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 
-
 	quitUI = OBJECT_FACTORY->CreateEmptyObject();
 	quitUI->AddComponent(new Mesh());
 	quitUI->Init();
@@ -127,9 +126,9 @@ void Level5::Init()
 
 	quitUI_p->mesh->setTransform({ 1800.f, 150.f });
 	quitUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
+
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-
 
 	optionUI = OBJECT_FACTORY->CreateEmptyObject();
 	optionUI->AddComponent(new Mesh());
@@ -228,7 +227,7 @@ void Level5::Init()
 
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
-	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	levelImage->mesh->InitializeTextureMesh(100.f, 100.f);
 	numberImage->mesh->InitializeTextureMesh(100.f, 100.f);
@@ -1154,7 +1153,7 @@ void Level5::Update()
 		}
 		//se5.Update();
 
-		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background2));
 		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
 		puzzle2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
 		puzzle3->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
@@ -1195,14 +1194,13 @@ void Level5::Update()
 		quitUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitUI_2));
 		optionUI_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionUI_2));
 		levelImage->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::level));
-		numberImage->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::num3));
+		numberImage->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::num5));
 		pooCharacter->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::character));
 
 		mini->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::mini));
 
 		win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
 		fail->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::failScreen));
-
 
 		Yellow->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::yellow));
 

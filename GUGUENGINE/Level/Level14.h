@@ -81,6 +81,8 @@ public:
 
 		Yes_p = nullptr;
 		No_p = nullptr;
+
+		numberImage2 = nullptr;
 	}
 
 	void Init() override;
@@ -139,7 +141,7 @@ private:
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
-	Object* levelImage, * numberImage, * leftCount, * leftnumberTen, * leftnumber;
+	Object* levelImage, * numberImage, * leftCount, * leftnumberTen, * leftnumber,* numberImage2;
 	MovePooPoo mPooPoo;
 	MovePooPoo mPooPoo2;
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };

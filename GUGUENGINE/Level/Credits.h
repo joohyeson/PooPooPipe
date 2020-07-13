@@ -25,6 +25,7 @@ public:
 		background = nullptr;
 		goToMain = nullptr;
 		textureBackgroundCredits = 0;
+		textureGoToMain = 0;
 	}
 
 	GameLevels GetCurrLevel() override

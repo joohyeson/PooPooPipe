@@ -182,7 +182,7 @@ void Level3::Init()
 	win = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
-	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	//se3.Init();
 	//se3.LoadSE("assets\\coin.mp3");

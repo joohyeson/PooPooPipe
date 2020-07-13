@@ -41,8 +41,6 @@ void MainMenu::Init()
 		UI[i] = false;
 	}
 	
-	textureId02 = TEXTURE->CreateTexture("assets\\title.png", 0);
-
 	startButton = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton = OBJECT_FACTORY->CreateEmptyObject();
 	optionButton = OBJECT_FACTORY->CreateEmptyObject();
@@ -56,21 +54,7 @@ void MainMenu::Init()
 	test = OBJECT_FACTORY->CreateEmptyObject();
 	test2 = OBJECT_FACTORY->CreateEmptyObject();
 
-	textureId00 = TEXTURE->CreateTexture("assets\\game_title.png", 0);
-	textureId01 = TEXTURE->CreateTexture("assets\\start.png", 0);
-	textureId03 = TEXTURE->CreateTexture("assets\\tutorial.png", 0);
-	textureId04 = TEXTURE->CreateTexture("assets\\option.png", 0);
-	textureId05 = TEXTURE->CreateTexture("assets\\testpoopoo.png", 0);
-	textureId06 = TEXTURE->CreateTexture("assets\\man.png", 0);
-	textureId07 = TEXTURE->CreateTexture("assets\\credits.png", 0);
-
-	startPress = TEXTURE->CreateTexture("assets\\start2.png", 0);
-	tutorialPress = TEXTURE->CreateTexture("assets\\tutorial2.png", 0);
-	optionPress = TEXTURE->CreateTexture("assets\\option2.png", 0);
-	creditsPress = TEXTURE->CreateTexture("assets\\credits2.png",0);
-
 	mShader.BuildTextureShader();
-	//testNDCShader.BuildTextureShaderNDC();
 	startButton->AddComponent(new Mesh());
 	startButton->AddComponent(new CollisionCheck());
 	startButton->Init();
@@ -291,16 +275,16 @@ void MainMenu::Update()
 	}
 
 
-	background->mesh->Update(mShader.GetShaderHandler(), textureId02);
-	startButton->mesh->Update(mShader.GetShaderHandler(), textureId01);
-	tutorialButton->mesh->Update(mShader.GetShaderHandler(), textureId03);
-	optionButton->mesh->Update(mShader.GetShaderHandler(), textureId04);
-	creditsButton->mesh->Update(mShader.GetShaderHandler(), textureId07);
+	background->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::title));
+	startButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::start));
+	tutorialButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorial));
+	optionButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionL));
+	creditsButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit));
 
-	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), startPress);
-	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), tutorialPress);
-	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), optionPress);
-	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), creditsPress);
+	startButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::startP));
+	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorialP));
+	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionLP));
+	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::creatP));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
@@ -312,9 +296,7 @@ void MainMenu::Update()
 
 void MainMenu::Close()
 {
-	//bgm.Free();
 	mShader.Delete();
 	mMesh.Delete();
-	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 }

@@ -187,7 +187,7 @@ void Level4::Init()
 
 
 	levelImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.0f, 450.f - 20.f });
-	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 830.f, 450.f - 20.f });
+	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	mShader2.BuildTextureShader();
 
