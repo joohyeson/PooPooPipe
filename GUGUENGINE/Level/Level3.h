@@ -97,9 +97,6 @@ public:
 	//void Wait(long waitTime);
 
 private:
-	
-
-
 	double first;
 	double last;
 	bool failS = false;
@@ -132,13 +129,6 @@ private:
 	Object* No;
 	Object* Yes_p;
 	Object* No_p;
-
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
 
 	bool quitCheck = false;
 	bool realQuit = false;
@@ -174,39 +164,6 @@ private:
 	double lastTime = 0;
 	double firstTime = 0;
 	int chekNext = 0;
-
-	GLuint textureBackground3;
-
-	GLuint texureIdLine3;
-	GLuint texureIdCurve3;
-	GLuint texureIdBlack3;
-
-	GLuint texureIdStart3;
-	GLuint texureIdEnd3;
-
-	GLuint texureIdLine3_1;
-	GLuint texureIdCurve3_2;
-
-	GLuint texureIdbutton3;
-	GLuint texureIdclear3;
-
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-
-	GLint texturePlayUI3;
-	GLint textureQuitUI3;
-	GLint textureOptionUI3;
-	GLint textureRestartUI3;
-
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-
-	GLuint numberTexture;
-	GLuint levelTexture;
-	GLint textureFail;
-	GLint textureWin;
 
 	bool blCheck1 = false;
 	bool blCheck1_2 = false;

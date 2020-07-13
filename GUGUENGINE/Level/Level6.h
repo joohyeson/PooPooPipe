@@ -107,13 +107,6 @@ private:
 	Object* Yes_p;
 	Object* No_p;
 
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
-
 	bool quitCheck = false;
 	bool realQuit = false;
 	Object* blackPuzzle1, * blackPuzzle2, * blackPuzzle3;
@@ -137,8 +130,7 @@ private:
 	Input mInput;
 	bool rot[6] = { false };
 	bool poopooCheck = false;
-	GLuint numberTexture;
-	GLuint levelTexture;
+
 	Vector2<float> cursor6;
 	bool UI[5] = { false };
 

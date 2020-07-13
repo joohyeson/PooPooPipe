@@ -88,7 +88,6 @@ private:
 	bool failS = false;
 	bool siren = false;
 	Object* Yellow;
-	GLuint textureYellow;
 	double yfirst;
 	double ylast;
 	bool yellowS = false;
@@ -105,13 +104,6 @@ private:
 	Object* Yes_p;
 	Object* No_p;
 
-	GLuint textureIdQuitAskBack;
-	GLuint textureIdQuitAsk;
-	GLuint textureIdYes;
-	GLuint textureIdNo;
-	GLuint textureIdYes_p;
-	GLuint textureIdNo_p;
-
 	bool quitCheck = false;
 	bool realQuit = false;
 	
@@ -127,11 +119,9 @@ private:
 	Object* playUI, * quitUI, * optionUI, * restartUI, *fail;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
 	Object* win;
-	GLint textureWin;
 
 	Object* Levelsel, * Levelsel_pressed;
 	Object* mini;
-	GLuint texturemini;
 
 	Object* button;
 	Object* clear;
@@ -164,41 +154,6 @@ private:
 
 	bool movePuzzleCheck5 = true;
 
-	GLuint textureBackground5;
-
-	GLuint texureIdLine5;
-	GLuint texureIdCurve5;
-	GLuint texureIdThree5;
-
-	GLuint textureIdMove5;
-
-	GLuint texureIdV5;
-	GLuint texureIdBlack5;
-
-	GLuint texureIdStart5;
-	GLuint texureIdEnd5;
-
-	GLuint texureIdLine5_1;
-	GLuint texureIdCurve5_2;
-
-	GLuint texureIdbutton5;
-	GLuint texureIdclear5;
-
-	GLint texturePlayUI5;
-	GLint textureQuitUI5;
-	GLint textureOptionUI5;
-	GLint textureRestartUI5;
-
-	GLint texturePlayUI3p;
-	GLint textureQuitUI3p;
-	GLint textureOptionUI3p;
-	GLint textureRestartUI3p;
-	
-	GLuint numberTexture;
-	GLuint levelTexture;
-	GLint LevelPage;
-	GLint LevelPage_pressed;
-	GLint textureFail;
 
 	bool blCheck5 = false;
 	bool blCheck5_2 = false;
