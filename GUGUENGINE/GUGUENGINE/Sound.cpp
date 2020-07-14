@@ -162,7 +162,6 @@ void Sound::Play(std::string source, int loop)
 			result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
 			result = m_sounds[id]->channel->setVolume(0.5f);
 		}
-		
 	}
 	else
 	{
@@ -172,7 +171,6 @@ void Sound::Play(std::string source, int loop)
 		result = m_sounds[id]->channel->setChannelGroup(soundEffects);
 		result = m_sounds[id]->channel->setVolume(0.5f);
 	}
-
 }
 
 void Sound::Pause()

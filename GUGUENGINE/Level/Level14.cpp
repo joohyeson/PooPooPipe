@@ -987,7 +987,6 @@ void Level14::Update()
 		Yes_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
 		No_p->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
 
-
 		glfwSwapBuffers(APPLICATION->getMyWindow());
 
 		glClearColor(0.f, 0.f, 0.f, 1);
