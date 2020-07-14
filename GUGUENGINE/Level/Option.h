@@ -88,6 +88,7 @@ private:
 	bool cut[2] = { false, false };
 	bool SSUI[2] = { false };
 	bool nextSound[3] = { false };
+	bool fullscreenS = false;
 	Mesh mMesh;
 	Shader mShader;
 	
