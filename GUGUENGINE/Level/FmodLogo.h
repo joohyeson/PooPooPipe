@@ -20,8 +20,8 @@ public:
 	{
 		fmodLogo = nullptr;
 		textureFmod=0;
-		lastTime = 0;
-		firstTime = 0;
+		timer = 0;
+
 	}
 
 	void Init() override;
@@ -35,8 +35,8 @@ private:
 	Object* fmodLogo;
 	GLuint textureFmod;
 	Shader mShader;
-	double	 lastTime;
-	double firstTime;
+	double timer;
+
 	Input mInput;
 };
 

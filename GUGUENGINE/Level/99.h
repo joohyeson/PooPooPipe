@@ -18,8 +18,7 @@ public:
 	GUGULOGO()
 	{
 		gugulogo = nullptr;
-		lastTime = 0;
-		firstTime = 0;
+		timer = 0;
 	}
 
 	void Init() override;
@@ -32,9 +31,8 @@ public:
 private:
 	Object* gugulogo;
 	Shader mShader;
-	double	 lastTime;
-	double firstTime;
-	bool check[2] = { false };
 
+	bool check[2] = { false };
+	double timer;
 	Input mInput;
 };

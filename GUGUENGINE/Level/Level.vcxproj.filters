@@ -45,9 +45,6 @@
     <ClCompile Include="FmodLogo.cpp">
       <Filter>Transition</Filter>
     </ClCompile>
-    <ClCompile Include="MovingCheck.cpp">
-      <Filter>Transition</Filter>
-    </ClCompile>
     <ClCompile Include="MainMenu.cpp">
       <Filter>Menu</Filter>
     </ClCompile>
@@ -118,9 +115,6 @@
       <Filter>Transition</Filter>
     </ClInclude>
     <ClInclude Include="FmodLogo.h">
-      <Filter>Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="MovingCheck.h">
       <Filter>Transition</Filter>
     </ClInclude>
     <ClInclude Include="Option.h">

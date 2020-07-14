@@ -20,8 +20,8 @@ public:
 	{
 		digipenLogo = nullptr;
 		textureDigipenLogo = 0;
-		lastTime = 0;
-		firstTime = 0;
+
+		timer = 0;
 	}
 
 	void Init() override;
@@ -40,8 +40,8 @@ private:
 	GLuint textureDigipenLogo2;
 	GLuint textureDigipenLogo3;
 	GLuint textureDigipenLogo4;
-	double lastTime;
-	double firstTime;
+	double timer;
+
 	Vector2<float> cursor0;
 	Input mInput;
 	bool check = false;

@@ -21,10 +21,6 @@ void endingCut::Init()
 	textureendCut2 = TEXTURE->CreateTexture("assets\\ending2.png", 0);
 	endCut2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
 
-	/*endCut3 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
-	texturestartCut3 = TEXTURE->CreateTexture("assets\\imagest3.png", 0);
-	startCut3->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);*/
-
 	skip = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  450.f });
 	texturestartSkip = TEXTURE->CreateTexture("assets\\skip.png", 0);
 	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
@@ -97,21 +93,10 @@ void endingCut::Update()
 					if (sound_[1] == false)
 					{
 						sound_[1] = true;
-						//this->sound->Play("assets\\flushing.wav", 1);
 					}
 					endCut2->mesh->setTransform({ 0.f, 0.f });
 				}
-				/*else if (cut[0] == true && cut[1] == false)
-				{
-					cut[1] = true;
-					if (sound_[2] == false)
-					{
-						sound_[2] = true;
-						this->sound->Play("assets\\heaven.wav", 1);
 
-					}
-					startCut3->mesh->setTransform({ 0.f, 0.f });
-				}*/
 				else if (cut[0] == true /*&& cut[1] == true*/)
 				{
 					STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
@@ -131,7 +116,6 @@ void endingCut::Update()
 	next->mesh->Update(mShader.GetShaderHandler(), texturestartNext);
 	endCut1->mesh->Update(mShader.GetShaderHandler(), textureendCut1);
 	endCut2->mesh->Update(mShader.GetShaderHandler(), textureendCut2);
-	//endCut3->mesh->Update(mShader.GetShaderHandler(), texturestartCut3);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
@@ -142,7 +126,6 @@ void endingCut::Close()
 {
 	mShader.Delete();
 	SOUND->StopEffectSound();
-	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 
 }

@@ -16,7 +16,6 @@
 void DigipenLogo::Init()
 {
 	check = false;
-	firstTime = glfwGetTime();
 
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
 	digipenLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width/2), static_cast<float>(APPLICATION->height/3));
@@ -41,9 +40,9 @@ void DigipenLogo::Update()
 		APPLICATION->SetFullScreen();
 	}
 
-	lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	if(lastTime - firstTime > 2.f)
+	timer += ENGINE->dt;
+	if(timer > 2)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::FMODLOGO);
 	}
@@ -62,7 +61,6 @@ void DigipenLogo::Update()
 void DigipenLogo::Close()
 {
 	mShader.Delete();
-	//ENGINE->Quit();
 	OBJECT_FACTORY->DestroyAllObjects();
 	
 }
