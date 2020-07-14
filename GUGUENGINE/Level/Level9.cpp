@@ -23,7 +23,8 @@ bool SoundCheck = false;
 void Level9::Init()
 {
 	getOpt = false;
-
+	poopooCheck = false;
+	SoundCheck = false;
 	if (MaxLevel <= 6)
 	{
 		MaxLevel = 6;
@@ -572,9 +573,10 @@ void Level9::Update()
 
 					if (SoundCheck == false)
 					{
+						SoundCheck = true;
 						this->sound->Play("assets\\flushing.wav", 1);
 					}
-					SoundCheck = true;
+					
 				}
 			}
 		}
