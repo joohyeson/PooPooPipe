@@ -119,6 +119,6 @@ private:
 	Object* Level11;
 	Object* Level11_pressed;
 	Object* Level11_lock;
-	
+	bool UI[11] = { false };
 	Input levelInput;
 };

@@ -25,6 +25,12 @@ void LevelSelect::Init()
 {
 	currentLevel = STATE_MANAGER->GetCurrentLV();
 	std::cout << "come in LevelSelect" << std::endl;
+
+	for(int i = 0 ; i < 11; i++)
+	{
+		UI[i] = false;
+	}
+	
 	backgroundLv = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0,0 });
 	backgroundLv->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
@@ -108,6 +114,11 @@ void LevelSelect::Update()
 
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))
 	{
+		if(UI[0] == false)
+		{
+			UI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Level1_pressed->mesh->setTransform(Level1->mesh->GetTransform());
 		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
@@ -118,6 +129,7 @@ void LevelSelect::Update()
 	}
 	else
 	{
+		UI[0] = false;
 		Level1_pressed->mesh->setTransform({ 850.0f, 850.0f });
 	}
 
