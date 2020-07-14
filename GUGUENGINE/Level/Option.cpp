@@ -261,7 +261,7 @@ void LevelOption::Init()
 	back->mesh->setTransform({ 5000.f,100.f });
 	back->mesh->SetMeshType(MESHTYPE::rectangle);
 	back->mesh->InitializeTextureMesh(350.f, 288.f);
-
+	fullscreenS = false;
 
 	mShader.BuildTextureShader();
 	mInput = new Input();
@@ -339,14 +339,21 @@ void LevelOption::Update()
 
 			if (APPLICATION->IsFullScreen() == true)
 			{
+				fullscreenS = false;
 				if(fullcheck == false)
 				{
 					fullcheck = true;
+					this->sound->Play("assets\\UI.wav", 1);
 					fullScreenTrue->mesh->setTransform(Vector2<float>(-3500.f, 0));
 				}
 			}
 			else
 			{
+				if(fullscreenS == false)
+				{
+					fullscreenS = true;
+					this->sound->Play("assets\\UI.wav", 1);
+				}
 				fullScreenTrue->mesh->setTransform(fullScreenFalse->mesh->GetTransform());
 			}
 			APPLICATION->SetFullScreen();
