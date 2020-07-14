@@ -61,7 +61,7 @@ void Loading::Update()
 	case 3:
 		TEXTURE->Load4();
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
-		STATE_MANAGER->ChangeLevel(GameLevels::DIGIPENLOGO);
+		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
 		break;
 	}
 

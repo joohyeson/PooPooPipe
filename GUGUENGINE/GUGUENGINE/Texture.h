@@ -13,8 +13,6 @@ class Color4ub;
 
 enum class Textures
 {
-	DIGIPENLOGO, 
-	FMODLOGO, 
 	STARTCUT1, STARTCUT2, STARTCUT3,SKIP, nextd,
 	BAR1, QUITCHECK, YES, NO_P, YES_P, no, background1,playUI, 
 	playUI_2, quitUI, quitUI_2, optionUI, optionUI_2, restartUI, restartUI_2, linePuzzle, blackPuzzle,curvePuzzle,
