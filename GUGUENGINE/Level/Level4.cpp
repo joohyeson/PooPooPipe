@@ -77,7 +77,7 @@ void Level4::Init()
 	conecTcheck4_2 = false;
 	conecTcheck4_3 = false;
 
-	degree4 = 0;
+	degree4 = DegreeToRadian(60.f);
 	degree4_2 = 0;
 	degree4_3 = 0;
 
@@ -191,7 +191,7 @@ void Level4::Init()
 
 	mShader2.BuildTextureShader();
 
-	movePuzzle->pipe->SetDirection(true, false, false, true, false, false);
+	movePuzzle->pipe->SetDirection(false, false, true, false, false, true);
 	movePuzzle2->pipe->SetDirection(false, false, false, true, false, true);
 	movePuzzle3->pipe->SetDirection(true, false, false, true, false, false);
 	endPuzzle->pipe->SetDirection(false, false, false, false, false, true);
@@ -324,7 +324,7 @@ void Level4::Update()
 
 		if (blCheck3)
 		{
-			if ((movePuzzle->pipe->GetDirValue(NW) == 1 && puzzle1->pipe->GetDirValue(SE) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1 && puzzle6->pipe->GetDirValue(NW) == 1))
+			if ((movePuzzle->pipe->GetDirValue(NW) == 1) && (movePuzzle->pipe->GetDirValue(SE) == 1))
 			{
 				conecTcheck4_1 = true;
 			}
@@ -336,12 +336,9 @@ void Level4::Update()
 
 		if (blCheck3_2)
 		{
-			if ((movePuzzle->pipe->GetDirValue(W) == 1 && puzzle10->pipe->GetDirValue(E) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1 && endPuzzle->pipe->GetDirValue(W) == 1))
+			if ((movePuzzle->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1))
 			{
-				conecTcheck4_1 = true;
-			}
-			else if ((movePuzzle->pipe->GetDirValue(E) == 1 && puzzle10->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(W) == 1 && endPuzzle->pipe->GetDirValue(E) == 1))
-			{
+				std::cout << "pipe connect" << std::endl;
 				conecTcheck4_1 = true;
 			}
 			else
@@ -449,9 +446,8 @@ void Level4::Update()
 
 		if (blCheck4)
 		{
-			if ((movePuzzle3->pipe->GetDirValue(NW) == puzzle1->pipe->GetDirValue(SE)) && (movePuzzle3->pipe->GetDirValue(SE) == puzzle6->pipe->GetDirValue(NW)))
+			if ((movePuzzle3->pipe->GetDirValue(NW) == 1) && (movePuzzle3->pipe->GetDirValue(SE) == 1))
 			{
-				std::cout << "pipe connect\n";
 				conecTcheck4_3 = true;
 			}
 			else
@@ -583,6 +579,7 @@ void Level4::Update()
 						movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 						blCheck4 = true;
 						blCheck4_2 = false;
+						std::cout << "4 "<< blCheck4 << std::endl;
 					}
 					if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 					{
@@ -605,6 +602,8 @@ void Level4::Update()
 						movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 						blCheck4 = false;
 						blCheck4_2 = true;
+						std::cout << "4_2 " << blCheck4 << std::endl;
+
 					}
 				}
 			}
@@ -617,6 +616,8 @@ void Level4::Update()
 
 		if (playUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 		{
+			std::cout << "1:  " << conecTcheck4_1 << "  2:  " << conecTcheck4_2 << "  1:  " << conecTcheck4_3 << std::endl;
+
 			if (Nos[0] == false && Nos[1] == false)
 			{
 				if (UI[0] == false)
@@ -722,8 +723,7 @@ void Level4::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
 					INPUT->setInput(KEY::LEFT);
-
-					STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST4);
+					STATE_MANAGER->ReloadState();
 				}
 			}
 		}
