@@ -47,20 +47,20 @@ void Loading::Update()
 	switch (LOADINGCOUNT)
 	{
 	case 0:
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 		TEXTURE->Load1();
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
 		break;
 	case 1:
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo2);
 		TEXTURE->Load2();
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo2);
 		break;
 	case 2:
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo3);
 		TEXTURE->Load3();
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo3);
 		break;
 	case 3:
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
 		TEXTURE->Load4();
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
 		STATE_MANAGER->ChangeLevel(GameLevels::DIGIPENLOGO);
 		break;
 	}
