@@ -36,6 +36,8 @@ public:
 		fullScreenTrue = nullptr;
 		quitButton = nullptr;
 		quitButton_pressed = nullptr;
+		backtomain = nullptr;
+		backtomain_pressed = nullptr;
 
 		QuitAskBack = nullptr;
 		QuitAsk = nullptr;
@@ -46,6 +48,7 @@ public:
 		No_p = nullptr;
 		soundBar = nullptr;
 		mInput = nullptr;
+
 	}
 
 	void Init() override;
@@ -62,6 +65,7 @@ private:
 	Object* background, * option, * music, * arrowRight, * arrowLeft, * bar0;
 	Object* goToMain, *goToMain_pressed, * fullScreen, * fullScreenFalse, * fullScreenTrue;
 	Object* quitButton, * quitButton_pressed, * backtomain, * backtomain_pressed;
+	Object* creditsButton, * creditsButton_pressed, * tutorialButton, * tutorialButton_pressed;
 	
 	
 	int key;
@@ -82,6 +86,8 @@ private:
 
 	bool quitCheck = false;
 	bool realQuit = false;
+
+	bool UI[5] = { false };
 
 	Vector2<float> cursor;
 	GameLevels goback;

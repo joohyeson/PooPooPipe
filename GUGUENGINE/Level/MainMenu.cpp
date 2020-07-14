@@ -192,6 +192,7 @@ void MainMenu::Update()
 			UI[0] = true;
 			this->sound->Play("assets\\UI.wav", 1);
 		}
+
 		startButton_pressed->mesh->setTransform(startButton->mesh->GetTransform());
 
 		if (menuInput.IsPressed(KEY::LEFT) == true)
