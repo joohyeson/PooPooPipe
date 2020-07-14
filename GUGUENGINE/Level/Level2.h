@@ -63,6 +63,7 @@ private:
 	int checkToPipe = 0;
 	bool click = 0;
 	bool cur = false;
+	bool checking;
 	bool fit = false;
 	double timer;
 	double timer2;

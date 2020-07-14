@@ -72,7 +72,7 @@ void Level1::Init()
 	mouse->mesh->SetMeshType(MESHTYPE::rectangle);
 	mouse->Init();
 	mouse->mesh->InitializeTextureMesh(550.f, 300.f);
-
+	checking = false;
 	win->AddComponent(new Mesh());
 	win->mesh->setTransform({ -2000.0f, -2000.0f });
 	win->mesh->SetMeshType(MESHTYPE::rectangle);
@@ -85,7 +85,21 @@ void Level1::Init()
 void Level1::Update()
 {
 	cursor = mInput.Cursor;
-
+	if (mInput.IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
 
 	if (mInput.IsPressed(KEY::F) == true)
 	{

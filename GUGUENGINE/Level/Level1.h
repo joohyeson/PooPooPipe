@@ -47,6 +47,7 @@ private:
 	Object* background;
 	Object* movePuzzle, * blackPuzzle, * puzzleLeft, * puzzleRight, *mouse;
 	bool cur = false;
+	bool checking;
 	Object* spacePress;
 	Input mInput;
 	bool movable = false;

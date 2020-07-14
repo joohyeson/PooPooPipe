@@ -124,7 +124,7 @@ void Level2::Init()
 	pressPlay2->mesh->SetMeshType(MESHTYPE::rectangle);
 	pressPlay2->Init();
 	pressPlay2->mesh->InitializeTextureMesh(500.f,350.f);
-
+	checking = false;
 	win->AddComponent(new Mesh());
 	win->mesh->setTransform({ -2000.0f, -2000.0f });
 	win->mesh->SetMeshType(MESHTYPE::rectangle);
@@ -138,7 +138,21 @@ void Level2::Init()
 void Level2::Update()
 {
 	cursor = mInput.Cursor;
-
+	if (mInput.IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
 	
 	if (mInput.IsPressed(KEY::F) == true)
 	{

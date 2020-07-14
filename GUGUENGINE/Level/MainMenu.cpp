@@ -460,6 +460,9 @@ void MainMenu::Update()
 			else if (cut[0] == true && cut[1] == true)
 			{
 				clickCredit = false;
+				input[1] = false;
+				cut[0] = false;
+				cut[1] = false;
 				credit1->mesh->setTransform({ -2000.f, -2000.f });
 				credit2->mesh->setTransform({ -2000.f, -2000.f });
 				credit3->mesh->setTransform({ -2000.f, -2000.f });

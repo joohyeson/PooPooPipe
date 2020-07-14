@@ -210,6 +210,9 @@ void LevelOption::Init()
 	tutorialButton_pressed->mesh->setTransform({ 3500.0f,-100.f });
 	tutorialButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	tutorialButton_pressed->mesh->InitializeTextureMesh(420.f, 70.f);
+	nextSound[0] = false;
+	nextSound[1] = false;
+	nextSound[2] = false;
 
 	controls = OBJECT_FACTORY->CreateEmptyObject();
 	controls->AddComponent(new Mesh());
@@ -218,7 +221,6 @@ void LevelOption::Init()
 	controls->mesh->setTransform({ 5000.f,100.f });
 	controls->mesh->SetMeshType(MESHTYPE::rectangle);
 	controls->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
-
 
 	credit1 = OBJECT_FACTORY->CreateEmptyObject();
 	credit1->AddComponent(new Mesh());
@@ -275,7 +277,6 @@ void LevelOption::Update()
 	this->sound->Update();
 	cursor = mInput->Cursor;
 
-	
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 
 	if (mInput->IsPressed(KEY::LEFT))
@@ -570,6 +571,11 @@ void LevelOption::Update()
 			if(input[1] == false)
 			{
 				input[1] = true;
+				if(nextSound[0] == false)
+				{
+					nextSound[0] = true;
+					this->sound->Play("assets\\paper.wav", 1);
+				}
 				if(cut[0] == false && cut[1] == false)
 				{
 					cut[0] = true;
@@ -579,14 +585,30 @@ void LevelOption::Update()
 			else if(cut[0] == true && cut[1] == false)
 			{
 				cut[1] = true;
+				if (nextSound[1] == false)
+				{
+					nextSound[1] = true;
+					this->sound->Play("assets\\paper.wav", 1);
+				}
 				credit3->mesh->setTransform({ 0.f, 0.f });
 			}
 			else if(cut[0] == true && cut[1] == true)
 			{
+				if (nextSound[2] == false)
+				{
+					nextSound[2] = true;
+					this->sound->Play("assets\\paper.wav", 1);
+				}
 				if (this->sound->IsMute_() == false)
 				{
 					this->sound->ToggleMute();
 				}
+				cut[0] = false;
+				cut[1] = false;
+				nextSound[0] = false;
+				nextSound[1] = false;
+				nextSound[2] = false;
+				input[1] = false;
 				clickCredit = false;
 				credit1->mesh->setTransform({ -2000.f, -2000.f });
 				credit2->mesh->setTransform({ -2000.f, -2000.f });
@@ -595,6 +617,8 @@ void LevelOption::Update()
 			}
 		}
 	}
+
+
 
 	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
@@ -631,11 +655,24 @@ void LevelOption::Update()
 		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
+			if(nextSound[0] == false)
+			{
+				nextSound[0] = true;
+				this->sound->Play("assets\\paper.wav", 1);
+			}
+			if (this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
 
 			clickControls = false;
 			controls->mesh->setTransform({ -2000.f, -2000.f });
 			back->mesh->setTransform({ -2000.f, -2000.f });
 		}
+	}
+	else
+	{
+		nextSound[0] = false;
 	}
 
 
