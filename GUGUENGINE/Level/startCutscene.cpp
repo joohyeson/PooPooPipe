@@ -106,7 +106,7 @@ void startCut::Update()
 					if(sound_[2] == false)
 					{
 						sound_[2] = true;
-						this->sound->Play("assets\\heaven.wav", 1);
+						this->sound->Play("assets\\heaven.mp3", 1);
 
 					}
 					startCut3->mesh->setTransform({ 0.f, 0.f });
