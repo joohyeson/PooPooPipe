@@ -123,9 +123,9 @@ void MainMenu::Update()
 			this->sound->StopSound("BGM_another.wav");
 			this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		}
-		else if (this->sound->soundCheck("BGM_theother.mp3") == true)
+		else if (this->sound->soundCheck("BGM_theother.wav") == true)
 		{
-			this->sound->StopSound("BGM_theother.mp3");
+			this->sound->StopSound("BGM_theother.wav");
 			this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		}
 	}
