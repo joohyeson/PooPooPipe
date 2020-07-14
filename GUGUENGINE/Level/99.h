@@ -9,6 +9,7 @@
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 class sound;
 class GUGULOGO : public LevelManager
@@ -34,4 +35,6 @@ private:
 	double	 lastTime;
 	double firstTime;
 	bool check[2] = { false };
+
+	Input mInput;
 };

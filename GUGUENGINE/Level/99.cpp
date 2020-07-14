@@ -26,6 +26,9 @@ void GUGULOGO::Init()
 	gugulogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width/3), static_cast<float>(APPLICATION->height/1.5f));
 
 	mShader.BuildTextureShader();
+
+	mInput.InitCallback(APPLICATION->getMyWindow());
+
 }
 
 void GUGULOGO::Update()
@@ -48,6 +51,13 @@ void GUGULOGO::Update()
 		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
 		
 	}
+
+	if (mInput.IsPressed(KEY::F))
+	{
+		INPUT->setInput(KEY::F);
+		APPLICATION->SetFullScreen();
+	}
+
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwPollEvents();

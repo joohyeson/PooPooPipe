@@ -55,6 +55,7 @@ void endingCut::Update()
 
 	if (mInput.IsPressed(KEY::F))
 	{
+		INPUT->setInput(KEY::F);
 		APPLICATION->SetFullScreen();
 	}
 

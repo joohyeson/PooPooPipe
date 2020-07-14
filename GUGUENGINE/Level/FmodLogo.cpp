@@ -5,14 +5,16 @@
  *FmodLogo.h
  *this is FmodLogo
  */
+
 #include "FmodLogo.h"
-#include <windows.h>
 #include "../GUGUENGINE/ObjectManager.h"
 #include "../GUGUENGINE/Texture.h"
 #include <glfw3.h>
 #include "../GUGUENGINE/Application.h"
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
+#include "../GUGUENGINE/glfwInput.h"
+
 
 GLuint textureFmodLogo;
 
@@ -30,17 +32,27 @@ void FmodLogo::Init()
 	fmodLogo->mesh->SetMeshType(MESHTYPE::rectangle);
 
 	fmodLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width / 3), static_cast<float>(APPLICATION->height / 3));
+
+	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void FmodLogo::Update()
 {
 	lastTime = glfwGetTime();
 
+	if (mInput.IsPressed(KEY::F))
+	{
+		INPUT->setInput(KEY::F);
+		APPLICATION->SetFullScreen();
+	}
+
 	fmodLogo->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::FMODLOGO));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);
 	glfwPollEvents();
+
+
 
 	if(lastTime - firstTime > 2.f)
 	{
