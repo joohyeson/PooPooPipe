@@ -550,6 +550,10 @@ void LevelOption::Update()
 			}
 			else if(cut[0] == true && cut[1] == true)
 			{
+				if (this->sound->IsMute_() == false)
+				{
+					this->sound->ToggleMute();
+				}
 				clickCredit = false;
 				credit1->mesh->setTransform({ -2000.f, -2000.f });
 				credit2->mesh->setTransform({ -2000.f, -2000.f });
