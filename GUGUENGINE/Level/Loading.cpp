@@ -13,6 +13,8 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 
+int LOADINGCOUNT = 0;
+
 void Loading::Init()
 {
 	check = false;
@@ -42,32 +44,29 @@ void Loading::Update()
 		APPLICATION->SetFullScreen();
 	}
 
-	lastTime = glfwGetTime();
-	digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	if (lastTime - firstTime > 2.f)
+	switch (LOADINGCOUNT)
 	{
-		TEXTURE->Load1();
+	case 0:
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
-	}
-
-	if (lastTime - firstTime > 2.f)
-	{
-		TEXTURE->Load2();
+		TEXTURE->Load1();
+		break;
+	case 1:
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo2);
-	}
-
-	if (lastTime - firstTime > 2.f)
-	{
-		TEXTURE->Load3();
+		TEXTURE->Load2();
+		break;
+	case 2:
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo3);
+		TEXTURE->Load3();
+		break;
+	case 3:
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
+		TEXTURE->Load4();
+		STATE_MANAGER->ChangeLevel(GameLevels::DIGIPENLOGO);
+		break;
 	}
 
-	if (lastTime - firstTime > 2.f)
-	{
-		TEXTURE->Load4();
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
-		STATE_MANAGER->ChangeLevel(GameLevels::DIGIPENLOGO);
-	}
+
+	LOADINGCOUNT++;
 
 	if (mInput.IsPressed(KEY::ESCAPE))
 	{
@@ -75,7 +74,6 @@ void Loading::Update()
 		ENGINE->Quit();
 	}
 
-	
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);

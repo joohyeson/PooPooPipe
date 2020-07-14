@@ -12,7 +12,7 @@
 
 enum class GameLevels
 {
-	LOAD1, LOAD2, LOAD3, LOAD4,
+	LOAD1,
 	DIGIPENLOGO,
 	FMODLOGO,
 	GUGULOGO,
