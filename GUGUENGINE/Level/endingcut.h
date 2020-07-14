@@ -21,6 +21,7 @@ public:
 		skip = nullptr;
 		texturestartNext = 0;
 		texturestartSkip = 0;
+		timer = 0;
 
 	}
 
@@ -48,4 +49,6 @@ private:
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
 	bool sound_[3] = { false };
+	double timer;
+	bool soundeffect[3] = { false };
 };

@@ -59,6 +59,7 @@ void startCut::Update()
 		INPUT->setInput(KEY::F);
 		APPLICATION->SetFullScreen();
 	}
+	
 	if(soundeffect[2] == true)
 	{
 		if(timer>1.5)

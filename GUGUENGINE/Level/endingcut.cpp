@@ -11,6 +11,7 @@ void endingCut::Init()
 	for (int i = 0; i < 3; i++)
 	{
 		sound_[i] = false;
+		soundeffect[i] = false;
 	}
 	ending = false;
 	endCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
@@ -38,6 +39,8 @@ void endingCut::Init()
 
 void endingCut::Update()
 {
+	timer += ENGINE->dt;
+
 	if(ending == false)
 	{
 		ending = true;
@@ -70,17 +73,26 @@ void endingCut::Update()
 		INPUT->setInput(KEY::F);
 		APPLICATION->SetFullScreen();
 	}
-
-	if (skip->collision->Point2BoxCollision({ cursor__.x,cursor__.y }, skip->mesh) == true)
+	if (soundeffect[2] == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+		if (timer > 1.5)
 		{
-			INPUT->setInput(KEY::LEFT);
+			soundeffect[2] = false;
 			if (input[0] == false)
 			{
 				input[0] = true;
 				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 			}
+		}
+	}
+	if (skip->collision->Point2BoxCollision({ cursor__.x,cursor__.y }, skip->mesh) == true)
+	{
+		if (mInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			soundeffect[2] = true;
+			timer = 0;
+			this->sound->Play("assets\\skip.wav", 1);
 		}
 		else
 		{
@@ -106,9 +118,11 @@ void endingCut::Update()
 				if (cut[0] == false && cut[1] == false)
 				{
 					cut[0] = true;
+
 					if (sound_[1] == false)
 					{
 						sound_[1] = true;
+						this->sound->Play("assets\\paper.wav", 1);
 					}
 					endCut2->mesh->setTransform({ 0.f, 0.f });
 				}
