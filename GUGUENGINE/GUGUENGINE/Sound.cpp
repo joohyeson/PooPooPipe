@@ -101,7 +101,7 @@ void Sound::Load()
 {
 	LoadMusic("assets\\BGM_new.flac");
 	LoadMusic("assets\\BGM_another.wav");
-	LoadMusic("assets\\coin.mp3");
+	LoadMusic("assets\\coin.wav");
 	LoadMusic("assets\\flushing.wav");
 	LoadMusic("assets\\yeah.wav");
 	LoadMusic("assets\\UI.wav");

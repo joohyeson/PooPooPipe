@@ -381,7 +381,7 @@ void Level14::Update()
 						puzzle12->mesh->setRotation(degree8);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[0] = false;
 					}
@@ -408,7 +408,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[1] = false;
 					}
@@ -435,7 +435,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[2] = false;
 					}
 				}
@@ -459,7 +459,7 @@ void Level14::Update()
 						puzzle13->mesh->setRotation(degree8_4);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[3] = false;
 					}
 				}
@@ -485,7 +485,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[4] = false;
 					}
 				}
@@ -510,7 +510,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[6] = false;
 					}
@@ -534,7 +534,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[7] = false;
 					}
@@ -558,7 +558,7 @@ void Level14::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[8] = false;
 					}
@@ -632,7 +632,7 @@ void Level14::Update()
 					degree8_7 += static_cast<float>(DegreeToRadian(-120.f));
 					puzzle4->mesh->setRotation(degree8_7);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					if (puzzle19->pipe->GetDirValue(E) == 1 && (puzzle4->pipe->GetDirValue(W) == 1))
 					{

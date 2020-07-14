@@ -372,7 +372,7 @@ void Level5::Update()
 					degree5 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle->mesh->setRotation(degree5);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[0] = false;
 				}
 			}
@@ -487,7 +487,7 @@ void Level5::Update()
 					degree5_2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle2->mesh->setRotation(degree5_2);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[1] = false;
 				}
@@ -603,7 +603,7 @@ void Level5::Update()
 						degree5_3 += static_cast<float>(DegreeToRadian(60.f));
 						movePuzzle3->mesh->setRotation(degree5_3);
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[2] = false;
 					}
@@ -901,7 +901,7 @@ void Level5::Update()
 					puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
 					puzzle7->pipe->SetDirection(true, true, false, true, false, false);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					movePuzzleCheck5 = false;
 				}

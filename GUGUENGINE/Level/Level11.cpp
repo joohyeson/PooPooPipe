@@ -388,7 +388,7 @@ void Level11::Update()
 						puzzle2->mesh->setRotation(degree8);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[0] = false;
 					}
@@ -411,7 +411,7 @@ void Level11::Update()
 						puzzle13->mesh->setRotation(degree8_2);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[1] = false;
 					}
@@ -435,7 +435,7 @@ void Level11::Update()
 						puzzle3->mesh->setRotation(degree8_3);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[2] = false;
 					}
 				}
@@ -458,7 +458,7 @@ void Level11::Update()
 						puzzle19->mesh->setRotation(degree8_4);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[3] = false;
 					}
 				}
@@ -482,7 +482,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[4] = false;
 					}
 				}
@@ -505,7 +505,7 @@ void Level11::Update()
 						puzzle6->mesh->setRotation(degree8_6);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[5] = false;
 					}
 				}
@@ -528,7 +528,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[6] = false;
 					}
@@ -550,7 +550,7 @@ void Level11::Update()
 						puzzle10->mesh->setRotation(degree8_8);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[7] = false;
 					}
@@ -576,7 +576,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[8] = false;
 					}
@@ -602,7 +602,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[9] = false;
 					}
@@ -628,7 +628,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[10] = false;
 					}
@@ -655,7 +655,7 @@ void Level11::Update()
 
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[11] = false;
 					}
 				}

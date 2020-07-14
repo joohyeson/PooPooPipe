@@ -190,7 +190,7 @@ void Level3::Init()
 	numberImage = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850, 450.f - 20.f });
 
 	//se3.Init();
-	//se3.LoadSE("assets\\coin.mp3");
+	//se3.LoadSE("assets\\coin.wav");
 
 	//playSE3.Init();
 	//playSE3.LoadSE("assets\\flushing.wav");
@@ -327,7 +327,7 @@ void Level3::Update()
 					movePuzzle->pipe->Update();
 					degree2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle->mesh->setRotation(degree2);
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[0] = false;
 				}
 			}
@@ -395,7 +395,7 @@ void Level3::Update()
 
 					degree2_2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle2->mesh->setRotation(degree2_2);
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[1] = false;
 				}
 			}
@@ -445,7 +445,7 @@ void Level3::Update()
 					movePuzzle3->pipe->Update();
 					degree2_3 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle3->mesh->setRotation(degree2_3);
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[2] = false;
 				}
 			}

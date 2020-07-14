@@ -323,7 +323,7 @@ void Level4::Update()
 					degree4 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle->mesh->setRotation(degree4);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[0] = false;
 
 				}
@@ -390,7 +390,7 @@ void Level4::Update()
 					degree4_2 += static_cast<float>(DegreeToRadian(60.f));
 					movePuzzle2->mesh->setRotation(degree4_2);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[1] = false;
 				}
@@ -443,7 +443,7 @@ void Level4::Update()
 
 					movePuzzle3->mesh->setRotation(degree4_3);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[2] = false;
 

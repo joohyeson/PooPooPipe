@@ -50,7 +50,7 @@ void Level2::Init()
 	win = OBJECT_FACTORY->CreateEmptyObject();
 
 	se2.Init();
-	se2.LoadMusic("assets\\coin.mp3");
+	se2.LoadMusic("assets\\coin.wav");
 
 	mShader2.BuildTextureShader();
 
@@ -169,7 +169,7 @@ void Level2::Update()
 
 				degree += static_cast<float>(DegreeToRadian(60.f) );
 				movePuzzle->mesh->setRotation(degree + DegreeToRadian(60.f));
-				this->sound->Play("assets\\coin.mp3", 1);
+				this->sound->Play("assets\\coin.wav", 1);
 
 				rot = false;
 			}

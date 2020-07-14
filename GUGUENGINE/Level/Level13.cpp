@@ -336,7 +336,7 @@ void Level13::Update()
 					puzzle18->mesh->setRotation(degree8);
 					puzzle7->mesh->setRotation(degree8);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[0] = false;
 				}
@@ -361,7 +361,7 @@ void Level13::Update()
 					puzzle7->mesh->setRotation(degree8);
 					puzzle18->mesh->setRotation(degree8);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[1] = false;
 				}
@@ -386,7 +386,7 @@ void Level13::Update()
 					puzzle19->mesh->setRotation(degree8_2 + static_cast<float>(DegreeToRadian(240.f)));
 					puzzle10->mesh->setRotation(degree8_2);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[2] = false;
 				}
 			}
@@ -411,7 +411,7 @@ void Level13::Update()
 					puzzle19->mesh->setRotation(degree8_2 + static_cast<float>(DegreeToRadian(240.f)));
 					puzzle10->mesh->setRotation(degree8_2);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[3] = false;
 				}
 			}
@@ -435,7 +435,7 @@ void Level13::Update()
 					puzzle4->mesh->setRotation(degree8_3);
 					puzzle15->mesh->setRotation(degree8_3 + static_cast<float>(DegreeToRadian(60.f)));
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 					rot[4] = false;
 				}
 			}
@@ -459,7 +459,7 @@ void Level13::Update()
 					puzzle4->mesh->setRotation(degree8_3);
 					puzzle15->mesh->setRotation(degree8_3 + static_cast<float>(DegreeToRadian(60.f)));
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[6] = false;
 				}
@@ -482,7 +482,7 @@ void Level13::Update()
 					degree8_4 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle1->mesh->setRotation(degree8_4);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[7] = false;
 				}
@@ -504,7 +504,7 @@ void Level13::Update()
 					degree8_6 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle20->mesh->setRotation(degree8_6);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[9] = false;
 				}
@@ -526,7 +526,7 @@ void Level13::Update()
 					degree8_7 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle9->mesh->setRotation(degree8_7);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[10] = false;
 				}
@@ -548,7 +548,7 @@ void Level13::Update()
 					degree8_8 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle14->mesh->setRotation(degree8_8);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[5] = false;
 				}

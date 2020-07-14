@@ -341,7 +341,7 @@ void Level9::Update()
 					degree9 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle1->mesh->setRotation(degree9);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[0] = false;
 				}
@@ -364,7 +364,7 @@ void Level9::Update()
 					degree9_2 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle19->mesh->setRotation(degree9_2);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[1] = false;
 				}
@@ -387,7 +387,7 @@ void Level9::Update()
 					degree9_3 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle14->mesh->setRotation(degree9_3);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[2] = false;
 				}
@@ -410,7 +410,7 @@ void Level9::Update()
 					puzzle6->mesh->setRotation(degree9_4);
 
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[3] = false;
 
@@ -434,7 +434,7 @@ void Level9::Update()
 					degree9_5 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle20->mesh->setRotation(degree9_5);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[4] = false;
 				}
@@ -456,7 +456,7 @@ void Level9::Update()
 					degree9_6 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle16->mesh->setRotation(degree9_6);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[5] = false;
 				}
@@ -478,7 +478,7 @@ void Level9::Update()
 					degree9_7 += static_cast<float>(DegreeToRadian(60.f));
 					puzzle12->mesh->setRotation(degree9_7);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					rot[6] = false;
 				}
@@ -552,7 +552,7 @@ void Level9::Update()
 					degree9_rot += static_cast<float>(DegreeToRadian(-120.f));
 					puzzle4->mesh->setRotation(degree9_rot);
 
-					this->sound->Play("assets\\coin.mp3", 1);
+					this->sound->Play("assets\\coin.wav", 1);
 
 					autoRot = false;
 

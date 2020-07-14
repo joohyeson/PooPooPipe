@@ -362,7 +362,7 @@ void Level6::Update()
 						puzzle14->mesh->setRotation(degree6);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[0] = false;
 					}
@@ -385,7 +385,7 @@ void Level6::Update()
 						blackPuzzle1->mesh->setRotation(degree6_2);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[1] = false;
 					}
@@ -408,7 +408,7 @@ void Level6::Update()
 						puzzle7->mesh->setRotation(degree6_3);
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[2] = false;
 					}
@@ -431,7 +431,7 @@ void Level6::Update()
 						std::cout << "4" << std::endl;
 						rotTime.Update();
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[3] = false;
 					}
@@ -454,7 +454,7 @@ void Level6::Update()
 						rotTime.Update();
 						std::cout << "5" << std::endl;
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 
 						rot[4] = false;
 					}
@@ -478,7 +478,7 @@ void Level6::Update()
 						rotTime.Update();
 						std::cout << "6" << std::endl;
 
-						this->sound->Play("assets\\coin.mp3", 1);
+						this->sound->Play("assets\\coin.wav", 1);
 						rot[5] = false;
 					}
 				}

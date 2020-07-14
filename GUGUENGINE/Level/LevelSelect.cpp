@@ -90,7 +90,7 @@ void LevelSelect::Init()
 	Level11_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	
 	seLv.Init();
-	seLv.LoadMusic("assets\\coin.mp3");
+	seLv.LoadMusic("assets\\coin.wav");
 
 	mShader2.BuildTextureShader();
 	levelInput.InitCallback(APPLICATION->getMyWindow());
