@@ -13,11 +13,9 @@ public:
 	{
 		endCut1 = nullptr;
 		endCut2 = nullptr;
-		/*endCut3 = nullptr;*/
 
 		textureendCut1 = 0;
 		textureendCut2 = 0;
-		//texturestartCut3 = 0;
 
 		next = nullptr;
 		skip = nullptr;
@@ -40,16 +38,14 @@ private:
 	GLuint textureendCut1;
 	Object* endCut2;
 	GLuint textureendCut2;
-	//Object* endCut3;
-	//GLuint textureendCut3;
 	Shader mShader;
 	Object* next;
 	Object* skip;
 	GLuint texturestartNext;
 	GLuint texturestartSkip;
 	Vector2<float> cursor__;
+
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
-	float dt = 0.f;
 	bool sound_[3] = { false };
 };

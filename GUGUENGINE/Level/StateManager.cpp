@@ -31,7 +31,6 @@
 #include "Level13.h"
 #include "Level14.h"
 #include "LevelSelect.h"
-#include "MovingCheck.h"
 #include "99.h"
 
 StateManager* STATE_MANAGER = nullptr;
@@ -81,9 +80,6 @@ void StateManager::Init()
 	levels.push_back(new Level13());
 	levels.push_back(new Level14());
 	levels.push_back(new LevelSelect());
-	
-	levels.push_back(new MovingCheck());
-
 	levels.push_back(new LevelCredits());
 	
 	levels.at(static_cast<int>(current))->Init();

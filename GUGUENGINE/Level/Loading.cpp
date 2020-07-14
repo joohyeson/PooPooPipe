@@ -18,7 +18,6 @@ int LOADINGCOUNT = 0;
 void Loading::Init()
 {
 	check = false;
-	firstTime = glfwGetTime();
 
 	digipenLogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
 	digipenLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));

@@ -19,7 +19,6 @@ void GUGULOGO::Init()
 	check[0] = false;
 	check[1] = false;
 	
-	firstTime = glfwGetTime();
 
 	gugulogo = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f, 0.f });
 	textureGuguLogo = TEXTURE->CreateTexture("assets\\team99.png", 0);
@@ -41,11 +40,10 @@ void GUGULOGO::Update()
 	if(check[1] == false)
 	{
 		check[1] = true;
-		//this->sound->Play("assets\\footprint.wav", 1);
 	}
-	lastTime = glfwGetTime();
 	gugulogo->mesh->Update(mShader.GetShaderHandler(), textureGuguLogo);
-	if (lastTime - firstTime > 2.f)
+	timer += ENGINE->dt;
+	if (timer > 2)
 	{
 		this->sound->Pause();
 		STATE_MANAGER->ChangeLevel(GameLevels::LOAD1);

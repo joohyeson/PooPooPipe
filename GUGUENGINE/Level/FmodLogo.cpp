@@ -20,7 +20,6 @@ GLuint textureFmodLogo;
 
 void FmodLogo::Init()
 {
-	firstTime = glfwGetTime();
 
 	fmodLogo = OBJECT_FACTORY->CreateEmptyObject();
 
@@ -39,7 +38,6 @@ void FmodLogo::Init()
 
 void FmodLogo::Update()
 {
-	lastTime = glfwGetTime();
 
 	if (mInput.IsPressed(KEY::F))
 	{
@@ -54,8 +52,9 @@ void FmodLogo::Update()
 	glfwPollEvents();
 
 
+	timer += ENGINE->dt;
 
-	if(lastTime - firstTime > 2.f)
+	if(timer > 2.f)
 	{
 		STATE_MANAGER->ChangeLevel(GameLevels::GUGULOGO);
 	}
