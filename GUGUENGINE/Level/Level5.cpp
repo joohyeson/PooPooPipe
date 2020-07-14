@@ -450,7 +450,7 @@ void Level5::Update()
 		}
 		if (blCheck5_3)
 		{
-			if ((movePuzzle->pipe->GetDirValue(E) && puzzle9->pipe->GetDirValue(W)) == (movePuzzle->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
+			if ((movePuzzle->pipe->GetDirValue(E) && puzzle9->pipe->GetDirValue(W)) && (movePuzzle->pipe->GetDirValue(SW) == puzzle12->pipe->GetDirValue(NE)))
 			{
 				conecTcheck5_1 = true;
 				//std::cout << "pipe connect\n";
