@@ -122,11 +122,7 @@ private:
 	Object* win;
 	Object* mini;
 
-	double lastTime = 0;
-	double firstTime = 0;
 	bool skip = false;
-	double first;
-	double last;
 	bool failS[2] = { false };
 	bool UI[5] = { false };
 
@@ -175,6 +171,9 @@ private:
 	bool conecTcheck8_7 = false;
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
+
+	double timer;
+	double timer2;
 	LevelOption opt;
 
 };

@@ -18,6 +18,10 @@ void Level10::Init()
 	{
 		MaxLevel = 7;
 	}
+	timer = 0;
+	timer2 = 0;
+	timer3 = 0;
+
 	skip = false;
 	failS[0] = false;
 	failS[1] = false;
@@ -315,10 +319,8 @@ void Level10::Update()
 			rotrot2 = false;
 			if (failS[0] == false)
 			{
-				last = 0;
 				this->sound->Play("assets\\fart.mp3", 1);
 				failS[0] = true;
-				first = glfwGetTime();
 			}
 
 
@@ -327,8 +329,8 @@ void Level10::Update()
 
 		if (failS[0] == true)
 		{
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer += ENGINE->dt;
+			if (timer > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
@@ -715,18 +717,16 @@ void Level10::Update()
 				else {
 					if (failS[1] == false)
 					{
-						last = 0;
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS[1] = true;
-						first = glfwGetTime();
 					}
 				}
 			}
 		}
 		if (failS[1] == true)
 		{
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer2 += ENGINE->dt;
+			if (timer2 > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });;
@@ -898,19 +898,18 @@ void Level10::Update()
 
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
 		}
-		lastTime = glfwGetTime();
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer3 += ENGINE->dt;
+			if (timer3 > 2)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST11);
 			}
 		}
 		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background2));
-		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzle1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::image01));
 		puzzle2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
 		puzzle3->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::vPuzzle));
 		puzzle4->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::autoCurve));

@@ -104,9 +104,7 @@ private:
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
-	
-	double first;
-	double last;
+
 	bool failS[2] = { false };
 	bool UI[5] = { false };
 	bool Nos[2] = { false };
@@ -129,9 +127,7 @@ private:
 
 	Object* win;
 	Object* mini;
-	
-	double lastTime = 0;
-	double firstTime = 0;
+
 	bool skip = false;
 	Object* button;
 	Object* clear;
@@ -183,6 +179,8 @@ private:
 	bool conecTcheck8_7 = false;
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
-	
+	double timer;
+	double timer2;
+	double timer3;
 	LevelOption opt;
 };

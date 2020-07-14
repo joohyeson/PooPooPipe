@@ -90,8 +90,7 @@ private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
 	bool UI[5] = { false };
-	double first;
-	double last;
+
 	bool failS = false;
 	bool Nos[2] = { false };
 	Object* QuitAskBack;
@@ -133,8 +132,6 @@ private:
 
 	Vector2<float> cursor9;
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
 	
 	int coorcheck9 = 0;
 
@@ -157,7 +154,9 @@ private:
 	bool conecTcheck9_2 = false;
 	bool conecTcheck9_3 = false;
 
-	bool SoundCheck = false;
+	bool SoundCheck = false;	
+	double timer;
+	double timer2;
 	LevelOption opt;
 
 };

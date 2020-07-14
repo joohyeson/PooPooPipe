@@ -97,8 +97,7 @@ public:
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
-	double first;
-	double last;
+
 	bool failS[2] = { false };
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
@@ -124,8 +123,7 @@ private:
 	Object* win;
 	GLint textureWin;
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
+
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;
@@ -164,4 +162,7 @@ private:
 
 	LevelOption opt;
 
+	double timer;
+	double timer2;
+	double timer3;
 };

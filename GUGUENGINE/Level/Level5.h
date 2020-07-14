@@ -90,13 +90,10 @@ public:
 		return GameLevels::LV_TEST5;
 	}
 private:
-	double first;
-	double last;
 	bool failS = false;
 	bool siren = false;
 	Object* Yellow;
-	double yfirst;
-	double ylast;
+
 	bool yellowS = false;
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
@@ -145,8 +142,6 @@ private:
 	bool poopooCheck = false;
 	
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
 	
 	Vector2<float> cursor5;
 
@@ -181,4 +176,7 @@ private:
 	bool UI[5] = { false };
 	LevelOption opt;
 
+	double timer;
+	double timer2;
+	double timer3;
 };

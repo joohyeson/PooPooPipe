@@ -47,20 +47,20 @@ void Loading::Update()
 	switch (LOADINGCOUNT)
 	{
 	case 0:
-		TEXTURE->Load1();
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo);
+		TEXTURE->Load1();
 		break;
 	case 1:
-		TEXTURE->Load2();
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo2);
+		TEXTURE->Load2();
 		break;
 	case 2:
-		TEXTURE->Load3();
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo3);
+		TEXTURE->Load3();
 		break;
 	case 3:
-		TEXTURE->Load4();
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
+		TEXTURE->Load4();
 		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
 		break;
 	}

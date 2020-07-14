@@ -88,8 +88,6 @@ public:
 	}
 
 private:
-	double first;
-	double last;
 	bool failS = false;
 
 	bool Nos[2] = { false };
@@ -133,12 +131,8 @@ private:
 	Shader mShader, mShader2;
 	MovePooPoo mPooPoo;
 
-	/*Sound se4;
-	Sound playSE4;*/
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
-	
+
 	Input mInput;
 	
 	bool rot[3] = { false };
@@ -168,6 +162,9 @@ private:
 
 	bool blCheck4 = false;
 	bool blCheck4_2 = false;
+
+	double timer;
+	double timer2;
 
 	LevelOption opt;
 };

@@ -94,11 +94,8 @@ public:
 	{
 		return GameLevels::LV_TEST3;
 	}
-	//void Wait(long waitTime);
 
 private:
-	double first;
-	double last;
 	bool failS = false;
 	bool skip = false;
 
@@ -161,8 +158,6 @@ private:
 	float degree2_2 = 0;
 	float degree2_3 = 0;
 
-	double lastTime = 0;
-	double firstTime = 0;
 	int chekNext = 0;
 
 	bool blCheck1 = false;
@@ -175,9 +170,10 @@ private:
 	bool conecTcheck2 = false;
 	bool conecTcheck3 = false;
 
-	//LevelSelect current;
+	double timer;
+	double timer2;
+
 	LevelOption opt;
-	//bool initopt;
 };
 
 

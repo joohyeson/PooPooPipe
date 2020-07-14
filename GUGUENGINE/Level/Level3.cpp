@@ -25,6 +25,9 @@ void Level3::Init()
 {
 	getOpt = false;
 
+	timer = 0;
+	timer2 = 0;
+
 	if (MaxLevel <= 1)
 	{
 		MaxLevel = 1;
@@ -628,10 +631,9 @@ void Level3::Update()
 					{
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS = true;
-						first = glfwGetTime();
 					}
-					last = glfwGetTime();
-					if (last - first > 1.5f)
+					timer += ENGINE->dt;
+					if (timer > 1.5)
 					{
 						Nos[0] = true;
 						fail->mesh->setTransform({ 0,0 });
@@ -807,14 +809,14 @@ void Level3::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
 		}
 
-		lastTime = glfwGetTime();
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer2 += ENGINE->dt;
+
+			if (timer2 > 1.5)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST4);
 			}

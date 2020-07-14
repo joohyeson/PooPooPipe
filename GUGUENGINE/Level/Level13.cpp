@@ -26,6 +26,10 @@ void Level13::Init()
 	{
 		MaxLevel = 10;
 	}
+
+	timer = 0;
+	timer2 = 0;
+
 	Nos[0] = false;
 	Nos[1] = false;
 	chekNext8 = 0;
@@ -649,18 +653,16 @@ void Level13::Update()
 				else {
 					if (failS[1] == false)
 					{
-						last = 0;
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS[1] = true;
-						first = glfwGetTime();
 					}
 				}
 			}
 		}
 		if (failS[1] == true)
 		{
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer += ENGINE->dt;
+			if (timer > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });;
@@ -678,14 +680,13 @@ void Level13::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
 		}
 
-		lastTime = glfwGetTime();
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer2 += ENGINE->dt;
+			if (timer2 > 2)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST14);
 			}

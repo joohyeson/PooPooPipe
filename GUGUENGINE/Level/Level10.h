@@ -98,8 +98,7 @@ public:
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
-	double first;
-	double last;
+
 	bool failS[2] = { false };
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
@@ -129,8 +128,6 @@ private:
 	Object* win;
 	
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
 	
 	int key;
 	Mesh mMesh;
@@ -182,6 +179,11 @@ private:
 	bool conecTcheck8_7 = false;
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
+
+	double timer;
+	double timer2;
+	double timer3;
+
 	LevelOption opt;
 
 };

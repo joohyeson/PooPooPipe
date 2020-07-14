@@ -111,8 +111,7 @@ private:
 	GLint textureQuitUI3p;
 	GLint textureOptionUI3p;
 	GLint textureRestartUI3p;
-	double first;
-	double last;
+
 	bool failS[2] = { false };
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
@@ -135,8 +134,6 @@ private:
 	Object* win;
 	Object* mini;
 
-	double lastTime = 0;
-	double firstTime = 0;
 	bool skip = false;
 
 	bool UI[5] = { false };
@@ -190,6 +187,11 @@ private:
 	bool conecTcheck8_7 = false;
 	bool conecTcheck8_8 = false;
 	bool conecTcheck8_9 = false;
+
+	double timer;
+	double timer2;
+	double timer3;
+
 	LevelOption opt;
 
 };

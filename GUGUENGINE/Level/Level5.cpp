@@ -27,6 +27,10 @@ void Level5::Init()
 		MaxLevel = 5;
 	}
 
+	timer = 0;
+	timer2 = 0;
+	timer3 = 0;
+
 	skip = false;
 	failS = false;
 	Nos[0] = false;
@@ -288,11 +292,11 @@ void Level5::Update()
 			}
 			yellowS = true;
 			Yellow->mesh->setTransform({ 0.f, 0.f });
-			yfirst = glfwGetTime();
 		}
-		ylast = glfwGetTime();
 
-		if (ylast - yfirst >= 3.f)
+		timer += ENGINE->dt;
+
+		if (timer >= 3.f)
 		{
 			siren = false;
 			Yellow->mesh->setTransform({ -2000.f, -2000.f });
@@ -905,10 +909,9 @@ void Level5::Update()
 					{
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS = true;
-						first = glfwGetTime();
 					}
-					last = glfwGetTime();
-					if (last - first > 1.5f)
+					timer2 += ENGINE->dt;
+					if (timer2 > 1.5)
 					{
 						Nos[0] = true;
 						fail->mesh->setTransform({ 0,0 });
@@ -941,14 +944,13 @@ void Level5::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
 		}
 
-		lastTime = glfwGetTime();
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer3 += ENGINE->dt;
+			if (timer3 > 1.5)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST9);
 			}

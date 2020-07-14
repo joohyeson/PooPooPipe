@@ -90,8 +90,7 @@ public:
 private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
-	double first;
-	double last;
+
 	bool failS[2] = { false };
 	bool Nos[2] = { false };
 	bool Cur[3] = { false };
@@ -133,8 +132,7 @@ private:
 	Vector3<float> buttonClick_1 = { 0, 0, 0 };
 	LimitRotate rotTime;
 	bool skip = false;
-	double lastTime = 0;
-	double firstTime = 0;
+
 	Vector2<float> cursor8;
 	Input mInput;
 
@@ -172,6 +170,9 @@ private:
 
 	bool soundCheck = false;
 	bool soundCheck2 = false;
+	double timer;
+	double timer2;
+	double timer3;
 
 	LevelOption opt;
 };

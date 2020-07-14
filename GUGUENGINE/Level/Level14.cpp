@@ -26,6 +26,9 @@ void Level14::Init()
 		MaxLevel = 11;
 	}
 
+	timer = 0;
+	timer2 = 0;
+	timer3 = 0;
 	Nos[0] = false;
 	Nos[1] = false;
 	Cur[0] = false;
@@ -277,8 +280,6 @@ void Level14::Update()
 
 	else
 	{
-
-		lastTime = glfwGetTime();
 		if (mInput.IsPressed(KEY::F) == true)
 		{
 			APPLICATION->SetFullScreen();
@@ -330,17 +331,15 @@ void Level14::Update()
 			rotrot2 = false;
 			if (failS[0] == false)
 			{
-				last = 0;
 				this->sound->Play("assets\\fart.mp3", 1);
 				failS[0] = true;
-				first = glfwGetTime();
 			}
 			std::cout << "rotation limit!!!" << std::endl;
 		}
 		if (failS[0] == true)
 		{
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer += ENGINE->dt;
+			if (timer > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
@@ -660,18 +659,16 @@ void Level14::Update()
 				{
 					if (failS[1] == false)
 					{
-						last = 0;
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS[1] = true;
-						first = glfwGetTime();
 					}
 				}
 			}
 		}
 		if (failS[1] == true)
 		{
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer2 += ENGINE->dt;
+			if (timer2 > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });;
@@ -689,12 +686,12 @@ void Level14::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
 		}
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer3 += ENGINE->dt;
+			if (timer3 > 2)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::ENDINGCUTS);
 			}

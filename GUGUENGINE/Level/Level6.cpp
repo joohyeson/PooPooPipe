@@ -28,6 +28,9 @@ void Level6::Init()
 		MaxLevel = 3;
 	}
 
+	timer = 0;
+	timer2 = 0;
+	timer3 = 0;
 	skip = false;
 	Nos[0] = false;
 	Nos[1] = false;
@@ -282,13 +285,11 @@ void Level6::Update()
 			rotrot = false;
 			if (failS[0] == false)
 			{
-				last = 0;
 				this->sound->Play("assets\\fart.mp3", 1);
 				failS[0] = true;
-				first = glfwGetTime();
 			}
-			last = glfwGetTime();
-			if (last - first > 1.5f)
+			timer += ENGINE->dt;
+			if (timer > 1.5)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
@@ -609,10 +610,9 @@ void Level6::Update()
 					{
 						this->sound->Play("assets\\fart.mp3", 1);
 						failS[1] = true;
-						first = glfwGetTime();
 					}
-					last = glfwGetTime();
-					if (last - first > 1.5f)
+					timer3 += ENGINE->dt;
+					if (timer3 > 1.5)
 					{
 						Nos[0] = true;
 						fail->mesh->setTransform({ 0,0 });
@@ -787,15 +787,13 @@ void Level6::Update()
 			}
 			skip = true;
 			win->mesh->setTransform({ 0,0 });
-			firstTime = glfwGetTime();
-
 		}
-
-		lastTime = glfwGetTime();
 
 		if (skip == true)
 		{
-			if (lastTime - firstTime > 2)
+			timer2 += ENGINE->dt;
+
+			if (timer2 > 1.5)
 			{
 				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST8);
 			}
