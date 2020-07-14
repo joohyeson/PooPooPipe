@@ -919,7 +919,11 @@ void Level6::Update()
 		}
 		if (mInput.IsPressed(KEY::ESCAPE) == true) {
 			INPUT->setInput(KEY::ESCAPE);
-			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			getOpt = true;
+			if (this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
 		}
 		QuitAskBack->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
 		QuitAsk->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));

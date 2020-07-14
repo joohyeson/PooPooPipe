@@ -881,7 +881,11 @@ void Level3::Update()
 
 		if (mInput.IsPressed(KEY::ESCAPE) == true) {
 			INPUT->setInput(KEY::ESCAPE);
-			STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
+			getOpt = true;
+			if (this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
 		}
 
 
