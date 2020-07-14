@@ -62,7 +62,8 @@ private:
 	float degree = 0;
 	int checkToPipe = 0;
 	bool click = 0;
-
+	bool cur = false;
+	bool fit = false;
 	double lastTime = 0;
 	double firstTime = 0;
 };

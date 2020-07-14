@@ -35,6 +35,7 @@ void Level3::Init()
 	Cur[0] = false;
 	Cur[1] = false;
 	Cur[2] = false;
+	
 	SUI[0] = false;
 	SUI[1] = false;
 	SUI[2] = false;
