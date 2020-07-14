@@ -114,6 +114,7 @@ void Sound::Load()
 	LoadMusic("assets\\click.wav");
 	LoadMusic("assets\\fit.flac");
 	LoadMusic("assets\\control.wav");
+	LoadMusic("assets\\BGM_theother.mp3");	
 }
 
 bool Sound::IsPlaying()
@@ -248,6 +249,7 @@ void Sound::StopSound(std::string mString)
 		if (s->source.find(mString) != -1)
 		{
 			s->channel->stop();
+			s->IsPlaying = false;
 			break;
 		}
 	}
@@ -275,6 +277,16 @@ bool Sound::soundCheck(std::string mString)
 		for (auto s : m_sounds)
 		{
 			if (s->source.find("BGM_another") != -1)
+			{
+				return s->IsPlaying;
+			}
+		}
+	}
+	if (mString == "BGM_theother.mp3")
+	{
+		for (auto s : m_sounds)
+		{
+			if (s->source.find("BGM_theother") != -1)
 			{
 				return s->IsPlaying;
 			}

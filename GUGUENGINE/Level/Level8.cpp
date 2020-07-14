@@ -287,9 +287,15 @@ void Level8::Update()
 	if (current < 5)
 	{
 		current = 5;
+
 		if (this->sound->soundCheck("BGM_another.wav") == true)
 		{
 			this->sound->StopSound("BGM_another.wav");
+			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+		}
+		else if (this->sound->soundCheck("BGM_theother.mp3") == true)
+		{
+			this->sound->StopSound("BGM_theother.mpe");
 			this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		}
 	}

@@ -45,6 +45,14 @@ void endingCut::Update()
 		{
 			this->sound->StopSound("BGM_another.wav");
 		}
+		else if(this->sound->soundCheck("BGM_airplane.mp3") == true)
+		{
+			this->sound->StopSound("BGM_airplane.mp3");
+		}
+		else if(this->sound->soundCheck("BGM_theother.mp3") == true)
+		{
+			this->sound->StopSound("BGM_theother.mp3");
+		}
 	}
 	cursor__ = mInput.Cursor;
 	if (mInput.IsPressed(KEY::A) == true)

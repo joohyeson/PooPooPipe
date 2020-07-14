@@ -262,15 +262,21 @@ void Level12::Init()
 
 void Level12::Update()
 {
-	if (current >= 5)
+	if (current >= 9)
 	{
 		current = 4;
 		if (this->sound->soundCheck("BGM_airplane.mp3") == true)
 		{
 			this->sound->StopSound("BGM_airplane.mp3");
-			this->sound->Play("assets\\BGM_another.wav", -1);
+			this->sound->Play("assets\\BGM_theother.mp3", -1);
+		}
+		else if(this->sound->soundCheck("BGM_another.wav") == true)
+		{
+			this->sound->StopSound("BGM_another.wav");
+			this->sound->Play("assets\\BGM_theother.mp3", -1);
 		}
 	}
+	
 	if (getOpt == true)
 	{
 		opt.Update();
