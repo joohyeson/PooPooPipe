@@ -35,6 +35,12 @@ void DigipenLogo::Update()
 		this->sound->Play("assets\\logo.wav", 1);
 	}
 	
+	if (mInput.IsPressed(KEY::F))
+	{
+		INPUT->setInput(KEY::F);
+		APPLICATION->SetFullScreen();
+	}
+
 	lastTime = glfwGetTime();
 	digipenLogo->mesh->Update(mShader.GetShaderHandler(),TEXTURE->GetTexture(Textures::DIGIPENLOGO));
 	if(lastTime - firstTime > 2.f)

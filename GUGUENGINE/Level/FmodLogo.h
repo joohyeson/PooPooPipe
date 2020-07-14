@@ -10,6 +10,7 @@
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
+#include "../GUGUENGINE/glfwInput.h"
 
 
 class FmodLogo : public LevelManager
@@ -34,6 +35,7 @@ private:
 	Shader mShader;
 	double	 lastTime;
 	double firstTime;
+	Input mInput;
 };
 
 
