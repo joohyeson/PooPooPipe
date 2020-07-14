@@ -79,6 +79,8 @@ void LevelOption::Init()
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(350.f, 70.f);
 
+	checking = false;
+	
 	goToMain_pressed = OBJECT_FACTORY->CreateEmptyObject();
 	goToMain_pressed->AddComponent(new Mesh());
 	goToMain_pressed->Init();
@@ -214,7 +216,7 @@ void LevelOption::Init()
 	controls->Init();
 	controls->mesh->setTransform({ 5000.f,100.f });
 	controls->mesh->SetMeshType(MESHTYPE::rectangle);
-	controls->mesh->InitializeTextureMesh(1920.f, 1080.f);
+	controls->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 
 	credit1 = OBJECT_FACTORY->CreateEmptyObject();
@@ -261,7 +263,21 @@ void LevelOption::Update()
 {
 	this->sound->Update();
 	cursor = mInput->Cursor;
-	
+	if (mInput->IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (UI[0] == false)

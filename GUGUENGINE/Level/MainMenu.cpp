@@ -129,6 +129,7 @@ void MainMenu::Update()
 			this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		}
 	}
+	
 	if(menuInput.IsPressed(KEY::LEFT))
 	{
 		if(checking == false)

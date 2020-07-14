@@ -78,7 +78,7 @@ private:
 
 	Object* next;
 	
-	
+	bool checking;
 	int key;
 	bool clickCredit;
 	bool input[2] = { false, false };
