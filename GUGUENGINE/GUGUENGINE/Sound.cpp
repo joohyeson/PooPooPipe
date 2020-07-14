@@ -100,6 +100,7 @@ void Sound::LoadMusic(const char* filePath)
 void Sound::Load()
 {
 	LoadMusic("assets\\BGM_airplane.mp3");
+	LoadMusic("assets\\BGM_another.wav");
 	LoadMusic("assets\\coin.mp3");
 	LoadMusic("assets\\flushing.wav");
 	LoadMusic("assets\\yeah.wav");
@@ -153,7 +154,7 @@ void Sound::Play(std::string source, int loop)
 		result = r_sound->setLoopCount(-1);
 	}
 
-	if (m_sounds[id]->source.find("BGM") != std::string::npos  ) {
+	if (m_sounds[id]->source.find("BGM") != std::string::npos) {
 
 		if (m_sounds[id]->IsPlaying == false)
 		{
@@ -213,15 +214,15 @@ float Sound::GetVolume()
 
 void Sound::ToggleMute()
 {
-		isMute = !isMute;
-		//masterChannel->setMute(isMute);
-		for (auto s : m_sounds)
+	isMute = !isMute;
+	//masterChannel->setMute(isMute);
+	for (auto s : m_sounds)
+	{
+		if (s->source.find("BGM") != -1)
 		{
-			if (s->source.find("BGM") != -1)
-			{
-				s->channel->setMute(isMute);
-			}
+			s->channel->setMute(isMute);
 		}
+	}
 }
 
 void Sound::SetLoopCount(int /*loopCount*/)
@@ -256,7 +257,31 @@ bool Sound::IsMute_()
 {
 	return isMute;
 }
-	
+
+bool Sound::soundCheck(std::string mString)
+{
+	if (mString == "BGM_airplane.mp3")
+	{
+		for (auto s : m_sounds)
+		{
+			if (s->source.find("BGM_airplane") != -1)
+			{
+				return s->IsPlaying;
+			}
+		}
+	}
+	if (mString == "BGM_another.wav")
+	{
+		for (auto s : m_sounds)
+		{
+			if (s->source.find("BGM_another") != -1)
+			{
+				return s->IsPlaying;
+			}
+		}
+	}
+}
+
 
 
 

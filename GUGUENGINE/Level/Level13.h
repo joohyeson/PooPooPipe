@@ -93,6 +93,8 @@ public:
 		return GameLevels::LV_TEST13;
 	}
 private:
+	int current;
+
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
 	Object* pooCharacter;

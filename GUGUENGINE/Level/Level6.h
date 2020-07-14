@@ -123,7 +123,7 @@ private:
 	Object* win;
 	GLint textureWin;
 	bool skip = false;
-
+	int current;
 	Object* levelImage, * numberImage, * leftCount, *leftnumberTen, *leftnumber, *fail;
 	Object* button;
 	Object* clear;

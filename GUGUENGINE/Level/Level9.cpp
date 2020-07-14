@@ -22,6 +22,7 @@ extern bool getOpt;
 bool SoundCheck = false;
 void Level9::Init()
 {
+	current = 6;
 	getOpt = false;
 	poopooCheck = false;
 	SoundCheck = false;
@@ -258,6 +259,15 @@ void Level9::Init()
 
 void Level9::Update()
 {
+	if (current >= 5)
+	{
+		current = 4;
+		if (this->sound->soundCheck("BGM_airplane.mp3") == true)
+		{
+			this->sound->StopSound("BGM_airplane.mp3");
+			this->sound->Play("assets\\BGM_another.wav", -1);
+		}
+	}
 	if (getOpt == true)
 	{
 		opt.Update();

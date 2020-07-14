@@ -100,7 +100,8 @@ private:
 	bool checking = false;
 	bool SUI[5] = { false };
 	bool PUT[3] = { false };
-	
+	int current;
+
 	Object* QuitAskBack;
 	Object* QuitAsk;
 	Object* Yes;

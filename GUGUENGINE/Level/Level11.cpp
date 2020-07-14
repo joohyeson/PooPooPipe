@@ -20,6 +20,7 @@ extern bool getOpt;
 
 void Level11::Init()
 {
+	current = 8;
 	getOpt = false;
 
 	if (MaxLevel <= 8)
@@ -280,6 +281,15 @@ void Level11::Init()
 
 void Level11::Update()
 {
+	if (current >= 5)
+	{
+		current = 4;
+		if (this->sound->soundCheck("BGM_airplane.mp3") == true)
+		{
+			this->sound->StopSound("BGM_airplane.mp3");
+			this->sound->Play("assets\\BGM_another.wav", -1);
+		}
+	}
 	if (getOpt == true)
 	{
 		opt.Update();

@@ -42,6 +42,7 @@ public:
 	void StopSound(std::string mString);
 
 	bool IsMute_();
+	bool soundCheck(std::string mString);
 	
 	Vector2<float> soundBarSize;
 	Vector2<float> soundBarPosition;

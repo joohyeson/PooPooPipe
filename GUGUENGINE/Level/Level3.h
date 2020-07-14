@@ -172,7 +172,8 @@ private:
 
 	double timer;
 	double timer2;
-
+	int current;
+	
 	LevelOption opt;
 };
 

@@ -97,6 +97,8 @@ public:
 	}
 
 private:
+	int current;
+
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
 	Object* pooCharacter;

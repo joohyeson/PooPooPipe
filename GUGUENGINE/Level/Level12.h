@@ -105,6 +105,7 @@ private:
 	Object* puzzle8, * puzzle9, * puzzle10, * puzzle11, * puzzle12, * puzzle13, * puzzle14, * puzzle15, * puzzle16, * puzzle17;
 	Object* Levelsel, * Levelsel_pressed;
 	Object* playUI_p, * quitUI_p, * optionUI_p, * restartUI_p;
+	int current;
 
 	bool failS[2] = { false };
 	bool Nos[2] = { false };

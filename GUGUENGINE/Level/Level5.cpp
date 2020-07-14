@@ -20,6 +20,7 @@ extern bool getOpt;
 
 void Level5::Init()
 {
+	current = 5;
 	getOpt = false;
 
 	if (MaxLevel <= 5)
@@ -255,12 +256,21 @@ void Level5::Init()
 
 	opt.Init();
 	opt.getInput(&mInput, (this->sound));
-
+	if (current >= 5)
+	{
+		current = 4;
+		if (this->sound->soundCheck("BGM_airplane.mp3") == true)
+		{
+			this->sound->StopSound("BGM_airplane.mp3");
+			this->sound->Play("assets\\BGM_another.wav", -1);
+		}
+	}
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level5::Update()
 {
+
 	if (getOpt == true)
 	{
 		opt.Update();

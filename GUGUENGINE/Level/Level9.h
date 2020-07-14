@@ -90,6 +90,7 @@ private:
 	Object* background;
 	Object* startPuzzle, * endPuzzle;
 	bool UI[5] = { false };
+	int current;
 
 	bool failS = false;
 	bool Nos[2] = { false };
