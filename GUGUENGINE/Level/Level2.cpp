@@ -21,6 +21,8 @@ Sound se2;
 
 void Level2::Init()
 {
+	timer = 0;
+	timer2 = 0;
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -216,11 +218,13 @@ void Level2::Update()
 
 	if (checkToPipe)
 	{
+		timer += ENGINE->dt;
+		std::cout << timer << std::endl;
 		pressPlay1->mesh->setTransform({ 550.f,100.f });
 		playbutton->mesh->setTransform({ 500.f,300.f });
 		mouse->mesh->setTransform({ -2000.f,-2000.f });
 
-		if (lastTime - firstTime > 2)
+		if (timer > 1.f)
 		{
 			pressPlay2->mesh->setTransform({ 550.f,-150.f });
 
@@ -233,7 +237,6 @@ void Level2::Update()
 					mInput.setInput(KEY::LEFT);
 					spaceCheck = true;
 					click = true;
-					firstTime = glfwGetTime();
 				}
 				else
 				{
@@ -247,12 +250,14 @@ void Level2::Update()
 		}
 	}
 
-	lastTime = glfwGetTime();
 	if (spaceCheck)
 	{
+		timer2 += ENGINE->dt;
+		std::cout << timer << std::endl;
+
 		win->mesh->setTransform({ 0,0 });
 
-		if (lastTime - firstTime > 2)
+		if (timer2 > 2.f)
 		{
 			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 		}

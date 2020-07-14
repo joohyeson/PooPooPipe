@@ -54,6 +54,4 @@ public:
 	Sound* sound = nullptr;
 	GameLevels nextLevel = GameLevels::MAINMENU;
 private:
-	
-
 };

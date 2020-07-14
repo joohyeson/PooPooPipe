@@ -46,7 +46,7 @@ public:
 	}
 private:
 	Object* background;
-	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress, *mouse, * playbutton, *pressPlay1, *pressPlay2, * playPressButton;
+	Object* movePuzzle, * blackPuzzle, * puzzleUp, * puzzleDown, * spacePress, * mouse, * playbutton, * pressPlay1, * pressPlay2, * playPressButton;
 	int key;
 	Mesh mMesh;
 	Shader mShader, mShader2;
@@ -64,6 +64,6 @@ private:
 	bool click = 0;
 	bool cur = false;
 	bool fit = false;
-	double lastTime = 0;
-	double firstTime = 0;
+	double timer;
+	double timer2;
 };

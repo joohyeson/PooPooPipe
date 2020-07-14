@@ -24,6 +24,7 @@ Engine::Engine()
 {
 	GAMERUN = true;
 	ENGINE = this;
+	dt = 0;
 }
 
 Engine::~Engine()
@@ -55,7 +56,7 @@ void Engine::GameLoop()
 	while (GAMERUN)
 	{
 		std::chrono::system_clock::time_point now = std::chrono::system_clock::now();
-		double dt = std::chrono::duration<double>(now - lastTick).count();
+		dt = std::chrono::duration<double>(now - lastTick).count();
 		glfwGetWindowSize(APPLICATION->getMyWindow(), &width, &height);
 
 		if (dt >= 1 / Engine::Target_FPS)

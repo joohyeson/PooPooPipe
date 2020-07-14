@@ -26,6 +26,7 @@ public:
 
 	void AddSystem(System* system);
 	bool GAMERUN;
+	double dt;
 private:
 	std::vector<System*> Systems; 
 	 
