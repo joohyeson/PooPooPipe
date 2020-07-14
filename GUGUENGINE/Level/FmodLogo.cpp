@@ -30,7 +30,7 @@ void FmodLogo::Init()
 	fmodLogo->mesh->setTransform({ 0,0 });
 	fmodLogo->mesh->SetMeshType(MESHTYPE::rectangle);
 
-	fmodLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width / 3), static_cast<float>(APPLICATION->height / 3));
+	fmodLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width / 3), static_cast<float>(APPLICATION->height / 5));
 
 	textureFmodLogo= TEXTURE->CreateTexture("assets\\images2.png", 0);
 	mInput.InitCallback(APPLICATION->getMyWindow());

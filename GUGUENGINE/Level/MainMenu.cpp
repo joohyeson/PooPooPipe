@@ -35,19 +35,19 @@ void MainMenu::Init()
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 500.f);
 
 	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
+	Yes->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No->mesh->InitializeTextureMesh(130.f, 110.f);
+	No->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	Yes_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	No_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	quitCheck = false;
 	realQuit = false;

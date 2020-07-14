@@ -22,8 +22,6 @@
 #include "Option.h"
 
 
-//class sound;
-
 class Level3 : public LevelManager
 {
 public:

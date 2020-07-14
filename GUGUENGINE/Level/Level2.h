@@ -14,6 +14,7 @@
 #include "../GUGUENGINE/FitPuzzleComponent.h"
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/glfwInput.h"
+#include "Option.h"
 
 class sound;
 
@@ -67,4 +68,6 @@ private:
 	bool fit = false;
 	double timer;
 	double timer2;
+
+	LevelOption opt;
 };

@@ -47,23 +47,24 @@ void LevelOption::Init()
 	option->AddComponent(new Mesh());
 	option->Init();
 
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 500.f);
 
 	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
+	Yes->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No->mesh->InitializeTextureMesh(130.f, 110.f);
+	No->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	Yes_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	No_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	quitCheck = false;
 	realQuit = false;
@@ -110,9 +111,9 @@ void LevelOption::Init()
 	music->AddComponent(new Mesh());
 	music->Init();
 
-	music->mesh->setTransform({ -300.f,240.f });
+	music->mesh->setTransform({ -350.f,240.f });
 	music->mesh->SetMeshType(MESHTYPE::rectangle);
-	music->mesh->InitializeTextureMesh(240.f, 80.f);
+	music->mesh->InitializeTextureMesh(320.f, 80.f);
 
 
 	arrowRight = OBJECT_FACTORY->CreateEmptyObject();
@@ -146,7 +147,7 @@ void LevelOption::Init()
 	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreen->AddComponent(new Mesh());
 	fullScreen->Init();
-	fullScreen->mesh->setTransform({ -230.f,130.f });
+	fullScreen->mesh->setTransform({ -240.f,130.f });
 	fullScreen->mesh->SetMeshType(MESHTYPE::rectangle);
 	fullScreen->mesh->InitializeTextureMesh(480.f, 80.f);
 
