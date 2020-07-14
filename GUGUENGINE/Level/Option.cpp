@@ -272,10 +272,10 @@ void LevelOption::Update()
 {
 	this->sound->Update();
 	cursor = mInput->Cursor;
-<<<<<<< HEAD
+
 	
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
-=======
+
 	if (mInput->IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -292,7 +292,7 @@ void LevelOption::Update()
 		}
 	}
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
->>>>>>> abc4486553ace6ad5ebb9952d04cb311b59012bb
+
 	{
 		if (UI[0] == false)
 		{
