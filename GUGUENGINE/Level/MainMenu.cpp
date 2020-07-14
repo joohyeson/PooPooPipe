@@ -231,7 +231,8 @@ void MainMenu::Update()
 		APPLICATION->SetFullScreen();
 	}
 
-	if (menuInput.IsPressed(KEY::UP))
+	//keyboard volume
+	/*if (menuInput.IsPressed(KEY::UP))
 	{
 		std::cout << "Up Key" << std::endl;
 
@@ -239,7 +240,6 @@ void MainMenu::Update()
 		{
 			volume += 0.1f;
 			this->sound->SetVolume(volume);
-			//bgm.SetVolume(volume);
 			menuInput.setInput(KEY::UP);
 			std::cout << volume << std::endl;
 		}
@@ -253,11 +253,10 @@ void MainMenu::Update()
 			volume -= 0.1f;
 			this->sound->SetVolume(volume);
 			menuInput.setInput(KEY::DOWN);
-			//bgm.SetVolume(volume);
 
 			std::cout << volume << std::endl;
 		}
-	}
+	}*/
 
 	if (menuInput.IsPressed(KEY::A) == true)
 	{

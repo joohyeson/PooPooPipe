@@ -62,10 +62,10 @@ Sound::Sound()
 	system->getMasterChannelGroup(&masterChannel);
 
 	m_volume = 0.5f;
+	isMute = false;
 
 	soundBarSize = { 150.f, 30.f };
 	soundBarPosition = { 15.f, 240.f };
-	isMute = false;
 	Load();
 }
 
@@ -117,7 +117,6 @@ void Sound::Load()
 	LoadMusic("assets\\BGM_theother.wav");
 	LoadMusic("assets\\paper.wav");
 	LoadMusic("assets\\skip.wav");
-
 }
 
 bool Sound::IsPlaying()

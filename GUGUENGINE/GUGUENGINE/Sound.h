@@ -43,9 +43,15 @@ public:
 
 	bool IsMute_();
 	bool soundCheck(std::string mString);
-	
-	Vector2<float> soundBarSize;
-	Vector2<float> soundBarPosition;
+
+	Vector2<float> GetSoundBarSize() { return soundBarSize; };
+	Vector2<float> GetSoundBarPosition() { return soundBarPosition; };
+
+	void SetSoundBarSize(float size) { soundBarSize.x += size;};
+	void SetSoundBarPosition(float posiiton) { soundBarPosition.x += posiiton; };
+
+	void SetSoundBarSize(Vector2<float> size) { soundBarSize.x = size.x;  soundBarSize.x = size.x;};
+	void SetSoundBarPosition(Vector2<float> position) { soundBarPosition.x = position.x; soundBarPosition.y = position.y;};
 
 private:
 
@@ -70,9 +76,9 @@ private:
 	bool isMute = false;
 	
 	float m_volume;
-
-
-
 	FMOD_RESULT result;
+
+	Vector2<float>	soundBarSize;
+	Vector2<float> soundBarPosition;
 };
 extern Sound* SOUND;

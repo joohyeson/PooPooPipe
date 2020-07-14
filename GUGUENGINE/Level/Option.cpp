@@ -139,9 +139,9 @@ void LevelOption::Init()
 	soundBar = OBJECT_FACTORY->CreateEmptyObject();
 	soundBar->AddComponent(new Mesh());
 	soundBar->Init();
-	soundBar->mesh->setTransform({ 15.f, 240.f });
+	soundBar->mesh->setTransform(SOUND->GetSoundBarPosition());
 	soundBar->mesh->SetMeshType(MESHTYPE::rectangle);
-	soundBar->mesh->InitializeTextureMesh(150.f, 30.f);
+	soundBar->mesh->InitializeTextureMesh(SOUND->GetSoundBarSize().x, SOUND->GetSoundBarSize().y);
 
 	fullScreen = OBJECT_FACTORY->CreateEmptyObject();
 	fullScreen->AddComponent(new Mesh());
@@ -388,19 +388,21 @@ void LevelOption::Update()
 
 			if (volume < 1.f)
 			{
-				soundBar->mesh->setTransform({ this->sound->soundBarPosition.x += 15.f, this->sound->soundBarPosition.y });
-				soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x += 30.f, this->sound->soundBarSize.y);
+				this->sound->SetSoundBarPosition(15.f);
+				this->sound->SetSoundBarSize(30.f);
+
+				soundBar->mesh->setTransform(this->sound->GetSoundBarPosition());
+				soundBar->mesh->InitializeTextureMesh(this->sound->GetSoundBarSize().x, this->sound->GetSoundBarSize().y);
 			}
 			else if (volume >= 1.f)
 			{
-				this->sound->soundBarSize = { 300.f, 30.f };
-				this->sound->soundBarPosition = { 95.f, 240.f };
+				this->sound->SetSoundBarPosition({ 95.f, 240.f });
+				this->sound->SetSoundBarSize({ 300.f, 30.f });
 
-				soundBar->mesh->setTransform({ this->sound->soundBarPosition.x, this->sound->soundBarPosition.y });
-				soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x, this->sound->soundBarSize.y);
+				soundBar->mesh->setTransform(this->sound->GetSoundBarPosition());
+				soundBar->mesh->InitializeTextureMesh(this->sound->GetSoundBarSize().x, this->sound->GetSoundBarSize().y);
 			}
 			INPUT->setInput(KEY::LEFT);
-
 		}
 		else
 		{
@@ -433,17 +435,21 @@ void LevelOption::Update()
 
 				if (volume > 0)
 				{
-					soundBar->mesh->setTransform({ this->sound->soundBarPosition.x -= 15.f,this->sound->soundBarPosition.y });
-					soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x -= 30.f, this->sound->soundBarSize.y);
+					SOUND->SetSoundBarPosition(-15.f);
+					SOUND->SetSoundBarSize(-30.f);
+					std::cout << SOUND->GetSoundBarPosition().x << std::endl;
+					soundBar->mesh->setTransform(SOUND->GetSoundBarPosition());
+					soundBar->mesh->InitializeTextureMesh(SOUND->GetSoundBarSize().x, SOUND->GetSoundBarSize().y);
 				}
 
 				std::cout << volume << std::endl;
 			}
 			else if (volume == 0)
 			{
-				this->sound->soundBarSize = { 0.f, 0.f };
+				this->sound->SetSoundBarSize({ 0.f, 0.f });
 
-				soundBar->mesh->InitializeTextureMesh(0, 0);
+				soundBar->mesh->setTransform(SOUND->GetSoundBarPosition());
+				soundBar->mesh->InitializeTextureMesh(SOUND->GetSoundBarSize().x, SOUND->GetSoundBarSize().y);
 			}
 			INPUT->setInput(KEY::LEFT);
 		}
