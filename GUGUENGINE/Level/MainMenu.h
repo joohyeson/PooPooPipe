@@ -46,11 +46,24 @@ private:
 	Object* tutorialButton;
 	Object* optionButton;
 	Object* creditsButton;
+	Object* quitButton;
 	bool checking = false;
 	Object* startButton_pressed;
 	Object* tutorialButton_pressed;
 	Object* optionButton_pressed;
 	Object* creditsButton_pressed;
+	Object* quitButton_pressed;
+	
+	Object* QuitAskBack;
+	Object* QuitAsk;
+	Object* Yes;
+	Object* No;
+	Object* Yes_p;
+	Object* No_p;
+
+	bool quitCheck = false;
+	bool realQuit = false;
+	bool quitC = false;
 
 	Object* credit1, * credit2, * credit3;
 	Object* next;
@@ -58,7 +71,7 @@ private:
 	Object* test;
 	Object* test2;
 	
-	bool UI[4] = { false };
+	bool UI[5] = { false };
 
 
 	bool clickCredit = false;

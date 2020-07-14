@@ -30,6 +30,44 @@ void MainMenu::Init()
 	
 	isPlaying = false;
 	
+
+	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
+
+	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+
+	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	No->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
+	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+
+	quitCheck = false;
+	realQuit = false;
+
+	quitButton = OBJECT_FACTORY->CreateEmptyObject();
+	quitButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
+
+	quitButton->AddComponent(new Mesh());
+	quitButton->Init();
+	quitButton_pressed->AddComponent(new Mesh());
+	quitButton_pressed->Init();
+
+	quitButton->mesh->setTransform({ 0.f, -340.f });
+	quitButton->mesh->SetMeshType(MESHTYPE::rectangle);
+	quitButton->mesh->InitializeTextureMesh(280.f, 70.f);
+	quitButton_pressed->mesh->setTransform({ 5000.f, -340.f });
+	quitButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
+	quitButton_pressed->mesh->InitializeTextureMesh(280.f, 70.f);
+
+
 	background = OBJECT_FACTORY->CreateEmptyObject();
 
 	background->AddComponent(new Mesh());
@@ -38,7 +76,7 @@ void MainMenu::Init()
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
-	for(int i = 0;  i < 4; i++)
+	for(int i = 0;  i < 5; i++)
 	{
 		UI[i] = false;
 	}
@@ -233,7 +271,7 @@ void MainMenu::Update()
 		isPlaying = true;
 	}
 
-	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh) && clickCredit == false)
+	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if(UI[0] == false)
 		{
@@ -256,7 +294,7 @@ void MainMenu::Update()
 	}
 
 
-	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh) && clickCredit == false)
+	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if (UI[1] == false)
 		{
@@ -276,7 +314,7 @@ void MainMenu::Update()
 		tutorialButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh) && clickCredit == false)
+	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if (UI[2] == false)
 		{
@@ -303,7 +341,7 @@ void MainMenu::Update()
 	}
 
 	//
-	if (creditsButton->collision->Point2BoxCollision(cursor0, creditsButton->mesh) && clickCredit == false)
+	if (creditsButton->collision->Point2BoxCollision(cursor0, creditsButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if (UI[3] == false)
 		{
@@ -330,6 +368,74 @@ void MainMenu::Update()
 	{
 		UI[3] = false;
 		creditsButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
+	}
+
+	if (quitButton->collision->Point2BoxCollision(cursor0, quitButton->mesh) && clickCredit == false && quitCheck == false && quitCheck == false)
+	{
+		if (UI[4] == false)
+		{
+			UI[4] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
+
+		quitButton_pressed->mesh->setTransform(quitButton->mesh->GetTransform());
+
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			if (quitCheck == false)
+			{
+				quitCheck = true;
+				QuitAskBack->mesh->setTransform({ 0.f, 0.f });
+				QuitAsk->mesh->setTransform({ 0.f, 0.f });
+				Yes->mesh->setTransform({ -100.f, -50.f });
+				No->mesh->setTransform({ 100.f, -50.f });
+			}
+		}
+	}
+	else
+	{
+		UI[4] = false;
+		quitC = false;
+		quitButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
+	}
+
+	if (Yes->collision->Point2BoxCollision(cursor0, Yes->mesh))
+	{
+		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			realQuit = true;
+		}
+	}
+	else
+	{
+		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
+	}
+
+	if (No->collision->Point2BoxCollision(cursor0, No->mesh))
+	{
+		No_p->mesh->setTransform(No->mesh->GetTransform());
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			realQuit = false; quitCheck = false;
+			QuitAskBack->mesh->setTransform({ -2000.f, -2000.f });
+			QuitAsk->mesh->setTransform({ -2000.f, -2000.f });
+			Yes->mesh->setTransform({ -2000.f, -2000.f });
+			No->mesh->setTransform({ -2000.f, -2000.f });
+		}
+	}
+	else
+	{
+		No_p->mesh->setTransform({ -2000.f, -2000.f });
+	}
+
+	if (quitCheck == true && realQuit == true)
+	{
+		glfwTerminate();
+		ENGINE->Quit();
 	}
 
 	if (next->collision->Point2BoxCollision(cursor0, next->mesh) == true && clickCredit == true)
@@ -374,11 +480,22 @@ void MainMenu::Update()
 	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionLP));
 	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::creatP));
 
+	quitButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitL));
+	quitButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::quitLp));
+
+
 	credit1->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit1));
 	credit2->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit2));
 	credit3->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit3));
 
 	next->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::nextd));
+
+	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
+	QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));
+	Yes->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES));
+	No->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::no));
+	Yes_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::YES_P));
+	No_p->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::NO_P));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
