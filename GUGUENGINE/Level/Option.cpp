@@ -220,7 +220,7 @@ void LevelOption::Init()
 	controls->Init();
 	controls->mesh->setTransform({ 5000.f,100.f });
 	controls->mesh->SetMeshType(MESHTYPE::rectangle);
-	controls->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	controls->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	credit1 = OBJECT_FACTORY->CreateEmptyObject();
 	credit1->AddComponent(new Mesh());
@@ -228,7 +228,7 @@ void LevelOption::Init()
 	credit1->Init();
 	credit1->mesh->setTransform({ 5000.f,100.f });
 	credit1->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit1->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	credit2 = OBJECT_FACTORY->CreateEmptyObject();
 	credit2->AddComponent(new Mesh());
@@ -236,7 +236,7 @@ void LevelOption::Init()
 	credit2->Init();
 	credit2->mesh->setTransform({ 5000.f,100.f });
 	credit2->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit2->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	credit3 = OBJECT_FACTORY->CreateEmptyObject();
 	credit3->AddComponent(new Mesh());
@@ -244,7 +244,7 @@ void LevelOption::Init()
 	credit3->Init();
 	credit3->mesh->setTransform({ 5000.f,100.f });
 	credit3->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit3->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit3->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	next = OBJECT_FACTORY->CreateEmptyObject();
 	next->AddComponent(new Mesh());
@@ -544,8 +544,6 @@ void LevelOption::Update()
 		UI[2] = false;
 		backtomain_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
-
-	int creditnum = 0;
 
 	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{

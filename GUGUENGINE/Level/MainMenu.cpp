@@ -151,7 +151,7 @@ void MainMenu::Init()
 	credit1->Init();
 	credit1->mesh->setTransform({ 5000.f,100.f });
 	credit1->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit1->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	credit2 = OBJECT_FACTORY->CreateEmptyObject();
 	credit2->AddComponent(new Mesh());
@@ -159,7 +159,7 @@ void MainMenu::Init()
 	credit2->Init();
 	credit2->mesh->setTransform({ 5000.f,100.f });
 	credit2->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit2->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	credit3 = OBJECT_FACTORY->CreateEmptyObject();
 	credit3->AddComponent(new Mesh());
@@ -167,7 +167,7 @@ void MainMenu::Init()
 	credit3->Init();
 	credit3->mesh->setTransform({ 5000.f,100.f });
 	credit3->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit3->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+	credit3->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	next = OBJECT_FACTORY->CreateEmptyObject();
 	next->AddComponent(new Mesh());
@@ -369,7 +369,7 @@ void MainMenu::Update()
 		creditsButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	if (quitButton->collision->Point2BoxCollision(cursor0, quitButton->mesh) && clickCredit == false && quitCheck == false && quitCheck == false)
+	if (quitButton->collision->Point2BoxCollision(cursor0, quitButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if (UI[4] == false)
 		{

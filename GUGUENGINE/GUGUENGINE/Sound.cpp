@@ -182,7 +182,7 @@ void Sound::Pause()
 {
 	isPlaying = false;
 	masterChannel->setPaused(true);
-	for (int i = 0; i < m_sounds.size(); i++)
+	for (unsigned int i = 0; i < m_sounds.size(); i++)
 		m_sounds[i]->channel->setPaused(true);
 }
 
@@ -190,7 +190,7 @@ void Sound::Resume()
 {
 	isPlaying = true;
 	masterChannel->setPaused(false);
-	for (int i = 0; i < m_sounds.size(); i++)
+	for (unsigned int i = 0; i < m_sounds.size(); i++)
 		m_sounds[i]->channel->setPaused(false);
 }
 
@@ -294,6 +294,8 @@ bool Sound::soundCheck(std::string mString)
 			}
 		}
 	}
+
+	return false;
 }
 
 
