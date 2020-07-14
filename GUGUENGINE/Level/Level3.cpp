@@ -241,6 +241,11 @@ void Level3::Update()
 			this->sound->StopSound("BGM_another.wav");
 			this->sound->Play("assets\\BGM_airplane.mp3", -1);
 		}
+		else if (this->sound->soundCheck("BGM_theother.mp3") == true)
+		{
+			this->sound->StopSound("BGM_theother.mpe");
+			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+		}
 	}
 	
 	if (getOpt == true)

@@ -80,7 +80,7 @@ private:
 	Object* next;
 	Object* back;
 	
-	
+	bool checking;
 	int key;
 	bool clickCredit;
 	bool clickControls;
