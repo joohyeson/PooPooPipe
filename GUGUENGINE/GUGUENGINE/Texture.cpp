@@ -208,6 +208,10 @@ void Texture::Load4()
     CreateTexture("assets\\tutorial.png", Textures::tutorial);
     CreateTexture("assets\\tutorial2.png", Textures::tutorialP);
     CreateTexture("assets\\title.png", Textures::title);
+	CreateTexture("assets\\gameControls.png", Textures::controls);
+	CreateTexture("assets\\credits1.png", Textures::credit1);
+	CreateTexture("assets\\credits3.png", Textures::credit2);
+	CreateTexture("assets\\credits4.png", Textures::credit3);
 }
 void Texture::DeleteTexture() noexcept
 {

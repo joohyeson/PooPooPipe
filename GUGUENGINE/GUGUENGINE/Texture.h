@@ -24,7 +24,9 @@ enum class Textures
 	fullCheck, fullCheck2, volumeL, volumeR, quitL, quitLp, optionL, musicL, bar0, fullScrenL,
 	resume,resume2, backtomain, backtomain2,
 	background3,
-	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title
+	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title,
+	controls,
+	credit1,credit2,credit3,
 };
 
 class Texture

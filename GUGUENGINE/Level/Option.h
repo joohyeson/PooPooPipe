@@ -38,6 +38,13 @@ public:
 		quitButton_pressed = nullptr;
 		backtomain = nullptr;
 		backtomain_pressed = nullptr;
+		controls = nullptr;
+
+		credit1 = nullptr;
+		credit2 = nullptr;
+		credit3 = nullptr;
+
+		next = nullptr;
 
 		QuitAskBack = nullptr;
 		QuitAsk = nullptr;
@@ -66,6 +73,10 @@ private:
 	Object* goToMain, *goToMain_pressed, * fullScreen, * fullScreenFalse, * fullScreenTrue;
 	Object* quitButton, * quitButton_pressed, * backtomain, * backtomain_pressed;
 	Object* creditsButton, * creditsButton_pressed, * tutorialButton, * tutorialButton_pressed;
+	Object* controls;
+	Object* credit1, *credit2, *credit3;
+
+	Object* next;
 	
 	
 	int key;

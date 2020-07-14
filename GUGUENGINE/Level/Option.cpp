@@ -201,6 +201,47 @@ void LevelOption::Init()
 	tutorialButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	tutorialButton_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
 
+	controls = OBJECT_FACTORY->CreateEmptyObject();
+	controls->AddComponent(new Mesh());
+	controls->AddComponent(new CollisionCheck());
+	controls->Init();
+	controls->mesh->setTransform({ 5000.f,100.f });
+	controls->mesh->SetMeshType(MESHTYPE::rectangle);
+	controls->mesh->InitializeTextureMesh(1920.f, 1080.f);
+
+
+	credit1 = OBJECT_FACTORY->CreateEmptyObject();
+	credit1->AddComponent(new Mesh());
+	credit1->AddComponent(new CollisionCheck());
+	credit1->Init();
+	credit1->mesh->setTransform({ 5000.f,100.f });
+	credit1->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit1->mesh->InitializeTextureMesh(1920.f, 1080.f);
+
+	credit2 = OBJECT_FACTORY->CreateEmptyObject();
+	credit2->AddComponent(new Mesh());
+	credit2->AddComponent(new CollisionCheck());
+	credit2->Init();
+	credit2->mesh->setTransform({ 5000.f,100.f });
+	credit2->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit2->mesh->InitializeTextureMesh(1920.f, 1080.f);
+
+	credit3 = OBJECT_FACTORY->CreateEmptyObject();
+	credit3->AddComponent(new Mesh());
+	credit3->AddComponent(new CollisionCheck());
+	credit3->Init();
+	credit3->mesh->setTransform({ 5000.f,100.f });
+	credit3->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit3->mesh->InitializeTextureMesh(1920.f, 1080.f);
+
+	next = OBJECT_FACTORY->CreateEmptyObject();
+	next->AddComponent(new Mesh());
+	next->AddComponent(new CollisionCheck());
+	next->Init();
+	next->mesh->setTransform({ 5000.f,100.f });
+	next->mesh->SetMeshType(MESHTYPE::rectangle);
+	next->mesh->InitializeTextureMesh(350.f, 288.f);
+
 
 	mShader.BuildTextureShader();
 	mInput = new Input();
@@ -450,6 +491,7 @@ void LevelOption::Update()
 		backtomain_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
+	int creditnum = 0;
 
 	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false)
 	{
@@ -459,7 +501,6 @@ void LevelOption::Update()
 			UI[3] = true;
 			this->sound->Play("assets\\UI.wav", 1);
 		}
-
 
 		creditsButton_pressed->mesh->setTransform(creditsButton->mesh->GetTransform());
 
@@ -471,8 +512,10 @@ void LevelOption::Update()
 			}
 
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::CREDITS);
+			credit1->mesh->setTransform({ 0.f,0.f });
+			next->mesh->setTransform({ 700.f,400.f });
 		}
+
 	}
 	else
 	{
@@ -480,6 +523,28 @@ void LevelOption::Update()
 		creditsButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
+	if (next->collision->Point2BoxCollision(cursor, next->mesh) == true)
+	{
+		if (mInput->IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+
+			if (creditnum == 0)
+			{
+				credit1->mesh->setTransform({ 5000.f,0.f });
+				credit2->mesh->setTransform({ 0.f,0.f });
+				next->mesh->setTransform({ 700.f,400.f });
+				creditnum = 1;
+			}
+			if (creditnum == 1)
+			{
+				credit2->mesh->setTransform({ 5000.f,0.f });
+				credit3->mesh->setTransform({ 0.f,0.f });
+				next->mesh->setTransform({ 700.f,400.f });
+				creditnum = 2;
+			}
+		}
+	}
 
 	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false)
 	{
@@ -499,8 +564,7 @@ void LevelOption::Update()
 			}
 
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST1);
-
+			controls->mesh->setTransform({ 0.f,0.f });
 		}
 	}
 	else
@@ -578,6 +642,14 @@ void LevelOption::Update()
 
 	tutorialButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorial));
 	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorialP));
+
+	controls->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::controls));
+
+	credit1->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit1));
+	credit2->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit2));
+	credit3->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit3));
+
+	next->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::nextd));
 
 	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
 	QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));
