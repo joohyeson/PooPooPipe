@@ -26,7 +26,7 @@ enum class Textures
 	fullCheck, fullCheck2, volumeL, volumeR, quitL, quitLp, optionL, musicL, bar0, fullScrenL,
 	resume,resume2, backtomain, backtomain2,
 	background3,
-	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title 
+	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title
 };
 
 class Texture
@@ -40,7 +40,10 @@ public:
 	GLuint GetTexture(Textures typeOfTexture) {
 		return TextureStore[typeOfTexture];
 	}
-	void Load();
+	void Load1();
+	void Load2();
+	void Load3();
+	void Load4();
 
 	unsigned int GetTextureHandle() const noexcept { return textureHandle; }
 	int          GetWidth() const noexcept { return width; }

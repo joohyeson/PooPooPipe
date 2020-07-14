@@ -19,7 +19,6 @@ Texture* TEXTURE = nullptr;
 Texture::Texture()
 {
     TEXTURE = this;
-    Load();
 }
 
 Texture::Texture(Texture&& other) noexcept
@@ -85,7 +84,7 @@ GLuint Texture::CreateTexture(char const* filename, int i)
     //TextureStore.push_back(texture);
 }
 
-void Texture::Load()
+void Texture::Load1()
 {
     TextureStore.clear();
 
@@ -103,6 +102,10 @@ void Texture::Load()
     CreateTexture("assets\\yes_p.png", Textures::YES_P);
     CreateTexture("assets\\no.png", Textures::no);
     CreateTexture("assets\\background1.png", Textures::background1);
+
+}
+void Texture::Load2()
+{
     CreateTexture("assets\\playUI.png", Textures::playUI);
     CreateTexture("assets\\playUI_2.png", Textures::playUI_2);
     CreateTexture("assets\\quitUI.png", Textures::quitUI);
@@ -131,6 +134,10 @@ void Texture::Load()
     CreateTexture("assets\\image3.png", Textures::threePuzzle);
     CreateTexture("assets\\image4.png", Textures::vPuzzle);
     CreateTexture("assets\\image5.png", Textures::movePuzzle);
+  
+}
+void Texture::Load3()
+{
     CreateTexture("assets\\00.png", Textures::num0);
     CreateTexture("assets\\01.png", Textures::num1);
     CreateTexture("assets\\02.png", Textures::num2);
@@ -168,6 +175,10 @@ void Texture::Load()
     CreateTexture("assets\\levelButton6_2.png", Textures::level6p);
     CreateTexture("assets\\levelButton7.png", Textures::level7);
     CreateTexture("assets\\levelButton7_2.png", Textures::level7p);
+   
+}
+void Texture::Load4()
+{
     CreateTexture("assets\\levelButton8.png", Textures::level8);
     CreateTexture("assets\\levelButton8_2.png", Textures::level8p);
     CreateTexture("assets\\levelButton9.png", Textures::level9);
@@ -187,10 +198,10 @@ void Texture::Load()
     CreateTexture("assets\\music.png", Textures::musicL);
     CreateTexture("assets\\bar0.png", Textures::bar0);
     CreateTexture("assets\\fullscreen.png", Textures::fullScrenL);
-	CreateTexture("assets\\resume.png", Textures::resume);
-	CreateTexture("assets\\resume2.png", Textures::resume2);
-	CreateTexture("assets\\backtomain.png", Textures::backtomain);
-	CreateTexture("assets\\backtomain2.png", Textures::backtomain2);
+    CreateTexture("assets\\resume.png", Textures::resume);
+    CreateTexture("assets\\resume2.png", Textures::resume2);
+    CreateTexture("assets\\backtomain.png", Textures::backtomain);
+    CreateTexture("assets\\backtomain2.png", Textures::backtomain2);
     CreateTexture("assets\\background3.png", Textures::background3);
     CreateTexture("assets\\credits.png", Textures::credit);
     CreateTexture("assets\\credits2.png", Textures::creatP);

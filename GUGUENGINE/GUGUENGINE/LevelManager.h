@@ -12,6 +12,7 @@
 
 enum class GameLevels
 {
+	LOAD1, LOAD2, LOAD3, LOAD4,
 	DIGIPENLOGO,
 	FMODLOGO,
 	GUGULOGO,
@@ -34,7 +35,7 @@ enum class GameLevels
 	LV_TEST14,
 	LV_SELECT,
 	MOVINGCHECK,
-	CREDITS,
+	CREDITS
 
 };
 

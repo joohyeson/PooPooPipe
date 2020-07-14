@@ -14,6 +14,7 @@
 #include "Option.h"
 #include "Credits.h"
 
+#include "Loading.h"
 #include "FmodLogo.h"
 #include "Level1.h"
 #include "Level2.h"
@@ -55,8 +56,9 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = GameLevels::DIGIPENLOGO;
-	
+	current = GameLevels::LOAD1;
+
+	levels.push_back(new Loading());
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
 	levels.push_back(new GUGULOGO);
