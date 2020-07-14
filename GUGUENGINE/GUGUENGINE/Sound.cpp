@@ -152,12 +152,17 @@ void Sound::Play(std::string source, int loop)
 		result = r_sound->setLoopCount(-1);
 	}
 
-	if (m_sounds[id]->source.find("BGM") != std::string::npos && m_sounds[id]->IsPlaying == false) {
-		std::cout << "BGM play" << std::endl;
-		m_sounds[id]->IsPlaying = true;
-		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
-		result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
-		result = m_sounds[id]->channel->setVolume(0.5f);
+	if (m_sounds[id]->source.find("BGM") != std::string::npos  ) {
+
+		if (m_sounds[id]->IsPlaying == false)
+		{
+			std::cout << "BGM play" << std::endl;
+			m_sounds[id]->IsPlaying = true;
+			result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
+			result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
+			result = m_sounds[id]->channel->setVolume(0.5f);
+		}
+		
 	}
 	else
 	{
