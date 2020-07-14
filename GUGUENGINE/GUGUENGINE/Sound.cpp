@@ -126,8 +126,6 @@ bool Sound::IsPaused()
 
 void Sound::Play(std::string source, int loop)
 {
-	//result = channel->setLoopCount(loop);
-	//result = system->playSound(sound, 0, false, &channel);
 
 	auto id = 0;
 
@@ -161,7 +159,7 @@ void Sound::Play(std::string source, int loop)
 		result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
 		result = m_sounds[id]->channel->setVolume(0.5f);
 	}
-	else if (!m_sounds[id]->IsPlaying)
+	else
 	{
 		std::cout << "Play" << std::endl;
 		m_sounds[id]->IsPlaying = true;
@@ -169,6 +167,7 @@ void Sound::Play(std::string source, int loop)
 		result = m_sounds[id]->channel->setChannelGroup(soundEffects);
 		result = m_sounds[id]->channel->setVolume(0.5f);
 	}
+
 }
 
 void Sound::Pause()
