@@ -99,7 +99,7 @@ void Sound::LoadMusic(const char* filePath)
 
 void Sound::Load()
 {
-	LoadMusic("assets\\BGM_airplane.mp3");
+	LoadMusic("assets\\BGM_new.wav");
 	LoadMusic("assets\\BGM_another.wav");
 	LoadMusic("assets\\coin.mp3");
 	LoadMusic("assets\\flushing.wav");
@@ -114,7 +114,7 @@ void Sound::Load()
 	LoadMusic("assets\\click.wav");
 	LoadMusic("assets\\fit.flac");
 	LoadMusic("assets\\control.wav");
-	LoadMusic("assets\\BGM_theother.mp3");	
+	LoadMusic("assets\\BGM_theother.wav");	
 }
 
 bool Sound::IsPlaying()
@@ -262,11 +262,11 @@ bool Sound::IsMute_()
 
 bool Sound::soundCheck(std::string mString)
 {
-	if (mString == "BGM_airplane.mp3")
+	if (mString == "BGM_new.wav")
 	{
 		for (auto s : m_sounds)
 		{
-			if (s->source.find("BGM_airplane") != -1)
+			if (s->source.find("BGM_new") != -1)
 			{
 				return s->IsPlaying;
 			}
@@ -282,7 +282,7 @@ bool Sound::soundCheck(std::string mString)
 			}
 		}
 	}
-	if (mString == "BGM_theother.mp3")
+	if (mString == "BGM_theother.wav")
 	{
 		for (auto s : m_sounds)
 		{

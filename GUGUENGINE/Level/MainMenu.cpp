@@ -179,7 +179,7 @@ void MainMenu::Init()
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
 	
-	//this->sound->Play("assets\\BGM_airplane.mp3", -1);
+	//this->sound->Play("assets\\BGM_new.wav", -1);
 }
 
 void MainMenu::Update()
@@ -192,12 +192,12 @@ void MainMenu::Update()
 		if (this->sound->soundCheck("BGM_another.wav") == true)
 		{
 			this->sound->StopSound("BGM_another.wav");
-			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+			this->sound->Play("assets\\BGM_new.wav", -1);
 		}
-		else if (this->sound->soundCheck("BGM_theother.mp3") == true)
+		else if (this->sound->soundCheck("BGM_theother.wav") == true)
 		{
-			this->sound->StopSound("BGM_theother.mp3");
-			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+			this->sound->StopSound("BGM_theother.wav");
+			this->sound->Play("assets\\BGM_new.wav", -1);
 		}
 	}
 	
@@ -267,7 +267,7 @@ void MainMenu::Update()
 	
 	if (isPlaying == false)
 	{
-		this->sound->Play("assets\\BGM_airplane.mp3", -1);
+		this->sound->Play("assets\\BGM_new.wav", -1);
 		isPlaying = true;
 	}
 

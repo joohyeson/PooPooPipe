@@ -45,13 +45,13 @@ void endingCut::Update()
 		{
 			this->sound->StopSound("BGM_another.wav");
 		}
-		else if(this->sound->soundCheck("BGM_airplane.mp3") == true)
+		else if(this->sound->soundCheck("BGM_new.wav") == true)
 		{
-			this->sound->StopSound("BGM_airplane.mp3");
+			this->sound->StopSound("BGM_new.wav");
 		}
-		else if(this->sound->soundCheck("BGM_theother.mp3") == true)
+		else if(this->sound->soundCheck("BGM_theother.wav") == true)
 		{
-			this->sound->StopSound("BGM_theother.mp3");
+			this->sound->StopSound("BGM_theother.wav");
 		}
 	}
 	cursor__ = mInput.Cursor;
