@@ -265,9 +265,9 @@ void Level12::Update()
 	if (current >= 9)
 	{
 		current = 4;
-		if (this->sound->soundCheck("BGM_new.wav") == true)
+		if (this->sound->soundCheck("BGM_new.flac") == true)
 		{
-			this->sound->StopSound("BGM_new.wav");
+			this->sound->StopSound("BGM_new.flac");
 			this->sound->Play("assets\\BGM_theother.wav", -1);
 		}
 		else if(this->sound->soundCheck("BGM_another.wav") == true)

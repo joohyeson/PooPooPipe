@@ -45,9 +45,9 @@ void endingCut::Update()
 		{
 			this->sound->StopSound("BGM_another.wav");
 		}
-		else if(this->sound->soundCheck("BGM_new.wav") == true)
+		else if(this->sound->soundCheck("BGM_new.flac") == true)
 		{
-			this->sound->StopSound("BGM_new.wav");
+			this->sound->StopSound("BGM_new.flac");
 		}
 		else if(this->sound->soundCheck("BGM_theother.wav") == true)
 		{

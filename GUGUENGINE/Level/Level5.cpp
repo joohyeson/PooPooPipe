@@ -259,9 +259,9 @@ void Level5::Init()
 	if (current >= 5)
 	{
 		current = 4;
-		if (this->sound->soundCheck("BGM_new.wav") == true)
+		if (this->sound->soundCheck("BGM_new.flac") == true)
 		{
-			this->sound->StopSound("BGM_new.wav");
+			this->sound->StopSound("BGM_new.flac");
 			this->sound->Play("assets\\BGM_another.wav", -1);
 		}
 		else if (this->sound->soundCheck("BGM_theother.wav") == true)

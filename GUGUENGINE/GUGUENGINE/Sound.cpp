@@ -99,7 +99,7 @@ void Sound::LoadMusic(const char* filePath)
 
 void Sound::Load()
 {
-	LoadMusic("assets\\BGM_new.wav");
+	LoadMusic("assets\\BGM_new.flac");
 	LoadMusic("assets\\BGM_another.wav");
 	LoadMusic("assets\\coin.mp3");
 	LoadMusic("assets\\flushing.wav");
@@ -262,7 +262,7 @@ bool Sound::IsMute_()
 
 bool Sound::soundCheck(std::string mString)
 {
-	if (mString == "BGM_new.wav")
+	if (mString == "BGM_new.flac")
 	{
 		for (auto s : m_sounds)
 		{
