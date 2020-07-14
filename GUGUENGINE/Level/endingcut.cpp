@@ -12,7 +12,7 @@ void endingCut::Init()
 	{
 		sound_[i] = false;
 	}
-
+	ending = false;
 	endCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
 	textureendCut1 = TEXTURE->CreateTexture("assets\\ending1.png", 0);
 	endCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
@@ -38,6 +38,14 @@ void endingCut::Init()
 
 void endingCut::Update()
 {
+	if(ending == false)
+	{
+		ending = true;
+		if (this->sound->soundCheck("BGM_another.wav") == true)
+		{
+			this->sound->StopSound("BGM_another.wav");
+		}
+	}
 	cursor__ = mInput.Cursor;
 	if (mInput.IsPressed(KEY::A) == true)
 	{

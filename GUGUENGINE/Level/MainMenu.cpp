@@ -24,6 +24,7 @@ extern bool mainMenu;
 
 void MainMenu::Init()
 {
+	main = false;
 	mainMenu = false;
 	
 	isPlaying = false;
@@ -114,7 +115,15 @@ void MainMenu::Update()
 {
 	this->sound->Update();
 	cursor0 = menuInput.Cursor;
-
+	if(main == false)
+	{
+		main = true;
+		if (this->sound->soundCheck("BGM_another.wav") == true)
+		{
+			this->sound->StopSound("BGM_another.wav");
+			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+		}
+	}
 	if(menuInput.IsPressed(KEY::LEFT))
 	{
 		if(checking == false)

@@ -44,7 +44,7 @@ private:
 	GLuint texturestartNext;
 	GLuint texturestartSkip;
 	Vector2<float> cursor__;
-
+	bool ending;
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
 	bool sound_[3] = { false };

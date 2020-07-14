@@ -60,7 +60,7 @@ private:
 
 	int key;
 	//MovePooPoo getDirectionPooPoo;
-
+	bool main;
 	Mesh mMesh;
 	Shader mShader;
 	Shader testNDCShader;//it will be deleted when NDC function is completed
