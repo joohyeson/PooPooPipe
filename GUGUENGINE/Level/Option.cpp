@@ -291,7 +291,7 @@ void LevelOption::Update()
 			checking = false;
 		}
 	}
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 
 	{
 		if (UI[0] == false)
