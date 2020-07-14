@@ -7,6 +7,7 @@
  *Level1.h
  *this is level1 header
  */
+#include "LevelSelect.h"
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
@@ -15,6 +16,8 @@
 #include "../GUGUENGINE/HexCoordinates.h"
 #include "../GUGUENGINE/Sound.h"
 #include "../GUGUENGINE/glfwInput.h"
+
+#include "Option.h"
 
 class Sound;
 
@@ -65,4 +68,7 @@ private:
 	bool levelCheck;
 	bool spaceCheck;
 	double timer;
+
+	LevelOption opt;
+
 };

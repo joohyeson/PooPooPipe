@@ -15,12 +15,16 @@
 #include "../GUGUENGINE/Engine.h"
 #include "../GUGUENGINE/Mathematics/Vector2.hpp"
 
+extern bool getOpt;
+
 void Level1::Init()
 {
 	timer = 0;
 	levelCheck = false;
 	spaceCheck = false;
 	background = OBJECT_FACTORY->CreateEmptyObject();
+
+	getOpt = false;
 
 	background->AddComponent(new Mesh());
 	background->Init();
@@ -79,106 +83,132 @@ void Level1::Init()
 	win->Init();
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	cur = false;
+
+
+	opt.Init();
+	opt.getInput(&mInput, (this->sound));
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level1::Update()
 {
-	cursor = mInput.Cursor;
-	if (mInput.IsPressed(KEY::LEFT))
+	if (getOpt == true)
 	{
-		if (checking == false)
-		{
-			this->sound->Play("assets\\click.wav", 1);
-			checking = true;
-		}
+		opt.Update();
 	}
 	else
 	{
-		if (checking == true)
+		cursor = mInput.Cursor;
+		if (mInput.IsPressed(KEY::LEFT))
 		{
-			checking = false;
+			if (checking == false)
+			{
+				this->sound->Play("assets\\click.wav", 1);
+				checking = true;
+			}
 		}
-	}
-
-	if (mInput.IsPressed(KEY::F) == true)
-	{
-		APPLICATION->SetFullScreen();
-		mInput.setInput(KEY::F);
-	}
-
-	if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
-	{
-		if (cur == false && mInput.IsPressed(KEY::LEFT) == true)
+		else
 		{
-			cur = true;	
+			if (checking == true)
+			{
+				checking = false;
+			}
 		}
-	}
 
-	if(cur == true)
-	{
-		movePuzzle->mesh->setTransform(cursor);
-		movable = true;
-	}
-	if (blackPuzzle->collision->Point2HexagonCollision({ movePuzzle->mesh->GetTransform().x , movePuzzle->mesh->GetTransform().y}, blackPuzzle->mesh))
-	{
-		if (mInput.IsPressed(KEY::LEFT) == true)
+
+
+
+		if (mInput.IsPressed(KEY::F) == true)
 		{
+			APPLICATION->SetFullScreen();
+			mInput.setInput(KEY::F);
+		}
+
+		if (movePuzzle->collision->Point2HexagonCollision(cursor, movePuzzle->mesh))
+		{
+			if (cur == false && mInput.IsPressed(KEY::LEFT) == true)
+			{
+				cur = true;
+			}
+		}
+
+		if (cur == true)
+		{
+			movePuzzle->mesh->setTransform(cursor);
 			movable = true;
 		}
-	}
-
-	if (movable == true)
-	{
-		if (mInput.IsPressed(KEY::LEFT) == false)
+		if (blackPuzzle->collision->Point2HexagonCollision({ movePuzzle->mesh->GetTransform().x , movePuzzle->mesh->GetTransform().y }, blackPuzzle->mesh))
 		{
-			cur = false;
-			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+			if (mInput.IsPressed(KEY::LEFT) == true)
 			{
-				{
-					if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
-					{
-						this->sound->Play("assets\\fit.flac", 1);
+				movable = true;
+			}
+		}
 
-						movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
-						movable = false;
-						levelCheck = true;
-						spaceCheck = true;
+		if (movable == true)
+		{
+			if (mInput.IsPressed(KEY::LEFT) == false)
+			{
+				cur = false;
+				if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+				{
+					{
+						if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
+						{
+							this->sound->Play("assets\\fit.flac", 1);
+
+							movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
+							movable = false;
+							levelCheck = true;
+							spaceCheck = true;
+						}
 					}
 				}
 			}
 		}
-	}
 
-	if(spaceCheck == true)
-	{
-		timer += ENGINE->dt;
-		std::cout << timer << std::endl;
-
-		win->mesh->setTransform({ 0,0 });
-
-		if (timer > 2.f)
+		if (spaceCheck == true)
 		{
-			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST2);
+			timer += ENGINE->dt;
+			std::cout << timer << std::endl;
+
+			win->mesh->setTransform({ 0,0 });
+
+			if (timer > 2.f)
+			{
+				STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST2);
+			}
 		}
+
+
+		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+		blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
+		puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzleRight->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
+
+		movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickLeft));
+		win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
+
+		if (mInput.IsPressed(KEY::ESCAPE) == true)
+		{
+			INPUT->setInput(KEY::ESCAPE);
+			getOpt = true;
+			if (this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
+		}
+
+		glfwSwapBuffers(APPLICATION->getMyWindow());
+
+		glClearColor(0.f, 0.f, 0.f, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwPollEvents();
 	}
 
-
-	background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
-	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
-	puzzleLeft->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
-	puzzleRight->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
-
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
-	mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickLeft));
-	win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
-
-	glfwSwapBuffers(APPLICATION->getMyWindow());
-
-	glClearColor(0.f, 0.f, 0.f, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glfwPollEvents();
 
 }
 
@@ -186,7 +216,8 @@ void Level1::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
-	//ENGINE->Quit();
+	getOpt = false;
+	opt.Close();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }

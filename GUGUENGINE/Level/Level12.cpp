@@ -39,25 +39,26 @@ void Level12::Init()
 	rotTime.setRotate(10);
 	rotrot2 = true;
 
+
+	mInput.setInput(KEY::LEFT);
+
 	QuitAskBack = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
 	QuitAskBack->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 
 	QuitAsk = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	QuitAsk->mesh->InitializeTextureMesh(700.f, 700.f);
+	QuitAsk->mesh->InitializeTextureMesh(700.f, 500.f);
 
 	Yes = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes->mesh->InitializeTextureMesh(130.f, 110.f);
-
-	mInput.setInput(KEY::LEFT);
+	Yes->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No->mesh->InitializeTextureMesh(130.f, 110.f);
+	No->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	Yes_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	Yes_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	Yes_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	No_p = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f, -2000.f });
-	No_p->mesh->InitializeTextureMesh(130.f, 110.f);
+	No_p->mesh->InitializeTextureMesh(140.f, 70.f);
 
 	quitCheck = false;
 	realQuit = false;
@@ -154,8 +155,9 @@ void Level12::Init()
 	restartUI_p->mesh->setTransform({ 1800.f, -150.f });
 	restartUI_p->mesh->InitializeTextureMesh(173.f, 200.f);
 
-	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 250, 450.f - 20.f });
-	leftCount->mesh->InitializeTextureMesh(250.f, 80.f);
+
+	leftCount = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 200.f, 450.f - 20.f });
+	leftCount->mesh->InitializeTextureMesh(360.f, 60.f);
 
 	leftnumber = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 430, 450.f - 20.f });
 	leftnumber->mesh->InitializeTextureMesh(80.f, 100.f);

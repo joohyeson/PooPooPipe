@@ -19,6 +19,8 @@
 
 Sound se2;
 
+extern bool getOpt;
+
 void Level2::Init()
 {
 	timer = 0;
@@ -27,6 +29,8 @@ void Level2::Init()
 
 	background->AddComponent(new Mesh());
 	background->Init();
+
+	getOpt = false;
 
 	degree = 0;
 	checkToPipe = 0;
@@ -132,179 +136,204 @@ void Level2::Init()
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
 	cur = false;
 	fit = false;
+
+	opt.Init();
+	opt.getInput(&mInput, (this->sound));
+
+
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
 void Level2::Update()
 {
-	cursor = mInput.Cursor;
-	if (mInput.IsPressed(KEY::LEFT))
+	if (getOpt == true)
 	{
-		if (checking == false)
-		{
-			this->sound->Play("assets\\click.wav", 1);
-			checking = true;
-		}
+		opt.Update();
 	}
 	else
 	{
-		if (checking == true)
+		cursor = mInput.Cursor;
+		if (mInput.IsPressed(KEY::LEFT))
 		{
-			checking = false;
-		}
-	}
-	
-	if (mInput.IsPressed(KEY::F) == true)
-	{
-		APPLICATION->SetFullScreen();
-		mInput.setInput(KEY::F);
-	}
-
-	se2.Update();
-
-
-	if (movePuzzle->collision->Point2HexagonCollision({ cursor.x,cursor.y }, movePuzzle->mesh) == true)
-	{
-		if (cur == false && mInput.IsPressed(KEY::LEFT) == true )
-		{
-			cur = true;
-			
-		}
-
-		if (mInput.IsPressed(KEY::RIGHT) == true)
-		{
-			rot = true;
-		}
-		if (rot == true)
-		{
-			if (mInput.IsPressed(KEY::RIGHT) == false)
+			if (checking == false)
 			{
-				movePuzzle->pipe->Update();
-
-				degree += static_cast<float>(DegreeToRadian(60.f) );
-				movePuzzle->mesh->setRotation(degree + DegreeToRadian(60.f));
-				this->sound->Play("assets\\coin.wav", 1);
-
-				rot = false;
+				this->sound->Play("assets\\click.wav", 1);
+				checking = true;
 			}
 		}
-	}
-	if(cur == true)
-	{
-		movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
-	}
-	
-	if (mInput.IsPressed(KEY::LEFT) == false)
-	{
-		cur = false;
-		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+		else
 		{
+			if (checking == true)
 			{
-				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
+				checking = false;
+			}
+		}
+
+		if (mInput.IsPressed(KEY::F) == true)
+		{
+			APPLICATION->SetFullScreen();
+			mInput.setInput(KEY::F);
+		}
+
+		se2.Update();
+
+
+		if (movePuzzle->collision->Point2HexagonCollision({ cursor.x,cursor.y }, movePuzzle->mesh) == true)
+		{
+			if (cur == false && mInput.IsPressed(KEY::LEFT) == true)
+			{
+				cur = true;
+
+			}
+
+			if (mInput.IsPressed(KEY::RIGHT) == true)
+			{
+				rot = true;
+			}
+			if (rot == true)
+			{
+				if (mInput.IsPressed(KEY::RIGHT) == false)
 				{
-					if(fit == false)
+					movePuzzle->pipe->Update();
+
+					degree += static_cast<float>(DegreeToRadian(60.f));
+					movePuzzle->mesh->setRotation(degree + DegreeToRadian(60.f));
+					this->sound->Play("assets\\coin.wav", 1);
+
+					rot = false;
+				}
+			}
+		}
+		if (cur == true)
+		{
+			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
+		}
+
+		if (mInput.IsPressed(KEY::LEFT) == false)
+		{
+			cur = false;
+			if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
+			{
+				{
+					if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
 					{
-						fit = true;
-						this->sound->Play("assets\\fit.flac", 1);
+						if (fit == false)
+						{
+							fit = true;
+							this->sound->Play("assets\\fit.flac", 1);
+						}
+
+						movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
 					}
-
-					movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
-				}
-			}
-		}
-		else
-		{
-			fit = false;
-		}
-	}
-
-	if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh) == true)
-	{
-		if (movePuzzle->pipe->GetDirValue(SE) && movePuzzle->pipe->GetDirValue(NW))
-		{
-			checkToPipe = 1;
-		}
-		else
-		{
-			checkToPipe = 0;
-		}
-	}
-
-	if (checkToPipe)
-	{
-		timer += ENGINE->dt;
-		if (timer > 0.5f)
-		{
-			pressPlay1->mesh->setTransform({ 550.f,100.f });
-			playbutton->mesh->setTransform({ 500.f,300.f });
-			mouse->mesh->setTransform({ -2000.f,-2000.f });
-			pressPlay2->mesh->setTransform({ 550.f,-150.f });
-
-			if (playbutton->collision->Point2HexagonCollision({ cursor.x,cursor.y }, playbutton->mesh) == true)
-			{
-				playPressButton->mesh->setTransform({ 500.f,300.f });
-
-				if (mInput.IsPressed(KEY::LEFT) == true && !click)
-				{
-					mInput.setInput(KEY::LEFT);
-					spaceCheck = true;
-					click = true;
-				}
-				else
-				{
-					click = false;
 				}
 			}
 			else
 			{
-				playPressButton->mesh->setTransform({ -2000.f,-200.f });
+				fit = false;
 			}
 		}
-	}
 
-	if (spaceCheck)
-	{
-		timer2 += ENGINE->dt;
-		std::cout << timer << std::endl;
-
-		win->mesh->setTransform({ 0,0 });
-
-		if (timer2 > 2.f)
+		if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh) == true)
 		{
-			STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			if (movePuzzle->pipe->GetDirValue(SE) && movePuzzle->pipe->GetDirValue(NW))
+			{
+				checkToPipe = 1;
+			}
+			else
+			{
+				checkToPipe = 0;
+			}
 		}
+
+		if (checkToPipe)
+		{
+			timer += ENGINE->dt;
+			if (timer > 0.5f)
+			{
+				pressPlay1->mesh->setTransform({ 550.f,100.f });
+				playbutton->mesh->setTransform({ 500.f,300.f });
+				mouse->mesh->setTransform({ -2000.f,-2000.f });
+				pressPlay2->mesh->setTransform({ 550.f,-150.f });
+
+				if (playbutton->collision->Point2HexagonCollision({ cursor.x,cursor.y }, playbutton->mesh) == true)
+				{
+					playPressButton->mesh->setTransform({ 500.f,300.f });
+
+					if (mInput.IsPressed(KEY::LEFT) == true && !click)
+					{
+						mInput.setInput(KEY::LEFT);
+						spaceCheck = true;
+						click = true;
+					}
+					else
+					{
+						click = false;
+					}
+				}
+				else
+				{
+					playPressButton->mesh->setTransform({ -2000.f,-200.f });
+				}
+			}
+		}
+
+		if (spaceCheck)
+		{
+			timer2 += ENGINE->dt;
+			std::cout << timer << std::endl;
+
+			win->mesh->setTransform({ 0,0 });
+
+			if (timer2 > 2.f)
+			{
+				STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
+			}
+		}
+
+		se2.Update();
+
+		background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
+		blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
+		puzzleUp->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		puzzleDown->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
+
+		movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
+		mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickRight));
+		playbutton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI));
+		pressPlay1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton));
+		pressPlay2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton2));
+		playPressButton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI_2));
+
+		win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
+
+
+		if (mInput.IsPressed(KEY::ESCAPE) == true)
+		{
+			INPUT->setInput(KEY::ESCAPE);
+			getOpt = true;
+			if (this->sound->IsMute_() == false)
+			{
+				this->sound->ToggleMute();
+			}
+		}
+
+		glfwSwapBuffers(APPLICATION->getMyWindow());
+
+		glClearColor(0.f, 0.f, 0.f, 1);
+		glClear(GL_COLOR_BUFFER_BIT);
+
+		glfwPollEvents();
+
 	}
-
-	se2.Update();
-
-	background->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::background1));
-	blackPuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::blackPuzzle));
-	puzzleUp->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
-	puzzleDown->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::curvePuzzle));
-
-	movePuzzle->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::linePuzzle));
-	mouse->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickRight));
-	playbutton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI));
-	pressPlay1->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton));
-	pressPlay2->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::clickPlayButton2));
-	playPressButton->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::playUI_2));
-
-	win->mesh->Update(mShader2.GetShaderHandler(), TEXTURE->GetTexture(Textures::next));
-
-
-	glfwSwapBuffers(APPLICATION->getMyWindow());
-
-	glClearColor(0.f, 0.f, 0.f, 1);
-	glClear(GL_COLOR_BUFFER_BIT);
-
-	glfwPollEvents();
-
+	
 }
 
 void Level2::Close()
 {
 	mShader.Delete();
 	mMesh.Delete();
+	getOpt = false;
+	opt.Close();
 
 	OBJECT_FACTORY->DestroyAllObjects();
 }
