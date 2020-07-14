@@ -128,7 +128,8 @@ void Level2::Init()
 	win->mesh->SetMeshType(MESHTYPE::rectangle);
 	win->Init();
 	win->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-
+	cur = false;
+	fit = false;
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
@@ -148,9 +149,10 @@ void Level2::Update()
 
 	if (movePuzzle->collision->Point2HexagonCollision({ cursor.x,cursor.y }, movePuzzle->mesh) == true)
 	{
-		if (mInput.IsPressed(KEY::LEFT) == true )
+		if (cur == false && mInput.IsPressed(KEY::LEFT) == true )
 		{
-			movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
+			cur = true;
+			
 		}
 
 		if (mInput.IsPressed(KEY::RIGHT) == true)
@@ -171,17 +173,32 @@ void Level2::Update()
 			}
 		}
 	}
-
+	if(cur == true)
+	{
+		movePuzzle->mesh->setTransform({ cursor.x, cursor.y });
+	}
+	
 	if (mInput.IsPressed(KEY::LEFT) == false)
 	{
+		cur = false;
 		if ((movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh)))
 		{
 			{
 				if (movePuzzle->collision->Point2HexagonCollision({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y }, movePuzzle->mesh))
 				{
+					if(fit == false)
+					{
+						fit = true;
+						this->sound->Play("assets\\fit.flac", 1);
+					}
+
 					movePuzzle->mesh->setTransform({ blackPuzzle->mesh->GetTransform().x,blackPuzzle->mesh->GetTransform().y });
 				}
 			}
+		}
+		else
+		{
+			fit = false;
 		}
 	}
 
