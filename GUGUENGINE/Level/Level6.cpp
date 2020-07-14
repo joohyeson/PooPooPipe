@@ -266,12 +266,12 @@ void Level6::Update()
 		if (this->sound->soundCheck("BGM_another.wav") == true)
 		{
 			this->sound->StopSound("BGM_another.wav");
-			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+			this->sound->Play("assets\\BGM_new.wav", -1);
 		}
 		else if (this->sound->soundCheck("BGM_theother.wav") == true)
 		{
 			this->sound->StopSound("BGM_theother.mpe");
-			this->sound->Play("assets\\BGM_airplane.mp3", -1);
+			this->sound->Play("assets\\BGM_new.wav", -1);
 		}
 	}
 	if (getOpt == true)
