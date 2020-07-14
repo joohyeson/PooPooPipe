@@ -24,6 +24,7 @@ extern bool mainMenu;
 
 void MainMenu::Init()
 {
+	clickCredit = false;
 	main = false;
 	mainMenu = false;
 	
@@ -105,6 +106,38 @@ void MainMenu::Init()
 	creditsButton_pressed->mesh->setTransform({ 0.0f,-260.f });
 	creditsButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
 	creditsButton_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
+
+	credit1 = OBJECT_FACTORY->CreateEmptyObject();
+	credit1->AddComponent(new Mesh());
+	credit1->AddComponent(new CollisionCheck());
+	credit1->Init();
+	credit1->mesh->setTransform({ 5000.f,100.f });
+	credit1->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit1->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+
+	credit2 = OBJECT_FACTORY->CreateEmptyObject();
+	credit2->AddComponent(new Mesh());
+	credit2->AddComponent(new CollisionCheck());
+	credit2->Init();
+	credit2->mesh->setTransform({ 5000.f,100.f });
+	credit2->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit2->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+
+	credit3 = OBJECT_FACTORY->CreateEmptyObject();
+	credit3->AddComponent(new Mesh());
+	credit3->AddComponent(new CollisionCheck());
+	credit3->Init();
+	credit3->mesh->setTransform({ 5000.f,100.f });
+	credit3->mesh->SetMeshType(MESHTYPE::rectangle);
+	credit3->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
+
+	next = OBJECT_FACTORY->CreateEmptyObject();
+	next->AddComponent(new Mesh());
+	next->AddComponent(new CollisionCheck());
+	next->Init();
+	next->mesh->setTransform({ 5000.f,100.f });
+	next->mesh->SetMeshType(MESHTYPE::rectangle);
+	next->mesh->InitializeTextureMesh(350.f, 288.f);
 
 	menuInput.InitCallback(APPLICATION->getMyWindow());
 	
@@ -194,7 +227,7 @@ void MainMenu::Update()
 		isPlaying = true;
 	}
 
-	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh))
+	if (startButton->collision->Point2BoxCollision(cursor0, startButton->mesh) && clickCredit == false)
 	{
 		if(UI[0] == false)
 		{
@@ -217,7 +250,7 @@ void MainMenu::Update()
 	}
 
 
-	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh))
+	if (tutorialButton->collision->Point2BoxCollision(cursor0, tutorialButton->mesh) && clickCredit == false)
 	{
 		if (UI[1] == false)
 		{
@@ -237,7 +270,7 @@ void MainMenu::Update()
 		tutorialButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh))
+	if (optionButton->collision->Point2BoxCollision(cursor0, optionButton->mesh) && clickCredit == false)
 	{
 		if (UI[2] == false)
 		{
@@ -263,24 +296,64 @@ void MainMenu::Update()
 		optionButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
 	}
 
-	if (creditsButton->collision->Point2BoxCollision(cursor0, creditsButton->mesh))
+	//
+	if (creditsButton->collision->Point2BoxCollision(cursor0, creditsButton->mesh) && clickCredit == false)
 	{
 		if (UI[3] == false)
 		{
 			UI[3] = true;
 			this->sound->Play("assets\\UI.wav", 1);
 		}
+		
 		creditsButton_pressed->mesh->setTransform(creditsButton->mesh->GetTransform());
+
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
 			INPUT->setInput(KEY::LEFT);
-			STATE_MANAGER->ChangeLevel(GameLevels::CREDITS);
+			clickCredit = true;
+			credit1->mesh->setTransform({ 0.f,0.f });
+			next->mesh->setTransform({ 770.f,480.f });
+		}
+
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
 		}
 	}
 	else
 	{
 		UI[3] = false;
 		creditsButton_pressed->mesh->setTransform({ 1000.f, 1000.f });
+	}
+
+	if (next->collision->Point2BoxCollision(cursor0, next->mesh) == true && clickCredit == true)
+	{
+		if (menuInput.IsPressed(KEY::LEFT) == true)
+		{
+			INPUT->setInput(KEY::LEFT);
+			if (input[1] == false)
+			{
+				input[1] = true;
+				if (cut[0] == false && cut[1] == false)
+				{
+					cut[0] = true;
+					credit2->mesh->setTransform({ 0.f, 0.f });
+				}
+			}
+			else if (cut[0] == true && cut[1] == false)
+			{
+				cut[1] = true;
+				credit3->mesh->setTransform({ 0.f, 0.f });
+			}
+			else if (cut[0] == true && cut[1] == true)
+			{
+				clickCredit = false;
+				credit1->mesh->setTransform({ -2000.f, -2000.f });
+				credit2->mesh->setTransform({ -2000.f, -2000.f });
+				credit3->mesh->setTransform({ -2000.f, -2000.f });
+				next->mesh->setTransform({ -2000.f, -2000.f });
+			}
+		}
 	}
 
 
@@ -294,6 +367,12 @@ void MainMenu::Update()
 	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorialP));
 	optionButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::optionLP));
 	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::creatP));
+
+	credit1->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit1));
+	credit2->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit2));
+	credit3->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit3));
+
+	next->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::nextd));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 
