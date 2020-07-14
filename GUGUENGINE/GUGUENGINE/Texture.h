@@ -27,6 +27,7 @@ enum class Textures
 	credit,creatP, optionLP, start, startP, tutorial, tutorialP , title,
 	controls,
 	credit1,credit2,credit3,
+	controlButton, controlButtonP, back,
 };
 
 class Texture

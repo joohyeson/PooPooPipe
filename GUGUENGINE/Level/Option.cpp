@@ -20,6 +20,7 @@ extern bool mainMenu = false;
 void LevelOption::Init()
 {
 	clickCredit = false;
+	clickControls = false;
 	for(int i = 0 ; i < 2 ; i++)
 	{
 		input[i] = false;
@@ -201,14 +202,14 @@ void LevelOption::Init()
 	tutorialButton->Init();
 	tutorialButton->mesh->setTransform({ 0.f,-360.f });
 	tutorialButton->mesh->SetMeshType(MESHTYPE::rectangle);
-	tutorialButton->mesh->InitializeTextureMesh(350.f, 70.f);
+	tutorialButton->mesh->InitializeTextureMesh(420.f, 70.f);
 
 	tutorialButton_pressed = OBJECT_FACTORY->CreateEmptyObject();
 	tutorialButton_pressed->AddComponent(new Mesh());
 	tutorialButton_pressed->Init();
 	tutorialButton_pressed->mesh->setTransform({ 3500.0f,-100.f });
 	tutorialButton_pressed->mesh->SetMeshType(MESHTYPE::rectangle);
-	tutorialButton_pressed->mesh->InitializeTextureMesh(350.f, 70.f);
+	tutorialButton_pressed->mesh->InitializeTextureMesh(420.f, 70.f);
 
 	controls = OBJECT_FACTORY->CreateEmptyObject();
 	controls->AddComponent(new Mesh());
@@ -251,6 +252,14 @@ void LevelOption::Init()
 	next->mesh->SetMeshType(MESHTYPE::rectangle);
 	next->mesh->InitializeTextureMesh(350.f, 288.f);
 
+	back = OBJECT_FACTORY->CreateEmptyObject();
+	back->AddComponent(new Mesh());
+	back->AddComponent(new CollisionCheck());
+	back->Init();
+	back->mesh->setTransform({ 5000.f,100.f });
+	back->mesh->SetMeshType(MESHTYPE::rectangle);
+	back->mesh->InitializeTextureMesh(350.f, 288.f);
+
 
 	mShader.BuildTextureShader();
 	mInput = new Input();
@@ -263,6 +272,10 @@ void LevelOption::Update()
 {
 	this->sound->Update();
 	cursor = mInput->Cursor;
+
+	
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
+
 	if (mInput->IsPressed(KEY::LEFT))
 	{
 		if (checking == false)
@@ -278,7 +291,8 @@ void LevelOption::Update()
 			checking = false;
 		}
 	}
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
+
 	{
 		if (UI[0] == false)
 		{
@@ -313,7 +327,7 @@ void LevelOption::Update()
 		goToMain_pressed->mesh->setTransform({ -2000.0f,-2000.f });
 	}
 
-	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh) && quitCheck == false && clickCredit == false)
+	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -347,7 +361,7 @@ void LevelOption::Update()
 		fullcheck = false;
 	}
 	
-	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh) && quitCheck == false && clickCredit == false)
+	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -390,7 +404,7 @@ void LevelOption::Update()
 		}
 	}
 
-	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh) && quitCheck == false && clickCredit == false)
+	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -435,7 +449,7 @@ void LevelOption::Update()
 		}
 	}
 
-	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh) && clickCredit == false && quitCheck == false)
+	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh) && clickCredit == false && quitCheck == false && clickControls == false)
 	{
 		if (UI[1] == false)
 		{
@@ -465,7 +479,7 @@ void LevelOption::Update()
 		quitButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		goToMain_pressed->mesh->setTransform(goToMain->mesh->GetTransform());
 
@@ -480,7 +494,7 @@ void LevelOption::Update()
 	}
 
 
-	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh) && quitCheck == false && clickCredit == false)
+	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		if (UI[2] == false)
 		{
@@ -516,7 +530,7 @@ void LevelOption::Update()
 
 	int creditnum = 0;
 
-	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false && clickCredit == false)
+	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 
 		if (UI[3] == false)
@@ -536,7 +550,7 @@ void LevelOption::Update()
 			INPUT->setInput(KEY::LEFT);
 			clickCredit = true;
 			credit1->mesh->setTransform({ 0.f,0.f });
-			next->mesh->setTransform({ 700.f,400.f });
+			next->mesh->setTransform({ 770.f,480.f });
 		}
 	}
 	else
@@ -545,7 +559,7 @@ void LevelOption::Update()
 		creditsButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
-	if (next->collision->Point2BoxCollision(cursor, next->mesh) == true && clickCredit == true)
+	if (next->collision->Point2BoxCollision(cursor, next->mesh) == true && clickCredit == true && clickControls == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -579,7 +593,7 @@ void LevelOption::Update()
 		}
 	}
 
-	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false && clickCredit == false)
+	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 	{
 		if (UI[4] == false)
 		{
@@ -596,14 +610,29 @@ void LevelOption::Update()
 				this->sound->ToggleMute();
 			}
 
+			clickControls = true;
 			INPUT->setInput(KEY::LEFT);
 			controls->mesh->setTransform({ 0.f,0.f });
+			back->mesh->setTransform({ 780.f,480.f });
 		}
 	}
 	else
 	{
 		UI[4] = false;
 		tutorialButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
+	}
+
+	//back
+	if (back->collision->Point2BoxCollision(cursor, back->mesh) == true && clickCredit == false && clickControls == true)
+	{
+		if (mInput->IsPressed(KEY::LEFT))
+		{
+			INPUT->setInput(KEY::LEFT);
+
+			clickControls = false;
+			controls->mesh->setTransform({ -2000.f, -2000.f });
+			back->mesh->setTransform({ -2000.f, -2000.f });
+		}
 	}
 
 
@@ -673,8 +702,8 @@ void LevelOption::Update()
 	creditsButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit));
 	creditsButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::creatP));
 
-	tutorialButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorial));
-	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::tutorialP));
+	tutorialButton->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::controlButton));
+	tutorialButton_pressed->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::controlButtonP));
 
 	controls->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::controls));
 
@@ -683,6 +712,7 @@ void LevelOption::Update()
 	credit3->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit3));
 
 	next->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::nextd));
+	back->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::back));
 
 	QuitAskBack->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::BAR1));
 	QuitAsk->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::QUITCHECK));

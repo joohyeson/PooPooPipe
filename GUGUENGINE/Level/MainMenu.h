@@ -52,11 +52,19 @@ private:
 	Object* optionButton_pressed;
 	Object* creditsButton_pressed;
 
+	Object* credit1, * credit2, * credit3;
+	Object* next;
+
 	Object* test;
 	Object* test2;
 	
 	bool UI[4] = { false };
-	
+
+
+	bool clickCredit = false;
+	bool input[2] = { false, false };
+	bool cut[2] = { false, false };
+
 
 	int key;
 	//MovePooPoo getDirectionPooPoo;

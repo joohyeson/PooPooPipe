@@ -45,6 +45,7 @@ public:
 		credit3 = nullptr;
 
 		next = nullptr;
+		back = nullptr;
 
 		QuitAskBack = nullptr;
 		QuitAsk = nullptr;
@@ -77,10 +78,12 @@ private:
 	Object* credit1, *credit2, *credit3;
 
 	Object* next;
+	Object* back;
 	
 	bool checking;
 	int key;
 	bool clickCredit;
+	bool clickControls;
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
 	Mesh mMesh;
