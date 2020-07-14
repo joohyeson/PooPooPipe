@@ -33,6 +33,7 @@ void FmodLogo::Init()
 
 	fmodLogo->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width / 3), static_cast<float>(APPLICATION->height / 3));
 
+	textureFmodLogo= TEXTURE->CreateTexture("assets\\images2.png", 0);
 	mInput.InitCallback(APPLICATION->getMyWindow());
 }
 
@@ -46,7 +47,7 @@ void FmodLogo::Update()
 		APPLICATION->SetFullScreen();
 	}
 
-	fmodLogo->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::FMODLOGO));
+	fmodLogo->mesh->Update(mShader.GetShaderHandler(), textureFmodLogo);
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClear(GL_COLOR_BUFFER_BIT);

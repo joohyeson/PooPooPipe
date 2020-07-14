@@ -87,9 +87,6 @@ GLuint Texture::CreateTexture(char const* filename, int i)
 void Texture::Load1()
 {
     TextureStore.clear();
-
-    CreateTexture("assets\\DigiPen_WHITE_1024px.png", Textures::DIGIPENLOGO);
-    CreateTexture("assets\\images2.png", Textures::FMODLOGO);
     CreateTexture("assets\\imagest1.png", Textures::STARTCUT1);
     CreateTexture("assets\\imagest2.png", Textures::STARTCUT2);
     CreateTexture("assets\\imagest3.png", Textures::STARTCUT3);

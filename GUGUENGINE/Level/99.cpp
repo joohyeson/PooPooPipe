@@ -48,7 +48,7 @@ void GUGULOGO::Update()
 	if (lastTime - firstTime > 2.f)
 	{
 		this->sound->Pause();
-		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
+		STATE_MANAGER->ChangeLevel(GameLevels::LOAD1);
 		
 	}
 

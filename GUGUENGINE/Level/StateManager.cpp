@@ -56,12 +56,13 @@ StateManager::~StateManager()
 
 void StateManager::Init()
 {
-	current = GameLevels::LOAD1;
+	current = GameLevels::DIGIPENLOGO;
 
-	levels.push_back(new Loading());
+
 	levels.push_back(new DigipenLogo());
 	levels.push_back(new FmodLogo());
 	levels.push_back(new GUGULOGO);
+	levels.push_back(new Loading());
 	levels.push_back(new startCut());
 	levels.push_back(new endingCut());
 	levels.push_back(new MainMenu());

@@ -19,6 +19,7 @@ public:
 	FmodLogo()
 	{
 		fmodLogo = nullptr;
+		textureFmod=0;
 		lastTime = 0;
 		firstTime = 0;
 	}
@@ -32,6 +33,7 @@ public:
 	}
 private:
 	Object* fmodLogo;
+	GLuint textureFmod;
 	Shader mShader;
 	double	 lastTime;
 	double firstTime;
