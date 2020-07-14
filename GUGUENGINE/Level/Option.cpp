@@ -19,6 +19,13 @@ extern bool mainMenu = false;
 
 void LevelOption::Init()
 {
+	clickCredit = false;
+	for(int i = 0 ; i < 2 ; i++)
+	{
+		input[i] = false;
+		cut[i] =  false;
+	}
+	
 	prevLev = 0;
 	background = OBJECT_FACTORY->CreateEmptyObject();
 	background->AddComponent(new Mesh());
@@ -216,7 +223,7 @@ void LevelOption::Init()
 	credit1->Init();
 	credit1->mesh->setTransform({ 5000.f,100.f });
 	credit1->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit1->mesh->InitializeTextureMesh(1920.f, 1080.f);
+	credit1->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	credit2 = OBJECT_FACTORY->CreateEmptyObject();
 	credit2->AddComponent(new Mesh());
@@ -224,7 +231,7 @@ void LevelOption::Init()
 	credit2->Init();
 	credit2->mesh->setTransform({ 5000.f,100.f });
 	credit2->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit2->mesh->InitializeTextureMesh(1920.f, 1080.f);
+	credit2->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	credit3 = OBJECT_FACTORY->CreateEmptyObject();
 	credit3->AddComponent(new Mesh());
@@ -232,7 +239,7 @@ void LevelOption::Init()
 	credit3->Init();
 	credit3->mesh->setTransform({ 5000.f,100.f });
 	credit3->mesh->SetMeshType(MESHTYPE::rectangle);
-	credit3->mesh->InitializeTextureMesh(1920.f, 1080.f);
+	credit3->mesh->InitializeTextureMesh(APPLICATION->width, APPLICATION->height);
 
 	next = OBJECT_FACTORY->CreateEmptyObject();
 	next->AddComponent(new Mesh());
@@ -255,7 +262,7 @@ void LevelOption::Update()
 	this->sound->Update();
 	cursor = mInput->Cursor;
 	
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false)
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (UI[0] == false)
 		{
@@ -290,7 +297,7 @@ void LevelOption::Update()
 		goToMain_pressed->mesh->setTransform({ -2000.0f,-2000.f });
 	}
 
-	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh) && quitCheck == false)
+	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -324,7 +331,7 @@ void LevelOption::Update()
 		fullcheck = false;
 	}
 	
-	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh) && quitCheck == false)
+	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -367,7 +374,7 @@ void LevelOption::Update()
 		}
 	}
 
-	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh) && quitCheck == false)
+	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -412,7 +419,7 @@ void LevelOption::Update()
 		}
 	}
 
-	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh))
+	if (quitButton->collision->Point2BoxCollision(cursor, quitButton->mesh) && clickCredit == false && quitCheck == false)
 	{
 		if (UI[1] == false)
 		{
@@ -442,7 +449,7 @@ void LevelOption::Update()
 		quitButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false)
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false)
 	{
 		goToMain_pressed->mesh->setTransform(goToMain->mesh->GetTransform());
 
@@ -457,7 +464,7 @@ void LevelOption::Update()
 	}
 
 
-	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh) && quitCheck == false)
+	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (UI[2] == false)
 		{
@@ -493,7 +500,7 @@ void LevelOption::Update()
 
 	int creditnum = 0;
 
-	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false)
+	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false && clickCredit == false)
 	{
 
 		if (UI[3] == false)
@@ -510,12 +517,11 @@ void LevelOption::Update()
 			{
 				this->sound->ToggleMute();
 			}
-
 			INPUT->setInput(KEY::LEFT);
+			clickCredit = true;
 			credit1->mesh->setTransform({ 0.f,0.f });
 			next->mesh->setTransform({ 700.f,400.f });
 		}
-
 	}
 	else
 	{
@@ -523,30 +529,37 @@ void LevelOption::Update()
 		creditsButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
-	if (next->collision->Point2BoxCollision(cursor, next->mesh) == true)
+	if (next->collision->Point2BoxCollision(cursor, next->mesh) == true && clickCredit == true)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
 			INPUT->setInput(KEY::LEFT);
-
-			if (creditnum == 0)
+			if(input[1] == false)
 			{
-				credit1->mesh->setTransform({ 5000.f,0.f });
-				credit2->mesh->setTransform({ 0.f,0.f });
-				next->mesh->setTransform({ 700.f,400.f });
-				creditnum = 1;
+				input[1] = true;
+				if(cut[0] == false && cut[1] == false)
+				{
+					cut[0] = true;
+					credit2->mesh->setTransform({ 0.f, 0.f });
+				}
 			}
-			if (creditnum == 1)
+			else if(cut[0] == true && cut[1] == false)
 			{
-				credit2->mesh->setTransform({ 5000.f,0.f });
-				credit3->mesh->setTransform({ 0.f,0.f });
-				next->mesh->setTransform({ 700.f,400.f });
-				creditnum = 2;
+				cut[1] = true;
+				credit3->mesh->setTransform({ 0.f, 0.f });
+			}
+			else if(cut[0] == true && cut[1] == true)
+			{
+				clickCredit = false;
+				credit1->mesh->setTransform({ -2000.f, -2000.f });
+				credit2->mesh->setTransform({ -2000.f, -2000.f });
+				credit3->mesh->setTransform({ -2000.f, -2000.f });
+				next->mesh->setTransform({ -2000.f, -2000.f });
 			}
 		}
 	}
 
-	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false)
+	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false && clickCredit == false)
 	{
 		if (UI[4] == false)
 		{

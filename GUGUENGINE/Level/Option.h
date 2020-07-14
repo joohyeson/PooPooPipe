@@ -80,7 +80,9 @@ private:
 	
 	
 	int key;
-	
+	bool clickCredit;
+	bool input[2] = { false, false };
+	bool cut[2] = { false, false };
 	Mesh mMesh;
 	Shader mShader;
 	
