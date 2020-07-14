@@ -233,13 +233,11 @@ void Level2::Update()
 	if (checkToPipe)
 	{
 		timer += ENGINE->dt;
-		std::cout << timer << std::endl;
-		pressPlay1->mesh->setTransform({ 550.f,100.f });
-		playbutton->mesh->setTransform({ 500.f,300.f });
-		mouse->mesh->setTransform({ -2000.f,-2000.f });
-
-		if (timer > 1.f)
+		if (timer > 0.5f)
 		{
+			pressPlay1->mesh->setTransform({ 550.f,100.f });
+			playbutton->mesh->setTransform({ 500.f,300.f });
+			mouse->mesh->setTransform({ -2000.f,-2000.f });
 			pressPlay2->mesh->setTransform({ 550.f,-150.f });
 
 			if (playbutton->collision->Point2HexagonCollision({ cursor.x,cursor.y }, playbutton->mesh) == true)

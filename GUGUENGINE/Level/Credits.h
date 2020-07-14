@@ -24,8 +24,6 @@ public:
 	{
 		background = nullptr;
 		goToMain = nullptr;
-		textureBackgroundCredits = 0;
-		textureGoToMain = 0;
 	}
 
 	GameLevels GetCurrLevel() override
@@ -39,9 +37,6 @@ public:
 
 private:
 	Object* background, * goToMain;
-
-	GLuint textureBackgroundCredits;
-	GLuint textureGoToMain;
 	Shader mShader;
 
 	Input mInput;

@@ -23,7 +23,6 @@ void LevelCredits::Init()
 	background->mesh->setTransform({ 0,0 });
 	background->mesh->SetMeshType(MESHTYPE::rectangle);
 	background->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	textureBackgroundCredits = TEXTURE->CreateTexture("assets\\credits1.png", 0);
 
 	goToMain = OBJECT_FACTORY->CreateEmptyObject();
 	goToMain->AddComponent(new Mesh());
@@ -34,7 +33,6 @@ void LevelCredits::Init()
 	goToMain->mesh->SetMeshType(MESHTYPE::rectangle);
 	goToMain->mesh->InitializeTextureMesh(80.f, 80.f);
 
-	textureGoToMain = TEXTURE->CreateTexture("assets\\restartUI.png", 0);
 	mShader.BuildTextureShader();
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
@@ -54,8 +52,8 @@ void LevelCredits::Update()
 		}
 	}
 
-	background->mesh->Update(mShader.GetShaderHandler(), textureBackgroundCredits);
-	goToMain->mesh->Update(mShader.GetShaderHandler(), textureGoToMain);
+	background->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::credit1));
+	goToMain->mesh->Update(mShader.GetShaderHandler(), TEXTURE->GetTexture(Textures::restartUI));
 
 	glfwSwapBuffers(APPLICATION->getMyWindow());
 	glClearColor(0.f, 0.f, 0.f, 1);
