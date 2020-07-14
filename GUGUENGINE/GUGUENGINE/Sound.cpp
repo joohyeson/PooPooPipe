@@ -107,14 +107,17 @@ void Sound::Load()
 	LoadMusic("assets\\UI.wav");
 	LoadMusic("assets\\fart.mp3");
 	LoadMusic("assets\\logo.wav");
-	LoadMusic("assets\\footprint.ogg");
+	LoadMusic("assets\\footprint.mp3");
 	LoadMusic("assets\\siren.wav");
 	LoadMusic("assets\\heaven.mp3");
 	LoadMusic("assets\\rain.wav");
 	LoadMusic("assets\\click.wav");
 	LoadMusic("assets\\fit.flac");
 	LoadMusic("assets\\control.wav");
-	LoadMusic("assets\\BGM_theother.wav");	
+	LoadMusic("assets\\BGM_theother.wav");
+	LoadMusic("assets\\paper.wav");
+	LoadMusic("assets\\skip.wav");
+
 }
 
 bool Sound::IsPlaying()

@@ -266,6 +266,8 @@ void LevelOption::Init()
 	
 	mInput->InitCallback(APPLICATION->getMyWindow());
 	SUI = false;
+	SSUI[0] = false;
+	SSUI[1] = false;
 }
 
 void LevelOption::Update()
@@ -291,6 +293,7 @@ void LevelOption::Update()
 			checking = false;
 		}
 	}
+	
 	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false && clickCredit == false && clickControls == false)
 
 	{
@@ -638,6 +641,11 @@ void LevelOption::Update()
 
 	if (Yes->collision->Point2BoxCollision(cursor, Yes->mesh))
 	{
+		if(SSUI[0] == false)
+		{
+			SSUI[0] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		Yes_p->mesh->setTransform(Yes->mesh->GetTransform());
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -647,11 +655,17 @@ void LevelOption::Update()
 	}
 	else
 	{
+		SSUI[0] = false;
 		Yes_p->mesh->setTransform({ -1000.f, -1000.f });
 	}
 
 	if (No->collision->Point2BoxCollision(cursor, No->mesh))
 	{
+		if (SSUI[1] == false)
+		{
+			SSUI[1] = true;
+			this->sound->Play("assets\\UI.wav", 1);
+		}
 		No_p->mesh->setTransform(No->mesh->GetTransform());
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -665,6 +679,7 @@ void LevelOption::Update()
 	}
 	else
 	{
+		SSUI[1] = false;
 		No_p->mesh->setTransform({ -2000.f, -2000.f });
 	}
 

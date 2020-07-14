@@ -83,7 +83,7 @@ private:
 	Object* Level2;
 	Object* Level2_pressed;
 	Object* Level2_lock;
-
+	bool checking;
 	Object* Level3;
 	Object* Level3_pressed;
 	Object* Level3_lock;

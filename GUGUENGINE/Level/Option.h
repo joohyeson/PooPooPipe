@@ -86,6 +86,7 @@ private:
 	bool clickControls;
 	bool input[2] = { false, false };
 	bool cut[2] = { false, false };
+	bool SSUI[2] = { false };
 	Mesh mMesh;
 	Shader mShader;
 	

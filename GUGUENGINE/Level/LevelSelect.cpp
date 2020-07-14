@@ -88,7 +88,7 @@ void LevelSelect::Init()
 
 	Level11_pressed = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
 	Level11_lock = OBJECT_FACTORY->CreateObject(Type::Puzzle, { 850.0f, 850.0f }, 60 * 3);
-	
+	checking = false;
 	seLv.Init();
 	seLv.LoadMusic("assets\\coin.wav");
 
@@ -111,7 +111,21 @@ void LevelSelect::Update()
 		INPUT->setInput(KEY::ESCAPE);
 		STATE_MANAGER->ChangeLevel(GameLevels::OPTION);
 	}
-
+	if (levelInput.IsPressed(KEY::LEFT))
+	{
+		if (checking == false)
+		{
+			this->sound->Play("assets\\click.wav", 1);
+			checking = true;
+		}
+	}
+	else
+	{
+		if (checking == true)
+		{
+			checking = false;
+		}
+	}
 	if (Level1->collision->Point2HexagonCollision({ cursorLv.x, cursorLv.y }, Level1->mesh))
 	{
 		if(UI[0] == false)

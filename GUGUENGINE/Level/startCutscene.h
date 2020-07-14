@@ -24,7 +24,7 @@ public:
 		skip = nullptr;
 		texturestartNext = 0;
 		texturestartSkip = 0;
-
+		timer = 0;
 	}
 
 	void Init() override;
@@ -52,4 +52,6 @@ private:
 	bool cut[2] = { false, false };
 	float dt = 0.f;
 	bool sound_[3] = { false };
+	double timer;
+	bool soundeffect[3] = { false };
 };
