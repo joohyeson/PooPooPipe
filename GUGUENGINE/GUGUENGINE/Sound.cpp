@@ -112,6 +112,7 @@ void Sound::Load()
 	LoadMusic("assets\\rain.wav");
 	LoadMusic("assets\\click.wav");
 	LoadMusic("assets\\fit.flac");
+	LoadMusic("assets\\control.wav");
 }
 
 bool Sound::IsPlaying()
@@ -213,7 +214,14 @@ float Sound::GetVolume()
 void Sound::ToggleMute()
 {
 		isMute = !isMute;
-		masterChannel->setMute(isMute);
+		//masterChannel->setMute(isMute);
+		for (auto s : m_sounds)
+		{
+			if (s->source.find("BGM") != -1)
+			{
+				s->channel->setMute(isMute);
+			}
+		}
 }
 
 void Sound::SetLoopCount(int /*loopCount*/)

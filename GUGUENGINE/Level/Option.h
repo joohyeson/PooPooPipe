@@ -88,7 +88,8 @@ private:
 	bool realQuit = false;
 
 	bool UI[5] = { false };
-
+	bool SUI = false;
+	
 	Vector2<float> cursor;
 	GameLevels goback;
 	

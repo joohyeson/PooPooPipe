@@ -206,8 +206,7 @@ void LevelOption::Init()
 	mInput = new Input();
 	
 	mInput->InitCallback(APPLICATION->getMyWindow());
-
-	
+	SUI = false;
 }
 
 void LevelOption::Update()
@@ -215,7 +214,7 @@ void LevelOption::Update()
 	this->sound->Update();
 	cursor = mInput->Cursor;
 	
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false)
 	{
 		if (UI[0] == false)
 		{
@@ -250,7 +249,7 @@ void LevelOption::Update()
 		goToMain_pressed->mesh->setTransform({ -2000.0f,-2000.f });
 	}
 
-	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh))
+	if (fullScreenFalse->collision->Point2BoxCollision(cursor, fullScreenFalse->mesh) && quitCheck == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
@@ -284,20 +283,23 @@ void LevelOption::Update()
 		fullcheck = false;
 	}
 	
-	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh))
+	if (arrowRight->collision->Point2BoxCollision(cursor, arrowRight->mesh) && quitCheck == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
-			INPUT->setInput(KEY::LEFT);
 
 			std::cout << "Up Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
 			if (volume < 1.0f)
 			{
+				if(SUI == false)
+				{
+					this->sound->Play("assets\\control.wav", 1);
+					SUI = true;
+				}
 				volume += 0.1f;
 				this->sound->SetVolume(volume);
-				//사운드 넘겨주기
 				mInput->setInput(KEY::UP);
 				std::cout << volume << std::endl;
 			}
@@ -315,20 +317,29 @@ void LevelOption::Update()
 				soundBar->mesh->setTransform({ this->sound->soundBarPosition.x, this->sound->soundBarPosition.y });
 				soundBar->mesh->InitializeTextureMesh(this->sound->soundBarSize.x, this->sound->soundBarSize.y);
 			}
+			INPUT->setInput(KEY::LEFT);
+
+		}
+		else
+		{
+			SUI = false;
 		}
 	}
 
-	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh))
+	if (arrowLeft->collision->Point2BoxCollision(cursor, arrowLeft->mesh) && quitCheck == false)
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
-			INPUT->setInput(KEY::LEFT);
-
 			std::cout << "Down Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
 			if (volume > 0.0f)
 			{
+				if (SUI == false)
+				{
+					this->sound->Play("assets\\control.wav", 1);
+					SUI = true;
+				}
 				volume -= 0.1f;
 				if (volume <= 0.f)
 				{
@@ -352,6 +363,11 @@ void LevelOption::Update()
 
 				soundBar->mesh->InitializeTextureMesh(0, 0);
 			}
+			INPUT->setInput(KEY::LEFT);
+		}
+		else
+		{
+			SUI = false;
 		}
 	}
 
@@ -385,7 +401,7 @@ void LevelOption::Update()
 		quitButton_pressed->mesh->setTransform({ 2000.f, 2000.f });
 	}
 
-	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh))
+	if (goToMain->collision->Point2BoxCollision(cursor, goToMain->mesh) && quitCheck == false)
 	{
 		goToMain_pressed->mesh->setTransform(goToMain->mesh->GetTransform());
 
@@ -400,7 +416,7 @@ void LevelOption::Update()
 	}
 
 
-	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh))
+	if (backtomain->collision->Point2BoxCollision(cursor, backtomain->mesh) && quitCheck == false)
 	{
 		if (UI[2] == false)
 		{
@@ -435,7 +451,7 @@ void LevelOption::Update()
 	}
 
 
-	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh))
+	if (creditsButton->collision->Point2BoxCollision(cursor, creditsButton->mesh) && quitCheck == false)
 	{
 
 		if (UI[3] == false)
@@ -465,7 +481,7 @@ void LevelOption::Update()
 	}
 
 
-	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh))
+	if (tutorialButton->collision->Point2BoxCollision(cursor, tutorialButton->mesh) && quitCheck == false)
 	{
 		if (UI[4] == false)
 		{
