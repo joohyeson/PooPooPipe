@@ -175,12 +175,8 @@ void MainMenu::Update()
 
 	if (menuInput.IsPressed(KEY::A) == true)
 	{
+		INPUT->setInput(KEY::A);
 		STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST3);
-	}
-
-	if (menuInput.IsPressed(KEY::LEFT) == true)
-	{
-		std::cout << "CURSOR:"<<cursor0.x <<"," << cursor0.y << std::endl;
 	}
 	
 	if (isPlaying == false)
@@ -221,6 +217,7 @@ void MainMenu::Update()
 		tutorialButton_pressed->mesh->setTransform(tutorialButton->mesh->GetTransform());
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(GameLevels::LV_TEST1);
 		}
 	}
@@ -242,6 +239,7 @@ void MainMenu::Update()
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
 			mainMenu = true;
+			INPUT->setInput(KEY::LEFT);
 			if(this->sound->IsMute_() == false)
 			{
 				this->sound->ToggleMute();
@@ -265,6 +263,7 @@ void MainMenu::Update()
 		creditsButton_pressed->mesh->setTransform(creditsButton->mesh->GetTransform());
 		if (menuInput.IsPressed(KEY::LEFT) == true)
 		{
+			INPUT->setInput(KEY::LEFT);
 			STATE_MANAGER->ChangeLevel(GameLevels::CREDITS);
 		}
 	}
