@@ -158,6 +158,7 @@ private:
 	bool SoundCheck = false;	
 	double timer;
 	double timer2;
+	bool one;
 	LevelOption opt;
 
 };

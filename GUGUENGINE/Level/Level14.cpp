@@ -21,6 +21,7 @@ void Level14::Init()
 {
 	current = 11;
 	getOpt = false;
+	one = false;
 
 	if (MaxLevel <= 11)
 	{
@@ -630,8 +631,13 @@ void Level14::Update()
 
 					puzzle4->pipe->Update();
 
-					degree8_7 += static_cast<float>(DegreeToRadian(-120.f));
-					puzzle4->mesh->setRotation(degree8_7);
+					if (one == false)
+					{
+						degree8_7 += static_cast<float>(DegreeToRadian(-120.f));
+						puzzle4->mesh->setRotation(degree8_7);
+						one = true;
+					}
+
 
 					this->sound->Play("assets\\coin.wav", 1);
 
