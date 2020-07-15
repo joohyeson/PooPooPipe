@@ -29,6 +29,7 @@ void MovePooPoo::Init()
 
 	this->isFinish = false;
 	this->isSuccess = false;
+	this->isHidden = true;
 
 	myAngles.clear();
 	coor.clear();
