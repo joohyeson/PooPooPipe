@@ -180,4 +180,5 @@ private:
 	double timer;
 	double timer2;
 	double timer3;
+	bool one;
 };

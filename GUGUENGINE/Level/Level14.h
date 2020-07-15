@@ -195,5 +195,6 @@ private:
 	double timer3;
 
 	LevelOption opt;
+	bool one;
 
 };
