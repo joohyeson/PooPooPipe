@@ -740,15 +740,21 @@ void Level3::Update()
 
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
+					
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
+						if (mPooPoo.GetIsSuccess() == true)
+						{
+							mPooPoo.SetIsSuccess(false);
+						}
 						Nos[1] = true;
 						quitCheck = true;
 						QuitAskBack->mesh->setTransform({ 0.f, 0.f });
 						QuitAsk->mesh->setTransform({ 0.f, 0.f });
 						Yes->mesh->setTransform({ -100.f, -50.f });
 						No->mesh->setTransform({ 100.f, -50.f });
+						
 					}
 				}
 			}
@@ -756,6 +762,7 @@ void Level3::Update()
 		else
 		{
 			UI[3] = false;
+			
 			quitUI_p->mesh->setTransform({ 1000.f, 1000.f });
 		}
 
@@ -789,6 +796,10 @@ void Level3::Update()
 			No_p->mesh->setTransform(No->mesh->GetTransform());
 			if (mInput.IsPressed(KEY::LEFT))
 			{
+				if (mPooPoo.GetIsHidden() == false)
+				{
+					mPooPoo.SetIsSuccess(true);
+				}
 				INPUT->setInput(KEY::LEFT);
 				quitCheck = false;
 				realQuit = false;
