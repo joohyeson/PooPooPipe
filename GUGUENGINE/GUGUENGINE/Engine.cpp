@@ -25,6 +25,7 @@ Engine::Engine()
 	GAMERUN = true;
 	ENGINE = this;
 	dt = 0;
+	frameCount = 0;
 }
 
 Engine::~Engine()

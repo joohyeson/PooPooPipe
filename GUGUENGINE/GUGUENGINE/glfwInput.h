@@ -30,12 +30,11 @@ public:
 	bool IsPressed(KEY k);
 	bool IsKeyDown(KEY k);
 	void setInput(KEY k);
-	void clearInput();
 	Vector2<float> Cursor;
 
 private:
-	bool Key[KEY::SIZE] ;
-	bool WasKey[KEY::SIZE] ;
+	bool Key[KEY::SIZE];
+	bool WasKey[KEY::SIZE];
 	
 	friend static void key_callback(GLFWwindow* /*window*/, int key, int /*scancode*/, int action, int /*mods*/);
 	friend static  void cursorPositionCallback(GLFWwindow* /*window*/, double xpos, double ypos);
