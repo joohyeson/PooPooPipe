@@ -117,6 +117,9 @@ Application::Application()
     std::cout << "Vendor: " << glGetString(GL_VENDOR) << std::endl;
     std::cout << "Renderer: " << glGetString(GL_RENDERER) << std::endl;
 
+    mouse_X = 0;
+    mouse_Y = 0;
+
     glfwSetWindowAspectRatio(Mywindow, 16, 9);
 
     glfwSetFramebufferSizeCallback(Mywindow, framebufferSizeCallback);
