@@ -170,11 +170,19 @@ void Sound::Play(std::string source, int loop)
 	}
 	else
 	{
-		std::cout << "Play" << std::endl;
-		m_sounds[id]->IsPlaying = true;
-		result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
-		result = m_sounds[id]->channel->setChannelGroup(soundEffects);
-		result = m_sounds[id]->channel->setVolume(0.5f);
+		if (m_sounds[id]->source.find("flush") != -1 && m_sounds[id]->IsPlaying == false)
+		{
+			std::cout << "mixed" << std::endl;
+		}
+		else
+		{
+			std::cout << "Play" << std::endl;
+			m_sounds[id]->IsPlaying = true;
+			result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
+			result = m_sounds[id]->channel->setChannelGroup(soundEffects);
+			result = m_sounds[id]->channel->setVolume(0.5f);
+		}
+		
 	}
 }
 
