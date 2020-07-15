@@ -170,7 +170,11 @@ void Sound::Play(std::string source, int loop)
 	}
 	else
 	{
-		if (m_sounds[id]->source.find("flush") == -1 || m_sounds[id]->IsPlaying == true)
+		if (m_sounds[id]->source.find("flush") != -1 && m_sounds[id]->IsPlaying == true)
+		{//DONT DELETE THIS IF STATE- JUHYE
+			std::cout << "mixed" << std::endl;
+		}
+		else
 		{
 			std::cout << "Play" << std::endl;
 			m_sounds[id]->IsPlaying = true;
