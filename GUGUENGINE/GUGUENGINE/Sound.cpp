@@ -176,7 +176,6 @@ void Sound::Play(std::string source, int loop)
 		}
 		else
 		{
-			std::cout << "Play" << std::endl;
 			m_sounds[id]->IsPlaying = true;
 			result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 			result = m_sounds[id]->channel->setChannelGroup(soundEffects);
