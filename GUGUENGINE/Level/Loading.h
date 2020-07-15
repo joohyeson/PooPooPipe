@@ -20,7 +20,10 @@ public:
 	{
 		digipenLogo = nullptr;
 		textureDigipenLogo = 0;
-
+		textureDigipenLogo = 0;
+		textureDigipenLogo2 = 0;
+		textureDigipenLogo3 = 0;
+		textureDigipenLogo4 = 0;
 		timer = 0;
 	}
 

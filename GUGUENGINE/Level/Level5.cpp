@@ -904,7 +904,7 @@ void Level5::Update()
 					{
 						puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
 						puzzle7->pipe->SetDirection(true, true, false, true, false, false);
-						one == true;
+						one = true;
 					}
 
 					this->sound->Play("assets\\coin.wav", 1);

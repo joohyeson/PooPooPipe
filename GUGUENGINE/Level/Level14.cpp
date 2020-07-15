@@ -638,7 +638,6 @@ void Level14::Update()
 						one = true;
 					}
 
-
 					this->sound->Play("assets\\coin.wav", 1);
 
 					if (puzzle19->pipe->GetDirValue(E) == 1 && (puzzle4->pipe->GetDirValue(W) == 1))
