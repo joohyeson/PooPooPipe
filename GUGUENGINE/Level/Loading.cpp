@@ -43,6 +43,14 @@ void Loading::Update()
 		APPLICATION->SetFullScreen();
 	}
 
+
+	if (mInput.IsPressed(KEY::ESCAPE))
+	{
+		glfwTerminate();
+		ENGINE->Quit();
+	}
+
+
 	switch (LOADINGCOUNT)
 	{
 	case 0:
@@ -51,6 +59,7 @@ void Loading::Update()
 		break;
 	case 1:
 		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo2);
+		
 		TEXTURE->Load2();
 		break;
 	case 2:
@@ -58,8 +67,8 @@ void Loading::Update()
 		TEXTURE->Load3();
 		break;
 	case 3:
-		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
 		TEXTURE->Load4();
+		digipenLogo->mesh->Update(mShader.GetShaderHandler(), textureDigipenLogo4);
 		STATE_MANAGER->ChangeLevel(GameLevels::CUTSCENE);
 		break;
 	}

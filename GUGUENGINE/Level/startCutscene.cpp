@@ -49,16 +49,19 @@ void startCut::Update()
 		STATE_MANAGER->ChangeLevel(GameLevels::MAINMENU);
 	}
 
-	if (mInput.IsPressed(KEY::LEFT) == true)
-	{
-		std::cout << "CURSOR:" << cursor__.x << "," << cursor__.y << std::endl;
-	}
-
 	if (mInput.IsPressed(KEY::F))
 	{
 		INPUT->setInput(KEY::F);
 		APPLICATION->SetFullScreen();
 	}
+
+
+	if (mInput.IsPressed(KEY::ESCAPE))
+	{
+		glfwTerminate();
+		ENGINE->Quit();
+	}
+
 	
 	if(soundeffect[2] == true)
 	{
