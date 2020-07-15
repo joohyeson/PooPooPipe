@@ -15,18 +15,18 @@ void endingCut::Init()
 	}
 	ending = false;
 	endCut1 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 0.f,  0.f });
-	endCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
+	endCut1->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width)-444.f, static_cast<float>(APPLICATION->height) - 250.f);
 
 	endCut2 = OBJECT_FACTORY->CreateObject(Type::shape_rec, { -2000.f,  -2000.f });
-	endCut2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height) - 250.f);
+	endCut2->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width)-444.f, static_cast<float>(APPLICATION->height) - 250.f);
 
-	skip = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  450.f });
-	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	skip->mesh->InitializeTextureMesh(173.f, 200.f);
+	skip = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 800.f,  450.f });
+	skip->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width)-444.f, static_cast<float>(APPLICATION->height));
+	skip->mesh->InitializeTextureMesh(200.f, 200.f);
 
-	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 850.f,  -500.f });
+	next = OBJECT_FACTORY->CreateObject(Type::shape_rec, { 780.f,  -450.f });
 	next->mesh->InitializeTextureMesh(static_cast<float>(APPLICATION->width), static_cast<float>(APPLICATION->height));
-	next->mesh->InitializeTextureMesh(173.f, 200.f);
+	next->mesh->InitializeTextureMesh(247.f, 200.f);
 
 	mInput.InitCallback(APPLICATION->getMyWindow());
 
