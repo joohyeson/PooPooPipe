@@ -588,10 +588,10 @@ void Level9::Update()
 
 				if (conecTcheck9_1 && conecTcheck9_2 && conecTcheck9_3)
 				{
-					std::cout << "if 3" << std::endl;
+					//std::cout << "if 3" << std::endl;
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext9 = 1;
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);
 					connectMove9 = 0;
 

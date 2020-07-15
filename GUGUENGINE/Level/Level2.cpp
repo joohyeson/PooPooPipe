@@ -280,7 +280,7 @@ void Level2::Update()
 		if (spaceCheck)
 		{
 			timer2 += ENGINE->dt;
-			std::cout << timer << std::endl;
+			//std::cout << timer << std::endl;
 
 			win->mesh->setTransform({ 0,0 });
 

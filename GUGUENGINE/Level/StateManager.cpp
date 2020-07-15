@@ -12,8 +12,6 @@
 #include "startCutscene.h"
 #include "endingcut.h"
 #include "Option.h"
-#include "Credits.h"
-
 #include "Loading.h"
 #include "FmodLogo.h"
 #include "Level1.h"
@@ -80,7 +78,6 @@ void StateManager::Init()
 	levels.push_back(new Level13());
 	levels.push_back(new Level14());
 	levels.push_back(new LevelSelect());
-	levels.push_back(new LevelCredits());
 	
 	levels.at(static_cast<int>(current))->Init();
 

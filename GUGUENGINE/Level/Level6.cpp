@@ -361,7 +361,7 @@ void Level6::Update()
 						puzzle14->pipe->Update();
 
 						degree6 += static_cast<float>(DegreeToRadian(60.f));
-						std::cout << "1" << std::endl;
+						//std::cout << "1" << std::endl;
 						puzzle14->mesh->setRotation(degree6);
 						rotTime.Update();
 
@@ -384,7 +384,7 @@ void Level6::Update()
 					{
 						blackPuzzle1->pipe->Update();
 						degree6_2 += static_cast<float>(DegreeToRadian(60.f));
-						std::cout << "2" << std::endl;
+						//std::cout << "2" << std::endl;
 						blackPuzzle1->mesh->setRotation(degree6_2);
 						rotTime.Update();
 
@@ -431,7 +431,7 @@ void Level6::Update()
 						blackPuzzle3->pipe->Update();
 						degree6_4 += static_cast<float>(DegreeToRadian(60.f));
 						blackPuzzle3->mesh->setRotation(degree6_4);
-						std::cout << "4" << std::endl;
+						//std::cout << "4" << std::endl;
 						rotTime.Update();
 
 						this->sound->Play("assets\\coin.wav", 1);
@@ -455,7 +455,7 @@ void Level6::Update()
 						degree6_5 += static_cast<float>(DegreeToRadian(60.f));
 						puzzle16->mesh->setRotation(degree6_5);
 						rotTime.Update();
-						std::cout << "5" << std::endl;
+						//std::cout << "5" << std::endl;
 
 						this->sound->Play("assets\\coin.wav", 1);
 
@@ -479,7 +479,7 @@ void Level6::Update()
 						puzzle12->mesh->setRotation(degree6_6);
 
 						rotTime.Update();
-						std::cout << "6" << std::endl;
+						//std::cout << "6" << std::endl;
 
 						this->sound->Play("assets\\coin.wav", 1);
 						rot[5] = false;
@@ -493,10 +493,10 @@ void Level6::Update()
 				{
 					if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3)
 					{
-						std::cout << "if 5" << std::endl;
+						//std::cout << "if 5" << std::endl;
 						clear->mesh->setTransform({ 350.f, -240.f });
 						chekNext6 = 1;
-						std::cout << "clear" << std::endl;
+						//std::cout << "clear" << std::endl;
 						mPooPoo.SetIsSuccess(true);
 						connectMove6 = 0;
 
@@ -558,30 +558,6 @@ void Level6::Update()
 			}
 		}
 
-		if (conecTcheck6_1)
-		{
-			std::cout << "1" << std::endl;
-		}
-		else if (conecTcheck6_2)
-		{
-			std::cout << "2" << std::endl;
-
-		}
-		else if (conecTcheck6_3)
-		{
-			std::cout << "3" << std::endl;
-
-		}
-		else if (conecTcheck6_4)
-		{
-			std::cout << "4" << std::endl;
-
-		}
-		else if (conecTcheck6_5)
-		{
-			std::cout << "5" << std::endl;
-
-		}
 		if (playUI->collision->Point2HexagonCollision({ cursor6.x,cursor6.y }, playUI->mesh))
 		{
 			if (Nos[0] == false && Nos[1] == false)
@@ -613,10 +589,10 @@ void Level6::Update()
 			{
 				if (conecTcheck6_1 && conecTcheck6_2 && conecTcheck6_3 && conecTcheck6_4 && conecTcheck6_5)
 				{
-					std::cout << "if 5" << std::endl;
+					//std::cout << "if 5" << std::endl;
 					clear->mesh->setTransform({ 280.f, -240.f });
 					chekNext6 = 1;
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);
 					connectMove6 = 0;
 					poopooCheck = false;

@@ -292,7 +292,7 @@ void Level3::Update()
 
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
-					std::cout << "check" << std::endl;
+					//std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -632,10 +632,10 @@ void Level3::Update()
 
 				if (conecTcheck1 && conecTcheck2 && conecTcheck3)
 				{
-					std::cout << "if 3" << std::endl;
+					//std::cout << "if 3" << std::endl;
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext = 1;
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					connectMove = 0;
 					mPooPoo.SetIsSuccess(true);
 

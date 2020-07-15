@@ -311,7 +311,7 @@ void LevelOption::Update()
 		{
 			getOpt = false;
 			INPUT->setInput(KEY::LEFT);
-			std::cout << "to main" << std::endl;
+			//std::cout << "to main" << std::endl;
 
 			if(this->sound->IsMute_() == true)
 			{
@@ -378,7 +378,7 @@ void LevelOption::Update()
 		if (mInput->IsPressed(KEY::LEFT))
 		{
 
-			std::cout << "Up Key" << std::endl;
+			//std::cout << "Up Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
 			if (volume < 1.0f)
@@ -391,7 +391,7 @@ void LevelOption::Update()
 				volume += 0.1f;
 				this->sound->SetVolume(volume);
 				mInput->setInput(KEY::UP);
-				std::cout << volume << std::endl;
+				//std::cout << volume << std::endl;
 			}
 
 			if (volume < 1.f)
@@ -422,7 +422,7 @@ void LevelOption::Update()
 	{
 		if (mInput->IsPressed(KEY::LEFT))
 		{
-			std::cout << "Down Key" << std::endl;
+			//std::cout << "Down Key" << std::endl;
 			float volume = this->sound->GetVolume();
 
 			if (volume > 0.0f)
@@ -445,12 +445,12 @@ void LevelOption::Update()
 				{
 					SOUND->SetSoundBarPosition(-15.f);
 					SOUND->SetSoundBarSize(-30.f);
-					std::cout << SOUND->GetSoundBarPosition().x << std::endl;
+					//std::cout << SOUND->GetSoundBarPosition().x << std::endl;
 					soundBar->mesh->setTransform(SOUND->GetSoundBarPosition());
 					soundBar->mesh->InitializeTextureMesh(SOUND->GetSoundBarSize().x, SOUND->GetSoundBarSize().y);
 				}
 
-				std::cout << volume << std::endl;
+				//std::cout << volume << std::endl;
 			}
 			else if (volume == 0)
 			{

@@ -16,7 +16,7 @@ extern ObjectFactory* OBJECT_FACTORY = nullptr;
 
 ObjectFactory::ObjectFactory()
 {
-	std::cout << "ObjectFactory constructor called" << std::endl;
+	//std::cout << "ObjectFactory constructor called" << std::endl;
 	assert(OBJECT_FACTORY == nullptr && "ObjectFactory is already created");
 	OBJECT_FACTORY = this;
 	last_objectID = 0;

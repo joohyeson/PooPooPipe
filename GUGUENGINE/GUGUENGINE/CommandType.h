@@ -9,7 +9,7 @@
  */
 #include <string>
 
-enum CommandType {
+enum class CommandType {
 	INVAILD = 0,
 	CHAGNESTATECOMMAND,
 	QUTICOMMAND,

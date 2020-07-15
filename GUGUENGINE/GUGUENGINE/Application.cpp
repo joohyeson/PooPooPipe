@@ -27,7 +27,7 @@ void framebufferSizeCallback(GLFWwindow* /*window*/, int width, int height)
 
 void Application::Init()
 {
-    std::cout << "Initialize" << std::endl;
+    //std::cout << "Initialize" << std::endl;
     APPLICATION = this;
 }
 
@@ -40,13 +40,11 @@ void Application::Update()
     numOfFrames++;
     if (currentTime - lastTime >= 1.0) {
 
-        printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
+        //printf("%f ms/frame  %d fps \n", 1000.0 / double(numOfFrames), numOfFrames);
         numOfFrames = 0;
         lastTime = currentTime;
     }
 	
-    //glfwGetWindowSize(APPLICATION->getMyWindow(), &APPLICATION->width, &APPLICATION->height);
-
     glfwSetWindowAspectRatio(APPLICATION->getMyWindow(), 16, 9);
     glfwPollEvents();
 }
@@ -66,9 +64,7 @@ Application::Application()
     glfwWindowHint(GLFW_SAMPLES, 4);
 
     const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-    //GLFWmonitor* screenMonitor = nullptr;
-    //screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
-    //
+
     Mywindow = glfwCreateWindow(
         screenMode->width,
         screenMode->height,
@@ -134,7 +130,6 @@ Application::~Application()
 
     glfwTerminate();
 
-    //std::exit(EXIT_SUCCESS);
 }
 
 void Application::SetFullScreen()
@@ -145,7 +140,7 @@ void Application::SetFullScreen()
         glfwGetWindowPos(APPLICATION->Mywindow, &tx, &ty);
         std::cout << "Fullscreen" << std::endl;
         const GLFWvidmode* screenMode = glfwGetVideoMode(glfwGetPrimaryMonitor());
-        GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor();//fullscreen code
+        GLFWmonitor* screenMonitor = glfwGetPrimaryMonitor(); //fullscreen code
         glfwSetWindowMonitor(APPLICATION->getMyWindow(), screenMonitor, 0, 0, screenMode->width, screenMode->height, 0);
         isFullScreen = true;
         glViewport(0, 0, screenMode->width, screenMode->height);

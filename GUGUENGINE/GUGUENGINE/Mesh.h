@@ -14,7 +14,6 @@
 #include "Transform.h"
 #include "Mathematics/Vector2.hpp"
 #include "Mathematics/Vector3.hpp"
-#include "Camera.h"
 #include "Shader.h"
 
 enum class MESHTYPE
@@ -100,6 +99,5 @@ private:
 	GLuint mTextureCoordinateBufferObjectID;
 	MESHTYPE meshType;
 	Transform transform;
-	Camera mCamera;
     Vector2<float> shapeSize = { 1.f, 1.f };
 };

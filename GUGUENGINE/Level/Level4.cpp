@@ -288,7 +288,7 @@ void Level4::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
 					INPUT->setInput(KEY::LEFT);
-					std::cout << "check" << std::endl;
+					//std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -359,7 +359,7 @@ void Level4::Update()
 		{
 			if ((movePuzzle->pipe->GetDirValue(W) == 1) && (movePuzzle->pipe->GetDirValue(E) == 1))
 			{
-				std::cout << "pipe connect" << std::endl;
+				//std::cout << "pipe connect" << std::endl;
 				conecTcheck4_1 = true;
 			}
 			else
@@ -600,7 +600,7 @@ void Level4::Update()
 						movePuzzle3->mesh->setTransform({ blackPuzzle1->mesh->GetTransform().x,blackPuzzle1->mesh->GetTransform().y });
 						blCheck4 = true;
 						blCheck4_2 = false;
-						std::cout << "4 "<< blCheck4 << std::endl;
+						//std::cout << "4 "<< blCheck4 << std::endl;
 					}
 					if (movePuzzle3->collision->Point2HexagonCollision({ blackPuzzle2->mesh->GetTransform().x,blackPuzzle2->mesh->GetTransform().y }, movePuzzle3->mesh))
 					{
@@ -623,7 +623,7 @@ void Level4::Update()
 						movePuzzle3->mesh->setTransform({ blackPuzzle3->mesh->GetTransform().x,blackPuzzle3->mesh->GetTransform().y });
 						blCheck4 = false;
 						blCheck4_2 = true;
-						std::cout << "4_2 " << blCheck4 << std::endl;
+						//std::cout << "4_2 " << blCheck4 << std::endl;
 
 					}
 				}
@@ -637,7 +637,7 @@ void Level4::Update()
 
 		if (playUI->collision->Point2HexagonCollision({ cursor4.x,cursor4.y }, playUI->mesh))
 		{
-			std::cout << "1:  " << conecTcheck4_1 << "  2:  " << conecTcheck4_2 << "  1:  " << conecTcheck4_3 << std::endl;
+			//std::cout << "1:  " << conecTcheck4_1 << "  2:  " << conecTcheck4_2 << "  1:  " << conecTcheck4_3 << std::endl;
 
 			if (Nos[0] == false && Nos[1] == false)
 			{
@@ -671,7 +671,7 @@ void Level4::Update()
 				{
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext4 = 1;
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);
 
 					this->sound->Play("assets\\flushing.wav", 1);

@@ -225,7 +225,7 @@ void MainMenu::Update()
 
 	if (menuInput.IsKeyDown(KEY::F) == true)
 	{
-		std::cout << "F Key" << std::endl;
+		//std::cout << "F Key" << std::endl;
 		menuInput.setInput(KEY::F);
 
 		APPLICATION->SetFullScreen();

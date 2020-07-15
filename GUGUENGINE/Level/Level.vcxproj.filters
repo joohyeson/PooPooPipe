@@ -69,9 +69,6 @@
     <ClCompile Include="Loading.cpp">
       <Filter>Transition</Filter>
     </ClCompile>
-    <ClCompile Include="Credits.cpp">
-      <Filter>Menu</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="StateManager.h" />
@@ -131,9 +128,6 @@
     </ClInclude>
     <ClInclude Include="99.h">
       <Filter>Transition</Filter>
-    </ClInclude>
-    <ClInclude Include="Credits.h">
-      <Filter>Menu</Filter>
     </ClInclude>
     <ClInclude Include="endingcut.h">
       <Filter>Level</Filter>

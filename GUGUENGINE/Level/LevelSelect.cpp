@@ -137,7 +137,7 @@ void LevelSelect::Update()
 		if (levelInput.IsPressed(KEY::LEFT) == true)
 		{
 			
-			std::cout << "get mouse left" << std::endl;
+			//std::cout << "get mouse left" << std::endl;
 			getLevNum = 1;
 		}
 	}
@@ -159,7 +159,7 @@ void LevelSelect::Update()
 			Level2_pressed->mesh->setTransform(Level2->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 2;
 			}
 		}
@@ -186,7 +186,7 @@ void LevelSelect::Update()
 			Level3_pressed->mesh->setTransform(Level3->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 3;
 			}
 		}
@@ -213,7 +213,7 @@ void LevelSelect::Update()
 			Level4_pressed->mesh->setTransform(Level4->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 4;
 			}
 		}
@@ -240,7 +240,7 @@ void LevelSelect::Update()
 			Level5_pressed->mesh->setTransform(Level5->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 5;
 			}
 		}
@@ -267,7 +267,7 @@ void LevelSelect::Update()
 			Level6_pressed->mesh->setTransform(Level6->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 6;
 			}
 		}
@@ -294,7 +294,7 @@ void LevelSelect::Update()
 			Level7_pressed->mesh->setTransform(Level7->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 7;
 			}
 		}
@@ -321,7 +321,7 @@ void LevelSelect::Update()
 			Level8_pressed->mesh->setTransform(Level8->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 8;
 			}
 		}
@@ -348,7 +348,7 @@ void LevelSelect::Update()
 			Level9_pressed->mesh->setTransform(Level9->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 9;
 			}
 		}
@@ -375,7 +375,7 @@ void LevelSelect::Update()
 			Level10_pressed->mesh->setTransform(Level10->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 10;
 			}
 		}
@@ -402,7 +402,7 @@ void LevelSelect::Update()
 			Level11_pressed->mesh->setTransform(Level11->mesh->GetTransform());
 			if (levelInput.IsPressed(KEY::LEFT) == true)
 			{
-				std::cout << "get mouse left" << std::endl;
+				//std::cout << "get mouse left" << std::endl;
 				getLevNum = 11;
 			}
 		}

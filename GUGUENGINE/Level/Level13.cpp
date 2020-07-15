@@ -308,7 +308,7 @@ void Level13::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true)
 				{
 					INPUT->setInput(KEY::LEFT);
-					std::cout << "check" << std::endl;
+					//std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -661,7 +661,7 @@ void Level13::Update()
 					chekNext8 = 1;
 					mPooPoo.SetIsSuccess(true);
 
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					connectMove8 = 0;
 					this->sound->Play("assets\\flushing.wav", 1);
 					poopooCheck = false;

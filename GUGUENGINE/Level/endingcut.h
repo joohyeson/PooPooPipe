@@ -1,5 +1,11 @@
 #pragma once
-
+/*
+ *eunjin.hong
+ *06.28.2020
+ *eunjin.hong@gmail.com
+ *Credits.h
+ *This is endingcut.h
+ */
 #include "../GUGUENGINE/LevelManager.h"
 #include "../GUGUENGINE/Object.h"
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"

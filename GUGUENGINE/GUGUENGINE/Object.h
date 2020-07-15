@@ -13,7 +13,7 @@
 #include "FitPuzzleComponent.h"
 #include "HexCoordinates.h"
 #include "CollisionCheck.h"
-
+#include "Mathematics/MathFunctions.hpp"
 using ObjectID = unsigned;
 
 class ObjectFactory;

@@ -51,29 +51,14 @@
     <Filter Include="소스 파일\Graphics\Color">
       <UniqueIdentifier>{23562e6f-b83a-44b8-a06e-ee11ea64a431}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Graphics\Camera">
-      <UniqueIdentifier>{dd8e3f8c-9b51-4c15-b028-1ba3bec5125b}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Graphics\Image">
       <UniqueIdentifier>{bfb50d79-b1b5-4363-8ec6-7f9c743a9e93}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Graphics\MovePooPoo">
       <UniqueIdentifier>{adf909f7-73be-4109-a483-fd1cd700debd}</UniqueIdentifier>
     </Filter>
-    <Filter Include="소스 파일\Graphics\GenerateMap">
-      <UniqueIdentifier>{95e8f812-94cd-4de6-b606-da5d635530c8}</UniqueIdentifier>
-    </Filter>
     <Filter Include="소스 파일\Component\CollisionCheck">
       <UniqueIdentifier>{b6c005aa-47e7-428e-8fb3-7314db48fc32}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Graphics\GenerateMap\HexagonElement">
-      <UniqueIdentifier>{02d4f031-6147-422b-afe1-87b64dd99dc9}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Graphics\GenerateMap\GetDirection">
-      <UniqueIdentifier>{ac5d630d-5739-4544-8eaa-9ef6fea4b646}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="소스 파일\Graphics\GenerateMap\Map">
-      <UniqueIdentifier>{fc76a410-57f7-4f51-8050-33b9863a968b}</UniqueIdentifier>
     </Filter>
     <Filter Include="소스 파일\Input">
       <UniqueIdentifier>{40f6d802-9521-43b3-9c46-19e4fe08f7d3}</UniqueIdentifier>
@@ -122,12 +107,6 @@
     <ClCompile Include="Mathematics\Vector4.cpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClCompile>
-    <ClCompile Include="Camera.cpp">
-      <Filter>소스 파일\Graphics\Camera</Filter>
-    </ClCompile>
-    <ClCompile Include="CameraView.cpp">
-      <Filter>소스 파일\Graphics\Camera</Filter>
-    </ClCompile>
     <ClCompile Include="Color.cpp">
       <Filter>소스 파일\Graphics\Color</Filter>
     </ClCompile>
@@ -137,26 +116,17 @@
     <ClCompile Include="MovePooPoo.cpp">
       <Filter>소스 파일\Graphics\MovePooPoo</Filter>
     </ClCompile>
-    <ClCompile Include="GenerateMap.cpp">
-      <Filter>소스 파일\Graphics\GenerateMap</Filter>
-    </ClCompile>
     <ClCompile Include="CollisionCheck.cpp">
       <Filter>소스 파일\Component\CollisionCheck</Filter>
-    </ClCompile>
-    <ClCompile Include="HexagonElements.cpp">
-      <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
-    </ClCompile>
-    <ClCompile Include="GetDirection.cpp">
-      <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
-    </ClCompile>
-    <ClCompile Include="ZigZagMap.cpp">
-      <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
     </ClCompile>
     <ClCompile Include="limitedRotate.cpp">
       <Filter>소스 파일</Filter>
     </ClCompile>
     <ClCompile Include="glfwInput.cpp">
       <Filter>소스 파일\Input</Filter>
+    </ClCompile>
+    <ClCompile Include="HexagonElements.cpp">
+      <Filter>소스 파일</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -235,12 +205,6 @@
     <ClInclude Include="Mathematics\Matrix3.hpp">
       <Filter>소스 파일\Mathmatics</Filter>
     </ClInclude>
-    <ClInclude Include="CameraView.h">
-      <Filter>소스 파일\Graphics\Camera</Filter>
-    </ClInclude>
-    <ClInclude Include="Camera.h">
-      <Filter>소스 파일\Graphics\Camera</Filter>
-    </ClInclude>
     <ClInclude Include="Color.h">
       <Filter>소스 파일\Graphics\Color</Filter>
     </ClInclude>
@@ -253,24 +217,15 @@
     <ClInclude Include="MovePooPoo.h">
       <Filter>소스 파일\Graphics\MovePooPoo</Filter>
     </ClInclude>
-    <ClInclude Include="GenerateMap.h">
-      <Filter>소스 파일\Graphics\GenerateMap</Filter>
-    </ClInclude>
     <ClInclude Include="CollisionCheck.h">
       <Filter>소스 파일\Component\CollisionCheck</Filter>
-    </ClInclude>
-    <ClInclude Include="HexagonElements.h">
-      <Filter>소스 파일\Graphics\GenerateMap\HexagonElement</Filter>
-    </ClInclude>
-    <ClInclude Include="GetDirection.h">
-      <Filter>소스 파일\Graphics\GenerateMap\GetDirection</Filter>
-    </ClInclude>
-    <ClInclude Include="ZigZagMap.h">
-      <Filter>소스 파일\Graphics\GenerateMap\Map</Filter>
     </ClInclude>
     <ClInclude Include="limitedRotate.h" />
     <ClInclude Include="glfwInput.h">
       <Filter>소스 파일\Input</Filter>
+    </ClInclude>
+    <ClInclude Include="HexagonElements.h">
+      <Filter>소스 파일</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

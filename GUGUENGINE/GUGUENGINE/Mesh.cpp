@@ -13,8 +13,6 @@
 #include <iostream>
 #include "Shader.h"
 #include "Mathematics/MathLibrary.hpp"
-#include "Camera.h"
-#include "CameraView.h"
 #include <math.h>
 #include "Application.h"
 
@@ -179,9 +177,6 @@ std::vector<Vector3<float>> Mesh::GetPoint() const noexcept
 
 void Mesh::SetVertex(std::vector<Vector3<float>> shapeType)
 {
-	//int location = glGetUniformLocation(colorShader.GetShaderHandler(), "ndc");
-	//glUniformMatrix3fv(location, 1, GL_FALSE, m);
-
 	Matrix3<float> T = Matrix3<float>::Translate({ transform.GetTranslation().x,  transform.GetTranslation().y,1 });
 	Matrix3<float> R = Matrix3<float>::Rotate(transform.GetRotation());
 	Matrix3<float> S = Matrix3<float>::Scale({ 1.f, 1.f, 1.f });

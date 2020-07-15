@@ -1,6 +1,7 @@
 #pragma once
 #include "Component.h"
 #include "Mesh.h"
+#include "Mathematics/MathFunctions.hpp"
 #include "Mathematics/Vector2.hpp"
 
 enum class DirAngle

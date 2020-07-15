@@ -5,6 +5,15 @@
 #include "../GUGUENGINE/Mathematics/Vector3.hpp"
 #include "../GUGUENGINE/Shader.h"
 #include "../GUGUENGINE/glfwInput.h"
+
+/*
+ *eunjin.hong
+ *06.28.2020
+ *eunjin.hong@gmail.com
+ *Credits.h
+ *This is startCutscene.h
+ */
+
 class sound;
 class startCut : public LevelManager
 {

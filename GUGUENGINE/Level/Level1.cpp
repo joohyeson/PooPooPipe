@@ -171,7 +171,7 @@ void Level1::Update()
 		if (spaceCheck == true)
 		{
 			timer += ENGINE->dt;
-			std::cout << timer << std::endl;
+			//std::cout << timer << std::endl;
 
 			win->mesh->setTransform({ 0,0 });
 

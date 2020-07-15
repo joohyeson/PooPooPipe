@@ -337,7 +337,7 @@ void Level11::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true)
 				{
 					INPUT->setInput(KEY::LEFT);
-					std::cout << "check" << std::endl;
+					//std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -357,7 +357,7 @@ void Level11::Update()
 				this->sound->Play("assets\\fart.mp3", 1);
 				failS[0] = true;
 			}
-			std::cout << "rotation limit!!!" << std::endl;
+			//std::cout << "rotation limit!!!" << std::endl;
 		}
 		if (failS[0] == true)
 		{
@@ -769,7 +769,7 @@ void Level11::Update()
 					chekNext8 = 1;
 					mPooPoo.SetIsSuccess(true);
 
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					connectMove8 = 0;
 					this->sound->Play("assets\\flushing.wav", 1);
 					poopooCheck = false;

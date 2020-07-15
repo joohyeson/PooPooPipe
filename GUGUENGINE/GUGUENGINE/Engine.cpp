@@ -66,8 +66,9 @@ void Engine::GameLoop()
 
 			if (++frameCount >= Engine::FPS_IntervalFrameCount)
 			{
-				double actualTime = std::chrono::duration<double>((now - fpsCalcTime)).count();
-				std::cout << "FPS:  " << frameCount / actualTime << std::endl;
+				double actualTime = 0;
+				actualTime = std::chrono::duration<double>((now - fpsCalcTime)).count();
+				//std::cout << "FPS:  " << frameCount / actualTime << std::endl;
 				frameCount = 0;
 				fpsCalcTime = now;
 			}
@@ -90,7 +91,7 @@ void Engine::GameLoop()
 				SOUND->Pause();
 				if (checkWindow)
 				{
-					std::cout << "window is minimized" << std::endl;
+					//std::cout << "window is minimized" << std::endl;
 					checkWindow = false;
 				}
 			}

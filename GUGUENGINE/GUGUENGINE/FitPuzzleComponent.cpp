@@ -18,9 +18,9 @@ void PuzzleComponent::Update()
 		{
 			dirArray1[i] = temp;
 		}
-		std::cout << dirArray1[i];
+		//std::cout << dirArray1[i];
 	}
-	std::cout << std::endl;
+	//std::cout << std::endl;
 }
 
 void PuzzleComponent::SetDirection(bool a, bool b, bool c, bool d, bool e, bool f)

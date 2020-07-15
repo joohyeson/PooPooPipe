@@ -338,7 +338,7 @@ void Level5::Update()
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
 				{
 					INPUT->setInput(KEY::LEFT);
-					std::cout << "check" << std::endl;
+					//std::cout << "check" << std::endl;
 					STATE_MANAGER->ChangeLevel(GameLevels::LV_SELECT);
 				}
 			}
@@ -872,7 +872,7 @@ void Level5::Update()
 					UI[0] = true;
 					this->sound->Play("assets\\UI.wav", 1);
 				}
-				std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
+				//std::cout << "1: " << conecTcheck5_1 << "2: " << conecTcheck5_2 << "3: " << conecTcheck5_2 << std::endl;
 				playUI_p->mesh->setTransform(playUI->mesh->GetTransform());
 
 				if (mInput.IsPressed(KEY::LEFT) == true && !movable[0] && !movable[1] && !movable[2])
@@ -914,10 +914,10 @@ void Level5::Update()
 
 				if (conecTcheck5_1 && conecTcheck5_2 && conecTcheck5_3)
 				{
-					std::cout << "if 3" << std::endl;
+					//std::cout << "if 3" << std::endl;
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext5 = 1;
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					mPooPoo.SetIsSuccess(true);
 					connectMove5 = 0;
 

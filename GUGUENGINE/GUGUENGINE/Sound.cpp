@@ -49,10 +49,10 @@ void Sound::Update()
 Sound::Sound()
 {
 	result = System_Create(&system);
-	std::cout << "Initialized sound" << std::endl;
+	//std::cout << "Initialized sound" << std::endl;
 	result = system->init(32, FMOD_INIT_NORMAL, nullptr);
 
-	std::cout << "Sound constructor called" << std::endl;
+	//std::cout << "Sound constructor called" << std::endl;
 	SOUND = this;
 
 	system->createChannelGroup("soundEffects", &soundEffects);
@@ -161,7 +161,7 @@ void Sound::Play(std::string source, int loop)
 
 		if (m_sounds[id]->IsPlaying == false)
 		{
-			std::cout << "BGM play" << std::endl;
+			//std::cout << "BGM play" << std::endl;
 			m_sounds[id]->IsPlaying = true;
 			result = system->playSound(r_sound, nullptr, false, &m_sounds[id]->channel);
 			result = m_sounds[id]->channel->setChannelGroup(backgroundSounds);
@@ -172,7 +172,7 @@ void Sound::Play(std::string source, int loop)
 	{
 		if (m_sounds[id]->source.find("flush") != -1 && m_sounds[id]->IsPlaying == true)
 		{//DONT DELETE THIS IF STATE- JUHYE
-			std::cout << "mixed" << std::endl;
+			//std::cout << "mixed" << std::endl;
 		}
 		else
 		{

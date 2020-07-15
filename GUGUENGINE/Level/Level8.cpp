@@ -71,7 +71,7 @@ void Level8::Init()
 
 	rotTime.setRotate(30);
 	rotrot2 = true;
-	std::cout << rotTime.getLimitTime() << std::endl;
+	//std::cout << rotTime.getLimitTime() << std::endl;
 	chekNext8 = 0;
 
 	conecTcheck8_1 = false;
@@ -369,7 +369,7 @@ void Level8::Update()
 				poopooCheck = false;
 			}
 
-			std::cout << "rotation limit!!!" << std::endl;
+			//std::cout << "rotation limit!!!" << std::endl;
 		}
 		if (rotrot2)
 		{
@@ -660,12 +660,12 @@ void Level8::Update()
 
 				if (conecTcheck8_1 && conecTcheck8_2 && conecTcheck8_6 && conecTcheck8_7)
 				{
-					std::cout << "if 5" << std::endl;
+					//std::cout << "if 5" << std::endl;
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext8 = 1;
 					mPooPoo2.SetIsSuccess(true);
 
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					connectMove8 = 0;
 
 					if (soundCheck == false)
@@ -678,12 +678,12 @@ void Level8::Update()
 				}
 				else if (conecTcheck8_3 && conecTcheck8_4 && conecTcheck8_5 && conecTcheck8_8 && conecTcheck8_9)
 				{
-					std::cout << "if 5" << std::endl;
+					//std::cout << "if 5" << std::endl;
 					clear->mesh->setTransform({ 350.f, -240.f });
 					chekNext8 = 1;
 					mPooPoo.SetIsSuccess(true);
 
-					std::cout << "clear" << std::endl;
+					//std::cout << "clear" << std::endl;
 					connectMove8 = 0;
 
 					if (soundCheck2 == false)

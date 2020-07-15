@@ -5,6 +5,13 @@
 #include "../GUGUENGINE/Engine.h"
 #include "StateManager.h"
 #include "../GUGUENGINE/Sound.h"
+/*
+ *eunjin.hong
+ *06.28.2020
+ *eunjin.hong@gmail.com
+ *Credits.h
+ *This is endingcut.cpp
+ */
 void endingCut::Init()
 {
 	mShader.BuildTextureShader();
