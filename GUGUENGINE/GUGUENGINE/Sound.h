@@ -40,6 +40,8 @@ public:
 	void SetLoopCount(int loopCount);
 	void StopEffectSound();
 	void StopSound(std::string mString);
+	void resumeSound(std::string mString);
+	void pauseSound(std::string mString);
 
 	bool IsMute_();
 	bool soundCheck(std::string mString);
@@ -52,7 +54,7 @@ public:
 
 	void SetSoundBarSize(Vector2<float> size) { soundBarSize.x = size.x;  soundBarSize.x = size.x;};
 	void SetSoundBarPosition(Vector2<float> position) { soundBarPosition.x = position.x; soundBarPosition.y = position.y;};
-
+	
 private:
 
 	struct SOUNDMANAGER

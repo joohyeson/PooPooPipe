@@ -746,6 +746,7 @@ void Level3::Update()
 					{
 						if (mPooPoo.GetIsSuccess() == true)
 						{
+							this->sound->pauseSound("assets\\flushing.wav");
 							mPooPoo.SetIsSuccess(false);
 						}
 						Nos[1] = true;
@@ -798,6 +799,7 @@ void Level3::Update()
 			{
 				if (mPooPoo.GetIsHidden() == false)
 				{
+					this->sound->resumeSound("assets\\flushing.wav");
 					mPooPoo.SetIsSuccess(true);
 				}
 				INPUT->setInput(KEY::LEFT);
