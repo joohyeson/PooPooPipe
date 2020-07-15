@@ -37,6 +37,8 @@ public:
 		levelCheck = 0;
 		spaceCheck = 0;
 		win = nullptr;
+		timer = 0;
+		checking = false;
 	}
 	GameLevels GetCurrLevel() override
 	{
