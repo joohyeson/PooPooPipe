@@ -35,7 +35,7 @@ void Level11::Init()
 
 	Nos[0] = false;
 	Nos[1] = false;
-
+	skip = false;
 	Cur[0] = false;
 	Cur[1] = false;
 	Cur[2] = false;
@@ -802,9 +802,10 @@ void Level11::Update()
 		{
 			if (skip == false)
 			{
+				skip = true;
+
 				this->sound->Play("assets\\yeah.wav", 1);
 			}
-			skip = true;
 
 			win->mesh->setTransform({ 0,0 });
 	
