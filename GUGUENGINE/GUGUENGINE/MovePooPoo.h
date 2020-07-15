@@ -22,6 +22,10 @@ public:
 	{
 		isHidden = set;
 	}
+	bool GetIsHidden()
+	{
+		return isHidden;
+	}
 	bool IsFinish()
 	{
 		return isFinish;

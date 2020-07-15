@@ -201,6 +201,32 @@ void Sound::Resume()
 	for (unsigned int i = 0; i < m_sounds.size(); i++)
 		m_sounds[i]->channel->setPaused(false);
 }
+void Sound::pauseSound(std::string mString)
+{
+	for (auto s : m_sounds)
+	{
+		if (s->source.find(mString) != -1)
+		{
+			s->IsPlaying = false;
+			s->channel->setPaused(true);
+			break;
+		}
+	}
+}
+void Sound::resumeSound(std::string mString)
+{
+	for (auto s : m_sounds)
+	{
+		if (s->source.find(mString) != -1)
+		{
+			s->IsPlaying = true;
+			s->channel->setPaused(false);
+			break;
+		}
+	}
+}
+
+
 
 void Sound::Stop()
 {
@@ -264,6 +290,8 @@ void Sound::StopSound(std::string mString)
 		}
 	}
 }
+
+
 
 bool Sound::IsMute_()
 {
