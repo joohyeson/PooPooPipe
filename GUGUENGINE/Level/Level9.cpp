@@ -22,6 +22,7 @@ extern bool getOpt;
 bool SoundCheck = false;
 void Level9::Init()
 {
+	one = false;
 	current = 6;
 	getOpt = false;
 	poopooCheck = false;
@@ -551,8 +552,13 @@ void Level9::Update()
 				{
 					puzzle4->pipe->Update();
 
-					degree9_rot += static_cast<float>(DegreeToRadian(-120.f));
-					puzzle4->mesh->setRotation(degree9_rot);
+					if (one == false)
+					{
+						degree9_rot += static_cast<float>(DegreeToRadian(-120.f));
+						puzzle4->mesh->setRotation(degree9_rot);
+						one = true;
+					}
+
 
 					this->sound->Play("assets\\coin.wav", 1);
 

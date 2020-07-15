@@ -99,7 +99,7 @@ void startCut::Update()
 
 	if(soundeffect[0] == true)
 	{
-		if (timer > 1.5)
+		if (timer > 0.8)
 		{
 			soundeffect[0] = false;
 
@@ -108,7 +108,7 @@ void startCut::Update()
 	}
 	if(soundeffect[1] == true)
 	{
-		if (timer > 1.5)
+		if (timer > 0.8)
 		{
 			soundeffect[1] = false;
 

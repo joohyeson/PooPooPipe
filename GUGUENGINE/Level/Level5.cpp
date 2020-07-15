@@ -22,7 +22,7 @@ void Level5::Init()
 {
 	current = 5;
 	getOpt = false;
-
+	one = false;
 	if (MaxLevel <= 5)
 	{
 		MaxLevel = 5;
@@ -348,6 +348,7 @@ void Level5::Update()
 			UI[4] = false;
 			Levelsel_pressed->mesh->setTransform({ 1800.f, -300.f });
 		}
+		
 		if (movePuzzle->collision->Point2HexagonCollision({ cursor5.x,cursor5.y }, movePuzzle->mesh))
 		{
 			if (SUI[0] == false && Cur[0] == false && Cur[1] == false && Cur[2] == false)
@@ -898,8 +899,13 @@ void Level5::Update()
 				if (movePuzzleCheck5)
 				{
 					puzzle7->pipe->Update();
-					puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
-					puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+
+					if (one == false)
+					{
+						puzzle7->mesh->setRotation(static_cast<float>(DegreeToRadian(300.f)));
+						puzzle7->pipe->SetDirection(true, true, false, true, false, false);
+						one = true;
+					}
 
 					this->sound->Play("assets\\coin.wav", 1);
 
