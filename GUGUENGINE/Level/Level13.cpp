@@ -22,7 +22,7 @@ void Level13::Init()
 {
 	current = 10;
 	getOpt = false;
-
+	skip = false;
 	if (MaxLevel <= 10)
 	{
 		MaxLevel = 10;
@@ -692,9 +692,12 @@ void Level13::Update()
 		{
 			if (skip == false)
 			{
+				timer2 = 0;
+
+				skip = true;
+
 				this->sound->Play("assets\\yeah.wav", 1);
 			}
-			skip = true;
 			win->mesh->setTransform({ 0,0 });
 		}
 

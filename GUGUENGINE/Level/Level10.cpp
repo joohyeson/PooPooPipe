@@ -907,10 +907,11 @@ void Level10::Update()
 		{
 			if (skip == false)
 			{
+				skip = true;
+				timer3 = 0;
+
 				this->sound->Play("assets\\yeah.wav", 1);
 			}
-
-			skip = true;
 			win->mesh->setTransform({ 0,0 });
 		}
 
