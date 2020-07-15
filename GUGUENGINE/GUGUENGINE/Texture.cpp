@@ -49,7 +49,7 @@ void Texture::CreateTexture(char const* filename, Textures typeOfTexture)
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
 
-    glBindTexture(GL_TEXTURE_2D, TextureStore.size());
+    glBindTexture(GL_TEXTURE_2D, static_cast<GLuint>( TextureStore.size()));
 
     stbi_image_free(data);
 
