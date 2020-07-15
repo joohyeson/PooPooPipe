@@ -794,6 +794,11 @@ void Level13::Update()
 					INPUT->setInput(KEY::LEFT);
 					if (quitCheck == false)
 					{
+						if (mPooPoo.GetIsSuccess() == true)
+						{
+							this->sound->pauseSound("assets\\flushing.wav");
+							mPooPoo.SetIsSuccess(false);
+						}
 						//SOUND->Pause();
 						Nos[1] = true;
 						quitCheck = true;
@@ -843,6 +848,11 @@ void Level13::Update()
 			No_p->mesh->setTransform(No->mesh->GetTransform());
 			if (mInput.IsPressed(KEY::LEFT))
 			{
+				if (mPooPoo.GetIsHidden() == false)
+				{
+					this->sound->resumeSound("assets\\flushing.wav");
+					mPooPoo.SetIsSuccess(true);
+				}
 				INPUT->setInput(KEY::LEFT);
 				quitCheck = false;
 				realQuit = false;
