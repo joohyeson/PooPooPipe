@@ -356,12 +356,12 @@ void Level14::Update()
 		if (failS[0] == true)
 		{
 			timer += ENGINE->dt;
+
 			if (timer > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
-				STATE_MANAGER->ReloadState();
 			}
 		}
 

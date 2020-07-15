@@ -367,7 +367,6 @@ void Level11::Update()
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
-				STATE_MANAGER->ReloadState();
 			}
 		}
 
