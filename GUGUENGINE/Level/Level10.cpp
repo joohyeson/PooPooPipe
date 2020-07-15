@@ -339,8 +339,6 @@ void Level10::Update()
 				this->sound->Play("assets\\fart.mp3", 1);
 				failS[0] = true;
 			}
-
-
 			std::cout << "rotation limit!!!" << std::endl;
 		}
 
@@ -352,7 +350,6 @@ void Level10::Update()
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
-				STATE_MANAGER->ReloadState();
 			}
 		}
 
@@ -910,10 +907,11 @@ void Level10::Update()
 		{
 			if (skip == false)
 			{
+				skip = true;
+				timer3 = 0;
+
 				this->sound->Play("assets\\yeah.wav", 1);
 			}
-
-			skip = true;
 			win->mesh->setTransform({ 0,0 });
 		}
 

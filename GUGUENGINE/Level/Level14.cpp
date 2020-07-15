@@ -22,7 +22,7 @@ void Level14::Init()
 	current = 11;
 	getOpt = false;
 	one = false;
-
+	skip = false;
 	if (MaxLevel <= 11)
 	{
 		MaxLevel = 11;
@@ -356,12 +356,12 @@ void Level14::Update()
 		if (failS[0] == true)
 		{
 			timer += ENGINE->dt;
+
 			if (timer > 1.5f)
 			{
 				Nos[0] = true;
 				fail->mesh->setTransform({ 0,0 });
 				poopooCheck = false;
-				STATE_MANAGER->ReloadState();
 			}
 		}
 
@@ -703,9 +703,12 @@ void Level14::Update()
 		{
 			if (skip == false)
 			{
+				timer3 = 0;
+
+				skip = true;
+
 				this->sound->Play("assets\\yeah.wav", 1);
 			}
-			skip = true;
 			win->mesh->setTransform({ 0,0 });
 		}
 
