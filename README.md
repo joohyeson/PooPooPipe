@@ -29,17 +29,16 @@ https://user-images.githubusercontent.com/68503845/170813060-1ef2d348-9a87-4b3d-
     
 ## Game Concept
 
-<img src="https://user-images.githubusercontent.com/68503845/170851617-ca1c7fd7-b3e2-41b9-8853-2e8fcf1bf360.png"  width="200" height="200">
-		
+<img src="https://user-images.githubusercontent.com/68503845/170851617-ca1c7fd7-b3e2-41b9-8853-2e8fcf1bf360.png"  width="200" height="200"/>
 
-</img>
-
+	캐릭터는 특별한 힘이나 능력을 가지고 있지 않습니다.
+	할 수 있는 단 한 가지는 연결된 파이프를 통과하는 것입니다! 그는 당신의 도움으로 정화조에 도착한다면 기쁠 것입니다!
 
 	The character which the player should help to reach the goal. It doesn’t have special powers or any abilities. 
 	The only thing it could do is to get through the connected pipes. He will be happy if it reaches to the sewage 
 	disposal tank by your help!
     
-    
+    	
 <br/>
 
 
