@@ -26,6 +26,30 @@ https://user-images.githubusercontent.com/68503845/170813060-1ef2d348-9a87-4b3d-
 
 	Copyright notice
 		- All content © 2019 DigiPen (USA) Corporation, all rights reserved.
+	
+## 구현 기능
+
+**Windowing / Input (mouse and keyboard)**
+
+**GPU Shaders**
+
+**Image Rendering**
+
+**2D Camera & Game Object Transformations**
+
+**Component-Based Game Architecture**
+
+**Messaging / Event Systems**
+
+Shapes for the GPU
+
+Immediate Mode Drawing for Prototyping
+
+Game Object Serialization
+
+Mathematics
+
+
     
 ## Game Concept
 
