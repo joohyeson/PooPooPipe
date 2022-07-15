@@ -49,7 +49,6 @@ Game Object Serialization
 
 Mathematics
 
-
     
 ## Game Concept
 
