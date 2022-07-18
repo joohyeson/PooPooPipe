@@ -1,6 +1,7 @@
 # PooPooPipe
 OpenGL/C++을 활용하여 개발한 게임엔진 & 퍼즐게임
 
+exe파일 다운로드 : https://drive.google.com/file/d/13jt6Xjcs8BP6vp6Ny1vestq6ixeqEgFu/view?usp=sharing
 
 https://user-images.githubusercontent.com/68503845/170813060-1ef2d348-9a87-4b3d-bfa9-a971bd7737a2.mp4
 
